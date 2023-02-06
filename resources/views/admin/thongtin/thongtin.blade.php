@@ -1,5 +1,5 @@
-@extends('hieutruong_layout')
-@section('hieutruong_content')
+@extends('admin_layout')
+@section('admin_content')
 <div class="row">
   <div class="col-xl-3 col-md-6">
     <div class="card-box">
