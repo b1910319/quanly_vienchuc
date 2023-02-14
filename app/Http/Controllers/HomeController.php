@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
+use App\Models\PhanQuyen;
 use Illuminate\Support\Carbon;
 
 class HomeController extends Controller
@@ -24,7 +25,11 @@ class HomeController extends Controller
   }
   public function home(){
     $this->check_login();
-    
-    return view('home.home');
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    return view('home.home')
+      ->with('phanquyen_admin', $phanquyen_admin);
   }
 }

@@ -188,7 +188,7 @@
             <td>
               {{ $quyen->updated_q }}
             </td>
-            <td style="width: 18%;">
+            <td style="width: 20%;">
               <a href="{{ URL::to('/edit_quyen/'.$quyen->ma_q)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>

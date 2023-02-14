@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VienChucController;
 use App\Http\Controllers\QuyenController;
+use App\Http\Controllers\PhanQuyenController;
 
 
 
@@ -27,9 +28,9 @@ Route::get('/delete_all_quyen',[QuyenController::class, 'delete_all_quyen']);
 
 
 
-
-
-
+Route::get('/phanquyen',[PhanQuyenController::class, 'phanquyen']);
+Route::post('/phanquyen_vc',[PhanQuyenController::class, 'phanquyen_vc']);
+Route::get('/lammoi_quyen/{ma_vc}',[PhanQuyenController::class, 'lammoi_quyen']);
 
 
 

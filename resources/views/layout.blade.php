@@ -131,7 +131,46 @@
                 <span> Trang chủ </span>
               </a>
             </li>
-            <li>
+            @if ($phanquyen_admin)
+              <li>
+                <a href="javascript: void(0);" class="waves-effect">
+                  <i class="fa-solid fa-drum-steelpan"></i>
+                  <span> Quyền </span>
+                  <span class="menu-arrow"></span>
+                </a>
+                <ul class="nav-second-level" aria-expanded="false">
+                  <li>
+                    <a href="{{ URL::to('/quanly_quyen') }}">Quản lý quyền</a>
+                  </li>
+                  <li>
+                    <a href="{{ URL::to('/phanquyen') }}">Phân quyền</a>
+                  </li>
+                </ul>
+              </li>
+            @endif
+            {{-- @foreach ($phanquyen as $key => $pq)
+              @if ($pq->ma_q == 5)
+                <li>
+                  <a href="javascript: void(0);" class="waves-effect">
+                    <i class="fa-solid fa-drum-steelpan"></i>
+                    <span> Quyền </span>
+                    <span class="menu-arrow"></span>
+                  </a>
+                  <ul class="nav-second-level" aria-expanded="false">
+                    <li>
+                      <a href="{{ URL::to('/quanly_quyen') }}">Quản lý quyền</a>
+                    </li>
+                    <li>
+                      <a href="{{ URL::to('/phanquyen') }}">Phân quyền</a>
+                    </li>
+                  </ul>
+                </li>
+              @else
+                
+              @endif
+            @endforeach --}}
+            
+            {{-- <li>
               <a href="javascript: void(0);" class="waves-effect">
                 <i class="fa-solid fa-drum-steelpan"></i>
                 <span> Quyền </span>
@@ -145,8 +184,7 @@
                   <a href="{{ URL::to('/phanquyen') }}">Phân quyền</a>
                 </li>
               </ul>
-            </li>
-
+            </li> --}}
             <li>
               <a href="javascript: void(0);" class="waves-effect">
                 <i class="remixicon-stack-line"></i>
