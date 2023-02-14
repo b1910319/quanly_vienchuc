@@ -19,10 +19,17 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
   </script>
   {{--  --}}
+  {{-- css datatable hỗ trợ tìm kiếm --}}
+  <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+  {{--  --}}
   <!-- App css -->
   <link href="{{ asset('public\assets\css\bootstrap.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('public\assets\css\icons.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('public\assets\css\app.min.css') }}" rel="stylesheet" type="text/css">
+  {{-- link font awesome --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  {{--  --}}
 </head>
 <body>
   <!-- Begin page -->
@@ -123,20 +130,21 @@
                 <span class="badge badge-success badge-pill float-right">2</span>
                 <span> Trang chủ </span>
               </a>
-              {{-- <ul class="nav-second-level" aria-expanded="false">
-                <li>
-                  <a href="index.html">Dashboard 1</a>
-                </li>
-                <li>
-                  <a href="dashboard-2.html">Dashboard 2</a>
-                </li>
-              </ul> --}}
             </li>
             <li>
-              <a href="widgets.html" class="waves-effect">
-                <i class="remixicon-vip-crown-2-line"></i>
-                <span> Widgets </span>
+              <a href="javascript: void(0);" class="waves-effect">
+                <i class="fa-solid fa-drum-steelpan"></i>
+                <span> Quyền </span>
+                <span class="menu-arrow"></span>
               </a>
+              <ul class="nav-second-level" aria-expanded="false">
+                <li>
+                  <a href="{{ URL::to('/quanly_quyen') }}">Quản lý quyền</a>
+                </li>
+                <li>
+                  <a href="{{ URL::to('/phanquyen') }}">Phân quyền</a>
+                </li>
+              </ul>
             </li>
 
             <li>
@@ -213,46 +221,6 @@
                 </li>
                 <li>
                   <a href="email-templates.html">Email Templates</a>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <a href="javascript: void(0);" class="waves-effect">
-                <i class="remixicon-file-copy-2-line"></i>
-                <span> Pages </span>
-                <span class="menu-arrow"></span>
-              </a>
-              <ul class="nav-second-level" aria-expanded="false">
-                <li>
-                  <a href="pages-starter.html">Starter</a>
-                </li>
-                <li>
-                  <a href="pages-login.html">Log In</a>
-                </li>
-                <li>
-                  <a href="pages-register.html">Register</a>
-                </li>
-                <li>
-                  <a href="pages-recoverpw.html">Recover Password</a>
-                </li>
-                <li>
-                  <a href="pages-lock-screen.html">Lock Screen</a>
-                </li>
-                <li>
-                  <a href="">Logout</a>
-                </li>
-                <li>
-                  <a href="pages-confirm-mail.html">Confirm Mail</a>
-                </li>
-                <li>
-                  <a href="pages-404.html">Error 404</a>
-                </li>
-                <li>
-                  <a href="pages-404-alt.html">Error 404-alt</a>
-                </li>
-                <li>
-                  <a href="pages-500.html">Error 500</a>
                 </li>
               </ul>
             </li>
@@ -575,12 +543,6 @@
           <div class="row">
             <div class="col-12">
               <div class="page-title-box">
-                <div class="page-title-right">
-                  <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Minton</a></li>
-                    <li class="breadcrumb-item active">Dashboard</li>
-                  </ol>
-                </div>
                 <h4 class="page-title">Welcome !</h4>
               </div>
             </div>
@@ -592,26 +554,6 @@
         </div> <!-- container -->
 
       </div> <!-- content -->
-
-      <!-- Footer Start -->
-      <footer class="footer">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-6">
-              2016 - 2019 &copy; Minton theme by <a href="">Coderthemes</a>
-            </div>
-            <div class="col-md-6">
-              <div class="text-md-right footer-links d-none d-sm-block">
-                <a href="javascript:void(0);">About Us</a>
-                <a href="javascript:void(0);">Help</a>
-                <a href="javascript:void(0);">Contact Us</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-      <!-- end Footer -->
-
     </div>
 
     <!-- ============================================================== -->
@@ -817,6 +759,15 @@
 
   <!-- App js -->
   <script src="{{ asset('public\assets\js\app.min.js') }}"></script>
+  {{-- datatable hỗ trợ tìm kiếm --}}
+  <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js">
+  </script>
+  <script>
+      $(document).ready(function() {
+          $('#mytable').DataTable();
+      });
+  </script>
+  {{--  --}}
 
 </body>
 
