@@ -71,18 +71,18 @@ class QuyenController extends Controller
     $quyen->save();
     return Redirect::to('quanly_quyen');
   }
-  // public function delete($ma_quyen){
-  //   $this->admin_check_login();
-  //   DanhMucTinTuc::find($ma_quyen)->delete();
-  //   return Redirect::to('admin_quyen');
-  // }
-  // public function delete_all(){
-  //   $this->admin_check_login();
-  //   $list = DanhMucTinTuc::get();
-  //   foreach($list as $key => $dm){
-  //     $dm->delete();
-  //   }
-  //   return Redirect::to('admin_quyen');
-  // }
+  public function delete_quyen($ma_q){
+    $this->check_login();
+    Quyen::find($ma_q)->delete();
+    return Redirect::to('quanly_quyen');
+  }
+  public function delete_all_quyen(){
+    $this->check_login();
+    $list = Quyen::get();
+    foreach($list as $key => $quyen){
+      $quyen->delete();
+    }
+    return Redirect::to('quanly_quyen');
+  }
 
 }

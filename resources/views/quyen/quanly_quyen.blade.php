@@ -162,7 +162,7 @@
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $quyen->ten_q }}
+              {{ $quyen->ten_q }} ({{ $quyen->ma_q }})
             </td>
             <td>
               <?php
@@ -188,7 +188,7 @@
             <td>
               {{ $quyen->updated_q }}
             </td>
-            <td>
+            <td style="width: 18%;">
               <a href="{{ URL::to('/edit_quyen/'.$quyen->ma_q)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>

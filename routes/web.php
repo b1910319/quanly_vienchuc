@@ -22,8 +22,8 @@ Route::post('/add_quyen',[QuyenController::class, 'add_quyen']);
 Route::get('/select_quyen/{ma_q}',[QuyenController::class, 'select_quyen']);
 Route::get('/edit_quyen/{ma_q}',[QuyenController::class, 'edit_quyen']);
 Route::post('/update_quyen/{ma_q}',[QuyenController::class, 'update_quyen']);
-
-
+Route::get('/delete_quyen/{ma_q}',[QuyenController::class, 'delete_quyen']);
+Route::get('/delete_all_quyen',[QuyenController::class, 'delete_all_quyen']);
 
 
 
