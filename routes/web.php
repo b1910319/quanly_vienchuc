@@ -20,3 +20,20 @@ Route::get('/logout',[VienChucController::class, 'logout']);
 Route::get('/quanly_quyen',[QuyenController::class, 'quanly_quyen']);
 Route::post('/add_quyen',[QuyenController::class, 'add_quyen']);
 Route::get('/select_quyen/{ma_q}',[QuyenController::class, 'select_quyen']);
+Route::get('/edit_quyen/{ma_q}',[QuyenController::class, 'edit_quyen']);
+Route::post('/update_quyen/{ma_q}',[QuyenController::class, 'update_quyen']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

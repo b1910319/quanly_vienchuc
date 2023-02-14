@@ -54,4 +54,35 @@ class QuyenController extends Controller
     }
     return Redirect::to('quanly_quyen');
   }
+  public function edit_quyen($ma_q){
+    $this->check_login();
+    $edit = Quyen::find($ma_q);
+    return view('quyen.quanly_quyen_edit')
+      ->with('edit', $edit);
+  }public function update_quyen(Request $request, $ma_q){
+    $this->check_login();
+    $data = $request->all();
+    Carbon::now('Asia/Ho_Chi_Minh');
+    $quyen = Quyen::find($ma_q);
+    $quyen->ten_q = $data['ten_q'];
+    $quyen->mota_q = $data['mota_q'];
+    $quyen->status_q = $data['status_q'];
+    $quyen->updated_q = Carbon::now();
+    $quyen->save();
+    return Redirect::to('quanly_quyen');
+  }
+  // public function delete($ma_quyen){
+  //   $this->admin_check_login();
+  //   DanhMucTinTuc::find($ma_quyen)->delete();
+  //   return Redirect::to('admin_quyen');
+  // }
+  // public function delete_all(){
+  //   $this->admin_check_login();
+  //   $list = DanhMucTinTuc::get();
+  //   foreach($list as $key => $dm){
+  //     $dm->delete();
+  //   }
+  //   return Redirect::to('admin_quyen');
+  // }
+
 }
