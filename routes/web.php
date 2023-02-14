@@ -18,5 +18,5 @@ Route::get('/logout',[VienChucController::class, 'logout']);
 
 
 Route::get('/quanly_quyen',[QuyenController::class, 'quanly_quyen']);
-Route::post('/them_quyen',[QuyenController::class, 'them_quyen']);
-
+Route::post('/add_quyen',[QuyenController::class, 'add_quyen']);
+Route::get('/select_quyen/{ma_q}',[QuyenController::class, 'select_quyen']);

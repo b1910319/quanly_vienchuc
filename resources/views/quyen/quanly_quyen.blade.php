@@ -13,7 +13,7 @@
               <div class="alert alert-primary" role="alert">
                 <h4 class="text-center" style="font-weight: bold">THÊM THÔNG TIN</h4>
               </div>
-              <form action="{{ URL::to('/them_quyen') }}" method="POST"
+              <form action="{{ URL::to('/add_quyen') }}" method="POST"
                 autocomplete="off" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <?php
@@ -197,13 +197,13 @@
               </a>
               
               <?php
-                if($quyen->status_quyen == 0){
+                if($quyen->status_q == 0){
                   ?>
                     <a href="{{ URL::to('/select_quyen/'.$quyen->ma_q) }}">
                       <button type="button" class="btn btn-secondary">Ẩn</button>
                     </a>
                   <?php
-                }else if($quyen->status_quyen == 1) {
+                }else if($quyen->status_q == 1) {
                   ?>
                     <a href="{{ URL::to('/select_quyen/'.$quyen->ma_q) }}">
                       <button type="button" class="btn btn-success">Hiển thị</button>

@@ -33,7 +33,7 @@ class QuyenController extends Controller
       ->with('count_status', $count_status)
       ->with('list', $list);
   }
-  public function them_quyen(Request $request){
+  public function add_quyen(Request $request){
     $this->check_login();
     $data = $request->all();
     $quyen = new Quyen();
@@ -43,5 +43,15 @@ class QuyenController extends Controller
     $quyen->save();
     $request->session()->put('message','Thêm thành công');
     return Redirect::to('/quanly_quyen');
+  }
+  public function select_quyen($ma_q){
+    $this->check_login();
+    $quyen = Quyen::find($ma_q);
+    if($quyen->status_q == 1){
+      $quyen->status_q = Quyen::find($ma_q)->update(['status_q' => 0]);
+    }elseif($quyen->status_q == 0){
+      $quyen->status_q = Quyen::find($ma_q)->update(['status_q' => 1]);
+    }
+    return Redirect::to('quanly_quyen');
   }
 }
