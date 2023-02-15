@@ -180,11 +180,11 @@
             </td>
             <td>
               <?php
-                if($khoa->status_q == 0){
+                if($khoa->status_k == 0){
                   ?>
                     <span class="badge rounded-pill text-bg-success"><i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị</span>
                   <?php
-                }else if($khoa->status_q == 1) {
+                }else if($khoa->status_k == 1) {
                   ?>
                     <span class="badge text-bg-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
                   <?php
@@ -198,26 +198,25 @@
               {{ $khoa->updated_k }}
             </td>
             <td style="width: 21%;">
-              <a href="{{ URL::to('/edit_khoa/'.$khoa->ma_q)}}">
+              <a href="{{ URL::to('/edit_khoa/'.$khoa->ma_k)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_khoa/'.$khoa->ma_q)}}">
+              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_khoa/'.$khoa->ma_k)}}">
                 <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               </a>
-              
               <?php
-                if($khoa->status_q == 0){
+                if($khoa->status_k == 0){
                   ?>
-                    <a href="{{ URL::to('/select_khoa/'.$khoa->ma_q) }}">
+                    <a href="{{ URL::to('/select_khoa/'.$khoa->ma_k) }}">
                       <button type="button" class="btn btn-secondary">
                         <i class="fa-solid fa-eye-slash"></i> 
                         &ensp; Ẩn
                       </button>
                     </a>
                   <?php
-                }else if($khoa->status_q == 1) {
+                }else if($khoa->status_k == 1) {
                   ?>
-                    <a href="{{ URL::to('/select_khoa/'.$khoa->ma_q) }}">
+                    <a href="{{ URL::to('/select_khoa/'.$khoa->ma_k) }}">
                       <button type="button" class="btn btn-success">
                         <i class="fa-solid fa-eye"></i>
                         &ensp; Hiển thị
