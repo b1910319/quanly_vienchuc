@@ -13,7 +13,7 @@
               <div class="alert alert-primary" role="alert">
                 <h4 class="text-center" style="font-weight: bold">THÊM THÔNG TIN</h4>
               </div>
-              <form action="{{ URL::to('/add_vienchuc_khoa/'.$ma_k) }}" method="POST"
+              <form action="{{ URL::to('/admin_add_vienchuc_khoa/'.$ma_k) }}" method="POST"
                 autocomplete="off" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <?php
@@ -56,9 +56,8 @@
                         <tr>
                           <th scope="row">Email: </th>
                           <td class="was-validated">
-                            <div class="input-group mb-3">
-                              <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" name="user_vc">
-                              <span class="input-group-text" id="basic-addon2">@student.ctu.edu.vn</span>
+                            <div class="mb-3">
+                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="user_vc" >
                             </div>
                           </td>
                         </tr>
@@ -97,7 +96,10 @@
           <i class="fas fa-solid fa-caret-left"></i>&ensp;
         </button> &ensp;
       </a>
-      <h4 class="text-center col-10 mt-1" style="font-weight: bold">DANH SÁCH</h4>
+      <h4 class="text-center col-10 mt-1" style="font-weight: bold">
+        DANH SÁCH 
+        <span style="color: #379237;">( {{ $khoa->ten_k }} )</span>
+      </h4>
     </div>
     <?php
       $message=session()->get('message_update');
@@ -154,7 +156,7 @@
         </div>
       </div>
       <div class="col-2">
-        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_quyen') }}">
+        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/admin_deleteall_vienchuc_khoa/'.$ma_k) }}">
           <button type="button" class="btn btn-danger">Xoá tất cả</button>
         </a>
       </div>
@@ -199,23 +201,23 @@
               ?>
             </td>
             <td>
-              {{ $vienchuc->created_k }}
+              {{ $vienchuc->created_vc }}
             </td>
             <td>
-              {{ $vienchuc->updated_k }}
+              {{ $vienchuc->updated_vc }}
             </td>
             <td style="width: 23%;">
-              <a href="{{ URL::to('/edit_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc)}}">
+              <a href="{{ URL::to('/admin_edit_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc)}}">
+              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/admin_delete_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc)}}">
                 <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               </>
               
               <?php
                 if($vienchuc->status_vc == 0){
                   ?>
-                    <a href="{{ URL::to('/select_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc) }}">
+                    <a href="{{ URL::to('/admin_select_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc) }}">
                       <button type="button" class="btn btn-secondary">
                         <i class="fa-solid fa-eye-slash"></i> 
                         &ensp; Vô hiệu hoá
@@ -224,7 +226,7 @@
                   <?php
                 }else if($vienchuc->status_vc == 1) {
                   ?>
-                    <a href="{{ URL::to('/select_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc) }}">
+                    <a href="{{ URL::to('/admin_select_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc) }}">
                       <button type="button" class="btn btn-success">
                         <i class="fa-solid fa-eye"></i>
                         &ensp;

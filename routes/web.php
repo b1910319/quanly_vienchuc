@@ -18,8 +18,12 @@ Route::get('/home',[HomeController::class, 'home']);
 Route::post('/login',[VienChucController::class, 'login']);
 Route::get('/logout',[VienChucController::class, 'logout']);
 Route::get('/vienchuc_khoa/{ma_k}',[VienChucController::class, 'vienchuc_khoa']);
-Route::post('/add_vienchuc_khoa/{ma_k}',[VienChucController::class, 'add_vienchuc_khoa']);
-Route::get('/select_vienchuc_khoa/{ma_k}/{ma_vc}',[VienChucController::class, 'select_vienchuc_khoa']);
+Route::post('/admin_add_vienchuc_khoa/{ma_k}',[VienChucController::class, 'admin_add_vienchuc_khoa']);
+Route::get('/admin_select_vienchuc_khoa/{ma_k}/{ma_vc}',[VienChucController::class, 'admin_select_vienchuc_khoa']);
+Route::get('/admin_edit_vienchuc_khoa/{ma_k}/{ma_vc}',[VienChucController::class, 'admin_edit_vienchuc_khoa']);
+Route::post('/admin_update_vienchuc_khoa/{ma_k}/{ma_vc}',[VienChucController::class, 'admin_update_vienchuc_khoa']);
+Route::get('/admin_delete_vienchuc_khoa/{ma_k}/{ma_vc}',[VienChucController::class, 'admin_delete_vienchuc_khoa']);
+Route::get('/admin_deleteall_vienchuc_khoa/{ma_k}',[VienChucController::class, 'admin_deleteall_vienchuc_khoa']);
 
 
 
