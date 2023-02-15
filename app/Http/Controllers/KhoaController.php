@@ -34,10 +34,15 @@ class KhoaController extends Controller
       $count_status = Khoa::select(DB::raw('count(ma_k) as sum, status_k'))->groupBy('status_k')->get();
       $list = Khoa::orderBy('ma_k', 'desc')
         ->get();
+      $count_vienchuc_khoa = Khoa::leftJoin('vienchuc', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->select(DB::raw('count(ma_vc) as sum, khoa.ma_k'))
+        ->groupBy('khoa.ma_k')
+        ->get();
       return view('khoa.quanly_khoa')
         ->with('count', $count)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_status', $count_status)
+        ->with('count_vienchuc_khoa', $count_vienchuc_khoa)
         ->with('list', $list);
     }else{
       return Redirect::to('/home');

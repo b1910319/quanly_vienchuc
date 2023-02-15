@@ -19,7 +19,7 @@ Route::post('/login',[VienChucController::class, 'login']);
 Route::get('/logout',[VienChucController::class, 'logout']);
 Route::get('/vienchuc_khoa/{ma_k}',[VienChucController::class, 'vienchuc_khoa']);
 Route::post('/add_vienchuc_khoa/{ma_k}',[VienChucController::class, 'add_vienchuc_khoa']);
-
+Route::get('/select_vienchuc_khoa/{ma_k}/{ma_vc}',[VienChucController::class, 'select_vienchuc_khoa']);
 
 
 

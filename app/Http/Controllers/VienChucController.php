@@ -24,7 +24,10 @@ class VienChucController extends Controller
   public function login(Request $request){
     $user_vc = $request->user_vc;
     $pass_vc = md5($request->pass_vc);
-    $result = VienChuc::where('user_vc', $user_vc)->where('pass_vc', $pass_vc)->first();
+    $result = VienChuc::where('user_vc', $user_vc)
+      ->where('pass_vc', $pass_vc)
+      ->where('status_vc', '<>', '1')
+      ->first();
     if($result){
       $request->session()->put('hoten_vc',$result->hoten_vc);
       $request->session()->put('ma_vc',$result->ma_vc);
@@ -92,5 +95,24 @@ class VienChucController extends Controller
     }else{
       return Redirect::to('/home');
     }
+  }
+  public function select_vienchuc_khoa($ma_k, $ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      $vienchuc = VienChuc::find($ma_vc);
+      if($vienchuc->status_vc == 1){
+        $vienchuc->status_vc = VienChuc::find($ma_vc)->update(['status_vc' => 0]);
+      }elseif($vienchuc->status_vc == 0){
+        $vienchuc->status_vc = VienChuc::find($ma_vc)->update(['status_vc' => 1]);
+      }
+      return Redirect::to('/vienchuc_khoa/'.$ma_k);
+    }else{
+      return Redirect::to('/home');
+    }
+    
   }
 }

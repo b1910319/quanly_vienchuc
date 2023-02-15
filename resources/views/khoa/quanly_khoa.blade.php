@@ -165,13 +165,31 @@
               {{ $khoa->ten_k }}
             </td>
             <td>
-              <a href="{{ URL::to('/vienchuc_khoa/'.$khoa->ma_k) }}">
-                <button type="button" class="btn btn-purple">
-                  <i class="fa-solid fa-user"></i>
-                  &ensp; Viên chức
-                </button>
-              </a>
+              <?php
+                foreach ($count_vienchuc_khoa as $key => $count) {
+                  if($count->ma_k == $khoa->ma_k && $count->sum > 0){
+                    ?>
+                      <a href="{{ URL::to('/vienchuc_khoa/'.$khoa->ma_k) }}">
+                        <button type="button" class="btn btn-purple">
+                          <i class="fa-solid fa-user"></i>
+                          &ensp; Thêm viên chức (<?php echo $count->sum ?>)
+                        </button>
+                      </a>
+                    <?php
+                  }elseif ($count->ma_k == $khoa->ma_k && $count->sum == 0) {
+                    ?>
+                      <a href="{{ URL::to('/vienchuc_khoa/'.$khoa->ma_k) }}">
+                        <button type="button" class="btn btn-purple">
+                          <i class="fa-solid fa-user"></i>
+                          &ensp; Thêm viên chức (0)
+                        </button>
+                      </a>
+                    <?php
+                  }
+                }
+              ?>
             </td>
+            
             <td>
               <?php
                 if($khoa->status_k == 0){

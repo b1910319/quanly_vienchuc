@@ -187,13 +187,13 @@
             </td>
             <td>
               <?php
-                if($vienchuc->status_k == 0){
+                if($vienchuc->status_vc == 0){
                   ?>
-                    <span class="badge rounded-pill text-bg-success"><i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị</span>
+                    <span class="badge rounded-pill text-bg-success"><i class="fas fa-solid fa-eye"></i>&ensp;  Kích hoạt</span>
                   <?php
-                }else if($vienchuc->status_k == 1) {
+                }else if($vienchuc->status_vc == 1) {
                   ?>
-                    <span class="badge text-bg-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
+                    <span class="badge text-bg-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Vô hiệu hoá</span>
                   <?php
                 }
               ?>
@@ -204,31 +204,31 @@
             <td>
               {{ $vienchuc->updated_k }}
             </td>
-            <td style="width: 21%;">
-              <a href="{{ URL::to('/edit_vienchuc/'.$vienchuc->ma_k)}}">
+            <td style="width: 23%;">
+              <a href="{{ URL::to('/edit_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_vienchuc/'.$vienchuc->ma_k)}}">
+              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc)}}">
                 <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              </a>
+              </>
               
               <?php
-                if($vienchuc->status_k == 0){
+                if($vienchuc->status_vc == 0){
                   ?>
-                    <a href="{{ URL::to('/select_vienchuc/'.$vienchuc->ma_k) }}">
+                    <a href="{{ URL::to('/select_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc) }}">
                       <button type="button" class="btn btn-secondary">
                         <i class="fa-solid fa-eye-slash"></i> 
-                        &ensp; Ẩn
+                        &ensp; Vô hiệu hoá
                       </button>
                     </a>
                   <?php
-                }else if($vienchuc->status_k == 1) {
+                }else if($vienchuc->status_vc == 1) {
                   ?>
-                    <a href="{{ URL::to('/select_vienchuc/'.$vienchuc->ma_k) }}">
+                    <a href="{{ URL::to('/select_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc) }}">
                       <button type="button" class="btn btn-success">
                         <i class="fa-solid fa-eye"></i>
                         &ensp;
-                        Hiển thị
+                        Kích hoạt
                       </button>
                     </a>
                   <?php
