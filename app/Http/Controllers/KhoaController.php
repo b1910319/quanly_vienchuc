@@ -81,50 +81,49 @@ class KhoaController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function edit_quyen($ma_q){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanKhoa::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   if($phanquyen_admin){
-  //     $edit = Khoa::find($ma_q);
-  //     $ma_vc = session()->get('ma_vc');
-  //     $phanquyen = PhanKhoa::where('ma_vc', $ma_vc)
-  //       ->get();
-  //     return view('quyen.quanly_quyen_edit')
-  //       ->with('phanquyen', $phanquyen)
-  //       ->with('edit', $edit);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-    
-  // }
-  // public function update_quyen(Request $request, $ma_q){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanKhoa::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   if($phanquyen_admin){
-  //     $data = $request->all();
-  //     Carbon::now('Asia/Ho_Chi_Minh');
-  //     $quyen = Khoa::find($ma_q);
-  //     $quyen->ten_q = $data['ten_q'];
-  //     $quyen->mota_q = $data['mota_q'];
-  //     $quyen->status_q = $data['status_q'];
-  //     $quyen->updated_q = Carbon::now();
-  //     $quyen->save();
-  //     return Redirect::to('quanly_quyen');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-    
-  // }
+  public function edit_khoa($ma_k){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      $edit = Khoa::find($ma_k);
+      $ma_vc = session()->get('ma_vc');
+      $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+      return view('khoa.quanly_khoa_edit')
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('edit', $edit);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_khoa(Request $request, $ma_k){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $khoa = Khoa::find($ma_k);
+      $khoa->ten_k = $data['ten_k'];
+      $khoa->mota_k = $data['mota_k'];
+      $khoa->status_k = $data['status_k'];
+      $khoa->updated_k = Carbon::now();
+      $khoa->save();
+      return Redirect::to('quanly_khoa');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function delete_quyen($ma_q){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanKhoa::where('ma_vc', $ma_vc)
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
   //     ->where('ma_q', '=', '5')
   //     ->first();
   //   if($phanquyen_admin){
@@ -138,7 +137,7 @@ class KhoaController extends Controller
   // public function delete_all_quyen(){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanKhoa::where('ma_vc', $ma_vc)
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
   //     ->where('ma_q', '=', '5')
   //     ->first();
   //   if($phanquyen_admin){

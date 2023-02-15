@@ -92,12 +92,12 @@ class QuyenController extends Controller
       ->first();
     if($phanquyen_admin){
       $edit = Quyen::find($ma_q);
-      $ma_vc = session()->get('ma_vc');
-      $phanquyen = PhanQuyen::where('ma_vc', $ma_vc)
-        ->get();
+      $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
       return view('quyen.quanly_quyen_edit')
-        ->with('phanquyen', $phanquyen)
-        ->with('edit', $edit);
+        ->with('edit', $edit)
+        ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');
     }
