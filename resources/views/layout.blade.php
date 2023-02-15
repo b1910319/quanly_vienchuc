@@ -148,70 +148,23 @@
                 </ul>
               </li>
             @endif
-            {{-- @foreach ($phanquyen as $key => $pq)
-              @if ($pq->ma_q == 5)
-                <li>
-                  <a href="javascript: void(0);" class="waves-effect">
-                    <i class="fa-solid fa-drum-steelpan"></i>
-                    <span> Quyền </span>
-                    <span class="menu-arrow"></span>
-                  </a>
-                  <ul class="nav-second-level" aria-expanded="false">
-                    <li>
-                      <a href="{{ URL::to('/quanly_quyen') }}">Quản lý quyền</a>
-                    </li>
-                    <li>
-                      <a href="{{ URL::to('/phanquyen') }}">Phân quyền</a>
-                    </li>
-                  </ul>
-                </li>
-              @else
-                
-              @endif
-            @endforeach --}}
-            
-            {{-- <li>
-              <a href="javascript: void(0);" class="waves-effect">
-                <i class="fa-solid fa-drum-steelpan"></i>
-                <span> Quyền </span>
-                <span class="menu-arrow"></span>
-              </a>
-              <ul class="nav-second-level" aria-expanded="false">
-                <li>
-                  <a href="{{ URL::to('/quanly_quyen') }}">Quản lý quyền</a>
-                </li>
-                <li>
-                  <a href="{{ URL::to('/phanquyen') }}">Phân quyền</a>
-                </li>
-              </ul>
-            </li> --}}
-            <li>
-              <a href="javascript: void(0);" class="waves-effect">
-                <i class="remixicon-stack-line"></i>
-                <span> Apps </span>
-                <span class="menu-arrow"></span>
-              </a>
-              <ul class="nav-second-level" aria-expanded="false">
-                <li>
-                  <a href="apps-kanbanboard.html">Kanban Board</a>
-                </li>
-                <li>
-                  <a href="apps-companies.html">Companies</a>
-                </li>
-                <li>
-                  <a href="apps-calendar.html">Calendar</a>
-                </li>
-                <li>
-                  <a href="apps-filemanager.html">File Manager</a>
-                </li>
-                <li>
-                  <a href="apps-tickets.html">Tickets</a>
-                </li>
-                <li>
-                  <a href="apps-team.html">Team Members</a>
-                </li>
-              </ul>
-            </li>
+            @if ($phanquyen_admin)
+              <li>
+                <a href="javascript: void(0);" class="waves-effect">
+                  <i class="fa-solid fa-building"></i>
+                  <span> Khoa </span>
+                  <span class="menu-arrow"></span>
+                </a>
+                <ul class="nav-second-level" aria-expanded="false">
+                  <li>
+                    <a href="{{ URL::to('/quanly_khoa') }}">Quản lý khoa</a>
+                  </li>
+                  <li>
+                    <a href="{{ URL::to('/quanly_vienchuc_khoa') }}">Quản lý viên chức thuộc khoa</a>
+                  </li>
+                </ul>
+              </li>
+            @endif
 
             <li>
               <a href="javascript: void(0);" class="waves-effect">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 14, 2023 lúc 02:16 PM
+-- Thời gian đã tạo: Th2 15, 2023 lúc 02:46 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `quanly_vienchuc`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `khoa`
+--
+
+CREATE TABLE `khoa` (
+  `ma_k` int(11) NOT NULL,
+  `ten_k` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `mota_k` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_k` int(11) NOT NULL DEFAULT 0,
+  `created_k` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_k` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `khoa`
+--
+
+INSERT INTO `khoa` (`ma_k`, `ten_k`, `mota_k`, `status_k`, `created_k`, `updated_k`) VALUES
+(1, 'fgrydgô', '<p>fbsryw</p>', 0, '2023-02-15 01:29:55', ' '),
+(2, 'degsee', '<p>rrget</p>', 1, '2023-02-15 01:45:55', ' ');
 
 -- --------------------------------------------------------
 
@@ -141,6 +164,12 @@ INSERT INTO `vienchuc` (`ma_vc`, `ma_k`, `ma_cv`, `ma_n`, `ma_b`, `ma_dt`, `ma_t
 --
 
 --
+-- Chỉ mục cho bảng `khoa`
+--
+ALTER TABLE `khoa`
+  ADD PRIMARY KEY (`ma_k`);
+
+--
 -- Chỉ mục cho bảng `quyen`
 --
 ALTER TABLE `quyen`
@@ -155,6 +184,12 @@ ALTER TABLE `vienchuc`
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
+
+--
+-- AUTO_INCREMENT cho bảng `khoa`
+--
+ALTER TABLE `khoa`
+  MODIFY `ma_k` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `quyen`

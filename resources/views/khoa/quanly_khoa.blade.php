@@ -13,7 +13,7 @@
               <div class="alert alert-primary" role="alert">
                 <h4 class="text-center" style="font-weight: bold">THÊM THÔNG TIN</h4>
               </div>
-              <form action="{{ URL::to('/add_quyen') }}" method="POST"
+              <form action="{{ URL::to('/add_khoa') }}" method="POST"
                 autocomplete="off" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <?php
@@ -32,15 +32,15 @@
                     <table class="table">
                       <tbody>
                         <tr>
-                          <th scope="row">Quyền: </th>
+                          <th scope="row">Tên khoa: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="ten_q" minlength="5">
+                            <input type='text' class='form-control input_table' autofocus required name="ten_k" minlength="5">
                           </td>
                         </tr>
                         <tr>
                           <th scope="row">Trạng thái: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="status_q">
+                            <select class="custom-select input_table" id="gender2" name="status_k">
                               <option value="0" >Chọn trạng thái</option>
                               <option value="1" >Ẩn</option>
                               <option selected value="0" >Hiển thị</option>
@@ -56,7 +56,7 @@
                         <tr>
                           <th scope="row" style="width: 20%">Mô tả: </th>
                           <td class="was-validated">
-                            <textarea name="mota_q" id="" cols="60" rows="10" required></textarea>
+                            <textarea name="mota_k" id="" cols="60" rows="10" required></textarea>
                           </td>
                         </tr>
                       </tbody>
@@ -122,7 +122,7 @@
               </thead>
               <tbody>
                 @foreach ($count_status as $key => $count_stt)
-                  @if ($count_stt->status_q == 0)
+                  @if ($count_stt->status_k == 0)
                     <tr>
                       <td>Danh mục hiển thị</td>
                       <td>{{ $count_stt->sum }}</td>
@@ -140,7 +140,7 @@
         </div>
       </div>
       <div class="col-2">
-        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_quyen') }}">
+        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_khoa') }}">
           <button type="button" class="btn btn-danger">Xoá tất cả</button>
         </a>
       </div>
@@ -149,8 +149,9 @@
       <thead class="table-dark">
         <tr>
           <th scope="col">STT</th>
-          <th scope="col">Quyền </th>
+          <th scope="col">Khoa </th>
           <th scope="col">Mô tả</th>
+          <th scope="col">Viên chức</th>
           <th scope="col">Trạng thái</th>
           <th scope="col">Thời gian tạo</th>
           <th scope="col">Thời gian cập nhật</th>
@@ -158,24 +159,32 @@
         </tr>
       </thead>
       <tbody  >
-        @foreach ($list as $key => $quyen)
+        @foreach ($list as $key => $khoa)
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $quyen->ten_q }} ({{ $quyen->ma_q }})
+              {{ $khoa->ten_k }}
             </td>
             <td>
               <?php
-                echo $quyen->mota_q;
+                echo $khoa->mota_k;
               ?>
             </td>
             <td>
+              <a href="">
+                <button type="button" class="btn btn-purple">
+                  <i class="fa-solid fa-user"></i>
+                  &ensp; Viên chức
+                </button>
+              </a>
+            </td>
+            <td>
               <?php
-                if($quyen->status_q == 0){
+                if($khoa->status_q == 0){
                   ?>
                     <span class="badge rounded-pill text-bg-success"><i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị</span>
                   <?php
-                }else if($quyen->status_q == 1) {
+                }else if($khoa->status_q == 1) {
                   ?>
                     <span class="badge text-bg-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
                   <?php
@@ -183,36 +192,35 @@
               ?>
             </td>
             <td>
-              {{ $quyen->created_q }}
+              {{ $khoa->created_k }}
             </td>
             <td>
-              {{ $quyen->updated_q }}
+              {{ $khoa->updated_k }}
             </td>
             <td style="width: 21%;">
-              <a href="{{ URL::to('/edit_quyen/'.$quyen->ma_q)}}">
+              <a href="{{ URL::to('/edit_khoa/'.$khoa->ma_q)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_quyen/'.$quyen->ma_q)}}">
+              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_khoa/'.$khoa->ma_q)}}">
                 <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               </a>
               
               <?php
-                if($quyen->status_q == 0){
+                if($khoa->status_q == 0){
                   ?>
-                    <a href="{{ URL::to('/select_quyen/'.$quyen->ma_q) }}">
+                    <a href="{{ URL::to('/select_khoa/'.$khoa->ma_q) }}">
                       <button type="button" class="btn btn-secondary">
                         <i class="fa-solid fa-eye-slash"></i> 
                         &ensp; Ẩn
                       </button>
                     </a>
                   <?php
-                }else if($quyen->status_q == 1) {
+                }else if($khoa->status_q == 1) {
                   ?>
-                    <a href="{{ URL::to('/select_quyen/'.$quyen->ma_q) }}">
+                    <a href="{{ URL::to('/select_khoa/'.$khoa->ma_q) }}">
                       <button type="button" class="btn btn-success">
                         <i class="fa-solid fa-eye"></i>
-                        &ensp;
-                        Hiển thị
+                        &ensp; Hiển thị
                       </button>
                     </a>
                   <?php
@@ -229,7 +237,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
 <script>
-  CKEDITOR.replace('mota_q');
+  CKEDITOR.replace('mota_k');
 </script>
 <!--  -->
 <!-- end row -->
