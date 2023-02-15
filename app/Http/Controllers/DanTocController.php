@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
 use App\Models\DanToc;
 use App\Models\PhanQuyen;
-use App\Models\Quyen;
-use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 
 

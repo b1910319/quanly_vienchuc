@@ -7,6 +7,7 @@ use App\Http\Controllers\QuyenController;
 use App\Http\Controllers\PhanQuyenController;
 use App\Http\Controllers\KhoaController;
 use App\Http\Controllers\DanTocController;
+use App\Http\Controllers\ChucVuController;
 
 
 
@@ -66,7 +67,13 @@ Route::get('/delete_all_dantoc',[DanTocController::class, 'delete_all_dantoc']);
 
 
 
-
+Route::get('/chucvu',[ChucVuController::class, 'chucvu']);
+Route::post('/add_chucvu',[ChucVuController::class, 'add_chucvu']);
+Route::get('/select_chucvu/{ma_cv}',[ChucVuController::class, 'select_chucvu']);
+Route::get('/edit_chucvu/{ma_cv}',[ChucVuController::class, 'edit_chucvu']);
+Route::post('/update_chucvu/{ma_cv}',[ChucVuController::class, 'update_chucvu']);
+Route::get('/delete_chucvu/{ma_cv}',[ChucVuController::class, 'delete_chucvu']);
+Route::get('/delete_all_chucvu',[ChucVuController::class, 'delete_all_chucvu']);
 
 
 

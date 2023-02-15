@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 15, 2023 lúc 10:14 AM
+-- Thời gian đã tạo: Th2 15, 2023 lúc 10:38 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `quanly_vienchuc`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chucvu`
+--
+
+CREATE TABLE `chucvu` (
+  `ma_cv` int(11) NOT NULL,
+  `ten_cv` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_cv` int(11) NOT NULL DEFAULT 0,
+  `created_cv` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_cv` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chucvu`
+--
+
+INSERT INTO `chucvu` (`ma_cv`, `ten_cv`, `status_cv`, `created_cv`, `updated_cv`) VALUES
+(1, 'dgtưekjh', 0, '2023-02-15 09:31:43', ' '),
+(2, 'brgt̉êôuy', 0, '2023-02-15 09:31:55', ' ');
 
 -- --------------------------------------------------------
 
@@ -348,6 +370,12 @@ INSERT INTO `vienchuc` (`ma_vc`, `ma_k`, `ma_cv`, `ma_n`, `ma_b`, `ma_dt`, `ma_t
 --
 
 --
+-- Chỉ mục cho bảng `chucvu`
+--
+ALTER TABLE `chucvu`
+  ADD PRIMARY KEY (`ma_cv`);
+
+--
 -- Chỉ mục cho bảng `dantoc`
 --
 ALTER TABLE `dantoc`
@@ -374,6 +402,12 @@ ALTER TABLE `vienchuc`
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
+
+--
+-- AUTO_INCREMENT cho bảng `chucvu`
+--
+ALTER TABLE `chucvu`
+  MODIFY `ma_cv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `dantoc`

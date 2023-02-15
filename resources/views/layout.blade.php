@@ -180,7 +180,9 @@
                     </a>
                   </li>
                   <li>
-                    <a href="layouts-dark-sidebar.html">Dark Sidebar</a>
+                    <a href="{{ URL::to('/chucvu') }}">
+                      Chức Vụ
+                    </a>
                   </li>
                   <li>
                     <a href="layouts-light-topbar.html">Light Topbar</a>
