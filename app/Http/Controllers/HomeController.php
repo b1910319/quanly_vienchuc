@@ -29,7 +29,11 @@ class HomeController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
     return view('home.home')
+      ->with('phanquyen_qltt', $phanquyen_qltt)
       ->with('phanquyen_admin', $phanquyen_admin);
   }
 }

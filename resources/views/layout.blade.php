@@ -128,7 +128,7 @@
               <a href="{{ URL::to('/home') }}" class="waves-effect">
                 <i class="remixicon-dashboard-line"></i>
                 <span class="badge badge-success badge-pill float-right">2</span>
-                <span> Trang chủ </span>
+                <span> Trang Chủ </span>
               </a>
             </li>
             @if ($phanquyen_admin)
@@ -140,10 +140,10 @@
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
                   <li>
-                    <a href="{{ URL::to('/quanly_quyen') }}">Quản lý quyền</a>
+                    <a href="{{ URL::to('/quanly_quyen') }}">Quản Lý Quyền</a>
                   </li>
                   <li>
-                    <a href="{{ URL::to('/phanquyen') }}">Phân quyền</a>
+                    <a href="{{ URL::to('/phanquyen') }}">Phân Quyền</a>
                   </li>
                 </ul>
               </li>
@@ -157,16 +157,47 @@
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
                   <li>
-                    <a href="{{ URL::to('/quanly_khoa') }}">Quản lý khoa</a>
+                    <a href="{{ URL::to('/quanly_khoa') }}">Quản Lý Khoa</a>
                   </li>
                   <li>
-                    <a href="{{ URL::to('/quanly_vienchuc_khoa') }}">Quản lý viên chức thuộc khoa</a>
+                    <a href="{{ URL::to('/quanly_vienchuc_khoa') }}">Quản Lý Viên Chức Thuộc Khoa</a>
                   </li>
                 </ul>
               </li>
             @endif
-
-            <li>
+            @if ($phanquyen_qltt || $phanquyen_admin)
+              <li>
+                <a href="javascript: void(0);" class="waves-effect">
+                  <i class="remixicon-layout-line"></i>
+                  {{-- <span class="badge badge-pink float-right">New</span> --}}
+                  <span> Quản Lý Thông Tin </span>
+                  <span class="menu-arrow"></span>
+                </a>
+                <ul class="nav-second-level" aria-expanded="false">
+                  <li>
+                    <a href="{{ URL::to('/dantoc') }}">
+                      Dân Tộc
+                    </a>
+                  </li>
+                  <li>
+                    <a href="layouts-dark-sidebar.html">Dark Sidebar</a>
+                  </li>
+                  <li>
+                    <a href="layouts-light-topbar.html">Light Topbar</a>
+                  </li>
+                  <li>
+                    <a href="layouts-preloader.html">Preloader</a>
+                  </li>
+                  <li>
+                    <a href="layouts-sidebar-collapsed.html">Sidebar Collapsed</a>
+                  </li>
+                  <li>
+                    <a href="layouts-boxed.html">Boxed</a>
+                  </li>
+                </ul>
+              </li>
+            @endif
+            {{-- <li>
               <a href="javascript: void(0);" class="waves-effect">
                 <i class="remixicon-layout-line"></i>
                 <span class="badge badge-pink float-right">New</span>
@@ -192,7 +223,7 @@
                   <a href="layouts-boxed.html">Boxed</a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
 
             <li>
               <a href="javascript: void(0);" class="waves-effect">

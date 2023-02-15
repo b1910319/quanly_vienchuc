@@ -111,7 +111,7 @@
               
             </td>
             <td>
-              
+              {{ $vienchuc->ten_k }}
             </td>
             <td class="was-validated" style="width: 25%">
               <form action="{{ URL::to('phanquyen_vc') }}" method="post">

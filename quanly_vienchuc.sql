@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 15, 2023 lúc 08:25 AM
+-- Thời gian đã tạo: Th2 15, 2023 lúc 09:35 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `quanly_vienchuc`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `dantoc`
+--
+
+CREATE TABLE `dantoc` (
+  `ma_dt` int(11) NOT NULL,
+  `ten_dt` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_dt` int(11) NOT NULL DEFAULT 0,
+  `created_dt` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_dt` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `dantoc`
+--
+
+INSERT INTO `dantoc` (`ma_dt`, `ten_dt`, `status_dt`, `created_dt`, `updated_dt`) VALUES
+(1, 'dst45', 0, '2023-02-15 08:31:09', ' '),
+(2, 'scwr4erfvv', 0, '2023-02-15 08:31:18', ' '),
+(3, 'dagetj', 1, '2023-02-15 08:31:24', ' ');
 
 -- --------------------------------------------------------
 
@@ -127,7 +150,8 @@ INSERT INTO `phanquyen` (`ma_q`, `ma_vc`, `status_pq`, `created_pq`, `updated_pq
 (10, 59, 0, '2023-02-15 07:17:08', ' '),
 (10, 60, 0, '2023-02-15 07:17:19', ' '),
 (10, 61, 0, '2023-02-15 07:17:30', ' '),
-(10, 62, 0, '2023-02-15 07:17:41', ' ');
+(10, 62, 0, '2023-02-15 07:17:41', ' '),
+(8, 62, 0, '2023-02-15 07:29:17', ' ');
 
 -- --------------------------------------------------------
 
@@ -218,8 +242,7 @@ CREATE TABLE `vienchuc` (
 --
 
 INSERT INTO `vienchuc` (`ma_vc`, `ma_k`, `ma_cv`, `ma_n`, `ma_b`, `ma_dt`, `ma_tg`, `ma_tb`, `user_vc`, `pass_vc`, `hoten_vc`, `hinh_vc`, `tenkhac_vc`, `ngaysinh_vc`, `gioitinh_vc`, `thuongtru_vc`, `hientai_vc`, `nghekhiduoctuyen_vc`, `ngaytuyendung_vc`, `congviecchinhgiao_vc`, `phucap_vc`, `trinhdophothong_vc`, `chinhtri_vc`, `quanlynhanuoc_vc`, `ngoaingu_vc`, `tinhoc_vc`, `ngayvaodang_vc`, `ngaychinhthuc_vc`, `ngaynhapngu_vc`, `ngayxuatngu_vc`, `quanham_vc`, `danhhieucao_vc`, `sotruong_vc`, `chieucao_vc`, `cannang_vc`, `nhommau_vc`, `chinhsach_vc`, `cccd_vc`, `ngaycapcccd_vc`, `bhxh_vc`, `lichsubanthan1_vc`, `lichsubanthan2_vc`, `lichsubanthan3_vc`, `ngaybatdaulamviec_vc`, `thoigiannghi_vc`, `status_vc`, `created_vc`, `updated_vc`) VALUES
-(1, 0, 0, 0, 0, 0, 0, 0, 'dbgt3@student.ctu.edu.vn', '6141bcafae02e2b1e6110f7f0c238ce7', 'ltdhang', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-14 00:56:49', '2023-02-15 06:34:45'),
-(2, 0, 0, 0, 0, 0, 0, 0, 'hangb1910318@student.ctu.edu.vn', 'a1bc3146fd531764ef30961866aa53f9', ' Lê Thị Diễm Hằng', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-14 07:06:14', ' '),
+(1, 5, 0, 0, 0, 0, 0, 0, 'dbgt3@student.ctu.edu.vn', '6141bcafae02e2b1e6110f7f0c238ce7', 'Lê Diểm Trinh', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-14 00:56:49', '2023-02-15 06:34:45'),
 (15, 5, 0, 0, 0, 0, 0, 0, 'ptphi@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Thế Phi', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:05:17', ' '),
 (16, 5, 0, 0, 0, 0, 0, 0, 'tcan@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Công Án', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:05:39', ' '),
 (17, 5, 0, 0, 0, 0, 0, 0, 'tnbinh@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Ngân Bình', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:05:53', ' '),
@@ -274,6 +297,12 @@ INSERT INTO `vienchuc` (`ma_vc`, `ma_k`, `ma_cv`, `ma_n`, `ma_b`, `ma_dt`, `ma_t
 --
 
 --
+-- Chỉ mục cho bảng `dantoc`
+--
+ALTER TABLE `dantoc`
+  ADD PRIMARY KEY (`ma_dt`);
+
+--
 -- Chỉ mục cho bảng `khoa`
 --
 ALTER TABLE `khoa`
@@ -294,6 +323,12 @@ ALTER TABLE `vienchuc`
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
+
+--
+-- AUTO_INCREMENT cho bảng `dantoc`
+--
+ALTER TABLE `dantoc`
+  MODIFY `ma_dt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `khoa`

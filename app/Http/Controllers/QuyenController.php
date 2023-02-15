@@ -34,7 +34,6 @@ class QuyenController extends Controller
       $count_status = Quyen::select(DB::raw('count(ma_q) as sum, status_q'))->groupBy('status_q')->get();
       $list = Quyen::orderBy('ma_q', 'desc')
         ->get();
-      
       return view('quyen.quanly_quyen')
         ->with('count', $count)
         ->with('phanquyen_admin', $phanquyen_admin)
