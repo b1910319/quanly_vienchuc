@@ -93,41 +93,43 @@ class DanTocController extends Controller
     }
     
   }
-  public function edit_quyen($ma_q){
+  public function edit_dantoc($ma_dt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    if($phanquyen_admin){
-      $edit = Quyen::find($ma_q);
-      $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
       ->first();
-      return view('quyen.quanly_quyen_edit')
+    if($phanquyen_admin || $phanquyen_qltt){
+      $edit = DanToc::find($ma_dt);
+      return view('dantoc.dantoc_edit')
         ->with('edit', $edit)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');
     }
-    
   }
-  public function update_quyen(Request $request, $ma_q){
+  public function update_dantoc(Request $request, $ma_dt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    if($phanquyen_admin){
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
       $data = $request->all();
       Carbon::now('Asia/Ho_Chi_Minh');
-      $quyen = Quyen::find($ma_q);
-      $quyen->ten_q = $data['ten_q'];
-      $quyen->mota_q = $data['mota_q'];
-      $quyen->status_q = $data['status_q'];
-      $quyen->updated_q = Carbon::now();
-      $quyen->save();
-      return Redirect::to('quanly_quyen');
+      $dantoc = DanToc::find($ma_dt);
+      $dantoc->ten_dt = $data['ten_dt'];
+      $dantoc->status_dt = $data['status_dt'];
+      $dantoc->updated_dt = Carbon::now();
+      $dantoc->save();
+      return Redirect::to('dantoc');
     }else{
       return Redirect::to('/home');
     }
