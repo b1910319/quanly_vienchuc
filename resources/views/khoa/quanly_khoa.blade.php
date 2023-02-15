@@ -150,7 +150,6 @@
         <tr>
           <th scope="col">STT</th>
           <th scope="col">Khoa </th>
-          <th scope="col">Mô tả</th>
           <th scope="col">Viên chức</th>
           <th scope="col">Trạng thái</th>
           <th scope="col">Thời gian tạo</th>
@@ -164,11 +163,6 @@
             <th scope="row">{{ $key+1 }}</th>
             <td>
               {{ $khoa->ten_k }}
-            </td>
-            <td>
-              <?php
-                echo $khoa->mota_k;
-              ?>
             </td>
             <td>
               <a href="">

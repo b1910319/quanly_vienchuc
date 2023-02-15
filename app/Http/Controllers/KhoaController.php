@@ -120,34 +120,33 @@ class KhoaController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function delete_quyen($ma_q){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   if($phanquyen_admin){
-  //     Khoa::find($ma_q)->delete();
-  //     return Redirect::to('quanly_quyen');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-    
-  // }
-  // public function delete_all_quyen(){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   if($phanquyen_admin){
-  //     $list = Khoa::get();
-  //     foreach($list as $key => $quyen){
-  //       $quyen->delete();
-  //     }
-  //     return Redirect::to('quanly_quyen');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function delete_khoa($ma_k){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      Khoa::find($ma_k)->delete();
+      return Redirect::to('quanly_khoa');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function delete_all_khoa(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      $list = Khoa::get();
+      foreach($list as $key => $quyen){
+        $quyen->delete();
+      }
+      return Redirect::to('quanly_khoa');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }
