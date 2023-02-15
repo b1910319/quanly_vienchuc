@@ -17,6 +17,12 @@ Route::get('/home',[HomeController::class, 'home']);
 
 Route::post('/login',[VienChucController::class, 'login']);
 Route::get('/logout',[VienChucController::class, 'logout']);
+Route::get('/vienchuc_khoa/{ma_k}',[VienChucController::class, 'vienchuc_khoa']);
+Route::post('/add_vienchuc_khoa/{ma_k}',[VienChucController::class, 'add_vienchuc_khoa']);
+
+
+
+
 
 
 Route::get('/quanly_quyen',[QuyenController::class, 'quanly_quyen']);

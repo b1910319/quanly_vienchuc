@@ -13,7 +13,7 @@
               <div class="alert alert-primary" role="alert">
                 <h4 class="text-center" style="font-weight: bold">THÊM THÔNG TIN</h4>
               </div>
-              <form action="{{ URL::to('/add_khoa') }}" method="POST"
+              <form action="{{ URL::to('/add_vienchuc_khoa/'.$ma_k) }}" method="POST"
                 autocomplete="off" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <?php
@@ -32,18 +32,18 @@
                     <table class="table">
                       <tbody>
                         <tr>
-                          <th scope="row">Tên khoa: </th>
+                          <th scope="row">Họ tên viên chức: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="ten_k" minlength="5">
+                            <input type='text' class='form-control input_table' autofocus required name="hoten_vc" minlength="5">
                           </td>
                         </tr>
                         <tr>
                           <th scope="row">Trạng thái: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="status_k">
+                            <select class="custom-select input_table" id="gender2" name="status_vc">
                               <option value="0" >Chọn trạng thái</option>
-                              <option value="1" >Ẩn</option>
-                              <option selected value="0" >Hiển thị</option>
+                              <option value="1" >Vô hiệu hoá</option>
+                              <option selected value="0" >Kích hoạt</option>
                             </select>
                           </td>
                         </tr>
@@ -54,9 +54,18 @@
                     <table class="table">
                       <tbody>
                         <tr>
-                          <th scope="row" style="width: 20%">Mô tả: </th>
+                          <th scope="row">Email: </th>
                           <td class="was-validated">
-                            <textarea name="mota_k" id="" cols="60" rows="10" required></textarea>
+                            <div class="input-group mb-3">
+                              <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" name="user_vc">
+                              <span class="input-group-text" id="basic-addon2">@student.ctu.edu.vn</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Password: </th>
+                          <td class="was-validated">
+                            <input type='text' class='form-control input_table' autofocus required name="pass_vc" minlength="5" value="123456">
                           </td>
                         </tr>
                       </tbody>
@@ -82,10 +91,13 @@
       </div>
     </div>
     <div class="mt-3"></div>
-    <div class="alert alert-success" role="alert">
-      <div class="row">
-        <h4 class="text-center" style="font-weight: bold">DANH SÁCH</h4>
-      </div>
+    <div class="alert alert-success row" role="alert">
+      <a href="{{ URL::to('/quanly_khoa') }}" class="col-1">
+        <button type="button" class="btn btn-warning">
+          <i class="fas fa-solid fa-caret-left"></i>&ensp;
+        </button> &ensp;
+      </a>
+      <h4 class="text-center col-10 mt-1" style="font-weight: bold">DANH SÁCH</h4>
     </div>
     <?php
       $message=session()->get('message_update');
@@ -122,16 +134,18 @@
               </thead>
               <tbody>
                 @foreach ($count_status as $key => $count_stt)
-                  @if ($count_stt->status_k == 0)
+                  @if ($count_stt->status_vc == 0)
                     <tr>
-                      <td>Danh mục hiển thị</td>
+                      <td>Tài khoản viên chức được kích hoạt</td>
                       <td>{{ $count_stt->sum }}</td>
                     </tr>
                   @else
-                    <tr>
-                      <td>Danh mục ẩn</td>
-                      <td>{{ $count_stt->sum }}</td>
-                    </tr>
+                    @if ($count_stt->status_vc == 1)
+                      <tr>
+                        <td>Tài khoản viên chức bị vô hiệu hoá</td>
+                        <td>{{ $count_stt->sum }}</td>
+                      </tr>
+                    @endif
                   @endif
                 @endforeach
               </tbody>
@@ -140,7 +154,7 @@
         </div>
       </div>
       <div class="col-2">
-        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_khoa') }}">
+        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_quyen') }}">
           <button type="button" class="btn btn-danger">Xoá tất cả</button>
         </a>
       </div>
@@ -149,8 +163,9 @@
       <thead class="table-dark">
         <tr>
           <th scope="col">STT</th>
-          <th scope="col">Khoa </th>
-          <th scope="col">Viên chức</th>
+          <th scope="col">Họ tên viên chức </th>
+          <th scope="col">Username</th>
+          <th scope="col">Khoa</th>
           <th scope="col">Trạng thái</th>
           <th scope="col">Thời gian tạo</th>
           <th scope="col">Thời gian cập nhật</th>
@@ -158,27 +173,25 @@
         </tr>
       </thead>
       <tbody  >
-        @foreach ($list as $key => $khoa)
+        @foreach ($list as $key => $vienchuc)
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $khoa->ten_k }}
+              {{ $vienchuc->hoten_vc }}
             </td>
             <td>
-              <a href="{{ URL::to('/vienchuc_khoa/'.$khoa->ma_k) }}">
-                <button type="button" class="btn btn-purple">
-                  <i class="fa-solid fa-user"></i>
-                  &ensp; Viên chức
-                </button>
-              </a>
+              {{ $vienchuc->user_vc }}
+            </td>
+            <td>
+              {{ $vienchuc->ten_k }}
             </td>
             <td>
               <?php
-                if($khoa->status_k == 0){
+                if($vienchuc->status_k == 0){
                   ?>
                     <span class="badge rounded-pill text-bg-success"><i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị</span>
                   <?php
-                }else if($khoa->status_k == 1) {
+                }else if($vienchuc->status_k == 1) {
                   ?>
                     <span class="badge text-bg-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
                   <?php
@@ -186,34 +199,36 @@
               ?>
             </td>
             <td>
-              {{ $khoa->created_k }}
+              {{ $vienchuc->created_k }}
             </td>
             <td>
-              {{ $khoa->updated_k }}
+              {{ $vienchuc->updated_k }}
             </td>
             <td style="width: 21%;">
-              <a href="{{ URL::to('/edit_khoa/'.$khoa->ma_k)}}">
+              <a href="{{ URL::to('/edit_vienchuc/'.$vienchuc->ma_k)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_khoa/'.$khoa->ma_k)}}">
+              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_vienchuc/'.$vienchuc->ma_k)}}">
                 <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               </a>
+              
               <?php
-                if($khoa->status_k == 0){
+                if($vienchuc->status_k == 0){
                   ?>
-                    <a href="{{ URL::to('/select_khoa/'.$khoa->ma_k) }}">
+                    <a href="{{ URL::to('/select_vienchuc/'.$vienchuc->ma_k) }}">
                       <button type="button" class="btn btn-secondary">
                         <i class="fa-solid fa-eye-slash"></i> 
                         &ensp; Ẩn
                       </button>
                     </a>
                   <?php
-                }else if($khoa->status_k == 1) {
+                }else if($vienchuc->status_k == 1) {
                   ?>
-                    <a href="{{ URL::to('/select_khoa/'.$khoa->ma_k) }}">
+                    <a href="{{ URL::to('/select_vienchuc/'.$vienchuc->ma_k) }}">
                       <button type="button" class="btn btn-success">
                         <i class="fa-solid fa-eye"></i>
-                        &ensp; Hiển thị
+                        &ensp;
+                        Hiển thị
                       </button>
                     </a>
                   <?php
@@ -226,12 +241,4 @@
     </table>
   </div>
 </div>
-<!-- trình soạn thảo  -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
-<script>
-  CKEDITOR.replace('mota_k');
-</script>
-<!--  -->
-<!-- end row -->
 @endsection
