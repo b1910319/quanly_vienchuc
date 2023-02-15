@@ -70,6 +70,97 @@ class DanTocController extends Controller
     }else{
       return Redirect::to('/home');
     }
+  }
+  public function select_dantoc($ma_dt){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $dantoc = DanToc::find($ma_dt);
+      if($dantoc->status_dt == 1){
+        $dantoc->status_dt = DanToc::find($ma_dt)->update(['status_dt' => 0]);
+      }elseif($dantoc->status_dt == 0){
+        $dantoc->status_dt = DanToc::find($ma_dt)->update(['status_dt' => 1]);
+      }
+      return Redirect::to('/dantoc');
+    }else{
+      return Redirect::to('/home');
+    }
     
+  }
+  public function edit_quyen($ma_q){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      $edit = Quyen::find($ma_q);
+      $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+      return view('quyen.quanly_quyen_edit')
+        ->with('edit', $edit)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+    
+  }
+  public function update_quyen(Request $request, $ma_q){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $quyen = Quyen::find($ma_q);
+      $quyen->ten_q = $data['ten_q'];
+      $quyen->mota_q = $data['mota_q'];
+      $quyen->status_q = $data['status_q'];
+      $quyen->updated_q = Carbon::now();
+      $quyen->save();
+      return Redirect::to('quanly_quyen');
+    }else{
+      return Redirect::to('/home');
+    }
+    
+  }
+  public function delete_quyen($ma_q){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      Quyen::find($ma_q)->delete();
+      return Redirect::to('quanly_quyen');
+    }else{
+      return Redirect::to('/home');
+    }
+    
+  }
+  public function delete_all_quyen(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      $list = Quyen::get();
+      foreach($list as $key => $quyen){
+        $quyen->delete();
+      }
+      return Redirect::to('quanly_quyen');
+    }else{
+      return Redirect::to('/home');
+    }
   }
 }

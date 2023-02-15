@@ -58,7 +58,11 @@ Route::get('/delete_all_khoa',[KhoaController::class, 'delete_all_khoa']);
 
 Route::get('/dantoc',[DanTocController::class, 'dantoc']);
 Route::post('/add_dantoc',[DanTocController::class, 'add_dantoc']);
-
+Route::get('/select_dantoc/{ma_dt}',[DanTocController::class, 'select_dantoc']);
+Route::get('/edit_dantoc/{ma_dt}',[DanTocController::class, 'edit_dantoc']);
+Route::post('/update_dantoc/{ma_dt}',[DanTocController::class, 'update_dantoc']);
+Route::get('/delete_dantoc/{ma_dt}',[DanTocController::class, 'delete_dantoc']);
+Route::get('/delete_all_dantoc',[DanTocController::class, 'delete_all_dantoc']);
 
 
 
