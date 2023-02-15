@@ -135,32 +135,38 @@ class DanTocController extends Controller
     }
     
   }
-  public function delete_quyen($ma_q){
+  public function delete_dantoc($ma_dt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    if($phanquyen_admin){
-      Quyen::find($ma_q)->delete();
-      return Redirect::to('quanly_quyen');
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      DanToc::find($ma_dt)->delete();
+      return Redirect::to('dantoc');
     }else{
       return Redirect::to('/home');
     }
     
   }
-  public function delete_all_quyen(){
+  public function delete_all_dantoc(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    if($phanquyen_admin){
-      $list = Quyen::get();
-      foreach($list as $key => $quyen){
-        $quyen->delete();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $list = DanToc::get();
+      foreach($list as $key => $dantoc){
+        $dantoc->delete();
       }
-      return Redirect::to('quanly_quyen');
+      return Redirect::to('dantoc');
     }else{
       return Redirect::to('/home');
     }

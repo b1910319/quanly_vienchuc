@@ -30,7 +30,7 @@
               <tr>
                 <th scope="row">Tên dân tộc: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="ten_dt" minlength="5" value="{{ $edit->ten_dt }}">
+                  <input type='text' class='form-control input_table' autofocus required name="ten_dt" value="{{ $edit->ten_dt }}">
                 </td>
               </tr>
             </tbody>

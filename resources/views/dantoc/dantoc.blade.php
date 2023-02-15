@@ -34,7 +34,7 @@
                         <tr>
                           <th scope="row">Tên dân tộc: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="ten_dt" minlength="5">
+                            <input type='text' class='form-control input_table' autofocus required name="ten_dt">
                           </td>
                         </tr>
                       </tbody>
