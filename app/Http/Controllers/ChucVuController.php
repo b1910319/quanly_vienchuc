@@ -131,40 +131,39 @@ class ChucVuController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function delete_dantoc($ma_dt){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     DanToc::find($ma_dt)->delete();
-  //     return Redirect::to('dantoc');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-    
-  // }
-  // public function delete_all_dantoc(){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $list = DanToc::get();
-  //     foreach($list as $key => $dantoc){
-  //       $dantoc->delete();
-  //     }
-  //     return Redirect::to('dantoc');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function delete_chucvu($ma_cv){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      ChucVu::find($ma_cv)->delete();
+      return Redirect::to('chucvu');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function delete_all_chucvu(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $list = ChucVu::get();
+      foreach($list as $key => $chucvu){
+        $chucvu->delete();
+      }
+      return Redirect::to('chucvu');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }
