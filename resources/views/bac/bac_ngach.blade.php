@@ -13,7 +13,7 @@
               <div class="alert alert-primary" role="alert">
                 <h4 class="text-center" style="font-weight: bold">THÊM THÔNG TIN</h4>
               </div>
-              <form action="{{ URL::to('/add_ngach') }}" method="POST"
+              <form action="{{ URL::to('/add_bac_ngach/'.$ma_n) }}" method="POST"
                 autocomplete="off" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <?php
@@ -32,15 +32,15 @@
                     <table class="table">
                       <tbody>
                         <tr>
-                          <th scope="row">Tên ngạch: </th>
+                          <th scope="row">Tên bậc: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="ten_n">
+                            <input type='text' class='form-control input_table' autofocus required name="ten_b" minlength="5">
                           </td>
                         </tr>
                         <tr>
-                          <th scope="row">Mã số ngạch: </th>
+                          <th scope="row">Hệ số lương </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="maso_n">
+                            <input type='text' class='form-control input_table' autofocus required name="hesoluong_b">
                           </td>
                         </tr>
                       </tbody>
@@ -50,18 +50,12 @@
                     <table class="table">
                       <tbody>
                         <tr>
-                          <th scope="row">Số năm nâng bậc: </th>
-                          <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="sonamnangbac_n">
-                          </td>
-                        </tr>
-                        <tr>
                           <th scope="row">Trạng thái: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="status_n">
+                            <select class="custom-select input_table" id="gender2" name="status_b">
                               <option value="0" >Chọn trạng thái</option>
-                              <option value="1" >Ẩn</option>
-                              <option selected value="0" >Hiển thị</option>
+                              <option value="1" >Vô hiệu hoá</option>
+                              <option selected value="0" >Kích hoạt</option>
                             </select>
                           </td>
                         </tr>
@@ -88,10 +82,16 @@
       </div>
     </div>
     <div class="mt-3"></div>
-    <div class="alert alert-success" role="alert">
-      <div class="row">
-        <h4 class="text-center" style="font-weight: bold">DANH SÁCH</h4>
-      </div>
+    <div class="alert alert-success row" role="alert">
+      <a href="{{ URL::to('/ngach') }}" class="col-1">
+        <button type="button" class="btn btn-warning">
+          <i class="fas fa-solid fa-caret-left"></i>&ensp;
+        </button> &ensp;
+      </a>
+      <h4 class="text-center col-10 mt-1" style="font-weight: bold">
+        DANH SÁCH 
+        <span style="color: #379237;">( {{ $ngach->ten_n }} )</span>
+      </h4>
     </div>
     <?php
       $message=session()->get('message_update');
@@ -128,16 +128,18 @@
               </thead>
               <tbody>
                 @foreach ($count_status as $key => $count_stt)
-                  @if ($count_stt->status_n == 0)
+                  @if ($count_stt->status_b == 0)
                     <tr>
                       <td>Danh mục hiển thị</td>
                       <td>{{ $count_stt->sum }}</td>
                     </tr>
                   @else
-                    <tr>
-                      <td>Danh mục ẩn</td>
-                      <td>{{ $count_stt->sum }}</td>
-                    </tr>
+                    @if ($count_stt->status_b == 1)
+                      <tr>
+                        <td>Danh mục ẩn</td>
+                        <td>{{ $count_stt->sum }}</td>
+                      </tr>
+                    @endif
                   @endif
                 @endforeach
               </tbody>
@@ -146,7 +148,7 @@
         </div>
       </div>
       <div class="col-2">
-        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_ngach') }}">
+        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_bac_ngach/'.$ma_n) }}">
           <button type="button" class="btn btn-danger">Xoá tất cả</button>
         </a>
       </div>
@@ -155,9 +157,8 @@
       <thead class="table-dark">
         <tr>
           <th scope="col">STT</th>
-          <th scope="col">Ngạch </th>
-          <th scope="col">Mã số ngạch</th>
-          <th scope="col">Bậc</th>
+          <th scope="col">Tên bậc </th>
+          <th scope="col">Hệ số lương</th>
           <th scope="col">Trạng thái</th>
           <th scope="col">Thời gian tạo</th>
           <th scope="col">Thời gian cập nhật</th>
@@ -165,82 +166,59 @@
         </tr>
       </thead>
       <tbody  >
-        @foreach ($list as $key => $ngach)
+        @foreach ($list as $key => $bac)
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $ngach->ten_n }}
+              {{ $bac->ten_b }}
             </td>
             <td>
-              {{ $ngach->maso_n }}
-            </td>
-            <td>
-              <?php
-                foreach ($count_bac_ngach as $key => $count) {
-                  if($count->ma_n == $ngach->ma_n && $count->sum > 0){
-                    ?>
-                      <a href="{{ URL::to('/bac_ngach/'.$ngach->ma_n) }}">
-                        <button type="button" class="btn btn-purple">
-                          <i class="fa-solid fa-ranking-star"></i>
-                          &ensp; Thêm bậc (<?php echo $count->sum ?>)
-                        </button>
-                      </a>
-                    <?php
-                  }elseif ($count->ma_n == $ngach->ma_n && $count->sum == 0) {
-                    ?>
-                      <a href="{{ URL::to('/bac_ngach/'.$ngach->ma_n) }}">
-                        <button type="button" class="btn btn-purple">
-                          <i class="fa-solid fa-ranking-star"></i>
-                          &ensp; Thêm bậc (0)
-                        </button>
-                      </a>
-                    <?php
-                  }
-                }
-              ?>
+              {{ $bac->hesoluong_b }}
             </td>
             <td>
               <?php
-                if($ngach->status_n == 0){
+                if($bac->status_b == 0){
                   ?>
-                    <span class="badge rounded-pill text-bg-success"><i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị</span>
+                    <span class="badge rounded-pill text-bg-success"><i class="fas fa-solid fa-eye"></i>&ensp;  Kích hoạt</span>
                   <?php
-                }else if($ngach->status_n == 1) {
+                }else if($bac->status_b == 1) {
                   ?>
-                    <span class="badge text-bg-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
+                    <span class="badge text-bg-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Vô hiệu hoá</span>
                   <?php
                 }
               ?>
             </td>
             <td>
-              {{ $ngach->created_n }}
+              {{ $bac->created_b }}
             </td>
             <td>
-              {{ $ngach->updated_n }}
+              {{ $bac->updated_b }}
             </td>
-            <td style="width: 21%;">
-              <a href="{{ URL::to('/edit_ngach/'.$ngach->ma_n)}}">
+            <td style="width: 23%;">
+              <a href="{{ URL::to('/admin_edit_bac_khoa/'.$bac->ma_n.'/'.$bac->ma_b)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_ngach/'.$ngach->ma_n)}}">
+              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/admin_delete_bac_khoa/'.$bac->ma_n.'/'.$bac->ma_b)}}">
                 <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              </a>
+              </>
+              
               <?php
-                if($ngach->status_n == 0){
+                if($bac->status_b == 0){
                   ?>
-                    <a href="{{ URL::to('/select_ngach/'.$ngach->ma_n) }}">
+                    <a href="{{ URL::to('/admin_select_bac_khoa/'.$bac->ma_n.'/'.$bac->ma_b) }}">
                       <button type="button" class="btn btn-secondary">
                         <i class="fa-solid fa-eye-slash"></i> 
-                        &ensp; Ẩn
+                        &ensp; Vô hiệu hoá
                       </button>
                     </a>
                   <?php
-                }else if($ngach->status_n == 1) {
+                }else if($bac->status_b == 1) {
                   ?>
-                    <a href="{{ URL::to('/select_ngach/'.$ngach->ma_n) }}">
+                    <a href="{{ URL::to('/admin_select_bac_khoa/'.$bac->ma_b.'/'.$bac->ma_b) }}">
                       <button type="button" class="btn btn-success">
                         <i class="fa-solid fa-eye"></i>
-                        &ensp; Hiển thị
+                        &ensp;
+                        Kích hoạt
                       </button>
                     </a>
                   <?php

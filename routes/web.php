@@ -9,7 +9,7 @@ use App\Http\Controllers\KhoaController;
 use App\Http\Controllers\DanTocController;
 use App\Http\Controllers\ChucVuController;
 use App\Http\Controllers\NgachController;
-
+use App\Http\Controllers\BacController;
 
 
 Route::get('/login',[HomeController::class, 'index']);
@@ -95,8 +95,8 @@ Route::get('/delete_all_ngach',[NgachController::class, 'delete_all_ngach']);
 
 
 
-
-
+Route::get('/bac_ngach/{ma_n}',[BacController::class, 'bac_ngach']);
+Route::post('/add_bac_ngach/{ma_n}',[BacController::class, 'add_bac_ngach']);
 
 
 

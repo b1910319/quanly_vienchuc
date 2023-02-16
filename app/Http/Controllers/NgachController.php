@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bac;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -36,10 +37,15 @@ class NgachController extends Controller
       $count_status = Ngach::select(DB::raw('count(ma_n) as sum, status_n'))
         ->groupBy('status_n')
         ->get();
+      $count_bac_ngach = Ngach::leftJoin('bac', 'ngach.ma_n', '=', 'bac.ma_n')
+        ->select(DB::raw('count(ma_b) as sum, ngach.ma_n'))
+        ->groupBy('ngach.ma_n')
+        ->get();
       return view('ngach.ngach')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
+        ->with('count_bac_ngach',$count_bac_ngach)
         ->with('count_status', $count_status)
         ->with('list', $list);
     }else{

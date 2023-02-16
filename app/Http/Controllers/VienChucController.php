@@ -199,6 +199,7 @@ class VienChucController extends Controller
       return Redirect::to('/home');
     }
   }
+  
   public function quanly_vienchuc_khoa(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
