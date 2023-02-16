@@ -97,7 +97,7 @@ Route::get('/delete_all_ngach',[NgachController::class, 'delete_all_ngach']);
 
 Route::get('/bac_ngach/{ma_n}',[BacController::class, 'bac_ngach']);
 Route::post('/add_bac_ngach/{ma_n}',[BacController::class, 'add_bac_ngach']);
-
+Route::get('/select_bac_ngach/{ma_n}/{ma_b}',[BacController::class, 'select_bac_ngach']);
 
 
 

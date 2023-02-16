@@ -179,11 +179,11 @@
               <?php
                 if($bac->status_b == 0){
                   ?>
-                    <span class="badge rounded-pill text-bg-success"><i class="fas fa-solid fa-eye"></i>&ensp;  Kích hoạt</span>
+                    <span class="badge rounded-pill text-bg-success"><i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị</span>
                   <?php
                 }else if($bac->status_b == 1) {
                   ?>
-                    <span class="badge text-bg-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Vô hiệu hoá</span>
+                    <span class="badge text-bg-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
                   <?php
                 }
               ?>
@@ -195,30 +195,30 @@
               {{ $bac->updated_b }}
             </td>
             <td style="width: 23%;">
-              <a href="{{ URL::to('/admin_edit_bac_khoa/'.$bac->ma_n.'/'.$bac->ma_b)}}">
+              <a href="{{ URL::to('/edit_bac_ngach/'.$bac->ma_n.'/'.$bac->ma_b)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/admin_delete_bac_khoa/'.$bac->ma_n.'/'.$bac->ma_b)}}">
+              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_bac_ngach/'.$bac->ma_n.'/'.$bac->ma_b)}}">
                 <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               </>
               
               <?php
                 if($bac->status_b == 0){
                   ?>
-                    <a href="{{ URL::to('/admin_select_bac_khoa/'.$bac->ma_n.'/'.$bac->ma_b) }}">
+                    <a href="{{ URL::to('/select_bac_ngach/'.$bac->ma_n.'/'.$bac->ma_b) }}">
                       <button type="button" class="btn btn-secondary">
                         <i class="fa-solid fa-eye-slash"></i> 
-                        &ensp; Vô hiệu hoá
+                        &ensp; Ẩn
                       </button>
                     </a>
                   <?php
                 }else if($bac->status_b == 1) {
                   ?>
-                    <a href="{{ URL::to('/admin_select_bac_khoa/'.$bac->ma_b.'/'.$bac->ma_b) }}">
+                    <a href="{{ URL::to('/select_bac_ngach/'.$bac->ma_n.'/'.$bac->ma_b) }}">
                       <button type="button" class="btn btn-success">
                         <i class="fa-solid fa-eye"></i>
                         &ensp;
-                        Kích hoạt
+                        Hiển thị
                       </button>
                     </a>
                   <?php
