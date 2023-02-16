@@ -156,6 +156,7 @@
         <tr>
           <th scope="col">STT</th>
           <th scope="col">Ngạch </th>
+          <th scope="col">Mã số ngạch</th>
           <th scope="col">Trạng thái</th>
           <th scope="col">Thời gian tạo</th>
           <th scope="col">Thời gian cập nhật</th>
@@ -168,6 +169,9 @@
             <th scope="row">{{ $key+1 }}</th>
             <td>
               {{ $ngach->ten_n }}
+            </td>
+            <td>
+              {{ $ngach->maso_n }}
             </td>
             <td>
               <?php
