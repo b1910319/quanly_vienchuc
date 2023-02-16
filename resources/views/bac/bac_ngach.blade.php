@@ -34,7 +34,7 @@
                         <tr>
                           <th scope="row">Tên bậc: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="ten_b" minlength="5">
+                            <input type='text' class='form-control input_table' autofocus required name="ten_b">
                           </td>
                         </tr>
                         <tr>

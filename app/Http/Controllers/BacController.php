@@ -103,48 +103,50 @@ class BacController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function admin_edit_vienchuc_khoa($ma_k, $ma_vc){
-  //   $this->check_login();
-  //   $ma_vc_login = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   if($phanquyen_admin){
-  //     $edit = VienChuc::find($ma_vc);
-  //     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //       ->where('ma_q', '=', '5')
-  //       ->first();
-  //     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //       ->where('ma_q', '=', '8')
-  //       ->first();
-  //     return view('vienchuc.admin_vienchuc_khoa_edit')
-  //       ->with('edit', $edit)
-  //       ->with('phanquyen_qltt', $phanquyen_qltt)
-  //       ->with('phanquyen_admin', $phanquyen_admin);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function admin_update_vienchuc_khoa(Request $request, $ma_k, $ma_vc){
-  //   $this->check_login();
-  //   $ma_vc_login = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   if($phanquyen_admin){
-  //     $data = $request->all();
-  //     Carbon::now('Asia/Ho_Chi_Minh');
-  //     $vienchuc = VienChuc::find($ma_vc);
-  //     $vienchuc->hoten_vc = $data['hoten_vc'];
-  //     $vienchuc->user_vc = $data['user_vc'];
-  //     $vienchuc->status_vc = $data['status_vc'];
-  //     $vienchuc->updated_vc = Carbon::now();
-  //     $vienchuc->save();
-  //     return Redirect::to('/vienchuc_khoa/'.$ma_k);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function edit_bac_ngach($ma_n, $ma_b){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $edit = Bac::find($ma_b);
+      return view('bac.bac_ngach_edit')
+        ->with('edit', $edit)
+        ->with('ma_n', $ma_n)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_bac_ngach(Request $request, $ma_n, $ma_b){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $bac = Bac::find($ma_b);
+      $bac->ten_b = $data['ten_b'];
+      $bac->hesoluong_b = $data['hesoluong_b'];
+      $bac->ma_n = $ma_n;
+      $bac->status_b = $data['status_b'];
+      $bac->updated_b = Carbon::now();
+      $bac->save();
+      return Redirect::to('/bac_ngach/'.$ma_n);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function admin_delete_vienchuc_khoa($ma_k, $ma_vc){
   //   $this->check_login();
   //   $ma_vc_login = session()->get('ma_vc');
