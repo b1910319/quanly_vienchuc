@@ -90,48 +90,47 @@ class ChucVuController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function edit_dantoc($ma_cv){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $edit = DanToc::find($ma_dt);
-  //     return view('dantoc.dantoc_edit')
-  //       ->with('edit', $edit)
-  //       ->with('phanquyen_qltt', $phanquyen_qltt)
-  //       ->with('phanquyen_admin', $phanquyen_admin);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function update_dantoc(Request $request, $ma_dt){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $data = $request->all();
-  //     Carbon::now('Asia/Ho_Chi_Minh');
-  //     $dantoc = DanToc::find($ma_dt);
-  //     $dantoc->ten_dt = $data['ten_dt'];
-  //     $dantoc->status_dt = $data['status_dt'];
-  //     $dantoc->updated_dt = Carbon::now();
-  //     $dantoc->save();
-  //     return Redirect::to('dantoc');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-    
-  // }
+  public function edit_chucvu($ma_cv){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $edit = ChucVu::find($ma_cv);
+      return view('chucvu.chucvu_edit')
+        ->with('edit', $edit)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_chucvu(Request $request, $ma_cv){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $chucvu = ChucVu::find($ma_cv);
+      $chucvu->ten_cv = $data['ten_cv'];
+      $chucvu->status_cv = $data['status_cv'];
+      $chucvu->updated_cv = Carbon::now();
+      $chucvu->save();
+      return Redirect::to('chucvu');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function delete_dantoc($ma_dt){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
