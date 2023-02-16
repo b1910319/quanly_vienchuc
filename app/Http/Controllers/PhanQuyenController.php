@@ -39,14 +39,14 @@ class PhanQuyenController extends Controller
       $list_quyen = Quyen::where('status_q', '<>', '1')
         ->orderBy('ma_q', 'desc')
         ->get();
-      $ma_vc = session()->get('ma_vc');
-      $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-        ->where('ma_q', '=', '5')
+      $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+        ->where('ma_q', '=', '8')
         ->first();
       return view('quyen.phanquyen')
         ->with('list_quyen', $list_quyen)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('list_phanquyen', $list_phanquyen)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('list_vienchuc', $list_vienchuc);
     }else{
       return Redirect::to('/home');
@@ -73,8 +73,8 @@ class PhanQuyenController extends Controller
   }
   public function lammoi_quyen($ma_vc){
     $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
     if($phanquyen_admin){

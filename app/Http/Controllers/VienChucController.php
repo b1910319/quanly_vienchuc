@@ -44,6 +44,7 @@ class VienChucController extends Controller
     session()->put('ma_vc',null);
     return Redirect::to('/login');
   }
+  //thêm viên chức cho khoa
   public function vienchuc_khoa($ma_k){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -57,18 +58,24 @@ class VienChucController extends Controller
       $count = VienChuc::select(DB::raw('count(ma_vc) as sum'))
         ->where('ma_k', $ma_k)
         ->get();
-      $count_status = VienChuc::select(DB::raw('count(ma_vc) as sum, status_vc'))->groupBy('status_vc')->get();
+      $count_status = VienChuc::select(DB::raw('count(ma_vc) as sum, status_vc'))
+        ->groupBy('status_vc')
+        ->get();
       $list = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('khoa.ma_k', $ma_k)
         ->orderBy('ma_vc', 'desc')
         ->get();
       $khoa = Khoa::find($ma_k);
+      $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+        ->where('ma_q', '=', '8')
+        ->first();
       return view('vienchuc.admin_vienchuc_khoa')
         ->with('ma_k', $ma_k)
         ->with('count', $count)
         ->with('count_status', $count_status)
         ->with('list', $list)
         ->with('khoa', $khoa)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');
@@ -128,10 +135,14 @@ class VienChucController extends Controller
     if($phanquyen_admin){
       $edit = VienChuc::find($ma_vc);
       $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
+        ->where('ma_q', '=', '5')
+        ->first();
+      $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+        ->where('ma_q', '=', '8')
+        ->first();
       return view('vienchuc.admin_vienchuc_khoa_edit')
         ->with('edit', $edit)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');
@@ -184,6 +195,53 @@ class VienChucController extends Controller
         $vienchuc->delete();
       }
       return Redirect::to('/vienchuc_khoa/'.$ma_k);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function quanly_vienchuc_khoa(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+        ->where('ma_q', '=', '8')
+        ->first();
+      $count = VienChuc::select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      $count_status = VienChuc::select(DB::raw('count(ma_vc) as sum, status_vc'))
+        ->groupBy('status_vc')
+        ->get();
+      $list = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->orderBy('ma_vc', 'desc')
+        ->get();
+      $list_khoa = Khoa::where('status_k', '<>','1')
+        ->orderBy('ten_k', 'asc')
+        ->get();
+      return view('vienchuc.quanly_vienchuc_khoa')
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('count', $count)
+        ->with('count_status', $count_status)
+        ->with('list', $list)
+        ->with('list_khoa', $list_khoa)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }
+  }
+  public function update_khoa_vc(Request $request){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $vienchuc = VienChuc::find($data['ma_vc']);
+      $vienchuc->ma_k = $data['ma_k'];
+      $vienchuc->save();
+      return Redirect::to('quanly_vienchuc_khoa');
     }else{
       return Redirect::to('/home');
     }

@@ -29,6 +29,9 @@ class QuyenController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
     if($phanquyen_admin){
       $count = Quyen::select(DB::raw('count(ma_q) as sum'))->get();
       $count_status = Quyen::select(DB::raw('count(ma_q) as sum, status_q'))->groupBy('status_q')->get();
@@ -38,6 +41,7 @@ class QuyenController extends Controller
         ->with('count', $count)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_status', $count_status)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('list', $list);
     }else{
       return Redirect::to('/home');
@@ -89,13 +93,14 @@ class QuyenController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
     if($phanquyen_admin){
       $edit = Quyen::find($ma_q);
-      $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
       return view('quyen.quanly_quyen_edit')
         ->with('edit', $edit)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');

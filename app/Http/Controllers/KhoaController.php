@@ -38,11 +38,15 @@ class KhoaController extends Controller
         ->select(DB::raw('count(ma_vc) as sum, khoa.ma_k'))
         ->groupBy('khoa.ma_k')
         ->get();
+      $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+        ->where('ma_q', '=', '8')
+        ->first();
       return view('khoa.quanly_khoa')
         ->with('count', $count)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_status', $count_status)
         ->with('count_vienchuc_khoa', $count_vienchuc_khoa)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('list', $list);
     }else{
       return Redirect::to('/home');
@@ -96,10 +100,14 @@ class KhoaController extends Controller
       $edit = Khoa::find($ma_k);
       $ma_vc = session()->get('ma_vc');
       $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
+        ->where('ma_q', '=', '5')
+        ->first();
+      $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+        ->where('ma_q', '=', '8')
+        ->first();
       return view('khoa.quanly_khoa_edit')
         ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('edit', $edit);
     }else{
       return Redirect::to('/home');
