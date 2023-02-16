@@ -123,6 +123,8 @@ class NgachController extends Controller
       Carbon::now('Asia/Ho_Chi_Minh');
       $ngach = Ngach::find($ma_n);
       $ngach->ten_n = $data['ten_n'];
+      $ngach->maso_n = $data['maso_n'];
+      $ngach->sonamnangbac_n = $data['sonamnangbac_n'];
       $ngach->status_n = $data['status_n'];
       $ngach->updated_n = Carbon::now();
       $ngach->save();
