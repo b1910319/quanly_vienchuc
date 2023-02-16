@@ -264,4 +264,17 @@ class VienChucController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function admin_delete_vienchuc($ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      VienChuc::find($ma_vc)->delete();
+      return Redirect::to('quanly_vienchuc_khoa');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }
