@@ -246,4 +246,22 @@ class VienChucController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function admin_select_vienchuc($ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      $vienchuc = VienChuc::find($ma_vc);
+      if($vienchuc->status_vc == 1){
+        $vienchuc->status_vc = VienChuc::find($ma_vc)->update(['status_vc' => 0]);
+      }elseif($vienchuc->status_vc == 0){
+        $vienchuc->status_vc = VienChuc::find($ma_vc)->update(['status_vc' => 1]);
+      }
+      return Redirect::to('quanly_vienchuc_khoa');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }

@@ -110,7 +110,7 @@
               <?php
                 if($vienchuc->status_vc == 0){
                   ?>
-                    <a href="{{ URL::to('/select_vienchuc/'.$vienchuc->ma_vc) }}">
+                    <a href="{{ URL::to('/admin_select_vienchuc/'.$vienchuc->ma_vc) }}">
                       <button type="button" class="btn btn-secondary">
                         <i class="fa-solid fa-eye-slash"></i> 
                         &ensp; Ẩn
@@ -119,7 +119,7 @@
                   <?php
                 }else if($vienchuc->status_vc == 1) {
                   ?>
-                    <a href="{{ URL::to('/select_vienchuc/'.$vienchuc->ma_vc) }}">
+                    <a href="{{ URL::to('/admin_select_vienchuc/'.$vienchuc->ma_vc) }}">
                       <button type="button" class="btn btn-success">
                         <i class="fa-solid fa-eye"></i>
                         &ensp; Hiển thị
