@@ -163,19 +163,19 @@
         </tr>
       </thead>
       <tbody  >
-        @foreach ($list as $key => $dantoc)
+        @foreach ($list as $key => $ngach)
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $dantoc->ten_n }}
+              {{ $ngach->ten_n }}
             </td>
             <td>
               <?php
-                if($dantoc->status_n == 0){
+                if($ngach->status_n == 0){
                   ?>
                     <span class="badge rounded-pill text-bg-success"><i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị</span>
                   <?php
-                }else if($dantoc->status_n == 1) {
+                }else if($ngach->status_n == 1) {
                   ?>
                     <span class="badge text-bg-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
                   <?php
@@ -183,31 +183,31 @@
               ?>
             </td>
             <td>
-              {{ $dantoc->created_n }}
+              {{ $ngach->created_n }}
             </td>
             <td>
-              {{ $dantoc->updated_n }}
+              {{ $ngach->updated_n }}
             </td>
             <td style="width: 21%;">
-              <a href="{{ URL::to('/edit_ngach/'.$dantoc->ma_n)}}">
+              <a href="{{ URL::to('/edit_ngach/'.$ngach->ma_n)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_ngach/'.$dantoc->ma_n)}}">
+              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_ngach/'.$ngach->ma_n)}}">
                 <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               </a>
               <?php
-                if($dantoc->status_n == 0){
+                if($ngach->status_n == 0){
                   ?>
-                    <a href="{{ URL::to('/select_ngach/'.$dantoc->ma_n) }}">
+                    <a href="{{ URL::to('/select_ngach/'.$ngach->ma_n) }}">
                       <button type="button" class="btn btn-secondary">
                         <i class="fa-solid fa-eye-slash"></i> 
                         &ensp; Ẩn
                       </button>
                     </a>
                   <?php
-                }else if($dantoc->status_n == 1) {
+                }else if($ngach->status_n == 1) {
                   ?>
-                    <a href="{{ URL::to('/select_ngach/'.$dantoc->ma_n) }}">
+                    <a href="{{ URL::to('/select_ngach/'.$ngach->ma_n) }}">
                       <button type="button" class="btn btn-success">
                         <i class="fa-solid fa-eye"></i>
                         &ensp; Hiển thị

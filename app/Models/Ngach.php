@@ -12,8 +12,8 @@ class Ngach extends Model
     'ten_n',
     'maso_n',
     'sonamnangbac_n',
-    'status_k',
-    'updated_k'
+    'status_n',
+    'updated_n'
 
   ];
   public $timestamps = false; 

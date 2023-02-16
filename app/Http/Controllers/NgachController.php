@@ -6,12 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests;
-use App\Models\Khoa;
 use App\Models\Ngach;
 use App\Models\PhanQuyen;
-use App\Models\Quyen;
-use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 
 class NgachController extends Controller
@@ -69,6 +65,103 @@ class NgachController extends Controller
       $ngach->save();
       $request->session()->put('message','Thêm thành công');
       return Redirect::to('/ngach');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function select_ngach($ma_n){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $ngach = Ngach::find($ma_n);
+      if($ngach->status_n == 1){
+        $ngach->status_n = Ngach::find($ma_n)->update(['status_n' => 0]);
+      }elseif($ngach->status_n == 0){
+        $ngach->status_n = Ngach::find($ma_n)->update(['status_n' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function edit_ngach($ma_n){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $edit = Ngach::find($ma_n);
+      return view('ngach.ngach_edit')
+        ->with('edit', $edit)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_ngach(Request $request, $ma_n){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $ngach = Ngach::find($ma_n);
+      $ngach->ten_n = $data['ten_n'];
+      $ngach->status_n = $data['status_n'];
+      $ngach->updated_n = Carbon::now();
+      $ngach->save();
+      return Redirect::to('ngach');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function delete_ngach($ma_n){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      Ngach::find($ma_n)->delete();
+      return Redirect::to('ngach');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function delete_all_ngach(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $list = Ngach::get();
+      foreach($list as $key => $ngach){
+        $ngach->delete();
+      }
+      return Redirect::to('ngach');
     }else{
       return Redirect::to('/home');
     }
