@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 15, 2023 lúc 10:38 AM
+-- Thời gian đã tạo: Th2 16, 2023 lúc 07:20 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -40,8 +40,9 @@ CREATE TABLE `chucvu` (
 --
 
 INSERT INTO `chucvu` (`ma_cv`, `ten_cv`, `status_cv`, `created_cv`, `updated_cv`) VALUES
-(1, 'dgtưekjh', 0, '2023-02-15 09:31:43', ' '),
-(2, 'brgt̉êôuy', 0, '2023-02-15 09:31:55', ' ');
+(5, 'Hiệu trưởng', 0, '2023-02-16 04:02:59', ' '),
+(6, 'Trưởng khoa', 0, '2023-02-16 04:03:09', ' '),
+(7, 'Phó trưởng khoa', 0, '2023-02-16 04:03:17', ' ');
 
 -- --------------------------------------------------------
 
@@ -149,6 +150,31 @@ INSERT INTO `khoa` (`ma_k`, `ten_k`, `mota_k`, `status_k`, `created_k`, `updated
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `ngach`
+--
+
+CREATE TABLE `ngach` (
+  `ma_n` int(11) NOT NULL,
+  `ten_n` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `maso_n` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `sonamnangbac_n` int(11) NOT NULL,
+  `status_n` int(11) NOT NULL DEFAULT 0,
+  `created_n` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_n` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `ngach`
+--
+
+INSERT INTO `ngach` (`ma_n`, `ten_n`, `maso_n`, `sonamnangbac_n`, `status_n`, `created_n`, `updated_n`) VALUES
+(1, 'vgrte5', 'ghtry', 555, 0, '2023-02-16 04:24:20', ' '),
+(2, 'dsrtw453', 'hty', 555, 0, '2023-02-16 04:30:31', ' '),
+(3, 'dfewrfg', ';\\lkjthyty', 2, 0, '2023-02-16 04:30:46', ' ');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `phanquyen`
 --
 
@@ -167,7 +193,6 @@ CREATE TABLE `phanquyen` (
 INSERT INTO `phanquyen` (`ma_q`, `ma_vc`, `status_pq`, `created_pq`, `updated_pq`) VALUES
 (10, 2, 0, '2023-02-14 07:33:17', ' '),
 (10, 1, 0, '2023-02-14 07:38:46', ' '),
-(5, 1, 0, '2023-02-14 08:02:55', ' '),
 (10, 7, 0, '2023-02-15 03:18:24', ' '),
 (10, 8, 0, '2023-02-15 03:52:52', ' '),
 (10, 9, 0, '2023-02-15 03:52:58', ' '),
@@ -224,7 +249,9 @@ INSERT INTO `phanquyen` (`ma_q`, `ma_vc`, `status_pq`, `created_pq`, `updated_pq
 (10, 60, 0, '2023-02-15 07:17:19', ' '),
 (10, 61, 0, '2023-02-15 07:17:30', ' '),
 (10, 62, 0, '2023-02-15 07:17:41', ' '),
-(8, 62, 0, '2023-02-15 07:29:17', ' ');
+(5, 1, 0, '2023-02-16 00:57:56', ' '),
+(8, 62, 0, '2023-02-16 00:59:16', ' '),
+(10, 63, 0, '2023-02-16 02:38:07', ' ');
 
 -- --------------------------------------------------------
 
@@ -315,7 +342,7 @@ CREATE TABLE `vienchuc` (
 --
 
 INSERT INTO `vienchuc` (`ma_vc`, `ma_k`, `ma_cv`, `ma_n`, `ma_b`, `ma_dt`, `ma_tg`, `ma_tb`, `user_vc`, `pass_vc`, `hoten_vc`, `hinh_vc`, `tenkhac_vc`, `ngaysinh_vc`, `gioitinh_vc`, `thuongtru_vc`, `hientai_vc`, `nghekhiduoctuyen_vc`, `ngaytuyendung_vc`, `congviecchinhgiao_vc`, `phucap_vc`, `trinhdophothong_vc`, `chinhtri_vc`, `quanlynhanuoc_vc`, `ngoaingu_vc`, `tinhoc_vc`, `ngayvaodang_vc`, `ngaychinhthuc_vc`, `ngaynhapngu_vc`, `ngayxuatngu_vc`, `quanham_vc`, `danhhieucao_vc`, `sotruong_vc`, `chieucao_vc`, `cannang_vc`, `nhommau_vc`, `chinhsach_vc`, `cccd_vc`, `ngaycapcccd_vc`, `bhxh_vc`, `lichsubanthan1_vc`, `lichsubanthan2_vc`, `lichsubanthan3_vc`, `ngaybatdaulamviec_vc`, `thoigiannghi_vc`, `status_vc`, `created_vc`, `updated_vc`) VALUES
-(1, 5, 0, 0, 0, 0, 0, 0, 'dbgt3@student.ctu.edu.vn', '6141bcafae02e2b1e6110f7f0c238ce7', 'Lê Diểm Trinh', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-14 00:56:49', '2023-02-15 06:34:45'),
+(1, 5, 0, 0, 0, 0, 0, 0, 'trinhb1910319@student.ctu.edu.vn', '6141bcafae02e2b1e6110f7f0c238ce7', 'Lê Diểm Trinh', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-14 00:56:49', '2023-02-15 06:34:45'),
 (15, 5, 0, 0, 0, 0, 0, 0, 'ptphi@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Thế Phi', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:05:17', ' '),
 (16, 5, 0, 0, 0, 0, 0, 0, 'tcan@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Công Án', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:05:39', ' '),
 (17, 5, 0, 0, 0, 0, 0, 0, 'tnbinh@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Ngân Bình', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:05:53', ' '),
@@ -388,6 +415,12 @@ ALTER TABLE `khoa`
   ADD PRIMARY KEY (`ma_k`);
 
 --
+-- Chỉ mục cho bảng `ngach`
+--
+ALTER TABLE `ngach`
+  ADD PRIMARY KEY (`ma_n`);
+
+--
 -- Chỉ mục cho bảng `quyen`
 --
 ALTER TABLE `quyen`
@@ -407,13 +440,13 @@ ALTER TABLE `vienchuc`
 -- AUTO_INCREMENT cho bảng `chucvu`
 --
 ALTER TABLE `chucvu`
-  MODIFY `ma_cv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ma_cv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `dantoc`
 --
 ALTER TABLE `dantoc`
-  MODIFY `ma_dt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `ma_dt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT cho bảng `khoa`
@@ -422,16 +455,22 @@ ALTER TABLE `khoa`
   MODIFY `ma_k` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT cho bảng `ngach`
+--
+ALTER TABLE `ngach`
+  MODIFY `ma_n` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT cho bảng `quyen`
 --
 ALTER TABLE `quyen`
-  MODIFY `ma_q` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ma_q` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `vienchuc`
 --
 ALTER TABLE `vienchuc`
-  MODIFY `ma_vc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `ma_vc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

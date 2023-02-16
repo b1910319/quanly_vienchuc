@@ -187,7 +187,9 @@
                     </a>
                   </li>
                   <li>
-                    <a href="layouts-light-topbar.html">Light Topbar</a>
+                    <a href="{{ URL::to('/ngach') }}">
+                      Ngạch viên chức
+                    </a>
                   </li>
                   <li>
                     <a href="layouts-preloader.html">Preloader</a>

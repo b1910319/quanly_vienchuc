@@ -8,6 +8,7 @@ use App\Http\Controllers\PhanQuyenController;
 use App\Http\Controllers\KhoaController;
 use App\Http\Controllers\DanTocController;
 use App\Http\Controllers\ChucVuController;
+use App\Http\Controllers\NgachController;
 
 
 
@@ -82,7 +83,13 @@ Route::get('/delete_all_chucvu',[ChucVuController::class, 'delete_all_chucvu']);
 
 
 
-
+Route::get('/ngach',[NgachController::class, 'ngach']);
+Route::post('/add_ngach',[NgachController::class, 'add_ngach']);
+Route::get('/select_ngach/{ma_n}',[NgachController::class, 'select_ngach']);
+Route::get('/edit_ngach/{ma_n}',[NgachController::class, 'edit_ngach']);
+Route::post('/update_ngach/{ma_n}',[NgachController::class, 'update_ngach']);
+Route::get('/delete_ngach/{ma_n}',[NgachController::class, 'delete_ngach']);
+Route::get('/delete_all_ngach',[NgachController::class, 'delete_all_ngach']);
 
 
 
