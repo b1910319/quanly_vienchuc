@@ -85,7 +85,7 @@ class KhoaController extends Controller
       }elseif($khoa->status_k == 0){
         $khoa->status_k = Khoa::find($ma_k)->update(['status_k' => 1]);
       }
-      return Redirect::to('quanly_khoa');
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }

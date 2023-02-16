@@ -81,7 +81,7 @@ class QuyenController extends Controller
       }elseif($quyen->status_q == 0){
         $quyen->status_q = Quyen::find($ma_q)->update(['status_q' => 1]);
       }
-      return Redirect::to('quanly_quyen');
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }

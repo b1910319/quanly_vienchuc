@@ -85,7 +85,7 @@ class DanTocController extends Controller
       }elseif($dantoc->status_dt == 0){
         $dantoc->status_dt = DanToc::find($ma_dt)->update(['status_dt' => 1]);
       }
-      return Redirect::to('/dantoc');
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }

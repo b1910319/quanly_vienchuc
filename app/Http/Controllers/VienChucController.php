@@ -227,6 +227,8 @@ class VienChucController extends Controller
         ->with('list', $list)
         ->with('list_khoa', $list_khoa)
         ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
     }
   }
   public function update_khoa_vc(Request $request){
@@ -259,7 +261,7 @@ class VienChucController extends Controller
       }elseif($vienchuc->status_vc == 0){
         $vienchuc->status_vc = VienChuc::find($ma_vc)->update(['status_vc' => 1]);
       }
-      return Redirect::to('quanly_vienchuc_khoa');
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }
@@ -273,6 +275,41 @@ class VienChucController extends Controller
     if($phanquyen_admin){
       VienChuc::find($ma_vc)->delete();
       return Redirect::to('quanly_vienchuc_khoa');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function search_vienchuc_khoa($ma_k){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+        ->where('ma_q', '=', '8')
+        ->first();
+      $count = VienChuc::select(DB::raw('count(ma_vc) as sum'))
+        ->where('ma_k', $ma_k)
+        ->get();
+      $count_status = VienChuc::select(DB::raw('count(ma_vc) as sum, status_vc'))
+        ->where('ma_k', $ma_k)
+        ->groupBy('status_vc')
+        ->get();
+      $list = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('khoa.ma_k', $ma_k)
+        ->orderBy('ma_vc', 'desc')
+        ->get();
+      $list_khoa = Khoa::where('status_k', '<>','1')
+        ->orderBy('ten_k', 'asc')
+        ->get();
+      return view('vienchuc.search_vienchuc_khoa')
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('count', $count)
+        ->with('count_status', $count_status)
+        ->with('list', $list)
+        ->with('list_khoa', $list_khoa)
+        ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');
     }
