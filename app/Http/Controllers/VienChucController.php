@@ -303,12 +303,14 @@ class VienChucController extends Controller
       $list_khoa = Khoa::where('status_k', '<>','1')
         ->orderBy('ten_k', 'asc')
         ->get();
+      $khoa_ma = Khoa::find($ma_k);
       return view('vienchuc.search_vienchuc_khoa')
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
         ->with('count_status', $count_status)
         ->with('list', $list)
         ->with('list_khoa', $list_khoa)
+        ->with('khoa_ma', $khoa_ma)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');

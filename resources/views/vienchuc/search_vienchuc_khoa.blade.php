@@ -5,7 +5,10 @@
     <div class="mt-3"></div>
     <div class="alert alert-success" role="alert">
       <div class="row">
-        <h4 class="text-center" style="font-weight: bold">DANH SÁCH</h4>
+        <h4 class="text-center" style="font-weight: bold">
+          DANH SÁCH 
+          <span style="color: #379237;">( {{ $khoa_ma->ten_k }} )</span>
+        </h4>
       </div>
     </div>
     <div class="row">

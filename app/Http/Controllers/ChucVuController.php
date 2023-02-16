@@ -69,29 +69,28 @@ class ChucVuController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function select_dantoc($ma_dt){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $dantoc = DanToc::find($ma_dt);
-  //     if($dantoc->status_dt == 1){
-  //       $dantoc->status_dt = DanToc::find($ma_dt)->update(['status_dt' => 0]);
-  //     }elseif($dantoc->status_dt == 0){
-  //       $dantoc->status_dt = DanToc::find($ma_dt)->update(['status_dt' => 1]);
-  //     }
-  //     return Redirect::to('/dantoc');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-    
-  // }
-  // public function edit_dantoc($ma_dt){
+  public function select_chucvu($ma_cv){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $chucvu = ChucVu::find($ma_cv);
+      if($chucvu->status_cv == 1){
+        $chucvu->status_cv = ChucVu::find($ma_cv)->update(['status_cv' => 0]);
+      }elseif($chucvu->status_cv == 0){
+        $chucvu->status_cv = ChucVu::find($ma_cv)->update(['status_cv' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  // public function edit_dantoc($ma_cv){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
   //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
