@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 17, 2023 lúc 03:50 AM
+-- Thời gian đã tạo: Th2 17, 2023 lúc 04:10 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -395,9 +395,10 @@ CREATE TABLE `thuongbinh` (
 --
 
 INSERT INTO `thuongbinh` (`ma_tb`, `ten_tb`, `mota_tb`, `status_tb`, `created_tb`, `updated_tb`) VALUES
-(1, 'dvgtery5', '<p>fdhey54</p>', 0, '2023-02-17 02:48:44', ' '),
-(2, 'xdvfew', '<p>dve</p>', 0, '2023-02-17 02:49:22', ' '),
-(3, 'dvgtư', '<p>xe&egrave;qr&egrave;</p>', 1, '2023-02-17 02:49:29', ' ');
+(4, 'Thương binh loại 1/4', '<p>Nặng nhất, tỷ lệ thương tật từ 81% trở l&ecirc;n</p>', 0, '2023-02-17 03:08:23', ' '),
+(5, 'Thương binh loại 2/4', '<p>Tỷ lệ thương tật từ 61% trở l&ecirc;n</p>', 0, '2023-02-17 03:08:39', ' '),
+(6, 'Thương binh loại 3/4', '<p>Tỷ lệ thương tật từ 41% trở l&ecirc;n</p>', 0, '2023-02-17 03:09:01', ' '),
+(7, 'Thương binh loại 4/4', '<p>Nhẹ nhất, tỷ lệ thương tật từ 21% trở l&ecirc;n</p>', 0, '2023-02-17 03:09:47', ' ');
 
 -- --------------------------------------------------------
 
@@ -649,7 +650,7 @@ ALTER TABLE `quyen`
 -- AUTO_INCREMENT cho bảng `thuongbinh`
 --
 ALTER TABLE `thuongbinh`
-  MODIFY `ma_tb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ma_tb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `tongiao`
