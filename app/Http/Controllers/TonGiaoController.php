@@ -87,48 +87,47 @@ class TonGiaoController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function edit_tongiao($ma_tg){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $edit = TonGiao::find($ma_tg);
-  //     return view('tongiao.tongiao_edit')
-  //       ->with('edit', $edit)
-  //       ->with('phanquyen_qltt', $phanquyen_qltt)
-  //       ->with('phanquyen_admin', $phanquyen_admin);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function update_tongiao(Request $request, $ma_tg){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $data = $request->all();
-  //     Carbon::now('Asia/Ho_Chi_Minh');
-  //     $tongiao = TonGiao::find($ma_tg);
-  //     $tongiao->ten_tg = $data['ten_tg'];
-  //     $tongiao->status_tg = $data['status_tg'];
-  //     $tongiao->updated_tg = Carbon::now();
-  //     $tongiao->save();
-  //     return Redirect::to('tongiao');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-    
-  // }
+  public function edit_tongiao($ma_tg){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $edit = TonGiao::find($ma_tg);
+      return view('tongiao.tongiao_edit')
+        ->with('edit', $edit)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_tongiao(Request $request, $ma_tg){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $tongiao = TonGiao::find($ma_tg);
+      $tongiao->ten_tg = $data['ten_tg'];
+      $tongiao->status_tg = $data['status_tg'];
+      $tongiao->updated_tg = Carbon::now();
+      $tongiao->save();
+      return Redirect::to('tongiao');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function delete_tongiao($ma_tg){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
