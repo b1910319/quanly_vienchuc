@@ -42,8 +42,7 @@ class BacController extends Controller
         ->where('ma_n', $ma_n)
         ->groupBy('status_b')
         ->get();
-      $list = Bac::join('ngach', 'ngach.ma_n', '=', 'ngach.ma_n')
-        ->where('ngach.ma_n', $ma_n)
+      $list = Bac::where('ma_n', $ma_n)
         ->orderBy('ma_b', 'desc')
         ->get();
       $ngach = Ngach::find($ma_n);
@@ -147,35 +146,40 @@ class BacController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function admin_delete_vienchuc_khoa($ma_k, $ma_vc){
-  //   $this->check_login();
-  //   $ma_vc_login = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   if($phanquyen_admin){
-  //     VienChuc::find($ma_vc)->delete();
-  //     return Redirect::to('/vienchuc_khoa/'.$ma_k);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-    
-  // }
-  // public function admin_deleteall_vienchuc_khoa($ma_k){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   if($phanquyen_admin){
-  //     $list = VienChuc::where('ma_k', $ma_k)
-  //       ->get();
-  //     foreach($list as $key => $vienchuc){
-  //       $vienchuc->delete();
-  //     }
-  //     return Redirect::to('/vienchuc_khoa/'.$ma_k);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function delete_bac_ngach($ma_n, $ma_b){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      Bac::find($ma_b)->delete();
+      return Redirect::to('/bac_ngach/'.$ma_n);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function delete_all_bac_ngach($ma_n){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $list = Bac::where('ma_n', $ma_n)
+        ->get();
+      foreach($list as $key => $bac){
+        $bac->delete();
+      }
+      return Redirect::to('/bac_ngach/'.$ma_n);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }
