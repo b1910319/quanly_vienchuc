@@ -220,7 +220,7 @@
                   <?php
                 }else if($bac->status_b == 1) {
                   ?>
-                    <a href="{{ URL::to('/select_bac/'.$ngach->ma_b) }}">
+                    <a href="{{ URL::to('/select_bac/'.$bac->ma_b) }}">
                       <button type="button" class="btn btn-success">
                         <i class="fa-solid fa-eye"></i>
                         &ensp; Hiển thị

@@ -236,27 +236,27 @@ class BacController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function select_ngach($ma_n){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $ngach = Ngach::find($ma_n);
-  //     if($ngach->status_n == 1){
-  //       $ngach->status_n = Ngach::find($ma_n)->update(['status_n' => 0]);
-  //     }elseif($ngach->status_n == 0){
-  //       $ngach->status_n = Ngach::find($ma_n)->update(['status_n' => 1]);
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function select_bac($ma_b){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $bac = Bac::find($ma_b);
+      if($bac->status_b == 1){
+        $bac->status_b = Bac::find($ma_b)->update(['status_b' => 0]);
+      }elseif($bac->status_b == 0){
+        $bac->status_b = Bac::find($ma_b)->update(['status_b' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function edit_ngach($ma_n){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
