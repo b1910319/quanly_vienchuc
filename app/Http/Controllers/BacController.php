@@ -303,39 +303,39 @@ class BacController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function delete_ngach($ma_n){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     Ngach::find($ma_n)->delete();
-  //     return Redirect::to('ngach');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function delete_all_ngach(){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $list = Ngach::get();
-  //     foreach($list as $key => $ngach){
-  //       $ngach->delete();
-  //     }
-  //     return Redirect::to('ngach');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function delete_bac($ma_b){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      Bac::find($ma_b)->delete();
+      return Redirect::to('bac');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function delete_all_bac(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $list = Bac::get();
+      foreach($list as $key => $bac){
+        $bac->delete();
+      }
+      return Redirect::to('bac');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }
