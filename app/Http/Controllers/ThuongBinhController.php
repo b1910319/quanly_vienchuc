@@ -89,48 +89,48 @@ class ThuongBinhController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function edit_thuongbinh($ma_tb){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $edit = ThuongBinh::find($ma_tb);
-  //     return view('thuongbinh.thuongbinh_edit')
-  //       ->with('edit', $edit)
-  //       ->with('phanquyen_qltt', $phanquyen_qltt)
-  //       ->with('phanquyen_admin', $phanquyen_admin);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function update_thuongbinh(Request $request, $ma_tb){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $data = $request->all();
-  //     Carbon::now('Asia/Ho_Chi_Minh');
-  //     $thuongbinh = ThuongBinh::find($ma_tb);
-  //     $thuongbinh->ten_tb = $data['ten_tb'];
-  //     $thuongbinh->status_tb = $data['status_tb'];
-  //     $thuongbinh->updated_tb = Carbon::now();
-  //     $thuongbinh->save();
-  //     return Redirect::to('thuongbinh');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-    
-  // }
+  public function edit_thuongbinh($ma_tb){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $edit = ThuongBinh::find($ma_tb);
+      return view('thuongbinh.thuongbinh_edit')
+        ->with('edit', $edit)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_thuongbinh(Request $request, $ma_tb){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $thuongbinh = ThuongBinh::find($ma_tb);
+      $thuongbinh->ten_tb = $data['ten_tb'];
+      $thuongbinh->mota_tb = $data['mota_tb'];
+      $thuongbinh->status_tb = $data['status_tb'];
+      $thuongbinh->updated_tb = Carbon::now();
+      $thuongbinh->save();
+      return Redirect::to('thuongbinh');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function delete_thuongbinh($ma_tb){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
