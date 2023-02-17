@@ -68,28 +68,27 @@ class ThuongBinhController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function select_thuongbinh($ma_tb){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $thuongbinh = ThuongBinh::find($ma_tb);
-  //     if($thuongbinh->status_tb == 1){
-  //       $thuongbinh->status_tb = ThuongBinh::find($ma_tb)->update(['status_tb' => 0]);
-  //     }elseif($thuongbinh->status_tb == 0){
-  //       $thuongbinh->status_tb = ThuongBinh::find($ma_tb)->update(['status_tb' => 1]);
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-    
-  // }
+  public function select_thuongbinh($ma_tb){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $thuongbinh = ThuongBinh::find($ma_tb);
+      if($thuongbinh->status_tb == 1){
+        $thuongbinh->status_tb = ThuongBinh::find($ma_tb)->update(['status_tb' => 0]);
+      }elseif($thuongbinh->status_tb == 0){
+        $thuongbinh->status_tb = ThuongBinh::find($ma_tb)->update(['status_tb' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function edit_thuongbinh($ma_tb){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
