@@ -139,11 +139,11 @@
         </a>
       </div>
     </div>
-    {{-- <table class="table" id="mytable">
+    <table class="table" id="mytable">
       <thead class="table-dark">
         <tr>
           <th scope="col">STT</th>
-          <th scope="col">Dân tộc </th>
+          <th scope="col">Tôn giáo </th>
           <th scope="col">Trạng thái</th>
           <th scope="col">Thời gian tạo</th>
           <th scope="col">Thời gian cập nhật</th>
@@ -208,7 +208,7 @@
           </tr>
         @endforeach
       </tbody>
-    </table> --}}
+    </table>
   </div>
 </div>
 @endsection

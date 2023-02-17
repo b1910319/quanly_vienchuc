@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-use App\Models\DanToc;
 use App\Models\PhanQuyen;
 use App\Models\TonGiao;
 use Illuminate\Support\Carbon;
@@ -67,29 +66,28 @@ class TonGiaoController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function select_dantoc($ma_tg){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $dantoc = TonGiao::find($ma_tg);
-  //     if($dantoc->status_tg == 1){
-  //       $dantoc->status_tg = TonGiao::find($ma_tg)->update(['status_tg' => 0]);
-  //     }elseif($dantoc->status_tg == 0){
-  //       $dantoc->status_tg = TonGiao::find($ma_tg)->update(['status_tg' => 1]);
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-    
-  // }
-  // public function edit_dantoc($ma_tg){
+  public function select_tongiao($ma_tg){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $tongiao = TonGiao::find($ma_tg);
+      if($tongiao->status_tg == 1){
+        $tongiao->status_tg = TonGiao::find($ma_tg)->update(['status_tg' => 0]);
+      }elseif($tongiao->status_tg == 0){
+        $tongiao->status_tg = TonGiao::find($ma_tg)->update(['status_tg' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  // public function edit_tongiao($ma_tg){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
   //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -100,7 +98,7 @@ class TonGiaoController extends Controller
   //     ->first();
   //   if($phanquyen_admin || $phanquyen_qltt){
   //     $edit = TonGiao::find($ma_tg);
-  //     return view('dantoc.dantoc_edit')
+  //     return view('tongiao.tongiao_edit')
   //       ->with('edit', $edit)
   //       ->with('phanquyen_qltt', $phanquyen_qltt)
   //       ->with('phanquyen_admin', $phanquyen_admin);
@@ -108,7 +106,7 @@ class TonGiaoController extends Controller
   //     return Redirect::to('/home');
   //   }
   // }
-  // public function update_dantoc(Request $request, $ma_tg){
+  // public function update_tongiao(Request $request, $ma_tg){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
   //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -120,18 +118,18 @@ class TonGiaoController extends Controller
   //   if($phanquyen_admin || $phanquyen_qltt){
   //     $data = $request->all();
   //     Carbon::now('Asia/Ho_Chi_Minh');
-  //     $dantoc = TonGiao::find($ma_tg);
-  //     $dantoc->ten_tg = $data['ten_tg'];
-  //     $dantoc->status_tg = $data['status_tg'];
-  //     $dantoc->updated_tg = Carbon::now();
-  //     $dantoc->save();
-  //     return Redirect::to('dantoc');
+  //     $tongiao = TonGiao::find($ma_tg);
+  //     $tongiao->ten_tg = $data['ten_tg'];
+  //     $tongiao->status_tg = $data['status_tg'];
+  //     $tongiao->updated_tg = Carbon::now();
+  //     $tongiao->save();
+  //     return Redirect::to('tongiao');
   //   }else{
   //     return Redirect::to('/home');
   //   }
     
   // }
-  // public function delete_dantoc($ma_tg){
+  // public function delete_tongiao($ma_tg){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
   //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -142,13 +140,13 @@ class TonGiaoController extends Controller
   //     ->first();
   //   if($phanquyen_admin || $phanquyen_qltt){
   //     TonGiao::find($ma_tg)->delete();
-  //     return Redirect::to('dantoc');
+  //     return Redirect::to('tongiao');
   //   }else{
   //     return Redirect::to('/home');
   //   }
     
   // }
-  // public function delete_all_dantoc(){
+  // public function delete_all_tongiao(){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
   //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -159,10 +157,10 @@ class TonGiaoController extends Controller
   //     ->first();
   //   if($phanquyen_admin || $phanquyen_qltt){
   //     $list = TonGiao::get();
-  //     foreach($list as $key => $dantoc){
-  //       $dantoc->delete();
+  //     foreach($list as $key => $tongiao){
+  //       $tongiao->delete();
   //     }
-  //     return Redirect::to('dantoc');
+  //     return Redirect::to('tongiao');
   //   }else{
   //     return Redirect::to('/home');
   //   }
