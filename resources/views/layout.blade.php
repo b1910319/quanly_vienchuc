@@ -193,6 +193,11 @@
                     </a>
                   </li>
                   <li>
+                    <a href="{{ URL::to('/thuongbinh') }}">
+                      Thương binh
+                    </a>
+                  </li>
+                  <li>
                     <a href="layouts-sidebar-collapsed.html">Sidebar Collapsed</a>
                   </li>
                   <li>

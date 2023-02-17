@@ -11,6 +11,7 @@ use App\Http\Controllers\ChucVuController;
 use App\Http\Controllers\NgachController;
 use App\Http\Controllers\BacController;
 use App\Http\Controllers\TonGiaoController;
+use App\Http\Controllers\ThuongBinhController;
 
 
 Route::get('/login',[HomeController::class, 'index']);
@@ -127,7 +128,13 @@ Route::get('/delete_all_tongiao',[TonGiaoController::class, 'delete_all_tongiao'
 
 
 
-
+Route::get('/thuongbinh',[ThuongBinhController::class, 'thuongbinh']);
+Route::post('/add_thuongbinh',[ThuongBinhController::class, 'add_thuongbinh']);
+Route::get('/select_thuongbinh/{ma_tb}',[ThuongBinhController::class, 'select_thuongbinh']);
+Route::get('/edit_thuongbinh/{ma_tb}',[ThuongBinhController::class, 'edit_thuongbinh']);
+Route::post('/update_thuongbinh/{ma_tb}',[ThuongBinhController::class, 'update_thuongbinh']);
+Route::get('/delete_thuongbinh/{ma_tb}',[ThuongBinhController::class, 'delete_thuongbinh']);
+Route::get('/delete_all_thuongbinh',[ThuongBinhController::class, 'delete_all_thuongbinh']);
 
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 17, 2023 lúc 03:21 AM
+-- Thời gian đã tạo: Th2 17, 2023 lúc 03:50 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -378,6 +378,30 @@ INSERT INTO `quyen` (`ma_q`, `ten_q`, `mota_q`, `status_q`, `created_q`, `update
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `thuongbinh`
+--
+
+CREATE TABLE `thuongbinh` (
+  `ma_tb` int(11) NOT NULL,
+  `ten_tb` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mota_tb` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '  ',
+  `status_tb` int(11) NOT NULL DEFAULT 0,
+  `created_tb` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_tb` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `thuongbinh`
+--
+
+INSERT INTO `thuongbinh` (`ma_tb`, `ten_tb`, `mota_tb`, `status_tb`, `created_tb`, `updated_tb`) VALUES
+(1, 'dvgtery5', '<p>fdhey54</p>', 0, '2023-02-17 02:48:44', ' '),
+(2, 'xdvfew', '<p>dve</p>', 0, '2023-02-17 02:49:22', ' '),
+(3, 'dvgtư', '<p>xe&egrave;qr&egrave;</p>', 1, '2023-02-17 02:49:29', ' ');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `tongiao`
 --
 
@@ -394,7 +418,21 @@ CREATE TABLE `tongiao` (
 --
 
 INSERT INTO `tongiao` (`ma_tg`, `ten_tg`, `status_tg`, `created_tg`, `updated_tg`) VALUES
-(1, 'grtreytytuy', 0, '2023-02-17 02:13:33', ' ');
+(4, 'Phật giáo', 0, '2023-02-17 02:29:54', ' '),
+(5, 'Hồi giáo', 0, '2023-02-17 02:30:00', ' '),
+(6, 'Bahai', 0, '2023-02-17 02:30:07', ' '),
+(7, 'Công giáo', 0, '2023-02-17 02:30:15', ' '),
+(8, 'Tin lành', 0, '2023-02-17 02:30:21', ' '),
+(9, 'Mặc môn', 0, '2023-02-17 02:30:27', ' '),
+(10, 'Phật giáo Hòa Hảo', 0, '2023-02-17 02:30:33', ' '),
+(11, 'Cao Đài', 0, '2023-02-17 02:30:41', ' '),
+(12, 'Bửu Sơn Kỳ Hương', 0, '2023-02-17 02:30:47', ' '),
+(13, 'Tịnh Độ Cư Sĩ Phật Hội', 0, '2023-02-17 02:30:57', ' '),
+(14, 'Tứ Ân Hiếu Nghĩa', 0, '2023-02-17 02:31:05', ' '),
+(15, 'Phật Đường Nam Tông Minh Sư Đạo', 0, '2023-02-17 02:31:11', ' '),
+(17, 'Minh Lý Đạo Tam Tông Miếu', 0, '2023-02-17 02:31:29', ' '),
+(18, 'Bà la môn Khơ me', 0, '2023-02-17 02:31:42', ' '),
+(19, 'Phật giáo Hiếu Nghĩa Tà Lơn', 0, '2023-02-17 02:31:49', ' ');
 
 -- --------------------------------------------------------
 
@@ -550,6 +588,12 @@ ALTER TABLE `quyen`
   ADD PRIMARY KEY (`ma_q`);
 
 --
+-- Chỉ mục cho bảng `thuongbinh`
+--
+ALTER TABLE `thuongbinh`
+  ADD PRIMARY KEY (`ma_tb`);
+
+--
 -- Chỉ mục cho bảng `tongiao`
 --
 ALTER TABLE `tongiao`
@@ -602,10 +646,16 @@ ALTER TABLE `quyen`
   MODIFY `ma_q` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
+-- AUTO_INCREMENT cho bảng `thuongbinh`
+--
+ALTER TABLE `thuongbinh`
+  MODIFY `ma_tb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT cho bảng `tongiao`
 --
 ALTER TABLE `tongiao`
-  MODIFY `ma_tg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ma_tg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT cho bảng `vienchuc`

@@ -4,13 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests;
 use App\Models\Khoa;
 use App\Models\PhanQuyen;
-use App\Models\Quyen;
-use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 
 class KhoaController extends Controller
