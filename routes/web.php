@@ -10,6 +10,7 @@ use App\Http\Controllers\DanTocController;
 use App\Http\Controllers\ChucVuController;
 use App\Http\Controllers\NgachController;
 use App\Http\Controllers\BacController;
+use App\Http\Controllers\TonGiaoController;
 
 
 Route::get('/login',[HomeController::class, 'index']);
@@ -115,7 +116,13 @@ Route::get('/delete_all_bac',[BacController::class, 'delete_all_bac']);
 
 
 
-
+Route::get('/tongiao',[TonGiaoController::class, 'tongiao']);
+Route::post('/add_tongiao',[TonGiaoController::class, 'add_tongiao']);
+Route::get('/select_tongiao/{ma_tg}',[TonGiaoController::class, 'select_tongiao']);
+Route::get('/edit_tongiao/{ma_tg}',[TonGiaoController::class, 'edit_tongiao']);
+Route::post('/update_tongiao/{ma_tg}',[TonGiaoController::class, 'update_tongiao']);
+Route::get('/delete_tongiao/{ma_tg}',[TonGiaoController::class, 'delete_tongiao']);
+Route::get('/delete_all_tongiao',[TonGiaoController::class, 'delete_all_tongiao']);
 
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 17, 2023 lúc 01:52 AM
+-- Thời gian đã tạo: Th2 17, 2023 lúc 03:13 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -378,6 +378,27 @@ INSERT INTO `quyen` (`ma_q`, `ten_q`, `mota_q`, `status_q`, `created_q`, `update
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `tongiao`
+--
+
+CREATE TABLE `tongiao` (
+  `ma_tg` int(11) NOT NULL,
+  `ten_tg` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_tg` int(11) NOT NULL DEFAULT 0,
+  `created_tg` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_tg` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tongiao`
+--
+
+INSERT INTO `tongiao` (`ma_tg`, `ten_tg`, `status_tg`, `created_tg`, `updated_tg`) VALUES
+(1, 'grtreytytuy', 0, '2023-02-17 02:13:33', ' ');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `vienchuc`
 --
 
@@ -529,6 +550,12 @@ ALTER TABLE `quyen`
   ADD PRIMARY KEY (`ma_q`);
 
 --
+-- Chỉ mục cho bảng `tongiao`
+--
+ALTER TABLE `tongiao`
+  ADD PRIMARY KEY (`ma_tg`);
+
+--
 -- Chỉ mục cho bảng `vienchuc`
 --
 ALTER TABLE `vienchuc`
@@ -542,7 +569,7 @@ ALTER TABLE `vienchuc`
 -- AUTO_INCREMENT cho bảng `bac`
 --
 ALTER TABLE `bac`
-  MODIFY `ma_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `ma_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT cho bảng `chucvu`
@@ -573,6 +600,12 @@ ALTER TABLE `ngach`
 --
 ALTER TABLE `quyen`
   MODIFY `ma_q` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT cho bảng `tongiao`
+--
+ALTER TABLE `tongiao`
+  MODIFY `ma_tg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `vienchuc`

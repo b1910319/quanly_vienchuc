@@ -188,6 +188,11 @@
                     </a>
                   </li>
                   <li>
+                    <a href="{{ URL::to('/tongiao') }}">
+                      Tôn giáo
+                    </a>
+                  </li>
+                  <li>
                     <a href="layouts-sidebar-collapsed.html">Sidebar Collapsed</a>
                   </li>
                   <li>
