@@ -183,7 +183,9 @@
                     </a>
                   </li>
                   <li>
-                    <a href="layouts-preloader.html">Preloader</a>
+                    <a href="{{ URL::to('/bac') }}">
+                      Bậc
+                    </a>
                   </li>
                   <li>
                     <a href="layouts-sidebar-collapsed.html">Sidebar Collapsed</a>

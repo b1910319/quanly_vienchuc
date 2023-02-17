@@ -103,6 +103,43 @@ Route::post('/update_bac_ngach/{ma_n}/{ma_b}',[BacController::class, 'update_bac
 Route::get('/delete_bac_ngach/{ma_n}/{ma_b}',[BacController::class, 'delete_bac_ngach']);
 Route::get('/delete_all_bac_ngach/{ma_n}',[BacController::class, 'delete_all_bac_ngach']);
 
+Route::get('/bac',[BacController::class, 'bac']);
+Route::post('/add_bac',[BacController::class, 'add_bac']);
+Route::get('/select_bac/{ma_b}',[BacController::class, 'select_bac']);
+Route::get('/edit_bac/{ma_b}',[BacController::class, 'edit_bac']);
+Route::post('/update_bac/{ma_b}',[BacController::class, 'update_bac']);
+Route::get('/delete_bac/{ma_b}',[BacController::class, 'delete_bac']);
+Route::get('/delete_all_bac',[BacController::class, 'delete_all_bac']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
