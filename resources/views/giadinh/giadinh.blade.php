@@ -166,7 +166,7 @@
         </div>
       </div>
       <div class="col-2">
-        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_giadinh') }}">
+        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_giadinh/'.$ma_vc) }}">
           <button type="button" class="btn btn-danger">Xoá tất cả</button>
         </a>
       </div>
@@ -220,7 +220,7 @@
               <a href="{{ URL::to('/edit_giadinh/'.$giadinh->ma_gd)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_giadinh/'.$giadinh->ma_gd)}}">
+              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_giadinh/'.$giadinh->ma_gd.'/'.$giadinh->ma_vc)}}">
                 <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               </a>
               <?php

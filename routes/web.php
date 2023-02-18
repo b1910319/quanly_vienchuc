@@ -154,7 +154,7 @@ Route::get('/select_giadinh/{ma_gd}',[GiaDinhController::class, 'select_giadinh'
 Route::get('/edit_giadinh/{ma_gd}',[GiaDinhController::class, 'edit_giadinh']);
 Route::post('/update_giadinh/{ma_gd}/{ma_vc}',[GiaDinhController::class, 'update_giadinh']);
 Route::get('/delete_giadinh/{ma_gd}/{ma_vc}',[GiaDinhController::class, 'delete_giadinh']);
-Route::get('/delete_all_giadinh/{ma_gd}',[GiaDinhController::class, 'delete_all_giadinh']);
+Route::get('/delete_all_giadinh/{ma_vc}',[GiaDinhController::class, 'delete_all_giadinh']);
 
 
 
