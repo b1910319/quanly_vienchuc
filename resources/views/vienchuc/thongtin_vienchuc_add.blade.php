@@ -91,9 +91,23 @@
               <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc) }}">
                 <button type="button" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i> &ensp; Thêm thông tin</button>
               </a>
-              <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc) }}">
-                <button type="button" class="btn btn-success"><i class="fa-solid fa-people-roof"></i> &ensp; Quan hệ gia đình</button>
-              </a>
+              <?php
+                foreach ($count_quanhe_giadinh as $key => $count) {
+                  if($count->ma_vc == $vienchuc->ma_vc && $count->sum > 0){
+                    ?>
+                      <a href="{{ URL::to('/giadinh/'.$vienchuc->ma_vc) }}">
+                        <button type="button" class="btn btn-success"><i class="fa-solid fa-people-roof"></i> &ensp; Quan hệ gia đình (<?php echo $count->sum ?>) </button>
+                      </a>
+                    <?php
+                  }elseif ($count->ma_vc == $vienchuc->ma_vc && $count->sum == 0) {
+                    ?>
+                      <a href="{{ URL::to('/giadinh/'.$vienchuc->ma_vc) }}">
+                        <button type="button" class="btn btn-success"><i class="fa-solid fa-people-roof"></i> &ensp; Quan hệ gia đình (0)</button>
+                      </a>
+                    <?php
+                  }
+                }
+              ?>
               <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc) }}">
                 <button type="button" class="btn btn-danger"><i class="fa-solid fa-layer-group"></i> &ensp; Bằng cấp</button>
               </a>

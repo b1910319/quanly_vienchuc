@@ -144,6 +144,12 @@
                 </td>
               </tr>
               <tr>
+                <th scope="row">Số điện thoại: </th>
+                <td class="was-validated">
+                  <input type='text' class='form-control input_table' autofocus required name="sdt_vc"  value="{{ $edit->sdt_vc }}">
+                </td>
+              </tr>
+              <tr>
                 <th scope="row">Hình ảnh: </th>
                 <td class="was-validated">
                   @if ($edit->hinh_vc != ' ')
@@ -362,6 +368,12 @@
                   <input type='text' class='form-control input_table' autofocus required name="phucap_vc"  value="{{ $edit->phucap_vc }}">
                 </td>
               </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-6">
+          <table class="table">
+            <tbody>
               <tr>
                 <th scope="row">Trình độ giáo dục phổ thông : </th>
                 <td class="was-validated">
@@ -374,12 +386,6 @@
                   <input type='text' class='form-control input_table' autofocus required name="chinhtri_vc"  value="{{ $edit->chinhtri_vc }}">
                 </td>
               </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-6">
-          <table class="table">
-            <tbody>
               <tr>
                 <th scope="row">Quản lý nhà nước: </th>
                 <td class="was-validated">

@@ -357,9 +357,14 @@ class VienChucController extends Controller
         ->where('status_vc', '<>', '1')
         ->orderBy('vienchuc.ma_vc', 'desc')
         ->get();
+      $count_quanhe_giadinh = VienChuc::leftJoin('giadinh', 'giadinh.ma_vc', '=', 'vienchuc.ma_vc')
+        ->select(DB::raw('count(ma_gd) as sum, vienchuc.ma_vc'))
+        ->groupBy('vienchuc.ma_vc')
+        ->get();
       return view('vienchuc.thongtin_vienchuc_add')
       ->with('list_vienchuc', $list_vienchuc)
       ->with('title', $title)
+      ->with('count_quanhe_giadinh', $count_quanhe_giadinh)
       ->with('phanquyen_qltt', $phanquyen_qltt)
       ->with('phanquyen_admin', $phanquyen_admin);
     }else{
@@ -488,6 +493,7 @@ class VienChucController extends Controller
       $vienchuc->ma_tb = $data['ma_tb'];
       $vienchuc->user_vc = $data['user_vc'];
       $vienchuc->hoten_vc = $data['hoten_vc'];
+      $vienchuc->sdt_vc = $data['sdt_vc'];
       $get_image = $request->file('hinh_vc');
       if($get_image){
         $new_image = time().rand(0,999).'.'.$get_image->getClientOriginalExtension();

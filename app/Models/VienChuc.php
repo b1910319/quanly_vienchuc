@@ -19,6 +19,7 @@ class VienChuc extends Model
     'user_vc',
     'pass_vc',
     'hoten_vc',
+    'sdt_vc',
     'hinh_vc',
     'tenkhac_vc',
     'ngaysinh_vc',

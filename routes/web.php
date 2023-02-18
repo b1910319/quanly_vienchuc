@@ -12,6 +12,7 @@ use App\Http\Controllers\NgachController;
 use App\Http\Controllers\BacController;
 use App\Http\Controllers\TonGiaoController;
 use App\Http\Controllers\ThuongBinhController;
+use App\Http\Controllers\GiaDinhController;
 
 
 Route::get('/login',[HomeController::class, 'index']);
@@ -147,8 +148,8 @@ Route::get('/delete_all_thuongbinh',[ThuongBinhController::class, 'delete_all_th
 
 
 
-
-
+Route::get('/giadinh/{ma_vc}',[GiaDinhController::class, 'giadinh']);
+Route::post('/add_giadinh/{ma_vc}',[GiaDinhController::class, 'add_giadinh']);
 
 
 
