@@ -76,4 +76,108 @@ class GiaDinhController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function select_giadinh($ma_gd){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $giadinh = GiaDinh::find($ma_gd);
+      if($giadinh->status_gd == 1){
+        $giadinh->status_gd = GiaDinh::find($ma_gd)->update(['status_gd' => 0]);
+      }elseif($giadinh->status_gd == 0){
+        $giadinh->status_gd = GiaDinh::find($ma_gd)->update(['status_gd' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  // public function edit_bac($ma_b){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   $title = "Cập nhật thông tin bâc";
+  //   if($phanquyen_admin || $phanquyen_qltt){
+  //     $edit = Bac::find($ma_b);
+  //     $list_ngach = Ngach::where('status_n', '<>', '1')
+  //       ->get();
+  //     return view('bac.bac_edit')
+  //       ->with('edit', $edit)
+  //       ->with('title', $title)
+  //       ->with('list_ngach', $list_ngach)
+  //       ->with('phanquyen_qltt', $phanquyen_qltt)
+  //       ->with('phanquyen_admin', $phanquyen_admin);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function update_bac(Request $request, $ma_b){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qltt){
+  //     $data = $request->all();
+  //     Carbon::now('Asia/Ho_Chi_Minh');
+  //     $bac = Bac::find($ma_b);
+  //     $bac->ma_n = $data['ma_n'];
+  //     $bac->ten_b = $data['ten_b'];
+  //     $bac->hesoluong_b = $data['hesoluong_b'];
+  //     $bac->status_b = $data['status_b'];
+  //     $bac->updated_b = Carbon::now();
+  //     $bac->save();
+  //     return Redirect::to('bac');
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function delete_bac($ma_b){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qltt){
+  //     Bac::find($ma_b)->delete();
+  //     return Redirect::to('bac');
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function delete_all_bac(){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qltt){
+  //     $list = Bac::get();
+  //     foreach($list as $key => $bac){
+  //       $bac->delete();
+  //     }
+  //     return Redirect::to('bac');
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
 }
