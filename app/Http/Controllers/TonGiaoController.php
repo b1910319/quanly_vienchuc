@@ -28,6 +28,7 @@ class TonGiaoController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
+    $title = "Quản lý thông tin tôn giáo";
     if($phanquyen_admin || $phanquyen_qltt){
       $list = TonGiao::orderBy('ma_tg', 'desc')
         ->get();
@@ -39,6 +40,7 @@ class TonGiaoController extends Controller
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
+        ->with('title', $title)
         ->with('count_status', $count_status)
         ->with('list', $list);
     }else{
@@ -96,10 +98,12 @@ class TonGiaoController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
+    $title = "Cập nhật thông tin tôn giáo";
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = TonGiao::find($ma_tg);
       return view('tongiao.tongiao_edit')
         ->with('edit', $edit)
+        ->with('title', $title)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{

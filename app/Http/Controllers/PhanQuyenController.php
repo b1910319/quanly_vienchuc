@@ -28,6 +28,7 @@ class PhanQuyenController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
+    $title = "Phân quyền";
     if($phanquyen_admin){
       $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '1')
@@ -44,6 +45,7 @@ class PhanQuyenController extends Controller
         ->first();
       return view('quyen.phanquyen')
         ->with('list_quyen', $list_quyen)
+        ->with('title', $title)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('list_phanquyen', $list_phanquyen)
         ->with('phanquyen_qltt', $phanquyen_qltt)

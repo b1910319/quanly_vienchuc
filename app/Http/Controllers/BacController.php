@@ -27,6 +27,7 @@ class BacController extends Controller
   }
   public function bac_ngach($ma_n){
     $this->check_login();
+    $title = "Thêm thông tin bậc theo ngạch";
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
@@ -52,6 +53,7 @@ class BacController extends Controller
         ->with('count_status', $count_status)
         ->with('list', $list)
         ->with('ngach', $ngach)
+        ->with('title', $title)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
@@ -104,6 +106,7 @@ class BacController extends Controller
   }
   public function edit_bac_ngach($ma_n, $ma_b){
     $this->check_login();
+    $title = "Cập nhật thông tin bậc theo ngạch";
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
@@ -116,6 +119,7 @@ class BacController extends Controller
       return view('bac.bac_ngach_edit')
         ->with('edit', $edit)
         ->with('ma_n', $ma_n)
+        ->with('title', $title)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
@@ -192,6 +196,7 @@ class BacController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
+    $title = "Quản lý bậc";
     if($phanquyen_admin || $phanquyen_qltt){
       $list = Bac::join('ngach', 'ngach.ma_n', '=', 'bac.ma_n')
         ->orderBy('ma_b', 'desc')
@@ -206,6 +211,7 @@ class BacController extends Controller
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
+        ->with('title', $title)
         ->with('count_status', $count_status)
         ->with('list_ngach',$list_ngach)
         ->with('list', $list);
@@ -266,12 +272,14 @@ class BacController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
+    $title = "Cập nhật thông tin bâc";
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = Bac::find($ma_b);
       $list_ngach = Ngach::where('status_n', '<>', '1')
         ->get();
       return view('bac.bac_edit')
         ->with('edit', $edit)
+        ->with('title', $title)
         ->with('list_ngach', $list_ngach)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
@@ -336,6 +344,28 @@ class BacController extends Controller
       return Redirect::to('bac');
     }else{
       return Redirect::to('/home');
+    }
+  }
+  public function change_ngach(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $id =$request->id;
+      if($id != null){
+        $bac = Bac::where('ma_n', 'LIKE', $id)->get();
+        $output='';
+        if(count($bac)>0){
+          foreach($bac as $row){
+              $output .='
+                <option value="'.$row->ma_b.'" >'.$row->ten_b.' - '.$row->hesoluong_b.'</option>
+              ';
+          }
+        } else{
+            $output .='';
+        }
+      }else{
+        $output = '';
+      }
+      return $output;
     }
   }
 }

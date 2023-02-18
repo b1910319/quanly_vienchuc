@@ -34,6 +34,12 @@ Route::post('/update_khoa_vc',[VienChucController::class, 'update_khoa_vc']);
 Route::get('/admin_select_vienchuc/{ma_vc}',[VienChucController::class, 'admin_select_vienchuc']);
 Route::get('/admin_delete_vienchuc/{ma_vc}',[VienChucController::class, 'admin_delete_vienchuc']);
 Route::get('/search_vienchuc_khoa/{ma_k}',[VienChucController::class, 'search_vienchuc_khoa']);
+Route::get('/thongtin_vienchuc_add',[VienChucController::class, 'thongtin_vienchuc_add']);
+Route::get('/thongtin_vienchuc_edit/{ma_vc}',[VienChucController::class, 'thongtin_vienchuc_edit']);
+Route::get('/change_tinh',[VienChucController::class, 'change_tinh']);
+Route::get('/change_huyen',[VienChucController::class, 'change_huyen']);
+Route::post('/update_thongtin_vienchuc/{ma_vc}',[VienChucController::class, 'update_thongtin_vienchuc']);
+
 
 
 
@@ -112,6 +118,7 @@ Route::get('/edit_bac/{ma_b}',[BacController::class, 'edit_bac']);
 Route::post('/update_bac/{ma_b}',[BacController::class, 'update_bac']);
 Route::get('/delete_bac/{ma_b}',[BacController::class, 'delete_bac']);
 Route::get('/delete_all_bac',[BacController::class, 'delete_all_bac']);
+Route::get('/change_ngach',[BacController::class, 'change_ngach']);
 
 
 

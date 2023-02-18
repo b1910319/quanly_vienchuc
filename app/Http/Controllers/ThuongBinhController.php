@@ -29,6 +29,7 @@ class ThuongBinhController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
+    $title = "Quản lý thông tin thương binh";
     if($phanquyen_admin || $phanquyen_qltt){
       $list = ThuongBinh::orderBy('ma_tb', 'desc')
         ->get();
@@ -40,6 +41,7 @@ class ThuongBinhController extends Controller
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
+        ->with('title', $title)
         ->with('count_status', $count_status)
         ->with('list', $list);
     }else{
@@ -98,10 +100,12 @@ class ThuongBinhController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
+    $title = "Cập nhật thông tin thương binh";
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = ThuongBinh::find($ma_tb);
       return view('thuongbinh.thuongbinh_edit')
         ->with('edit', $edit)
+        ->with('title', $title)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{

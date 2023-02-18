@@ -25,6 +25,7 @@ class HomeController extends Controller
   }
   public function home(){
     $this->check_login();
+    $title = 'Trang chủ';
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
@@ -33,6 +34,7 @@ class HomeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     return view('home.home')
+      ->with('title', $title)
       ->with('phanquyen_qltt', $phanquyen_qltt)
       ->with('phanquyen_admin', $phanquyen_admin);
   }

@@ -25,6 +25,7 @@ class QuyenController extends Controller
   }
   public function quanly_quyen(){
     $this->check_login();
+    $title = "Quản lý các quyền";
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
@@ -39,6 +40,7 @@ class QuyenController extends Controller
         ->get();
       return view('quyen.quanly_quyen')
         ->with('count', $count)
+        ->with('title', $title)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_status', $count_status)
         ->with('phanquyen_qltt', $phanquyen_qltt)
@@ -90,6 +92,7 @@ class QuyenController extends Controller
   public function edit_quyen($ma_q){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $title = "Cập nhật thông tin quyền";
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -100,6 +103,7 @@ class QuyenController extends Controller
       $edit = Quyen::find($ma_q);
       return view('quyen.quanly_quyen_edit')
         ->with('edit', $edit)
+        ->with('title', $title)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{

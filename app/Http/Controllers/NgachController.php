@@ -30,6 +30,7 @@ class NgachController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
+    $title = "Quản lý thông tin ngạch";
     if($phanquyen_admin || $phanquyen_qltt){
       $list = Ngach::orderBy('ma_n', 'desc')
         ->get();
@@ -45,6 +46,7 @@ class NgachController extends Controller
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
+        ->with('title', $title)
         ->with('count_bac_ngach',$count_bac_ngach)
         ->with('count_status', $count_status)
         ->with('list', $list);
@@ -105,10 +107,12 @@ class NgachController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
+    $title = "Cập nhật thông tin ngạch";
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = Ngach::find($ma_n);
       return view('ngach.ngach_edit')
         ->with('edit', $edit)
+        ->with('title', $title)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{

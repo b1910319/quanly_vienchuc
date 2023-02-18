@@ -21,6 +21,7 @@ class KhoaController extends Controller
   }
   public function quanly_khoa(){
     $this->check_login();
+    $title = "Quản lý thông tin khoa";
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
@@ -39,6 +40,7 @@ class KhoaController extends Controller
         ->first();
       return view('khoa.quanly_khoa')
         ->with('count', $count)
+        ->with('title', $title)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_status', $count_status)
         ->with('count_vienchuc_khoa', $count_vienchuc_khoa)
@@ -88,6 +90,7 @@ class KhoaController extends Controller
   }
   public function edit_khoa($ma_k){
     $this->check_login();
+    $title = "Cập nhật thông tin khoa";
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
@@ -104,6 +107,7 @@ class KhoaController extends Controller
       return view('khoa.quanly_khoa_edit')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('title', $title)
         ->with('edit', $edit);
     }else{
       return Redirect::to('/home');

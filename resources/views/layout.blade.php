@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Admin</title>
+  <title>{{ $title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
   <meta content="Coderthemes" name="author">
@@ -36,12 +36,12 @@
 <body>
   <!-- Begin page -->
   <div id="wrapper">
-
     <!-- Topbar Start -->
     <div class="navbar-custom">
       <ul class="list-unstyled topnav-menu float-right mb-0">
         <li class="dropdown notification-list">
           <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+            <img src="https://haycafe.vn/wp-content/uploads/2022/01/Hinh-anh-cute.jpg" alt="" style="border-radius: 50%">
             <span class="pro-user-name ml-1">
               <?php
                 $hoten_vc = session()->get('hoten_vc');
@@ -198,10 +198,17 @@
                     </a>
                   </li>
                   <li>
-                    <a href="layouts-sidebar-collapsed.html">Sidebar Collapsed</a>
-                  </li>
-                  <li>
-                    <a href="layouts-boxed.html">Boxed</a>
+                    <a href="javascript: void(0);" aria-expanded="false">Thông tin viên chức
+                      <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-third-level nav" aria-expanded="false">
+                      <li>
+                        <a href="{{ URL::to('/thongtin_vienchuc_add') }}">Thêm thông tin</a>
+                      </li>
+                      <li>
+                        <a href="javascript: void(0);">Danh sách viên chức</a>
+                      </li>
+                    </ul>
                   </li>
                 </ul>
               </li>

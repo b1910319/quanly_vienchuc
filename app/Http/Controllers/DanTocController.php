@@ -29,6 +29,7 @@ class DanTocController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
+    $title = "Quản lý thông tin dân tộc";
     if($phanquyen_admin || $phanquyen_qltt){
       $list = DanToc::orderBy('ma_dt', 'desc')
         ->get();
@@ -40,6 +41,7 @@ class DanTocController extends Controller
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
+        ->with('title', $title)
         ->with('count_status', $count_status)
         ->with('list', $list);
     }else{
@@ -98,10 +100,12 @@ class DanTocController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
+    $title = "Cập nhật thông tin dân tộc";
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = DanToc::find($ma_dt);
       return view('dantoc.dantoc_edit')
         ->with('edit', $edit)
+        ->with('title', $title)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{

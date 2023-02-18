@@ -39,6 +39,7 @@ class VienChuc extends Model
     'ngaynhapngu_vc',
     'ngayxuatngu_vc',
     'quanham_vc',
+    'ngayhuongbac_vc',
     'danhhieucao_vc',
     'sotruong_vc',
     'chieucao_vc',
@@ -54,7 +55,6 @@ class VienChuc extends Model
     'ngaybatdaulamviec_vc',
     'thoigiannghi_vc',
     'status_vc',
-    'ngayhuongbac_vc',
     'updated_vc'
   ];
   public $timestamps = false; 

@@ -31,6 +31,7 @@ class ChucVuController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
+    $title = "Quản lý chức vụ";
     if($phanquyen_admin || $phanquyen_qltt){
       $list = ChucVu::orderBy('ma_cv', 'desc')
         ->get();
@@ -42,6 +43,7 @@ class ChucVuController extends Controller
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
+        ->with('title', $title)
         ->with('count_status', $count_status)
         ->with('list', $list);
     }else{
@@ -99,10 +101,12 @@ class ChucVuController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
+    $title = "Cập nhật thông tin chức vụ";
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = ChucVu::find($ma_cv);
       return view('chucvu.chucvu_edit')
         ->with('edit', $edit)
+        ->with('title', $title)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
