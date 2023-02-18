@@ -491,6 +491,9 @@ class VienChucController extends Controller
       $get_image = $request->file('hinh_vc');
       if($get_image){
         $new_image = time().rand(0,999).'.'.$get_image->getClientOriginalExtension();
+        if($vienchuc->hinh_vc){
+          unlink('public/uploads/vienchuc/'.$vienchuc->hinh_vc);
+        }
         $get_image->move('public/uploads/vienchuc', $new_image);
         $vienchuc->hinh_vc = $new_image;
       }
