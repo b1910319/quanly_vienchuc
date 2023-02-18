@@ -97,54 +97,57 @@ class GiaDinhController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function edit_bac($ma_b){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   $title = "Cập nhật thông tin bâc";
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $edit = Bac::find($ma_b);
-  //     $list_ngach = Ngach::where('status_n', '<>', '1')
-  //       ->get();
-  //     return view('bac.bac_edit')
-  //       ->with('edit', $edit)
-  //       ->with('title', $title)
-  //       ->with('list_ngach', $list_ngach)
-  //       ->with('phanquyen_qltt', $phanquyen_qltt)
-  //       ->with('phanquyen_admin', $phanquyen_admin);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function update_bac(Request $request, $ma_b){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $data = $request->all();
-  //     Carbon::now('Asia/Ho_Chi_Minh');
-  //     $bac = Bac::find($ma_b);
-  //     $bac->ma_n = $data['ma_n'];
-  //     $bac->ten_b = $data['ten_b'];
-  //     $bac->hesoluong_b = $data['hesoluong_b'];
-  //     $bac->status_b = $data['status_b'];
-  //     $bac->updated_b = Carbon::now();
-  //     $bac->save();
-  //     return Redirect::to('bac');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function edit_giadinh($ma_gd){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Cập nhật thông tin bâc";
+    if($phanquyen_admin || $phanquyen_qltt){
+      $edit = GiaDinh::find($ma_gd);
+      $list_vienchuc = VienChuc::where('status_vc', '<>', '1')
+        ->get();
+      return view('giadinh.giadinh_edit')
+        ->with('edit', $edit)
+        ->with('title', $title)
+        ->with('list_vienchuc', $list_vienchuc)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_giadinh(Request $request, $ma_gd, $ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $giadinh = GiaDinh::find($ma_gd);
+      $giadinh->moiquanhe_gd = $data['moiquanhe_gd'];
+      $giadinh->hoten_gd = $data['hoten_gd'];
+      $giadinh->sdt_gd = $data['sdt_gd'];
+      $giadinh->ngaysinh_gd = $data['ngaysinh_gd'];
+      $giadinh->nghenghiep_gd = $data['nghenghiep_gd'];
+      $giadinh->status_gd = $data['status_gd'];
+      $giadinh->ma_vc = $data['ma_vc'];
+      $giadinh->updated_gd = Carbon::now();
+      $giadinh->save();
+      return Redirect::to('/giadinh/'.$ma_vc);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function delete_bac($ma_b){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
