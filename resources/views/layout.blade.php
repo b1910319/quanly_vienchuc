@@ -198,6 +198,16 @@
                     </a>
                   </li>
                   <li>
+                    <a href="{{ URL::to('/loaibangcap') }}">
+                      Loại bằng cấp
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ URL::to('/hedaotao') }}">
+                      Hệ đào tạo
+                    </a>
+                  </li>
+                  <li>
                     <a href="javascript: void(0);" aria-expanded="false">Thông tin viên chức
                       <span class="menu-arrow"></span>
                     </a>

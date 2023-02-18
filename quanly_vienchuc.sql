@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 18, 2023 lúc 09:13 AM
+-- Thời gian đã tạo: Th2 18, 2023 lúc 10:09 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -198,15 +198,6 @@ CREATE TABLE `giadinh` (
   `created_gd` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_gd` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `giadinh`
---
-
-INSERT INTO `giadinh` (`ma_gd`, `ma_vc`, `moiquanhe_gd`, `hoten_gd`, `sdt_gd`, `ngaysinh_gd`, `nghenghiep_gd`, `status_gd`, `created_gd`, `updated_gd`) VALUES
-(1, 61, 'fbrgyw', 'fry', 'dgtw4', '2023-02-07', 'cfrgswy4', 0, '2023-02-18 08:00:06', ' '),
-(2, 61, 'de', 'def', 'fde', '2023-02-07', 'dgetw42', 0, '2023-02-18 08:00:23', ' '),
-(3, 61, 'dtw', 'edfr', 'fe3q', '2023-02-14', 'sdawd', 1, '2023-02-18 08:00:33', ' ');
 
 -- --------------------------------------------------------
 
@@ -962,6 +953,30 @@ INSERT INTO `khoa` (`ma_k`, `ten_k`, `mota_k`, `status_k`, `created_k`, `updated
 (10, 'Khoa Truyền Thông Đa Phương Tiện', '<p><strong>Nhiệm vụ:&nbsp;</strong>Khoa đ&agrave;o tạo Kỹ sư Truyền th&ocirc;ng đa phương tiện v&agrave; Kỹ sư C&ocirc;ng nghệ th&ocirc;ng tin chuy&ecirc;n ng&agrave;nh Tin học ứng dụng. Ngo&agrave;i ra, Khoa c&ograve;n đảm nhận giảng dạy c&aacute;c học phần Tin học ứng dụng v&agrave; học phần Tin học căn bản cho c&aacute;c ng&agrave;nh đ&agrave;o tạo kh&aacute;c của Trường Đại học Cần Thơ</p>', 0, '2023-02-15 02:21:14', ' '),
 (11, 'Văn Phòng Trường', '<p>Văn ph&ograve;ng Trường l&agrave; bộ phận tham mưu, gi&uacute;p việc cho l&atilde;nh đạo đơn vị trong việc tổ chức v&agrave; quản l&yacute; mọi mặt c&ocirc;ng t&aacute;c h&agrave;nh ch&iacute;nh, tổ chức c&aacute;n bộ, sinh vi&ecirc;n, t&agrave;i ch&iacute;nh, t&agrave;i sản, vật tư, thiết bị, đ&agrave;o tạo, nghi&ecirc;n cứu khoa học v&agrave; hợp t&aacute;c quốc tế của đơn vị.</p>', 0, '2023-02-15 02:21:52', ' '),
 (12, 'Phòng Kỹ Thuật', '<p style=\"text-align:start\"><span style=\"font-size:13px\"><span style=\"color:#666666\"><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"background-color:#ffffff\"><span style=\"font-size:small\"><span style=\"font-family:Arial,&quot;sans-serif&quot;\"><span style=\"color:#000000\">Ph&ograve;ng Kỹ Thuật M&aacute;y T&iacute;nh phải đảm bảo c&aacute;c ph&ograve;ng thực h&agrave;nh trong trạng th&aacute;i sẵn s&agrave;ng phục vụ, hệ thống mạng th&ocirc;ng suốt. C&aacute;c chức năng, nhiệm vụ cụ thể l&agrave;:</span></span></span></span></span></span></span></p>\r\n\r\n<p style=\"text-align:start\"><span style=\"font-size:13px\"><span style=\"color:#666666\"><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"background-color:#ffffff\"><span style=\"font-size:small\"><span style=\"font-family:Arial,&quot;sans-serif&quot;\"><span style=\"color:#000000\">-&nbsp;&nbsp;&nbsp;Quản l&yacute; v&agrave; khai th&aacute;c hệ thống c&aacute;c ph&ograve;ng thực h&agrave;nh tin học:</span></span></span></span></span></span></span></p>\r\n\r\n<p style=\"text-align:start\"><span style=\"font-size:13px\"><span style=\"color:#666666\"><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"background-color:#ffffff\"><span style=\"font-size:small\"><span style=\"font-family:Arial,&quot;sans-serif&quot;\"><span style=\"color:#000000\">&middot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Quản l&yacute; t&agrave;i sản, sửa chữa, n&acirc;ng cấp, c&agrave;i đặt phần mềm đ&aacute;p ứng y&ecirc;u cầu giảng dạy v&agrave; nghi&ecirc;n cứu khoa học</span></span></span></span></span></span></span></p>\r\n\r\n<p style=\"text-align:start\"><span style=\"font-size:13px\"><span style=\"color:#666666\"><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"background-color:#ffffff\"><span style=\"font-size:small\"><span style=\"font-family:Arial,&quot;sans-serif&quot;\"><span style=\"color:#000000\">&middot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lập kế hoạch, sắp lịch thực h&agrave;nh v&agrave; thi thực h&agrave;nh c&aacute;c lớp học phần nhằm khai th&aacute;c hiệu quả c&aacute;c m&aacute;y t&iacute;nh v&agrave; thiết bị hiện c&oacute; trong Trường.</span></span></span></span></span></span></span></p>\r\n\r\n<p style=\"text-align:start\"><span style=\"font-size:13px\"><span style=\"color:#666666\"><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"background-color:#ffffff\"><span style=\"font-size:small\"><span style=\"font-family:Arial,&quot;sans-serif&quot;\"><span style=\"color:#000000\">-&nbsp; X&acirc;y dựng, quản l&yacute;, quản trị mạng (c&oacute; d&acirc;y, kh&ocirc;ng d&acirc;y) trong Trường C&ocirc;ng Nghệ Th&ocirc;ng Tin &amp; Truyền Th&ocirc;ng:</span></span></span></span></span></span></span></p>\r\n\r\n<p style=\"text-align:start\"><span style=\"font-size:13px\"><span style=\"color:#666666\"><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"background-color:#ffffff\"><span style=\"font-size:small\"><span style=\"font-family:Arial,&quot;sans-serif&quot;\"><span style=\"color:#000000\">&middot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thiết kế, x&acirc;y dựng, quản trị hệ thống mạng v&agrave; c&aacute;c dịch vụ</span></span></span></span></span></span></span></p>\r\n\r\n<p style=\"text-align:start\"><span style=\"font-size:13px\"><span style=\"color:#666666\"><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"background-color:#ffffff\"><span style=\"font-size:small\"><span style=\"font-family:Arial,&quot;sans-serif&quot;\"><span style=\"color:#000000\">&middot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; X&acirc;y dựng cơ chế quản l&yacute; người d&ugrave;ng, quản l&yacute; nội dung truy cập, x&acirc;y dựng chế độ bảo mật hợp l&yacute;</span></span></span></span></span></span></span></p>\r\n\r\n<p style=\"text-align:start\"><span style=\"font-size:13px\"><span style=\"color:#666666\"><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"background-color:#ffffff\"><span style=\"font-size:small\"><span style=\"font-family:Arial,&quot;sans-serif&quot;\"><span style=\"color:#000000\">-&nbsp;&nbsp;&nbsp;Hỗ trợ về mặt kỹ thuật cho c&aacute;c đơn vị kh&aacute;c trong Trường CNTT&amp;TT khi c&oacute; y&ecirc;u cầu</span></span></span></span></span></span></span></p>\r\n\r\n<p style=\"text-align:start\"><span style=\"font-size:13px\"><span style=\"color:#666666\"><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"background-color:#ffffff\"><span style=\"font-size:small\"><span style=\"font-family:Arial,&quot;sans-serif&quot;\"><span style=\"color:#000000\">-&nbsp;&nbsp;&nbsp;Gi&uacute;p BGH Trường CNTT&amp;TT trong việc lựa chọn, mua sắm c&aacute;c trang thiết bị, m&aacute;y t&iacute;nh,</span></span></span></span></span></span></span></p>', 0, '2023-02-15 02:22:26', ' ');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `loaibangcap`
+--
+
+CREATE TABLE `loaibangcap` (
+  `ma_lbc` int(11) NOT NULL,
+  `ten_lbc` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_lbc` int(11) NOT NULL DEFAULT 0,
+  `created_lbc` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_lbc` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `loaibangcap`
+--
+
+INSERT INTO `loaibangcap` (`ma_lbc`, `ten_lbc`, `status_lbc`, `created_lbc`, `updated_lbc`) VALUES
+(1, 'dsrgwt64t', 0, '2023-02-18 09:09:16', ' '),
+(2, 'detwre', 1, '2023-02-18 09:09:21', ' '),
+(3, 'erw35rq', 0, '2023-02-18 09:09:27', ' '),
+(4, 'sfaerwe', 0, '2023-02-18 09:09:30', ' ');
 
 -- --------------------------------------------------------
 
@@ -12195,6 +12210,12 @@ ALTER TABLE `khoa`
   ADD PRIMARY KEY (`ma_k`);
 
 --
+-- Chỉ mục cho bảng `loaibangcap`
+--
+ALTER TABLE `loaibangcap`
+  ADD PRIMARY KEY (`ma_lbc`);
+
+--
 -- Chỉ mục cho bảng `ngach`
 --
 ALTER TABLE `ngach`
@@ -12287,6 +12308,12 @@ ALTER TABLE `huyen`
 --
 ALTER TABLE `khoa`
   MODIFY `ma_k` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT cho bảng `loaibangcap`
+--
+ALTER TABLE `loaibangcap`
+  MODIFY `ma_lbc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `ngach`
