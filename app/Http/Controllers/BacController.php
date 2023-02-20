@@ -4,12 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests;
 use App\Models\Bac;
-use App\Models\ChucVu;
-use App\Models\DanToc;
 use App\Models\Ngach;
 use App\Models\PhanQuyen;
 use Illuminate\Support\Carbon;

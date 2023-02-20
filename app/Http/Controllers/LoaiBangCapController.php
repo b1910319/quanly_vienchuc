@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-use App\Models\ChucVu;
 use App\Models\LoaiBangCap;
 use App\Models\PhanQuyen;
 use Illuminate\Support\Carbon;

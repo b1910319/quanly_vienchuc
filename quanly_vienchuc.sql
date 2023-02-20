@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 20, 2023 lúc 02:01 AM
+-- Thời gian đã tạo: Th2 20, 2023 lúc 02:14 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -198,6 +198,28 @@ CREATE TABLE `giadinh` (
   `created_gd` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_gd` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `hedaotao`
+--
+
+CREATE TABLE `hedaotao` (
+  `ma_hdt` int(11) NOT NULL,
+  `ten_hdt` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_hdt` int(11) NOT NULL DEFAULT 0,
+  `created_hdt` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_hdt` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `hedaotao`
+--
+
+INSERT INTO `hedaotao` (`ma_hdt`, `ten_hdt`, `status_hdt`, `created_hdt`, `updated_hdt`) VALUES
+(1, 'dset54w', 0, '2023-02-20 01:14:10', ' '),
+(2, 'trinh', 0, '2023-02-20 01:14:15', ' ');
 
 -- --------------------------------------------------------
 
@@ -12201,6 +12223,12 @@ ALTER TABLE `giadinh`
   ADD PRIMARY KEY (`ma_gd`);
 
 --
+-- Chỉ mục cho bảng `hedaotao`
+--
+ALTER TABLE `hedaotao`
+  ADD PRIMARY KEY (`ma_hdt`);
+
+--
 -- Chỉ mục cho bảng `huyen`
 --
 ALTER TABLE `huyen`
@@ -12299,6 +12327,12 @@ ALTER TABLE `dantoc`
 --
 ALTER TABLE `giadinh`
   MODIFY `ma_gd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT cho bảng `hedaotao`
+--
+ALTER TABLE `hedaotao`
+  MODIFY `ma_hdt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `huyen`

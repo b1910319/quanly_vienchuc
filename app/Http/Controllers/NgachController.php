@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bac;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Ngach;
 use App\Models\PhanQuyen;
