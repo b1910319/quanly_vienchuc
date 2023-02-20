@@ -97,4 +97,25 @@ class BangCapController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function select_bangcap($ma_bc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $bac = BangCap::find($ma_bc);
+      if($bac->status_bc == 1){
+        $bac->status_bc = BangCap::find($ma_bc)->update(['status_bc' => 0]);
+      }elseif($bac->status_bc == 0){
+        $bac->status_bc = BangCap::find($ma_bc)->update(['status_bc' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }
