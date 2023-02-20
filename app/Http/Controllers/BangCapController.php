@@ -118,4 +118,102 @@ class BangCapController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function edit_bangcap($ma_bc, $ma_vc){
+    $this->check_login();
+    $title = "Cập nhật thông tin bằng cấp";
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $edit = BangCap::find($ma_bc);
+      $list_hedaotao = HeDaoTao::where('status_hdt', '<>', '1')
+        ->orderBy('ten_hdt', 'asc')
+        ->get();
+      $list_loaibangcap = LoaiBangCap::where('status_lbc', '<>', '1')
+        ->orderBy('ten_lbc', 'asc')
+        ->get();
+      return view('bangcap.bangcap_edit')
+        ->with('edit', $edit)
+        ->with('ma_vc', $ma_vc)
+        ->with('title', $title)
+        ->with('list_hedaotao', $list_hedaotao)
+        ->with('list_loaibangcap', $list_loaibangcap)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_bangcap(Request $request, $ma_bc, $ma_vc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $bangcap = BangCap::find($ma_bc);
+      $bangcap->ma_vc = $ma_vc;
+      $bangcap->ma_hdt = $data['ma_hdt'];
+      $bangcap->ma_lbc = $data['ma_lbc'];
+      $bangcap->trinhdochuyenmon_bc = $data['trinhdochuyenmon_bc'];
+      $bangcap->truonghoc_bc = $data['truonghoc_bc'];
+      $bangcap->nienkhoa_bc = $data['nienkhoa_bc'];
+      $bangcap->sobang_bc = $data['sobang_bc'];
+      $bangcap->ngaycap_bc = $data['ngaycap_bc'];
+      $bangcap->noicap_bc = $data['noicap_bc'];
+      $bangcap->xephang_bc = $data['xephang_bc'];
+      $bangcap->status_bc = $data['status_bc'];
+      $bangcap->updated_bc = Carbon::now();
+      $bangcap->save();
+      return Redirect::to('/bangcap/'.$ma_vc);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  // public function delete_bangcap($ma_n, $ma_b){
+  //   $this->check_login();
+  //   $ma_vc_login = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qltt){
+  //     Bac::find($ma_b)->delete();
+  //     return Redirect::to('/bangcap/'.$ma_vc);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function delete_all_bangcap($ma_n){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qltt){
+  //     $list = Bac::where('ma_n', $ma_n)
+  //       ->get();
+  //     foreach($list as $key => $bac){
+  //       $bac->delete();
+  //     }
+  //     return Redirect::to('/bangcap/'.$ma_vc);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
 }

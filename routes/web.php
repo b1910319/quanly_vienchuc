@@ -189,7 +189,7 @@ Route::get('/delete_all_hedaotao',[HeDaoTaoController::class, 'delete_all_hedaot
 Route::get('/bangcap/{ma_vc}',[BangCapController::class, 'bangcap']);
 Route::post('/add_bangcap/{ma_vc}',[BangCapController::class, 'add_bangcap']);
 Route::get('/select_bangcap/{ma_bc}',[BangCapController::class, 'select_bangcap']);
-Route::get('/edit_bangcap/{ma_bc}',[BangCapController::class, 'edit_bangcap']);
+Route::get('/edit_bangcap/{ma_bc}/{ma_vc}',[BangCapController::class, 'edit_bangcap']);
 Route::post('/update_bangcap/{ma_bc}/{ma_vc}',[BangCapController::class, 'update_bangcap']);
 Route::get('/delete_bangcap/{ma_bc}/{ma_vc}',[BangCapController::class, 'delete_bangcap']);
 Route::get('/delete_all_bangcap/{ma_vc}',[BangCapController::class, 'delete_all_bangcap']);
