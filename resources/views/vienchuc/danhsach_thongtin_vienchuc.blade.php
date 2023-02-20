@@ -20,7 +20,7 @@
       </div>
       <div class="col-1">
         <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">
-          <button type="button" class="btn btn-warning">
+          <button type="button" class="btn btn-warning" style="width: 100%">
             <i class="fa-solid fa-rotate-right"></i>
           </button>
         </a>
@@ -97,8 +97,11 @@
       </div>
       <div class="col-1">
         <div class="dropdown" >
-          <button class="dropbtn">Khoa</button>
+          <button class="dropbtn" style="background-color: #F94A29">Dân tộc</button>
           <div class="dropdown-content">
+            @foreach ($list_dantoc as  $dantoc)
+            <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_dantoc/'.$dantoc->ma_dt) }}">{{ $dantoc->ten_dt }}</a>
+          @endforeach
             <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
           </div>
         </div>
