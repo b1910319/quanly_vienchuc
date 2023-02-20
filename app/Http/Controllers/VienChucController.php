@@ -610,6 +610,7 @@ class VienChucController extends Controller
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('list_khoa_show', $list_khoa_show)
         ->with('count', $count)
+        ->with('ten',' ')
         ->with('list_vienchuc', $list_vienchuc)
         ->with('count_status', $count_status)
         ->with('phanquyen_qltt', $phanquyen_qltt)
@@ -640,6 +641,7 @@ class VienChucController extends Controller
       $list_vienchuc = VienChuc::where('ma_k', $ma_k)
         ->orderBy('ma_vc', 'desc')
         ->get();
+      $khoa = Khoa::find($ma_k);
       $list_khoa = Khoa::get();
       $list_chucvu = ChucVu::get();
       $list_ngach = Ngach::get();
@@ -658,6 +660,7 @@ class VienChucController extends Controller
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('list_khoa_show', $list_khoa_show)
         ->with('count', $count)
+        ->with('ten', $khoa->ten_k)
         ->with('list_vienchuc', $list_vienchuc)
         ->with('count_status', $count_status)
         ->with('phanquyen_qltt', $phanquyen_qltt)

@@ -5,7 +5,11 @@
     <div class="mt-3"></div>
     <div class="alert alert-success" role="alert">
       <div class="row">
-        <h4 class="text-center" style="font-weight: bold">DANH SÁCH</h4>
+        <h4 class="text-center" style="font-weight: bold">
+          DANH SÁCH
+          <sub style="color: #379237; font-size: 18px">{{ $ten }}</sub>
+          
+        </h4>
       </div>
     </div>
     <div class="row">
