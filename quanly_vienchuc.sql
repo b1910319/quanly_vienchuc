@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 20, 2023 lúc 02:14 AM
+-- Thời gian đã tạo: Th2 20, 2023 lúc 02:18 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -218,8 +218,10 @@ CREATE TABLE `hedaotao` (
 --
 
 INSERT INTO `hedaotao` (`ma_hdt`, `ten_hdt`, `status_hdt`, `created_hdt`, `updated_hdt`) VALUES
-(1, 'dset54w', 0, '2023-02-20 01:14:10', ' '),
-(2, 'trinh', 0, '2023-02-20 01:14:15', ' ');
+(4, 'Chính quy', 0, '2023-02-20 01:18:16', ' '),
+(5, 'Liên thông', 0, '2023-02-20 01:18:21', ' '),
+(6, 'Từ xa', 0, '2023-02-20 01:18:26', ' '),
+(7, 'Khác', 0, '2023-02-20 01:18:30', ' ');
 
 -- --------------------------------------------------------
 
@@ -12332,7 +12334,7 @@ ALTER TABLE `giadinh`
 -- AUTO_INCREMENT cho bảng `hedaotao`
 --
 ALTER TABLE `hedaotao`
-  MODIFY `ma_hdt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ma_hdt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `huyen`

@@ -132,39 +132,39 @@ class HeDaoTaoCapController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function delete_hedaotao($ma_hdt){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     HeDaoTao::find($ma_hdt)->delete();
-  //     return Redirect::to('hedaotao');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function delete_all_hedaotao(){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $list = HeDaoTao::get();
-  //     foreach($list as $key => $hedaotao){
-  //       $hedaotao->delete();
-  //     }
-  //     return Redirect::to('hedaotao');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function delete_hedaotao($ma_hdt){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      HeDaoTao::find($ma_hdt)->delete();
+      return Redirect::to('hedaotao');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function delete_all_hedaotao(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $list = HeDaoTao::get();
+      foreach($list as $key => $hedaotao){
+        $hedaotao->delete();
+      }
+      return Redirect::to('hedaotao');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }
