@@ -41,7 +41,17 @@
       <ul class="list-unstyled topnav-menu float-right mb-0">
         <li class="dropdown notification-list">
           <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-            <img src="https://haycafe.vn/wp-content/uploads/2022/01/Hinh-anh-cute.jpg" alt="" style="border-radius: 50%">
+            <?php
+              $hinh_vc = session()->get('hinh_vc');
+              ?>
+                @if ($hinh_vc != ' ')
+                  <img src="{{ asset('public/uploads/vienchuc/'.$hinh_vc) }}" alt="" style="border-radius: 50%">
+                @else
+                  <img src="https://gocbao.net/wp-content/uploads/2020/10/avatar-trang-4.jpg" alt="" style="border-radius: 50%">
+                @endif
+              <?php
+            ?>
+            
             <span class="pro-user-name ml-1">
               <?php
                 $hoten_vc = session()->get('hoten_vc');

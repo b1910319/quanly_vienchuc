@@ -69,28 +69,28 @@ class LoaiBangCapController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function select_chucvu($ma_cv){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $chucvu = ChucVu::find($ma_cv);
-  //     if($chucvu->status_cv == 1){
-  //       $chucvu->status_cv = ChucVu::find($ma_cv)->update(['status_cv' => 0]);
-  //     }elseif($chucvu->status_cv == 0){
-  //       $chucvu->status_cv = ChucVu::find($ma_cv)->update(['status_cv' => 1]);
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function edit_chucvu($ma_cv){
+  public function select_loaibangcap($ma_lbc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $loaibangcap = LoaiBangCap::find($ma_lbc);
+      if($loaibangcap->status_lbc == 1){
+        $loaibangcap->status_lbc = LoaiBangCap::find($ma_lbc)->update(['status_lbc' => 0]);
+      }elseif($loaibangcap->status_lbc == 0){
+        $loaibangcap->status_lbc = LoaiBangCap::find($ma_lbc)->update(['status_lbc' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  // public function edit_chucvu($ma_lbc){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
   //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -101,7 +101,7 @@ class LoaiBangCapController extends Controller
   //     ->first();
   //   $title = "Cập nhật thông tin chức vụ";
   //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $edit = ChucVu::find($ma_cv);
+  //     $edit = ChucVu::find($ma_lbc);
   //     return view('chucvu.chucvu_edit')
   //       ->with('edit', $edit)
   //       ->with('title', $title)
@@ -111,7 +111,7 @@ class LoaiBangCapController extends Controller
   //     return Redirect::to('/home');
   //   }
   // }
-  // public function update_chucvu(Request $request, $ma_cv){
+  // public function update_chucvu(Request $request, $ma_lbc){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
   //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -123,17 +123,17 @@ class LoaiBangCapController extends Controller
   //   if($phanquyen_admin || $phanquyen_qltt){
   //     $data = $request->all();
   //     Carbon::now('Asia/Ho_Chi_Minh');
-  //     $chucvu = ChucVu::find($ma_cv);
-  //     $chucvu->ten_cv = $data['ten_cv'];
-  //     $chucvu->status_cv = $data['status_cv'];
-  //     $chucvu->updated_cv = Carbon::now();
+  //     $chucvu = ChucVu::find($ma_lbc);
+  //     $chucvu->ten_lbc = $data['ten_lbc'];
+  //     $chucvu->status_lbc = $data['status_lbc'];
+  //     $chucvu->updated_lbc = Carbon::now();
   //     $chucvu->save();
   //     return Redirect::to('chucvu');
   //   }else{
   //     return Redirect::to('/home');
   //   }
   // }
-  // public function delete_chucvu($ma_cv){
+  // public function delete_chucvu($ma_lbc){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
   //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -143,7 +143,7 @@ class LoaiBangCapController extends Controller
   //     ->where('ma_q', '=', '8')
   //     ->first();
   //   if($phanquyen_admin || $phanquyen_qltt){
-  //     ChucVu::find($ma_cv)->delete();
+  //     ChucVu::find($ma_lbc)->delete();
   //     return Redirect::to('chucvu');
   //   }else{
   //     return Redirect::to('/home');

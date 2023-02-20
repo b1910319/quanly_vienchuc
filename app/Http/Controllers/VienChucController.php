@@ -42,6 +42,7 @@ class VienChucController extends Controller
       ->first();
     if($result){
       $request->session()->put('hoten_vc',$result->hoten_vc);
+      $request->session()->put('hinh_vc',$result->hinh_vc);
       $request->session()->put('ma_vc',$result->ma_vc);
       return Redirect::to('/home');
     }else{
