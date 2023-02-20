@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 20, 2023 lúc 02:18 AM
+-- Thời gian đã tạo: Th2 20, 2023 lúc 03:44 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -82,6 +82,37 @@ INSERT INTO `bac` (`ma_b`, `ma_n`, `ten_b`, `hesoluong_b`, `status_b`, `created_
 (52, 10, 'Bậc 6', 6.1, 0, '2023-02-17 00:51:06', ' '),
 (53, 10, 'Bậc 7', 6.44, 0, '2023-02-17 00:51:13', ' '),
 (54, 10, 'Bậc 8', 6.78, 0, '2023-02-17 00:51:21', ' ');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `bangcap`
+--
+
+CREATE TABLE `bangcap` (
+  `ma_bc` int(11) NOT NULL,
+  `ma_vc` int(11) NOT NULL,
+  `ma_hdt` int(11) NOT NULL,
+  `ma_lbc` int(11) NOT NULL,
+  `trinhdochuyenmon_bc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `truonghoc_bc` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nienkhoa_bc` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sobang_bc` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ngaycap_bc` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `noicap_bc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `xephang_bc` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_bc` int(11) NOT NULL DEFAULT 0,
+  `created_bc` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_bc` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `bangcap`
+--
+
+INSERT INTO `bangcap` (`ma_bc`, `ma_vc`, `ma_hdt`, `ma_lbc`, `trinhdochuyenmon_bc`, `truonghoc_bc`, `nienkhoa_bc`, `sobang_bc`, `ngaycap_bc`, `noicap_bc`, `xephang_bc`, `status_bc`, `created_bc`, `updated_bc`) VALUES
+(1, 61, 4, 5, 'dgt43', 'ft453', 'fer4', '45', '2023-02-08', 't4', 't6', 0, '2023-02-20 02:29:48', ' '),
+(2, 61, 5, 7, 'dfwe', 'ewefr', 'efrerfr', 'rferfer', '2023-02-08', 'fefre', 'feferfe', 1, '2023-02-20 02:36:58', ' ');
 
 -- --------------------------------------------------------
 
@@ -12207,6 +12238,12 @@ ALTER TABLE `bac`
   ADD PRIMARY KEY (`ma_b`);
 
 --
+-- Chỉ mục cho bảng `bangcap`
+--
+ALTER TABLE `bangcap`
+  ADD PRIMARY KEY (`ma_bc`);
+
+--
 -- Chỉ mục cho bảng `chucvu`
 --
 ALTER TABLE `chucvu`
@@ -12313,6 +12350,12 @@ ALTER TABLE `bac`
   MODIFY `ma_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
+-- AUTO_INCREMENT cho bảng `bangcap`
+--
+ALTER TABLE `bangcap`
+  MODIFY `ma_bc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT cho bảng `chucvu`
 --
 ALTER TABLE `chucvu`
@@ -12334,7 +12377,7 @@ ALTER TABLE `giadinh`
 -- AUTO_INCREMENT cho bảng `hedaotao`
 --
 ALTER TABLE `hedaotao`
-  MODIFY `ma_hdt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ma_hdt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `huyen`

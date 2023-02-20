@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
 use Illuminate\Support\Carbon;
 
-class HeDaoTaoCapController extends Controller
+class HeDaoTaoController extends Controller
 {
   public function check_login(){
     $ma_vc = session()->get('ma_vc');

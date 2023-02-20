@@ -14,7 +14,8 @@ use App\Http\Controllers\TonGiaoController;
 use App\Http\Controllers\ThuongBinhController;
 use App\Http\Controllers\GiaDinhController;
 use App\Http\Controllers\LoaiBangCapController;
-use App\Http\Controllers\HeDaoTaoCapController;
+use App\Http\Controllers\HeDaoTaoController;
+use App\Http\Controllers\BangCapController;
 
 
 Route::get('/login',[HomeController::class, 'index']);
@@ -173,20 +174,25 @@ Route::get('/delete_all_loaibangcap',[LoaiBangCapController::class, 'delete_all_
 
 
 
-Route::get('/hedaotao',[HeDaoTaoCapController::class, 'hedaotao']);
-Route::post('/add_hedaotao',[HeDaoTaoCapController::class, 'add_hedaotao']);
-Route::get('/select_hedaotao/{ma_hdt}',[HeDaoTaoCapController::class, 'select_hedaotao']);
-Route::get('/edit_hedaotao/{ma_hdt}',[HeDaoTaoCapController::class, 'edit_hedaotao']);
-Route::post('/update_hedaotao/{ma_hdt}',[HeDaoTaoCapController::class, 'update_hedaotao']);
-Route::get('/delete_hedaotao/{ma_hdt}',[HeDaoTaoCapController::class, 'delete_hedaotao']);
-Route::get('/delete_all_hedaotao',[HeDaoTaoCapController::class, 'delete_all_hedaotao']);
+Route::get('/hedaotao',[HeDaoTaoController::class, 'hedaotao']);
+Route::post('/add_hedaotao',[HeDaoTaoController::class, 'add_hedaotao']);
+Route::get('/select_hedaotao/{ma_hdt}',[HeDaoTaoController::class, 'select_hedaotao']);
+Route::get('/edit_hedaotao/{ma_hdt}',[HeDaoTaoController::class, 'edit_hedaotao']);
+Route::post('/update_hedaotao/{ma_hdt}',[HeDaoTaoController::class, 'update_hedaotao']);
+Route::get('/delete_hedaotao/{ma_hdt}',[HeDaoTaoController::class, 'delete_hedaotao']);
+Route::get('/delete_all_hedaotao',[HeDaoTaoController::class, 'delete_all_hedaotao']);
 
 
 
 
 
-
-
+Route::get('/bangcap/{ma_vc}',[BangCapController::class, 'bangcap']);
+Route::post('/add_bangcap/{ma_vc}',[BangCapController::class, 'add_bangcap']);
+Route::get('/select_bangcap/{ma_bc}',[BangCapController::class, 'select_bangcap']);
+Route::get('/edit_bangcap/{ma_bc}',[BangCapController::class, 'edit_bangcap']);
+Route::post('/update_bangcap/{ma_bc}/{ma_vc}',[BangCapController::class, 'update_bangcap']);
+Route::get('/delete_bangcap/{ma_bc}/{ma_vc}',[BangCapController::class, 'delete_bangcap']);
+Route::get('/delete_all_bangcap/{ma_vc}',[BangCapController::class, 'delete_all_bangcap']);
 
 
 

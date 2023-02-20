@@ -108,9 +108,23 @@
                   }
                 }
               ?>
-              <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc) }}">
-                <button type="button" class="btn btn-danger"><i class="fa-solid fa-layer-group"></i> &ensp; Bằng cấp</button>
-              </a>
+              <?php
+                foreach ($count_bangcap as $key => $count) {
+                  if($count->ma_vc == $vienchuc->ma_vc && $count->sum > 0){
+                    ?>
+                      <a href="{{ URL::to('/bangcap/'.$vienchuc->ma_vc) }}">
+                        <button type="button" class="btn btn-danger"><i class="fa-solid fa-layer-group"></i> &ensp; Bằng cấp (<?php echo $count->sum ?>)</button>
+                      </a>
+                    <?php
+                  }elseif ($count->ma_vc == $vienchuc->ma_vc && $count->sum == 0) {
+                    ?>
+                      <a href="{{ URL::to('/bangcap/'.$vienchuc->ma_vc) }}">
+                        <button type="button" class="btn btn-danger"><i class="fa-solid fa-layer-group"></i> &ensp; Bằng cấp (0)</button>
+                      </a>
+                    <?php
+                  }
+                }
+              ?>
             </td>
           </tr>
         @endforeach

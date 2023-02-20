@@ -360,9 +360,14 @@ class VienChucController extends Controller
         ->select(DB::raw('count(ma_gd) as sum, vienchuc.ma_vc'))
         ->groupBy('vienchuc.ma_vc')
         ->get();
+      $count_bangcap = VienChuc::leftJoin('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
+        ->select(DB::raw('count(ma_bc) as sum, vienchuc.ma_vc'))
+        ->groupBy('vienchuc.ma_vc')
+        ->get();
       return view('vienchuc.thongtin_vienchuc_add')
       ->with('list_vienchuc', $list_vienchuc)
       ->with('title', $title)
+      ->with('count_bangcap', $count_bangcap)
       ->with('count_quanhe_giadinh', $count_quanhe_giadinh)
       ->with('phanquyen_qltt', $phanquyen_qltt)
       ->with('phanquyen_admin', $phanquyen_admin);
