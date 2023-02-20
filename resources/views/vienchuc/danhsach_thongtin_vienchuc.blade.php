@@ -13,12 +13,20 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-2">
+      <div class="col-1">
         @foreach ($count as $key => $count)
           <p class="fw-bold" style="color: #379237; ">Tổng có: {{ $count->sum }}</p>
         @endforeach
       </div>
-      <div class="col-2 mb-3">
+      <div class="col-1">
+        <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">
+          <button type="button" class="btn btn-warning">
+            <i class="fa-solid fa-rotate-right"></i>
+          </button>
+        </a>
+        
+      </div>
+      <div class="col-1 mb-3">
         <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="width: 100%">Thống kê</button>
   
         <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -64,11 +72,34 @@
           </div>
         </div>
       </div>
+      <div class="col-3">
+        <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_quequan') }}" method="post">
+          {{ csrf_field() }}
+          <div class="row">
+            <div class="col-8">
+              <select class="custom-select input_table" id="gender2" name="ma_t">
+                <option value="0" >Quê quán</option>
+                @foreach ($list_tinh as $tinh)
+                  <option value="{{ $tinh->ma_t }}" >{{ $tinh->ten_t }}</option>
+                @endforeach
+                <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
+              </select>
+              
+            </div>
+            <div class="col-4">
+              <button type="submit"  class="btn btn-outline-primary font-weight-bold">
+                <i class="fa-solid fa-magnifying-glass-plus"></i>
+                Tìm
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
       <div class="col-1">
         <div class="dropdown" >
           <button class="dropbtn">Khoa</button>
           <div class="dropdown-content">
-            <a href="{{ URL::to('quanly_vienchuc_khoa') }}">Tất cả</a>
+            <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
           </div>
         </div>
       </div>
@@ -76,7 +107,7 @@
         <div class="dropdown" >
           <button class="dropbtn">Khoa</button>
           <div class="dropdown-content">
-            <a href="{{ URL::to('quanly_vienchuc_khoa') }}">Tất cả</a>
+            <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
           </div>
         </div>
       </div>
@@ -84,15 +115,7 @@
         <div class="dropdown" >
           <button class="dropbtn">Khoa</button>
           <div class="dropdown-content">
-            <a href="{{ URL::to('quanly_vienchuc_khoa') }}">Tất cả</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-1">
-        <div class="dropdown" >
-          <button class="dropbtn">Khoa</button>
-          <div class="dropdown-content">
-            <a href="{{ URL::to('quanly_vienchuc_khoa') }}">Tất cả</a>
+            <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
           </div>
         </div>
       </div>
