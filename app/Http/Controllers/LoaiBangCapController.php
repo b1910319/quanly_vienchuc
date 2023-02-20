@@ -90,49 +90,49 @@ class LoaiBangCapController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function edit_chucvu($ma_lbc){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   $title = "Cập nhật thông tin chức vụ";
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $edit = ChucVu::find($ma_lbc);
-  //     return view('chucvu.chucvu_edit')
-  //       ->with('edit', $edit)
-  //       ->with('title', $title)
-  //       ->with('phanquyen_qltt', $phanquyen_qltt)
-  //       ->with('phanquyen_admin', $phanquyen_admin);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function update_chucvu(Request $request, $ma_lbc){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $data = $request->all();
-  //     Carbon::now('Asia/Ho_Chi_Minh');
-  //     $chucvu = ChucVu::find($ma_lbc);
-  //     $chucvu->ten_lbc = $data['ten_lbc'];
-  //     $chucvu->status_lbc = $data['status_lbc'];
-  //     $chucvu->updated_lbc = Carbon::now();
-  //     $chucvu->save();
-  //     return Redirect::to('chucvu');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function edit_loaibangcap($ma_lbc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Cập nhật thông tin loại bằng cấp";
+    if($phanquyen_admin || $phanquyen_qltt){
+      $edit = LoaiBangCap::find($ma_lbc);
+      return view('loaibangcap.loaibangcap_edit')
+        ->with('edit', $edit)
+        ->with('title', $title)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_loaibangcap(Request $request, $ma_lbc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $loaibangcap = LoaiBangCap::find($ma_lbc);
+      $loaibangcap->ten_lbc = $data['ten_lbc'];
+      $loaibangcap->status_lbc = $data['status_lbc'];
+      $loaibangcap->updated_lbc = Carbon::now();
+      $loaibangcap->save();
+      return Redirect::to('loaibangcap');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function delete_chucvu($ma_lbc){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
