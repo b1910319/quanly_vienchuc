@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 20, 2023 lúc 03:44 AM
+-- Thời gian đã tạo: Th2 20, 2023 lúc 08:02 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -111,8 +111,9 @@ CREATE TABLE `bangcap` (
 --
 
 INSERT INTO `bangcap` (`ma_bc`, `ma_vc`, `ma_hdt`, `ma_lbc`, `trinhdochuyenmon_bc`, `truonghoc_bc`, `nienkhoa_bc`, `sobang_bc`, `ngaycap_bc`, `noicap_bc`, `xephang_bc`, `status_bc`, `created_bc`, `updated_bc`) VALUES
-(1, 61, 4, 5, 'dgt43', 'ft453', 'fer4', '45', '2023-02-08', 't4', 't6', 0, '2023-02-20 02:29:48', ' '),
-(2, 61, 5, 7, 'dfwe', 'ewefr', 'efrerfr', 'rferfer', '2023-02-08', 'fefre', 'feferfe', 1, '2023-02-20 02:36:58', ' ');
+(4, 61, 4, 5, 'ẻềâ', 'dèâ', 'etồâ', 'detồâ', '2023-02-14', 'fe', 'èwr', 0, '2023-02-20 03:12:24', ' '),
+(5, 61, 4, 8, 'èwr', 'ẻẻwẻ', 'ẻwẻwe', 'ẻwẻwr', '2023-02-15', 'ẻwrưe', 'ẻwr', 0, '2023-02-20 03:12:40', ' '),
+(6, 60, 5, 7, 'ẻ', 'eểô', 'ể', 'ưêô', '2023-02-17', 'eêô', 'ưeeô', 0, '2023-02-20 03:13:02', ' ');
 
 -- --------------------------------------------------------
 
@@ -1251,7 +1252,8 @@ INSERT INTO `phanquyen` (`ma_q`, `ma_vc`, `status_pq`, `created_pq`, `updated_pq
 (10, 65, 0, '2023-02-18 02:40:07', ' '),
 (10, 66, 0, '2023-02-18 03:06:40', ' '),
 (10, 67, 0, '2023-02-18 03:07:48', ' '),
-(10, 68, 0, '2023-02-18 03:09:07', ' ');
+(10, 68, 0, '2023-02-18 03:09:07', ' '),
+(10, 69, 0, '2023-02-20 06:48:49', ' ');
 
 -- --------------------------------------------------------
 
@@ -1607,7 +1609,7 @@ INSERT INTO `vienchuc` (`ma_vc`, `ma_k`, `ma_cv`, `ma_n`, `ma_b`, `ma_dt`, `ma_t
 (58, 7, 0, 0, 0, 0, 0, 0, 'pnquyen@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Ngọc Quyền', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:16:57', ' '),
 (59, 7, 0, 0, 0, 0, 0, 0, 'mtcnhung@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Mai Thị Cẩm Nhung', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:17:08', ' '),
 (60, 7, 0, 0, 0, 0, 0, 0, 'skanh@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Sử Kim Anh', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:17:19', ' '),
-(61, 5, 6, 9, 42, 53, 6, 5, 'ntthien@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Thanh Hiền', '08145132156', '1676704466395.jpg', 'gt45', '2023-02-03', 1, 'esfdwe', 'wdwe', 'efwef', '2023-02-01', 'cdesd', 'dewdwe', 'wdeqw', 'wdeqweqw', 'dwed', 'wdeqwe', 'weqweq', '2023-02-08', '2023-02-14', '2023-02-14', '2023-02-02', 'wsdwqdeqw', 'sdqwed', 'weqwe', 'weqwe', 'weqwe', 'wqeqwe', 'weqwe', 'qweqwe', '2023-02-08', 'sqws', 'wqeqw', 'qwq', 'qeqwe', '2023-02-07', ' ', '2023-02-06', 0, '2023-02-15 07:17:30', ' '),
+(61, 5, 6, 9, 42, 53, 6, 5, 'ntthien@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Thanh Hiền', '08145132156', '1676704466395.jpg', 'gt45', '2023-02-03', 1, 'esfdwe', 'wdwe', 'efwef', '2023-02-01', 'dfre', 'dewdwe', 'wdeqw', 'wdeqweqw', 'dwed', 'wdeqwe', 'weqweq', '2023-02-08', '2023-02-14', '2023-02-14', '2023-02-02', 'wsdwqdeqw', 'sdqwed', 'weqwe', 'weqwe', 'weqwe', 'wqeqwe', 'weqwe', 'qweqwe', '2023-02-08', 'sqws', 'wqeqw', 'qwq', 'qeqwe', '2023-02-07', ' ', '2023-02-06', 0, '2023-02-15 07:17:30', ' '),
 (62, 7, 0, 0, 0, 0, 0, 0, 'ldthang@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Đức Thắng', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:17:41', ' ');
 
 -- --------------------------------------------------------
@@ -12353,7 +12355,7 @@ ALTER TABLE `bac`
 -- AUTO_INCREMENT cho bảng `bangcap`
 --
 ALTER TABLE `bangcap`
-  MODIFY `ma_bc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ma_bc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `chucvu`
@@ -12407,13 +12409,13 @@ ALTER TABLE `ngach`
 -- AUTO_INCREMENT cho bảng `noisinh`
 --
 ALTER TABLE `noisinh`
-  MODIFY `ma_ns` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `ma_ns` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT cho bảng `quequan`
 --
 ALTER TABLE `quequan`
-  MODIFY `ma_qq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `ma_qq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT cho bảng `quyen`
@@ -12443,7 +12445,7 @@ ALTER TABLE `tongiao`
 -- AUTO_INCREMENT cho bảng `vienchuc`
 --
 ALTER TABLE `vienchuc`
-  MODIFY `ma_vc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `ma_vc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT cho bảng `xa`

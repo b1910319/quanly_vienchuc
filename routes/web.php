@@ -43,6 +43,8 @@ Route::get('/thongtin_vienchuc_edit/{ma_vc}',[VienChucController::class, 'thongt
 Route::get('/change_tinh',[VienChucController::class, 'change_tinh']);
 Route::get('/change_huyen',[VienChucController::class, 'change_huyen']);
 Route::post('/update_thongtin_vienchuc/{ma_vc}',[VienChucController::class, 'update_thongtin_vienchuc']);
+Route::get('/danhsach_thongtin_vienchuc',[VienChucController::class, 'danhsach_thongtin_vienchuc']);
+Route::get('/search_danhsach_thongtin_vienchuc_khoa/{ma_k}',[VienChucController::class, 'search_danhsach_thongtin_vienchuc_khoa']);
 
 
 

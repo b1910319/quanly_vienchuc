@@ -226,7 +226,7 @@
                         <a href="{{ URL::to('/thongtin_vienchuc_add') }}">Thêm thông tin</a>
                       </li>
                       <li>
-                        <a href="javascript: void(0);">Danh sách viên chức</a>
+                        <a href="{{ URL::to('/danhsach_thongtin_vienchuc') }}">Danh sách viên chức</a>
                       </li>
                     </ul>
                   </li>

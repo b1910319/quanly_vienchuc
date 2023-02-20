@@ -196,6 +196,16 @@ class VienChucController extends Controller
       ->first();
     if($phanquyen_admin){
       VienChuc::find($ma_vc)->delete();
+      $list_noisinh = NoiSinh::where('ma_vc', $ma_vc)
+        ->get();
+      foreach($list_noisinh as $noisinh){
+        $noisinh->delete();
+      }
+      $list_quequan = QueQuan::where('ma_vc', $ma_vc)
+        ->get();
+      foreach($list_quequan as $quequan){
+        $quequan->delete();
+      }
       return Redirect::to('/vienchuc_khoa/'.$ma_k);
     }else{
       return Redirect::to('/home');
@@ -556,7 +566,102 @@ class VienChucController extends Controller
       $quequan->ma_x = $data['ma_x_qq'];
       $quequan->diachi_qq = $data['diachi_qq'];
       $quequan->save();
+      // return redirect()->back();
       return Redirect::to('/thongtin_vienchuc_add');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function danhsach_thongtin_vienchuc(){
+    $this->check_login();
+    $title = "Danh sách thông tin viên chức";
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $count = VienChuc::select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      $count_status = VienChuc::select(DB::raw('count(ma_vc) as sum, status_vc'))
+        ->groupBy('status_vc')
+        ->get();
+      $list_khoa_show = Khoa::where('status_k', '<>', '1')
+        ->get();
+      $list_vienchuc = VienChuc::orderBy('ma_vc', 'desc')
+        ->get();
+      $list_khoa = Khoa::get();
+      $list_chucvu = ChucVu::get();
+      $list_ngach = Ngach::get();
+      $list_bac = Bac::get();
+      $list_dantoc = DanToc::get();
+      $list_tongiao = TonGiao::get();
+      $list_thuongbinh = ThuongBinh::get();
+      return view('vienchuc.danhsach_thongtin_vienchuc')
+        ->with('title', $title)
+        ->with('list_khoa', $list_khoa)
+        ->with('list_chucvu', $list_chucvu)
+        ->with('list_ngach', $list_ngach)
+        ->with('list_bac', $list_bac)
+        ->with('list_dantoc', $list_dantoc)
+        ->with('list_tongiao', $list_tongiao)
+        ->with('list_thuongbinh', $list_thuongbinh)
+        ->with('list_khoa_show', $list_khoa_show)
+        ->with('count', $count)
+        ->with('list_vienchuc', $list_vienchuc)
+        ->with('count_status', $count_status)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_admin', $phanquyen_admin);
+        
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function search_danhsach_thongtin_vienchuc_khoa($ma_k){
+    $this->check_login();
+    $title = "Viên chức theo khoa";
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $count = VienChuc::select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      $count_status = VienChuc::select(DB::raw('count(ma_vc) as sum, status_vc'))
+        ->groupBy('status_vc')
+        ->get();
+      $list_khoa_show = Khoa::where('status_k', '<>', '1')
+        ->get();
+      $list_vienchuc = VienChuc::where('ma_k', $ma_k)
+        ->orderBy('ma_vc', 'desc')
+        ->get();
+      $list_khoa = Khoa::get();
+      $list_chucvu = ChucVu::get();
+      $list_ngach = Ngach::get();
+      $list_bac = Bac::get();
+      $list_dantoc = DanToc::get();
+      $list_tongiao = TonGiao::get();
+      $list_thuongbinh = ThuongBinh::get();
+      return view('vienchuc.danhsach_thongtin_vienchuc')
+        ->with('title', $title)
+        ->with('list_khoa', $list_khoa)
+        ->with('list_chucvu', $list_chucvu)
+        ->with('list_ngach', $list_ngach)
+        ->with('list_bac', $list_bac)
+        ->with('list_dantoc', $list_dantoc)
+        ->with('list_tongiao', $list_tongiao)
+        ->with('list_thuongbinh', $list_thuongbinh)
+        ->with('list_khoa_show', $list_khoa_show)
+        ->with('count', $count)
+        ->with('list_vienchuc', $list_vienchuc)
+        ->with('count_status', $count_status)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');
     }
