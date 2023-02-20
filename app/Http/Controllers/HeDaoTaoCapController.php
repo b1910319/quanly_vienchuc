@@ -89,49 +89,49 @@ class HeDaoTaoCapController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function edit_hedaotao($ma_hdt){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   $title = "Cập nhật thông tin loại bằng cấp";
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $edit = HeDaoTao::find($ma_hdt);
-  //     return view('hedaotao.hedaotao_edit')
-  //       ->with('edit', $edit)
-  //       ->with('title', $title)
-  //       ->with('phanquyen_qltt', $phanquyen_qltt)
-  //       ->with('phanquyen_admin', $phanquyen_admin);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function update_hedaotao(Request $request, $ma_hdt){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $data = $request->all();
-  //     Carbon::now('Asia/Ho_Chi_Minh');
-  //     $hedaotao = HeDaoTao::find($ma_hdt);
-  //     $hedaotao->ten_hdt = $data['ten_hdt'];
-  //     $hedaotao->status_hdt = $data['status_hdt'];
-  //     $hedaotao->updated_hdt = Carbon::now();
-  //     $hedaotao->save();
-  //     return Redirect::to('hedaotao');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function edit_hedaotao($ma_hdt){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Cập nhật thông tin loại bằng cấp";
+    if($phanquyen_admin || $phanquyen_qltt){
+      $edit = HeDaoTao::find($ma_hdt);
+      return view('hedaotao.hedaotao_edit')
+        ->with('edit', $edit)
+        ->with('title', $title)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_hedaotao(Request $request, $ma_hdt){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $hedaotao = HeDaoTao::find($ma_hdt);
+      $hedaotao->ten_hdt = $data['ten_hdt'];
+      $hedaotao->status_hdt = $data['status_hdt'];
+      $hedaotao->updated_hdt = Carbon::now();
+      $hedaotao->save();
+      return Redirect::to('hedaotao');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function delete_hedaotao($ma_hdt){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
