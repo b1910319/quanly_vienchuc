@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 18, 2023 lúc 10:09 AM
+-- Thời gian đã tạo: Th2 20, 2023 lúc 02:01 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -973,10 +973,13 @@ CREATE TABLE `loaibangcap` (
 --
 
 INSERT INTO `loaibangcap` (`ma_lbc`, `ten_lbc`, `status_lbc`, `created_lbc`, `updated_lbc`) VALUES
-(1, 'dsrgwt64t', 0, '2023-02-18 09:09:16', ' '),
-(2, 'detwre', 1, '2023-02-18 09:09:21', ' '),
-(3, 'erw35rq', 0, '2023-02-18 09:09:27', ' '),
-(4, 'sfaerwe', 0, '2023-02-18 09:09:30', ' ');
+(5, 'Đại học', 0, '2023-02-20 01:01:00', ' '),
+(6, 'Cao đẳng', 0, '2023-02-20 01:01:06', ' '),
+(7, 'Cao đẳng nghề', 0, '2023-02-20 01:01:18', ' '),
+(8, 'Thạc sĩ', 0, '2023-02-20 01:01:30', ' '),
+(9, 'Tiến sĩ', 0, '2023-02-20 01:01:41', ' '),
+(10, 'Trung cấp', 0, '2023-02-20 01:01:46', ' '),
+(11, 'Trung cấp nghề', 0, '2023-02-20 01:01:52', ' ');
 
 -- --------------------------------------------------------
 
@@ -12313,7 +12316,7 @@ ALTER TABLE `khoa`
 -- AUTO_INCREMENT cho bảng `loaibangcap`
 --
 ALTER TABLE `loaibangcap`
-  MODIFY `ma_lbc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ma_lbc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `ngach`

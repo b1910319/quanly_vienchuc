@@ -133,39 +133,39 @@ class LoaiBangCapController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function delete_chucvu($ma_lbc){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     ChucVu::find($ma_lbc)->delete();
-  //     return Redirect::to('chucvu');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function delete_all_chucvu(){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $list = ChucVu::get();
-  //     foreach($list as $key => $chucvu){
-  //       $chucvu->delete();
-  //     }
-  //     return Redirect::to('chucvu');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function delete_loaibangcap($ma_lbc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      LoaiBangCap::find($ma_lbc)->delete();
+      return Redirect::to('loaibangcap');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function delete_all_loaibangcap(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $list = LoaiBangCap::get();
+      foreach($list as $key => $loaibangcap){
+        $loaibangcap->delete();
+      }
+      return Redirect::to('loaibangcap');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }
