@@ -68,27 +68,27 @@ class HeDaoTaoCapController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function select_hedaotao($ma_hdt){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $hedaotao = HeDaoTao::find($ma_hdt);
-  //     if($hedaotao->status_hdt == 1){
-  //       $hedaotao->status_hdt = HeDaoTao::find($ma_hdt)->update(['status_hdt' => 0]);
-  //     }elseif($hedaotao->status_hdt == 0){
-  //       $hedaotao->status_hdt = HeDaoTao::find($ma_hdt)->update(['status_hdt' => 1]);
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function select_hedaotao($ma_hdt){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $hedaotao = HeDaoTao::find($ma_hdt);
+      if($hedaotao->status_hdt == 1){
+        $hedaotao->status_hdt = HeDaoTao::find($ma_hdt)->update(['status_hdt' => 0]);
+      }elseif($hedaotao->status_hdt == 0){
+        $hedaotao->status_hdt = HeDaoTao::find($ma_hdt)->update(['status_hdt' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function edit_hedaotao($ma_hdt){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
