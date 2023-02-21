@@ -97,6 +97,14 @@
           @endforeach
         </div>
       </div>
+      <div class="dropdown mt-2" >
+        <button class="dropbtn" style="background-color: #379237">Loại bằng cấp</button>
+        <div class="dropdown-content">
+          @foreach ($list_loiabangcap as  $loiabangcap)
+            <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_loiabangcap/'.$loiabangcap->ma_lbc) }}">{{ $loiabangcap->ten_lbc }}</a>
+          @endforeach
+        </div>
+      </div>
     </div>
   </div>
   <div class="card-box col-10">
@@ -242,7 +250,7 @@
             </td>
             <td>
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}" style="background-color: #379237; border: none;">
                 Xem thông tin
               </button>
 
@@ -568,7 +576,9 @@
               <b>Số CCCD: </b> {{ $vienchuc->cccd_vc }}
             </td>
             <td>
-
+              <a href="{{ URL::to('/bangcap/'.$vienchuc->ma_vc) }}">
+                <button type="button" class="btn btn-primary" style="background-color: #00425A; border: none;">Bằng cấp</button>
+              </a>
             </td>
             <td style="width: 25%;">
               <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc)}}">

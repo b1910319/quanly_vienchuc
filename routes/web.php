@@ -54,6 +54,7 @@ Route::post('/search_danhsach_thongtin_vienchuc_ngach',[VienChucController::clas
 Route::get('/search_danhsach_thongtin_vienchuc_thuongbinh/{ma_tb}',[VienChucController::class, 'search_danhsach_thongtin_vienchuc_thuongbinh']);
 Route::post('/search_danhsach_thongtin_vienchuc_ngaybatdaulamviec',[VienChucController::class, 'search_danhsach_thongtin_vienchuc_ngaybatdaulamviec']);
 Route::get('/search_danhsach_thongtin_vienchuc_hedaotao/{ma_hdt}',[VienChucController::class, 'search_danhsach_thongtin_vienchuc_hedaotao']);
+Route::get('/search_danhsach_thongtin_vienchuc_loiabangcap/{ma_hdt}',[VienChucController::class, 'search_danhsach_thongtin_vienchuc_loiabangcap']);
 
 
 

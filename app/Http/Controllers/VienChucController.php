@@ -1203,7 +1203,7 @@ class VienChucController extends Controller
       $list_thuongbinh = ThuongBinh::get();
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
-      $thuongbinh = ThuongBinh::find($ma_hdt);
+      $hedaotao = HeDaoTao::find($ma_hdt);
       return view('vienchuc.danhsach_thongtin_vienchuc')
         ->with('title', $title)
         ->with('list_khoa', $list_khoa)
@@ -1215,7 +1215,71 @@ class VienChucController extends Controller
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('list_khoa_show', $list_khoa_show)
         ->with('count', $count)
-        ->with('ten', $thuongbinh->ten_tb)
+        ->with('ten', $hedaotao->ten_hdt)
+        ->with('list_tinh', $list_tinh)
+        ->with('list_hedaotao', $list_hedaotao)
+        ->with('list_loiabangcap', $list_loiabangcap)
+        ->with('list_vienchuc', $list_vienchuc)
+        ->with('count_status', $count_status)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function search_danhsach_thongtin_vienchuc_loiabangcap($ma_lbc){
+    $this->check_login();
+    $title = "Viên chức theo loại bằng cấp";
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $count = VienChuc::join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
+        ->select(DB::raw('count(vienchuc.ma_vc) as sum'))
+        ->where('loaibangcap.ma_lbc', $ma_lbc)
+        ->get();
+      $count_status = VienChuc::join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
+        ->select(DB::raw('count(vienchuc.ma_vc) as sum, status_vc'))
+        ->where('loaibangcap.ma_lbc', $ma_lbc)
+        ->groupBy('status_vc')
+        ->get();
+      $list_khoa_show = Khoa::where('status_k', '<>', '1')
+        ->get();
+      $list_vienchuc = VienChuc::join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
+        ->where('loaibangcap.ma_lbc', $ma_lbc)
+        ->orderBy('vienchuc.ma_vc', 'desc')
+        ->get();
+      $list_khoa = Khoa::get();
+      $list_chucvu = ChucVu::get();
+      $list_ngach = Ngach::get();
+      $list_bac = Bac::get();
+      $list_dantoc = DanToc::get();
+      $list_tongiao = TonGiao::get();
+      $list_hedaotao = HeDaoTao::get();
+      $list_loiabangcap = LoaiBangCap::get();
+      $list_thuongbinh = ThuongBinh::get();
+      $list_tinh = Tinh::orderBy('ten_t', 'asc')
+        ->get();
+      $loaibangcap = LoaiBangCap::find($ma_lbc);
+      return view('vienchuc.danhsach_thongtin_vienchuc')
+        ->with('title', $title)
+        ->with('list_khoa', $list_khoa)
+        ->with('list_chucvu', $list_chucvu)
+        ->with('list_ngach', $list_ngach)
+        ->with('list_bac', $list_bac)
+        ->with('list_dantoc', $list_dantoc)
+        ->with('list_tongiao', $list_tongiao)
+        ->with('list_thuongbinh', $list_thuongbinh)
+        ->with('list_khoa_show', $list_khoa_show)
+        ->with('count', $count)
+        ->with('ten', $loaibangcap->ten_lbc)
         ->with('list_tinh', $list_tinh)
         ->with('list_hedaotao', $list_hedaotao)
         ->with('list_loiabangcap', $list_loiabangcap)
