@@ -1013,4 +1013,58 @@ class VienChucController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function search_danhsach_thongtin_vienchuc_thuongbinh($ma_tb){
+    $this->check_login();
+    $title = "Viên chức theo hạng thương binh";
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $count = VienChuc::select(DB::raw('count(ma_vc) as sum'))
+        ->where('ma_tb', $ma_tb)
+        ->get();
+      $count_status = VienChuc::select(DB::raw('count(ma_vc) as sum, status_vc'))
+        ->where('ma_tb', $ma_tb)
+        ->groupBy('status_vc')
+        ->get();
+      $list_khoa_show = Khoa::where('status_k', '<>', '1')
+        ->get();
+      $list_vienchuc = VienChuc::where('ma_tb', $ma_tb)
+        ->orderBy('ma_vc', 'desc')
+        ->get();
+      $list_khoa = Khoa::get();
+      $list_chucvu = ChucVu::get();
+      $list_ngach = Ngach::get();
+      $list_bac = Bac::get();
+      $list_dantoc = DanToc::get();
+      $list_tongiao = TonGiao::get();
+      $list_thuongbinh = ThuongBinh::get();
+      $list_tinh = Tinh::orderBy('ten_t', 'asc')
+        ->get();
+      $thuongbinh = ThuongBinh::find($ma_tb);
+      return view('vienchuc.danhsach_thongtin_vienchuc')
+        ->with('title', $title)
+        ->with('list_khoa', $list_khoa)
+        ->with('list_chucvu', $list_chucvu)
+        ->with('list_ngach', $list_ngach)
+        ->with('list_bac', $list_bac)
+        ->with('list_dantoc', $list_dantoc)
+        ->with('list_tongiao', $list_tongiao)
+        ->with('list_thuongbinh', $list_thuongbinh)
+        ->with('list_khoa_show', $list_khoa_show)
+        ->with('count', $count)
+        ->with('ten', $thuongbinh->ten_tb)
+        ->with('list_tinh', $list_tinh)
+        ->with('list_vienchuc', $list_vienchuc)
+        ->with('count_status', $count_status)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }

@@ -46,6 +46,14 @@
           </a>
         </div>
       </div>
+      <div class="dropdown mt-2" >
+        <button class="dropbtn" style="background-color: #F94A29">Thương binh</button>
+        <div class="dropdown-content">
+          @foreach ($list_thuongbinh as  $thuongbinh)
+            <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_thuongbinh/'.$thuongbinh->ma_tb) }}">{{ $thuongbinh->ten_tb }}</a>
+          @endforeach
+        </div>
+      </div>
     </div>
   </div>
   <div class="card-box col-11">

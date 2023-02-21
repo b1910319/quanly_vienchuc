@@ -419,13 +419,13 @@
               <tr>
                 <th scope="row">Ngày nhập ngũ: </th>
                 <td class="was-validated">
-                  <input type='date' class='form-control input_table' autofocus required name="ngaynhapngu_vc"  value="{{ $edit->ngaynhapngu_vc }}">
+                  <input type='date' class='form-control input_table' autofocus name="ngaynhapngu_vc"  value="{{ $edit->ngaynhapngu_vc }}">
                 </td>
               </tr>
               <tr>
                 <th scope="row">Ngày xuất ngũ: </th>
                 <td class="was-validated">
-                  <input type='date' class='form-control input_table' autofocus required name="ngayxuatngu_vc"  value="{{ $edit->ngayxuatngu_vc }}">
+                  <input type='date' class='form-control input_table' autofocus name="ngayxuatngu_vc"  value="{{ $edit->ngayxuatngu_vc }}">
                 </td>
               </tr>
               <tr>
