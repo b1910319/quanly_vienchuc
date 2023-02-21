@@ -1,10 +1,10 @@
 @extends('layout')
 @section('content')
 <div class="row">
-  <div class="card-box col-1">
+  <div class="card-box col-2">
     <div class="row">
       <div class="mb-2">
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="width: 100%">Thống kê</button>
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="width: 100%; background-color: #379237">Thống kê</button>
   
         <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
           <div class="offcanvas-header">
@@ -39,12 +39,12 @@
         </div>
       </div>
       <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">
-        <button type="button" class="btn btn-warning" style="width: 100%">
+        <button type="button" class="btn btn-warning" style="width: 100%; background-color: #00425A; border: none">
           <i class="fa-solid fa-rotate-right"></i>
         </button>
       </a>
       <div class="dropdown mt-2" >
-        <button class="dropbtn">Khoa</button>
+        <button class="dropbtn" style="background-color: #850000">Khoa</button>
         <div class="dropdown-content">
           @foreach ($list_khoa_show as  $khoa)
             <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_khoa/'.$khoa->ma_k) }}">{{ $khoa->ten_k }}</a>
@@ -53,7 +53,7 @@
         </div>
       </div>
       <div class="dropdown mt-2" >
-        <button class="dropbtn" style="background-color: #F94A29">Dân tộc</button>
+        <button class="dropbtn" style="background-color: #460C68">Dân tộc</button>
         <div class="dropdown-content">
           @foreach ($list_dantoc as  $dantoc)
             <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_dantoc/'.$dantoc->ma_dt) }}">{{ $dantoc->ten_dt }}</a>
@@ -62,7 +62,7 @@
         </div>
       </div>
       <div class="dropdown mt-2" >
-        <button class="dropbtn" style="background-color: #A61F69">Tôn giáo</button>
+        <button class="dropbtn" style="background-color: #379237">Tôn giáo</button>
         <div class="dropdown-content">
           @foreach ($list_tongiao as  $tongiao)
             <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_tongiao/'.$tongiao->ma_tg) }}">{{ $tongiao->ten_tg }}</a>
@@ -71,7 +71,7 @@
         </div>
       </div>
       <div class="dropdown mt-2" >
-        <button class="dropbtn">Giới tính</button>
+        <button class="dropbtn" style="background-color: #00425A">Giới tính</button>
         <div class="dropdown-content">
           <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_gioitinh/0') }}">
             Nam
@@ -82,16 +82,24 @@
         </div>
       </div>
       <div class="dropdown mt-2" >
-        <button class="dropbtn" style="background-color: #F94A29">Thương binh</button>
+        <button class="dropbtn" style="background-color: #850000">Thương binh</button>
         <div class="dropdown-content">
           @foreach ($list_thuongbinh as  $thuongbinh)
             <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_thuongbinh/'.$thuongbinh->ma_tb) }}">{{ $thuongbinh->ten_tb }}</a>
           @endforeach
         </div>
       </div>
+      <div class="dropdown mt-2" >
+        <button class="dropbtn" style="background-color: #460C68">Hệ đào tạo</button>
+        <div class="dropdown-content">
+          @foreach ($list_hedaotao as  $hedaotao)
+            <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_hedaotao/'.$hedaotao->ma_hdt) }}">{{ $hedaotao->ten_hdt }}</a>
+          @endforeach
+        </div>
+      </div>
     </div>
   </div>
-  <div class="card-box col-11">
+  <div class="card-box col-10">
     <div class="mt-3"></div>
     <div class="alert alert-success" role="alert">
       <div class="row">
@@ -562,7 +570,7 @@
             <td>
 
             </td>
-            <td style="width: 21%;">
+            <td style="width: 25%;">
               <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>
