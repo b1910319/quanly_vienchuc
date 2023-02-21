@@ -100,8 +100,19 @@
           <button class="dropbtn" style="background-color: #F94A29">Dân tộc</button>
           <div class="dropdown-content">
             @foreach ($list_dantoc as  $dantoc)
-            <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_dantoc/'.$dantoc->ma_dt) }}">{{ $dantoc->ten_dt }}</a>
-          @endforeach
+              <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_dantoc/'.$dantoc->ma_dt) }}">{{ $dantoc->ten_dt }}</a>
+            @endforeach
+            <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-1">
+        <div class="dropdown" >
+          <button class="dropbtn" style="background-color: #A61F69">Tôn giáo</button>
+          <div class="dropdown-content">
+            @foreach ($list_tongiao as  $tongiao)
+              <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_tongiao/'.$tongiao->ma_tg) }}">{{ $tongiao->ten_tg }}</a>
+            @endforeach
             <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
           </div>
         </div>
@@ -125,16 +136,6 @@
           </div>
           
         </form>
-      </div>
-      
-      
-      <div class="col-1">
-        <div class="dropdown" >
-          <button class="dropbtn">Khoa</button>
-          <div class="dropdown-content">
-            <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
-          </div>
-        </div>
       </div>
     </div>
     <table class="table" id="mytable">
