@@ -954,4 +954,63 @@ class VienChucController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function search_danhsach_thongtin_vienchuc_ngach(Request $request){
+    $this->check_login();
+    $title = "Viên chức theo ngạch";
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $data = $request->all();
+      $count = VienChuc::select(DB::raw('count(vienchuc.ma_vc) as sum'))
+        ->where('ma_n', $data['ma_n'])
+        ->where('ma_b', $data['ma_b'])
+        ->get();
+      $count_status = VienChuc::select(DB::raw('count(ma_vc) as sum, status_vc'))
+        ->where('ma_n', $data['ma_n'])
+        ->where('ma_b', $data['ma_b'])
+        ->groupBy('status_vc')
+        ->get();
+      $list_khoa_show = Khoa::where('status_k', '<>', '1')
+        ->get();
+      $list_vienchuc = VienChuc::where('ma_n', $data['ma_n'])
+        ->where('ma_b', $data['ma_b'])
+        ->orderBy('vienchuc.ma_vc', 'desc')
+        ->get();
+      $bac = Bac::find($data['ma_b']);
+      $ngach = Ngach::find($data['ma_n']);
+      $list_khoa = Khoa::get();
+      $list_chucvu = ChucVu::get();
+      $list_ngach = Ngach::get();
+      $list_bac = Bac::get();
+      $list_dantoc = DanToc::get();
+      $list_tongiao = TonGiao::get();
+      $list_thuongbinh = ThuongBinh::get();
+      $list_tinh = Tinh::orderBy('ten_t', 'asc')
+        ->get();
+      return view('vienchuc.danhsach_thongtin_vienchuc')
+        ->with('title', $title)
+        ->with('list_khoa', $list_khoa)
+        ->with('list_chucvu', $list_chucvu)
+        ->with('list_ngach', $list_ngach)
+        ->with('list_bac', $list_bac)
+        ->with('list_dantoc', $list_dantoc)
+        ->with('list_tongiao', $list_tongiao)
+        ->with('list_thuongbinh', $list_thuongbinh)
+        ->with('list_khoa_show', $list_khoa_show)
+        ->with('count', $count)
+        ->with('ten', 'Ngạch: '.$ngach->ten_n.' ,'.'Bậc: '.$bac->ten_b)
+        ->with('list_tinh', $list_tinh)
+        ->with('list_vienchuc', $list_vienchuc)
+        ->with('count_status', $count_status)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }

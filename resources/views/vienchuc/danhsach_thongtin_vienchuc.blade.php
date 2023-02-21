@@ -1,14 +1,61 @@
 @extends('layout')
 @section('content')
 <div class="row">
-  <div class="card-box">
+  <div class="card-box col-1">
+    <div class="row">
+      <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">
+        <button type="button" class="btn btn-warning" style="width: 100%">
+          <i class="fa-solid fa-rotate-right"></i>
+        </button>
+      </a>
+      <div class="dropdown mt-2" >
+        <button class="dropbtn">Khoa</button>
+        <div class="dropdown-content">
+          @foreach ($list_khoa_show as  $khoa)
+            <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_khoa/'.$khoa->ma_k) }}">{{ $khoa->ten_k }}</a>
+          @endforeach
+          <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
+        </div>
+      </div>
+      <div class="dropdown mt-2" >
+        <button class="dropbtn" style="background-color: #F94A29">Dân tộc</button>
+        <div class="dropdown-content">
+          @foreach ($list_dantoc as  $dantoc)
+            <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_dantoc/'.$dantoc->ma_dt) }}">{{ $dantoc->ten_dt }}</a>
+          @endforeach
+          <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
+        </div>
+      </div>
+      <div class="dropdown mt-2" >
+        <button class="dropbtn" style="background-color: #A61F69">Tôn giáo</button>
+        <div class="dropdown-content">
+          @foreach ($list_tongiao as  $tongiao)
+            <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_tongiao/'.$tongiao->ma_tg) }}">{{ $tongiao->ten_tg }}</a>
+          @endforeach
+          <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
+        </div>
+      </div>
+      <div class="dropdown mt-2" >
+        <button class="dropbtn">Giới tính</button>
+        <div class="dropdown-content">
+          <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_gioitinh/0') }}">
+            Nam
+          </a>
+          <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_gioitinh/1') }}">
+            Nữ
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-box col-11">
     <div class="mt-3"></div>
     <div class="alert alert-success" role="alert">
       <div class="row">
         <h4 class="text-center" style="font-weight: bold">
           DANH SÁCH
-          <sub style="color: #379237; font-size: 18px">{{ $ten }}</sub>
-          
+          <sub style="color: #379237; font-size: 18px">( {{ $ten }} )</sub>
+
         </h4>
       </div>
     </div>
@@ -17,14 +64,6 @@
         @foreach ($count as $key => $count)
           <p class="fw-bold" style="color: #379237; ">Tổng có: {{ $count->sum }}</p>
         @endforeach
-      </div>
-      <div class="col-1">
-        <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">
-          <button type="button" class="btn btn-warning" style="width: 100%">
-            <i class="fa-solid fa-rotate-right"></i>
-          </button>
-        </a>
-        
       </div>
       <div class="col-1 mb-3">
         <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="width: 100%">Thống kê</button>
@@ -61,17 +100,6 @@
           </div>
         </div>
       </div>
-      <div class="col-1">
-        <div class="dropdown" >
-          <button class="dropbtn">Khoa</button>
-          <div class="dropdown-content">
-            @foreach ($list_khoa_show as  $khoa)
-              <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_khoa/'.$khoa->ma_k) }}">{{ $khoa->ten_k }}</a>
-            @endforeach
-            <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
-          </div>
-        </div>
-      </div>
       <div class="col-3">
         <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_quequan') }}" method="post">
           {{ csrf_field() }}
@@ -95,28 +123,7 @@
           </div>
         </form>
       </div>
-      <div class="col-1">
-        <div class="dropdown" >
-          <button class="dropbtn" style="background-color: #F94A29">Dân tộc</button>
-          <div class="dropdown-content">
-            @foreach ($list_dantoc as  $dantoc)
-              <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_dantoc/'.$dantoc->ma_dt) }}">{{ $dantoc->ten_dt }}</a>
-            @endforeach
-            <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-1">
-        <div class="dropdown" >
-          <button class="dropbtn" style="background-color: #A61F69">Tôn giáo</button>
-          <div class="dropdown-content">
-            @foreach ($list_tongiao as  $tongiao)
-              <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_tongiao/'.$tongiao->ma_tg) }}">{{ $tongiao->ten_tg }}</a>
-            @endforeach
-            <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
-          </div>
-        </div>
-      </div>
+
       <div class="col-3">
         <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_ngaysinh') }}" method="post">
           {{ csrf_field() }}
@@ -137,20 +144,32 @@
           
         </form>
       </div>
-    </div>
-    <div class="row mb-2">
-      <div class="col-1">
-        <div class="dropdown" >
-          <button class="dropbtn">Giới tính</button>
-          <div class="dropdown-content">
-            <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_gioitinh/0') }}">
-              Nam
-            </a>
-            <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_gioitinh/1') }}">
-              Nữ
-            </a>
+      <div class="col-4">
+        <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_ngach') }}" method="post">
+          {{ csrf_field() }}
+          <div class="row">
+            <div class="col-4">
+              <select class="custom-select input_table choose ngach" name="ma_n" id="ngach">
+                <option value="0" >Chọn ngạch</option>
+                @foreach ($list_ngach as $ngach)
+                  <option value="{{ $ngach->ma_n }}" >{{ $ngach->ten_n }}</option>
+                @endforeach
+              </select>
+              
+            </div>
+            <div class="col-4">
+              <select class="custom-select input_table choose bac" name="ma_b" id="bac">
+
+              </select>
+            </div>
+            <div class="col-3">
+              <button type="submit"  class="btn btn-outline-primary font-weight-bold">
+                <i class="fa-solid fa-magnifying-glass-plus"></i>
+                Tìm
+              </button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
     <table class="table" id="mytable">
@@ -538,4 +557,21 @@
     </table>
   </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function(){
+    $('#ngach').change(function(){
+      var id= $(this).val();
+      $.ajax({
+        url:"{{ url("/change_ngach") }}",
+        type:"GET",
+        data:{id:id},
+        success:function(data){
+            $('#bac').html(data);
+        }
+      });
+    });
+  });
+</script>
 @endsection
