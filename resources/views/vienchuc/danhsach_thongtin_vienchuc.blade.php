@@ -3,6 +3,41 @@
 <div class="row">
   <div class="card-box col-1">
     <div class="row">
+      <div class="mb-2">
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="width: 100%">Thống kê</button>
+  
+        <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Thống kê</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Tên</th>
+                  <th scope="col">Số lượng</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($count_status as $key => $count_stt)
+                  @if ($count_stt->status_vc == 0)
+                    <tr>
+                      <td>Danh mục hiển thị</td>
+                      <td>{{ $count_stt->sum }}</td>
+                    </tr>
+                  @else
+                    <tr>
+                      <td>Danh mục ẩn</td>
+                      <td>{{ $count_stt->sum }}</td>
+                    </tr>
+                  @endif
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
       <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">
         <button type="button" class="btn btn-warning" style="width: 100%">
           <i class="fa-solid fa-rotate-right"></i>
@@ -73,114 +108,111 @@
           <p class="fw-bold" style="color: #379237; ">Tổng có: {{ $count->sum }}</p>
         @endforeach
       </div>
-      <div class="col-1 mb-3">
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="width: 100%">Thống kê</button>
-  
-        <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Thống kê</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Tên</th>
-                  <th scope="col">Số lượng</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($count_status as $key => $count_stt)
-                  @if ($count_stt->status_vc == 0)
-                    <tr>
-                      <td>Danh mục hiển thị</td>
-                      <td>{{ $count_stt->sum }}</td>
-                    </tr>
-                  @else
-                    <tr>
-                      <td>Danh mục ẩn</td>
-                      <td>{{ $count_stt->sum }}</td>
-                    </tr>
-                  @endif
-                @endforeach
-              </tbody>
-            </table>
-          </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo1" style="background-color: #379237; border: none; width: 100%">Lọc theo quê quán</button>
+        <div id="demo1" class="collapse mt-3">
+          <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_quequan') }}" method="post">
+            {{ csrf_field() }}
+            <div class="row">
+              <div class="col-8">
+                <select class="custom-select input_table" id="gender2" name="ma_t">
+                  <option value="0" >Quê quán</option>
+                  @foreach ($list_tinh as $tinh)
+                    <option value="{{ $tinh->ma_t }}" >{{ $tinh->ten_t }}</option>
+                  @endforeach
+                  <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
+                </select>
+                
+              </div>
+              <div class="col-4">
+                <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="width: 100%">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i>
+                  Tìm
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-      <div class="col-3">
-        <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_quequan') }}" method="post">
-          {{ csrf_field() }}
-          <div class="row">
-            <div class="col-8">
-              <select class="custom-select input_table" id="gender2" name="ma_t">
-                <option value="0" >Quê quán</option>
-                @foreach ($list_tinh as $tinh)
-                  <option value="{{ $tinh->ma_t }}" >{{ $tinh->ten_t }}</option>
-                @endforeach
-                <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
-              </select>
-              
-            </div>
-            <div class="col-4">
-              <button type="submit"  class="btn btn-outline-primary font-weight-bold">
-                <i class="fa-solid fa-magnifying-glass-plus"></i>
-                Tìm
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
 
-      <div class="col-3">
-        <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_ngaysinh') }}" method="post">
-          {{ csrf_field() }}
-          <div class="row">
-            <div class="col-4">
-              <input type='date' class='form-control input_table' autofocus required name="batdau">
+      <div class="col-4">
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color: #00425A; border: none; width: 100%" >Lọc theo ngày sinh của viên chức</button>
+        <div id="demo" class="collapse mt-3">
+          <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_ngaysinh') }}" method="post">
+            {{ csrf_field() }}
+            <div class="row">
+              <div class="col-4">
+                <input type='date' class='form-control input_table' autofocus required name="batdau">
+              </div>
+              <div class="col-4">
+                <input type='date' class='form-control input_table' autofocus required name="ketthuc">
+              </div>
+              <div class="col-4">
+                <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="width: 100%">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i>
+                  Tìm
+                </button>
+              </div>
             </div>
-            <div class="col-4">
-              <input type='date' class='form-control input_table' autofocus required name="ketthuc">
-            </div>
-            <div class="col-4">
-              <button type="submit"  class="btn btn-outline-primary font-weight-bold">
-                <i class="fa-solid fa-magnifying-glass-plus"></i>
-                Tìm
-              </button>
-            </div>
-          </div>
-          
-        </form>
+            
+          </form>
+        </div>
       </div>
       <div class="col-4">
-        <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_ngach') }}" method="post">
-          {{ csrf_field() }}
-          <div class="row">
-            <div class="col-4">
-              <select class="custom-select input_table choose ngach" name="ma_n" id="ngach">
-                <option value="0" >Chọn ngạch</option>
-                @foreach ($list_ngach as $ngach)
-                  <option value="{{ $ngach->ma_n }}" >{{ $ngach->ten_n }}</option>
-                @endforeach
-              </select>
-              
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2" style="background-color: #850000; border: none; width: 100%" >Lọc theo ngạch</button>
+        <div id="demo2" class="collapse mt-3 mb-3">
+          <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_ngach') }}" method="post">
+            {{ csrf_field() }}
+            <div class="row">
+              <div class="col-4">
+                <select class="custom-select input_table choose ngach" name="ma_n" id="ngach">
+                  <option value="0" >Chọn ngạch</option>
+                  @foreach ($list_ngach as $ngach)
+                    <option value="{{ $ngach->ma_n }}" >{{ $ngach->ten_n }}</option>
+                  @endforeach
+                </select>
+                
+              </div>
+              <div class="col-4">
+                <select class="custom-select input_table choose bac" name="ma_b" id="bac">
+  
+                </select>
+              </div>
+              <div class="col-4">
+                <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="width: 100%">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i>
+                  Tìm
+                </button>
+              </div>
             </div>
-            <div class="col-4">
-              <select class="custom-select input_table choose bac" name="ma_b" id="bac">
-
-              </select>
+          </form>
+        </div>
+      </div>
+      <div class="col-4 mt-2 mb-2">
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #460C68; border: none; width: 100%" >Lọc theo ngày viên chức bắt đầu làm việc</button>
+        <div id="demo3" class="collapse mt-3">
+          <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_ngaybatdaulamviec') }}" method="post">
+            {{ csrf_field() }}
+            <div class="row">
+              <div class="col-4">
+                <input type='date' class='form-control input_table' autofocus required name="batdau">
+              </div>
+              <div class="col-4">
+                <input type='date' class='form-control input_table' autofocus required name="ketthuc">
+              </div>
+              <div class="col-4">
+                <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="width: 100%">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i>
+                  Tìm
+                </button>
+              </div>
             </div>
-            <div class="col-3">
-              <button type="submit"  class="btn btn-outline-primary font-weight-bold">
-                <i class="fa-solid fa-magnifying-glass-plus"></i>
-                Tìm
-              </button>
-            </div>
-          </div>
-        </form>
+            
+          </form>
+        </div>
       </div>
     </div>
-    <table class="table" id="mytable">
+    <table class="table mt-2" id="mytable">
       <thead class="table-dark">
         <tr>
           <th scope="col">STT</th>
