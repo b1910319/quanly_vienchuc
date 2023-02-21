@@ -138,12 +138,28 @@
         </form>
       </div>
     </div>
+    <div class="row mb-2">
+      <div class="col-1">
+        <div class="dropdown" >
+          <button class="dropbtn">Giới tính</button>
+          <div class="dropdown-content">
+            <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_gioitinh/0') }}">
+              Nam
+            </a>
+            <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_gioitinh/1') }}">
+              Nữ
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
     <table class="table" id="mytable">
       <thead class="table-dark">
         <tr>
           <th scope="col">STT</th>
           <th scope="col">Tên viên chức</th>
           <th scope="col">Thông tin viên chức</th>
+          <th scope="col">Thông tin cơ bản</th>
           <th scope="col">Quản lý</th>
           <th scope="col"></th>
         </tr>
@@ -482,7 +498,10 @@
               </div>
             </td>
             <td>
-              {{ $vienchuc->ten_k }}
+              <b>Số CCCD: </b> {{ $vienchuc->cccd_vc }}
+            </td>
+            <td>
+
             </td>
             <td style="width: 21%;">
               <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc)}}">
