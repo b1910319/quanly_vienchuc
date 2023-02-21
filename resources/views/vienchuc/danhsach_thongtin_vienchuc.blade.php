@@ -106,14 +106,28 @@
           </div>
         </div>
       </div>
-      <div class="col-1">
-        <div class="dropdown" >
-          <button class="dropbtn">Khoa</button>
-          <div class="dropdown-content">
-            <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
+      <div class="col-3">
+        <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_ngaysinh') }}" method="post">
+          {{ csrf_field() }}
+          <div class="row">
+            <div class="col-4">
+              <input type='date' class='form-control input_table' autofocus required name="batdau">
+            </div>
+            <div class="col-4">
+              <input type='date' class='form-control input_table' autofocus required name="ketthuc">
+            </div>
+            <div class="col-4">
+              <button type="submit"  class="btn btn-outline-primary font-weight-bold">
+                <i class="fa-solid fa-magnifying-glass-plus"></i>
+                Tìm
+              </button>
+            </div>
           </div>
-        </div>
+          
+        </form>
       </div>
+      
+      
       <div class="col-1">
         <div class="dropdown" >
           <button class="dropbtn">Khoa</button>
