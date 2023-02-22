@@ -490,6 +490,7 @@ class VienChucController extends Controller
     }
   }
   public function update_thongtin_vienchuc(Request $request, $ma_vc){
+    $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')

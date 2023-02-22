@@ -231,6 +231,11 @@
                       </li>
                     </ul>
                   </li>
+                  <li>
+                    <a href="{{ URL::to('/nghihuu') }}">
+                      Nghĩ hưu
+                    </a>
+                  </li>
                 </ul>
               </li>
             @endif
@@ -824,6 +829,7 @@
   <script>
       $(document).ready(function() {
           $('#mytable').DataTable();
+          $('#mytable1').DataTable();
       });
   </script>
   {{--  --}}

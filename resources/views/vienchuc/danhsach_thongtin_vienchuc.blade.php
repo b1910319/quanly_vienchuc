@@ -606,6 +606,12 @@
                       </button>
                     </a>
                   <?php
+                }elseif ($vienchuc->status_vc == 2) {
+                  ?>
+                    <button type="button" class="btn btn-success" style="background-color: #850000; border: none;">
+                      Nghĩ hưu
+                    </button>
+                  <?php
                 }
               ?>
             </td>

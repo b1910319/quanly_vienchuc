@@ -16,6 +16,7 @@ use App\Http\Controllers\GiaDinhController;
 use App\Http\Controllers\LoaiBangCapController;
 use App\Http\Controllers\HeDaoTaoController;
 use App\Http\Controllers\BangCapController;
+use App\Http\Controllers\NghiHuuController;
 
 
 Route::get('/login',[HomeController::class, 'index']);
@@ -209,8 +210,8 @@ Route::get('/delete_all_bangcap/{ma_vc}',[BangCapController::class, 'delete_all_
 
 
 
-
-
+Route::get('/nghihuu',[NghiHuuController::class, 'nghihuu']);
+Route::post('/updated_nghihuu',[NghiHuuController::class, 'updated_nghihuu']);
 
 
 

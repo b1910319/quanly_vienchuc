@@ -8,7 +8,7 @@
       </div>
       <div class="text-right">
         <h3 class="mb-1"> 268 </h3>
-        <p class="text-muted mb-1">Viên chức</p>
+        <p class="text-muted mb-1">Quản lý công tác tổ chức</p>
       </div>
     </div>
   </div><!-- end col -->

@@ -31,9 +31,24 @@ class HomeController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
-    return view('home.home')
+    if($phanquyen_admin){
+
+      return view('home.home_admin')
       ->with('title', $title)
       ->with('phanquyen_qltt', $phanquyen_qltt)
       ->with('phanquyen_admin', $phanquyen_admin);
+    }else if( $phanquyen_qltt){
+
+      return view('home.home_qltt')
+      ->with('title', $title)
+      ->with('phanquyen_qltt', $phanquyen_qltt)
+      ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return view('home.home')
+      
+      ->with('title', $title)
+      ->with('phanquyen_qltt', $phanquyen_qltt)
+      ->with('phanquyen_admin', $phanquyen_admin);
+    }
   }
 }
