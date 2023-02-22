@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
 use App\Models\TonGiao;
+use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 
 class TonGiaoController extends Controller
@@ -36,12 +37,19 @@ class TonGiaoController extends Controller
       $count_status = TonGiao::select(DB::raw('count(ma_tg) as sum, status_tg'))
         ->groupBy('status_tg')
         ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('tongiao.tongiao')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
         ->with('title', $title)
         ->with('count_status', $count_status)
+        ->with('count_nangbac', $count_nangbac)
         ->with('list', $list);
     }else{
       return Redirect::to('/home');
@@ -101,9 +109,16 @@ class TonGiaoController extends Controller
     $title = "Cập nhật thông tin tôn giáo";
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = TonGiao::find($ma_tg);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('tongiao.tongiao_edit')
         ->with('edit', $edit)
         ->with('title', $title)
+        ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{

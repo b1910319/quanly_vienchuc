@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Khoa;
 use App\Models\PhanQuyen;
+use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 
 class KhoaController extends Controller
@@ -38,6 +39,12 @@ class KhoaController extends Controller
       $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
         ->where('ma_q', '=', '8')
         ->first();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('khoa.quanly_khoa')
         ->with('count', $count)
         ->with('title', $title)
@@ -45,6 +52,7 @@ class KhoaController extends Controller
         ->with('count_status', $count_status)
         ->with('count_vienchuc_khoa', $count_vienchuc_khoa)
         ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('count_nangbac', $count_nangbac)
         ->with('list', $list);
     }else{
       return Redirect::to('/home');
@@ -104,10 +112,17 @@ class KhoaController extends Controller
       $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
         ->where('ma_q', '=', '8')
         ->first();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('khoa.quanly_khoa_edit')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('title', $title)
+        ->with('count_nangbac', $count_nangbac)
         ->with('edit', $edit);
     }else{
       return Redirect::to('/home');

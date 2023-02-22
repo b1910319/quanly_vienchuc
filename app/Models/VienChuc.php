@@ -41,6 +41,7 @@ class VienChuc extends Model
     'ngayxuatngu_vc',
     'quanham_vc',
     'ngayhuongbac_vc',
+    'ngaynangbac_vc',
     'danhhieucao_vc',
     'sotruong_vc',
     'chieucao_vc',

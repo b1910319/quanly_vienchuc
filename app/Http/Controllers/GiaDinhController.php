@@ -39,6 +39,12 @@ class GiaDinhController extends Controller
         ->groupBy('status_gd')
         ->get();
       $vienchuc = VienChuc::find($ma_vc);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('giadinh.giadinh')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
@@ -47,6 +53,7 @@ class GiaDinhController extends Controller
         ->with('count_status', $count_status)
         ->with('list', $list)
         ->with('vienchuc', $vienchuc)
+        ->with('count_nangbac', $count_nangbac)
         ->with('title', $title);
     }
   }
@@ -110,10 +117,17 @@ class GiaDinhController extends Controller
       $edit = GiaDinh::find($ma_gd);
       $list_vienchuc = VienChuc::where('status_vc', '<>', '1')
         ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('giadinh.giadinh_edit')
         ->with('edit', $edit)
         ->with('title', $title)
         ->with('list_vienchuc', $list_vienchuc)
+        ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{

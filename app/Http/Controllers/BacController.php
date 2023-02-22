@@ -6,8 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Bac;
+use App\Models\ChucVu;
+use App\Models\DanToc;
+use App\Models\Khoa;
 use App\Models\Ngach;
 use App\Models\PhanQuyen;
+use App\Models\ThuongBinh;
+use App\Models\TonGiao;
+use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 
 
@@ -43,6 +49,12 @@ class BacController extends Controller
         ->orderBy('ma_b', 'desc')
         ->get();
       $ngach = Ngach::find($ma_n);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('bac.bac_ngach')
         ->with('ma_n', $ma_n)
         ->with('count', $count)
@@ -50,6 +62,7 @@ class BacController extends Controller
         ->with('list', $list)
         ->with('ngach', $ngach)
         ->with('title', $title)
+        ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
@@ -112,10 +125,17 @@ class BacController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = Bac::find($ma_b);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('bac.bac_ngach_edit')
         ->with('edit', $edit)
         ->with('ma_n', $ma_n)
         ->with('title', $title)
+        ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
@@ -203,6 +223,12 @@ class BacController extends Controller
         ->get();
       $list_ngach = Ngach::where('status_n', '<>', '1')
         ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('bac.bac')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
@@ -210,6 +236,7 @@ class BacController extends Controller
         ->with('title', $title)
         ->with('count_status', $count_status)
         ->with('list_ngach',$list_ngach)
+        ->with('count_nangbac', $count_nangbac)
         ->with('list', $list);
     }else{
       return Redirect::to('/home');
@@ -273,11 +300,18 @@ class BacController extends Controller
       $edit = Bac::find($ma_b);
       $list_ngach = Ngach::where('status_n', '<>', '1')
         ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('bac.bac_edit')
         ->with('edit', $edit)
         ->with('title', $title)
         ->with('list_ngach', $list_ngach)
         ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');
@@ -362,6 +396,76 @@ class BacController extends Controller
         $output = '';
       }
       return $output;
+    }
+  }
+  public function nangbac(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $list_khoa = Khoa::get();
+      $list_chucvu = ChucVu::get();
+      $list_ngach = Ngach::get();
+      $list_bac = Bac::get();
+      $list_dantoc = DanToc::get();
+      $list_tongiao = TonGiao::get();
+      $list_thuongbinh = ThuongBinh::get();
+      $title = "Nâng bậc";
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $list_vienchuc = VienChuc::whereBetween('ngaynangbac_vc', [$batdau, $ketthuc])
+        ->orderBy('vienchuc.ma_vc', 'desc')
+        ->get();
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      $list_nangbac_homnay = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->get();
+      return view('bac.nangbac')
+        ->with('title', $title)
+        ->with('list_vienchuc', $list_vienchuc)
+        ->with('list_khoa', $list_khoa)
+        ->with('list_chucvu', $list_chucvu)
+        ->with('list_ngach', $list_ngach)
+        ->with('list_bac', $list_bac)
+        ->with('list_dantoc', $list_dantoc)
+        ->with('list_tongiao', $list_tongiao)
+        ->with('list_thuongbinh', $list_thuongbinh)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('count_nangbac', $count_nangbac)
+        ->with('list_nangbac_homnay', $list_nangbac_homnay)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function updated_nangbac(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $data = $request->all();
+      $vienchuc = VienChuc::find($data['ma_vc']);
+      $vienchuc->ma_b = $data['ma_b'];
+      $vienchuc->ngayhuongbac_vc = $data['ngayhuongbac_vc'];
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ngach = Ngach::find($data['ma_n']);
+      $vienchuc->ngaynangbac_vc = Carbon::parse(Carbon::now()->addYears($ngach->sonamnangbac_n))->format('Y-m-d');
+      $vienchuc->save();
+      return Redirect::to('/nangbac');
+    }else{
+      return Redirect::to('/home');
     }
   }
 }

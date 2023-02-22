@@ -82,6 +82,12 @@ class VienChucController extends Controller
       $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
         ->where('ma_q', '=', '8')
         ->first();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('vienchuc.admin_vienchuc_khoa')
         ->with('ma_k', $ma_k)
         ->with('count', $count)
@@ -89,6 +95,7 @@ class VienChucController extends Controller
         ->with('list', $list)
         ->with('khoa', $khoa)
         ->with('title', $title)
+        ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
@@ -161,9 +168,16 @@ class VienChucController extends Controller
       $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
         ->where('ma_q', '=', '8')
         ->first();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('vienchuc.admin_vienchuc_khoa_edit')
         ->with('edit', $edit)
         ->with('title', $title)
+        ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
@@ -254,6 +268,12 @@ class VienChucController extends Controller
       $list_khoa = Khoa::where('status_k', '<>','1')
         ->orderBy('ten_k', 'asc')
         ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('vienchuc.quanly_vienchuc_khoa')
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('title', $title)
@@ -261,6 +281,7 @@ class VienChucController extends Controller
         ->with('count_status', $count_status)
         ->with('list', $list)
         ->with('list_khoa', $list_khoa)
+        ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');
@@ -340,6 +361,12 @@ class VienChucController extends Controller
         ->orderBy('ten_k', 'asc')
         ->get();
       $khoa_ma = Khoa::find($ma_k);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('vienchuc.search_vienchuc_khoa')
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
@@ -348,6 +375,7 @@ class VienChucController extends Controller
         ->with('list_khoa', $list_khoa)
         ->with('khoa_ma', $khoa_ma)
         ->with('title', $title)
+        ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');
@@ -376,10 +404,17 @@ class VienChucController extends Controller
         ->select(DB::raw('count(ma_bc) as sum, vienchuc.ma_vc'))
         ->groupBy('vienchuc.ma_vc')
         ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('vienchuc.thongtin_vienchuc_add')
       ->with('list_vienchuc', $list_vienchuc)
       ->with('title', $title)
       ->with('count_bangcap', $count_bangcap)
+      ->with('count_nangbac', $count_nangbac)
       ->with('count_quanhe_giadinh', $count_quanhe_giadinh)
       ->with('phanquyen_qltt', $phanquyen_qltt)
       ->with('phanquyen_admin', $phanquyen_admin);
@@ -424,6 +459,12 @@ class VienChucController extends Controller
         ->get();
       $quequan = QueQuan::where('ma_vc', $edit->ma_vc)
         ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('vienchuc.thongtin_vienchuc_edit')
         ->with('title', $title)
         ->with('edit', $edit)
@@ -439,6 +480,7 @@ class VienChucController extends Controller
         ->with('list_xa', $list_xa)
         ->with('noisinh', $noisinh)
         ->with('quequan', $quequan)
+        ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
@@ -540,6 +582,9 @@ class VienChucController extends Controller
       $vienchuc->ngayxuatngu_vc = $data['ngayxuatngu_vc'];
       $vienchuc->quanham_vc = $data['quanham_vc'];
       $vienchuc->ngayhuongbac_vc = $data['ngayhuongbac_vc'];
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ngach = Ngach::find($data['ma_n']);
+      $vienchuc->ngaynangbac_vc = Carbon::parse(Carbon::now()->addYears($ngach->sonamnangbac_n))->format('Y-m-d');
       $vienchuc->danhhieucao_vc = $data['danhhieucao_vc'];
       $vienchuc->sotruong_vc = $data['sotruong_vc'];
       $vienchuc->chieucao_vc = $data['chieucao_vc'];
@@ -607,6 +652,12 @@ class VienChucController extends Controller
       $list_loiabangcap = LoaiBangCap::get();
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('vienchuc.danhsach_thongtin_vienchuc')
         ->with('title', $title)
         ->with('list_khoa', $list_khoa)
@@ -619,6 +670,7 @@ class VienChucController extends Controller
         ->with('list_khoa_show', $list_khoa_show)
         ->with('count', $count)
         ->with('ten',' ')
+        ->with('count_nangbac', $count_nangbac)
         ->with('list_tinh', $list_tinh)
         ->with('list_vienchuc', $list_vienchuc)
         ->with('count_status', $count_status)
@@ -666,6 +718,12 @@ class VienChucController extends Controller
       $list_loiabangcap = LoaiBangCap::get();
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('vienchuc.danhsach_thongtin_vienchuc')
         ->with('title', $title)
         ->with('list_khoa', $list_khoa)
@@ -677,6 +735,7 @@ class VienChucController extends Controller
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('list_khoa_show', $list_khoa_show)
         ->with('count', $count)
+        ->with('count_nangbac', $count_nangbac)
         ->with('ten', $khoa->ten_k)
         ->with('list_tinh', $list_tinh)
         ->with('list_vienchuc', $list_vienchuc)
@@ -728,6 +787,12 @@ class VienChucController extends Controller
       $list_loiabangcap = LoaiBangCap::get();
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('vienchuc.danhsach_thongtin_vienchuc')
         ->with('title', $title)
         ->with('list_khoa', $list_khoa)
@@ -740,6 +805,7 @@ class VienChucController extends Controller
         ->with('list_khoa_show', $list_khoa_show)
         ->with('count', $count)
         ->with('ten', $tinh->ten_t)
+        ->with('count_nangbac', $count_nangbac)
         ->with('list_tinh', $list_tinh)
         ->with('list_vienchuc', $list_vienchuc)
         ->with('count_status', $count_status)
@@ -786,6 +852,12 @@ class VienChucController extends Controller
       $list_loiabangcap = LoaiBangCap::get();
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('vienchuc.danhsach_thongtin_vienchuc')
         ->with('title', $title)
         ->with('list_khoa', $list_khoa)
@@ -797,6 +869,7 @@ class VienChucController extends Controller
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('list_khoa_show', $list_khoa_show)
         ->with('count', $count)
+        ->with('count_nangbac', $count_nangbac)
         ->with('ten', $dantoc->ten_dt)
         ->with('list_tinh', $list_tinh)
         ->with('list_vienchuc', $list_vienchuc)
@@ -843,6 +916,12 @@ class VienChucController extends Controller
       $list_loiabangcap = LoaiBangCap::get();
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('vienchuc.danhsach_thongtin_vienchuc')
         ->with('title', $title)
         ->with('list_khoa', $list_khoa)
@@ -854,6 +933,7 @@ class VienChucController extends Controller
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('list_khoa_show', $list_khoa_show)
         ->with('count', $count)
+        ->with('count_nangbac', $count_nangbac)
         ->with('ten', $data['batdau'].' -> '.$data['ketthuc'])
         ->with('list_tinh', $list_tinh)
         ->with('list_vienchuc', $list_vienchuc)
@@ -901,6 +981,12 @@ class VienChucController extends Controller
       $list_loiabangcap = LoaiBangCap::get();
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('vienchuc.danhsach_thongtin_vienchuc')
         ->with('title', $title)
         ->with('list_khoa', $list_khoa)
@@ -912,6 +998,7 @@ class VienChucController extends Controller
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('list_khoa_show', $list_khoa_show)
         ->with('count', $count)
+        ->with('count_nangbac', $count_nangbac)
         ->with('ten', $dantoc->ten_dt)
         ->with('list_tinh', $list_tinh)
         ->with('list_vienchuc', $list_vienchuc)
@@ -963,6 +1050,12 @@ class VienChucController extends Controller
       }else if($gt == 1){
         $ten = 'Nữ';
       }
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('vienchuc.danhsach_thongtin_vienchuc')
         ->with('title', $title)
         ->with('list_khoa', $list_khoa)
@@ -975,6 +1068,7 @@ class VienChucController extends Controller
         ->with('list_khoa_show', $list_khoa_show)
         ->with('count', $count)
         ->with('ten', $ten)
+        ->with('count_nangbac', $count_nangbac)
         ->with('list_tinh', $list_tinh)
         ->with('list_vienchuc', $list_vienchuc)
         ->with('count_status', $count_status)
@@ -1026,6 +1120,12 @@ class VienChucController extends Controller
       $list_thuongbinh = ThuongBinh::get();
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('vienchuc.danhsach_thongtin_vienchuc')
         ->with('title', $title)
         ->with('list_khoa', $list_khoa)
@@ -1037,6 +1137,7 @@ class VienChucController extends Controller
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('list_khoa_show', $list_khoa_show)
         ->with('count', $count)
+        ->with('count_nangbac', $count_nangbac)
         ->with('ten', 'Ngạch: '.$ngach->ten_n.' ,'.'Bậc: '.$bac->ten_b)
         ->with('list_tinh', $list_tinh)
         ->with('list_vienchuc', $list_vienchuc)
@@ -1084,6 +1185,12 @@ class VienChucController extends Controller
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
       $thuongbinh = ThuongBinh::find($ma_tb);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('vienchuc.danhsach_thongtin_vienchuc')
         ->with('title', $title)
         ->with('list_khoa', $list_khoa)
@@ -1095,6 +1202,7 @@ class VienChucController extends Controller
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('list_khoa_show', $list_khoa_show)
         ->with('count', $count)
+        ->with('count_nangbac', $count_nangbac)
         ->with('ten', $thuongbinh->ten_tb)
         ->with('list_tinh', $list_tinh)
         ->with('list_hedaotao', $list_hedaotao)
@@ -1141,6 +1249,12 @@ class VienChucController extends Controller
       $list_loiabangcap = LoaiBangCap::get();
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('vienchuc.danhsach_thongtin_vienchuc')
         ->with('title', $title)
         ->with('list_khoa', $list_khoa)
@@ -1152,6 +1266,7 @@ class VienChucController extends Controller
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('list_khoa_show', $list_khoa_show)
         ->with('count', $count)
+        ->with('count_nangbac', $count_nangbac)
         ->with('ten', $data['batdau'].' -> '.$data['ketthuc'])
         ->with('list_tinh', $list_tinh)
         ->with('list_hedaotao', $list_hedaotao)
@@ -1205,6 +1320,12 @@ class VienChucController extends Controller
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
       $hedaotao = HeDaoTao::find($ma_hdt);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('vienchuc.danhsach_thongtin_vienchuc')
         ->with('title', $title)
         ->with('list_khoa', $list_khoa)
@@ -1216,6 +1337,7 @@ class VienChucController extends Controller
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('list_khoa_show', $list_khoa_show)
         ->with('count', $count)
+        ->with('count_nangbac', $count_nangbac)
         ->with('ten', $hedaotao->ten_hdt)
         ->with('list_tinh', $list_tinh)
         ->with('list_hedaotao', $list_hedaotao)
@@ -1269,6 +1391,12 @@ class VienChucController extends Controller
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
       $loaibangcap = LoaiBangCap::find($ma_lbc);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('vienchuc.danhsach_thongtin_vienchuc')
         ->with('title', $title)
         ->with('list_khoa', $list_khoa)
@@ -1280,6 +1408,7 @@ class VienChucController extends Controller
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('list_khoa_show', $list_khoa_show)
         ->with('count', $count)
+        ->with('count_nangbac', $count_nangbac)
         ->with('ten', $loaibangcap->ten_lbc)
         ->with('list_tinh', $list_tinh)
         ->with('list_hedaotao', $list_hedaotao)

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Ngach;
 use App\Models\PhanQuyen;
+use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 
 class NgachController extends Controller
@@ -40,11 +41,18 @@ class NgachController extends Controller
         ->select(DB::raw('count(ma_b) as sum, ngach.ma_n'))
         ->groupBy('ngach.ma_n')
         ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('ngach.ngach')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
         ->with('title', $title)
+        ->with('count_nangbac', $count_nangbac)
         ->with('count_bac_ngach',$count_bac_ngach)
         ->with('count_status', $count_status)
         ->with('list', $list);
@@ -108,9 +116,16 @@ class NgachController extends Controller
     $title = "Cập nhật thông tin ngạch";
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = Ngach::find($ma_n);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('ngach.ngach_edit')
         ->with('edit', $edit)
         ->with('title', $title)
+        ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{

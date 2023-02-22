@@ -137,6 +137,9 @@ Route::get('/delete_bac/{ma_b}',[BacController::class, 'delete_bac']);
 Route::get('/delete_all_bac',[BacController::class, 'delete_all_bac']);
 Route::get('/change_ngach',[BacController::class, 'change_ngach']);
 
+Route::get('/nangbac',[BacController::class, 'nangbac']);
+Route::post('/updated_nangbac',[BacController::class, 'updated_nangbac']);
+
 
 
 

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\LoaiBangCap;
 use App\Models\PhanQuyen;
+use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 
 class LoaiBangCapController extends Controller
@@ -36,12 +37,19 @@ class LoaiBangCapController extends Controller
       $count_status = LoaiBangCap::select(DB::raw('count(ma_lbc) as sum, status_lbc'))
         ->groupBy('status_lbc')
         ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('loaibangcap.loaibangcap')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
         ->with('title', $title)
         ->with('count_status', $count_status)
+        ->with('count_nangbac', $count_nangbac)
         ->with('list', $list);
     }else{
       return Redirect::to('/home');
@@ -101,9 +109,16 @@ class LoaiBangCapController extends Controller
     $title = "Cập nhật thông tin loại bằng cấp";
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = LoaiBangCap::find($ma_lbc);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('loaibangcap.loaibangcap_edit')
         ->with('edit', $edit)
         ->with('title', $title)
+        ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{

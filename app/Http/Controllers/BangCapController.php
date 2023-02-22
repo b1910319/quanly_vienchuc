@@ -52,6 +52,12 @@ class BangCapController extends Controller
         ->orderBy('ten_lbc', 'asc')
         ->get();
       $vienchuc = VienChuc::find($ma_vc);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       return view('bangcap.bangcap')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
@@ -62,6 +68,7 @@ class BangCapController extends Controller
         ->with('list_hedaotao', $list_hedaotao)
         ->with('list_loaibangcap', $list_loaibangcap)
         ->with('count_status', $count_status)
+        ->with('count_nangbac', $count_nangbac)
         ->with('list', $list);
     }else{
       return Redirect::to('/home');
@@ -130,6 +137,12 @@ class BangCapController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = BangCap::find($ma_bc);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
       $list_hedaotao = HeDaoTao::where('status_hdt', '<>', '1')
         ->orderBy('ten_hdt', 'asc')
         ->get();
@@ -143,6 +156,7 @@ class BangCapController extends Controller
         ->with('list_hedaotao', $list_hedaotao)
         ->with('list_loaibangcap', $list_loaibangcap)
         ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');
