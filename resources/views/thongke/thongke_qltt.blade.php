@@ -4,10 +4,10 @@
   <div class="card-box col-6">
     <div class="row">
       <div class="col-10">
-        <p class="fw-bold">Thống kê viên chức theo hình thức đào tạo </p>
+        <p class="fw-bold">Thống kê viên chức theo loại bằng cấp </p>
       </div>
       <div class="col-2">
-        <a href="{{ URL::to('thongke_qltt_hdt_pdf') }}">
+        <a href="{{ URL::to('thongke_qltt_lbc_pdf') }}">
           <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file PDF</button>
         </a>
       </div>
@@ -17,10 +17,10 @@
   <div class="card-box col-6">
     <div class="row">
       <div class="col-10">
-        <p class="fw-bold">Thống kê viên chức theo loại bằng cấp </p>
+        <p class="fw-bold">Thống kê viên chức theo hình thức đào tạo </p>
       </div>
       <div class="col-2">
-        <a href="{{ URL::to('thongke_qltt_lbc_pdf') }}">
+        <a href="{{ URL::to('thongke_qltt_hdt_pdf') }}">
           <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file PDF</button>
         </a>
       </div>
@@ -42,22 +42,75 @@
   </div>
   <div class="card-box col-6">
     <div class="row">
-      <div class="col-10">
+      <div class="col-4">
         <p class="fw-bold">Thống kê viên chức theo chức vụ</p>
       </div>
-      <div class="col-2">
-        <a href="{{ URL::to('thongke_qltt_chucvu_pdf') }}">
-          <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file PDF</button>
-        </a>
+      <div class="col-8">
+        <form action="{{ URL::to('thongke_qltt_chucvu_pdf') }}" method="post">
+          {{ csrf_field() }}
+          <div class="row">
+            <div class="col-5">
+              <select class="custom-select input_table" id="gender2" name="ma_cv">
+                <option value="0" >Chọn chức vụ</option>
+                @foreach ($list_chucvu as $chucvu)
+                  <option value="{{ $chucvu->ma_cv }}" >{{ $chucvu->ten_cv }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="col-4">
+              <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #00425A; border: none; color: white;">
+                Xuất file khoa
+              </button>
+            </div>
+            <div class="col-3">
+              <a href="{{ URL::to('thongke_qltt_chucvu_all_pdf') }}">
+                <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file PDF</button>
+              </a>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
     <div id="myfirstchart4" style="height: 250px;"></div>
+  </div>
+  <div class="card-box col-6">
+    <div class="row">
+      <div class="col-4">
+        <p class="fw-bold">Thống kê viên chức theo khoa </p>
+      </div>
+      <div class="col-8">
+        <form action="{{ URL::to('thongke_qltt_khoa_pdf') }}" method="post">
+          {{ csrf_field() }}
+          <div class="row">
+            <div class="col-5">
+              <select class="custom-select input_table" id="gender2" name="ma_k">
+                <option value="0" >Chọn khoa</option>
+                @foreach ($list_khoa as $khoa)
+                  <option value="{{ $khoa->ma_k }}" >{{ $khoa->ten_k }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="col-4">
+              <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #00425A; border: none; color: white;">
+                Xuất file khoa
+              </button>
+            </div>
+            <div class="col-3">
+              <a href="{{ URL::to('thongke_qltt_khoa_all_pdf') }}">
+                <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file PDF</button>
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="myfirstchart5" style="height: 250px;"></div>
   </div>
 </div>
 <script>
   $(document).ready(function(){
     new Morris.Area({
-      element: 'myfirstchart1',
+      element: 'myfirstchart2',
       pointFillColors: ['#FFB84C'],
       lineColors:['#F94A29'],
       parseTime: false,
@@ -81,7 +134,7 @@
       labels: ['Số viên chức']
     });
     new Morris.Line({
-      element: 'myfirstchart2',
+      element: 'myfirstchart1',
       pointFillColors: ['#F94A29'],
       parseTime: false,
       pointStrokeColors: ['#379237'],
@@ -149,9 +202,29 @@
           }
         ?>
       ],
-      // xkey: 'year',
-      // ykeys: ['value'],
-      // labels: ['Số viên chức']
+    });
+    new Morris.Line({
+      element: 'myfirstchart5',
+      pointFillColors: ['#F94A29'],
+      parseTime: false,
+      pointStrokeColors: ['#379237'],
+      data: [
+        <?php
+          foreach ($count_khoa as $key => $count){
+            foreach($list_khoa as $key => $khoa){
+              if($count->ma_k == $khoa->ma_k){
+                $ten_k = $khoa->ten_k;
+                $tong = $count->sum;
+                echo "{ year: '$ten_k', value: $tong },";
+              }
+            }
+            
+          }
+        ?>
+      ],
+      xkey: 'year',
+      ykeys: ['value'],
+      labels: ['Số viên chức']
     });
   })
 </script>
