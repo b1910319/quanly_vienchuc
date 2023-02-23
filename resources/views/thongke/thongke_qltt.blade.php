@@ -43,10 +43,10 @@
   <div class="card-box col-6">
     <div class="row">
       <div class="col-10">
-        <p class="fw-bold">Thống kê viên chức theo ngạch</p>
+        <p class="fw-bold">Thống kê viên chức theo chức vụ</p>
       </div>
       <div class="col-2">
-        <a href="{{ URL::to('thongke_qltt_ngach_pdf') }}">
+        <a href="{{ URL::to('thongke_qltt_chucvu_pdf') }}">
           <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file PDF</button>
         </a>
       </div>
@@ -124,6 +124,34 @@
       xkey: 'year',
       ykeys: ['value'],
       labels: ['Số viên chức']
+    });
+    new Morris.Donut({
+      element: 'myfirstchart4',
+      parseTime: false,
+      colors: [
+        'rgba(54, 162, 235, 0.6)',
+        'rgba(255, 206, 86, 0.6)',
+        'rgba(153, 102, 255, 0.6)',
+        'rgba(255, 159, 64, 0.6)',
+        'rgba(255, 99, 132, 0.6)'
+      ],
+      data: [
+        <?php
+          foreach ($count_chucvu as $key => $count){
+            foreach($list_chucvu as $key => $chucvu){
+              if($count->ma_cv == $chucvu->ma_cv){
+                $ten_cv = $chucvu->ten_cv;
+                $tong = $count->sum;
+                echo "{ label: '$ten_cv', value: $tong },";
+              }
+            }
+            
+          }
+        ?>
+      ],
+      // xkey: 'year',
+      // ykeys: ['value'],
+      // labels: ['Số viên chức']
     });
   })
 </script>

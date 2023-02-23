@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChucVu;
 use App\Models\HeDaoTao;
 use App\Models\LoaiBangCap;
 use App\Models\Ngach;
@@ -54,11 +55,17 @@ class ThongKeController extends Controller
         ->select(DB::raw('count(vienchuc.ma_vc) as sum, ngach.ma_n'))
         ->groupBy('ngach.ma_n')
         ->get();
+      $count_chucvu = VienChuc::join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+        ->select(DB::raw('count(vienchuc.ma_vc) as sum, chucvu.ma_cv'))
+        ->groupBy('chucvu.ma_cv')
+        ->get();
       $list_loaibangcap = LoaiBangCap::orderBy('ten_lbc', 'asc')
         ->get();
       $list_hedaotao = HeDaoTao::orderBy('ten_hdt', 'asc')
         ->get();
       $list_ngach = Ngach::orderBy('ten_n', 'asc')
+        ->get();
+      $list_chucvu = ChucVu::orderBy('ten_cv', 'asc')
         ->get();
       return view('thongke.thongke_qltt')
         ->with('title', $title)
@@ -67,6 +74,8 @@ class ThongKeController extends Controller
         ->with('list_ngach', $list_ngach)
         ->with('count_hedaotao', $count_hedaotao)
         ->with('list_hedaotao', $list_hedaotao)
+        ->with('count_chucvu', $count_chucvu)
+        ->with('list_chucvu', $list_chucvu)
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
@@ -104,6 +113,16 @@ class ThongKeController extends Controller
       ->orderBy('ten_n', 'asc')
       ->get();
     $pdf = PDF::loadView('pdf.pdf_ngach', [
+      'vienchuc' => $vienchuc,
+    ]);
+    return $pdf->stream();
+  }
+  public function thongke_qltt_chucvu_pdf(){
+    $vienchuc = VienChuc::join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+      ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+      ->orderBy('ten_cv', 'asc')
+      ->get();
+    $pdf = PDF::loadView('pdf.pdf_chucvu', [
       'vienchuc' => $vienchuc,
     ]);
     return $pdf->stream();
