@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\HeDaoTao;
 use App\Models\LoaiBangCap;
+use App\Models\Ngach;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -49,13 +50,21 @@ class ThongKeController extends Controller
         ->select(DB::raw('count(vienchuc.ma_vc) as sum, hedaotao.ma_hdt'))
         ->groupBy('hedaotao.ma_hdt')
         ->get();
+      $count_ngach = VienChuc::join('ngach', 'ngach.ma_n', '=', 'vienchuc.ma_n')
+        ->select(DB::raw('count(vienchuc.ma_vc) as sum, ngach.ma_n'))
+        ->groupBy('ngach.ma_n')
+        ->get();
       $list_loaibangcap = LoaiBangCap::orderBy('ten_lbc', 'asc')
         ->get();
       $list_hedaotao = HeDaoTao::orderBy('ten_hdt', 'asc')
         ->get();
+      $list_ngach = Ngach::orderBy('ten_n', 'asc')
+        ->get();
       return view('thongke.thongke_qltt')
         ->with('title', $title)
         ->with('list_loaibangcap', $list_loaibangcap)
+        ->with('count_ngach', $count_ngach)
+        ->with('list_ngach', $list_ngach)
         ->with('count_hedaotao', $count_hedaotao)
         ->with('list_hedaotao', $list_hedaotao)
         ->with('count_loaibangcap', $count_loaibangcap)
@@ -87,7 +96,15 @@ class ThongKeController extends Controller
     $pdf = PDF::loadView('pdf.pdf_hedaotao', [
       'vienchuc' => $vienchuc,
     ]);
-
+    return $pdf->stream();
+  }
+  public function thongke_qltt_ngach_pdf(){
+    $vienchuc = VienChuc::join('ngach', 'ngach.ma_n', '=', 'vienchuc.ma_n')
+      ->orderBy('ten_n', 'asc')
+      ->get();
+    $pdf = PDF::loadView('pdf.pdf_ngach', [
+      'vienchuc' => $vienchuc,
+    ]);
     return $pdf->stream();
   }
 }

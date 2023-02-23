@@ -223,7 +223,7 @@ Route::post('/updated_nghihuu',[NghiHuuController::class, 'updated_nghihuu']);
 Route::get('/thongke_qltt',[ThongKeController::class, 'thongke_qltt']);
 Route::get('/thongke_qltt_lbc_pdf',[ThongKeController::class, 'thongke_qltt_lbc_pdf']);
 Route::get('/thongke_qltt_hdt_pdf',[ThongKeController::class, 'thongke_qltt_hdt_pdf']);
-
+Route::get('/thongke_qltt_ngach_pdf',[ThongKeController::class, 'thongke_qltt_ngach_pdf']);
 
 
 
