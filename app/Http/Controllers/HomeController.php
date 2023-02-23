@@ -33,22 +33,35 @@ class HomeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     Carbon::now('Asia/Ho_Chi_Minh'); 
-    $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
       ->select(DB::raw('count(ma_vc) as sum'))
       ->get();
     if($phanquyen_admin){
-
+      $count_vienchuc = VienChuc::select(DB::raw('count(ma_vc) as sum'))
+        ->where('status_vc', '<>', '2')
+        ->get();
+      $count_vienchuc_nghihuu = VienChuc::select(DB::raw('count(ma_vc) as sum'))
+        ->where('status_vc', '2')
+        ->get();
       return view('home.home_admin')
         ->with('title', $title)
+        ->with('count_vienchuc', $count_vienchuc)
+        ->with('count_vienchuc_nghihuu', $count_vienchuc_nghihuu)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else if( $phanquyen_qltt){
-
+      $count_vienchuc = VienChuc::select(DB::raw('count(ma_vc) as sum'))
+        ->where('status_vc', '<>', '2')
+        ->get();
+      $count_vienchuc_nghihuu = VienChuc::select(DB::raw('count(ma_vc) as sum'))
+        ->where('status_vc', '2')
+        ->get();
       return view('home.home_qltt')
         ->with('title', $title)
+        ->with('count_vienchuc_nghihuu', $count_vienchuc_nghihuu)
+        ->with('count_vienchuc', $count_vienchuc)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);

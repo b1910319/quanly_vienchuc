@@ -39,7 +39,7 @@
       </div>
       <div class="row">
         <div class="col-5">
-          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2" style="background-color: #00425A; border: none; width: 100%" >Chọn khoa thống kê</button>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2" style="background-color: #00425A; border: none; width: 100%" >Chọn khoa để xuất file</button>
           <div id="demo2" class="collapse mt-3">
             <form action="{{ URL::to('thongke_qltt_chucvu_pdf') }}" method="post">
               {{ csrf_field() }}
@@ -90,7 +90,7 @@
       </div>
       <div class="row">
         <div class="col-5">
-          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo1" style="background-color: #00425A; border: none; width: 100%" >Chọn khoa thống kê</button>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo1" style="background-color: #00425A; border: none; width: 100%" >Chọn khoa để xuất file</button>
           <div id="demo1" class="collapse mt-3">
             <form action="{{ URL::to('thongke_qltt_khoa_pdf') }}" method="post">
               {{ csrf_field() }}
@@ -129,7 +129,7 @@
     </div>
     <div class="row">
       <div class="col-6">
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color: #00425A; border: none; width: 100%" >Thống kê theo khoảng thời gian</button>
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color: #00425A; border: none; width: 100%" >Chọn khoảng thời gian để xuất file</button>
         <div id="demo" class="collapse mt-3">
           <form action="{{ URL::to('thongke_qltt_nghihuu_time_pdf') }}" method="post">
             {{ csrf_field() }}
@@ -150,7 +150,7 @@
         </div>
       </div>
       <div class="col-6">
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >Chọn khoa thống kê</button>
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >Chọn khoa để xuất file</button>
           <div id="demo3" class="collapse mt-3">
             <form action="{{ URL::to('thongke_qltt_nghihuu_khoa_pdf') }}" method="post">
               {{ csrf_field() }}
@@ -187,7 +187,7 @@
       </div>
       <div class="row">
         <div class="col-5">
-          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2" style="background-color: #00425A; border: none; width: 100%" >Chọn tỉnh thống kê</button>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2" style="background-color: #00425A; border: none; width: 100%" >Chọn tỉnh để xuất file</button>
           <div id="demo2" class="collapse mt-3">
             <form action="{{ URL::to('thongke_qltt_quequan_tinh_pdf') }}" method="post">
               {{ csrf_field() }}
