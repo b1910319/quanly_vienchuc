@@ -100,6 +100,7 @@ class ThongKeController extends Controller
   }
   public function thongke_qltt_ngach_pdf(){
     $vienchuc = VienChuc::join('ngach', 'ngach.ma_n', '=', 'vienchuc.ma_n')
+      ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
       ->orderBy('ten_n', 'asc')
       ->get();
     $pdf = PDF::loadView('pdf.pdf_ngach', [

@@ -33,7 +33,7 @@
         <p class="fw-bold">Thống kê viên chức theo ngạch</p>
       </div>
       <div class="col-2">
-        <a href="{{ URL::to('thongke_qltt_hdt_pdf') }}">
+        <a href="{{ URL::to('thongke_qltt_ngach_pdf') }}">
           <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file PDF</button>
         </a>
       </div>
@@ -46,7 +46,7 @@
         <p class="fw-bold">Thống kê viên chức theo ngạch</p>
       </div>
       <div class="col-2">
-        <a href="{{ URL::to('thongke_qltt_hdt_pdf') }}">
+        <a href="{{ URL::to('thongke_qltt_ngach_pdf') }}">
           <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file PDF</button>
         </a>
       </div>

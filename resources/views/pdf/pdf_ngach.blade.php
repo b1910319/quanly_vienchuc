@@ -37,7 +37,7 @@
           <th scope="col">#</th>
           <th scope="col">Viên chức</th>
           <th scope="col">Khoa</th>
-          <th scope="col">Bằng cấp</th>
+          <th scope="col">Ngạch</th>
         </tr>
       </thead>
       <tbody>
