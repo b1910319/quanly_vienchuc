@@ -17,6 +17,7 @@ use App\Http\Controllers\LoaiBangCapController;
 use App\Http\Controllers\HeDaoTaoController;
 use App\Http\Controllers\BangCapController;
 use App\Http\Controllers\NghiHuuController;
+use App\Http\Controllers\ThongKeController;
 
 
 Route::get('/login',[HomeController::class, 'index']);
@@ -219,8 +220,8 @@ Route::post('/updated_nghihuu',[NghiHuuController::class, 'updated_nghihuu']);
 
 
 
-
-
+Route::get('/thongke_qltt',[ThongKeController::class, 'thongke_qltt']);
+Route::get('/thongke_qltt_lbc_pdf',[ThongKeController::class, 'thongke_qltt_lbc_pdf']);
 
 
 

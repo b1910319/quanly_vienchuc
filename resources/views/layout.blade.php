@@ -33,6 +33,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   {{--  --}}
+  {{-- link jquery --}}
+  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+  {{--  --}}
+  {{-- css biểu đồ --}}
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+  {{--  --}}
 </head>
 <body>
   <!-- Begin page -->
@@ -243,6 +249,11 @@
                       @endforeach
                       
                       Nâng bậc
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ URL::to('/thongke_qltt') }}">
+                      Thống kê
                     </a>
                   </li>
                 </ul>
@@ -843,7 +854,11 @@
       });
   </script>
   {{--  --}}
-
+  {{-- js biểu đồ --}}
+  <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"> 
+  </script>
+  {{--  --}}
 </body>
 
 </html>

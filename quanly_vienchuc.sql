@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 22, 2023 lúc 08:36 AM
+-- Thời gian đã tạo: Th2 23, 2023 lúc 01:57 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -113,7 +113,8 @@ CREATE TABLE `bangcap` (
 INSERT INTO `bangcap` (`ma_bc`, `ma_vc`, `ma_hdt`, `ma_lbc`, `trinhdochuyenmon_bc`, `truonghoc_bc`, `nienkhoa_bc`, `sobang_bc`, `ngaycap_bc`, `noicap_bc`, `xephang_bc`, `status_bc`, `created_bc`, `updated_bc`) VALUES
 (4, 61, 4, 5, 'ẻềâ', 'dèâ', 'etồâ', 'detồâ', '2023-02-14', 'fe', 'èwr', 0, '2023-02-20 03:12:24', ' '),
 (5, 61, 4, 8, 'èwr', 'ẻẻwẻ', 'ẻwẻwe', 'ẻwẻwr', '2023-02-15', 'ẻwrưe', 'ẻwr', 0, '2023-02-20 03:12:40', ' '),
-(6, 60, 5, 7, 'ẻ', 'eểô', 'ể', 'ưêô', '2023-02-17', 'eêô', 'ưeeô', 0, '2023-02-20 03:13:02', ' ');
+(6, 60, 5, 7, 'ẻ', 'eểô', 'ể', 'ưêô', '2023-02-17', 'eêô', 'ưeeô', 0, '2023-02-20 03:13:02', ' '),
+(7, 62, 4, 5, 'yhyy', 'gt5', 't54', 't54', '2023-02-06', 't5', 'tr54', 0, '2023-02-22 08:43:43', ' ');
 
 -- --------------------------------------------------------
 
@@ -12319,7 +12320,7 @@ ALTER TABLE `bac`
 -- AUTO_INCREMENT cho bảng `bangcap`
 --
 ALTER TABLE `bangcap`
-  MODIFY `ma_bc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ma_bc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `chucvu`
