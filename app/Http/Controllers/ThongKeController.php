@@ -64,6 +64,11 @@ class ThongKeController extends Controller
         ->select(DB::raw('count(vienchuc.ma_vc) as sum, khoa.ma_k'))
         ->groupBy('khoa.ma_k')
         ->get();
+      $count_nghihuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('thoigiannghi_vc', '<>', ' ')
+        ->select(DB::raw('count(vienchuc.ma_vc) as sum, thoigiannghi_vc '))
+        ->groupBy('thoigiannghi_vc')
+        ->get();
       $list_loaibangcap = LoaiBangCap::orderBy('ten_lbc', 'asc')
         ->get();
       $list_hedaotao = HeDaoTao::orderBy('ten_hdt', 'asc')
@@ -85,6 +90,7 @@ class ThongKeController extends Controller
         ->with('list_hedaotao', $list_hedaotao)
         ->with('count_chucvu', $count_chucvu)
         ->with('list_chucvu', $list_chucvu)
+        ->with('count_nghihuu', $count_nghihuu)
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
@@ -246,6 +252,53 @@ class ThongKeController extends Controller
         ->orderBy('ten_k', 'asc')
         ->get();
       $pdf = PDF::loadView('pdf.pdf_khoa', [
+        'vienchuc' => $vienchuc,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qltt_nghihuu_time_pdf(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $data = $request->all();
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+        ->whereBetween('thoigiannghi_vc', [$data['batdau'], $data['ketthuc']])
+        ->orderBy('hoten_vc', 'asc')
+        ->get();
+      $pdf = PDF::loadView('pdf.pdf_nghihuu', [
+        'vienchuc' => $vienchuc,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qltt_nghihuu_all_pdf(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+        ->where('thoigiannghi_vc', '<>', ' ')
+        ->orderBy('hoten_vc', 'asc')
+        ->get();
+      $pdf = PDF::loadView('pdf.pdf_nghihuu', [
         'vienchuc' => $vienchuc,
       ]);
       return $pdf->stream();

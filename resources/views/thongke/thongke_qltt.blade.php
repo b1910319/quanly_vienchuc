@@ -8,7 +8,7 @@
       </div>
       <div class="col-2">
         <a href="{{ URL::to('thongke_qltt_lbc_pdf') }}">
-          <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file PDF</button>
+          <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file</button>
         </a>
       </div>
     </div>
@@ -17,24 +17,11 @@
   <div class="card-box col-6">
     <div class="row">
       <div class="col-10">
-        <p class="fw-bold">Thống kê viên chức theo hình thức đào tạo </p>
-      </div>
-      <div class="col-2">
-        <a href="{{ URL::to('thongke_qltt_hdt_pdf') }}">
-          <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file PDF</button>
-        </a>
-      </div>
-    </div>
-    <div id="myfirstchart2" style="height: 250px;"></div>
-  </div>
-  <div class="card-box col-6">
-    <div class="row">
-      <div class="col-10">
         <p class="fw-bold">Thống kê viên chức theo ngạch</p>
       </div>
       <div class="col-2">
         <a href="{{ URL::to('thongke_qltt_ngach_pdf') }}">
-          <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file PDF</button>
+          <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file</button>
         </a>
       </div>
     </div>
@@ -59,12 +46,12 @@
             </div>
             <div class="col-4">
               <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #00425A; border: none; color: white;">
-                Xuất file khoa
+                Xuất file
               </button>
             </div>
             <div class="col-3">
               <a href="{{ URL::to('thongke_qltt_chucvu_all_pdf') }}">
-                <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file PDF</button>
+                <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file</button>
               </a>
             </div>
           </div>
@@ -72,6 +59,19 @@
       </div>
     </div>
     <div id="myfirstchart4" style="height: 250px;"></div>
+  </div>
+  <div class="card-box col-6">
+    <div class="row">
+      <div class="col-10">
+        <p class="fw-bold">Thống kê viên chức theo hình thức đào tạo </p>
+      </div>
+      <div class="col-2">
+        <a href="{{ URL::to('thongke_qltt_hdt_pdf') }}">
+          <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file</button>
+        </a>
+      </div>
+    </div>
+    <div id="myfirstchart2" style="height: 250px;"></div>
   </div>
   <div class="card-box col-6">
     <div class="row">
@@ -92,12 +92,12 @@
             </div>
             <div class="col-4">
               <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #00425A; border: none; color: white;">
-                Xuất file khoa
+                Xuất file
               </button>
             </div>
             <div class="col-3">
               <a href="{{ URL::to('thongke_qltt_khoa_all_pdf') }}">
-                <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file PDF</button>
+                <button type="button" class="btn" style="background-color: #379237; border: none;">Xuất file</button>
               </a>
             </div>
           </div>
@@ -105,6 +105,35 @@
       </div>
     </div>
     <div id="myfirstchart5" style="height: 250px;"></div>
+  </div>
+  <div class="card-box col-6">
+    <div class="row">
+      <div class="col-4">
+        <p class="fw-bold">Thống kê viên chức nghĩ hưu</p>
+      </div>
+    </div>
+    <form action="{{ URL::to('thongke_qltt_nghihuu_time_pdf') }}" method="post">
+      {{ csrf_field() }}
+      <div class="row">
+        <div class="col-3">
+          <input type='date' class='form-control input_table' autofocus required name="batdau">
+        </div>
+        <div class="col-3">
+          <input type='date' class='form-control input_table' autofocus required name="ketthuc">
+        </div>
+        <div class="col-2">
+          <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #00425A; border: none; color: white;">
+            Xuất file
+          </button>
+        </div>
+        <div class="col-3">
+          <a href="{{ URL::to('thongke_qltt_nghihuu_all_pdf') }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file</button>
+          </a>
+        </div>
+      </div>
+    </form>
+    <div id="myfirstchart6" style="height: 250px;"></div>
   </div>
 </div>
 <script>
@@ -219,6 +248,23 @@
               }
             }
             
+          }
+        ?>
+      ],
+      xkey: 'year',
+      ykeys: ['value'],
+      labels: ['Số viên chức']
+    });
+    new Morris.Bar({
+      element: 'myfirstchart6',
+      parseTime: false,
+      barColors: ['#FF731D'],
+      data: [
+        <?php
+          foreach ($count_nghihuu as $key => $count){
+            $ngay = $count->thoigiannghi_vc;
+            $tong = $count->sum;
+            echo "{ year: '$ngay', value: $tong },";
           }
         ?>
       ],
