@@ -137,7 +137,7 @@
             <li>
               <a href="{{ URL::to('/home') }}" class="waves-effect">
                 <i class="remixicon-dashboard-line"></i>
-                <span class="badge badge-success badge-pill float-right">2</span>
+                {{-- <span class="badge badge-success badge-pill float-right">2</span> --}}
                 <span> Trang Chủ </span>
               </a>
             </li>

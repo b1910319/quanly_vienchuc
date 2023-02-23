@@ -4,7 +4,7 @@
   <div class="card-box col-6">
     <div class="row">
       <div class="col-10">
-        <p class="fw-bold">Thống kê viên chức theo loại bằng cấp </p>
+        <p class="fw-bold" style="font-size: 18px;">Thống kê viên chức theo loại bằng cấp </p>
       </div>
       <div class="col-2">
         <a href="{{ URL::to('thongke_qltt_lbc_pdf') }}">
@@ -17,7 +17,7 @@
   <div class="card-box col-6">
     <div class="row">
       <div class="col-10">
-        <p class="fw-bold">Thống kê viên chức theo ngạch</p>
+        <p class="fw-bold" style="font-size: 18px;">Thống kê viên chức theo ngạch</p>
       </div>
       <div class="col-2">
         <a href="{{ URL::to('thongke_qltt_ngach_pdf') }}">
@@ -30,7 +30,7 @@
   <div class="card-box col-6">
     <div class="row">
       <div class="col-10">
-        <p class="fw-bold">Thống kê viên chức theo chức vụ</p>
+        <p class="fw-bold" style="font-size: 18px;" >Thống kê viên chức theo chức vụ</p>
       </div>
       <div class="col-2">
         <a href="{{ URL::to('thongke_qltt_chucvu_all_pdf') }}">
@@ -68,7 +68,7 @@
   <div class="card-box col-6">
     <div class="row">
       <div class="col-10">
-        <p class="fw-bold">Thống kê viên chức theo hình thức đào tạo </p>
+        <p class="fw-bold" style="font-size: 18px;">Thống kê viên chức theo hình thức đào tạo </p>
       </div>
       <div class="col-2">
         <a href="{{ URL::to('thongke_qltt_hdt_pdf') }}">
@@ -81,7 +81,7 @@
   <div class="card-box col-6">
     <div class="row">
       <div class="col-10">
-        <p class="fw-bold">Thống kê viên chức theo khoa </p>
+        <p class="fw-bold" style="font-size: 18px;">Thống kê viên chức theo khoa </p>
       </div>
       <div class="col-2">
         <a href="{{ URL::to('thongke_qltt_khoa_all_pdf') }}">
@@ -119,7 +119,7 @@
   <div class="card-box col-6">
     <div class="row">
       <div class="col-10">
-        <p class="fw-bold">Thống kê viên chức nghĩ hưu</p>
+        <p class="fw-bold" style="font-size: 18px;">Thống kê viên chức nghĩ hưu</p>
       </div>
       <div class="col-2">
         <a href="{{ URL::to('thongke_qltt_nghihuu_all_pdf') }}">
@@ -178,7 +178,7 @@
   <div class="card-box col-6">
     <div class="row">
       <div class="col-10">
-        <p class="fw-bold">Thống kê viên chức theo quê quán</p>
+        <p class="fw-bold" style="font-size: 18px;">Thống kê viên chức theo quê quán</p>
       </div>
       <div class="col-2">
         <a href="{{ URL::to('thongke_qltt_quequan_all_pdf') }}">

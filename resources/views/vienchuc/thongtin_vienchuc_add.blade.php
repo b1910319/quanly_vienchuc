@@ -72,6 +72,7 @@
           <th scope="col">STT</th>
           <th scope="col">Tên </th>
           <th scope="col">UserName</th>
+          <th scope="col">Trạng thái</th>
           <th scope="col">Khoa</th>
           <th scope="col"></th>
         </tr>
@@ -84,6 +85,17 @@
               {{ $vienchuc->hoten_vc }}
             </td>
             <td>{{ $vienchuc->user_vc }}</td>
+            <td>
+              <?php
+                if($vienchuc->status_vc == 2){
+                  ?>
+                    <span class="badge rounded-pill text-bg-danger" style="background-color: #850000; border: none;">
+                      Nghĩ hưu
+                    </span>
+                  <?php
+                }
+              ?>
+            </td>
             <td>
               {{ $vienchuc->ten_k }}
             </td>

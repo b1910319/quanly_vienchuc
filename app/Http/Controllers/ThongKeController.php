@@ -41,36 +41,45 @@ class ThongKeController extends Controller
       Carbon::now('Asia/Ho_Chi_Minh'); 
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->where('status_vc', '<>', '2')
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
       $count_loaibangcap = VienChuc::join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
+        ->where('status_vc', '<>', '2')
         ->select(DB::raw('count(vienchuc.ma_vc) as sum, loaibangcap.ma_lbc'))
         ->groupBy('loaibangcap.ma_lbc')
         ->get();
       $count_hedaotao = VienChuc::join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
+        ->where('status_vc', '<>', '2')
         ->select(DB::raw('count(vienchuc.ma_vc) as sum, hedaotao.ma_hdt'))
         ->groupBy('hedaotao.ma_hdt')
         ->get();
       $count_ngach = VienChuc::join('ngach', 'ngach.ma_n', '=', 'vienchuc.ma_n')
+        ->where('status_vc', '<>', '2')
         ->select(DB::raw('count(vienchuc.ma_vc) as sum, ngach.ma_n'))
         ->groupBy('ngach.ma_n')
         ->get();
       $count_chucvu = VienChuc::join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+        ->where('status_vc', '<>', '2')
         ->select(DB::raw('count(vienchuc.ma_vc) as sum, chucvu.ma_cv'))
+        ->where('status_vc', '<>', '2')
         ->groupBy('chucvu.ma_cv')
         ->get();
       $count_khoa = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_vc', '<>', '2')
         ->select(DB::raw('count(vienchuc.ma_vc) as sum, khoa.ma_k'))
         ->groupBy('khoa.ma_k')
         ->get();
       $count_nghihuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('thoigiannghi_vc', '<>', ' ')
+        ->where('status_vc', '2')
         ->select(DB::raw('count(vienchuc.ma_vc) as sum, thoigiannghi_vc '))
         ->groupBy('thoigiannghi_vc')
         ->get();
       $count_tinh = VienChuc::join('quequan', 'quequan.ma_vc', '=', 'vienchuc.ma_vc')
+        ->where('status_vc', '<>', '2')
         ->join('tinh', 'tinh.ma_t', '=', 'quequan.ma_t')
         ->select(DB::raw('count(vienchuc.ma_vc) as sum, tinh.ma_t'))
         ->groupBy('tinh.ma_t')
@@ -122,6 +131,7 @@ class ThongKeController extends Controller
       $vienchuc = VienChuc::join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
       ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+      ->where('status_vc', '<>', '2')
       ->orderBy('ten_lbc', 'asc')
       ->get();
       $pdf = PDF::loadView('pdf.pdf_loaibangcap', [
@@ -143,10 +153,11 @@ class ThongKeController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $vienchuc = VienChuc::join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
-      ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
-      ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-      ->orderBy('ten_hdt', 'asc')
-      ->get();
+        ->where('status_vc', '<>', '2')
+        ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->orderBy('ten_hdt', 'asc')
+        ->get();
       $pdf = PDF::loadView('pdf.pdf_hedaotao', [
         'vienchuc' => $vienchuc,
       ]);
@@ -167,6 +178,7 @@ class ThongKeController extends Controller
     if($phanquyen_admin || $phanquyen_qltt){
       $vienchuc = VienChuc::join('ngach', 'ngach.ma_n', '=', 'vienchuc.ma_n')
       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+      ->where('status_vc', '<>', '2')
       ->orderBy('ten_n', 'asc')
       ->get();
       $pdf = PDF::loadView('pdf.pdf_ngach', [
@@ -191,6 +203,7 @@ class ThongKeController extends Controller
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
         ->where('chucvu.ma_cv', $data['ma_cv'])
+        ->where('status_vc', '<>', '2')
         ->orderBy('hoten_vc', 'asc')
         ->get();
       $pdf = PDF::loadView('pdf.pdf_chucvu', [
@@ -213,6 +226,7 @@ class ThongKeController extends Controller
     if($phanquyen_admin || $phanquyen_qltt){
       $vienchuc = VienChuc::join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+      ->where('status_vc', '<>', '2')
       ->orderBy('ten_cv', 'asc')
       ->get();
       $pdf = PDF::loadView('pdf.pdf_chucvu', [
@@ -237,6 +251,7 @@ class ThongKeController extends Controller
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
         ->where('vienchuc.ma_k', $data['ma_k'])
+        ->where('status_vc', '<>', '2')
         ->orderBy('hoten_vc', 'asc')
         ->get();
       $pdf = PDF::loadView('pdf.pdf_khoa', [
@@ -259,6 +274,7 @@ class ThongKeController extends Controller
     if($phanquyen_admin || $phanquyen_qltt){
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+        ->where('status_vc', '<>', '2')
         ->orderBy('ten_k', 'asc')
         ->get();
       $pdf = PDF::loadView('pdf.pdf_khoa', [
@@ -283,6 +299,7 @@ class ThongKeController extends Controller
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
         ->whereBetween('thoigiannghi_vc', [$data['batdau'], $data['ketthuc']])
+        ->where('status_vc', '2')
         ->orderBy('hoten_vc', 'asc')
         ->get();
       $pdf = PDF::loadView('pdf.pdf_nghihuu', [
@@ -356,6 +373,7 @@ class ThongKeController extends Controller
       $vienchuc = VienChuc::join('quequan', 'quequan.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('tinh', 'tinh.ma_t', '=', 'quequan.ma_t')
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_vc', '<>', '2')
         ->orderBy('ten_t', 'asc')
         ->get();
       $pdf = PDF::loadView('pdf.pdf_quequan', [
@@ -381,6 +399,7 @@ class ThongKeController extends Controller
         ->join('tinh', 'tinh.ma_t', '=', 'quequan.ma_t')
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('quequan.ma_t', $data['ma_t'])
+        ->where('status_vc', '<>', '2')
         ->orderBy('ten_t', 'asc')
         ->get();
       $pdf = PDF::loadView('pdf.pdf_quequan', [
