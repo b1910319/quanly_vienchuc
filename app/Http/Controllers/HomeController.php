@@ -32,6 +32,9 @@ class HomeController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     Carbon::now('Asia/Ho_Chi_Minh'); 
     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
@@ -49,6 +52,7 @@ class HomeController extends Controller
         ->with('count_vienchuc', $count_vienchuc)
         ->with('count_vienchuc_nghihuu', $count_vienchuc_nghihuu)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else if( $phanquyen_qltt){
@@ -63,12 +67,14 @@ class HomeController extends Controller
         ->with('count_vienchuc_nghihuu', $count_vienchuc_nghihuu)
         ->with('count_vienchuc', $count_vienchuc)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return view('home.home')
         ->with('title', $title)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }

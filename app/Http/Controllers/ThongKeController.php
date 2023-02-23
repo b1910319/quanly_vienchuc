@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
-use App\Models\Quyen;
 use App\Models\Tinh;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
@@ -37,6 +36,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       Carbon::now('Asia/Ho_Chi_Minh'); 
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
@@ -113,6 +115,7 @@ class ThongKeController extends Controller
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');

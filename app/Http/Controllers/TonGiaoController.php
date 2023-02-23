@@ -30,6 +30,9 @@ class TonGiaoController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Quản lý thông tin tôn giáo";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $list = TonGiao::orderBy('ma_tg', 'desc')
         ->get();
@@ -38,7 +41,6 @@ class TonGiaoController extends Controller
         ->groupBy('status_tg')
         ->get();
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
@@ -46,6 +48,7 @@ class TonGiaoController extends Controller
       return view('tongiao.tongiao')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('count', $count)
         ->with('title', $title)
         ->with('count_status', $count_status)
@@ -107,10 +110,12 @@ class TonGiaoController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Cập nhật thông tin tôn giáo";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = TonGiao::find($ma_tg);
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
@@ -119,6 +124,7 @@ class TonGiaoController extends Controller
         ->with('edit', $edit)
         ->with('title', $title)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{

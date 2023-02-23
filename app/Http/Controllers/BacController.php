@@ -37,6 +37,9 @@ class BacController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $count = Bac::select(DB::raw('count(ma_b) as sum'))
         ->where('ma_n', $ma_n)
@@ -50,7 +53,6 @@ class BacController extends Controller
         ->get();
       $ngach = Ngach::find($ma_n);
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
@@ -63,6 +65,7 @@ class BacController extends Controller
         ->with('ngach', $ngach)
         ->with('title', $title)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
@@ -123,10 +126,12 @@ class BacController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = Bac::find($ma_b);
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
@@ -136,6 +141,7 @@ class BacController extends Controller
         ->with('ma_n', $ma_n)
         ->with('title', $title)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
@@ -213,6 +219,9 @@ class BacController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Quản lý bậc";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $list = Bac::join('ngach', 'ngach.ma_n', '=', 'bac.ma_n')
         ->orderBy('ma_b', 'desc')
@@ -224,12 +233,12 @@ class BacController extends Controller
       $list_ngach = Ngach::where('status_n', '<>', '1')
         ->get();
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
       return view('bac.bac')
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
@@ -296,12 +305,14 @@ class BacController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Cập nhật thông tin bâc";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = Bac::find($ma_b);
       $list_ngach = Ngach::where('status_n', '<>', '1')
         ->get();
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
@@ -310,6 +321,7 @@ class BacController extends Controller
         ->with('edit', $edit)
         ->with('title', $title)
         ->with('list_ngach', $list_ngach)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_admin', $phanquyen_admin);
@@ -407,6 +419,9 @@ class BacController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $list_khoa = Khoa::get();
       $list_chucvu = ChucVu::get();
@@ -439,6 +454,7 @@ class BacController extends Controller
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('list_nangbac_homnay', $list_nangbac_homnay)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{

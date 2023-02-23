@@ -32,6 +32,9 @@ class BangCapController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Quản lý loại bằng cấp";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $list = BangCap::join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
         ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
@@ -53,12 +56,12 @@ class BangCapController extends Controller
         ->get();
       $vienchuc = VienChuc::find($ma_vc);
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
       return view('bangcap.bangcap')
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
@@ -135,10 +138,12 @@ class BangCapController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '8')
       ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = BangCap::find($ma_bc);
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
@@ -157,6 +162,7 @@ class BangCapController extends Controller
         ->with('list_loaibangcap', $list_loaibangcap)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');

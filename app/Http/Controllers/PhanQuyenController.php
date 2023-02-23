@@ -41,8 +41,10 @@ class PhanQuyenController extends Controller
       $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
         ->where('ma_q', '=', '8')
         ->first();
+      $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+        ->where('ma_q', '=', '7')
+        ->first();
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
@@ -50,6 +52,7 @@ class PhanQuyenController extends Controller
       return view('quyen.phanquyen')
         ->with('list_quyen', $list_quyen)
         ->with('title', $title)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('list_phanquyen', $list_phanquyen)
         ->with('phanquyen_qltt', $phanquyen_qltt)

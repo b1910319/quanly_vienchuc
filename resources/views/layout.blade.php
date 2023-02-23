@@ -180,7 +180,7 @@
                 <a href="javascript: void(0);" class="waves-effect">
                   <i class="remixicon-layout-line"></i>
                   {{-- <span class="badge badge-pink float-right">New</span> --}}
-                  <span> Quản Lý Thông Tin </span>
+                  <span> Quản Lý Thông Tin <br> Viên Chức </span>
                   <span class="menu-arrow"></span>
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
@@ -286,7 +286,23 @@
                 </li>
               </ul>
             </li> --}}
-
+            @if ($phanquyen_qlktkl || $phanquyen_admin)
+              <li>
+                <a href="javascript: void(0);" class="waves-effect">
+                  <i class="remixicon-layout-line"></i>
+                  {{-- <span class="badge badge-pink float-right">New</span> --}}
+                  <span> Quản Lý Khen Thưởng , <br>Kỉ Luật </span>
+                  <span class="menu-arrow"></span>
+                </a>
+                <ul class="nav-second-level" aria-expanded="false">
+                  <li>
+                    <a href="{{ URL::to('/') }}">
+                      Dân Tộc
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            @endif
             <li>
               <a href="javascript: void(0);" class="waves-effect">
                 <i class="remixicon-mail-open-line"></i>

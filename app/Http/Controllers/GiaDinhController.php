@@ -30,6 +30,9 @@ class GiaDinhController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thông tin quan hệ gia đình";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $list = GiaDinh::where('ma_vc', $ma_vc)
         ->orderBy('ma_gd', 'desc')
@@ -40,7 +43,6 @@ class GiaDinhController extends Controller
         ->get();
       $vienchuc = VienChuc::find($ma_vc);
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
@@ -53,6 +55,7 @@ class GiaDinhController extends Controller
         ->with('count_status', $count_status)
         ->with('list', $list)
         ->with('vienchuc', $vienchuc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('count_nangbac', $count_nangbac)
         ->with('title', $title);
     }
@@ -113,12 +116,14 @@ class GiaDinhController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Cập nhật thông tin bâc";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = GiaDinh::find($ma_gd);
       $list_vienchuc = VienChuc::where('status_vc', '<>', '1')
         ->get();
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
@@ -128,6 +133,7 @@ class GiaDinhController extends Controller
         ->with('title', $title)
         ->with('list_vienchuc', $list_vienchuc)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{

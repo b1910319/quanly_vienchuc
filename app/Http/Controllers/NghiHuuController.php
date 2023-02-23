@@ -36,16 +36,17 @@ class NghiHuuController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Quản lý nghĩ hưu";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $list_vienchuc_nghihuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '2')
         ->orderBy('hoten_vc','asc')
         ->get();
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      // $date = Carbon::parse(Carbon::now())->format('Y-m-d');
       $batdau_nam = Carbon::parse(Carbon::now()->subMonths(745))->format('Y-m-d');
       $ketthuc_nam = Carbon::parse(Carbon::now()->subMonths(744))->format('Y-m-d');
-      // $ketthuc_nam = Carbon::now()->subYears(); //61 nam 11 thang
       $batdau_nu = Carbon::parse(Carbon::now()->subMonths(721))->format('Y-m-d');
       $ketthuc_nu = Carbon::parse(Carbon::now()->subMonths(720))->format('Y-m-d');
 
@@ -85,7 +86,6 @@ class NghiHuuController extends Controller
       $list_dantoc = DanToc::get();
       $list_tongiao = TonGiao::get();
       $list_thuongbinh = ThuongBinh::get();
-      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
@@ -93,6 +93,7 @@ class NghiHuuController extends Controller
       return view('nghihuu.nghihuu')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('list_vienchuc_nam_ganhuu', $list_vienchuc_nam_ganhuu)
         ->with('list_vienchuc_nu_ganhuu', $list_vienchuc_nu_ganhuu)
         ->with('list_vienchuc_nghihuu', $list_vienchuc_nghihuu)

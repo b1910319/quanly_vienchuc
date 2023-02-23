@@ -27,6 +27,9 @@ class KhoaController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     if($phanquyen_admin){
       $count = Khoa::select(DB::raw('count(ma_k) as sum'))->get();
       $count_status = Khoa::select(DB::raw('count(ma_k) as sum, status_k'))->groupBy('status_k')->get();
@@ -40,7 +43,6 @@ class KhoaController extends Controller
         ->where('ma_q', '=', '8')
         ->first();
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
@@ -52,6 +54,7 @@ class KhoaController extends Controller
         ->with('count_status', $count_status)
         ->with('count_vienchuc_khoa', $count_vienchuc_khoa)
         ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('count_nangbac', $count_nangbac)
         ->with('list', $list);
     }else{
@@ -103,6 +106,9 @@ class KhoaController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     if($phanquyen_admin){
       $edit = Khoa::find($ma_k);
       $ma_vc = session()->get('ma_vc');
@@ -113,7 +119,6 @@ class KhoaController extends Controller
         ->where('ma_q', '=', '8')
         ->first();
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
@@ -123,6 +128,7 @@ class KhoaController extends Controller
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('title', $title)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('edit', $edit);
     }else{
       return Redirect::to('/home');
