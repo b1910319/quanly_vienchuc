@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
 use App\Models\Quyen;
+use App\Models\Tinh;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 use PDF;
@@ -69,6 +70,11 @@ class ThongKeController extends Controller
         ->select(DB::raw('count(vienchuc.ma_vc) as sum, thoigiannghi_vc '))
         ->groupBy('thoigiannghi_vc')
         ->get();
+      $count_tinh = VienChuc::join('quequan', 'quequan.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('tinh', 'tinh.ma_t', '=', 'quequan.ma_t')
+        ->select(DB::raw('count(vienchuc.ma_vc) as sum, tinh.ma_t'))
+        ->groupBy('tinh.ma_t')
+        ->get();
       $list_loaibangcap = LoaiBangCap::orderBy('ten_lbc', 'asc')
         ->get();
       $list_hedaotao = HeDaoTao::orderBy('ten_hdt', 'asc')
@@ -78,6 +84,8 @@ class ThongKeController extends Controller
       $list_chucvu = ChucVu::orderBy('ten_cv', 'asc')
         ->get();
       $list_khoa = Khoa::orderBy('ten_k', 'asc')
+        ->get();
+      $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
       return view('thongke.thongke_qltt')
         ->with('title', $title)
@@ -91,6 +99,8 @@ class ThongKeController extends Controller
         ->with('count_chucvu', $count_chucvu)
         ->with('list_chucvu', $list_chucvu)
         ->with('count_nghihuu', $count_nghihuu)
+        ->with('count_tinh', $count_tinh)
+        ->with('list_tinh', $list_tinh)
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
@@ -326,6 +336,54 @@ class ThongKeController extends Controller
         ->orderBy('hoten_vc', 'asc')
         ->get();
       $pdf = PDF::loadView('pdf.pdf_nghihuu', [
+        'vienchuc' => $vienchuc,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qltt_quequan_all_pdf(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $vienchuc = VienChuc::join('quequan', 'quequan.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('tinh', 'tinh.ma_t', '=', 'quequan.ma_t')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->orderBy('ten_t', 'asc')
+        ->get();
+      $pdf = PDF::loadView('pdf.pdf_quequan', [
+        'vienchuc' => $vienchuc,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qltt_quequan_tinh_pdf(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $data = $request->all();
+      $vienchuc = VienChuc::join('quequan', 'quequan.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('tinh', 'tinh.ma_t', '=', 'quequan.ma_t')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('quequan.ma_t', $data['ma_t'])
+        ->orderBy('ten_t', 'asc')
+        ->get();
+      $pdf = PDF::loadView('pdf.pdf_quequan', [
         'vienchuc' => $vienchuc,
       ]);
       return $pdf->stream();
