@@ -296,6 +296,33 @@ class ThongKeController extends Controller
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
         ->where('thoigiannghi_vc', '<>', ' ')
+        ->where('status_vc', '2')
+        ->orderBy('hoten_vc', 'asc')
+        ->get();
+      $pdf = PDF::loadView('pdf.pdf_nghihuu', [
+        'vienchuc' => $vienchuc,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qltt_nghihuu_khoa_pdf(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $data = $request->all();
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+        ->where('vienchuc.ma_k', $data['ma_k'])
+        ->where('thoigiannghi_vc', '<>', ' ')
+        ->where('status_vc', '2')
         ->orderBy('hoten_vc', 'asc')
         ->get();
       $pdf = PDF::loadView('pdf.pdf_nghihuu', [

@@ -44,6 +44,7 @@ class VienChucController extends Controller
       $request->session()->put('hoten_vc',$result->hoten_vc);
       $request->session()->put('hinh_vc',$result->hinh_vc);
       $request->session()->put('ma_vc',$result->ma_vc);
+      $request->session()->put('ma_k',$result->ma_k);
       return Redirect::to('/home');
     }else{
       $request->session()->put('message','Username hoặc Password bị sai vui lòng nhập lại!! ');
@@ -54,6 +55,8 @@ class VienChucController extends Controller
     $this->check_login();
     session()->put('hoten_vc',null);
     session()->put('ma_vc',null);
+    session()->put('ma_k',null);
+    session()->put('hinh_vc',null);
     return Redirect::to('/login');
   }
   //thêm viên chức cho khoa

@@ -29,33 +29,38 @@
   </div>
   <div class="card-box col-6">
     <div class="row">
-      <div class="col-4">
+      <div class="col-10">
         <p class="fw-bold">Thống kê viên chức theo chức vụ</p>
       </div>
-      <div class="col-8">
-        <form action="{{ URL::to('thongke_qltt_chucvu_pdf') }}" method="post">
-          {{ csrf_field() }}
-          <div class="row">
-            <div class="col-5">
-              <select class="custom-select input_table" id="gender2" name="ma_cv">
-                <option value="0" >Chọn chức vụ</option>
-                @foreach ($list_chucvu as $chucvu)
-                  <option value="{{ $chucvu->ma_cv }}" >{{ $chucvu->ten_cv }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="col-4">
-              <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #00425A; border: none; color: white;">
-                Xuất file
-              </button>
-            </div>
-            <div class="col-3">
-              <a href="{{ URL::to('thongke_qltt_chucvu_all_pdf') }}">
-                <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file</button>
-              </a>
-            </div>
+      <div class="col-2">
+        <a href="{{ URL::to('thongke_qltt_chucvu_all_pdf') }}">
+          <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file</button>
+        </a>
+      </div>
+      <div class="row">
+        <div class="col-5">
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2" style="background-color: #00425A; border: none; width: 100%" >Chọn khoa thống kê</button>
+          <div id="demo2" class="collapse mt-3">
+            <form action="{{ URL::to('thongke_qltt_chucvu_pdf') }}" method="post">
+              {{ csrf_field() }}
+              <div class="row">
+                <div class="col-8">
+                  <select class="custom-select input_table" id="gender2" name="ma_cv">
+                    <option value="0" >Chọn chức vụ</option>
+                    @foreach ($list_chucvu as $chucvu)
+                      <option value="{{ $chucvu->ma_cv }}" >{{ $chucvu->ten_cv }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col-4">
+                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white;">
+                    Xuất file
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </div>
     <div id="myfirstchart4" style="height: 250px;"></div>
@@ -75,64 +80,99 @@
   </div>
   <div class="card-box col-6">
     <div class="row">
-      <div class="col-4">
+      <div class="col-10">
         <p class="fw-bold">Thống kê viên chức theo khoa </p>
       </div>
-      <div class="col-8">
-        <form action="{{ URL::to('thongke_qltt_khoa_pdf') }}" method="post">
-          {{ csrf_field() }}
-          <div class="row">
-            <div class="col-5">
-              <select class="custom-select input_table" id="gender2" name="ma_k">
-                <option value="0" >Chọn khoa</option>
-                @foreach ($list_khoa as $khoa)
-                  <option value="{{ $khoa->ma_k }}" >{{ $khoa->ten_k }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="col-4">
-              <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #00425A; border: none; color: white;">
-                Xuất file
-              </button>
-            </div>
-            <div class="col-3">
-              <a href="{{ URL::to('thongke_qltt_khoa_all_pdf') }}">
-                <button type="button" class="btn" style="background-color: #379237; border: none;">Xuất file</button>
-              </a>
-            </div>
+      <div class="col-2">
+        <a href="{{ URL::to('thongke_qltt_khoa_all_pdf') }}">
+          <button type="button" class="btn" style="background-color: #379237; border: none;">Xuất file</button>
+        </a>
+      </div>
+      <div class="row">
+        <div class="col-5">
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo1" style="background-color: #00425A; border: none; width: 100%" >Chọn khoa thống kê</button>
+          <div id="demo1" class="collapse mt-3">
+            <form action="{{ URL::to('thongke_qltt_khoa_pdf') }}" method="post">
+              {{ csrf_field() }}
+              <div class="row">
+                <div class="col-8">
+                  <select class="custom-select input_table" id="gender2" name="ma_k">
+                    <option value="0" >Chọn khoa</option>
+                    @foreach ($list_khoa as $khoa)
+                      <option value="{{ $khoa->ma_k }}" >{{ $khoa->ten_k }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col-4">
+                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white;">
+                    Xuất file
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </div>
     <div id="myfirstchart5" style="height: 250px;"></div>
   </div>
   <div class="card-box col-6">
     <div class="row">
-      <div class="col-4">
+      <div class="col-10">
         <p class="fw-bold">Thống kê viên chức nghĩ hưu</p>
       </div>
+      <div class="col-2">
+        <a href="{{ URL::to('thongke_qltt_nghihuu_all_pdf') }}">
+          <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file</button>
+        </a>
+      </div>
     </div>
-    <form action="{{ URL::to('thongke_qltt_nghihuu_time_pdf') }}" method="post">
-      {{ csrf_field() }}
-      <div class="row">
-        <div class="col-3">
-          <input type='date' class='form-control input_table' autofocus required name="batdau">
-        </div>
-        <div class="col-3">
-          <input type='date' class='form-control input_table' autofocus required name="ketthuc">
-        </div>
-        <div class="col-2">
-          <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #00425A; border: none; color: white;">
-            Xuất file
-          </button>
-        </div>
-        <div class="col-3">
-          <a href="{{ URL::to('thongke_qltt_nghihuu_all_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file</button>
-          </a>
+    <div class="row">
+      <div class="col-6">
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color: #00425A; border: none; width: 100%" >Thống kê theo khoảng thời gian</button>
+        <div id="demo" class="collapse mt-3">
+          <form action="{{ URL::to('thongke_qltt_nghihuu_time_pdf') }}" method="post">
+            {{ csrf_field() }}
+            <div class="row">
+              <div class="col-4">
+                <input type='date' class='form-control input_table' autofocus required name="batdau">
+              </div>
+              <div class="col-4">
+                <input type='date' class='form-control input_table' autofocus required name="ketthuc">
+              </div>
+              <div class="col-4">
+                <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
+                  Xuất file
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-    </form>
+      <div class="col-6">
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >Chọn khoa thống kê</button>
+          <div id="demo3" class="collapse mt-3">
+            <form action="{{ URL::to('thongke_qltt_nghihuu_khoa_pdf') }}" method="post">
+              {{ csrf_field() }}
+              <div class="row">
+                <div class="col-8">
+                  <select class="custom-select input_table" id="gender2" name="ma_k">
+                    <option value="0" >Chọn khoa</option>
+                    @foreach ($list_khoa as $khoa)
+                      <option value="{{ $khoa->ma_k }}" >{{ $khoa->ten_k }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col-4">
+                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
+                    Xuất file
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
     <div id="myfirstchart6" style="height: 250px;"></div>
   </div>
 </div>

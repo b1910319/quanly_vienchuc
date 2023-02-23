@@ -230,6 +230,7 @@ Route::post('/thongke_qltt_khoa_pdf',[ThongKeController::class, 'thongke_qltt_kh
 Route::get('/thongke_qltt_khoa_all_pdf',[ThongKeController::class, 'thongke_qltt_khoa_all_pdf']);
 Route::post('/thongke_qltt_nghihuu_time_pdf',[ThongKeController::class, 'thongke_qltt_nghihuu_time_pdf']);
 Route::get('/thongke_qltt_nghihuu_all_pdf',[ThongKeController::class, 'thongke_qltt_nghihuu_all_pdf']);
+Route::post('/thongke_qltt_nghihuu_khoa_pdf',[ThongKeController::class, 'thongke_qltt_nghihuu_khoa_pdf']);
 
 
 
