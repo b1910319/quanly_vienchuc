@@ -169,23 +169,23 @@ class LoaiKhenThuongController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function delete_all_loaikhenthuong(){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $list = LoaiKhenThuong::get();
-  //     foreach($list as $key => $loaikhenthuong){
-  //       $loaikhenthuong->delete();
-  //     }
-  //     return Redirect::to('loaikhenthuong');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function delete_all_loaikhenthuong(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $list = LoaiKhenThuong::get();
+      foreach($list as $key => $loaikhenthuong){
+        $loaikhenthuong->delete();
+      }
+      return Redirect::to('loaikhenthuong');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }
