@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 24, 2023 lúc 02:32 AM
+-- Thời gian đã tạo: Th2 24, 2023 lúc 02:46 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -242,8 +242,11 @@ CREATE TABLE `hinhthuckhenthuong` (
 --
 
 INSERT INTO `hinhthuckhenthuong` (`ma_htkt`, `ten_htkt`, `status_htkt`, `created_htkt`, `updated_htkt`) VALUES
-(1, 'uujujkuu', 0, '2023-02-24 01:32:29', ' '),
-(2, 'vfef', 0, '2023-02-24 01:32:34', ' ');
+(4, 'Bằng khen', 0, '2023-02-24 01:45:44', ' '),
+(5, 'Danh hiệu', 0, '2023-02-24 01:45:51', ' '),
+(6, 'Giấy khen', 0, '2023-02-24 01:46:03', ' '),
+(7, 'Kỉ niệm chương', 0, '2023-02-24 01:46:17', ' '),
+(8, 'Thăng tiến', 0, '2023-02-24 01:46:22', ' ');
 
 -- --------------------------------------------------------
 
@@ -12411,7 +12414,7 @@ ALTER TABLE `hedaotao`
 -- AUTO_INCREMENT cho bảng `hinhthuckhenthuong`
 --
 ALTER TABLE `hinhthuckhenthuong`
-  MODIFY `ma_htkt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ma_htkt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `huyen`
