@@ -100,59 +100,59 @@ class LoaiKhenThuongController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function edit_loaikhenthuong($ma_lkt){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   $title = "Cập nhật thông tin loại bằng cấp";
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $edit = LoaiKhenThuong::find($ma_lkt);
-  //     Carbon::now('Asia/Ho_Chi_Minh'); 
-  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-  //       ->select(DB::raw('count(ma_vc) as sum'))
-  //       ->get();
-  //     return view('loaikhenthuong.loaikhenthuong_edit')
-  //       ->with('edit', $edit)
-  //       ->with('title', $title)
-  //       ->with('count_nangbac', $count_nangbac)
-  //       ->with('phanquyen_qltt', $phanquyen_qltt)
-  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-  //       ->with('phanquyen_admin', $phanquyen_admin);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function update_loaikhenthuong(Request $request, $ma_lkt){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $data = $request->all();
-  //     Carbon::now('Asia/Ho_Chi_Minh');
-  //     $loaikhenthuong = LoaiKhenThuong::find($ma_lkt);
-  //     $loaikhenthuong->ten_lkt = $data['ten_lkt'];
-  //     $loaikhenthuong->status_lkt = $data['status_lkt'];
-  //     $loaikhenthuong->updated_lkt = Carbon::now();
-  //     $loaikhenthuong->save();
-  //     return Redirect::to('loaikhenthuong');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function edit_loaikhenthuong($ma_lkt){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Cập nhật thông tin loại bằng cấp";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $edit = LoaiKhenThuong::find($ma_lkt);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      return view('loaikhenthuong.loaikhenthuong_edit')
+        ->with('edit', $edit)
+        ->with('title', $title)
+        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_loaikhenthuong(Request $request, $ma_lkt){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $loaikhenthuong = LoaiKhenThuong::find($ma_lkt);
+      $loaikhenthuong->ten_lkt = $data['ten_lkt'];
+      $loaikhenthuong->status_lkt = $data['status_lkt'];
+      $loaikhenthuong->updated_lkt = Carbon::now();
+      $loaikhenthuong->save();
+      return Redirect::to('loaikhenthuong');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function delete_loaikhenthuong($ma_lkt){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
