@@ -300,6 +300,11 @@
                       Loại khen thưởng
                     </a>
                   </li>
+                  <li>
+                    <a href="{{ URL::to('/hinhthuckhenthuong') }}">
+                      Hình thức khen thưởng
+                    </a>
+                  </li>
                 </ul>
               </li>
             @endif

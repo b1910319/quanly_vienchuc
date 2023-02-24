@@ -19,6 +19,7 @@ use App\Http\Controllers\BangCapController;
 use App\Http\Controllers\NghiHuuController;
 use App\Http\Controllers\ThongKeController;
 use App\Http\Controllers\LoaiKhenThuongController;
+use App\Http\Controllers\HinhThucKhenThuongController;
 
 
 
@@ -256,6 +257,47 @@ Route::get('/edit_loaikhenthuong/{ma_lkt}',[LoaiKhenThuongController::class, 'ed
 Route::post('/update_loaikhenthuong/{ma_lkt}',[LoaiKhenThuongController::class, 'update_loaikhenthuong']);
 Route::get('/delete_loaikhenthuong/{ma_lkt}',[LoaiKhenThuongController::class, 'delete_loaikhenthuong']);
 Route::get('/delete_all_loaikhenthuong',[LoaiKhenThuongController::class, 'delete_all_loaikhenthuong']);
+
+
+
+
+Route::get('/hinhthuckhenthuong',[HinhThucKhenThuongController::class, 'hinhthuckhenthuong']);
+Route::post('/add_hinhthuckhenthuong',[HinhThucKhenThuongController::class, 'add_hinhthuckhenthuong']);
+Route::get('/select_hinhthuckhenthuong/{ma_lkt}',[HinhThucKhenThuongController::class, 'select_hinhthuckhenthuong']);
+Route::get('/edit_hinhthuckhenthuong/{ma_lkt}',[HinhThucKhenThuongController::class, 'edit_hinhthuckhenthuong']);
+Route::post('/update_hinhthuckhenthuong/{ma_lkt}',[HinhThucKhenThuongController::class, 'update_hinhthuckhenthuong']);
+Route::get('/delete_hinhthuckhenthuong/{ma_lkt}',[HinhThucKhenThuongController::class, 'delete_hinhthuckhenthuong']);
+Route::get('/delete_all_hinhthuckhenthuong',[HinhThucKhenThuongController::class, 'delete_all_hinhthuckhenthuong']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

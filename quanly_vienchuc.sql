@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 24, 2023 lúc 02:08 AM
+-- Thời gian đã tạo: Th2 24, 2023 lúc 02:32 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -222,6 +222,28 @@ INSERT INTO `hedaotao` (`ma_hdt`, `ten_hdt`, `status_hdt`, `created_hdt`, `updat
 (5, 'Liên thông', 0, '2023-02-20 01:18:21', ' '),
 (6, 'Từ xa', 0, '2023-02-20 01:18:26', ' '),
 (7, 'Khác', 0, '2023-02-20 01:18:30', ' ');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `hinhthuckhenthuong`
+--
+
+CREATE TABLE `hinhthuckhenthuong` (
+  `ma_htkt` int(11) NOT NULL,
+  `ten_htkt` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `status_htkt` int(11) NOT NULL DEFAULT 0,
+  `created_htkt` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_htkt` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `hinhthuckhenthuong`
+--
+
+INSERT INTO `hinhthuckhenthuong` (`ma_htkt`, `ten_htkt`, `status_htkt`, `created_htkt`, `updated_htkt`) VALUES
+(1, 'uujujkuu', 0, '2023-02-24 01:32:29', ' '),
+(2, 'vfef', 0, '2023-02-24 01:32:34', ' ');
 
 -- --------------------------------------------------------
 
@@ -1024,9 +1046,8 @@ CREATE TABLE `loaikhenthuong` (
 --
 
 INSERT INTO `loaikhenthuong` (`ma_lkt`, `ten_lkt`, `status_lkt`, `created_lkt`, `updated_lkt`) VALUES
-(1, 'trinh', 0, '2023-02-24 01:03:54', ' '),
-(2, 'aaâ', 0, '2023-02-24 01:06:44', ' '),
-(3, 'fgretrjh', 0, '2023-02-24 01:06:48', ' ');
+(4, 'Cá nhân có thành tích xuất sắc', 0, '2023-02-24 01:20:51', ' '),
+(5, 'Cá nhân hoàn thành xuất sắc nhiệm vụ được giao', 0, '2023-02-24 01:21:24', ' ');
 
 -- --------------------------------------------------------
 
@@ -12263,6 +12284,12 @@ ALTER TABLE `hedaotao`
   ADD PRIMARY KEY (`ma_hdt`);
 
 --
+-- Chỉ mục cho bảng `hinhthuckhenthuong`
+--
+ALTER TABLE `hinhthuckhenthuong`
+  ADD PRIMARY KEY (`ma_htkt`);
+
+--
 -- Chỉ mục cho bảng `huyen`
 --
 ALTER TABLE `huyen`
@@ -12381,6 +12408,12 @@ ALTER TABLE `hedaotao`
   MODIFY `ma_hdt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT cho bảng `hinhthuckhenthuong`
+--
+ALTER TABLE `hinhthuckhenthuong`
+  MODIFY `ma_htkt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT cho bảng `huyen`
 --
 ALTER TABLE `huyen`
@@ -12402,7 +12435,7 @@ ALTER TABLE `loaibangcap`
 -- AUTO_INCREMENT cho bảng `loaikhenthuong`
 --
 ALTER TABLE `loaikhenthuong`
-  MODIFY `ma_lkt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ma_lkt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `ngach`
