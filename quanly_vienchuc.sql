@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 24, 2023 lúc 02:46 AM
+-- Thời gian đã tạo: Th2 24, 2023 lúc 07:36 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -973,6 +973,32 @@ INSERT INTO `huyen` (`ma_h`, `ma_t`, `ten_h`, `status_h`, `created_h`, `updated_
 (703, 63, 'Huyện Năm Căn', 0, '2023-02-17 04:09:44', ' '),
 (704, 63, 'Huyện Phú Tân', 0, '2023-02-17 04:09:44', ' '),
 (705, 63, 'Huyện Ngọc Hiển', 0, '2023-02-17 04:09:44', ' ');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `khenthuong`
+--
+
+CREATE TABLE `khenthuong` (
+  `ma_kt` int(11) NOT NULL,
+  `ma_vc` int(11) NOT NULL,
+  `ma_lkt` int(11) NOT NULL,
+  `ma_htkt` int(11) NOT NULL,
+  `ngay_kt` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `noidung_kt` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `soquyetdinh_kt` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `status_kt` int(11) NOT NULL DEFAULT 0,
+  `created_kt` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_kt` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `khenthuong`
+--
+
+INSERT INTO `khenthuong` (`ma_kt`, `ma_vc`, `ma_lkt`, `ma_htkt`, `ngay_kt`, `noidung_kt`, `soquyetdinh_kt`, `status_kt`, `created_kt`, `updated_kt`) VALUES
+(1, 57, 4, 5, '2023-02-07', 'vdgt264te', '1452', 0, '2023-02-24 06:29:43', ' ');
 
 -- --------------------------------------------------------
 
@@ -12299,6 +12325,12 @@ ALTER TABLE `huyen`
   ADD PRIMARY KEY (`ma_h`);
 
 --
+-- Chỉ mục cho bảng `khenthuong`
+--
+ALTER TABLE `khenthuong`
+  ADD PRIMARY KEY (`ma_kt`);
+
+--
 -- Chỉ mục cho bảng `khoa`
 --
 ALTER TABLE `khoa`
@@ -12421,6 +12453,12 @@ ALTER TABLE `hinhthuckhenthuong`
 --
 ALTER TABLE `huyen`
   MODIFY `ma_h` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=706;
+
+--
+-- AUTO_INCREMENT cho bảng `khenthuong`
+--
+ALTER TABLE `khenthuong`
+  MODIFY `ma_kt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `khoa`

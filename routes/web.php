@@ -20,6 +20,7 @@ use App\Http\Controllers\NghiHuuController;
 use App\Http\Controllers\ThongKeController;
 use App\Http\Controllers\LoaiKhenThuongController;
 use App\Http\Controllers\HinhThucKhenThuongController;
+use App\Http\Controllers\KhenThuongController;
 
 
 
@@ -273,6 +274,9 @@ Route::get('/delete_all_hinhthuckhenthuong',[HinhThucKhenThuongController::class
 
 
 
+Route::get('/khenthuong',[KhenThuongController::class, 'khenthuong']);
+Route::get('/khenthuong_add/{ma_vc}',[KhenThuongController::class, 'khenthuong_add']);
+Route::post('/add_khenthuong/{ma_vc}',[KhenThuongController::class, 'add_khenthuong']);
 
 
 
