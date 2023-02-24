@@ -79,27 +79,27 @@ class HinhThucKhenThuongController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function select_hinhthuckhenthuong($ma_htkt){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlktkl){
-  //     $hinhthuckhenthuong = HinhThucKhenThuong::find($ma_htkt);
-  //     if($hinhthuckhenthuong->status_htkt == 1){
-  //       $hinhthuckhenthuong->status_htkt = HinhThucKhenThuong::find($ma_htkt)->update(['status_htkt' => 0]);
-  //     }elseif($hinhthuckhenthuong->status_htkt == 0){
-  //       $hinhthuckhenthuong->status_htkt = HinhThucKhenThuong::find($ma_htkt)->update(['status_htkt' => 1]);
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function select_hinhthuckhenthuong($ma_htkt){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $hinhthuckhenthuong = HinhThucKhenThuong::find($ma_htkt);
+      if($hinhthuckhenthuong->status_htkt == 1){
+        $hinhthuckhenthuong->status_htkt = HinhThucKhenThuong::find($ma_htkt)->update(['status_htkt' => 0]);
+      }elseif($hinhthuckhenthuong->status_htkt == 0){
+        $hinhthuckhenthuong->status_htkt = HinhThucKhenThuong::find($ma_htkt)->update(['status_htkt' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function edit_hinhthuckhenthuong($ma_htkt){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
