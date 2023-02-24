@@ -70,6 +70,13 @@ class HomeController extends Controller
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
+    }else if($phanquyen_qlktkl){
+      return view('home.home_qlktkl')
+        ->with('title', $title)
+        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return view('home.home')
         ->with('title', $title)
