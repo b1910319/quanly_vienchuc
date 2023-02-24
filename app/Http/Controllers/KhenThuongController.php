@@ -262,22 +262,22 @@ class KhenThuongController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function delete_bangcap($ma_kt, $ma_vc){
-  //   $this->check_login();
-  //   $ma_vc_login = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     KhenThuong::find($ma_kt)->delete();
-  //     return Redirect::to('/bangcap/'.$ma_vc);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function delete_khenthuong($ma_kt, $ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      KhenThuong::find($ma_kt)->delete();
+      return Redirect::to('/khenthuong_add/'.$ma_vc);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function delete_all_bangcap($ma_vc){
   //   $this->check_login();
   //   $ma_vc_login = session()->get('ma_vc');

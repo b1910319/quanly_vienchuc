@@ -280,7 +280,7 @@ Route::post('/add_khenthuong/{ma_vc}',[KhenThuongController::class, 'add_khenthu
 Route::get('/select_khenthuong/{ma_kt}',[KhenThuongController::class, 'select_khenthuong']);
 Route::get('/edit_khenthuong/{ma_kt}/{ma_vc}',[KhenThuongController::class, 'edit_khenthuong']);
 Route::post('/update_khenthuong/{ma_kt}/{ma_vc}',[KhenThuongController::class, 'update_khenthuong']);
-
+Route::get('/delete_khenthuong/{ma_kt}/{ma_vc}',[KhenThuongController::class, 'delete_khenthuong']);
 
 
 
