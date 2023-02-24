@@ -746,9 +746,23 @@
               ?>
             </td>
             <td>
-              <a href="{{ URL::to('/khenthuong_add/'.$vienchuc->ma_vc) }}">
-                <button type="button" class="btn btn-primary" style="background-color: #00425A; border: none;">Khen thưởng</button>
-              </a>
+              <?php
+                foreach ($count_khenthuong_vienchuc as $key => $count) {
+                  if($count->ma_vc == $vienchuc->ma_vc && $count->sum > 0){
+                    ?>
+                      <a href="{{ URL::to('/khenthuong_add/'.$vienchuc->ma_vc) }}">
+                        <button type="button" class="btn btn-primary" style="background-color: #00425A; border: none;">Khen thưởng (<?php echo $count->sum ?>)</button>
+                      </a>
+                    <?php
+                  }elseif ($count->ma_vc == $vienchuc->ma_vc && $count->sum == 0) {
+                    ?>
+                      <a href="{{ URL::to('/khenthuong_add/'.$vienchuc->ma_vc) }}">
+                        <button type="button" class="btn btn-primary" style="background-color: #00425A; border: none;">Khen thưởng (0)</button>
+                      </a>
+                    <?php
+                  }
+                }
+              ?>
             </td>
           </tr>
         @endforeach

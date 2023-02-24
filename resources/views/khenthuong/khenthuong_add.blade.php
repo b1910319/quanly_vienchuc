@@ -135,7 +135,7 @@
         session()->put('message_update',null);
       }
     ?>
-    {{-- <div class="row">
+    <div class="row">
       <div class="col-2">
         @foreach ($count as $key => $count)
           <p class="fw-bold" style="color: #379237; ">Tổng có: {{ $count->sum }}</p>
@@ -159,7 +159,7 @@
               </thead>
               <tbody>
                 @foreach ($count_status as $key => $count_stt)
-                  @if ($count_stt->status_bc == 0)
+                  @if ($count_stt->status_kt == 0)
                     <tr>
                       <td>Danh mục hiển thị</td>
                       <td>{{ $count_stt->sum }}</td>
@@ -177,45 +177,47 @@
         </div>
       </div>
       <div class="col-2">
-        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_bangcap/'.$ma_vc) }}">
+        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_khenthuong/'.$ma_vc) }}">
           <button type="button" class="btn btn-danger">Xoá tất cả</button>
         </a>
       </div>
-    </div> --}}
-    {{-- <table class="table" id="mytable">
+    </div>
+    <table class="table" id="mytable">
       <thead class="table-dark">
         <tr>
           <th scope="col">STT</th>
-          <th scope="col">Loại bằng cấp</th>
-          <th scope="col">Hệ đào tạo</th>
+          <th scope="col">Loại khen thưởng</th>
+          <th scope="col">Hình thức khen thưởng</th>
+          <th scope="col">Ngày khen thưởng</th>
+          <th scope="col">Nội dung khen thưởng</th>
           <th scope="col">Trạng thái</th>
-          <th scope="col">Trình độ chuyên môn</th>
-          <th scope="col">Trường học</th>
-          <th scope="col">Niên khoá</th>
-          <th scope="col">Số bằng</th>
-          <th scope="col">Ngày cấp</th>
-          <th scope="col">Nơi cấp</th>
-          <th scope="col">Xếp hạng</th>
+          <th scope="col">Số quyết định khen thưởng</th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody  >
-        @foreach ($list as $key => $bangcap)
+        @foreach ($list as $key => $khenthuong)
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $bangcap->ten_lbc }}
+              {{ $khenthuong->ten_lkt }}
             </td>
             <td>
-              {{ $bangcap->ten_hdt }}
+              {{ $khenthuong->ten_htkt }}
+            </td>
+            <td>
+              {{ $khenthuong->ngay_kt }}
+            </td>
+            <td>
+              {{ $khenthuong->noidung_kt }}
             </td>
             <td>
               <?php
-                if($bangcap->status_bc == 0){
+                if($khenthuong->status_kt == 0){
                   ?>
                     <span class="badge rounded-pill text-bg-success"><i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị</span>
                   <?php
-                }else if($bangcap->status_bc == 1) {
+                }else if($khenthuong->status_kt == 1) {
                   ?>
                     <span class="badge text-bg-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
                   <?php
@@ -223,46 +225,28 @@
               ?>
             </td>
             <td>
-              {{ $bangcap->trinhdochuyenmon_bc }}
+              {{ $khenthuong->soquyetdinh_kt }}
             </td>
-            <td>
-              {{ $bangcap->truonghoc_bc }}
-            </td>
-            <td>
-              {{ $bangcap->nienkhoa_bc }}
-            </td>
-            <td>
-              {{ $bangcap->sobang_bc }}
-            </td>
-            <td>
-              {{ $bangcap->ngaycap_bc }}
-            </td>
-            <td>
-              {{ $bangcap->noicap_bc }}
-            </td>
-            <td>
-              {{ $bangcap->xephang_bc }}
-            </td>
-            <td style="width: 21%;">
-              <a href="{{ URL::to('/edit_bangcap/'.$bangcap->ma_bc.'/'.$ma_vc)}}">
+            <td style="width: 25%;">
+              <a href="{{ URL::to('/edit_khenthuong/'.$khenthuong->ma_kt.'/'.$ma_vc)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_bangcap/'.$bangcap->ma_bc.'/'.$ma_vc)}}">
+              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_khenthuong/'.$khenthuong->ma_kt.'/'.$ma_vc)}}">
                 <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               </a>
               <?php
-                if($bangcap->status_bc == 0){
+                if($khenthuong->status_kt == 0){
                   ?>
-                    <a href="{{ URL::to('/select_bangcap/'.$bangcap->ma_bc) }}">
+                    <a href="{{ URL::to('/select_khenthuong/'.$khenthuong->ma_kt) }}">
                       <button type="button" class="btn btn-secondary">
                         <i class="fa-solid fa-eye-slash"></i> 
                         &ensp; Ẩn
                       </button>
                     </a>
                   <?php
-                }else if($bangcap->status_bc == 1) {
+                }else if($khenthuong->status_kt == 1) {
                   ?>
-                    <a href="{{ URL::to('/select_bangcap/'.$bangcap->ma_bc) }}">
+                    <a href="{{ URL::to('/select_khenthuong/'.$khenthuong->ma_kt) }}">
                       <button type="button" class="btn btn-success">
                         <i class="fa-solid fa-eye"></i>
                         &ensp; Hiển thị
@@ -271,11 +255,14 @@
                   <?php
                 }
               ?>
+              <a href="{{ URL::to('/khenthuong_pdf/'.$khenthuong->ma_kt) }}">
+                <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;">Xuất file</button>
+              </a>
             </td>
           </tr>
         @endforeach
       </tbody>
-    </table> --}}
+    </table>
   </div>
 </div>
 @endsection

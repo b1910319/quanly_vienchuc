@@ -9,7 +9,6 @@ use App\Models\HeDaoTao;
 use App\Models\HinhThucKhenThuong;
 use App\Models\KhenThuong;
 use App\Models\Khoa;
-use App\Models\LoaiBangCap;
 use App\Models\LoaiKhenThuong;
 use App\Models\Ngach;
 use Illuminate\Http\Request;
@@ -66,6 +65,10 @@ class KhenThuongController extends Controller
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
+      $count_khenthuong_vienchuc = VienChuc::leftJoin('khenthuong', 'vienchuc.ma_vc', '=', 'khenthuong.ma_vc')
+        ->select(DB::raw('count(ma_kt) as sum, vienchuc.ma_vc'))
+        ->groupBy('vienchuc.ma_vc')
+        ->get();
       return view('khenthuong.khenthuong')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
@@ -80,6 +83,7 @@ class KhenThuongController extends Controller
         ->with('list_tongiao', $list_tongiao)
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('title', $title)
+        ->with('count_khenthuong_vienchuc', $count_khenthuong_vienchuc)
         ->with('list_vienchuc_khenthuong', $list_vienchuc_khenthuong)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
@@ -169,27 +173,27 @@ class KhenThuongController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function select_bangcap($ma_kt){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $bac = KhenThuong::find($ma_kt);
-  //     if($bac->status_kt == 1){
-  //       $bac->status_kt = KhenThuong::find($ma_kt)->update(['status_kt' => 0]);
-  //     }elseif($bac->status_kt == 0){
-  //       $bac->status_kt = KhenThuong::find($ma_kt)->update(['status_kt' => 1]);
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function select_khenthuong($ma_kt){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $khenthuong = KhenThuong::find($ma_kt);
+      if($khenthuong->status_kt == 1){
+        $khenthuong->status_kt = KhenThuong::find($ma_kt)->update(['status_kt' => 0]);
+      }elseif($khenthuong->status_kt == 0){
+        $khenthuong->status_kt = KhenThuong::find($ma_kt)->update(['status_kt' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function edit_bangcap($ma_kt, $ma_vc){
   //   $this->check_login();
   //   $title = "Cập nhật thông tin bằng cấp";
