@@ -100,59 +100,59 @@ class HinhThucKhenThuongController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function edit_hinhthuckhenthuong($ma_htkt){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   $title = "Cập nhật thông tin loại bằng cấp";
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlktkl){
-  //     $edit = HinhThucKhenThuong::find($ma_htkt);
-  //     Carbon::now('Asia/Ho_Chi_Minh'); 
-  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-  //       ->select(DB::raw('count(ma_vc) as sum'))
-  //       ->get();
-  //     return view('hinhthuckhenthuong.hinhthuckhenthuong_edit')
-  //       ->with('edit', $edit)
-  //       ->with('title', $title)
-  //       ->with('count_nangbac', $count_nangbac)
-  //       ->with('phanquyen_qltt', $phanquyen_qltt)
-  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-  //       ->with('phanquyen_admin', $phanquyen_admin);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function update_hinhthuckhenthuong(Request $request, $ma_htkt){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlktkl){
-  //     $data = $request->all();
-  //     Carbon::now('Asia/Ho_Chi_Minh');
-  //     $hinhthuckhenthuong = HinhThucKhenThuong::find($ma_htkt);
-  //     $hinhthuckhenthuong->ten_htkt = $data['ten_htkt'];
-  //     $hinhthuckhenthuong->status_htkt = $data['status_htkt'];
-  //     $hinhthuckhenthuong->updated_htkt = Carbon::now();
-  //     $hinhthuckhenthuong->save();
-  //     return Redirect::to('hinhthuckhenthuong');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function edit_hinhthuckhenthuong($ma_htkt){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Cập nhật thông tin loại bằng cấp";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $edit = HinhThucKhenThuong::find($ma_htkt);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      return view('hinhthuckhenthuong.hinhthuckhenthuong_edit')
+        ->with('edit', $edit)
+        ->with('title', $title)
+        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_hinhthuckhenthuong(Request $request, $ma_htkt){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $hinhthuckhenthuong = HinhThucKhenThuong::find($ma_htkt);
+      $hinhthuckhenthuong->ten_htkt = $data['ten_htkt'];
+      $hinhthuckhenthuong->status_htkt = $data['status_htkt'];
+      $hinhthuckhenthuong->updated_htkt = Carbon::now();
+      $hinhthuckhenthuong->save();
+      return Redirect::to('hinhthuckhenthuong');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function delete_hinhthuckhenthuong($ma_htkt){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
