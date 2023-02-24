@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 23, 2023 lúc 05:17 AM
+-- Thời gian đã tạo: Th2 24, 2023 lúc 02:08 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -114,7 +114,11 @@ INSERT INTO `bangcap` (`ma_bc`, `ma_vc`, `ma_hdt`, `ma_lbc`, `trinhdochuyenmon_b
 (4, 61, 4, 5, 'ẻềâ', 'dèâ', 'etồâ', 'detồâ', '2023-02-14', 'fe', 'èwr', 0, '2023-02-20 03:12:24', ' '),
 (5, 61, 4, 8, 'èwr', 'ẻẻwẻ', 'ẻwẻwe', 'ẻwẻwr', '2023-02-15', 'ẻwrưe', 'ẻwr', 0, '2023-02-20 03:12:40', ' '),
 (6, 60, 5, 7, 'ẻ', 'eểô', 'ể', 'ưêô', '2023-02-17', 'eêô', 'ưeeô', 0, '2023-02-20 03:13:02', ' '),
-(7, 62, 4, 5, 'yhyy', 'gt5', 't54', 't54', '2023-02-06', 't5', 'tr54', 0, '2023-02-22 08:43:43', ' ');
+(7, 62, 4, 5, 'yhyy', 'gt5', 't54', 't54', '2023-02-06', 't5', 'tr54', 0, '2023-02-22 08:43:43', ' '),
+(8, 59, 5, 8, 'scfẻê', 'dfẻ̀', 'dtồ', 'dtô', '2023-02-06', 'cddẻ', 'dfẻ', 0, '2023-02-23 08:19:42', ' '),
+(9, 57, 5, 8, 'dfẻ', 'dt', 'fgr', 'dfẻê', '2023-02-08', 'cdfẻ', 'dfẻ', 0, '2023-02-23 08:22:05', ' '),
+(10, 55, 6, 10, 'vdfrô', 'fgrtô', 'fgrtô', 'grtô', '2023-02-21', 'cfêê', 'dfẻ', 0, '2023-02-23 08:22:36', ' '),
+(11, 55, 4, 8, 'csf', 'sd', 'cd', 'cs', '2023-02-06', 'cd', 'sd', 0, '2023-02-23 08:22:49', ' ');
 
 -- --------------------------------------------------------
 
@@ -1004,6 +1008,29 @@ INSERT INTO `loaibangcap` (`ma_lbc`, `ten_lbc`, `status_lbc`, `created_lbc`, `up
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `loaikhenthuong`
+--
+
+CREATE TABLE `loaikhenthuong` (
+  `ma_lkt` int(11) NOT NULL,
+  `ten_lkt` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `status_lkt` int(11) NOT NULL DEFAULT 0,
+  `created_lkt` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_lkt` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `loaikhenthuong`
+--
+
+INSERT INTO `loaikhenthuong` (`ma_lkt`, `ten_lkt`, `status_lkt`, `created_lkt`, `updated_lkt`) VALUES
+(1, 'trinh', 0, '2023-02-24 01:03:54', ' '),
+(2, 'aaâ', 0, '2023-02-24 01:06:44', ' '),
+(3, 'fgretrjh', 0, '2023-02-24 01:06:48', ' ');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `ngach`
 --
 
@@ -1217,7 +1244,8 @@ INSERT INTO `phanquyen` (`ma_q`, `ma_vc`, `status_pq`, `created_pq`, `updated_pq
 (10, 66, 0, '2023-02-18 03:06:40', ' '),
 (10, 67, 0, '2023-02-18 03:07:48', ' '),
 (10, 68, 0, '2023-02-18 03:09:07', ' '),
-(10, 69, 0, '2023-02-20 06:48:49', ' ');
+(10, 69, 0, '2023-02-20 06:48:49', ' '),
+(7, 61, 0, '2023-02-23 08:43:45', ' ');
 
 -- --------------------------------------------------------
 
@@ -12253,6 +12281,12 @@ ALTER TABLE `loaibangcap`
   ADD PRIMARY KEY (`ma_lbc`);
 
 --
+-- Chỉ mục cho bảng `loaikhenthuong`
+--
+ALTER TABLE `loaikhenthuong`
+  ADD PRIMARY KEY (`ma_lkt`);
+
+--
 -- Chỉ mục cho bảng `ngach`
 --
 ALTER TABLE `ngach`
@@ -12320,7 +12354,7 @@ ALTER TABLE `bac`
 -- AUTO_INCREMENT cho bảng `bangcap`
 --
 ALTER TABLE `bangcap`
-  MODIFY `ma_bc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ma_bc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `chucvu`
@@ -12363,6 +12397,12 @@ ALTER TABLE `khoa`
 --
 ALTER TABLE `loaibangcap`
   MODIFY `ma_lbc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT cho bảng `loaikhenthuong`
+--
+ALTER TABLE `loaikhenthuong`
+  MODIFY `ma_lkt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `ngach`

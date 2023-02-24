@@ -18,6 +18,12 @@ use App\Http\Controllers\HeDaoTaoController;
 use App\Http\Controllers\BangCapController;
 use App\Http\Controllers\NghiHuuController;
 use App\Http\Controllers\ThongKeController;
+use App\Http\Controllers\LoaiKhenThuongController;
+
+
+
+
+
 
 
 Route::get('/login',[HomeController::class, 'index']);
@@ -72,9 +78,11 @@ Route::get('/delete_all_quyen',[QuyenController::class, 'delete_all_quyen']);
 
 
 
+
 Route::get('/phanquyen',[PhanQuyenController::class, 'phanquyen']);
 Route::post('/phanquyen_vc',[PhanQuyenController::class, 'phanquyen_vc']);
 Route::get('/lammoi_quyen/{ma_vc}',[PhanQuyenController::class, 'lammoi_quyen']);
+
 
 
 
@@ -88,6 +96,7 @@ Route::get('/delete_all_khoa',[KhoaController::class, 'delete_all_khoa']);
 
 
 
+
 Route::get('/dantoc',[DanTocController::class, 'dantoc']);
 Route::post('/add_dantoc',[DanTocController::class, 'add_dantoc']);
 Route::get('/select_dantoc/{ma_dt}',[DanTocController::class, 'select_dantoc']);
@@ -95,6 +104,7 @@ Route::get('/edit_dantoc/{ma_dt}',[DanTocController::class, 'edit_dantoc']);
 Route::post('/update_dantoc/{ma_dt}',[DanTocController::class, 'update_dantoc']);
 Route::get('/delete_dantoc/{ma_dt}',[DanTocController::class, 'delete_dantoc']);
 Route::get('/delete_all_dantoc',[DanTocController::class, 'delete_all_dantoc']);
+
 
 
 
@@ -239,8 +249,13 @@ Route::post('/thongke_qltt_quequan_tinh_pdf',[ThongKeController::class, 'thongke
 
 
 
-
-
+Route::get('/loaikhenthuong',[LoaiKhenThuongController::class, 'loaikhenthuong']);
+Route::post('/add_loaikhenthuong',[LoaiKhenThuongController::class, 'add_loaikhenthuong']);
+Route::get('/select_loaikhenthuong/{ma_lkt}',[LoaiKhenThuongController::class, 'select_loaikhenthuong']);
+Route::get('/edit_loaikhenthuong/{ma_lkt}',[LoaiKhenThuongController::class, 'edit_loaikhenthuong']);
+Route::post('/update_loaikhenthuong/{ma_lkt}',[LoaiKhenThuongController::class, 'update_loaikhenthuong']);
+Route::get('/delete_loaikhenthuong/{ma_lkt}',[LoaiKhenThuongController::class, 'delete_loaikhenthuong']);
+Route::get('/delete_all_loaikhenthuong',[LoaiKhenThuongController::class, 'delete_all_loaikhenthuong']);
 
 
 

@@ -296,8 +296,8 @@
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
                   <li>
-                    <a href="{{ URL::to('/') }}">
-                      Dân Tộc
+                    <a href="{{ URL::to('/loaikhenthuong') }}">
+                      Loại khen thưởng
                     </a>
                   </li>
                 </ul>
