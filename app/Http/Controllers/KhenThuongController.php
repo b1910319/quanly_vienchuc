@@ -297,7 +297,7 @@ class KhenThuongController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function khenthuong_pdf(){
+  public function khenthuong_pdf($ma_kt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -311,6 +311,7 @@ class KhenThuongController extends Controller
         ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
         ->join('vienchuc', 'vienchuc.ma_vc', '=', 'khenthuong.ma_vc')
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('ma_kt', $ma_kt)
         ->get();
       $pdf = PDF::loadView('khenthuong.khenthuong_pdf', [
         'khenthuong' => $khenthuong,
