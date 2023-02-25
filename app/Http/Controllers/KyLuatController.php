@@ -246,42 +246,42 @@ class KyLuatController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function delete_kyluat($ma_kl, $ma_vc){
-  //   $this->check_login();
-  //   $ma_vc_login = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlktkl){
-  //     KyLuat::find($ma_kl)->delete();
-  //     return Redirect::to('/kyluat_add/'.$ma_vc);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function delete_all_kyluat($ma_vc){
-  //   $this->check_login();
-  //   $ma_vc_login = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlktkl){
-  //     $list = KyLuat::where('ma_vc', $ma_vc)
-  //       ->get();
-  //     foreach($list as $key => $kyluat){
-  //       $kyluat->delete();
-  //     }
-  //     return Redirect::to('/kyluat_add/'.$ma_vc);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function delete_kyluat($ma_kl, $ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      KyLuat::find($ma_kl)->delete();
+      return Redirect::to('/kyluat_add/'.$ma_vc);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function delete_all_kyluat($ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $list = KyLuat::where('ma_vc', $ma_vc)
+        ->get();
+      foreach($list as $key => $kyluat){
+        $kyluat->delete();
+      }
+      return Redirect::to('/kyluat_add/'.$ma_vc);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function kyluat_pdf(){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');

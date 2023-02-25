@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 25, 2023 lúc 04:06 AM
+-- Thời gian đã tạo: Th2 25, 2023 lúc 04:31 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -1050,7 +1050,8 @@ CREATE TABLE `kyluat` (
 --
 
 INSERT INTO `kyluat` (`ma_kl`, `ma_vc`, `ma_lkl`, `lydo_kl`, `ngay_kl`, `status_kl`, `created_kl`, `updated_kl`) VALUES
-(1, 54, 4, 'fbdhrd', '2023-02-14', 0, '2023-02-25 03:05:57', ' ');
+(3, 56, 6, 'cfewt̀', '2023-02-12', 0, '2023-02-25 03:08:06', ' '),
+(4, 54, 4, 'Chưa hoàn thành nhiệm vụ được giao', '2023-02-13', 0, '2023-02-25 03:31:01', ' ');
 
 -- --------------------------------------------------------
 
@@ -12529,7 +12530,7 @@ ALTER TABLE `khoa`
 -- AUTO_INCREMENT cho bảng `kyluat`
 --
 ALTER TABLE `kyluat`
-  MODIFY `ma_kl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ma_kl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `loaibangcap`
