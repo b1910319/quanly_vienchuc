@@ -79,27 +79,27 @@ class LoaiKyLuatController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function select_loaikyluat($ma_lkl){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlktkl){
-  //     $loaikyluat = LoaiKyLuat::find($ma_lkl);
-  //     if($loaikyluat->status_lkl == 1){
-  //       $loaikyluat->status_lkl = LoaiKyLuat::find($ma_lkl)->update(['status_lkl' => 0]);
-  //     }elseif($loaikyluat->status_lkl == 0){
-  //       $loaikyluat->status_lkl = LoaiKyLuat::find($ma_lkl)->update(['status_lkl' => 1]);
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function select_loaikyluat($ma_lkl){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $loaikyluat = LoaiKyLuat::find($ma_lkl);
+      if($loaikyluat->status_lkl == 1){
+        $loaikyluat->status_lkl = LoaiKyLuat::find($ma_lkl)->update(['status_lkl' => 0]);
+      }elseif($loaikyluat->status_lkl == 0){
+        $loaikyluat->status_lkl = LoaiKyLuat::find($ma_lkl)->update(['status_lkl' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function edit_loaikyluat($ma_lkl){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
