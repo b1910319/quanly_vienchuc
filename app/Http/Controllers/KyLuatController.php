@@ -185,74 +185,67 @@ class KyLuatController extends Controller
   //     return Redirect::to('/home');
   //   }
   // }
-  // public function edit_kyluat($ma_kl, $ma_vc){
-  //   $this->check_login();
-  //   $title = "Cập nhật thông tin khen thưởng";
-  //   $ma_vc_login = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlktkl){
-  //     $edit = KyLuat::find($ma_kl);
-  //     Carbon::now('Asia/Ho_Chi_Minh'); 
-  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-  //       ->select(DB::raw('count(ma_vc) as sum'))
-  //       ->get();
-
-  //     $list_hinhthuckyluat = HinhThucKyLuat::where('status_htkt', '<>', '1')
-  //       ->orderBy('ten_htkt', 'asc')
-  //       ->get();
-  //     $list_loaikyluat = LoaiKyLuat::where('status_lkl', '<>', '1')
-  //       ->orderBy('ten_lkl', 'asc')
-  //       ->get();
-  //     return view('kyluat.kyluat_edit')
-  //       ->with('edit', $edit)
-  //       ->with('ma_vc', $ma_vc)
-  //       ->with('title', $title)
-  //       ->with('list_hinhthuckyluat', $list_hinhthuckyluat)
-  //       ->with('list_loaikyluat', $list_loaikyluat)
-  //       ->with('phanquyen_qltt', $phanquyen_qltt)
-  //       ->with('count_nangbac', $count_nangbac)
-  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-  //       ->with('phanquyen_admin', $phanquyen_admin);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function update_kyluat(Request $request, $ma_kl, $ma_vc){
-  //   $this->check_login();
-  //   $ma_vc_login = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlktkl){
-  //     $data = $request->all();
-  //     Carbon::now('Asia/Ho_Chi_Minh');
-  //     $kyluat = KyLuat::find($ma_kl);
-  //     $kyluat->ma_lkl = $data['ma_lkl'];
-  //     $kyluat->ma_vc = $ma_vc;
-  //     $kyluat->ma_htkt = $data['ma_htkt'];
-  //     $kyluat->ngay_kl = $data['ngay_kl'];
-  //     $kyluat->noidung_kl = $data['noidung_kl'];
-  //     // $kyluat->soquyetdinh_kl = $data['soquyetdinh_kl'];
-  //     $kyluat->status_kl = $data['status_kl'];
-  //     $kyluat->updated_kl = Carbon::now();
-  //     $kyluat->save();
-  //     return Redirect::to('/kyluat_add/'.$ma_vc);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function edit_kyluat($ma_kl, $ma_vc){
+    $this->check_login();
+    $title = "Cập nhật thông tin kỷ luật";
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $edit = KyLuat::find($ma_kl);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      $list_loaikyluat = LoaiKyLuat::where('status_lkl', '<>', '1')
+        ->orderBy('ten_lkl', 'asc')
+        ->get();
+      return view('kyluat.kyluat_edit')
+        ->with('edit', $edit)
+        ->with('ma_vc', $ma_vc)
+        ->with('title', $title)
+        ->with('list_loaikyluat', $list_loaikyluat)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_kyluat(Request $request, $ma_kl, $ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $kyluat = KyLuat::find($ma_kl);
+      $kyluat->ma_lkl = $data['ma_lkl'];
+      $kyluat->ma_vc = $ma_vc;
+      $kyluat->ngay_kl = $data['ngay_kl'];
+      $kyluat->lydo_kl = $data['lydo_kl'];
+      $kyluat->status_kl = $data['status_kl'];
+      $kyluat->updated_kl = Carbon::now();
+      $kyluat->save();
+      return Redirect::to('/kyluat_add/'.$ma_vc);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function delete_kyluat($ma_kl, $ma_vc){
   //   $this->check_login();
   //   $ma_vc_login = session()->get('ma_vc');

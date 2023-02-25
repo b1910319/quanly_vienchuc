@@ -67,7 +67,7 @@
                         <tr>
                           <th scope="row">Lý do kỷ luật: </th>
                           <td class="was-validated">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" name="lydo_kl"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="lydo_kl"></textarea>
                           </td>
                         </tr>
                       </tbody>
