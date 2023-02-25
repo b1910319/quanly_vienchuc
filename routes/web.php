@@ -248,6 +248,7 @@ Route::get('/thongke_qlktkl_htkt',[ThongKeController::class, 'thongke_qlktkl_htk
 Route::post('/thongke_qlktkl_time',[ThongKeController::class, 'thongke_qlktkl_time']);
 Route::get('/thongke_qlktkl_khoa',[ThongKeController::class, 'thongke_qlktkl_khoa']);
 Route::get('/thongke_qltt_time_pdf/{batdau}/{ketthuc}',[ThongKeController::class, 'thongke_qltt_time_pdf']);
+Route::get('/thongke_qlktkl_htkt_pdf/{ma_htkt}',[ThongKeController::class, 'thongke_qlktkl_htkt_pdf']);
 
 
 

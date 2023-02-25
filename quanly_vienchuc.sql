@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 25, 2023 lúc 04:31 AM
+-- Thời gian đã tạo: Th2 25, 2023 lúc 10:09 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -997,7 +997,12 @@ CREATE TABLE `khenthuong` (
 --
 
 INSERT INTO `khenthuong` (`ma_kt`, `ma_vc`, `ma_lkt`, `ma_htkt`, `ngay_kt`, `noidung_kt`, `status_kt`, `created_kt`, `updated_kt`) VALUES
-(5, 57, 4, 4, '2023-02-22', 'hoàn thành xuất sắc nhiệm vụ được giao, có thành tích cao', 0, '2023-02-24 08:26:49', ' ');
+(5, 57, 4, 5, '2023-02-22', 'hoàn thành xuất sắc nhiệm vụ được giao, có thành tích cao', 0, '2023-02-24 08:26:49', '2023-02-25 06:57:17'),
+(6, 57, 5, 6, '2023-02-07', 'dvgtưô', 0, '2023-02-25 03:37:35', '2023-02-25 07:00:04'),
+(7, 56, 4, 6, '2023-02-13', 'scfêqềr', 0, '2023-02-25 06:30:50', ' '),
+(8, 55, 4, 4, '2023-02-22', 'u7u67u7', 0, '2023-02-25 07:18:55', ' '),
+(9, 54, 5, 7, '2023-02-13', 'cfewr35refd', 0, '2023-02-25 07:19:37', ' '),
+(10, 26, 4, 8, '2023-02-21', 'dewt452', 0, '2023-02-25 07:56:05', ' ');
 
 -- --------------------------------------------------------
 
@@ -1050,8 +1055,9 @@ CREATE TABLE `kyluat` (
 --
 
 INSERT INTO `kyluat` (`ma_kl`, `ma_vc`, `ma_lkl`, `lydo_kl`, `ngay_kl`, `status_kl`, `created_kl`, `updated_kl`) VALUES
-(3, 56, 6, 'cfewt̀', '2023-02-12', 0, '2023-02-25 03:08:06', ' '),
-(4, 54, 4, 'Chưa hoàn thành nhiệm vụ được giao', '2023-02-13', 0, '2023-02-25 03:31:01', ' ');
+(4, 54, 4, 'Chưa hoàn thành nhiệm vụ được giao', '2023-02-13', 0, '2023-02-25 03:31:01', ' '),
+(5, 56, 5, 'Làm sai quy định', '2023-02-14', 0, '2023-02-25 03:39:47', ' '),
+(6, 56, 5, 'bbbbbbbbbbbbbbbb', '2023-02-22', 0, '2023-02-25 06:13:45', ' ');
 
 -- --------------------------------------------------------
 
@@ -12518,7 +12524,7 @@ ALTER TABLE `huyen`
 -- AUTO_INCREMENT cho bảng `khenthuong`
 --
 ALTER TABLE `khenthuong`
-  MODIFY `ma_kt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ma_kt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `khoa`
@@ -12530,7 +12536,7 @@ ALTER TABLE `khoa`
 -- AUTO_INCREMENT cho bảng `kyluat`
 --
 ALTER TABLE `kyluat`
-  MODIFY `ma_kl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ma_kl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `loaibangcap`
