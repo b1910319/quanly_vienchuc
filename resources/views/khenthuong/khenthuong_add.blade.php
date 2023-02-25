@@ -74,8 +74,7 @@
                         <tr>
                           <th scope="row">Nội dung khen thưởng: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="noidung_kt">
-                            </textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" name="noidung_kt"></textarea>
                           </td>
                         </tr>
                         <tr>

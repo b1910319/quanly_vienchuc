@@ -20,6 +20,7 @@ use App\Models\Tinh;
 use App\Models\TonGiao;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
+use PDF;
 
 class KhenThuongController extends Controller
 {
@@ -278,24 +279,47 @@ class KhenThuongController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function delete_all_bangcap($ma_vc){
-  //   $this->check_login();
-  //   $ma_vc_login = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $list = KhenThuong::where('ma_vc', $ma_vc)
-  //       ->get();
-  //     foreach($list as $key => $bangcap){
-  //       $bangcap->delete();
-  //     }
-  //     return Redirect::to('/bangcap/'.$ma_vc);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function delete_all_khenthuong($ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $list = KhenThuong::where('ma_vc', $ma_vc)
+        ->get();
+      foreach($list as $key => $khenthuong){
+        $khenthuong->delete();
+      }
+      return Redirect::to('/khenthuong_add/'.$ma_vc);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function khenthuong_pdf(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $khenthuong = KhenThuong::join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
+        ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
+        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'khenthuong.ma_vc')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->get();
+      $pdf = PDF::loadView('khenthuong.khenthuong_pdf', [
+        'khenthuong' => $khenthuong,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }

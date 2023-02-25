@@ -281,6 +281,8 @@ Route::get('/select_khenthuong/{ma_kt}',[KhenThuongController::class, 'select_kh
 Route::get('/edit_khenthuong/{ma_kt}/{ma_vc}',[KhenThuongController::class, 'edit_khenthuong']);
 Route::post('/update_khenthuong/{ma_kt}/{ma_vc}',[KhenThuongController::class, 'update_khenthuong']);
 Route::get('/delete_khenthuong/{ma_kt}/{ma_vc}',[KhenThuongController::class, 'delete_khenthuong']);
+Route::get('/delete_all_khenthuong/{ma_vc}',[KhenThuongController::class, 'delete_all_khenthuong']);
+Route::get('/khenthuong_pdf/{ma_kt}',[KhenThuongController::class, 'khenthuong_pdf']);
 
 
 
