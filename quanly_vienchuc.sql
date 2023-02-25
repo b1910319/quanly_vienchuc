@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 25, 2023 lúc 03:03 AM
+-- Thời gian đã tạo: Th2 25, 2023 lúc 03:18 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -1097,9 +1097,10 @@ CREATE TABLE `loaikyluat` (
 --
 
 INSERT INTO `loaikyluat` (`ma_lkl`, `ten_lkl`, `status_lkl`, `created_lkl`, `updated_lkl`) VALUES
-(1, 'dvgetâầ', 0, '2023-02-25 02:02:48', ' '),
-(2, 'trinh', 0, '2023-02-25 02:02:53', ' '),
-(3, 'hang', 0, '2023-02-25 02:02:57', ' ');
+(4, 'Khiển trách', 0, '2023-02-25 02:17:47', ' '),
+(5, 'Cảnh cáo', 0, '2023-02-25 02:17:54', ' '),
+(6, 'Buộc thôi việc', 0, '2023-02-25 02:18:02', ' '),
+(7, 'Cách chức.', 0, '2023-02-25 02:18:15', ' ');
 
 -- --------------------------------------------------------
 
@@ -12511,7 +12512,7 @@ ALTER TABLE `loaikhenthuong`
 -- AUTO_INCREMENT cho bảng `loaikyluat`
 --
 ALTER TABLE `loaikyluat`
-  MODIFY `ma_lkl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ma_lkl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `ngach`
