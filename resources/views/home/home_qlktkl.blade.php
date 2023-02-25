@@ -4,11 +4,17 @@
   <div class="col-xl-3 col-md-6">
     <div class="card-box">
       <div class="float-left" dir="ltr">
-        <input data-plugin="knob" data-width="70" data-height="70" data-fgcolor="#1abc9c" data-bgcolor="#d1f2eb" value="58" data-skin="tron" data-angleoffset="0" data-readonly="true" data-thickness=".15">
+        @foreach ($count_vienchuc as $vc )
+          @foreach ($count_vienchuc_kyluat as $vckl )
+            <input data-plugin="knob" data-width="70" data-height="70" data-fgcolor="#1abc9c" data-bgcolor="#d1f2eb" value="<?php echo ceil(($vckl->sum*100)/($vc->sum)) ?>" data-skin="true" data-angleoffset="0" data-readonly="true" data-thickness=".15">
+          @endforeach
+        @endforeach
       </div>
       <div class="text-right">
-        <h3 class="mb-1"> 268 </h3>
-        <p class="text-muted mb-1">Khen thưởng kĩ luật</p>
+        @foreach ($count_vienchuc_kyluat as $vienchuc )
+          <h3 class="mb-1"> {{ $vienchuc->sum }} </h3>
+        @endforeach
+        <p class="text-muted mb-1">Kỷ luật</p>
       </div>
     </div>
   </div><!-- end col -->
@@ -16,11 +22,17 @@
   <div class="col-xl-3 col-md-6">
     <div class="card-box">
       <div class="float-left" dir="ltr">
-        <input data-plugin="knob" data-width="70" data-height="70" data-fgcolor="#3bafda" data-bgcolor="#d8eff8" value="80" data-skin="tron" data-angleoffset="0" data-readonly="true" data-thickness=".15">
+        @foreach ($count_vienchuc as $vc )
+          @foreach ($count_vienchuc_khenthuong as $vckt )
+          <input data-plugin="knob" data-width="70" data-height="70" data-fgcolor="#3bafda" data-bgcolor="#d8eff8" value="<?php echo ceil(($vckt->sum*100)/($vc->sum)) ?>" data-skin="true" data-angleoffset="0" data-readonly="true" data-thickness=".15">
+          @endforeach
+        @endforeach
       </div>
       <div class="text-right">
-        <h3 class="mb-1"> 8715 </h3>
-        <p class="text-muted mb-1">Online Orders</p>
+        @foreach ($count_vienchuc_khenthuong as $vienchuc )
+          <h3 class="mb-1"> {{ $vienchuc->sum }} </h3>
+        @endforeach
+        <p class="text-muted mb-1">Khen thưởng</p>
       </div>
     </div>
   </div><!-- end col -->

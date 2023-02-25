@@ -47,10 +47,20 @@ class HomeController extends Controller
       $count_vienchuc_nghihuu = VienChuc::select(DB::raw('count(ma_vc) as sum'))
         ->where('status_vc', '2')
         ->get();
+      $count_vienchuc_kyluat = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
+        ->select(DB::raw('count(DISTINCT kyluat.ma_vc) as sum'))
+        ->where('status_vc', '<>', '2')
+        ->get();
+      $count_vienchuc_khenthuong = VienChuc::join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
+        ->select(DB::raw('count(DISTINCT khenthuong.ma_vc) as sum'))
+        ->where('status_vc', '<>', '2')
+        ->get();
       return view('home.home_admin')
         ->with('title', $title)
         ->with('count_vienchuc', $count_vienchuc)
         ->with('count_vienchuc_nghihuu', $count_vienchuc_nghihuu)
+        ->with('count_vienchuc_kyluat', $count_vienchuc_kyluat)
+        ->with('count_vienchuc_khenthuong', $count_vienchuc_khenthuong)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt)
@@ -71,8 +81,22 @@ class HomeController extends Controller
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else if($phanquyen_qlktkl){
+      $count_vienchuc = VienChuc::select(DB::raw('count(ma_vc) as sum'))
+        ->where('status_vc', '<>', '2')
+        ->get();
+      $count_vienchuc_kyluat = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
+        ->select(DB::raw('count(DISTINCT kyluat.ma_vc) as sum'))
+        ->where('status_vc', '<>', '2')
+        ->get();
+      $count_vienchuc_khenthuong = VienChuc::join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
+        ->select(DB::raw('count(DISTINCT khenthuong.ma_vc) as sum'))
+        ->where('status_vc', '<>', '2')
+        ->get();
       return view('home.home_qlktkl')
         ->with('title', $title)
+        ->with('count_vienchuc_kyluat', $count_vienchuc_kyluat)
+        ->with('count_vienchuc_khenthuong', $count_vienchuc_khenthuong)
+        ->with('count_vienchuc', $count_vienchuc)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt)
