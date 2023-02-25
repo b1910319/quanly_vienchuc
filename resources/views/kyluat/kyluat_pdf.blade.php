@@ -30,7 +30,7 @@
       <br>
       <b style="margin-left: 5px;"> TRUYỀN THÔNG - ĐẠI HỌC CẦN THƠ</b>
       @foreach($kyluat as $key => $kl)
-        <p style="margin-left: 60px;">Số: {{ $kl->ma_kt }} /QĐ-ĐHCT <i style="margin-left: 350px;">Cần thơ {{ $kl->ngay_kt }}</i></p>
+        <p style="margin-left: 60px;">Số: {{ $kl->ma_kl }} /QĐ-ĐHCT <i style="margin-left: 350px;">Cần thơ {{ $kl->ngay_kl }}</i></p>
       @endforeach
       
     </p>
