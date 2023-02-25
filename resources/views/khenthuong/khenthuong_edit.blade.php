@@ -69,12 +69,12 @@
         <div class="col-6">
           <table class="table">
             <tbody>
-              <tr>
+              {{-- <tr>
                 <th scope="row">Số quyết định khen thưởng: </th>
                 <td class="was-validated">
                   <input type='text' class='form-control input_table' autofocus required name="soquyetdinh_kt" value="{{ $edit->soquyetdinh_kt }}">
                 </td>
-              </tr>
+              </tr> --}}
               <tr>
                 <th scope="row">Nội dung khen thưởng: </th>
                 <td class="was-validated">

@@ -315,6 +315,11 @@
                       Loại kỷ luật
                     </a>
                   </li>
+                  <li>
+                    <a href="{{ URL::to('/kyluat') }}">
+                      Kỷ luật
+                    </a>
+                  </li>
                 </ul>
               </li>
             @endif

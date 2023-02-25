@@ -21,6 +21,7 @@ use App\Http\Controllers\ThongKeController;
 use App\Http\Controllers\LoaiKhenThuongController;
 use App\Http\Controllers\HinhThucKhenThuongController;
 use App\Http\Controllers\KhenThuongController;
+use App\Http\Controllers\KyLuatController;
 use App\Http\Controllers\LoaiKyLuatController;
 
 Route::get('/login',[HomeController::class, 'index']);
@@ -298,7 +299,15 @@ Route::get('/delete_all_loaikyluat',[LoaiKyLuatController::class, 'delete_all_lo
 
 
 
-
+Route::get('/kyluat',[KyLuatController::class, 'kyluat']);
+Route::get('/kyluat_add/{ma_vc}',[KyLuatController::class, 'kyluat_add']);
+Route::post('/add_kyluat/{ma_vc}',[KyLuatController::class, 'add_kyluat']);
+Route::get('/select_kyluat/{ma_kl}',[KyLuatController::class, 'select_kyluat']);
+Route::get('/edit_kyluat/{ma_kl}/{ma_vc}',[KyLuatController::class, 'edit_kyluat']);
+Route::post('/update_kyluat/{ma_kl}/{ma_vc}',[KyLuatController::class, 'update_kyluat']);
+Route::get('/delete_kyluat/{ma_kl}/{ma_vc}',[KyLuatController::class, 'delete_kyluat']);
+Route::get('/delete_all_kyluat/{ma_vc}',[KyLuatController::class, 'delete_all_kyluat']);
+Route::get('/kyluat_pdf/{ma_kl}',[KyLuatController::class, 'kyluat_pdf']);
 
 
 

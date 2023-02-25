@@ -30,7 +30,7 @@
       <br>
       <b style="margin-left: 5px;"> TRUYỀN THÔNG - ĐẠI HỌC CẦN THƠ</b>
       @foreach($khenthuong as $key => $kt)
-        <p style="margin-left: 60px;">Số: {{ $kt->soquyetdinh_kt }} /QĐ-ĐHCT <i style="margin-left: 350px;">Cần thơ {{ $kt->ngay_kt }}</i></p>
+        <p style="margin-left: 60px;">Số: {{ $kt->ma_kt }} /QĐ-ĐHCT <i style="margin-left: 350px;">Cần thơ {{ $kt->ngay_kt }}</i></p>
       @endforeach
       
     </p>

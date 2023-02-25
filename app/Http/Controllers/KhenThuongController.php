@@ -41,7 +41,7 @@ class KhenThuongController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
-    $title = "Quản lý loại khen thưởng";
+    $title = "Quản lý khen thưởng";
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -58,7 +58,6 @@ class KhenThuongController extends Controller
       $list_tongiao = TonGiao::get();
       $list_thuongbinh = ThuongBinh::get();
       $list_hedaotao = HeDaoTao::get();
-      $list_loiabangcap = LoaiKhenThuong::get();
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
       Carbon::now('Asia/Ho_Chi_Minh'); 
@@ -74,7 +73,6 @@ class KhenThuongController extends Controller
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('list_hedaotao', $list_hedaotao)
-        ->with('list_loiabangcap', $list_loiabangcap)
         ->with('list_tinh', $list_tinh)
         ->with('list_khoa', $list_khoa)
         ->with('list_chucvu', $list_chucvu)
@@ -165,7 +163,7 @@ class KhenThuongController extends Controller
       $khenthuong->ma_htkt = $data['ma_htkt'];
       $khenthuong->ngay_kt = $data['ngay_kt'];
       $khenthuong->noidung_kt = $data['noidung_kt'];
-      $khenthuong->soquyetdinh_kt = $data['soquyetdinh_kt'];
+      // $khenthuong->soquyetdinh_kt = $data['soquyetdinh_kt'];
       $khenthuong->status_kt = $data['status_kt'];
       $khenthuong->save();
       $request->session()->put('message','Thêm thành công');
@@ -254,7 +252,7 @@ class KhenThuongController extends Controller
       $khenthuong->ma_htkt = $data['ma_htkt'];
       $khenthuong->ngay_kt = $data['ngay_kt'];
       $khenthuong->noidung_kt = $data['noidung_kt'];
-      $khenthuong->soquyetdinh_kt = $data['soquyetdinh_kt'];
+      // $khenthuong->soquyetdinh_kt = $data['soquyetdinh_kt'];
       $khenthuong->status_kt = $data['status_kt'];
       $khenthuong->updated_kt = Carbon::now();
       $khenthuong->save();
