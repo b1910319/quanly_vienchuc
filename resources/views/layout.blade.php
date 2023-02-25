@@ -320,6 +320,11 @@
                       Kỷ luật
                     </a>
                   </li>
+                  <li>
+                    <a href="{{ URL::to('/thongke_qlktkl') }}">
+                      Thống kê
+                    </a>
+                  </li>
                 </ul>
               </li>
             @endif

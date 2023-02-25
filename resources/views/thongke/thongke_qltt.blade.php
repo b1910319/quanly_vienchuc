@@ -129,7 +129,9 @@
     </div>
     <div class="row">
       <div class="col-6">
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color: #00425A; border: none; width: 100%" >Chọn khoảng thời gian để xuất file</button>
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color: #00425A; border: none; width: 100%" >
+          Chọn khoảng thời gian để xuất file
+        </button>
         <div id="demo" class="collapse mt-3">
           <form action="{{ URL::to('thongke_qltt_nghihuu_time_pdf') }}" method="post">
             {{ csrf_field() }}
@@ -151,26 +153,26 @@
       </div>
       <div class="col-6">
         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >Chọn khoa để xuất file</button>
-          <div id="demo3" class="collapse mt-3">
-            <form action="{{ URL::to('thongke_qltt_nghihuu_khoa_pdf') }}" method="post">
-              {{ csrf_field() }}
-              <div class="row">
-                <div class="col-8">
-                  <select class="custom-select input_table" id="gender2" name="ma_k">
-                    <option value="0" >Chọn khoa</option>
-                    @foreach ($list_khoa as $khoa)
-                      <option value="{{ $khoa->ma_k }}" >{{ $khoa->ten_k }}</option>
-                    @endforeach
-                  </select>
-                </div>
-                <div class="col-4">
-                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
-                    Xuất file
-                  </button>
-                </div>
+        <div id="demo3" class="collapse mt-3">
+          <form action="{{ URL::to('thongke_qltt_nghihuu_khoa_pdf') }}" method="post">
+            {{ csrf_field() }}
+            <div class="row">
+              <div class="col-8">
+                <select class="custom-select input_table" id="gender2" name="ma_k">
+                  <option value="0" >Chọn khoa</option>
+                  @foreach ($list_khoa as $khoa)
+                    <option value="{{ $khoa->ma_k }}" >{{ $khoa->ten_k }}</option>
+                  @endforeach
+                </select>
               </div>
-            </form>
-          </div>
+              <div class="col-4">
+                <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
+                  Xuất file
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
     <div id="myfirstchart6" style="height: 250px;"></div>
