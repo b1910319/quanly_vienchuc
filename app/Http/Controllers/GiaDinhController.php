@@ -30,7 +30,7 @@ class GiaDinhController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thông tin quan hệ gia đình";
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){

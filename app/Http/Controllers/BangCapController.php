@@ -32,7 +32,7 @@ class BangCapController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Quản lý loại bằng cấp";
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
@@ -138,7 +138,7 @@ class BangCapController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '8')
       ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){

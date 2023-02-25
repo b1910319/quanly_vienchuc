@@ -166,17 +166,14 @@ class VienChucController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
       ->first();
     if($phanquyen_admin){
       $edit = VienChuc::find($ma_vc);
-      $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-        ->where('ma_q', '=', '5')
-        ->first();
-      $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-        ->where('ma_q', '=', '8')
-        ->first();
       Carbon::now('Asia/Ho_Chi_Minh'); 
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
@@ -265,10 +262,10 @@ class VienChucController extends Controller
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
     if($phanquyen_admin){
-      $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-        ->where('ma_q', '=', '8')
-        ->first();
       $count = VienChuc::select(DB::raw('count(ma_vc) as sum'))
         ->get();
       $count_status = VienChuc::select(DB::raw('count(ma_vc) as sum, status_vc'))
