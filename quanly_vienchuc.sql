@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 24, 2023 lúc 07:36 AM
+-- Thời gian đã tạo: Th2 25, 2023 lúc 03:03 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -998,7 +998,7 @@ CREATE TABLE `khenthuong` (
 --
 
 INSERT INTO `khenthuong` (`ma_kt`, `ma_vc`, `ma_lkt`, `ma_htkt`, `ngay_kt`, `noidung_kt`, `soquyetdinh_kt`, `status_kt`, `created_kt`, `updated_kt`) VALUES
-(1, 57, 4, 5, '2023-02-07', 'vdgt264te', '1452', 0, '2023-02-24 06:29:43', ' ');
+(5, 57, 4, 4, '2023-02-22', 'hoàn thành xuất sắc nhiệm vụ được giao, có thành tích cao', '223', 0, '2023-02-24 08:26:49', ' ');
 
 -- --------------------------------------------------------
 
@@ -1077,6 +1077,29 @@ CREATE TABLE `loaikhenthuong` (
 INSERT INTO `loaikhenthuong` (`ma_lkt`, `ten_lkt`, `status_lkt`, `created_lkt`, `updated_lkt`) VALUES
 (4, 'Cá nhân có thành tích xuất sắc', 0, '2023-02-24 01:20:51', ' '),
 (5, 'Cá nhân hoàn thành xuất sắc nhiệm vụ được giao', 0, '2023-02-24 01:21:24', ' ');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `loaikyluat`
+--
+
+CREATE TABLE `loaikyluat` (
+  `ma_lkl` int(11) NOT NULL,
+  `ten_lkl` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `status_lkl` int(11) NOT NULL DEFAULT 0,
+  `created_lkl` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_lkl` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `loaikyluat`
+--
+
+INSERT INTO `loaikyluat` (`ma_lkl`, `ten_lkl`, `status_lkl`, `created_lkl`, `updated_lkl`) VALUES
+(1, 'dvgetâầ', 0, '2023-02-25 02:02:48', ' '),
+(2, 'trinh', 0, '2023-02-25 02:02:53', ' '),
+(3, 'hang', 0, '2023-02-25 02:02:57', ' ');
 
 -- --------------------------------------------------------
 
@@ -12349,6 +12372,12 @@ ALTER TABLE `loaikhenthuong`
   ADD PRIMARY KEY (`ma_lkt`);
 
 --
+-- Chỉ mục cho bảng `loaikyluat`
+--
+ALTER TABLE `loaikyluat`
+  ADD PRIMARY KEY (`ma_lkl`);
+
+--
 -- Chỉ mục cho bảng `ngach`
 --
 ALTER TABLE `ngach`
@@ -12458,7 +12487,7 @@ ALTER TABLE `huyen`
 -- AUTO_INCREMENT cho bảng `khenthuong`
 --
 ALTER TABLE `khenthuong`
-  MODIFY `ma_kt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ma_kt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `khoa`
@@ -12476,7 +12505,13 @@ ALTER TABLE `loaibangcap`
 -- AUTO_INCREMENT cho bảng `loaikhenthuong`
 --
 ALTER TABLE `loaikhenthuong`
-  MODIFY `ma_lkt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ma_lkt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT cho bảng `loaikyluat`
+--
+ALTER TABLE `loaikyluat`
+  MODIFY `ma_lkl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `ngach`

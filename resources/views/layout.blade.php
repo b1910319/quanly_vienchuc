@@ -310,6 +310,11 @@
                       Khen thưởng
                     </a>
                   </li>
+                  <li>
+                    <a href="{{ URL::to('/loaikyluat') }}">
+                      Loại kỷ luật
+                    </a>
+                  </li>
                 </ul>
               </li>
             @endif

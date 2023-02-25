@@ -21,12 +21,7 @@ use App\Http\Controllers\ThongKeController;
 use App\Http\Controllers\LoaiKhenThuongController;
 use App\Http\Controllers\HinhThucKhenThuongController;
 use App\Http\Controllers\KhenThuongController;
-
-
-
-
-
-
+use App\Http\Controllers\LoaiKyLuatController;
 
 Route::get('/login',[HomeController::class, 'index']);
 Route::get('/home',[HomeController::class, 'home']);
@@ -291,7 +286,13 @@ Route::get('/khenthuong_pdf/{ma_kt}',[KhenThuongController::class, 'khenthuong_p
 
 
 
-
+Route::get('/loaikyluat',[LoaiKyLuatController::class, 'loaikyluat']);
+Route::post('/add_loaikyluat',[LoaiKyLuatController::class, 'add_loaikyluat']);
+Route::get('/select_loaikyluat/{ma_lkl}',[LoaiKyLuatController::class, 'select_loaikyluat']);
+Route::get('/edit_loaikyluat/{ma_lkl}',[LoaiKyLuatController::class, 'edit_loaikyluat']);
+Route::post('/update_loaikyluat/{ma_lkl}',[LoaiKyLuatController::class, 'update_loaikyluat']);
+Route::get('/delete_loaikyluat/{ma_lkl}',[LoaiKyLuatController::class, 'delete_loaikyluat']);
+Route::get('/delete_all_loaikyluat',[LoaiKyLuatController::class, 'delete_all_loaikyluat']);
 
 
 
