@@ -100,59 +100,59 @@ class LoaiKyLuatController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function edit_loaikyluat($ma_lkl){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   $title = "Cập nhật thông tin loại bằng cấp";
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlktkl){
-  //     $edit = LoaiKyLuat::find($ma_lkl);
-  //     Carbon::now('Asia/Ho_Chi_Minh'); 
-  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-  //       ->select(DB::raw('count(ma_vc) as sum'))
-  //       ->get();
-  //     return view('loaikyluat.loaikyluat_edit')
-  //       ->with('edit', $edit)
-  //       ->with('title', $title)
-  //       ->with('count_nangbac', $count_nangbac)
-  //       ->with('phanquyen_qltt', $phanquyen_qltt)
-  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-  //       ->with('phanquyen_admin', $phanquyen_admin);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function update_loaikyluat(Request $request, $ma_lkl){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlktkl){
-  //     $data = $request->all();
-  //     Carbon::now('Asia/Ho_Chi_Minh');
-  //     $loaikyluat = LoaiKyLuat::find($ma_lkl);
-  //     $loaikyluat->ten_lkl = $data['ten_lkl'];
-  //     $loaikyluat->status_lkl = $data['status_lkl'];
-  //     $loaikyluat->updated_lkl = Carbon::now();
-  //     $loaikyluat->save();
-  //     return Redirect::to('loaikyluat');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function edit_loaikyluat($ma_lkl){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Cập nhật thông tin loại bằng cấp";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $edit = LoaiKyLuat::find($ma_lkl);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      return view('loaikyluat.loaikyluat_edit')
+        ->with('edit', $edit)
+        ->with('title', $title)
+        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_loaikyluat(Request $request, $ma_lkl){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $loaikyluat = LoaiKyLuat::find($ma_lkl);
+      $loaikyluat->ten_lkl = $data['ten_lkl'];
+      $loaikyluat->status_lkl = $data['status_lkl'];
+      $loaikyluat->updated_lkl = Carbon::now();
+      $loaikyluat->save();
+      return Redirect::to('loaikyluat');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function delete_loaikyluat($ma_lkl){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');

@@ -2,14 +2,14 @@
 @section('content')
   <div class="card-box">
     <div class="alert alert-success row" role="alert">
-      <a href="{{ URL::to('/loaikhenthuong') }}" class="col-1">
+      <a href="{{ URL::to('/loaikyluat') }}" class="col-1">
         <button type="button" class="btn btn-warning">
           <i class="fas fa-solid fa-caret-left"></i>&ensp;
         </button> &ensp;
       </a>
       <h4 class="text-center col-10 mt-1" style="font-weight: bold">CẬP NHẬT THÔNG TIN</h4>
     </div>
-    <form action="{{ URL::to('/update_loaikhenthuong/'.$edit->ma_lkt) }}" method="POST"
+    <form action="{{ URL::to('/update_loaikyluat/'.$edit->ma_lkl) }}" method="POST"
       autocomplete="off" enctype="multipart/form-data">
       {{ csrf_field() }}
       <?php
@@ -30,7 +30,7 @@
               <tr>
                 <th scope="row">Loại khen thưởng: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="ten_lkt" value="{{ $edit->ten_lkt }}">
+                  <input type='text' class='form-control input_table' autofocus required name="ten_lkl" value="{{ $edit->ten_lkl }}">
                 </td>
               </tr>
             </tbody>
@@ -42,9 +42,9 @@
               <tr>
                 <th scope="row">Trạng thái: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="status_lkt">
+                  <select class="custom-select input_table" id="gender2" name="status_lkl">
                     <option value="0" >Chọn trạng thái</option>
-                    @if ($edit->status_lkt == 1)
+                    @if ($edit->status_lkl == 1)
                       <option selected value="1" >Ẩn</option>
                       <option value="0" >Hiển thị</option>
                     @else
