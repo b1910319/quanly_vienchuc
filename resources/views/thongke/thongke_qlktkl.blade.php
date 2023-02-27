@@ -122,6 +122,15 @@
         </div>
       </div>
     @endif
+    @if ($count_khoa != '')
+      <div class="row">
+        <div class="col-1">
+          <a href="{{ URL::to('/thongke_qlktkl_khoa_all_pdf') }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
   </div>
 </div>
 <script>

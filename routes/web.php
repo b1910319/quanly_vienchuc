@@ -252,6 +252,7 @@ Route::get('/thongke_qlktkl_htkt_pdf/{ma_htkt}',[ThongKeController::class, 'thon
 Route::get('/thongke_qlktkl_lkt_pdf/{ma_lkt}',[ThongKeController::class, 'thongke_qlktkl_lkt_pdf']);
 Route::get('/thongke_qlktkl_lkt_all_pdf',[ThongKeController::class, 'thongke_qlktkl_lkt_all_pdf']);
 Route::get('/thongke_qlktkl_htkt_all_pdf',[ThongKeController::class, 'thongke_qlktkl_htkt_all_pdf']);
+Route::get('/thongke_qlktkl_khoa_all_pdf',[ThongKeController::class, 'thongke_qlktkl_khoa_all_pdf']);
 
 
 
