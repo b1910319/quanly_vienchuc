@@ -8,6 +8,7 @@ use App\Models\HinhThucKhenThuong;
 use App\Models\Khoa;
 use App\Models\LoaiBangCap;
 use App\Models\LoaiKhenThuong;
+use App\Models\LoaiKyLuat;
 use App\Models\Ngach;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -448,6 +449,15 @@ class ThongKeController extends Controller
       $count_hinhthuckhenthuong = '';
       $count_khoa = '';
       $count_khenthuong_time ='';
+      $count_loaikyluat = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(vienchuc.ma_vc) as sum, loaikyluat.ma_lkl'))
+        ->groupBy('loaikyluat.ma_lkl')
+        ->get();
+      $list_loaikyluat = LoaiKyLuat::orderBy('ten_lkl', 'asc')
+        ->get();
+      $count_kyluat_time ='';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
         ->with('list_loaikhenthuong', $list_loaikhenthuong)
@@ -458,6 +468,9 @@ class ThongKeController extends Controller
         ->with('count_khenthuong_time', $count_khenthuong_time)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('count_loaikyluat', $count_loaikyluat)
+        ->with('count_kyluat_time', $count_kyluat_time)
+        ->with('list_loaikyluat', $list_loaikyluat)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -497,6 +510,15 @@ class ThongKeController extends Controller
       $list_hinhthuckhenthuong = HinhThucKhenThuong::orderBy('ten_htkt', 'asc')
         ->get();
       $count_khenthuong_time ='';
+      $count_loaikyluat = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(vienchuc.ma_vc) as sum, loaikyluat.ma_lkl'))
+        ->groupBy('loaikyluat.ma_lkl')
+        ->get();
+      $list_loaikyluat = LoaiKyLuat::orderBy('ten_lkl', 'asc')
+        ->get();
+      $count_kyluat_time ='';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
         ->with('list_loaikhenthuong', $list_loaikhenthuong)
@@ -506,6 +528,9 @@ class ThongKeController extends Controller
         ->with('count_khoa', $count_khoa)
         ->with('count_khenthuong_time', $count_khenthuong_time)
         ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('count_loaikyluat', $count_loaikyluat)
+        ->with('count_kyluat_time', $count_kyluat_time)
+        ->with('list_loaikyluat', $list_loaikyluat)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
@@ -596,6 +621,15 @@ class ThongKeController extends Controller
       $count_loaikhenthuong = '';
       $count_khoa = '';
       $count_khenthuong_time ='';
+      $count_loaikyluat = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(vienchuc.ma_vc) as sum, loaikyluat.ma_lkl'))
+        ->groupBy('loaikyluat.ma_lkl')
+        ->get();
+      $list_loaikyluat = LoaiKyLuat::orderBy('ten_lkl', 'asc')
+        ->get();
+      $count_kyluat_time ='';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
         ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
@@ -606,6 +640,9 @@ class ThongKeController extends Controller
         ->with('count_khenthuong_time', $count_khenthuong_time)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('count_loaikyluat', $count_loaikyluat)
+        ->with('count_kyluat_time', $count_kyluat_time)
+        ->with('list_loaikyluat', $list_loaikyluat)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -696,6 +733,15 @@ class ThongKeController extends Controller
       $count_loaikhenthuong = '';
       $count_hinhthuckhenthuong = '';
       $count_khoa = '';
+      $count_loaikyluat = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(vienchuc.ma_vc) as sum, loaikyluat.ma_lkl'))
+        ->groupBy('loaikyluat.ma_lkl')
+        ->get();
+      $list_loaikyluat = LoaiKyLuat::orderBy('ten_lkl', 'asc')
+        ->get();
+      $count_kyluat_time ='';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
         ->with('batdau', $data['batdau'])
@@ -708,6 +754,9 @@ class ThongKeController extends Controller
         ->with('list_loaikhenthuong', $list_loaikhenthuong)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('count_loaikyluat', $count_loaikyluat)
+        ->with('count_kyluat_time', $count_kyluat_time)
+        ->with('list_loaikyluat', $list_loaikyluat)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -775,6 +824,15 @@ class ThongKeController extends Controller
       $list_khoa = Khoa::orderBy('ten_k', 'asc')
         ->get();
       $count_khenthuong_time ='';
+      $count_loaikyluat = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(vienchuc.ma_vc) as sum, loaikyluat.ma_lkl'))
+        ->groupBy('loaikyluat.ma_lkl')
+        ->get();
+      $list_loaikyluat = LoaiKyLuat::orderBy('ten_lkl', 'asc')
+        ->get();
+      $count_kyluat_time ='';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
         ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
@@ -784,6 +842,9 @@ class ThongKeController extends Controller
         ->with('count_khenthuong_time', $count_khenthuong_time)
         ->with('count_khoa', $count_khoa)
         ->with('list_khoa', $list_khoa)
+        ->with('count_loaikyluat', $count_loaikyluat)
+        ->with('count_kyluat_time', $count_kyluat_time)
+        ->with('list_loaikyluat', $list_loaikyluat)
         ->with('count_khenthuong_time', $count_khenthuong_time)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
