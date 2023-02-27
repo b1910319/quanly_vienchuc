@@ -463,9 +463,19 @@
               gray
             @endif
             ; border: none; width: 100%;">
-            Theo hệ khoa
+            Theo khoa
           </button>
         </a>
+      </div>
+      <div class="col-2">
+        <div class="dropdown" >
+          <button class="dropbtn" style="background-color: #379237">Xuất file</button>
+          <div class="dropdown-content">
+            @foreach ($list_khoa as  $khoa)
+              <a href="{{ URL::to('/thongke_qltt_khoa_pdf/'.$khoa->ma_k) }}">{{ $khoa->ten_k }}</a>
+            @endforeach
+          </div>
+        </div>
       </div>
     </div>
     <div id="myfirstchart_qltt_1" style="height: 250px;"></div>

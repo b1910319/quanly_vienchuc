@@ -426,7 +426,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function thongke_qltt_khoa_pdf(Request $request){
+  public function thongke_qltt_khoa_pdf($ma_k){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -436,10 +436,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
-      $data = $request->all();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
-        ->where('vienchuc.ma_k', $data['ma_k'])
+        ->where('vienchuc.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
         ->orderBy('hoten_vc', 'asc')
         ->get();
