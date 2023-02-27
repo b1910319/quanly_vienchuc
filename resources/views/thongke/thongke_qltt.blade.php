@@ -506,6 +506,33 @@
         <p class="fw-bold" style="font-size: 18px;">Thống kê viên chức </p>
       </div>
     </div>
+    @if ($count_tinh || $count_quequan_tinh)
+      <div class="col-4">
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
+          Chọn tỉnh/thành phố thống kê
+        </button>
+        <div id="demo3" class="collapse mt-3">
+          <form action="{{ URL::to('thongke_qltt_quequan_tinh') }}" method="post">
+            {{ csrf_field() }}
+            <div class="row">
+              <div class="col-8">
+                <select class="custom-select input_table" id="gender2" name="ma_t">
+                  <option value="0" >Chọn tỉnh</option>
+                  @foreach ($list_tinh as $tinh)
+                    <option value="{{ $tinh->ma_t }}" >{{ $tinh->ten_t }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="col-4">
+                <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
+                  Thống kê
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    @endif
     @if ($count_nghihuu || $count_nghihuu_time || $count_nghihuu_khoa)
       <div class="row">
         <div class="col-4">
@@ -646,7 +673,16 @@
     @if ($count_tinh != '')
       <div class="row">
         <div class="col-1">
-          <a href="{{ URL::to('/thongke_qltt_quequan_pdf') }}">
+          <a href="{{ URL::to('/thongke_qltt_quequan_all_pdf') }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
+    @if ($count_quequan_tinh != '')
+      <div class="row">
+        <div class="col-1">
+          <a href="{{ URL::to('/thongke_qltt_quequan_tinh_pdf/'.$ma_t) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
           </a>
         </div>
@@ -735,6 +771,16 @@
             }
           }else if($count_tinh){
             foreach ($count_tinh as $key => $count){
+              foreach($list_tinh as $key => $tinh){
+                if($count->ma_t == $tinh->ma_t){
+                  $ten_t = $tinh->ten_t;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_t', value: $tong },";
+                }
+              }
+            }
+          }else if($count_quequan_tinh){
+            foreach ($count_quequan_tinh as $key => $count){
               foreach($list_tinh as $key => $tinh){
                 if($count->ma_t == $tinh->ma_t){
                   $ten_t = $tinh->ten_t;
