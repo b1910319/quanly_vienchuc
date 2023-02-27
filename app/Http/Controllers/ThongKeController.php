@@ -1070,4 +1070,65 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function thongke_qlktkl_kl_time(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Thống kê";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $data = $request->all();
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      $count_kyluat_time = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
+        ->where('status_vc', '<>', '2')
+        ->whereBetween('ngay_kl', [$data['batdau'], $data['ketthuc']])
+        ->select(DB::raw('count(vienchuc.ma_vc) as sum, kyluat.ngay_kl'))
+        ->groupBy('kyluat.ngay_kl')
+        ->get();
+      $list_hinhthuckhenthuong = HinhThucKhenThuong::orderBy('ten_htkt', 'asc')
+        ->get();
+      $list_loaikhenthuong = LoaiKhenThuong::orderBy('ten_lkt', 'asc')
+        ->get();
+      $count_loaikhenthuong = '';
+      $count_hinhthuckhenthuong = '';
+      $count_khoa = '';
+      $count_loaikyluat = '';
+      $list_loaikyluat = LoaiKyLuat::orderBy('ten_lkl', 'asc')
+        ->get();
+      $count_khenthuong_time ='';
+      $count_kl_khoa = '';
+      return view('thongke.thongke_qlktkl')
+        ->with('title', $title)
+        ->with('batdau', $data['batdau'])
+        ->with('ketthuc', $data['ketthuc'])
+        ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
+        ->with('count_hinhthuckhenthuong', $count_hinhthuckhenthuong)
+        ->with('count_loaikhenthuong', $count_loaikhenthuong)
+        ->with('count_khenthuong_time', $count_khenthuong_time)
+        ->with('count_khoa', $count_khoa)
+        ->with('count_kl_khoa', $count_kl_khoa)
+        ->with('list_loaikhenthuong', $list_loaikhenthuong)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('count_nangbac', $count_nangbac)
+        ->with('count_loaikyluat', $count_loaikyluat)
+        ->with('count_kyluat_time', $count_kyluat_time)
+        ->with('list_loaikyluat', $list_loaikyluat)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qltt', $phanquyen_qltt);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }

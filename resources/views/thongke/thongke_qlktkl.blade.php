@@ -174,7 +174,7 @@
             Chọn khoảng thời gian để xuất file
           </button>
           <div id="demo1" class="collapse mt-3">
-            <form action="{{ URL::to('thongke_qlktkl_time') }}" method="post">
+            <form action="{{ URL::to('thongke_qlktkl_kl_time') }}" method="post">
               {{ csrf_field() }}
               <div class="row">
                 <div class="col-6">
@@ -199,7 +199,7 @@
             <button class="dropbtn" style="background-color: #379237">Xuất file</button>
             <div class="dropdown-content">
               @foreach ($list_loaikyluat as  $lkl)
-                <a href="{{ URL::to('/thongke_qlktkl_htkt_pdf/'.$htkt->ma_htkt) }}">{{ $htkt->ten_htkt }}</a>
+                <a href="{{ URL::to('/thongke_qlktkl_htkt_pdf/'.$lkl->ma_lkl) }}">{{ $lkl->ten_lkl }}</a>
               @endforeach
             </div>
           </div>
@@ -208,7 +208,7 @@
         @if ($count_kyluat_time != '')
           <div class="row">
             <div class="col-1">
-              <a href="{{ URL::to('/thongke_qlktkl_time_pdf/'.$batdau.'/'.$ketthuc) }}">
+              <a href="{{ URL::to('/thongke_qlktkl_kl_time_pdf/'.$batdau.'/'.$ketthuc) }}">
                 <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
               </a>
             </div>
