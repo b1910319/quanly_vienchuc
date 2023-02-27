@@ -61,12 +61,7 @@ class ThongKeController extends Controller
         ->select(DB::raw('count(vienchuc.ma_vc) as sum, ngach.ma_n'))
         ->groupBy('ngach.ma_n')
         ->get();
-      $count_chucvu = VienChuc::join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
-        ->where('status_vc', '<>', '2')
-        ->select(DB::raw('count(vienchuc.ma_vc) as sum, chucvu.ma_cv'))
-        ->where('status_vc', '<>', '2')
-        ->groupBy('chucvu.ma_cv')
-        ->get();
+      $count_chucvu = '';
       $count_khoa = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
         ->select(DB::raw('count(vienchuc.ma_vc) as sum, khoa.ma_k'))
@@ -255,6 +250,73 @@ class ThongKeController extends Controller
         'vienchuc' => $vienchuc,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qltt_chucvu(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Thống kê";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      $count_loaibangcap = '';
+      $count_hedaotao = '';
+      $count_ngach = '';
+      $count_chucvu = VienChuc::join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(vienchuc.ma_vc) as sum, chucvu.ma_cv'))
+        ->where('status_vc', '<>', '2')
+        ->groupBy('chucvu.ma_cv')
+        ->get();
+      $count_khoa ='';
+      $count_nghihuu = '';
+      $count_tinh = '';
+      $list_loaibangcap = LoaiBangCap::orderBy('ten_lbc', 'asc')
+        ->get();
+      $list_hedaotao = HeDaoTao::orderBy('ten_hdt', 'asc')
+        ->get();
+      $list_ngach = Ngach::orderBy('ten_n', 'asc')
+        ->get();
+      $list_chucvu = ChucVu::orderBy('ten_cv', 'asc')
+        ->get();
+      $list_khoa = Khoa::orderBy('ten_k', 'asc')
+        ->get();
+      $list_tinh = Tinh::orderBy('ten_t', 'asc')
+        ->get();
+      return view('thongke.thongke_qltt')
+        ->with('title', $title)
+        ->with('count_khoa', $count_khoa)
+        ->with('list_khoa', $list_khoa)
+        ->with('list_loaibangcap', $list_loaibangcap)
+        ->with('count_ngach', $count_ngach)
+        ->with('list_ngach', $list_ngach)
+        ->with('count_hedaotao', $count_hedaotao)
+        ->with('list_hedaotao', $list_hedaotao)
+        ->with('count_chucvu', $count_chucvu)
+        ->with('list_chucvu', $list_chucvu)
+        ->with('count_nghihuu', $count_nghihuu)
+        ->with('count_tinh', $count_tinh)
+        ->with('list_tinh', $list_tinh)
+        ->with('count_loaibangcap', $count_loaibangcap)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
     }

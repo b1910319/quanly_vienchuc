@@ -428,6 +428,19 @@
           </button>
         </a>
       </div>
+      <div class="col-2">
+        <a href="{{ URL::to('thongke_qltt_chucvu') }}">
+          <button type="button" class="btn btn-primary" style="background-color: 
+            @if ($count_chucvu != '')
+              #850000
+            @else
+              gray
+            @endif
+            ; border: none; width: 100%;">
+            Theo chức vụ
+          </button>
+        </a>
+      </div>
       {{-- <div class="col-2">
         <a href="{{ URL::to('thongke_qltt_khoa') }}">
           <button type="button" class="btn btn-primary" style="background-color:
@@ -515,6 +528,15 @@
         </div>
       </div>
     @endif
+    @if ($count_chucvu != '')
+      <div class="row">
+        <div class="col-1">
+          <a href="{{ URL::to('/thongke_qltt_chucvu_all_pdf') }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
     {{-- @if ($count_khoa != '')
       <div class="row">
         <div class="col-1">
@@ -557,25 +579,17 @@
                 }
               }
             }
+          }else if($count_chucvu){
+            foreach ($count_chucvu as $key => $count){
+              foreach($list_chucvu as $key => $chucvu){
+                if($count->ma_cv == $chucvu->ma_cv){
+                  $ten_cv = $chucvu->ten_cv;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_cv', value: $tong },";
+                }
+              }
+            }
           }
-          // else if($count_khenthuong_time){
-          //   foreach ($count_khenthuong_time as $key => $count){
-          //     $ngay_kt = $count->ngay_kt;
-          //     $tong = $count->sum;
-          //     echo "{ year: '$ngay_kt', value: $tong },";
-          //   }
-          // }
-          // else if($count_khoa){
-          //   foreach ($count_khoa as $key => $count){
-          //     foreach($list_khoa as $key => $khoa){
-          //       if($count->ma_k == $khoa->ma_k){
-          //         $ten_k = $khoa->ten_k;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_k', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
           
         ?>
       ],
