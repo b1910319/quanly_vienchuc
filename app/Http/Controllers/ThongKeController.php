@@ -184,10 +184,12 @@ class ThongKeController extends Controller
     if($phanquyen_admin || $phanquyen_qltt){
       $vienchuc = VienChuc::join('ngach', 'ngach.ma_n', '=', 'vienchuc.ma_n')
       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+      ->join('bac', 'bac.ma_b', 'vienchuc.ma_b')
+      ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
       ->where('status_vc', '<>', '2')
       ->orderBy('ten_n', 'asc')
       ->get();
-      $pdf = PDF::loadView('pdf.pdf_ngach', [
+      $pdf = PDF::loadView('pdf.pdf_thongtin_vienchuc', [
         'vienchuc' => $vienchuc,
       ]);
       return $pdf->stream();

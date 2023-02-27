@@ -29,7 +29,7 @@
         <b>TRƯỜNG CÔNG NGHỆ THÔNG TIN VÀ TRUYỀN THÔNG - ĐẠI HỌC CẦN THƠ</b>
       </i>
     </p>
-    <p  style="font-size: 16px; font-weight: bold; text-align: center;">BẢNG THỐNG KÊ VIÊN CHỨC THEO NGẠCH VIÊN CHỨC</p>
+    <p  style="font-size: 16px; font-weight: bold; text-align: center;">BẢNG THỐNG KÊ THÔNG TIN VIÊN CHỨC</p>
     
     <table class="table">
       <thead>
@@ -38,15 +38,22 @@
           <th scope="col">Viên chức</th>
           <th scope="col">Khoa</th>
           <th scope="col">Ngạch</th>
+          <th scope="col">Bậc</th>
         </tr>
       </thead>
       <tbody>
         @foreach($vienchuc as $key => $vc)
           <tr>
             <td>{{ $key+1 }}</td>
-            <td>{{ $vc->hoten_vc }}</td>
+            <td>
+              <b>Họ tên: </b>{{ $vc->hoten_vc }} <br>
+              <b>Email: </b>{{ $vc->user_vc }} <br>
+              <b>Số điện thoại: </b> {{ $vc->sdt_vc }} <br>
+              <b>Chức vụ: </b>{{ $vc->ten_cv }}
+            </td>
             <td>{{ $vc->ten_k }}</td>
             <td>{{ $vc->ten_n }}</td>
+            <td>{{ $vc->ten_b }} - {{ $vc->hesoluong_b }}</td>
           </tr>
         @endforeach
       </tbody>
