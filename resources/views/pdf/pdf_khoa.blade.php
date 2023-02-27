@@ -35,7 +35,6 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Viên chức</th>
-          <th scope="col">Email</th>
           <th scope="col">Chức vụ</th>
           <th scope="col">Khoa</th>
         </tr>
@@ -44,8 +43,11 @@
         @foreach($vienchuc as $key => $vc)
           <tr>
             <td>{{ $key+1 }}</td>
-            <td>{{ $vc->hoten_vc }}</td>
-            <td>{{ $vc->user_vc }}</td>
+            <td>
+              <b>Họ tên: </b>{{ $vc->hoten_vc }} <br>
+              <b>Email: </b>{{ $vc->user_vc }} <br>
+              <b>Số điện thoại: </b> {{ $vc->sdt_vc }} <br>
+            </td>
             <td>{{ $vc->ten_cv }}</td>
             <td>{{ $vc->ten_k }}</td>
           </tr>
