@@ -138,7 +138,7 @@
       </div>
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('thongke_qlktkl_lkt') }}">
+          <a href="{{ URL::to('thongke_qlktkl_lkl') }}">
             <button type="button" class="btn btn-primary" style="background-color:
               @if ($count_loaikyluat != '')
                 #850000
@@ -151,9 +151,9 @@
           </a>
         </div>
         <div class="col-2">
-          <a href="{{ URL::to('thongke_qlktkl_khoa') }}">
+          <a href="{{ URL::to('thongke_qlktkl_kl_khoa') }}">
             <button type="button" class="btn btn-primary" style="background-color:
-              @if ($count_khoa != '')
+              @if ($count_kl_khoa != '')
                 #850000
               @else
                 gray
@@ -164,7 +164,7 @@
           </a>
         </div>
         <div class="col-2">
-          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color:
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo1" style="background-color:
           @if ($count_kyluat_time != '')
             #850000
           @else
@@ -173,7 +173,7 @@
           ; border: none; width: 100%" >
             Chọn khoảng thời gian để xuất file
           </button>
-          <div id="demo" class="collapse mt-3">
+          <div id="demo1" class="collapse mt-3">
             <form action="{{ URL::to('thongke_qlktkl_time') }}" method="post">
               {{ csrf_field() }}
               <div class="row">
@@ -223,7 +223,7 @@
             </div>
           </div>
         @endif
-        @if ($count_khoa != '')
+        @if ($count_kl_khoa != '')
           <div class="row">
             <div class="col-1">
               <a href="{{ URL::to('/thongke_qlktkl_khoa_all_pdf') }}">
@@ -295,7 +295,7 @@
       element: 'myfirstchart_qlktkl_2',
       parseTime: false,
       hideHover:true,
-      pointFillColors: ['#FFB84C'],
+      pointFillColors: ['#16FF00'],
       lineColors:['#F94A29'],
       parseTime: false,
       pointStrokeColors: ['#379237'],
@@ -317,8 +317,8 @@
               $tong = $count->sum;
               echo "{ year: '$ngay_kl', value: $tong },";
             }
-          }else if($count_khoa){
-            foreach ($count_khoa as $key => $count){
+          }else if($count_kl_khoa){
+            foreach ($count_kl_khoa as $key => $count){
               foreach($list_khoa as $key => $khoa){
                 if($count->ma_k == $khoa->ma_k){
                   $ten_k = $khoa->ten_k;
@@ -333,7 +333,7 @@
       ],
       xkey: 'year',
       ykeys: ['value'],
-      labels: ['Số khen thưởng']
+      labels: ['Số kỷ luật']
     });
   })
 </script>

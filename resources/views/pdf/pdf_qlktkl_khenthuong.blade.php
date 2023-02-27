@@ -45,7 +45,7 @@
             <td>{{ $key+1 }}</td>
             <td>
               <b>Họ tên: </b>{{ $vc->hoten_vc }} <br>
-              <b>Email: </b>{{ $vc->hoten_vc }} <br>
+              <b>Email: </b>{{ $vc->user_vc }} <br>
               <b>Số điện thoại: </b> {{ $vc->sdt_vc }} <br>
             </td>
             <td>{{ $vc->ten_k }}</td>

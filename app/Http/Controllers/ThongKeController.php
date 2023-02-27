@@ -416,6 +416,8 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
+
   public function thongke_qlktkl(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -458,6 +460,7 @@ class ThongKeController extends Controller
       $list_loaikyluat = LoaiKyLuat::orderBy('ten_lkl', 'asc')
         ->get();
       $count_kyluat_time ='';
+      $count_kl_khoa = '';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
         ->with('list_loaikhenthuong', $list_loaikhenthuong)
@@ -471,6 +474,7 @@ class ThongKeController extends Controller
         ->with('count_loaikyluat', $count_loaikyluat)
         ->with('count_kyluat_time', $count_kyluat_time)
         ->with('list_loaikyluat', $list_loaikyluat)
+        ->with('count_kl_khoa', $count_kl_khoa)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -519,6 +523,7 @@ class ThongKeController extends Controller
       $list_loaikyluat = LoaiKyLuat::orderBy('ten_lkl', 'asc')
         ->get();
       $count_kyluat_time ='';
+      $count_kl_khoa = '';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
         ->with('list_loaikhenthuong', $list_loaikhenthuong)
@@ -526,6 +531,7 @@ class ThongKeController extends Controller
         ->with('count_hinhthuckhenthuong', $count_hinhthuckhenthuong)
         ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
         ->with('count_khoa', $count_khoa)
+        ->with('count_kl_khoa', $count_kl_khoa)
         ->with('count_khenthuong_time', $count_khenthuong_time)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_loaikyluat', $count_loaikyluat)
@@ -630,6 +636,7 @@ class ThongKeController extends Controller
       $list_loaikyluat = LoaiKyLuat::orderBy('ten_lkl', 'asc')
         ->get();
       $count_kyluat_time ='';
+      $count_kl_khoa = '';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
         ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
@@ -637,6 +644,7 @@ class ThongKeController extends Controller
         ->with('count_loaikhenthuong', $count_loaikhenthuong)
         ->with('list_loaikhenthuong', $list_loaikhenthuong)
         ->with('count_khoa', $count_khoa)
+        ->with('count_kl_khoa', $count_kl_khoa)
         ->with('count_khenthuong_time', $count_khenthuong_time)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
@@ -742,6 +750,7 @@ class ThongKeController extends Controller
       $list_loaikyluat = LoaiKyLuat::orderBy('ten_lkl', 'asc')
         ->get();
       $count_kyluat_time ='';
+      $count_kl_khoa = '';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
         ->with('batdau', $data['batdau'])
@@ -751,6 +760,7 @@ class ThongKeController extends Controller
         ->with('count_loaikhenthuong', $count_loaikhenthuong)
         ->with('count_khenthuong_time', $count_khenthuong_time)
         ->with('count_khoa', $count_khoa)
+        ->with('count_kl_khoa', $count_kl_khoa)
         ->with('list_loaikhenthuong', $list_loaikhenthuong)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
@@ -833,6 +843,7 @@ class ThongKeController extends Controller
       $list_loaikyluat = LoaiKyLuat::orderBy('ten_lkl', 'asc')
         ->get();
       $count_kyluat_time ='';
+      $count_kl_khoa = '';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
         ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
@@ -842,6 +853,7 @@ class ThongKeController extends Controller
         ->with('count_khenthuong_time', $count_khenthuong_time)
         ->with('count_khoa', $count_khoa)
         ->with('list_khoa', $list_khoa)
+        ->with('count_kl_khoa', $count_kl_khoa)
         ->with('count_loaikyluat', $count_loaikyluat)
         ->with('count_kyluat_time', $count_kyluat_time)
         ->with('list_loaikyluat', $list_loaikyluat)
@@ -879,6 +891,69 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function thongke_qlktkl_lkl(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Thống kê";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      $count_loaikhenthuong = VienChuc::join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(vienchuc.ma_vc) as sum, loaikhenthuong.ma_lkt'))
+        ->groupBy('loaikhenthuong.ma_lkt')
+        ->get();
+      $list_loaikhenthuong = LoaiKhenThuong::orderBy('ten_lkt', 'asc')
+        ->get();
+      $count_hinhthuckhenthuong = '';
+      $count_khoa = '';
+      $list_hinhthuckhenthuong = HinhThucKhenThuong::orderBy('ten_htkt', 'asc')
+        ->get();
+      $count_khenthuong_time ='';
+      $count_loaikyluat = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(vienchuc.ma_vc) as sum, loaikyluat.ma_lkl'))
+        ->groupBy('loaikyluat.ma_lkl')
+        ->get();
+      $list_loaikyluat = LoaiKyLuat::orderBy('ten_lkl', 'asc')
+        ->get();
+      $count_kyluat_time ='';
+      $count_kl_khoa = '';
+      return view('thongke.thongke_qlktkl')
+        ->with('title', $title)
+        ->with('list_loaikhenthuong', $list_loaikhenthuong)
+        ->with('count_loaikhenthuong', $count_loaikhenthuong)
+        ->with('count_hinhthuckhenthuong', $count_hinhthuckhenthuong)
+        ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
+        ->with('count_khoa', $count_khoa)
+        ->with('count_kl_khoa', $count_kl_khoa)
+        ->with('count_khenthuong_time', $count_khenthuong_time)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('count_loaikyluat', $count_loaikyluat)
+        ->with('count_kyluat_time', $count_kyluat_time)
+        ->with('list_loaikyluat', $list_loaikyluat)
+        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qltt', $phanquyen_qltt);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   public function thongke_qlktkl_lkl_all_pdf(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -899,6 +974,74 @@ class ThongKeController extends Controller
         'vienchuc' => $vienchuc,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlktkl_kl_khoa(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Thống kê";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      $count_kl_khoa = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(vienchuc.ma_vc) as sum, khoa.ma_k'))
+        ->groupBy('khoa.ma_k')
+        ->get();
+      $list_hinhthuckhenthuong = HinhThucKhenThuong::orderBy('ten_htkt', 'asc')
+        ->get();
+      $list_loaikhenthuong = LoaiKhenThuong::orderBy('ten_lkt', 'asc')
+        ->get();
+      $count_hinhthuckhenthuong ='';
+      $count_loaikhenthuong = VienChuc::join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(vienchuc.ma_vc) as sum, loaikhenthuong.ma_lkt'))
+        ->groupBy('loaikhenthuong.ma_lkt')
+        ->get();
+      $count_khenthuong_time ='';
+      $list_khoa = Khoa::orderBy('ten_k', 'asc')
+        ->get();
+      $count_khenthuong_time ='';
+      $count_loaikyluat = '';
+      $list_loaikyluat = LoaiKyLuat::orderBy('ten_lkl', 'asc')
+        ->get();
+      $count_kyluat_time ='';
+      $count_khoa = '';
+      return view('thongke.thongke_qlktkl')
+        ->with('title', $title)
+        ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
+        ->with('count_hinhthuckhenthuong', $count_hinhthuckhenthuong)
+        ->with('count_loaikhenthuong', $count_loaikhenthuong)
+        ->with('list_loaikhenthuong', $list_loaikhenthuong)
+        ->with('count_khenthuong_time', $count_khenthuong_time)
+        ->with('count_kl_khoa', $count_kl_khoa)
+        ->with('list_khoa', $list_khoa)
+        ->with('count_khoa', $count_khoa)
+        ->with('count_loaikyluat', $count_loaikyluat)
+        ->with('count_kyluat_time', $count_kyluat_time)
+        ->with('list_loaikyluat', $list_loaikyluat)
+        ->with('count_khenthuong_time', $count_khenthuong_time)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
     }
