@@ -245,7 +245,8 @@ Route::get('/thongke_qltt_nghihuu',[ThongKeController::class, 'thongke_qltt_nghi
 Route::post('/thongke_qltt_nghihuu_time',[ThongKeController::class, 'thongke_qltt_nghihuu_time']);
 Route::get('/thongke_qltt_nghihuu_time_pdf/{batdau}/{ketthuc}',[ThongKeController::class, 'thongke_qltt_nghihuu_time_pdf']);
 Route::get('/thongke_qltt_nghihuu_all_pdf',[ThongKeController::class, 'thongke_qltt_nghihuu_all_pdf']);
-Route::post('/thongke_qltt_nghihuu_khoa_pdf',[ThongKeController::class, 'thongke_qltt_nghihuu_khoa_pdf']);
+Route::post('/thongke_qltt_nghihuu_khoa',[ThongKeController::class, 'thongke_qltt_nghihuu_khoa']);
+Route::get('/thongke_qltt_nghihuu_khoa_pdf/{ma_k}',[ThongKeController::class, 'thongke_qltt_nghihuu_khoa_pdf']);
 Route::get('/thongke_qltt_quequan_all_pdf',[ThongKeController::class, 'thongke_qltt_quequan_all_pdf']);
 Route::post('/thongke_qltt_quequan_tinh_pdf',[ThongKeController::class, 'thongke_qltt_quequan_tinh_pdf']);
 

@@ -493,11 +493,11 @@
         <p class="fw-bold" style="font-size: 18px;">Thống kê viên chức </p>
       </div>
     </div>
-    @if ($count_nghihuu || $count_nghihuu_time)
+    @if ($count_nghihuu || $count_nghihuu_time || $count_nghihuu_khoa)
       <div class="row">
         <div class="col-4">
           <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color: #00425A; border: none; width: 100%" >
-            Chọn khoảng thời gian để xuất file
+            Chọn khoảng thời gian thống kê
           </button>
           <div id="demo" class="collapse mt-3">
             <form action="{{ URL::to('thongke_qltt_nghihuu_time') }}" method="post">
@@ -511,7 +511,32 @@
                 </div>
                 <div class="col-4">
                   <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
-                    Xuất file
+                    Thống kê
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-4">
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
+            Chọn khoa thống kê
+          </button>
+          <div id="demo3" class="collapse mt-3">
+            <form action="{{ URL::to('thongke_qltt_nghihuu_khoa') }}" method="post">
+              {{ csrf_field() }}
+              <div class="row">
+                <div class="col-8">
+                  <select class="custom-select input_table" id="gender2" name="ma_k">
+                    <option value="0" >Chọn khoa</option>
+                    @foreach ($list_khoa as $khoa)
+                      <option value="{{ $khoa->ma_k }}" >{{ $khoa->ten_k }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col-4">
+                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
+                    Thống kê
                   </button>
                 </div>
               </div>
@@ -581,7 +606,7 @@
     @if ($count_nghihuu != '')
       <div class="row">
         <div class="col-1">
-          <a href="{{ URL::to('/thongke_qltt_nghihuu') }}">
+          <a href="{{ URL::to('/thongke_qltt_nghihuu_all_pdf') }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
           </a>
         </div>
@@ -591,6 +616,15 @@
       <div class="row">
         <div class="col-1">
           <a href="{{ URL::to('/thongke_qltt_nghihuu_time_pdf/'.$batdau.'/'.$ketthuc) }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
+    @if ($count_nghihuu_khoa != '')
+      <div class="row">
+        <div class="col-1">
+          <a href="{{ URL::to('/thongke_qltt_nghihuu_khoa_pdf/'.$ma_k) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
           </a>
         </div>
@@ -667,6 +701,12 @@
             }
           }else if($count_nghihuu_time){
             foreach ($count_nghihuu_time as $key => $count){
+              $thoigiannghi_vc = $count->thoigiannghi_vc;
+              $tong = $count->sum;
+              echo "{ year: '$thoigiannghi_vc', value: $tong },";
+            }
+          }else if($count_nghihuu_khoa){
+            foreach ($count_nghihuu_khoa as $key => $count){
               $thoigiannghi_vc = $count->thoigiannghi_vc;
               $tong = $count->sum;
               echo "{ year: '$thoigiannghi_vc', value: $tong },";
