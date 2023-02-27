@@ -98,13 +98,30 @@
     @if ($count_khenthuong_time != '')
       <div class="row">
         <div class="col-1">
-          <a href="{{ URL::to('/thongke_qltt_time_pdf/'.$batdau.'/'.$ketthuc) }}">
+          <a href="{{ URL::to('/thongke_qlktkl_time_pdf/'.$batdau.'/'.$ketthuc) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
           </a>
         </div>
       </div>
     @endif
-    
+    @if ($count_loaikhenthuong != '')
+      <div class="row">
+        <div class="col-1">
+          <a href="{{ URL::to('/thongke_qlktkl_lkt_all_pdf') }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
+    @if ($count_hinhthuckhenthuong != '')
+      <div class="row">
+        <div class="col-1">
+          <a href="{{ URL::to('/thongke_qlktkl_htkt_all_pdf') }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
   </div>
 </div>
 <script>
@@ -115,7 +132,7 @@
       pointFillColors: ['#F94A29'],
       parseTime: false,
       hideHover:true,
-      barColors: ['#829460'],
+      barColors: ['#554994'],
       data: [
         <?php
           if($count_loaikhenthuong){
