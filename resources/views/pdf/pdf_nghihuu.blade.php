@@ -43,7 +43,12 @@
         @foreach($vienchuc as $key => $vc)
           <tr>
             <td>{{ $key+1 }}</td>
-            <td>{{ $vc->hoten_vc }}</td>
+            <td>
+              <b>Họ tên: </b>{{ $vc->hoten_vc }} <br>
+              <b>Email: </b>{{ $vc->user_vc }} <br>
+              <b>Số điện thoại: </b> {{ $vc->sdt_vc }} <br>
+              <b>Chức vụ: </b>{{ $vc->ten_cv }}
+            </td>
             <td>{{ $vc->ten_k }}</td>
             <td>{{ $vc->thoigiannghi_vc }}</td>
           </tr>

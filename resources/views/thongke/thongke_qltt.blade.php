@@ -395,14 +395,9 @@
   })
 </script> --}}
 <div class="row">
-  <div class="card-box col-12">
+  <div class="card-box col-2">
     <div class="row">
-      <div class="col-6">
-        <p class="fw-bold" style="font-size: 18px;">Thống kê viên chức </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-2">
+      <div class="mt-2" >
         <a href="{{ URL::to('thongke_qltt') }}">
           <button type="button" class="btn btn-primary" style="background-color:
             @if ($count_ngach != '')
@@ -415,7 +410,7 @@
           </button>
         </a>
       </div>
-      <div class="col-2">
+      <div class="mt-2">
         <a href="{{ URL::to('thongke_qltt_lbc') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
             @if ($count_loaibangcap != '')
@@ -428,7 +423,7 @@
           </button>
         </a>
       </div>
-      <div class="col-2">
+      <div class="mt-2">
         <a href="{{ URL::to('thongke_qltt_chucvu') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
             @if ($count_chucvu != '')
@@ -441,7 +436,7 @@
           </button>
         </a>
       </div>
-      <div class="col-2">
+      <div class="mt-2">
         <a href="{{ URL::to('thongke_qltt_hdt') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
             @if ($count_hedaotao != '')
@@ -454,7 +449,7 @@
           </button>
         </a>
       </div>
-      <div class="col-2">
+      <div class="mt-2">
         <a href="{{ URL::to('thongke_qltt_khoa') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
             @if ($count_khoa != '')
@@ -467,9 +462,22 @@
           </button>
         </a>
       </div>
-      <div class="col-2">
+      <div class="mt-2">
+        <a href="{{ URL::to('thongke_qltt_nghihuu') }}">
+          <button type="button" class="btn btn-primary" style="background-color: 
+            @if ($count_nghihuu != '')
+              #850000
+            @else
+              gray
+            @endif
+            ; border: none; width: 100%;">
+            Viên chức nghĩ hưu
+          </button>
+        </a>
+      </div>
+      <div class="mt-2">
         <div class="dropdown" >
-          <button class="dropbtn" style="background-color: #379237">Xuất file</button>
+          <button class="dropbtn" style="background-color: #379237; width: 245px">Xuất file</button>
           <div class="dropdown-content">
             @foreach ($list_khoa as  $khoa)
               <a href="{{ URL::to('/thongke_qltt_khoa_pdf/'.$khoa->ma_k) }}">{{ $khoa->ten_k }}</a>
@@ -477,6 +485,43 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="card-box col-10">
+    <div class="row">
+      <div class="col-6">
+        <p class="fw-bold" style="font-size: 18px;">Thống kê viên chức </p>
+      </div>
+    </div>
+    @if ($count_nghihuu || $count_nghihuu_time)
+      <div class="row">
+        <div class="col-4">
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color: #00425A; border: none; width: 100%" >
+            Chọn khoảng thời gian để xuất file
+          </button>
+          <div id="demo" class="collapse mt-3">
+            <form action="{{ URL::to('thongke_qltt_nghihuu_time') }}" method="post">
+              {{ csrf_field() }}
+              <div class="row">
+                <div class="col-4">
+                  <input type='date' class='form-control input_table' autofocus required name="batdau">
+                </div>
+                <div class="col-4">
+                  <input type='date' class='form-control input_table' autofocus required name="ketthuc">
+                </div>
+                <div class="col-4">
+                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
+                    Xuất file
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    @endif
+    <div class="row">
+      
     </div>
     <div id="myfirstchart_qltt_1" style="height: 250px;"></div>
     {{-- @if ($count_ngach != '')
@@ -528,6 +573,24 @@
       <div class="row">
         <div class="col-1">
           <a href="{{ URL::to('/thongke_qltt_khoa_all_pdf') }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
+    @if ($count_nghihuu != '')
+      <div class="row">
+        <div class="col-1">
+          <a href="{{ URL::to('/thongke_qltt_nghihuu') }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
+    @if ($count_nghihuu_time != '')
+      <div class="row">
+        <div class="col-1">
+          <a href="{{ URL::to('/thongke_qltt_nghihuu_time_pdf/'.$batdau.'/'.$ketthuc) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
           </a>
         </div>
@@ -595,6 +658,18 @@
                   echo "{ year: '$ten_k', value: $tong },";
                 }
               }
+            }
+          }else if($count_nghihuu){
+            foreach ($count_nghihuu as $key => $count){
+              $thoigiannghi_vc = $count->thoigiannghi_vc;
+              $tong = $count->sum;
+              echo "{ year: '$thoigiannghi_vc', value: $tong },";
+            }
+          }else if($count_nghihuu_time){
+            foreach ($count_nghihuu_time as $key => $count){
+              $thoigiannghi_vc = $count->thoigiannghi_vc;
+              $tong = $count->sum;
+              echo "{ year: '$thoigiannghi_vc', value: $tong },";
             }
           }
         ?>
