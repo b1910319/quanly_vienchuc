@@ -454,6 +454,19 @@
           </button>
         </a>
       </div>
+      <div class="col-2">
+        <a href="{{ URL::to('thongke_qltt_khoa') }}">
+          <button type="button" class="btn btn-primary" style="background-color: 
+            @if ($count_khoa != '')
+              #850000
+            @else
+              gray
+            @endif
+            ; border: none; width: 100%;">
+            Theo hệ khoa
+          </button>
+        </a>
+      </div>
     </div>
     <div id="myfirstchart_qltt_1" style="height: 250px;"></div>
     {{-- @if ($count_ngach != '')
@@ -496,6 +509,15 @@
       <div class="row">
         <div class="col-1">
           <a href="{{ URL::to('/thongke_qltt_hdt_all_pdf') }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
+    @if ($count_khoa != '')
+      <div class="row">
+        <div class="col-1">
+          <a href="{{ URL::to('/thongke_qltt_khoa_all_pdf') }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
           </a>
         </div>
@@ -551,6 +573,16 @@
                   $ten_hdt = $hedaotao->ten_hdt;
                   $tong = $count->sum;
                   echo "{ year: '$ten_hdt', value: $tong },";
+                }
+              }
+            }
+          }else if($count_khoa){
+            foreach ($count_khoa as $key => $count){
+              foreach($list_khoa as $key => $khoa){
+                if($count->ma_k == $khoa->ma_k){
+                  $ten_k = $khoa->ten_k;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_k', value: $tong },";
                 }
               }
             }
