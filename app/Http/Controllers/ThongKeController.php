@@ -1101,7 +1101,12 @@ class ThongKeController extends Controller
         ->get();
       $list_loaikhenthuong = LoaiKhenThuong::orderBy('ten_lkt', 'asc')
         ->get();
-      $count_loaikhenthuong = '';
+      $count_loaikhenthuong = VienChuc::join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(vienchuc.ma_vc) as sum, loaikhenthuong.ma_lkt'))
+        ->groupBy('loaikhenthuong.ma_lkt')
+        ->get();
       $count_hinhthuckhenthuong = '';
       $count_khoa = '';
       $count_loaikyluat = '';
