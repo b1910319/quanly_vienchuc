@@ -1056,7 +1056,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function thongke_qltt_quequan_tinh_pdf(Request $request){
+  public function thongke_qltt_quequan_tinh_pdf($ma_t){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -1066,11 +1066,10 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
-      $data = $request->all();
       $vienchuc = VienChuc::join('quequan', 'quequan.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('tinh', 'tinh.ma_t', '=', 'quequan.ma_t')
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('quequan.ma_t', $data['ma_t'])
+        ->where('quequan.ma_t', $ma_t)
         ->where('status_vc', '<>', '2')
         ->orderBy('ten_t', 'asc')
         ->get();
@@ -1084,7 +1083,7 @@ class ThongKeController extends Controller
   }
 
 
-  
+
 
   public function thongke_qlktkl(){
     $this->check_login();

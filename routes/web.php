@@ -250,7 +250,7 @@ Route::get('/thongke_qltt_nghihuu_khoa_pdf/{ma_k}',[ThongKeController::class, 't
 Route::get('/thongke_qltt_quequan',[ThongKeController::class, 'thongke_qltt_quequan']);
 Route::get('/thongke_qltt_quequan_all_pdf',[ThongKeController::class, 'thongke_qltt_quequan_all_pdf']);
 Route::post('/thongke_qltt_quequan_tinh',[ThongKeController::class, 'thongke_qltt_quequan_tinh']);
-Route::get('/thongke_qltt_quequan_tinh_pdf',[ThongKeController::class, 'thongke_qltt_quequan_tinh_pdf']);
+Route::get('/thongke_qltt_quequan_tinh_pdf/{ma_t}',[ThongKeController::class, 'thongke_qltt_quequan_tinh_pdf']);
 
 Route::get('/thongke_qlktkl',[ThongKeController::class, 'thongke_qlktkl']);
 Route::get('/thongke_qlktkl_lkt',[ThongKeController::class, 'thongke_qlktkl_lkt']);
