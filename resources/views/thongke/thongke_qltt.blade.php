@@ -476,6 +476,19 @@
         </a>
       </div>
       <div class="mt-2">
+        <a href="{{ URL::to('thongke_qltt_quequan') }}">
+          <button type="button" class="btn btn-primary" style="background-color: 
+            @if ($count_tinh != '')
+              #850000
+            @else
+              gray
+            @endif
+            ; border: none; width: 100%;">
+            Quê quán viên chức
+          </button>
+        </a>
+      </div>
+      <div class="mt-2">
         <div class="dropdown" >
           <button class="dropbtn" style="background-color: #379237; width: 245px">Xuất file</button>
           <div class="dropdown-content">
@@ -630,6 +643,15 @@
         </div>
       </div>
     @endif
+    @if ($count_tinh != '')
+      <div class="row">
+        <div class="col-1">
+          <a href="{{ URL::to('/thongke_qltt_quequan_pdf') }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
   </div>
 </div>
 <script>
@@ -710,6 +732,16 @@
               $thoigiannghi_vc = $count->thoigiannghi_vc;
               $tong = $count->sum;
               echo "{ year: '$thoigiannghi_vc', value: $tong },";
+            }
+          }else if($count_tinh){
+            foreach ($count_tinh as $key => $count){
+              foreach($list_tinh as $key => $tinh){
+                if($count->ma_t == $tinh->ma_t){
+                  $ten_t = $tinh->ten_t;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_t', value: $tong },";
+                }
+              }
             }
           }
         ?>
