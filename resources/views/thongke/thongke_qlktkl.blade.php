@@ -199,7 +199,7 @@
             <button class="dropbtn" style="background-color: #379237">Xuất file</button>
             <div class="dropdown-content">
               @foreach ($list_loaikyluat as  $lkl)
-                <a href="{{ URL::to('/thongke_qlktkl_htkt_pdf/'.$lkl->ma_lkl) }}">{{ $lkl->ten_lkl }}</a>
+                <a href="{{ URL::to('/thongke_qlktkl_lkl_pdf/'.$lkl->ma_lkl) }}">{{ $lkl->ten_lkl }}</a>
               @endforeach
             </div>
           </div>
