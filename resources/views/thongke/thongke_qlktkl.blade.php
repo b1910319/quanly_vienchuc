@@ -48,7 +48,13 @@
         </a>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color: #00425A; border: none; width: 100%" >
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color:
+        @if ($count_khenthuong_time != '')
+          #850000
+        @else
+          gray
+        @endif
+        ; border: none; width: 100%" >
           Chọn khoảng thời gian để xuất file
         </button>
         <div id="demo" class="collapse mt-3">
@@ -158,7 +164,13 @@
           </a>
         </div>
         <div class="col-2">
-          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color: #00425A; border: none; width: 100%" >
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color:
+          @if ($count_kyluat_time != '')
+            #850000
+          @else
+            gray
+          @endif
+          ; border: none; width: 100%" >
             Chọn khoảng thời gian để xuất file
           </button>
           <div id="demo" class="collapse mt-3">
@@ -205,7 +217,7 @@
         @if ($count_loaikyluat != '')
           <div class="row">
             <div class="col-1">
-              <a href="{{ URL::to('/thongke_qlktkl_lkt_all_pdf') }}">
+              <a href="{{ URL::to('/thongke_qlktkl_lkl_all_pdf') }}">
                 <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
               </a>
             </div>
