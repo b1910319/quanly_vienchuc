@@ -416,7 +416,7 @@
         </a>
       </div>
       <div class="col-2">
-        <a href="{{ URL::to('thongke_qltt_htkt') }}">
+        <a href="{{ URL::to('thongke_qltt_lbc') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
             @if ($count_loaibangcap != '')
               #850000
@@ -424,7 +424,7 @@
               gray
             @endif
             ; border: none; width: 100%;">
-            Hình thức khen thưởng
+            Theo loại bằng cấp
           </button>
         </a>
       </div>
@@ -509,7 +509,7 @@
     @if ($count_loaibangcap != '')
       <div class="row">
         <div class="col-1">
-          <a href="{{ URL::to('/thongke_qltt_htkt_all_pdf') }}">
+          <a href="{{ URL::to('/thongke_qltt_lbc_pdf') }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
           </a>
         </div>
@@ -547,24 +547,25 @@
                 }
               }
             }
+          }else if($count_loaibangcap){
+            foreach ($count_loaibangcap as $key => $count){
+              foreach($list_loaibangcap as $key => $loaibangcap){
+                if($count->ma_lbc == $loaibangcap->ma_lbc){
+                  $ten_lbc = $loaibangcap->ten_lbc;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_lbc', value: $tong },";
+                }
+              }
+            }
           }
-          // else if($count_hinhthuckhenthuong){
-          //   foreach ($count_hinhthuckhenthuong as $key => $count){
-          //     foreach($list_hinhthuckhenthuong as $key => $hinhthuckhenthuong){
-          //       if($count->ma_htkt == $hinhthuckhenthuong->ma_htkt){
-          //         $ten_htkt = $hinhthuckhenthuong->ten_htkt;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_htkt', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }else if($count_khenthuong_time){
+          // else if($count_khenthuong_time){
           //   foreach ($count_khenthuong_time as $key => $count){
           //     $ngay_kt = $count->ngay_kt;
           //     $tong = $count->sum;
           //     echo "{ year: '$ngay_kt', value: $tong },";
           //   }
-          // }else if($count_khoa){
+          // }
+          // else if($count_khoa){
           //   foreach ($count_khoa as $key => $count){
           //     foreach($list_khoa as $key => $khoa){
           //       if($count->ma_k == $khoa->ma_k){
