@@ -103,29 +103,38 @@
       </div>
     </div>
     @if ($count_tinh || $count_quequan_tinh)
-      <div class="col-4">
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
-          Chọn tỉnh/thành phố thống kê
-        </button>
-        <div id="demo3" class="collapse mt-3">
-          <form action="{{ URL::to('thongke_qltt_quequan_tinh') }}" method="post">
-            {{ csrf_field() }}
-            <div class="row">
-              <div class="col-8">
-                <select class="custom-select input_table" id="gender2" name="ma_t">
-                  <option value="0" >Chọn tỉnh</option>
-                  @foreach ($list_tinh as $tinh)
-                    <option value="{{ $tinh->ma_t }}" >{{ $tinh->ten_t }}</option>
-                  @endforeach
-                </select>
+      <div class="row">
+        <div class="col-4">
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
+            Chọn tỉnh/thành phố thống kê
+          </button>
+          <div id="demo3" class="collapse mt-3">
+            <form action="{{ URL::to('thongke_qltt_quequan_tinh') }}" method="post">
+              {{ csrf_field() }}
+              <div class="row">
+                <div class="col-8">
+                  <select class="custom-select input_table" id="gender2" name="ma_t">
+                    <option value="0" >Chọn tỉnh</option>
+                    @foreach ($list_tinh as $tinh)
+                      <option value="{{ $tinh->ma_t }}" >{{ $tinh->ten_t }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col-4">
+                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
+                    Thống kê
+                  </button>
+                </div>
               </div>
-              <div class="col-4">
-                <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
-                  Thống kê
-                </button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
+        </div>
+        <div class="col-1">
+          <a href="{{ URL::to('thongke_qltt_quequan') }}">
+            <button type="button" class="btn btn-warning">
+              <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+          </a>
         </div>
       </div>
     @endif
@@ -179,11 +188,18 @@
             </form>
           </div>
         </div>
+        <div class="col-1">
+          <a href="{{ URL::to('thongke_qltt_nghihuu') }}">
+            <button type="button" class="btn btn-warning">
+              <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+          </a>
+        </div>
       </div>
     @endif
     @if ($count_khoa || $count_khoa_ma_k)
       <div class="row">
-        <div class="col-4">
+        <div class="col-3">
           <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
             Chọn khoa thống kê
           </button>
@@ -208,104 +224,111 @@
             </form>
           </div>
         </div>
+        <div class="col-1">
+          <a href="{{ URL::to('thongke_qltt_khoa') }}">
+            <button type="button" class="btn btn-warning">
+              <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+          </a>
+        </div>
       </div>
     @endif
     <div id="myfirstchart_qltt_1" style="height: 250px;"></div>
     @if ($count_ngach != '')
       <div class="row">
-        <div class="col-1">
+        <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_ngach_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
     @endif
     @if ($count_loaibangcap != '')
       <div class="row">
-        <div class="col-1">
+        <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_lbc_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
     @endif
     @if ($count_chucvu != '')
       <div class="row">
-        <div class="col-1">
+        <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_chucvu_all_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
     @endif
     @if ($count_hedaotao != '')
       <div class="row">
-        <div class="col-1">
+        <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_hdt_all_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
     @endif
     @if ($count_khoa != '')
       <div class="row">
-        <div class="col-1">
+        <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_khoa_all_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
     @endif
     @if ($count_khoa_ma_k != '')
       <div class="row">
-        <div class="col-1">
+        <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_khoa_pdf/'.$ma_k) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
     @endif
     @if ($count_nghihuu != '')
       <div class="row">
-        <div class="col-1">
+        <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_nghihuu_all_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
     @endif
     @if ($count_nghihuu_time != '')
       <div class="row">
-        <div class="col-1">
+        <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_nghihuu_time_pdf/'.$batdau.'/'.$ketthuc) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
     @endif
     @if ($count_nghihuu_khoa != '')
       <div class="row">
-        <div class="col-1">
+        <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_nghihuu_khoa_pdf/'.$ma_k) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
     @endif
     @if ($count_tinh != '')
       <div class="row">
-        <div class="col-1">
+        <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_quequan_all_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
     @endif
     @if ($count_quequan_tinh != '')
       <div class="row">
-        <div class="col-1">
+        <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_quequan_tinh_pdf/'.$ma_t) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
@@ -320,7 +343,7 @@
       pointFillColors: ['#F94A29'],
       parseTime: false,
       hideHover:true,
-      barColors: ['#554994'],
+      barColors: ['#FF6363'],
       data: [
         <?php
           if($count_ngach){
