@@ -337,7 +337,7 @@
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
                   <li>
-                    <a href="email-inbox.html">Inbox</a>
+                    <a href="{{ URL::to('/danhmuclop') }}">Danh mục lớp học</a>
                   </li>
                   <li>
                     <a href="email-read.html">Read Email</a>

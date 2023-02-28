@@ -16,6 +16,7 @@ use App\Http\Controllers\GiaDinhController;
 use App\Http\Controllers\LoaiBangCapController;
 use App\Http\Controllers\HeDaoTaoController;
 use App\Http\Controllers\BangCapController;
+use App\Http\Controllers\DanhMucLopController;
 use App\Http\Controllers\NghiHuuController;
 use App\Http\Controllers\ThongKeController;
 use App\Http\Controllers\LoaiKhenThuongController;
@@ -366,7 +367,13 @@ Route::get('/kyluat_pdf/{ma_kl}',[KyLuatController::class, 'kyluat_pdf']);
 
 
 
-
+Route::get('/danhmuclop',[DanhMucLopController::class, 'danhmuclop']);
+Route::post('/add_danhmuclop',[DanhMucLopController::class, 'add_danhmuclop']);
+Route::get('/select_danhmuclop/{ma_dml}',[DanhMucLopController::class, 'select_danhmuclop']);
+Route::get('/edit_danhmuclop/{ma_dml}',[DanhMucLopController::class, 'edit_danhmuclop']);
+Route::post('/update_danhmuclop/{ma_dml}',[DanhMucLopController::class, 'update_danhmuclop']);
+Route::get('/delete_danhmuclop/{ma_dml}',[DanhMucLopController::class, 'delete_danhmuclop']);
+Route::get('/delete_all_danhmuclop',[DanhMucLopController::class, 'delete_all_danhmuclop']);
 
 
 
