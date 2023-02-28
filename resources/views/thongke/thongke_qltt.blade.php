@@ -102,9 +102,45 @@
         <p class="fw-bold" style="font-size: 18px;">Thống kê viên chức </p>
       </div>
     </div>
+    @if ($count_ngach || $count_ngach_ma_n)
+      <div class="row">
+        <div class="col-3">
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
+            Chọn ngạch
+          </button>
+          <div id="demo3" class="collapse mt-3">
+            <form action="{{ URL::to('thongke_qltt_ngach') }}" method="post">
+              {{ csrf_field() }}
+              <div class="row">
+                <div class="col-8">
+                  <select class="custom-select input_table" id="gender2" name="ma_n">
+                    <option value="0" >Chọn ngạch</option>
+                    @foreach ($list_ngach as $ngach)
+                      <option value="{{ $ngach->ma_n }}" >{{ $ngach->ten_n }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col-4">
+                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
+                    Thống kê
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-1">
+          <a href="{{ URL::to('thongke_qltt') }}">
+            <button type="button" class="btn btn-warning">
+              <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+          </a>
+        </div>
+      </div>
+    @endif
     @if ($count_tinh || $count_quequan_tinh)
       <div class="row">
-        <div class="col-4">
+        <div class="col-3">
           <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
             Chọn tỉnh/thành phố thống kê
           </button>
@@ -140,30 +176,7 @@
     @endif
     @if ($count_nghihuu || $count_nghihuu_time || $count_nghihuu_khoa)
       <div class="row">
-        <div class="col-4">
-          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color: #00425A; border: none; width: 100%" >
-            Chọn khoảng thời gian thống kê
-          </button>
-          <div id="demo" class="collapse mt-3">
-            <form action="{{ URL::to('thongke_qltt_nghihuu_time') }}" method="post">
-              {{ csrf_field() }}
-              <div class="row">
-                <div class="col-4">
-                  <input type='date' class='form-control input_table' autofocus required name="batdau">
-                </div>
-                <div class="col-4">
-                  <input type='date' class='form-control input_table' autofocus required name="ketthuc">
-                </div>
-                <div class="col-4">
-                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
-                    Thống kê
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="col-4">
+        <div class="col-3">
           <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
             Chọn khoa thống kê
           </button>
@@ -178,6 +191,29 @@
                       <option value="{{ $khoa->ma_k }}" >{{ $khoa->ten_k }}</option>
                     @endforeach
                   </select>
+                </div>
+                <div class="col-4">
+                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
+                    Thống kê
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-3">
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color: #00425A; border: none; width: 100%" >
+            Chọn khoảng thời gian thống kê
+          </button>
+          <div id="demo" class="collapse mt-3">
+            <form action="{{ URL::to('thongke_qltt_nghihuu_time') }}" method="post">
+              {{ csrf_field() }}
+              <div class="row">
+                <div class="col-4">
+                  <input type='date' class='form-control input_table' autofocus required name="batdau">
+                </div>
+                <div class="col-4">
+                  <input type='date' class='form-control input_table' autofocus required name="ketthuc">
                 </div>
                 <div class="col-4">
                   <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
@@ -351,6 +387,15 @@
         </div>
       </div>
     @endif
+    @if ($count_ngach_ma_n != '')
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qltt_ma_ngach_pdf/'.$ma_n) }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
     @if ($count_loaibangcap != '')
       <div class="row">
         <div class="col-2">
@@ -483,6 +528,16 @@
         <?php
           if($count_ngach){
             foreach ($count_ngach as $key => $count){
+              foreach($list_ngach as $key => $ngach){
+                if($count->ma_n == $ngach->ma_n){
+                  $ten_n = $ngach->ten_n;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_n', value: $tong },";
+                }
+              }
+            }
+          }else if($count_ngach_ma_n){
+            foreach ($count_ngach_ma_n as $key => $count){
               foreach($list_ngach as $key => $ngach){
                 if($count->ma_n == $ngach->ma_n){
                   $ten_n = $ngach->ten_n;
