@@ -268,8 +268,10 @@ Route::get('/thongke_qlktkl_lkt',[ThongKeController::class, 'thongke_qlktkl_lkt'
 Route::get('/thongke_qlktkl_ma_lkt_pdf/{ma_lkt}',[ThongKeController::class, 'thongke_qlktkl_ma_lkt_pdf']);
 Route::get('/thongke_qlktkl_htkt',[ThongKeController::class, 'thongke_qlktkl_htkt']);
 Route::post('/thongke_qlktkl_ma_htkt',[ThongKeController::class, 'thongke_qlktkl_ma_htkt']);
+Route::post('/thongke_qlktkl_ma_khoa',[ThongKeController::class, 'thongke_qlktkl_ma_khoa']);
 Route::post('/thongke_qlktkl_time',[ThongKeController::class, 'thongke_qlktkl_time']);
 Route::get('/thongke_qlktkl_khoa',[ThongKeController::class, 'thongke_qlktkl_khoa']);
+Route::get('/thongke_qlktkl_ma_khoa_pdf/{ma_k}',[ThongKeController::class, 'thongke_qlktkl_ma_khoa_pdf']);
 Route::get('/thongke_qlktkl_time_pdf/{batdau}/{ketthuc}',[ThongKeController::class, 'thongke_qlktkl_time_pdf']);
 Route::get('/thongke_qlktkl_htkt_pdf/{ma_htkt}',[ThongKeController::class, 'thongke_qlktkl_htkt_pdf']);
 Route::get('/thongke_qlktkl_lkt_pdf/{ma_lkt}',[ThongKeController::class, 'thongke_qlktkl_lkt_pdf']);

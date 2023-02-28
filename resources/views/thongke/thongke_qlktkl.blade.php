@@ -153,6 +153,42 @@
         </div>
       </div>
     @endif
+    @if ($count_khoa || $count_ma_khoa)
+      <div class="row">
+        <div class="col-3">
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
+            Chọn khoa
+          </button>
+          <div id="demo3" class="collapse mt-3">
+            <form action="{{ URL::to('thongke_qlktkl_ma_khoa') }}" method="post">
+              {{ csrf_field() }}
+              <div class="row">
+                <div class="col-8">
+                  <select class="custom-select input_table" id="gender2" name="ma_k">
+                    <option value="0" >Chọn khoa</option>
+                    @foreach ($list_khoa as $khoa)
+                      <option value="{{ $khoa->ma_k }}" >{{ $khoa->ten_k }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col-4">
+                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
+                    Thống kê
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-1">
+          <a href="{{ URL::to('thongke_qlktkl_khoa') }}">
+            <button type="button" class="btn btn-warning">
+              <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+          </a>
+        </div>
+      </div>
+    @endif
     {{-- <div class="row">
       <div class="col-2">
         <div class="dropdown" >
@@ -208,9 +244,18 @@
     @endif
     @if ($count_khoa != '')
       <div class="row">
-        <div class="col-1">
+        <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_khoa_all_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
+    @if ($count_ma_khoa != '')
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlktkl_ma_khoa_pdf/'.$ma_k) }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
@@ -389,6 +434,16 @@
             }
           }else if($count_khoa){
             foreach ($count_khoa as $key => $count){
+              foreach($list_khoa as $key => $khoa){
+                if($count->ma_k == $khoa->ma_k){
+                  $ten_k = $khoa->ten_k;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_k', value: $tong },";
+                }
+              }
+            }
+          }else if($count_ma_khoa){
+            foreach ($count_ma_khoa as $key => $count){
               foreach($list_khoa as $key => $khoa){
                 if($count->ma_k == $khoa->ma_k){
                   $ten_k = $khoa->ten_k;
