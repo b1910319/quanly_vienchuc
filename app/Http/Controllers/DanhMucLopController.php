@@ -68,10 +68,10 @@ class DanhMucLopController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
       ->first();
-    if($phanquyen_admin || $phanquyen_qltt){
+    if($phanquyen_admin || $phanquyen_qlcttc){
       $data = $request->all();
       $danhmuclop = new danhmuclop();
       $danhmuclop->ten_dml = $data['ten_dml'];
@@ -83,28 +83,27 @@ class DanhMucLopController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function select_danhmuclop($ma_dml){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $danhmuclop = DanhMucLop::find($ma_dml);
-  //     if($danhmuclop->status_dml == 1){
-  //       $danhmuclop->status_dml = DanhMucLop::find($ma_dml)->update(['status_dml' => 0]);
-  //     }elseif($danhmuclop->status_dml == 0){
-  //       $danhmuclop->status_dml = DanhMucLop::find($ma_dml)->update(['status_dml' => 1]);
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-    
-  // }
+  public function select_danhmuclop($ma_dml){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $danhmuclop = DanhMucLop::find($ma_dml);
+      if($danhmuclop->status_dml == 1){
+        $danhmuclop->status_dml = DanhMucLop::find($ma_dml)->update(['status_dml' => 0]);
+      }elseif($danhmuclop->status_dml == 0){
+        $danhmuclop->status_dml = DanhMucLop::find($ma_dml)->update(['status_dml' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function edit_danhmuclop($ma_dml){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
@@ -121,7 +120,7 @@ class DanhMucLopController extends Controller
   //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
   //     ->where('ma_q', '=', '6')
   //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
   //     $edit = DanhMucLop::find($ma_dml);
   //     Carbon::now('Asia/Ho_Chi_Minh'); 
   //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
