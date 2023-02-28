@@ -207,22 +207,6 @@
         </div>
       </div>
     @endif
-    {{-- <div class="row">
-      <div class="col-2">
-        <div class="dropdown" >
-          <button class="dropbtn" style="background-color: #379237">Xuất file</button>
-          <div class="dropdown-content">
-            @foreach ($list_hinhthuckhenthuong as  $htkt)
-              <a href="{{ URL::to('/thongke_qlktkl_htkt_pdf/'.$htkt->ma_htkt) }}">{{ $htkt->ten_htkt }}</a>
-            @endforeach
-            <span>____________________________________________________</span>
-            @foreach ($list_loaikhenthuong as  $lkt)
-              <a href="{{ URL::to('/thongke_qlktkl_lkt_pdf/'.$lkt->ma_lkt) }}">{{ $lkt->ten_lkt }}</a>
-            @endforeach
-          </div>
-        </div>
-      </div>
-    </div> --}}
     <div id="myfirstchart_qlktkl_1" style="height: 250px;"></div>
     @if ($count_loaikhenthuong != '')
       <div class="row">
@@ -297,103 +281,140 @@
       </div>
     @endif
   </div>
-  <div class="card-box col-12">
-    <div class="row">
-      <div class="col-6">
-        <p class="fw-bold" style="font-size: 18px;">Thống kê kỷ luật </p>
-      </div>
-      <div class="row">
-        <div class="col-2">
-          <a href="{{ URL::to('thongke_qlktkl_lkl') }}">
-            <button type="button" class="btn btn-primary" style="background-color:
-              @if ($count_loaikyluat != '')
-                #850000
-              @else
-                gray
-              @endif
-              ; border: none; width: 100%;">
-              Loại kỷ luật
-            </button>
-          </a>
-        </div>
-        <div class="col-2">
-          <a href="{{ URL::to('thongke_qlktkl_kl_khoa') }}">
-            <button type="button" class="btn btn-primary" style="background-color:
-              @if ($count_kl_khoa != '')
-                #850000
-              @else
-                gray
-              @endif
-              ; border: none; width: 100%;">
-              Khoa
-            </button>
-          </a>
-        </div>
-        <div class="col-2">
-          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo1" style="background-color:
-          @if ($count_kyluat_time != '')
+  <div class="card-box col-2">
+    <div>
+      <a href="{{ URL::to('thongke_qlktkl_lkl') }}">
+        <button type="button" class="btn btn-primary" style="background-color:
+          @if ($count_loaikyluat != '')
             #850000
           @else
             gray
           @endif
-          ; border: none; width: 100%" >
-            Chọn khoảng thời gian để xuất file
-          </button>
-          <div id="demo1" class="collapse mt-3">
-            <form action="{{ URL::to('thongke_qlktkl_kl_time') }}" method="post">
-              {{ csrf_field() }}
-              <div class="row">
-                <div class="col-6">
-                  <input type='date' class='form-control input_table' autofocus required name="batdau">
-                </div>
-                <div class="col-6">
-                  <input type='date' class='form-control input_table' autofocus required name="ketthuc">
-                </div>
-              </div>
-              <div class="row mt-2">
-                <div class="col-6">
-                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
-                    Thống kê
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="dropdown" >
-            <button class="dropbtn" style="background-color: #379237">Xuất file</button>
-            <div class="dropdown-content">
-              @foreach ($list_loaikyluat as  $lkl)
-                <a href="{{ URL::to('/thongke_qlktkl_lkl_pdf/'.$lkl->ma_lkl) }}">{{ $lkl->ten_lkl }}</a>
-              @endforeach
+          ; border: none; width: 100%;">
+          Loại kỷ luật
+        </button>
+      </a>
+    </div>
+    <div class="mt-2">
+      <a href="{{ URL::to('thongke_qlktkl_kl_khoa') }}">
+        <button type="button" class="btn btn-primary" style="background-color:
+          @if ($count_kl_khoa != '')
+            #850000
+          @else
+            gray
+          @endif
+          ; border: none; width: 100%;">
+          Khoa
+        </button>
+      </a>
+    </div>
+    <div class="mt-2">
+      <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo1" style="background-color:
+      @if ($count_kyluat_time != '')
+        #850000
+      @else
+        gray
+      @endif
+      ; border: none; width: 100%" >
+        Chọn khoảng thời gian để xuất file
+      </button>
+      <div id="demo1" class="collapse mt-3">
+        <form action="{{ URL::to('thongke_qlktkl_kl_time') }}" method="post">
+          {{ csrf_field() }}
+          <div class="row">
+            <div class="col-6">
+              <input type='date' class='form-control input_table' autofocus required name="batdau">
+            </div>
+            <div class="col-6">
+              <input type='date' class='form-control input_table' autofocus required name="ketthuc">
             </div>
           </div>
+          <div class="row mt-2">
+            <div class="col-6">
+              <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
+                Thống kê
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="card-box col-10">
+    <div class="row">
+      <div class="col-6">
+        <p class="fw-bold" style="font-size: 18px;">Thống kê kỷ luật </p>
+      </div>
+      @if ($count_loaikyluat || $count_ma_lkl)
+        <div class="row">
+          <div class="col-3">
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo4" style="background-color: #00425A; border: none; width: 100%" >
+              Chọn loại kỷ luật
+            </button>
+            <div id="demo4" class="collapse mt-3">
+              <form action="{{ URL::to('thongke_qlktkl_ma_lkl') }}" method="post">
+                {{ csrf_field() }}
+                <div class="row">
+                  <div class="col-8">
+                    <select class="custom-select input_table" id="gender2" name="ma_lkl">
+                      <option value="0" >Chọn loại kỷ luật</option>
+                      @foreach ($list_loaikyluat as $loaikyluat)
+                        <option value="{{ $loaikyluat->ma_lkl }}" >{{ $loaikyluat->ten_lkl }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                  <div class="col-4">
+                    <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
+                      Thống kê
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-1">
+            <a href="{{ URL::to('thongke_qlktkl_lkl') }}">
+              <button type="button" class="btn btn-warning">
+                <i class="fa-solid fa-arrows-rotate"></i>
+              </button>
+            </a>
+          </div>
         </div>
+      @endif
+      <div class="row">
         <div id="myfirstchart_qlktkl_2" style="height: 250px;"></div>
         @if ($count_kyluat_time != '')
           <div class="row">
-            <div class="col-1">
+            <div class="col-2">
               <a href="{{ URL::to('/thongke_qlktkl_kl_time_pdf/'.$batdau.'/'.$ketthuc) }}">
-                <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+                <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
               </a>
             </div>
           </div>
         @endif
         @if ($count_loaikyluat != '')
           <div class="row">
-            <div class="col-1">
+            <div class="col-2">
               <a href="{{ URL::to('/thongke_qlktkl_lkl_all_pdf') }}">
-                <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+                <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+              </a>
+            </div>
+          </div>
+        @endif
+        @if ($count_ma_lkl != '')
+          <div class="row">
+            <div class="col-2">
+              <a href="{{ URL::to('/thongke_qlktkl_lkl_pdf/'.$ma_lkl) }}">
+                <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
               </a>
             </div>
           </div>
         @endif
         @if ($count_kl_khoa != '')
           <div class="row">
-            <div class="col-1">
+            <div class="col-2">
               <a href="{{ URL::to('/thongke_qlktkl_kl_khoa_all_pdf') }}">
-                <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%">Xuất file</button>
+                <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
               </a>
             </div>
           </div>
@@ -505,6 +526,16 @@
         <?php
           if($count_loaikyluat){
             foreach ($count_loaikyluat as $key => $count){
+              foreach($list_loaikyluat as $key => $loaikyluat){
+                if($count->ma_lkl == $loaikyluat->ma_lkl){
+                  $ten_lkl = $loaikyluat->ten_lkl;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_lkl', value: $tong },";
+                }
+              }
+            }
+          }else if($count_ma_lkl){
+            foreach ($count_ma_lkl as $key => $count){
               foreach($list_loaikyluat as $key => $loaikyluat){
                 if($count->ma_lkl == $loaikyluat->ma_lkl){
                   $ten_lkl = $loaikyluat->ten_lkl;
