@@ -29,7 +29,7 @@ class DanhMucLopController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
-    $title = "Quản lý thông tin dân tộc";
+    $title = "Quản lý thông tin danh mục";
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -104,64 +104,64 @@ class DanhMucLopController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function edit_danhmuclop($ma_dml){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   $title = "Cập nhật thông tin dân tộc";
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $edit = DanhMucLop::find($ma_dml);
-  //     Carbon::now('Asia/Ho_Chi_Minh'); 
-  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-  //       ->select(DB::raw('count(ma_vc) as sum'))
-  //       ->get();
-  //     return view('danhmuclop.danhmuclop_edit')
-  //       ->with('edit', $edit)
-  //       ->with('title', $title)
-  //       ->with('phanquyen_qltt', $phanquyen_qltt)
-  //       ->with('count_nangbac', $count_nangbac)
-  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-  //       ->with('phanquyen_admin', $phanquyen_admin);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function update_danhmuclop(Request $request, $ma_dml){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $data = $request->all();
-  //     Carbon::now('Asia/Ho_Chi_Minh');
-  //     $danhmuclop = DanhMucLop::find($ma_dml);
-  //     $danhmuclop->ten_dml = $data['ten_dml'];
-  //     $danhmuclop->status_dml = $data['status_dml'];
-  //     $danhmuclop->updated_dml = Carbon::now();
-  //     $danhmuclop->save();
-  //     return Redirect::to('danhmuclop');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
+  public function edit_danhmuclop($ma_dml){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Cập nhật thông tin danh mục lớp";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $edit = DanhMucLop::find($ma_dml);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      return view('danhmuclop.danhmuclop_edit')
+        ->with('edit', $edit)
+        ->with('title', $title)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_danhmuclop(Request $request, $ma_dml){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $danhmuclop = DanhMucLop::find($ma_dml);
+      $danhmuclop->ten_dml = $data['ten_dml'];
+      $danhmuclop->status_dml = $data['status_dml'];
+      $danhmuclop->updated_dml = Carbon::now();
+      $danhmuclop->save();
+      return Redirect::to('danhmuclop');
+    }else{
+      return Redirect::to('/home');
+    }
     
-  // }
+  }
   // public function delete_danhmuclop($ma_dml){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
