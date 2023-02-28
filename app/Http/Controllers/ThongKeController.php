@@ -1761,9 +1761,13 @@ class ThongKeController extends Controller
       $count_ma_khoa = '';
       $count_kt_time = '';
       $count_ma_lkl ='';
+      $count_kl_ma_khoa = '';
+      $count_kl_thoigian ='';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
+        ->with('count_kl_thoigian', $count_kl_thoigian)
         ->with('count_ma_lkl', $count_ma_lkl)
+        ->with('count_kl_ma_khoa', $count_kl_ma_khoa)
         ->with('count_kt_time', $count_kt_time)
         ->with('count_ma_khoa', $count_ma_khoa)
         ->with('count_ma_htkt', $count_ma_htkt)
@@ -1834,8 +1838,12 @@ class ThongKeController extends Controller
       $count_ma_khoa = '';
       $count_kt_time = '';
       $count_ma_lkl ='';
+      $count_kl_thoigian = '';
+      $count_kl_ma_khoa ='';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
+        ->with('count_kl_thoigian', $count_kl_thoigian)
+        ->with('count_kl_ma_khoa', $count_kl_ma_khoa)
         ->with('count_ma_lkl', $count_ma_lkl)
         ->with('count_kt_time', $count_kt_time)
         ->with('count_ma_khoa', $count_ma_khoa)
@@ -2018,6 +2026,7 @@ class ThongKeController extends Controller
       $count_loaikhenthuong = '';
       $count_khoa = '';
       $count_khenthuong_time ='';
+      $count_kl_ma_khoa ='';
       $count_loaikyluat = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
         ->where('status_vc', '<>', '2')
@@ -2033,8 +2042,11 @@ class ThongKeController extends Controller
       $count_ma_khoa = '';
       $count_kt_time = '';
       $count_ma_lkl ='';
+      $count_kl_thoigian = '';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
+        ->with('count_kl_thoigian', $count_kl_thoigian)
+        ->with('count_kl_ma_khoa', $count_kl_ma_khoa)
         ->with('count_ma_lkl', $count_ma_lkl)
         ->with('count_kt_time', $count_kt_time)
         ->with('count_ma_khoa', $count_ma_khoa)
@@ -2307,8 +2319,12 @@ class ThongKeController extends Controller
       $count_ma_khoa = '';
       $count_kt_time = '';
       $count_ma_lkl ='';
+      $count_kl_thoigian = '';
+      $count_kl_ma_khoa ='';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
+        ->with('count_kl_thoigian', $count_kl_thoigian)
+        ->with('count_kl_ma_khoa', $count_kl_ma_khoa)
         ->with('count_ma_lkl', $count_ma_lkl)
         ->with('count_kt_time', $count_kt_time)
         ->with('count_ma_khoa', $count_ma_khoa)
@@ -2431,8 +2447,12 @@ class ThongKeController extends Controller
       $count_ma_khoa = '';
       $count_kt_time = '';
       $count_ma_lkl ='';
+      $count_kl_thoigian = '';
+      $count_kl_ma_khoa ='';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
+        ->with('count_kl_thoigian', $count_kl_thoigian)
+        ->with('count_kl_ma_khoa', $count_kl_ma_khoa)
         ->with('count_ma_lkl', $count_ma_lkl)
         ->with('count_kt_time', $count_kt_time)
         ->with('count_ma_khoa', $count_ma_khoa)
