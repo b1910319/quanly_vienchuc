@@ -73,7 +73,7 @@ class DanhMucLopController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
       $data = $request->all();
-      $danhmuclop = new danhmuclop();
+      $danhmuclop = new DanhMucLop();
       $danhmuclop->ten_dml = $data['ten_dml'];
       $danhmuclop->status_dml = $data['status_dml'];
       $danhmuclop->save();

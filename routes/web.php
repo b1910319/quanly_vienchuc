@@ -24,6 +24,7 @@ use App\Http\Controllers\HinhThucKhenThuongController;
 use App\Http\Controllers\KhenThuongController;
 use App\Http\Controllers\KyLuatController;
 use App\Http\Controllers\LoaiKyLuatController;
+use App\Http\Controllers\LopController;
 
 Route::get('/login',[HomeController::class, 'index']);
 Route::get('/home',[HomeController::class, 'home']);
@@ -379,7 +380,13 @@ Route::get('/delete_all_danhmuclop',[DanhMucLopController::class, 'delete_all_da
 
 
 
-
+Route::get('/lop',[LopController::class, 'lop']);
+Route::post('/add_lop',[LopController::class, 'add_lop']);
+Route::get('/select_lop/{ma_l}',[LopController::class, 'select_lop']);
+Route::get('/edit_lop/{ma_l}',[LopController::class, 'edit_lop']);
+Route::post('/update_lop/{ma_l}',[LopController::class, 'update_lop']);
+Route::get('/delete_lop/{ma_l}',[LopController::class, 'delete_lop']);
+Route::get('/delete_all_lop',[LopController::class, 'delete_all_lop']);
 
 
 

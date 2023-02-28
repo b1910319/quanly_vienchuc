@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 28, 2023 lúc 10:12 AM
+-- Thời gian đã tạo: Th2 28, 2023 lúc 10:57 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -1158,6 +1158,39 @@ INSERT INTO `loaikyluat` (`ma_lkl`, `ten_lkl`, `status_lkl`, `created_lkl`, `upd
 (5, 'Cảnh cáo', 0, '2023-02-25 02:17:54', ' '),
 (6, 'Buộc thôi việc', 0, '2023-02-25 02:18:02', ' '),
 (7, 'Cách chức.', 0, '2023-02-25 02:18:15', ' ');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `lop`
+--
+
+CREATE TABLE `lop` (
+  `ma_l` int(11) NOT NULL,
+  `ma_dml` int(11) NOT NULL,
+  `ten_l` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `ngaybatdau_l` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `ngayketthuc_l` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `tencosodaotao_l` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `quocgiaodaotao_l` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nganhhoc_l` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `trinhdodaotao_l` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nguonkinhphi_l` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `diachidaotao_l` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emailcoso_l` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sdtcoso_l` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_l` int(11) NOT NULL DEFAULT 0,
+  `created_l` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_l` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `lop`
+--
+
+INSERT INTO `lop` (`ma_l`, `ma_dml`, `ten_l`, `ngaybatdau_l`, `ngayketthuc_l`, `tencosodaotao_l`, `quocgiaodaotao_l`, `nganhhoc_l`, `trinhdodaotao_l`, `nguonkinhphi_l`, `diachidaotao_l`, `emailcoso_l`, `sdtcoso_l`, `status_l`, `created_l`, `updated_l`) VALUES
+(1, 6, 'b', '2023-02-01', '2023-03-11', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 0, '2023-02-28 09:46:19', ' '),
+(2, 5, 'c', '2023-02-09', '2023-03-06', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 1, '2023-02-28 09:46:44', ' ');
 
 -- --------------------------------------------------------
 
@@ -12448,6 +12481,12 @@ ALTER TABLE `loaikyluat`
   ADD PRIMARY KEY (`ma_lkl`);
 
 --
+-- Chỉ mục cho bảng `lop`
+--
+ALTER TABLE `lop`
+  ADD PRIMARY KEY (`ma_l`);
+
+--
 -- Chỉ mục cho bảng `ngach`
 --
 ALTER TABLE `ngach`
@@ -12594,6 +12633,12 @@ ALTER TABLE `loaikhenthuong`
 --
 ALTER TABLE `loaikyluat`
   MODIFY `ma_lkl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT cho bảng `lop`
+--
+ALTER TABLE `lop`
+  MODIFY `ma_l` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `ngach`

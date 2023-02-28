@@ -340,7 +340,7 @@
                     <a href="{{ URL::to('/danhmuclop') }}">Danh mục lớp học</a>
                   </li>
                   <li>
-                    <a href="email-read.html">Read Email</a>
+                    <a href="{{ URL::to('/lop') }}">Lớp học</a>
                   </li>
                   <li>
                     <a href="email-compose.html">Compose Email</a>
