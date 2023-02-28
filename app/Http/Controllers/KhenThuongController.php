@@ -42,6 +42,9 @@ class KhenThuongController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Quản lý khen thưởng";
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -71,6 +74,7 @@ class KhenThuongController extends Controller
         ->get();
       return view('khenthuong.khenthuong')
         ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('list_hedaotao', $list_hedaotao)
         ->with('list_tinh', $list_tinh)
@@ -101,6 +105,9 @@ class KhenThuongController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thêm thông tin khen thưởng";
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
@@ -131,6 +138,7 @@ class KhenThuongController extends Controller
         ->get();
       return view('khenthuong.khenthuong_add')
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
@@ -163,7 +171,6 @@ class KhenThuongController extends Controller
       $khenthuong->ma_htkt = $data['ma_htkt'];
       $khenthuong->ngay_kt = $data['ngay_kt'];
       $khenthuong->noidung_kt = $data['noidung_kt'];
-      // $khenthuong->soquyetdinh_kt = $data['soquyetdinh_kt'];
       $khenthuong->status_kt = $data['status_kt'];
       $khenthuong->save();
       $request->session()->put('message','Thêm thành công');
@@ -197,6 +204,9 @@ class KhenThuongController extends Controller
     $this->check_login();
     $title = "Cập nhật thông tin khen thưởng";
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
@@ -228,6 +238,7 @@ class KhenThuongController extends Controller
         ->with('list_loaikhenthuong', $list_loaikhenthuong)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
@@ -252,7 +263,6 @@ class KhenThuongController extends Controller
       $khenthuong->ma_htkt = $data['ma_htkt'];
       $khenthuong->ngay_kt = $data['ngay_kt'];
       $khenthuong->noidung_kt = $data['noidung_kt'];
-      // $khenthuong->soquyetdinh_kt = $data['soquyetdinh_kt'];
       $khenthuong->status_kt = $data['status_kt'];
       $khenthuong->updated_kt = Carbon::now();
       $khenthuong->save();

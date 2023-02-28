@@ -328,28 +328,29 @@
                 </ul>
               </li>
             @endif
-            <li>
-              <a href="javascript: void(0);" class="waves-effect">
-                <i class="remixicon-mail-open-line"></i>
-                <span> Email </span>
-                <span class="menu-arrow"></span>
-              </a>
-              <ul class="nav-second-level" aria-expanded="false">
-                <li>
-                  <a href="email-inbox.html">Inbox</a>
-                </li>
-                <li>
-                  <a href="email-read.html">Read Email</a>
-                </li>
-                <li>
-                  <a href="email-compose.html">Compose Email</a>
-                </li>
-                <li>
-                  <a href="email-templates.html">Email Templates</a>
-                </li>
-              </ul>
-            </li>
-
+            @if ($phanquyen_qlcttc || $phanquyen_admin)
+              <li>
+                <a href="javascript: void(0);" class="waves-effect">
+                  <i class="remixicon-mail-open-line"></i>
+                  <span> Quản lý công tác <br> tổ chức </span>
+                  <span class="menu-arrow"></span>
+                </a>
+                <ul class="nav-second-level" aria-expanded="false">
+                  <li>
+                    <a href="email-inbox.html">Inbox</a>
+                  </li>
+                  <li>
+                    <a href="email-read.html">Read Email</a>
+                  </li>
+                  <li>
+                    <a href="email-compose.html">Compose Email</a>
+                  </li>
+                  <li>
+                    <a href="email-templates.html">Email Templates</a>
+                  </li>
+                </ul>
+              </li>
+            @endif
             <li>
               <a href="javascript: void(0);" class="waves-effect">
                 <i class="remixicon-pages-line"></i>

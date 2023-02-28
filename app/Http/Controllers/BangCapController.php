@@ -35,6 +35,9 @@ class BangCapController extends Controller
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $list = BangCap::join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
         ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
@@ -62,6 +65,7 @@ class BangCapController extends Controller
         ->get();
       return view('bangcap.bangcap')
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
@@ -141,6 +145,9 @@ class BangCapController extends Controller
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = BangCap::find($ma_bc);
       Carbon::now('Asia/Ho_Chi_Minh'); 
@@ -160,6 +167,7 @@ class BangCapController extends Controller
         ->with('title', $title)
         ->with('list_hedaotao', $list_hedaotao)
         ->with('list_loaibangcap', $list_loaibangcap)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)

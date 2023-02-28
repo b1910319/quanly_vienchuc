@@ -25,6 +25,9 @@ class QuyenController extends Controller
     $this->check_login();
     $title = "Quản lý các quyền";
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -51,6 +54,7 @@ class QuyenController extends Controller
         ->with('count_status', $count_status)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('list', $list);
     }else{
@@ -101,6 +105,9 @@ class QuyenController extends Controller
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $title = "Cập nhật thông tin quyền";
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -121,6 +128,7 @@ class QuyenController extends Controller
         ->with('edit', $edit)
         ->with('title', $title)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);

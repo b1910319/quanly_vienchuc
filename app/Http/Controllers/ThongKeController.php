@@ -32,6 +32,9 @@ class ThongKeController extends Controller
   public function thongke_qltt(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -105,6 +108,7 @@ class ThongKeController extends Controller
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -114,6 +118,9 @@ class ThongKeController extends Controller
   public function thongke_qltt_ngach(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -190,6 +197,7 @@ class ThongKeController extends Controller
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -250,6 +258,9 @@ class ThongKeController extends Controller
   public function thongke_qltt_lbc(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -324,6 +335,7 @@ class ThongKeController extends Controller
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -333,6 +345,9 @@ class ThongKeController extends Controller
   public function thongke_qltt_loaibangcap(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -410,6 +425,7 @@ class ThongKeController extends Controller
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -492,6 +508,9 @@ class ThongKeController extends Controller
   public function thongke_qltt_chucvu(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -566,6 +585,7 @@ class ThongKeController extends Controller
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -575,6 +595,9 @@ class ThongKeController extends Controller
   public function thongke_qltt_cv(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -652,6 +675,7 @@ class ThongKeController extends Controller
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -733,6 +757,9 @@ class ThongKeController extends Controller
   public function thongke_qltt_khoa(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -806,6 +833,7 @@ class ThongKeController extends Controller
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -815,6 +843,9 @@ class ThongKeController extends Controller
   public function thongke_qltt_khoa_ma_k(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -891,6 +922,7 @@ class ThongKeController extends Controller
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -947,6 +979,9 @@ class ThongKeController extends Controller
   public function thongke_qltt_hdt(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -1021,6 +1056,7 @@ class ThongKeController extends Controller
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -1030,6 +1066,9 @@ class ThongKeController extends Controller
   public function thongke_qltt_hedaotao(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -1107,6 +1146,7 @@ class ThongKeController extends Controller
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -1165,6 +1205,9 @@ class ThongKeController extends Controller
   public function thongke_qltt_nghihuu(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -1239,6 +1282,7 @@ class ThongKeController extends Controller
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -1248,6 +1292,9 @@ class ThongKeController extends Controller
   public function thongke_qltt_nghihuu_time(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -1326,6 +1373,7 @@ class ThongKeController extends Controller
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -1383,6 +1431,9 @@ class ThongKeController extends Controller
   public function thongke_qltt_nghihuu_khoa(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -1460,6 +1511,7 @@ class ThongKeController extends Controller
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -1494,6 +1546,9 @@ class ThongKeController extends Controller
   public function thongke_qltt_quequan(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -1568,6 +1623,7 @@ class ThongKeController extends Controller
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -1577,6 +1633,9 @@ class ThongKeController extends Controller
   public function thongke_qltt_quequan_tinh(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -1654,6 +1713,7 @@ class ThongKeController extends Controller
         ->with('count_loaibangcap', $count_loaibangcap)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -1716,6 +1776,9 @@ class ThongKeController extends Controller
   public function thongke_qlktkl(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -1784,6 +1847,7 @@ class ThongKeController extends Controller
         ->with('count_kyluat_time', $count_kyluat_time)
         ->with('list_loaikyluat', $list_loaikyluat)
         ->with('count_kl_khoa', $count_kl_khoa)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -1793,6 +1857,9 @@ class ThongKeController extends Controller
   public function thongke_qlktkl_lkt(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -1861,6 +1928,7 @@ class ThongKeController extends Controller
         ->with('count_kyluat_time', $count_kyluat_time)
         ->with('list_loaikyluat', $list_loaikyluat)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -1870,6 +1938,9 @@ class ThongKeController extends Controller
   public function thongke_qlktkl_ma_lkt(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -1937,6 +2008,7 @@ class ThongKeController extends Controller
         ->with('count_kyluat_time', $count_kyluat_time)
         ->with('list_loaikyluat', $list_loaikyluat)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -1996,6 +2068,9 @@ class ThongKeController extends Controller
   public function thongke_qlktkl_htkt(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -2064,6 +2139,7 @@ class ThongKeController extends Controller
         ->with('count_loaikyluat', $count_loaikyluat)
         ->with('count_kyluat_time', $count_kyluat_time)
         ->with('list_loaikyluat', $list_loaikyluat)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -2073,6 +2149,9 @@ class ThongKeController extends Controller
   public function thongke_qlktkl_ma_htkt(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -2140,6 +2219,7 @@ class ThongKeController extends Controller
         ->with('count_loaikyluat', $count_loaikyluat)
         ->with('count_kyluat_time', $count_kyluat_time)
         ->with('list_loaikyluat', $list_loaikyluat)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -2199,6 +2279,9 @@ class ThongKeController extends Controller
   public function thongke_qlktkl_thoigian(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -2266,6 +2349,7 @@ class ThongKeController extends Controller
         ->with('count_loaikyluat', $count_loaikyluat)
         ->with('count_kyluat_time', $count_kyluat_time)
         ->with('list_loaikyluat', $list_loaikyluat)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -2275,6 +2359,9 @@ class ThongKeController extends Controller
   public function thongke_qlktkl_time(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -2342,6 +2429,7 @@ class ThongKeController extends Controller
         ->with('count_loaikyluat', $count_loaikyluat)
         ->with('count_kyluat_time', $count_kyluat_time)
         ->with('list_loaikyluat', $list_loaikyluat)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -2400,6 +2488,9 @@ class ThongKeController extends Controller
   public function thongke_qlktkl_khoa(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -2471,6 +2562,7 @@ class ThongKeController extends Controller
         ->with('list_loaikyluat', $list_loaikyluat)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -2480,6 +2572,9 @@ class ThongKeController extends Controller
   public function thongke_qlktkl_ma_khoa(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -2552,6 +2647,7 @@ class ThongKeController extends Controller
         ->with('count_khenthuong_time', $count_khenthuong_time)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -2615,6 +2711,9 @@ class ThongKeController extends Controller
   public function thongke_qlktkl_lkl(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -2683,6 +2782,7 @@ class ThongKeController extends Controller
         ->with('count_kyluat_time', $count_kyluat_time)
         ->with('list_loaikyluat', $list_loaikyluat)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -2692,6 +2792,9 @@ class ThongKeController extends Controller
   public function thongke_qlktkl_lkl_pdf($ma_lkl){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -2716,6 +2819,9 @@ class ThongKeController extends Controller
   public function thongke_qlktkl_ma_lkl(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -2787,6 +2893,7 @@ class ThongKeController extends Controller
         ->with('count_kyluat_time', $count_kyluat_time)
         ->with('list_loaikyluat', $list_loaikyluat)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -2820,6 +2927,9 @@ class ThongKeController extends Controller
   public function thongke_qlktkl_kl_khoa(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -2893,6 +3003,7 @@ class ThongKeController extends Controller
         ->with('count_khenthuong_time', $count_khenthuong_time)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -2902,6 +3013,9 @@ class ThongKeController extends Controller
   public function thongke_qlktkl_kl_ma_khoa(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -2976,6 +3090,7 @@ class ThongKeController extends Controller
         ->with('list_loaikyluat', $list_loaikyluat)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -3034,6 +3149,9 @@ class ThongKeController extends Controller
   public function thongke_qlktkl_kl_thoigian(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -3105,6 +3223,7 @@ class ThongKeController extends Controller
         ->with('count_loaikyluat', $count_loaikyluat)
         ->with('count_kyluat_time', $count_kyluat_time)
         ->with('list_loaikyluat', $list_loaikyluat)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
@@ -3121,6 +3240,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -3181,6 +3303,7 @@ class ThongKeController extends Controller
         ->with('count_loaikyluat', $count_loaikyluat)
         ->with('count_kyluat_time', $count_kyluat_time)
         ->with('list_loaikyluat', $list_loaikyluat)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{

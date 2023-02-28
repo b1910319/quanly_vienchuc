@@ -34,6 +34,9 @@ class DanTocController extends Controller
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $list = DanToc::orderBy('ma_dt', 'desc')
         ->get();
@@ -52,6 +55,7 @@ class DanTocController extends Controller
         ->with('count', $count)
         ->with('title', $title)
         ->with('count_status', $count_status)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('count_nangbac', $count_nangbac)
         ->with('list', $list);
@@ -115,6 +119,9 @@ class DanTocController extends Controller
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = DanToc::find($ma_dt);
       Carbon::now('Asia/Ho_Chi_Minh'); 
@@ -127,6 +134,7 @@ class DanTocController extends Controller
         ->with('title', $title)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{

@@ -30,6 +30,9 @@ class KhoaController extends Controller
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     if($phanquyen_admin){
       $count = Khoa::select(DB::raw('count(ma_k) as sum'))->get();
       $count_status = Khoa::select(DB::raw('count(ma_k) as sum, status_k'))->groupBy('status_k')->get();
@@ -54,6 +57,7 @@ class KhoaController extends Controller
         ->with('count_status', $count_status)
         ->with('count_vienchuc_khoa', $count_vienchuc_khoa)
         ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('count_nangbac', $count_nangbac)
         ->with('list', $list);
@@ -109,12 +113,12 @@ class KhoaController extends Controller
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     if($phanquyen_admin){
       $edit = Khoa::find($ma_k);
       $ma_vc = session()->get('ma_vc');
-      $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-        ->where('ma_q', '=', '5')
-        ->first();
       $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
         ->where('ma_q', '=', '8')
         ->first();
@@ -125,6 +129,7 @@ class KhoaController extends Controller
         ->get();
       return view('khoa.quanly_khoa_edit')
         ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('title', $title)
         ->with('count_nangbac', $count_nangbac)

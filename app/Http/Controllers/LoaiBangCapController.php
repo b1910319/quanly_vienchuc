@@ -30,6 +30,9 @@ class LoaiBangCapController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Quản lý loại bằng cấp";
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -52,6 +55,7 @@ class LoaiBangCapController extends Controller
         ->with('title', $title)
         ->with('count_status', $count_status)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('list', $list);
     }else{
@@ -110,6 +114,9 @@ class LoaiBangCapController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Cập nhật thông tin loại bằng cấp";
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -126,6 +133,7 @@ class LoaiBangCapController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');

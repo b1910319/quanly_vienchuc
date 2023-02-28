@@ -27,6 +27,15 @@ class PhanQuyenController extends Controller
       ->where('ma_q', '=', '5')
       ->first();
     $title = "Phân quyền";
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '8')
+    ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '7')
+    ->first();
     if($phanquyen_admin){
       $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '1')
@@ -38,12 +47,6 @@ class PhanQuyenController extends Controller
       $list_quyen = Quyen::where('status_q', '<>', '1')
         ->orderBy('ma_q', 'desc')
         ->get();
-      $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-        ->where('ma_q', '=', '8')
-        ->first();
-      $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-        ->where('ma_q', '=', '7')
-        ->first();
       Carbon::now('Asia/Ho_Chi_Minh'); 
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
@@ -53,6 +56,7 @@ class PhanQuyenController extends Controller
         ->with('list_quyen', $list_quyen)
         ->with('title', $title)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('list_phanquyen', $list_phanquyen)
         ->with('phanquyen_qltt', $phanquyen_qltt)

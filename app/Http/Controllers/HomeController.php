@@ -36,6 +36,9 @@ class HomeController extends Controller
       ->where('ma_q', '=', '7')
       ->first();
     Carbon::now('Asia/Ho_Chi_Minh'); 
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
       ->select(DB::raw('count(ma_vc) as sum'))
@@ -64,6 +67,7 @@ class HomeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else if( $phanquyen_qltt){
       $count_vienchuc = VienChuc::select(DB::raw('count(ma_vc) as sum'))
@@ -78,6 +82,7 @@ class HomeController extends Controller
         ->with('count_vienchuc', $count_vienchuc)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else if($phanquyen_qlktkl){
@@ -99,6 +104,7 @@ class HomeController extends Controller
         ->with('count_vienchuc', $count_vienchuc)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
@@ -106,6 +112,7 @@ class HomeController extends Controller
         ->with('title', $title)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }

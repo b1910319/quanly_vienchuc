@@ -33,6 +33,9 @@ class GiaDinhController extends Controller
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $list = GiaDinh::where('ma_vc', $ma_vc)
         ->orderBy('ma_gd', 'desc')
@@ -56,6 +59,7 @@ class GiaDinhController extends Controller
         ->with('list', $list)
         ->with('vienchuc', $vienchuc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('count_nangbac', $count_nangbac)
         ->with('title', $title);
     }
@@ -119,6 +123,9 @@ class GiaDinhController extends Controller
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = GiaDinh::find($ma_gd);
       $list_vienchuc = VienChuc::where('status_vc', '<>', '1')
@@ -134,6 +141,7 @@ class GiaDinhController extends Controller
         ->with('list_vienchuc', $list_vienchuc)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{

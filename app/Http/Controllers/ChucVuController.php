@@ -33,6 +33,9 @@ class ChucVuController extends Controller
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $list = ChucVu::orderBy('ma_cv', 'desc')
         ->get();
@@ -52,6 +55,7 @@ class ChucVuController extends Controller
         ->with('title', $title)
         ->with('count_status', $count_status)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('list', $list);
     }else{
@@ -113,6 +117,9 @@ class ChucVuController extends Controller
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = ChucVu::find($ma_cv);
       Carbon::now('Asia/Ho_Chi_Minh'); 
@@ -124,6 +131,7 @@ class ChucVuController extends Controller
         ->with('edit', $edit)
         ->with('title', $title)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
