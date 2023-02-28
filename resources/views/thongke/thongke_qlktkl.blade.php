@@ -43,35 +43,17 @@
         </a>
       </div>
       <div class="mt-2">
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color:
-        @if ($count_khenthuong_time != '')
-          #850000
-        @else
-          gray
-        @endif
-        ; border: none; width: 100%" >
-          Khoảng thời gian
-        </button>
-        {{-- <div id="demo" class="collapse mt-3">
-          <form action="{{ URL::to('thongke_qlktkl_time') }}" method="post">
-            {{ csrf_field() }}
-            <div class="row">
-              <div class="col-6">
-                <input type='date' class='form-control input_table' autofocus required name="batdau">
-              </div>
-              <div class="col-6">
-                <input type='date' class='form-control input_table' autofocus required name="ketthuc">
-              </div>
-            </div>
-            <div class="row mt-2">
-              <div class="col-6">
-                <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
-                  Thống kê
-                </button>
-              </div>
-            </div>
-          </form>
-        </div> --}}
+        <a href="{{ URL::to('thongke_qlktkl_time') }}">
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color:
+            @if ($count_khenthuong_time != '')
+              #850000
+            @else
+              gray
+            @endif
+            ; border: none; width: 100%" >
+            Khoảng thời gian
+          </button>
+        </a>
       </div>
     </div>
   </div>
@@ -152,6 +134,42 @@
           </a>
         </div>
       </div>
+    @endif
+    @if ($count_khenthuong_time || $count_kt_time)
+    <div class="row">
+      <div class="col-3">
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color: #00425A; border: none; width: 100%" >
+          Chọn khoảng thời gian
+        </button>
+        <div id="demo" class="collapse mt-3">
+          <form action="{{ URL::to('thongke_qlktkl_thoigian') }}" method="post">
+            {{ csrf_field() }}
+            <div class="row">
+              <div class="col-6">
+                <input type='date' class='form-control input_table' autofocus required name="batdau">
+              </div>
+              <div class="col-6">
+                <input type='date' class='form-control input_table' autofocus required name="ketthuc">
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6">
+                <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
+                  Thống kê
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-1">
+        <a href="{{ URL::to('thongke_qlktkl_time') }}">
+          <button type="button" class="btn btn-warning">
+            <i class="fa-solid fa-arrows-rotate"></i>
+          </button>
+        </a>
+      </div>
+    </div>
     @endif
     @if ($count_khoa || $count_ma_khoa)
       <div class="row">
@@ -261,6 +279,15 @@
       </div>
     @endif
     @if ($count_khenthuong_time != '')
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlktkl_time_all_pdf') }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
+    @if ($count_kt_time != '')
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_time_pdf/'.$batdau.'/'.$ketthuc) }}">
@@ -428,6 +455,12 @@
             }
           }else if($count_khenthuong_time){
             foreach ($count_khenthuong_time as $key => $count){
+              $ngay_kt = $count->ngay_kt;
+              $tong = $count->sum;
+              echo "{ year: '$ngay_kt', value: $tong },";
+            }
+          }else if($count_kt_time){
+            foreach ($count_kt_time as $key => $count){
               $ngay_kt = $count->ngay_kt;
               $tong = $count->sum;
               echo "{ year: '$ngay_kt', value: $tong },";
