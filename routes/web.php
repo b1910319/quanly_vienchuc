@@ -230,6 +230,8 @@ Route::post('/updated_nghihuu',[NghiHuuController::class, 'updated_nghihuu']);
 
 Route::get('/thongke_qltt',[ThongKeController::class, 'thongke_qltt']);
 Route::get('/thongke_qltt_lbc',[ThongKeController::class, 'thongke_qltt_lbc']);
+Route::post('/thongke_qltt_loaibangcap',[ThongKeController::class, 'thongke_qltt_loaibangcap']);
+Route::get('/thongke_qltt_loaibangcap_pdf/{ma_lbc}',[ThongKeController::class, 'thongke_qltt_loaibangcap_pdf']);
 Route::get('/thongke_qltt_lbc_pdf',[ThongKeController::class, 'thongke_qltt_lbc_pdf']);
 Route::get('/thongke_qltt_hdt',[ThongKeController::class, 'thongke_qltt_hdt']);
 Route::post('/thongke_qltt_hedaotao',[ThongKeController::class, 'thongke_qltt_hedaotao']);

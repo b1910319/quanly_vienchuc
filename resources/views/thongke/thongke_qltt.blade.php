@@ -233,6 +233,42 @@
         </div>
       </div>
     @endif
+    @if ($count_loaibangcap || $count_lbc)
+      <div class="row">
+        <div class="col-3">
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
+            Chọn loại bằng cấp
+          </button>
+          <div id="demo3" class="collapse mt-3">
+            <form action="{{ URL::to('thongke_qltt_loaibangcap') }}" method="post">
+              {{ csrf_field() }}
+              <div class="row">
+                <div class="col-8">
+                  <select class="custom-select input_table" id="gender2" name="ma_lbc">
+                    <option value="0" >Chọn loại bằng cấp</option>
+                    @foreach ($list_loaibangcap as $loaibangcap)
+                      <option value="{{ $loaibangcap->ma_lbc }}" >{{ $loaibangcap->ten_lbc }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col-4">
+                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
+                    Thống kê
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-1">
+          <a href="{{ URL::to('thongke_qltt_lbc') }}">
+            <button type="button" class="btn btn-warning">
+              <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+          </a>
+        </div>
+      </div>
+    @endif
     @if ($count_chucvu || $count_cv)
       <div class="row">
         <div class="col-3">
@@ -319,6 +355,15 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_lbc_pdf') }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
+    @if ($count_lbc != '')
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qltt_loaibangcap_pdf/'.$ma_lbc) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
@@ -448,6 +493,16 @@
             }
           }else if($count_loaibangcap){
             foreach ($count_loaibangcap as $key => $count){
+              foreach($list_loaibangcap as $key => $loaibangcap){
+                if($count->ma_lbc == $loaibangcap->ma_lbc){
+                  $ten_lbc = $loaibangcap->ten_lbc;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_lbc', value: $tong },";
+                }
+              }
+            }
+          }else if($count_lbc){
+            foreach ($count_lbc as $key => $count){
               foreach($list_loaibangcap as $key => $loaibangcap){
                 if($count->ma_lbc == $loaibangcap->ma_lbc){
                   $ten_lbc = $loaibangcap->ten_lbc;
