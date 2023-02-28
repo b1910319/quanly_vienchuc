@@ -197,6 +197,42 @@
         </div>
       </div>
     @endif
+    @if ($count_hedaotao || $count_hedaotao_ma_hdt)
+      <div class="row">
+        <div class="col-3">
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
+            Chọn hệ đào tạo
+          </button>
+          <div id="demo3" class="collapse mt-3">
+            <form action="{{ URL::to('thongke_qltt_hedaotao') }}" method="post">
+              {{ csrf_field() }}
+              <div class="row">
+                <div class="col-8">
+                  <select class="custom-select input_table" id="gender2" name="ma_hdt">
+                    <option value="0" >Chọn hệ đào tạo</option>
+                    @foreach ($list_hedaotao as $hedaotao)
+                      <option value="{{ $hedaotao->ma_hdt }}" >{{ $hedaotao->ten_hdt }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col-4">
+                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
+                    Thống kê
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-1">
+          <a href="{{ URL::to('thongke_qltt_hdt') }}">
+            <button type="button" class="btn btn-warning">
+              <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+          </a>
+        </div>
+      </div>
+    @endif
     @if ($count_khoa || $count_khoa_ma_k)
       <div class="row">
         <div class="col-3">
@@ -333,6 +369,15 @@
         </div>
       </div>
     @endif
+    @if ($count_hedaotao_ma_hdt != '')
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qltt_hedaotao_pdf/'.$ma_hdt) }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
   </div>
 </div>
 <script>
@@ -378,6 +423,16 @@
             }
           }else if($count_hedaotao){
             foreach ($count_hedaotao as $key => $count){
+              foreach($list_hedaotao as $key => $hedaotao){
+                if($count->ma_hdt == $hedaotao->ma_hdt){
+                  $ten_hdt = $hedaotao->ten_hdt;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_hdt', value: $tong },";
+                }
+              }
+            }
+          }else if($count_hedaotao_ma_hdt){
+            foreach ($count_hedaotao_ma_hdt as $key => $count){
               foreach($list_hedaotao as $key => $hedaotao){
                 if($count->ma_hdt == $hedaotao->ma_hdt){
                   $ten_hdt = $hedaotao->ten_hdt;
