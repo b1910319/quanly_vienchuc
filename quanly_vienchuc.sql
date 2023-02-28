@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 28, 2023 lúc 10:10 AM
+-- Thời gian đã tạo: Th2 28, 2023 lúc 10:12 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -163,9 +163,11 @@ CREATE TABLE `danhmuclop` (
 --
 
 INSERT INTO `danhmuclop` (`ma_dml`, `ten_dml`, `status_dml`, `created_dml`, `updated_dml`) VALUES
-(1, 'sddde', 0, '2023-02-28 08:58:16', ' '),
-(2, 'trinh', 0, '2023-02-28 08:59:30', ' '),
-(3, '123456', 0, '2023-02-28 08:59:36', '2023-02-28 09:09:52');
+(4, 'Lớp học ngắn hạn', 0, '2023-02-28 09:11:47', ' '),
+(5, 'Lớp học dài hạn', 0, '2023-02-28 09:11:54', ' '),
+(6, 'Lớp chuyên đề nâng cao trình độ', 0, '2023-02-28 09:12:10', ' '),
+(7, 'Lớp học thạc sĩ', 0, '2023-02-28 09:12:27', ' '),
+(8, 'Lớp học tiến sĩ', 0, '2023-02-28 09:12:35', ' ');
 
 -- --------------------------------------------------------
 
@@ -12525,7 +12527,7 @@ ALTER TABLE `chucvu`
 -- AUTO_INCREMENT cho bảng `danhmuclop`
 --
 ALTER TABLE `danhmuclop`
-  MODIFY `ma_dml` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ma_dml` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `dantoc`

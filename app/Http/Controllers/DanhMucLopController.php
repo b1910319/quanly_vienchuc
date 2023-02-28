@@ -162,40 +162,40 @@ class DanhMucLopController extends Controller
     }
     
   }
-  // public function delete_danhmuclop($ma_dml){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     DanhMucLop::find($ma_dml)->delete();
-  //     return Redirect::to('danhmuclop');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
+  public function delete_danhmuclop($ma_dml){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      DanhMucLop::find($ma_dml)->delete();
+      return Redirect::to('danhmuclop');
+    }else{
+      return Redirect::to('/home');
+    }
     
-  // }
-  // public function delete_all_danhmuclop(){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $list = DanhMucLop::get();
-  //     foreach($list as $key => $danhmuclop){
-  //       $danhmuclop->delete();
-  //     }
-  //     return Redirect::to('danhmuclop');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  }
+  public function delete_all_danhmuclop(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list = DanhMucLop::get();
+      foreach($list as $key => $danhmuclop){
+        $danhmuclop->delete();
+      }
+      return Redirect::to('danhmuclop');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }
