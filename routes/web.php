@@ -238,6 +238,8 @@ Route::get('/thongke_qltt_hedaotao_pdf/{ma_hdt}',[ThongKeController::class, 'tho
 Route::get('/thongke_qltt_hdt_all_pdf',[ThongKeController::class, 'thongke_qltt_hdt_all_pdf']);
 Route::get('/thongke_qltt_ngach_pdf',[ThongKeController::class, 'thongke_qltt_ngach_pdf']);
 Route::get('/thongke_qltt_chucvu',[ThongKeController::class, 'thongke_qltt_chucvu']);
+Route::post('/thongke_qltt_cv',[ThongKeController::class, 'thongke_qltt_cv']);
+Route::get('/thongke_qltt_cv_pdf/{ma_cv}',[ThongKeController::class, 'thongke_qltt_cv_pdf']);
 Route::post('/thongke_qltt_chucvu_pdf',[ThongKeController::class, 'thongke_qltt_chucvu_pdf']);
 Route::get('/thongke_qltt_chucvu_all_pdf',[ThongKeController::class, 'thongke_qltt_chucvu_all_pdf']);
 Route::get('/thongke_qltt_khoa',[ThongKeController::class, 'thongke_qltt_khoa']);
