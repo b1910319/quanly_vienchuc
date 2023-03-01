@@ -12,12 +12,14 @@ use App\Models\DanToc;
 use App\Models\HeDaoTao;
 use App\Models\Khoa;
 use App\Models\LoaiBangCap;
+use App\Models\Lop;
 use App\Models\Ngach;
 use App\Models\PhanQuyen;
 use App\Models\ThuongBinh;
 use App\Models\Tinh;
 use App\Models\TonGiao;
 use App\Models\VienChuc;
+use PDF;
 use Illuminate\Support\Carbon;
 
 class DanhSachController extends Controller
@@ -154,6 +156,32 @@ class DanhSachController extends Controller
         $danhsach->delete();
       }
       return Redirect::to('/danhsach/'.$ma_l);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function quyetdinh_dihoc_pdf($ma_l, $ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $vienchuc = DanhSach::join('vienchuc', 'vienchuc.ma_vc', '=', 'danhsach.ma_vc')
+        ->join('lop', 'lop.ma_l', '=', 'danhsach.ma_l')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('danhsach.ma_l', $ma_l)
+        ->where('danhsach.ma_vc', $ma_vc)
+        ->get();
+      $lop = Lop::find($ma_l);
+      $pdf = PDF::loadView('pdf.pdf_quyetdinh_dihoc', [
+        'vienchuc' => $vienchuc,
+        'lop' => $lop,
+      ]);
+      return $pdf->stream();
     }else{
       return Redirect::to('/home');
     }
