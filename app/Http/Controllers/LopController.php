@@ -99,4 +99,25 @@ class LopController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function select_lop($ma_l){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $loaikyluat = Lop::find($ma_l);
+      if($loaikyluat->status_l == 1){
+        $loaikyluat->status_l = Lop::find($ma_l)->update(['status_l' => 0]);
+      }elseif($loaikyluat->status_l == 0){
+        $loaikyluat->status_l = Lop::find($ma_l)->update(['status_l' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }
