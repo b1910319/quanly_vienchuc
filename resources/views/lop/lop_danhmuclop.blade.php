@@ -278,16 +278,16 @@
               {{ $lop->updated_l }}
             </td>
             <td style="width: 21%;">
-              <a href="{{ URL::to('/edit_lop/'.$lop->ma_l)}}">
+              <a href="{{ URL::to('/edit_lop_danhmuclop/'.$lop->ma_l)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_lop/'.$lop->ma_l)}}">
+              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_lop_danhmuclop/'.$lop->ma_l)}}">
                 <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               </a>
               <?php
                 if($lop->status_l == 0){
                   ?>
-                    <a href="{{ URL::to('/select_lop_danhmuc/'.$lop->ma_l) }}">
+                    <a href="{{ URL::to('/select_lop_danhmuclop/'.$lop->ma_l) }}">
                       <button type="button" class="btn btn-secondary">
                         <i class="fa-solid fa-eye-slash"></i> 
                         &ensp; Ẩn
@@ -296,7 +296,7 @@
                   <?php
                 }else if($lop->status_l == 1) {
                   ?>
-                    <a href="{{ URL::to('/select_lop_danhmuc/'.$lop->ma_l) }}">
+                    <a href="{{ URL::to('/select_lop_danhmuclop/'.$lop->ma_l) }}">
                       <button type="button" class="btn btn-success">
                         <i class="fa-solid fa-eye"></i>
                         &ensp; Hiển thị
