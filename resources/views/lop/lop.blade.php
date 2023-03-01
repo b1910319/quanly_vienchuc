@@ -61,6 +61,12 @@
                           </td>
                         </tr>
                         <tr>
+                          <th scope="row">Yêu cầu lớp học: </th>
+                          <td class="was-validated">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" name="yeucau_l"></textarea>
+                          </td>
+                        </tr>
+                        <tr>
                           <th scope="row">Cơ sở đào tạo: </th>
                           <td class="was-validated">
                             <input type='text' class='form-control input_table' autofocus required name="tencosodaotao_l">
@@ -94,6 +100,12 @@
                           <th scope="row">Nguồn kinh phí: </th>
                           <td class="was-validated">
                             <input type='text' class='form-control input_table' autofocus required name="nguonkinhphi_l">
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Nội dung học: </th>
+                          <td class="was-validated">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="noidunghoc_l"></textarea>
                           </td>
                         </tr>
                         <tr>

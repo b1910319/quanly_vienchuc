@@ -83,11 +83,13 @@ class LopController extends Controller
       $lop->ten_l = $data['ten_l'];
       $lop->ngaybatdau_l = $data['ngaybatdau_l'];
       $lop->ngayketthuc_l = $data['ngayketthuc_l'];
+      $lop->yeucau_l = $data['yeucau_l'];
       $lop->tencosodaotao_l = $data['tencosodaotao_l'];
       $lop->quocgiaodaotao_l = $data['quocgiaodaotao_l'];
       $lop->nganhhoc_l = $data['nganhhoc_l'];
       $lop->trinhdodaotao_l = $data['trinhdodaotao_l'];
       $lop->nguonkinhphi_l = $data['nguonkinhphi_l'];
+      $lop->noidunghoc_l = $data['noidunghoc_l'];
       $lop->diachidaotao_l = $data['diachidaotao_l'];
       $lop->emailcoso_l = $data['emailcoso_l'];
       $lop->sdtcoso_l = $data['sdtcoso_l'];
@@ -176,11 +178,13 @@ class LopController extends Controller
       $lop->ten_l = $data['ten_l'];
       $lop->ngaybatdau_l = $data['ngaybatdau_l'];
       $lop->ngayketthuc_l = $data['ngayketthuc_l'];
+      $lop->yeucau_l = $data['yeucau_l'];
       $lop->tencosodaotao_l = $data['tencosodaotao_l'];
       $lop->quocgiaodaotao_l = $data['quocgiaodaotao_l'];
       $lop->nganhhoc_l = $data['nganhhoc_l'];
       $lop->trinhdodaotao_l = $data['trinhdodaotao_l'];
       $lop->nguonkinhphi_l = $data['nguonkinhphi_l'];
+      $lop->noidunghoc_l = $data['noidunghoc_l'];
       $lop->diachidaotao_l = $data['diachidaotao_l'];
       $lop->emailcoso_l = $data['emailcoso_l'];
       $lop->sdtcoso_l = $data['sdtcoso_l'];
@@ -192,39 +196,39 @@ class LopController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function delete_lop($ma_l){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlktkl){
-  //     Lop::find($ma_l)->delete();
-  //     return Redirect::to('lop');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function delete_all_lop(){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlktkl){
-  //     $list = Lop::get();
-  //     foreach($list as $key => $lop){
-  //       $lop->delete();
-  //     }
-  //     return Redirect::to('lop');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function delete_lop($ma_l){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      Lop::find($ma_l)->delete();
+      return Redirect::to('lop');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function delete_all_lop(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list = Lop::get();
+      foreach($list as $key => $lop){
+        $lop->delete();
+      }
+      return Redirect::to('lop');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }
