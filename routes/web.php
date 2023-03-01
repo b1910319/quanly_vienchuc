@@ -390,6 +390,7 @@ Route::get('/delete_all_lop',[LopController::class, 'delete_all_lop']);
 
 Route::get('/lop_danhmuclop/{ma_dml}',[LopController::class, 'lop_danhmuclop']);
 Route::post('/add_lop_danhmuclop/{ma_l}',[LopController::class, 'add_lop_danhmuclop']);
+Route::get('/select_lop_danhmuc/{ma_l}',[LopController::class, 'select_lop_danhmuc']);
 
 
 

@@ -31,17 +31,6 @@
                   <div class="col-6">
                     <table class="table">
                       <tbody>
-                        {{-- <tr>
-                          <th scope="row">Danh mục lớp: </th>
-                          <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="ma_dml">
-                              <option value="0" >Chọn danh mục lớp</option>
-                              @foreach ($list_danhmuclop as $danhmuclop )
-                                <option value="{{ $danhmuclop->ma_dml }}" >{{ $danhmuclop->ten_dml }}</option>
-                              @endforeach
-                            </select>
-                          </td>
-                        </tr> --}}
                         <tr>
                           <th scope="row">Tên lớp học: </th>
                           <td class="was-validated">
@@ -298,7 +287,7 @@
               <?php
                 if($lop->status_l == 0){
                   ?>
-                    <a href="{{ URL::to('/select_lop/'.$lop->ma_l) }}">
+                    <a href="{{ URL::to('/select_lop_danhmuc/'.$lop->ma_l) }}">
                       <button type="button" class="btn btn-secondary">
                         <i class="fa-solid fa-eye-slash"></i> 
                         &ensp; Ẩn
@@ -307,7 +296,7 @@
                   <?php
                 }else if($lop->status_l == 1) {
                   ?>
-                    <a href="{{ URL::to('/select_lop/'.$lop->ma_l) }}">
+                    <a href="{{ URL::to('/select_lop_danhmuc/'.$lop->ma_l) }}">
                       <button type="button" class="btn btn-success">
                         <i class="fa-solid fa-eye"></i>
                         &ensp; Hiển thị
