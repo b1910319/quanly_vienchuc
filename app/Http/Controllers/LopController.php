@@ -44,6 +44,10 @@ class LopController extends Controller
       $count_status = Lop::select(DB::raw('count(ma_l) as sum, status_l'))
         ->groupBy('status_l')
         ->get();
+      $count_vienchuc_lop = Lop::leftJoin('danhsach', 'lop.ma_l', '=', 'danhsach.ma_l')
+        ->select(DB::raw('count(danhsach.ma_l) as sum, lop.ma_l'))
+        ->groupBy('lop.ma_l')
+        ->get();
       Carbon::now('Asia/Ho_Chi_Minh'); 
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
@@ -57,6 +61,7 @@ class LopController extends Controller
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
         ->with('title', $title)
+        ->with('count_vienchuc_lop', $count_vienchuc_lop)
         ->with('list_danhmuclop', $list_danhmuclop)
         ->with('count_status', $count_status)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 01, 2023 lúc 02:47 AM
+-- Thời gian đã tạo: Th3 01, 2023 lúc 08:22 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -168,6 +168,33 @@ INSERT INTO `danhmuclop` (`ma_dml`, `ten_dml`, `status_dml`, `created_dml`, `upd
 (6, 'Lớp chuyên đề nâng cao trình độ', 0, '2023-02-28 09:12:10', ' '),
 (7, 'Lớp học thạc sĩ', 0, '2023-02-28 09:12:27', ' '),
 (8, 'Lớp học tiến sĩ', 0, '2023-02-28 09:12:35', ' ');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `danhsach`
+--
+
+CREATE TABLE `danhsach` (
+  `ma_vc` int(11) NOT NULL,
+  `ma_l` int(11) NOT NULL,
+  `status_ds` int(11) NOT NULL DEFAULT 0,
+  `created_ds` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_ds` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `danhsach`
+--
+
+INSERT INTO `danhsach` (`ma_vc`, `ma_l`, `status_ds`, `created_ds`, `updated_ds`) VALUES
+(62, 7, 0, '2023-03-01 06:41:53', ' '),
+(57, 7, 0, '2023-03-01 06:41:55', ' '),
+(56, 7, 0, '2023-03-01 06:41:57', ' '),
+(55, 7, 0, '2023-03-01 07:06:05', ' '),
+(31, 7, 0, '2023-03-01 07:19:03', ' '),
+(15, 7, 0, '2023-03-01 07:19:13', ' '),
+(49, 7, 0, '2023-03-01 07:19:15', ' ');
 
 -- --------------------------------------------------------
 
@@ -1180,7 +1207,7 @@ CREATE TABLE `lop` (
   `noidunghoc_l` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
   `diachidaotao_l` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `emailcoso_l` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sdtcoso_l` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sdtcoso_l` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_l` int(11) NOT NULL DEFAULT 0,
   `created_l` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_l` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
@@ -1192,7 +1219,8 @@ CREATE TABLE `lop` (
 
 INSERT INTO `lop` (`ma_l`, `ma_dml`, `ten_l`, `ngaybatdau_l`, `ngayketthuc_l`, `yeucau_l`, `tencosodaotao_l`, `quocgiaodaotao_l`, `nganhhoc_l`, `trinhdodaotao_l`, `nguonkinhphi_l`, `noidunghoc_l`, `diachidaotao_l`, `emailcoso_l`, `sdtcoso_l`, `status_l`, `created_l`, `updated_l`) VALUES
 (3, 8, 'Associate of Arts Degree', '2021-03-15', '2023-03-15', 'Ứng viên phải từ 18 tuổi trở lên trong năm dương lịch mà họ đăng ký học. Việc xem xét có thể được đưa ra cho những học sinh nhỏ tuổi đã hoàn thành bậc trung học. Để đáp ứng yêu cầu về tiếng Anh cho các chương trình học thuật, học sinh phải hoàn thành: BC English 12 hoặc BC English First Peoples 12 với điểm tối thiểu là C; hoặc Đầu vào thông qua chương trình Anh ngữ của NIC – đạt điểm C+ trong ESL 092 và ESL 095 Hoặc một trong những điều sau: Điểm tổng thể IELTS Học thuật là 6.0 (không có kỹ năng nào thấp hơn 5.5). Những học sinh không có điểm IELTS 6.0 trở lên ở môn Đọc và Viết sẽ phải thi tiếng Anh 104. TOEFL ibt 80 tổng thể không có tiểu mục nào dưới 19; TOEFL 550; CAEL 60 và viết 60 và PTE Academic 54 tổng thể không có thành phần nào dưới 46.', 'North Island College', 'Canada', 'Công nghệ thông tin', 'Tiến sĩ', 'CAD$16,015.00 (266,916,667 đ) một năm', 'Bắt đầu chương trình học của bạn tại NIC và nhận tín chỉ chuyển tiếp hai năm (60 tín chỉ) vào bất kỳ trường đại học BC nào. Học các kỹ năng nghiên cứu và tư duy phản biện mạnh mẽ mà các nhà tuyển dụng tìm kiếm khi bạn học nhân chủng học, tội phạm học, nghiên cứu về các quốc gia đầu tiên, tiếng Anh, địa lý, lịch sử, nghiên cứu tự do, ngôn ngữ hiện đại (tiếng Trung, tiếng Pháp và tiếng Tây Ban Nha), triết học, khoa học chính trị, tâm lý học, xã hội học và nghiên cứu của phụ nữ.\r\nĐiểm nổi bật của chương trình:\r\nKhám phá nhân chủng học, tội phạm học, tiếng Anh, các quốc gia đầu tiên, lịch sử, ngôn ngữ hiện đại (tiếng Trung, tiếng Pháp và tiếng Tây Ban Nha), nghiên cứu về Bắc Mỹ, triết học, khoa học chính trị, tâm lý học, xã hội học và nghiên cứu về phụ nữ, cũng như các môn tự chọn về toán và khoa học.\r\nBằng liên kết được cung cấp tại nhiều trường cao đẳng và đại học trên khắp BC. Họ công nhận việc hoàn thành thành công 60 tín chỉ học tập, tức là khoảng 20 khóa học. Với chương trình học toàn thời gian, bạn có thể hoàn thành bằng cao đẳng trong vòng hai năm học. Lựa chọn nghiên cứu bán thời gian cũng có sẵn.\r\nBằng liên kết cung cấp rất nhiều tính linh hoạt. Bạn có thể chọn các khóa học ưa thích của mình từ một danh sách cụ thể các khóa học đủ điều kiện, giúp bạn có thể tập trung học tập vào một lĩnh vực cụ thể hoặc khám phá nhiều môn học khác nhau.', '2300 Ryan Rd, Courtenay, BC V9N 8N6, Canada', 'questions@nic.bc.ca', '+1 800-715-0914', 0, '2023-03-01 01:16:47', '2023-03-01 01:34:30'),
-(4, 7, 'Cử nhân Báo chí Phát thanh và Đa phương tiện', '2023-04-20', '2026-04-20', 'Những người có Tốt Nghiệp Phổ Thông Trung Học (Chứng nhận Tốt nghiệp Trung học Phổ thông) sẽ được xem xét để vào Tổ chức Quốc tế INTO UEA, lý tưởng nhất là với điểm trung bình từ 7.0 trở lên. Sinh viên hoàn thành năm thứ nhất chương trình cử nhân tại một trường đại học Việt Nam với điểm trung bình từ 7,5 trở lên sẽ được xét tuyển vào năm thứ nhất chương trình đại học tại UEA. Học sinh cần có điểm IELTS tổng thể là 6.0 với tối thiểu 5.5 trong mỗi thành phần.', 'Đại học East Anglia UEA', 'Anh', 'Phát thanh và Đa phương tiện', 'Cử nhân', '£19,250.00 (481,250,000 đ) một năm', 'Những người tìm kiếm sự thật và những người kể chuyện áp dụng ở đây. Nếu muốn tạo ra sự khác biệt trên thế giới, nắm giữ quyền lực để giải thích và tìm hiểu điều gì đang thực sự xảy ra, thì đây là khóa học dành cho bạn. Với bằng báo chí truyền hình và đa phương tiện này, bạn sẽ học các kỹ năng cần thiết để trở thành một nhà báo chuyên nghiệp có thể làm việc trên TV, đài phát thanh, báo in, phương tiện truyền thông xã hội và các nền tảng trực tuyến ở Vương quốc Anh và hơn thế nữa. Bạn sẽ học các kỹ năng nghiên cứu, kể chuyện và sản xuất cho thời đại kỹ thuật số. Bạn sẽ được dạy các kỹ năng điều tra và cách sử dụng dữ liệu trong báo chí của mình. Bạn sẽ hiểu các cấu trúc chính trị cung cấp các dịch vụ công cộng mà tất cả chúng ta đều dựa vào và bạn sẽ thực hành báo chí toàn diện, làm việc với các cộng đồng đa dạng để giúp họ kể câu chuyện của mình. Chúng tôi có trụ sở tại Bộ Chính trị tại UEA,', 'Norwich Research Park, Norwich NR4 7TJ, Vương quốc Anh', 'University.secretary@uea.ac.uk', '+44 1603 456161', 0, '2023-03-01 01:46:58', ' ');
+(4, 7, 'Cử nhân Báo chí Phát thanh và Đa phương tiện', '2023-04-20', '2026-04-20', 'Những người có Tốt Nghiệp Phổ Thông Trung Học (Chứng nhận Tốt nghiệp Trung học Phổ thông) sẽ được xem xét để vào Tổ chức Quốc tế INTO UEA, lý tưởng nhất là với điểm trung bình từ 7.0 trở lên. Sinh viên hoàn thành năm thứ nhất chương trình cử nhân tại một trường đại học Việt Nam với điểm trung bình từ 7,5 trở lên sẽ được xét tuyển vào năm thứ nhất chương trình đại học tại UEA. Học sinh cần có điểm IELTS tổng thể là 6.0 với tối thiểu 5.5 trong mỗi thành phần.', 'Đại học East Anglia UEA', 'Anh', 'Phát thanh và Đa phương tiện', 'Cử nhân', '£19,250.00 (481,250,000 đ) một năm', 'Những người tìm kiếm sự thật và những người kể chuyện áp dụng ở đây. Nếu muốn tạo ra sự khác biệt trên thế giới, nắm giữ quyền lực để giải thích và tìm hiểu điều gì đang thực sự xảy ra, thì đây là khóa học dành cho bạn. Với bằng báo chí truyền hình và đa phương tiện này, bạn sẽ học các kỹ năng cần thiết để trở thành một nhà báo chuyên nghiệp có thể làm việc trên TV, đài phát thanh, báo in, phương tiện truyền thông xã hội và các nền tảng trực tuyến ở Vương quốc Anh và hơn thế nữa. Bạn sẽ học các kỹ năng nghiên cứu, kể chuyện và sản xuất cho thời đại kỹ thuật số. Bạn sẽ được dạy các kỹ năng điều tra và cách sử dụng dữ liệu trong báo chí của mình. Bạn sẽ hiểu các cấu trúc chính trị cung cấp các dịch vụ công cộng mà tất cả chúng ta đều dựa vào và bạn sẽ thực hành báo chí toàn diện, làm việc với các cộng đồng đa dạng để giúp họ kể câu chuyện của mình. Chúng tôi có trụ sở tại Bộ Chính trị tại UEA,', 'Norwich Research Park, Norwich NR4 7TJ, Vương quốc Anh', 'University.secretary@uea.ac.uk', '+44 1603 456161', 0, '2023-03-01 01:46:58', ' '),
+(7, 7, 'Bachelor of Arts / Bachelor of Business', '2022-02-26', '2026-02-26', 'Hoàn thành thỏa đáng một trong những điều sau đây: hoàn thành thành công Chứng chỉ Giáo dục Victoria (VCE) hoặc tương đương, chẳng hạn như bằng cấp Lớp 12 liên bang hoặc quốc tế; hoàn thành hoặc hoàn thành một phần bằng cấp đại học đã được phê duyệt (bao gồm Chứng chỉ IV (đã hoàn thành), văn bằng, văn bằng nâng cao, bằng cao đẳng và bằng cấp).', 'Swinburne University of Technology', 'Úc', 'Công nghệ quảng cáo kỹ thuật số', 'Cử nhân', 'A$34,040.00 (567,333,333 đ) một năm', 'Với bằng kép về Cử nhân Nghệ thuật/Cử nhân Kinh doanh, bạn sẽ sẵn sàng trở thành một doanh nhân toàn diện, người hiểu được điều gì là tốt cho thế giới.\r\n\r\nXây dựng kiến ​​thức kinh doanh, quản lý và vận hành của bạn để bạn sẵn sàng tạo dấu ấn trong thế giới kinh doanh. Sau đó, đi sâu hơn, trau dồi tư duy phản biện và kỹ năng giao tiếp khi bạn khám phá các vấn đề xã hội, kinh tế và văn hóa toàn cầu quan trọng ảnh hưởng đến hoạt động của xã hội đương đại.\r\n\r\nVới sự kết hợp của các bằng cấp này - bạn sẽ có nhiều kỹ năng chuyển đổi cần thiết cho lực lượng lao động trong tương lai. Bạn sẽ học cách trở thành một nhà tư tưởng kinh doanh và nhà đổi mới, đồng thời tìm thấy vô số cơ hội nghề nghiệp đa dạng trong các tập đoàn, chính phủ và tổ chức phi lợi nhuận, doanh nghiệp nhỏ và công ty mới thành lập.\r\n\r\nXây dựng sơ yếu lý lịch của bạn với kinh nghiệm thực tế trong ngành với các chương trình Học tập Tích hợp Công việc của chúng tôi, được đảm bảo trên tất cả các bằng cử nhân của chúng tôi bao gồm các vị trí, thực tập hoặc các dự án liên kết với ngành.', 'John St, Hawthorn VIC 3122, Australia', 'jane.doe@swinburne.edu.au', '+61 1300 794 628', 0, '2023-03-01 03:27:43', ' ');
 
 -- --------------------------------------------------------
 
@@ -12640,7 +12668,7 @@ ALTER TABLE `loaikyluat`
 -- AUTO_INCREMENT cho bảng `lop`
 --
 ALTER TABLE `lop`
-  MODIFY `ma_l` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ma_l` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `ngach`

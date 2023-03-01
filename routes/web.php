@@ -17,6 +17,7 @@ use App\Http\Controllers\LoaiBangCapController;
 use App\Http\Controllers\HeDaoTaoController;
 use App\Http\Controllers\BangCapController;
 use App\Http\Controllers\DanhMucLopController;
+use App\Http\Controllers\DanhSachController;
 use App\Http\Controllers\NghiHuuController;
 use App\Http\Controllers\ThongKeController;
 use App\Http\Controllers\LoaiKhenThuongController;
@@ -395,6 +396,38 @@ Route::get('/edit_lop_danhmuclop/{ma_l}',[LopController::class, 'edit_lop_danhmu
 Route::post('/update_lop_danhmuclop/{ma_l}/{ma_dml}',[LopController::class, 'update_lop_danhmuclop']);
 Route::get('/delete_lop_danhmuclop/{ma_l}/{ma_dml}',[LopController::class, 'delete_lop_danhmuclop']);
 Route::get('/delete_all_lop_danhmuclop/{ma_dml}',[LopController::class, 'delete_all_lop_danhmuclop']);
+
+
+
+
+
+Route::get('/danhsach/{ma_l}',[DanhSachController::class, 'danhsach']);
+Route::get('/add_danhsach/{ma_l}/{ma_vc}',[DanhSachController::class, 'add_danhsach']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -230,7 +230,7 @@
           <th scope="col">Danh mục lớp</th>
           <th scope="col">Trạng thái</th>
           <th scope="col">Thời gian tạo</th>
-          <th scope="col">Thời gian cập nhật</th>
+          <th scope="col">Thêm học viên</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -284,7 +284,27 @@
               {{ $lop->created_l }}
             </td>
             <td>
-              {{ $lop->updated_l }}
+              <?php
+                foreach ($count_vienchuc_lop as $key => $count) {
+                  if($count->ma_l == $lop->ma_l && $count->sum > 0){
+                    ?>
+                      <a href="{{ URL::to('/danhsach/'.$lop->ma_l) }}">
+                        <button type="button" class="btn btn-purple" style="background-color: #850000; border: none;">
+                          Thêm học viên (<?php echo $count->sum ?>)
+                        </button>
+                      </a>
+                    <?php
+                  }elseif ($count->ma_l == $lop->ma_l && $count->sum == 0) {
+                    ?>
+                      <a href="{{ URL::to('/danhsach/'.$lop->ma_l) }}">
+                        <button type="button" class="btn btn-purple" style="background-color: #850000; border: none;">
+                          Thêm học viên (0)
+                        </button>
+                      </a>
+                    <?php
+                  }
+                }
+              ?>
             </td>
             <td style="width: 21%;">
               <a href="{{ URL::to('/edit_lop/'.$lop->ma_l)}}">
