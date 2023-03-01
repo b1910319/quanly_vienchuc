@@ -215,6 +215,7 @@
         <tr>
           <th scope="col">STT</th>
           <th scope="col">Thông tin lớp học</th>
+          <th scope="col">Danh mục lớp</th>
           <th scope="col">Trạng thái</th>
           <th scope="col">Thời gian tạo</th>
           <th scope="col">Thời gian cập nhật</th>
@@ -246,6 +247,13 @@
                   </div>
                 </div>
               </div>
+            </td>
+            <td>
+              @foreach ($list_danhmuclop as $key => $danhmuclop)
+                @if ($danhmuclop->ma_dml == $lop->ma_dml)
+                  {{ $danhmuclop->ten_dml }}
+                @endif
+              @endforeach
             </td>
             <td>
               <?php
