@@ -212,7 +212,7 @@
         </div>
       </div>
       <div class="col-2">
-        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_lop') }}">
+        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_lop_danhmuclop/'.$ma_dml) }}">
           <button type="button" class="btn btn-danger">Xoá tất cả</button>
         </a>
       </div>
@@ -281,7 +281,7 @@
               <a href="{{ URL::to('/edit_lop_danhmuclop/'.$lop->ma_l)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_lop_danhmuclop/'.$lop->ma_l)}}">
+              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_lop_danhmuclop/'.$lop->ma_l.'/'.$lop->ma_dml)}}">
                 <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               </a>
               <?php

@@ -273,6 +273,7 @@ class LopController extends Controller
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
         ->with('title', $title)
+        ->with('ma_dml', $ma_dml)
         ->with('danhmuclop', $danhmuclop)
         ->with('count_status', $count_status)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -412,39 +413,40 @@ class LopController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function delete_lop($ma_l){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     Lop::find($ma_l)->delete();
-  //     return Redirect::to('lop');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function delete_all_lop(){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $list = Lop::get();
-  //     foreach($list as $key => $lop){
-  //       $lop->delete();
-  //     }
-  //     return Redirect::to('lop');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function delete_lop_danhmuclop($ma_l, $ma_dml){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      Lop::find($ma_l)->delete();
+      return Redirect::to('/lop_danhmuclop/'.$ma_dml);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function delete_all_lop_danhmuclop($ma_dml){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list = Lop::where('ma_dml', $ma_dml)
+        ->get();
+      foreach($list as $key => $lop){
+        $lop->delete();
+      }
+      return Redirect::to('/lop_danhmuclop/'.$ma_dml);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }
