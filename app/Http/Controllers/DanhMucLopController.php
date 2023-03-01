@@ -40,6 +40,10 @@ class DanhMucLopController extends Controller
       $list = DanhMucLop::orderBy('ma_dml', 'desc')
         ->get();
       $count = DanhMucLop::select(DB::raw('count(ma_dml) as sum'))->get();
+      $count_lop_danhmuc = DanhMucLop::leftJoin('lop', 'danhmuclop.ma_dml', '=', 'lop.ma_dml')
+        ->select(DB::raw('count(ma_l) as sum, danhmuclop.ma_dml'))
+        ->groupBy('danhmuclop.ma_dml')
+        ->get();
       $count_status = DanhMucLop::select(DB::raw('count(ma_dml) as sum, status_dml'))
         ->groupBy('status_dml')
         ->get();
@@ -53,6 +57,7 @@ class DanhMucLopController extends Controller
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
         ->with('title', $title)
+        ->with('count_lop_danhmuc', $count_lop_danhmuc)
         ->with('count_status', $count_status)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)

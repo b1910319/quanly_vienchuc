@@ -231,4 +231,90 @@ class LopController extends Controller
       return Redirect::to('/home');
     }
   }
+
+  public function lop_danhmuclop($ma_dml){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Quản lý thông tin lớp theo danh mục";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list = Lop::orderBy('ma_l', 'desc')
+        ->where('ma_dml', $ma_dml)
+        ->get();
+      $count = Lop::select(DB::raw('count(ma_l) as sum'))
+        ->where('ma_dml', $ma_dml)
+        ->get();
+      $count_status = Lop::select(DB::raw('count(ma_l) as sum, status_l'))
+        ->where('ma_dml', $ma_dml)
+        ->groupBy('status_l')
+        ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      // $list_danhmuclop = DanhMucLop::where('status_dml', '<>', '1')
+      //   ->orderBy('ten_dml', 'asc')
+      //   ->get();
+      $danhmuclop = DanhMucLop::find($ma_dml);
+      return view('lop.lop_danhmuclop')
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('count', $count)
+        ->with('title', $title)
+        ->with('danhmuclop', $danhmuclop)
+        ->with('count_status', $count_status)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('count_nangbac', $count_nangbac)
+        ->with('list', $list);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function add_lop_danhmuclop(Request $request, $ma_dml){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $data = $request->all();
+      $lop = new Lop();
+      $lop->ma_dml = $ma_dml;
+      $lop->ten_l = $data['ten_l'];
+      $lop->ngaybatdau_l = $data['ngaybatdau_l'];
+      $lop->ngayketthuc_l = $data['ngayketthuc_l'];
+      $lop->yeucau_l = $data['yeucau_l'];
+      $lop->tencosodaotao_l = $data['tencosodaotao_l'];
+      $lop->quocgiaodaotao_l = $data['quocgiaodaotao_l'];
+      $lop->nganhhoc_l = $data['nganhhoc_l'];
+      $lop->trinhdodaotao_l = $data['trinhdodaotao_l'];
+      $lop->nguonkinhphi_l = $data['nguonkinhphi_l'];
+      $lop->noidunghoc_l = $data['noidunghoc_l'];
+      $lop->diachidaotao_l = $data['diachidaotao_l'];
+      $lop->emailcoso_l = $data['emailcoso_l'];
+      $lop->sdtcoso_l = $data['sdtcoso_l'];
+      $lop->status_l = $data['status_l'];
+      $lop->save();
+      $request->session()->put('message','Thêm thành công');
+      return Redirect::to('/lop_danhmuclop/'.$ma_dml);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }

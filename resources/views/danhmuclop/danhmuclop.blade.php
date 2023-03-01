@@ -145,8 +145,7 @@
           <th scope="col">STT</th>
           <th scope="col">Danh mục </th>
           <th scope="col">Trạng thái</th>
-          <th scope="col">Thời gian tạo</th>
-          <th scope="col">Thời gian cập nhật</th>
+          <th scope="col">Thêm lớp</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -171,10 +170,30 @@
               ?>
             </td>
             <td>
-              {{ $danhmuclop->created_dml }}
-            </td>
-            <td>
-              {{ $danhmuclop->updated_dml }}
+              <?php
+                foreach ($count_lop_danhmuc as $key => $count) {
+                  if($count->ma_dml == $danhmuclop->ma_dml && $count->sum > 0){
+                    ?>
+                      <a href="{{ URL::to('/lop_danhmuclop/'.$danhmuclop->ma_dml) }}">
+                        <button type="button" class="btn btn-purple" style="background-color: #850000; border: none;">
+                          Thêm lớp (<?php echo $count->sum ?>)
+                        </button>
+                      </a>
+                    <?php
+                  }elseif ($count->ma_dml == $danhmuclop->ma_dml && $count->sum == 0) {
+                    ?>
+                      <a href="{{ URL::to('/lop_danhmuclop/'.$danhmuclop->ma_dml) }}">
+                        <button type="button" class="btn btn-purple" style="background-color: #850000; border: none;">
+                          Thêm lớp (0)
+                        </button>
+                      </a>
+                    <?php
+                  }
+                }
+              ?>
+              {{-- <a href="">
+                <button type="button" class="btn btn-success" style="background-color: #850000; border: none;">Thêm lớp</button>
+              </a> --}}
             </td>
             <td style="width: 21%;">
               <a href="{{ URL::to('/edit_danhmuclop/'.$danhmuclop->ma_dml)}}">
