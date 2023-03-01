@@ -117,4 +117,45 @@ class DanhSachController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function delete_danhsach($ma_l, $ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
+      if($phanquyen_admin || $phanquyen_qlcttc){
+        $list = DanhSach::where('ma_vc', $ma_vc)
+          ->where('ma_l', $ma_l)
+          ->get();
+        foreach($list as $key => $danhsach){
+          $danhsach->delete();
+        }
+        return Redirect::to('/danhsach/'.$ma_l);
+      }else{
+        return Redirect::to('/home');
+      }
+  }
+  public function delete_all_danhsach($ma_l){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list = DanhSach::where('ma_l', $ma_l)
+        ->get();
+      foreach($list as $key => $danhsach){
+        $danhsach->delete();
+      }
+      return Redirect::to('/danhsach/'.$ma_l);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }

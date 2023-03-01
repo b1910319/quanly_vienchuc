@@ -403,8 +403,8 @@ Route::get('/delete_all_lop_danhmuclop/{ma_dml}',[LopController::class, 'delete_
 
 Route::get('/danhsach/{ma_l}',[DanhSachController::class, 'danhsach']);
 Route::get('/add_danhsach/{ma_l}/{ma_vc}',[DanhSachController::class, 'add_danhsach']);
-
-
+Route::get('/delete_danhsach/{ma_l}/{ma_vc}',[DanhSachController::class, 'delete_danhsach']);
+Route::get('/delete_all_danhsach/{ma_l}',[DanhSachController::class, 'delete_all_danhsach']);
 
 
 

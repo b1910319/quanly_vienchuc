@@ -396,7 +396,7 @@
         @endforeach
       </div>
       <div class="col-2">
-        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_danhmuclop') }}">
+        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_danhsach/'.$ma_l) }}">
           <button type="button" class="btn btn-danger">Xoá tất cả</button>
         </a>
       </div>
@@ -412,15 +412,15 @@
         </tr>
       </thead>
       <tbody  >
-        @foreach ($list as $key => $danhmuclop)
+        @foreach ($list as $key => $danhsach)
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $danhmuclop->hoten_vc }}
+              {{ $danhsach->hoten_vc }}
             </td>
             <td>
               @foreach ($list_khoa as $khoa)
-                @if ($khoa->ma_k == $danhmuclop->ma_k)
+                @if ($khoa->ma_k == $danhsach->ma_k)
                   {{ $khoa->ten_k }}
                 @endif
               @endforeach
@@ -746,7 +746,7 @@
               </div>
             </td>
             <td>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_danhmuclop/'.$danhmuclop->ma_dml)}}">
+              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_danhsach/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
                 <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               </a>
             </td>
