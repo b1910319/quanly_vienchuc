@@ -22,6 +22,7 @@ use App\Http\Controllers\NghiHuuController;
 use App\Http\Controllers\ThongKeController;
 use App\Http\Controllers\LoaiKhenThuongController;
 use App\Http\Controllers\HinhThucKhenThuongController;
+use App\Http\Controllers\KetQuaController;
 use App\Http\Controllers\KhenThuongController;
 use App\Http\Controllers\KyLuatController;
 use App\Http\Controllers\LoaiKyLuatController;
@@ -419,6 +420,12 @@ Route::post('/update_quyetdinh/{ma_qd}',[QuyetDinhController::class, 'update_quy
 Route::get('/delete_quyetdinh/{ma_qd}',[QuyetDinhController::class, 'delete_quyetdinh']);
 Route::get('/delete_all_quyetdinh/{ma_l}',[QuyetDinhController::class, 'delete_all_quyetdinh']);
 
+
+
+
+
+Route::get('/ketqua/{ma_l}/{ma_vc}',[KetQuaController::class, 'ketqua']);
+Route::post('/add_ketqua',[KetQuaController::class, 'add_ketqua']);
 
 
 

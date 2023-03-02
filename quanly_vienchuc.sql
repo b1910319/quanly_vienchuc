@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 02, 2023 lúc 08:47 AM
+-- Thời gian đã tạo: Th3 02, 2023 lúc 10:40 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -192,7 +192,9 @@ INSERT INTO `danhsach` (`ma_vc`, `ma_l`, `status_ds`, `created_ds`, `updated_ds`
 (49, 7, 0, '2023-03-01 07:52:34', ' '),
 (31, 7, 0, '2023-03-01 07:52:37', ' '),
 (56, 4, 0, '2023-03-01 07:54:19', ' '),
-(53, 4, 0, '2023-03-01 07:54:21', ' ');
+(53, 4, 0, '2023-03-01 07:54:21', ' '),
+(51, 4, 0, '2023-03-02 07:50:50', ' '),
+(42, 7, 0, '2023-03-02 08:34:11', ' ');
 
 -- --------------------------------------------------------
 
@@ -1023,6 +1025,38 @@ INSERT INTO `huyen` (`ma_h`, `ma_t`, `ten_h`, `status_h`, `created_h`, `updated_
 (703, 63, 'Huyện Năm Căn', 0, '2023-02-17 04:09:44', ' '),
 (704, 63, 'Huyện Phú Tân', 0, '2023-02-17 04:09:44', ' '),
 (705, 63, 'Huyện Ngọc Hiển', 0, '2023-02-17 04:09:44', ' ');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `ketqua`
+--
+
+CREATE TABLE `ketqua` (
+  `ma_kq` int(11) NOT NULL,
+  `ma_l` int(11) NOT NULL,
+  `ma_vc` int(11) NOT NULL,
+  `tennguoihuongdan_kq` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `emailnguoihuongdan_kq` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `noiđungaotao_kq` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `bangduoccap_kq` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `ngaycapbang_kq` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `xeploai_kq` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `detaitotnghiep_kq` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ngayvenuoc_kq` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `danhgiacuacoso_kq` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kiennghi_kq` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `status_kq` int(11) NOT NULL DEFAULT 0,
+  `created_kq` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_kq` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `ketqua`
+--
+
+INSERT INTO `ketqua` (`ma_kq`, `ma_l`, `ma_vc`, `tennguoihuongdan_kq`, `emailnguoihuongdan_kq`, `noiđungaotao_kq`, `bangduoccap_kq`, `ngaycapbang_kq`, `xeploai_kq`, `detaitotnghiep_kq`, `ngayvenuoc_kq`, `danhgiacuacoso_kq`, `kiennghi_kq`, `status_kq`, `created_kq`, `updated_kq`) VALUES
+(1, 7, 49, 'rgẻ', 'gtr̀', 'gtỷô', 'ỷ̀̉̃', '2023-02-27', 'dfw', 'efddfe', '2023-03-05', '2023-03-16', '2023-02-27', 0, '2023-03-02 09:39:52', ' ');
 
 -- --------------------------------------------------------
 
@@ -12501,6 +12535,12 @@ ALTER TABLE `huyen`
   ADD PRIMARY KEY (`ma_h`);
 
 --
+-- Chỉ mục cho bảng `ketqua`
+--
+ALTER TABLE `ketqua`
+  ADD PRIMARY KEY (`ma_kq`);
+
+--
 -- Chỉ mục cho bảng `khenthuong`
 --
 ALTER TABLE `khenthuong`
@@ -12659,6 +12699,12 @@ ALTER TABLE `hinhthuckhenthuong`
 --
 ALTER TABLE `huyen`
   MODIFY `ma_h` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=706;
+
+--
+-- AUTO_INCREMENT cho bảng `ketqua`
+--
+ALTER TABLE `ketqua`
+  MODIFY `ma_kq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `khenthuong`

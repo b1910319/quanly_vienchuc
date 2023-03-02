@@ -750,10 +750,35 @@
                 <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
               </a>
               <a href="{{ URL::to('/quyetdinh/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
-                <button type="button" class="btn btn-danger" style="background-color: #CF0000; border: none;">
-                  Cập nhật quyết định
+                <button type="button" class="btn btn-danger position-relative" style="background-color: #CF0000; border: none;">
+                  Cập nhật quyết định 
+                  <?php
+                    foreach ($count_quyetdinh_vienchuc as $key => $count) {
+                      if($count->ma_vc == $danhsach->ma_vc){
+                        ?>
+                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: #CF0000 !important; font-size: 16px">
+                            <?php echo $count->sum ?>
+                            <span class="visually-hidden">unread messages</span>
+                          </span>
+                        <?php
+                      }
+                    }
+                  ?>
                 </button>
               </a>
+              <?php
+                foreach ($count_quyetdinh_vienchuc as $key => $count) {
+                  if($count->ma_vc == $danhsach->ma_vc){
+                    ?>
+                      <a href="{{ URL::to('/ketqua/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
+                        <button type="button" class="btn btn-danger" style="background-color: #FF5200">
+                          Kết quả học
+                        </button>
+                      </a>
+                    <?php
+                  }
+                }
+              ?>
               <a onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_danhsach/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
                 <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               </a>
