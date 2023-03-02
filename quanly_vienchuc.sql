@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 02, 2023 lúc 02:00 AM
+-- Thời gian đã tạo: Th3 02, 2023 lúc 08:47 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -1551,7 +1551,7 @@ CREATE TABLE `quyetdinh` (
   `ma_l` int(11) NOT NULL,
   `so_qd` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ngayky_qd` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `file_qd` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_qd` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
   `status_qd` int(11) NOT NULL DEFAULT 0,
   `created_qd` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_qd` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
@@ -1562,8 +1562,10 @@ CREATE TABLE `quyetdinh` (
 --
 
 INSERT INTO `quyetdinh` (`ma_qd`, `ma_vc`, `ma_l`, `so_qd`, `ngayky_qd`, `file_qd`, `status_qd`, `created_qd`, `updated_qd`) VALUES
-(16, 62, 7, '1234', '2023-03-07', '1677718820376.pdf', 0, '2023-03-02 01:00:20', ' '),
-(17, 62, 7, '456', '2023-03-01', '167771884321.pdf', 0, '2023-03-02 01:00:43', ' ');
+(21, 49, 7, '123', '2023-03-02', '167774292782.pdf', 0, '2023-03-02 07:42:07', ' '),
+(22, 31, 7, '456', '2023-02-28', '1677743158589.pdf', 0, '2023-03-02 07:45:58', ' '),
+(23, 56, 4, '789', '2023-02-26', '167774322486.pdf', 0, '2023-03-02 07:47:04', ' '),
+(24, 53, 4, '147', '2023-02-27', '1677743257611.pdf', 0, '2023-03-02 07:47:37', ' ');
 
 -- --------------------------------------------------------
 
@@ -12728,7 +12730,7 @@ ALTER TABLE `quyen`
 -- AUTO_INCREMENT cho bảng `quyetdinh`
 --
 ALTER TABLE `quyetdinh`
-  MODIFY `ma_qd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ma_qd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT cho bảng `thuongbinh`

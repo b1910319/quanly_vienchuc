@@ -416,8 +416,8 @@ Route::post('/add_quyetdinh',[QuyetDinhController::class, 'add_quyetdinh']);
 Route::get('/select_quyetdinh/{ma_qd}',[QuyetDinhController::class, 'select_quyetdinh']);
 Route::get('/edit_quyetdinh/{ma_qd}',[QuyetDinhController::class, 'edit_quyetdinh']);
 Route::post('/update_quyetdinh/{ma_qd}',[QuyetDinhController::class, 'update_quyetdinh']);
-
-
+Route::get('/delete_quyetdinh/{ma_qd}',[QuyetDinhController::class, 'delete_quyetdinh']);
+Route::get('/delete_all_quyetdinh/{ma_l}',[QuyetDinhController::class, 'delete_all_quyetdinh']);
 
 
 

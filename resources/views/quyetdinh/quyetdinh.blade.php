@@ -155,7 +155,7 @@
         </div>
       </div>
       <div class="col-2">
-        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_quyetdinh') }}">
+        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_quyetdinh/'.$lop->ma_l) }}">
           <button type="button" class="btn btn-danger">Xoá tất cả</button>
         </a>
       </div>
