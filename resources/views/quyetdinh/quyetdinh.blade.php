@@ -54,7 +54,7 @@
                         <tr>
                           <th scope="row">File quyết định: </th>
                           <td class="was-validated">
-                            <input type='file' class='form-control input_table' autofocus required name="file_qd">
+                            <input type='file' class='form-control input_table' name="file_qd">
                           </td>
                         </tr>
                         <tr>
@@ -92,7 +92,7 @@
     <div class="mt-3"></div>
     <div class="alert alert-success" role="alert">
       <div class="row">
-        <a href="{{ URL::to('/lop') }}" class="col-1">
+        <a href="{{ URL::to('/danhsach/'.$lop->ma_l) }}" class="col-1">
           <button type="button" class="btn btn-warning">
             <i class="fas fa-solid fa-caret-left"></i>&ensp;
           </button> &ensp;
@@ -211,7 +211,7 @@
               {{ $quyetdinh->ngayky_qd }}
             </td>
             <td>
-              @if ($quyetdinh->file_qd)
+              @if ($quyetdinh->file_qd !=' ')
                 <a href="{{ asset('public/uploads/quyetdinh/'.$quyetdinh->file_qd) }}">
                   <button type="button" class="btn btn-warning" style="background-color: #77D970; border: none;">
                     <i class="fa-solid fa-file"></i>

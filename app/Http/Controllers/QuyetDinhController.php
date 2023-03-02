@@ -137,4 +137,73 @@ class QuyetDinhController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function edit_quyetdinh($ma_qd){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Cập nhật thông tin quyết định";
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $edit = QuyetDinh::find($ma_qd);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      return view('quyetdinh.quyetdinh_edit')
+        ->with('edit', $edit)
+        ->with('title', $title)
+        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_quyetdinh(Request $request, $ma_qd){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $quyetdinh = QuyetDinh::find($ma_qd);
+      $quyetdinh->ma_vc = $data['ma_vc'];
+      $quyetdinh->ma_l = $data['ma_l'];
+      $quyetdinh->so_qd = $data['so_qd'];
+      $quyetdinh->ngayky_qd = $data['ngayky_qd'];
+      $quyetdinh->status_qd = $data['status_qd'];
+      $get_file = $request->file('file_qd');
+      if($get_file){
+        $new_image = time().rand(0,999).'.'.$get_file->getClientOriginalExtension();
+        if($quyetdinh->file_qd != ' '){
+          unlink('public/uploads/quyetdinh/'.$quyetdinh->file_qd);
+        }
+        $get_file->move('public/uploads/quyetdinh', $new_image);
+        $quyetdinh->file_qd = $new_image;
+      }
+      $quyetdinh->updated_qd = Carbon::now();
+      $quyetdinh->save();
+      return Redirect::to('/quyetdinh/'.$data['ma_l'].'/'.$data['ma_vc'],302);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }
