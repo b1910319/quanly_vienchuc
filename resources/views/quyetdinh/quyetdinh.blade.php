@@ -113,7 +113,7 @@
         session()->put('message_update',null);
       }
     ?>
-    {{-- <div class="row">
+    <div class="row">
       <div class="col-2">
         @foreach ($count as $key => $count)
           <p class="fw-bold" style="color: #379237; ">Tổng có: {{ $count->sum }}</p>
@@ -137,7 +137,7 @@
               </thead>
               <tbody>
                 @foreach ($count_status as $key => $count_stt)
-                  @if ($count_stt->status_tg == 0)
+                  @if ($count_stt->status_qd == 0)
                     <tr>
                       <td>Danh mục hiển thị</td>
                       <td>{{ $count_stt->sum }}</td>
@@ -155,36 +155,52 @@
         </div>
       </div>
       <div class="col-2">
-        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_tongiao') }}">
+        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_quyetdinh') }}">
           <button type="button" class="btn btn-danger">Xoá tất cả</button>
         </a>
       </div>
-    </div> --}}
-    {{-- <table class="table" id="mytable">
+    </div>
+    <table class="table" id="mytable">
       <thead class="table-dark">
         <tr>
           <th scope="col">STT</th>
-          <th scope="col">Tôn giáo </th>
+          <th scope="col">Thông tin viên chức</th>
+          <th scope="col">Thông tin lớp học</th>
+          <th scope="col">Mã số quyết định</th>
           <th scope="col">Trạng thái</th>
-          <th scope="col">Thời gian tạo</th>
-          <th scope="col">Thời gian cập nhật</th>
+          <th scope="col">Ngày ký quyết định</th>
+          <th scope="col">file quyết định</th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody  >
-        @foreach ($list as $key => $tongiao)
+        @foreach ($list as $key => $quyetdinh)
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $tongiao->ten_tg }}
+              <b>Họ tên viên chức: </b> {{ $quyetdinh->hoten_vc }} <br>
+              <b>Email viên chức: </b> {{ $quyetdinh->user_vc }} <br>
+              <b>Số điện thoại viên chức: </b> {{ $quyetdinh->sdt_vc }} <br>
+            </td>
+            <td>
+              <b>Tên lớp học: </b> {{ $quyetdinh->ten_l }} <br>
+              <b>Ngày bắt đầu: </b> {{ $quyetdinh->ngaybatdau_l }} <br>
+              <b>Ngày kết thúc: </b> {{ $quyetdinh->ngayketthuc_l }} <br>
+              <b>Tên cơ sở đào tạo: </b> {{ $quyetdinh->tencosodaotao_l }} <br>
+              <b>Quốc gia đào tạo: </b> {{ $quyetdinh->quocgiaodaotao_l }} <br>
+              <b>Email cơ sở đào tạo: </b> {{ $quyetdinh->emailcoso_l }} <br>
+              <b>Số điện thoại cơ sở đào tạo: </b> {{ $quyetdinh->sdtcoso_l }} <br>
+            </td>
+            <td>
+              {{ $quyetdinh->so_qd }}
             </td>
             <td>
               <?php
-                if($tongiao->status_tg == 0){
+                if($quyetdinh->status_qd == 0){
                   ?>
                     <span class="badge rounded-pill text-bg-success"><i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị</span>
                   <?php
-                }else if($tongiao->status_tg == 1) {
+                }else if($quyetdinh->status_qd == 1) {
                   ?>
                     <span class="badge text-bg-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
                   <?php
@@ -192,31 +208,40 @@
               ?>
             </td>
             <td>
-              {{ $tongiao->created_tg }}
+              {{ $quyetdinh->ngayky_qd }}
             </td>
             <td>
-              {{ $tongiao->updated_tg }}
+              @if ($quyetdinh->file_qd)
+                <a href="{{ asset('public/uploads/quyetdinh/'.$quyetdinh->file_qd) }}">
+                  <button type="button" class="btn btn-warning" style="background-color: #77D970; border: none;">
+                    <i class="fa-solid fa-file"></i>
+                    File
+                  </button>
+                </a>
+              @else
+                Không có file
+              @endif
             </td>
             <td style="width: 21%;">
-              <a href="{{ URL::to('/edit_tongiao/'.$tongiao->ma_tg)}}">
+              <a href="{{ URL::to('/edit_quyetdinh/'.$quyetdinh->ma_qd)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_tongiao/'.$tongiao->ma_tg)}}">
+              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_quyetdinh/'.$quyetdinh->ma_qd)}}">
                 <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               </a>
               <?php
-                if($tongiao->status_tg == 0){
+                if($quyetdinh->status_qd == 0){
                   ?>
-                    <a href="{{ URL::to('/select_tongiao/'.$tongiao->ma_tg) }}">
+                    <a href="{{ URL::to('/select_quyetdinh/'.$quyetdinh->ma_qd) }}">
                       <button type="button" class="btn btn-secondary">
                         <i class="fa-solid fa-eye-slash"></i> 
                         &ensp; Ẩn
                       </button>
                     </a>
                   <?php
-                }else if($tongiao->status_tg == 1) {
+                }else if($quyetdinh->status_qd == 1) {
                   ?>
-                    <a href="{{ URL::to('/select_tongiao/'.$tongiao->ma_tg) }}">
+                    <a href="{{ URL::to('/select_quyetdinh/'.$quyetdinh->ma_qd) }}">
                       <button type="button" class="btn btn-success">
                         <i class="fa-solid fa-eye"></i>
                         &ensp; Hiển thị
@@ -229,7 +254,7 @@
           </tr>
         @endforeach
       </tbody>
-    </table> --}}
+    </table>
   </div>
 </div>
 @endsection

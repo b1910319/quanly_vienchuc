@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DanhMucLop;
+use App\Models\DanhSach;
 use App\Models\Lop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -39,12 +40,21 @@ class QuyetDinhController extends Controller
       ->where('ma_q', '=', '6')
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
-      // $list = Lop::orderBy('ma_l', 'desc')
-      //   ->get();
-      // $count = Lop::select(DB::raw('count(ma_l) as sum'))->get();
-      // $count_status = Lop::select(DB::raw('count(ma_l) as sum, status_l'))
-      //   ->groupBy('status_l')
-      //   ->get();
+      $list = QuyetDinh::join('vienchuc', 'vienchuc.ma_vc', '=', 'quyetdinh.ma_vc')
+        ->join('lop', 'lop.ma_l', '=', 'quyetdinh.ma_l')
+        ->orderBy('ma_qd', 'desc')
+        ->where('quyetdinh.ma_l', $ma_l)
+        ->where('quyetdinh.ma_vc', $ma_vc)
+        ->get();
+      $count = QuyetDinh::select(DB::raw('count(ma_qd) as sum'))
+        ->where('ma_l', $ma_l)
+        ->where('ma_vc', $ma_vc)
+        ->get();
+      $count_status = QuyetDinh::select(DB::raw('count(ma_qd) as sum, status_qd'))
+        ->groupBy('status_qd')
+        ->where('ma_l', $ma_l)
+        ->where('ma_vc', $ma_vc)
+        ->get();
       // $count_vienchuc_lop = Lop::leftJoin('danhsach', 'lop.ma_l', '=', 'danhsach.ma_l')
       //   ->select(DB::raw('count(danhsach.ma_l) as sum, lop.ma_l'))
       //   ->groupBy('lop.ma_l')
@@ -62,12 +72,12 @@ class QuyetDinhController extends Controller
       return view('quyetdinh.quyetdinh')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
-        // ->with('count', $count)
+        ->with('count', $count)
         ->with('title', $title)
         // ->with('count_vienchuc_lop', $count_vienchuc_lop)
         // ->with('list_danhmuclop', $list_danhmuclop)
-        // ->with('count_status', $count_status)
-        // ->with('list', $list)
+        ->with('count_status', $count_status)
+        ->with('list', $list)
         ->with('lop', $lop)
         ->with('vienchuc', $vienchuc)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -102,6 +112,27 @@ class QuyetDinhController extends Controller
       }
       $quyetdinh->save();
       return Redirect::to('/quyetdinh/'.$data['ma_l'].'/'.$data['ma_vc'],302);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function select_quyetdinh($ma_qd){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $quyetdinh = QuyetDinh::find($ma_qd);
+      if($quyetdinh->status_qd == 1){
+        $quyetdinh->status_qd = QuyetDinh::find($ma_qd)->update(['status_qd' => 0]);
+      }elseif($quyetdinh->status_qd == 0){
+        $quyetdinh->status_qd = QuyetDinh::find($ma_qd)->update(['status_qd' => 1]);
+      }
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }

@@ -413,7 +413,7 @@ Route::get('/quyetdinh_dihoc_pdf/{ma_l}/{ma_vc}',[DanhSachController::class, 'qu
 
 Route::get('/quyetdinh/{ma_l}/{ma_vc}',[QuyetDinhController::class, 'quyetdinh']);
 Route::post('/add_quyetdinh',[QuyetDinhController::class, 'add_quyetdinh']);
-
+Route::get('/select_quyetdinh/{ma_qd}',[QuyetDinhController::class, 'select_quyetdinh']);
 
 
 
