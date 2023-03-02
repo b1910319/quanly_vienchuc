@@ -746,11 +746,16 @@
               </div>
             </td>
             <td>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_danhsach/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
-                <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              </a>
               <a href="{{ URL::to('/quyetdinh_dihoc_pdf/'.$danhsach->ma_l.'/'.$danhsach->ma_vc) }}">
                 <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+              </a>
+              <a href="{{ URL::to('/quyetdinh/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
+                <button type="button" class="btn btn-danger" style="background-color: #CF0000; border: none;">
+                  Cập nhật quyết định
+                </button>
+              </a>
+              <a onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_danhsach/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
+                <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               </a>
             </td>
           </tr>

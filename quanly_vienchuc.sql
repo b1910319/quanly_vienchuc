@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 01, 2023 lúc 08:52 AM
+-- Thời gian đã tạo: Th3 02, 2023 lúc 02:00 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -190,7 +190,9 @@ CREATE TABLE `danhsach` (
 INSERT INTO `danhsach` (`ma_vc`, `ma_l`, `status_ds`, `created_ds`, `updated_ds`) VALUES
 (62, 7, 0, '2023-03-01 07:52:32', ' '),
 (49, 7, 0, '2023-03-01 07:52:34', ' '),
-(31, 7, 0, '2023-03-01 07:52:37', ' ');
+(31, 7, 0, '2023-03-01 07:52:37', ' '),
+(56, 4, 0, '2023-03-01 07:54:19', ' '),
+(53, 4, 0, '2023-03-01 07:54:21', ' ');
 
 -- --------------------------------------------------------
 
@@ -1536,6 +1538,32 @@ INSERT INTO `quyen` (`ma_q`, `ten_q`, `mota_q`, `status_q`, `created_q`, `update
 (8, 'Quản lý thông tin viên chức', '<p>- Quản l&yacute; lớp học</p>', 0, '2023-02-14 06:10:09', ' '),
 (9, 'Trưởng khoa', '<p>- Quản l&yacute; th&ocirc;ng tin vi&ecirc;n chức trong khoa</p>', 0, '2023-02-14 06:11:01', ' '),
 (10, 'Viên chức', '<p>-&nbsp;Đăng nhập,&nbsp;đăng xuất</p>\r\n\r\n<p>- Cập nhật th&ocirc;ng tin c&aacute; nh&acirc;n</p>', 0, '2023-02-14 07:32:11', ' ');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `quyetdinh`
+--
+
+CREATE TABLE `quyetdinh` (
+  `ma_qd` int(11) NOT NULL,
+  `ma_vc` int(11) NOT NULL,
+  `ma_l` int(11) NOT NULL,
+  `so_qd` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ngayky_qd` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `file_qd` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_qd` int(11) NOT NULL DEFAULT 0,
+  `created_qd` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_qd` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `quyetdinh`
+--
+
+INSERT INTO `quyetdinh` (`ma_qd`, `ma_vc`, `ma_l`, `so_qd`, `ngayky_qd`, `file_qd`, `status_qd`, `created_qd`, `updated_qd`) VALUES
+(16, 62, 7, '1234', '2023-03-07', '1677718820376.pdf', 0, '2023-03-02 01:00:20', ' '),
+(17, 62, 7, '456', '2023-03-01', '167771884321.pdf', 0, '2023-03-02 01:00:43', ' ');
 
 -- --------------------------------------------------------
 
@@ -12537,6 +12565,12 @@ ALTER TABLE `quyen`
   ADD PRIMARY KEY (`ma_q`);
 
 --
+-- Chỉ mục cho bảng `quyetdinh`
+--
+ALTER TABLE `quyetdinh`
+  ADD PRIMARY KEY (`ma_qd`);
+
+--
 -- Chỉ mục cho bảng `thuongbinh`
 --
 ALTER TABLE `thuongbinh`
@@ -12689,6 +12723,12 @@ ALTER TABLE `quequan`
 --
 ALTER TABLE `quyen`
   MODIFY `ma_q` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT cho bảng `quyetdinh`
+--
+ALTER TABLE `quyetdinh`
+  MODIFY `ma_qd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `thuongbinh`

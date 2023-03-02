@@ -26,6 +26,7 @@ use App\Http\Controllers\KhenThuongController;
 use App\Http\Controllers\KyLuatController;
 use App\Http\Controllers\LoaiKyLuatController;
 use App\Http\Controllers\LopController;
+use App\Http\Controllers\QuyetDinhController;
 
 Route::get('/login',[HomeController::class, 'index']);
 Route::get('/home',[HomeController::class, 'home']);
@@ -410,8 +411,8 @@ Route::get('/quyetdinh_dihoc_pdf/{ma_l}/{ma_vc}',[DanhSachController::class, 'qu
 
 
 
-
-
+Route::get('/quyetdinh/{ma_l}/{ma_vc}',[QuyetDinhController::class, 'quyetdinh']);
+Route::post('/add_quyetdinh',[QuyetDinhController::class, 'add_quyetdinh']);
 
 
 
