@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
+use PDF;
 
 
 class KetQuaController extends Controller
@@ -232,6 +233,30 @@ class KetQuaController extends Controller
         $ketqua->delete();
       }
       return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function ketqua_pdf($ma_kq){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $vienchuc = VienChuc::join('ketqua', 'ketqua.ma_vc', '=', 'vienchuc.ma_vc')
+      ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
+      ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+      ->where('ketqua.ma_kq', $ma_kq)
+      ->where('status_vc', '<>', '2')
+      ->get();
+      $pdf = PDF::loadView('pdf.pdf_ketqua', [
+        'vienchuc' => $vienchuc,
+      ]);
+      return $pdf->stream();
     }else{
       return Redirect::to('/home');
     }

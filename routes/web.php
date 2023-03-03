@@ -431,7 +431,7 @@ Route::get('/edit_ketqua/{ma_kq}',[KetQuaController::class, 'edit_ketqua']);
 Route::post('/update_ketqua/{ma_kq}',[KetQuaController::class, 'update_ketqua']);
 Route::get('/delete_ketqua/{ma_kq}',[KetQuaController::class, 'delete_ketqua']);
 Route::get('/delete_all_ketqua/{ma_l}/{ma_vc}',[KetQuaController::class, 'delete_all_ketqua']);
-
+Route::get('/ketqua_pdf/{ma_kq}',[KetQuaController::class, 'ketqua_pdf']);
 
 
 
