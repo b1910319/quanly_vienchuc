@@ -41,7 +41,7 @@
                               <select class="custom-select input_table" id="gender2" name="ma_vc">
                                 <option value="0" >Chọn viên chức</option>
                                 @foreach ($list_vienchuc as $vienchuc )
-                                  <option value="{{ $vienchuc->ma_vc }}" >{{ $vienchuc->hoten_vc }}</option>
+                                <option value="{{ $vienchuc->ma_vc }}" >{{ $vienchuc->hoten_vc }}</option>
                                 @endforeach
                               </select>
                             </td>

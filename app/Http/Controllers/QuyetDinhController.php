@@ -202,6 +202,7 @@ class QuyetDinhController extends Controller
       }
       $quyetdinh->updated_qd = Carbon::now();
       $quyetdinh->save();
+
       return Redirect::to('/quyetdinh/'.$data['ma_l'].'/'.$data['ma_vc'],302);
     }else{
       return Redirect::to('/home');
@@ -276,10 +277,6 @@ class QuyetDinhController extends Controller
       $count_status = QuyetDinh::select(DB::raw('count(ma_qd) as sum, status_qd'))
         ->groupBy('status_qd')
         ->get();
-      // $count_vienchuc_lop = Lop::leftJoin('danhsach', 'lop.ma_l', '=', 'danhsach.ma_l')
-      //   ->select(DB::raw('count(danhsach.ma_l) as sum, lop.ma_l'))
-      //   ->groupBy('lop.ma_l')
-      //   ->get();
       $lop = '';
       $vienchuc = '';
       Carbon::now('Asia/Ho_Chi_Minh'); 
@@ -287,10 +284,10 @@ class QuyetDinhController extends Controller
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
-      // $list_danhmuclop = DanhMucLop::where('status_dml', '<>', '1')
-      //   ->orderBy('ten_dml', 'asc')
-      //   ->get();
-      $list_vienchuc = VienChuc::orderBy('hoten_vc', 'asc')
+      $list_vienchuc = VienChuc::join('danhsach', 'danhsach.ma_vc', '=', 'vienchuc.ma_vc')
+        ->whereNotIn('vienchuc.ma_vc', function($query) {
+            $query->select('quyetdinh.ma_vc')->from('quyetdinh');
+          })
         ->get();
       $list_lop = Lop::orderBy('ten_l', 'asc')
         ->get();
@@ -299,8 +296,6 @@ class QuyetDinhController extends Controller
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
         ->with('title', $title)
-        // ->with('count_vienchuc_lop', $count_vienchuc_lop)
-        // ->with('list_danhmuclop', $list_danhmuclop)
         ->with('count_status', $count_status)
         ->with('list', $list)
         ->with('lop', $lop)
