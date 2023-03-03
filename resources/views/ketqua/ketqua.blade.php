@@ -84,13 +84,13 @@
                         <tr>
                           <th scope="row">Ngày về nước: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="ngayvenuoc_kq">
+                            <input type='date' class='form-control input_table' autofocus required name="ngayvenuoc_kq">
                           </td>
                         </tr>
                         <tr>
                           <th scope="row">Đánh giá của cơ sở đào tạo: </th>
                           <td class="was-validated">
-                            <input type='date' class='form-control input_table' autofocus required name="danhgiacuacoso_kq">
+                            <input type='text' class='form-control input_table' autofocus required name="danhgiacuacoso_kq">
                           </td>
                         </tr>
                         <tr>
