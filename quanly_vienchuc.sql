@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 02, 2023 lúc 10:40 AM
+-- Thời gian đã tạo: Th3 03, 2023 lúc 03:03 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -1038,7 +1038,7 @@ CREATE TABLE `ketqua` (
   `ma_vc` int(11) NOT NULL,
   `tennguoihuongdan_kq` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
   `emailnguoihuongdan_kq` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
-  `noiđungaotao_kq` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `noidungaotao_kq` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '\' \'',
   `bangduoccap_kq` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
   `ngaycapbang_kq` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `xeploai_kq` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1055,8 +1055,8 @@ CREATE TABLE `ketqua` (
 -- Đang đổ dữ liệu cho bảng `ketqua`
 --
 
-INSERT INTO `ketqua` (`ma_kq`, `ma_l`, `ma_vc`, `tennguoihuongdan_kq`, `emailnguoihuongdan_kq`, `noiđungaotao_kq`, `bangduoccap_kq`, `ngaycapbang_kq`, `xeploai_kq`, `detaitotnghiep_kq`, `ngayvenuoc_kq`, `danhgiacuacoso_kq`, `kiennghi_kq`, `status_kq`, `created_kq`, `updated_kq`) VALUES
-(1, 7, 49, 'rgẻ', 'gtr̀', 'gtỷô', 'ỷ̀̉̃', '2023-02-27', 'dfw', 'efddfe', '2023-03-05', '2023-03-16', '2023-02-27', 0, '2023-03-02 09:39:52', ' ');
+INSERT INTO `ketqua` (`ma_kq`, `ma_l`, `ma_vc`, `tennguoihuongdan_kq`, `emailnguoihuongdan_kq`, `noidungaotao_kq`, `bangduoccap_kq`, `ngaycapbang_kq`, `xeploai_kq`, `detaitotnghiep_kq`, `ngayvenuoc_kq`, `danhgiacuacoso_kq`, `kiennghi_kq`, `status_kq`, `created_kq`, `updated_kq`) VALUES
+(4, 7, 49, 'Lê Diểm Trinh', 'trinhle12012001@gmail.com', 'Với bằng kép về Cử nhân Nghệ thuật/Cử nhân Kinh doanh, bạn sẽ sẵn sàng trở thành một doanh nhân toàn diện, người hiểu được điều gì là tốt cho thế giới.  Xây dựng kiến ​​thức kinh doanh, quản lý và vận hành của bạn để bạn sẵn sàng tạo dấu ấn trong thế giới kinh doanh. Sau đó, đi sâu hơn, trau dồi tư duy phản biện và kỹ năng giao tiếp khi bạn khám phá các vấn đề xã hội, kinh tế và văn hóa toàn cầu quan trọng ảnh hưởng đến hoạt động của xã hội đương đại.', 'Cử nhân', '2023-02-27', 'Xuất sắc', 'Website thương mại điện tử', '2023-03-14', 'Hoàn thành xuất sắc khoá học', 'Không có', 0, '2023-03-03 01:58:01', ' ');
 
 -- --------------------------------------------------------
 
@@ -12704,7 +12704,7 @@ ALTER TABLE `huyen`
 -- AUTO_INCREMENT cho bảng `ketqua`
 --
 ALTER TABLE `ketqua`
-  MODIFY `ma_kq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ma_kq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `khenthuong`

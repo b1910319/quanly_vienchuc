@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\DanToc;
 use App\Models\HeDaoTao;
+use App\Models\KetQua;
 use App\Models\Khoa;
 use App\Models\LoaiBangCap;
 use App\Models\Lop;
@@ -59,6 +60,11 @@ class DanhSachController extends Controller
         ->select(DB::raw('count(quyetdinh.ma_qd) as sum, vienchuc.ma_vc'))
         ->groupBy('vienchuc.ma_vc')
         ->get();
+      $count_ketqua_vienchuc = KetQua::join('vienchuc', 'vienchuc.ma_vc', '=', 'ketqua.ma_vc')
+        ->where('ketqua.ma_l', $ma_l)
+        ->select(DB::raw('count(ketqua.ma_kq) as sum, vienchuc.ma_vc'))
+        ->groupBy('vienchuc.ma_vc')
+        ->get();
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
@@ -88,6 +94,7 @@ class DanhSachController extends Controller
         ->with('title', $title)
         ->with('ma_l', $ma_l)
         ->with('list',$list)
+        ->with('count_ketqua_vienchuc', $count_ketqua_vienchuc)
         ->with('count_quyetdinh_vienchuc', $count_quyetdinh_vienchuc)
         ->with('list_vienchuc', $list_vienchuc)
         ->with('list_khoa', $list_khoa)

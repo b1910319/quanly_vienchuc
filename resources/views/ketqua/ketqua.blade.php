@@ -197,7 +197,7 @@
         </div>
       </div>
       <div class="col-2">
-        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_ketqua/'.$lop->ma_l) }}">
+        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_ketqua/'.$lop->ma_l.'/'.$vienchuc->ma_vc) }}">
           <button type="button" class="btn btn-danger">Xoá tất cả</button>
         </a>
       </div>
@@ -231,7 +231,7 @@
               <b>Email cơ sở đào tạo: </b> {{ $ketqua->emailcoso_l }} <br>
               <b>Số điện thoại cơ sở đào tạo: </b> {{ $ketqua->sdtcoso_l }} <br>
             </td>
-            <td>
+            <td style="width: 30%">
               <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
           style="height: 150px; overflow: auto;">
                 <p>
@@ -261,7 +261,7 @@
                 }
               ?>
             </td>
-            <td style="width: 21%;">
+            <td style="width: 26%;">
               <a href="{{ URL::to('/edit_ketqua/'.$ketqua->ma_kq)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>
@@ -289,6 +289,9 @@
                   <?php
                 }
               ?>
+              <a href="{{ URL::to('/ketqua_pdf/'.$ketqua->ma_kq) }}">
+                <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+              </a>
             </td>
           </tr>
         @endforeach
