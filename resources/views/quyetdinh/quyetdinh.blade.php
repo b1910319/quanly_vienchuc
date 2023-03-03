@@ -31,8 +31,34 @@
                   <div class="col-6">
                     <table class="table">
                       <tbody>
-                        <input type="hidden" name="ma_vc" value="{{ $vienchuc->ma_vc }}">
-                        <input type="hidden" name="ma_l" value="{{ $lop->ma_l }}">
+                        @if ($vienchuc != '' && $lop != '')
+                          <input type="hidden" name="ma_vc" value="{{ $vienchuc->ma_vc }}">
+                          <input type="hidden" name="ma_l" value="{{ $lop->ma_l }}">
+                        @else
+                          <tr>
+                            <th scope="row">Viên chức: </th>
+                            <td class="was-validated">
+                              <select class="custom-select input_table" id="gender2" name="ma_vc">
+                                <option value="0" >Chọn viên chức</option>
+                                @foreach ($list_vienchuc as $vienchuc )
+                                  <option value="{{ $vienchuc->ma_vc }}" >{{ $vienchuc->hoten_vc }}</option>
+                                @endforeach
+                              </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Lớp: </th>
+                            <td class="was-validated">
+                              <select class="custom-select input_table" id="gender2" name="ma_l">
+                                <option value="0" >Chọn lớp</option>
+                                @foreach ($list_lop as $lop )
+                                  <option value="{{ $lop->ma_l }}" >{{ $lop->ten_l }}</option>
+                                @endforeach
+                              </select>
+                            </td>
+                          </tr>
+                        @endif
+                        
                         <tr>
                           <th scope="row">Số quyết định: </th>
                           <td class="was-validated">
@@ -92,11 +118,13 @@
     <div class="mt-3"></div>
     <div class="alert alert-success" role="alert">
       <div class="row">
-        <a href="{{ URL::to('/danhsach/'.$lop->ma_l) }}" class="col-1">
-          <button type="button" class="btn btn-warning">
-            <i class="fas fa-solid fa-caret-left"></i>&ensp;
-          </button> &ensp;
-        </a>
+        @if ($vienchuc != '' && $lop != '')
+          <a href="{{ URL::to('/danhsach/'.$lop->ma_l) }}" class="col-1">
+            <button type="button" class="btn btn-warning">
+              <i class="fas fa-solid fa-caret-left"></i>&ensp;
+            </button> &ensp;
+          </a>
+        @endif
         <h4 class="text-center col-10 mt-1" style="font-weight: bold">
           DANH SÁCH 
         </h4>
@@ -155,9 +183,16 @@
         </div>
       </div>
       <div class="col-2">
-        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_quyetdinh/'.$lop->ma_l) }}">
-          <button type="button" class="btn btn-danger">Xoá tất cả</button>
-        </a>
+        @if ($vienchuc != '' && $lop != '')
+          <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_quyetdinh/'.$lop->ma_l) }}">
+            <button type="button" class="btn btn-danger">Xoá tất cả</button>
+          </a>
+        @else
+          <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_quyetdinh_all') }}">
+            <button type="button" class="btn btn-danger">Xoá tất cả</button>
+          </a>
+        @endif
+        
       </div>
     </div>
     <table class="table" id="mytable">

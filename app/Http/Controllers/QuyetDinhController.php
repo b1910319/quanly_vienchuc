@@ -111,7 +111,8 @@ class QuyetDinhController extends Controller
         $quyetdinh->file_qd = $new_file;
       }
       $quyetdinh->save();
-      return Redirect::to('/quyetdinh/'.$data['ma_l'].'/'.$data['ma_vc'],302);
+      // return Redirect::to('/quyetdinh/'.$data['ma_l'].'/'.$data['ma_vc'],302);
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }
@@ -238,6 +239,92 @@ class QuyetDinhController extends Controller
     if($phanquyen_admin || $phanquyen_qlcttc){
       $list = QuyetDinh::where('ma_l', $ma_l)
         ->get();
+      foreach($list as $key => $quyetdinh){
+        if($quyetdinh->file_qd != ' '){
+          unlink('public/uploads/quyetdinh/'.$quyetdinh->file_qd);
+        }
+        $quyetdinh->delete();
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function quyetdinh_all(){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Cập nhật file quyết định";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list = QuyetDinh::join('vienchuc', 'vienchuc.ma_vc', '=', 'quyetdinh.ma_vc')
+        ->join('lop', 'lop.ma_l', '=', 'quyetdinh.ma_l')
+        ->orderBy('ma_qd', 'desc')
+        ->get();
+      $count = QuyetDinh::select(DB::raw('count(ma_qd) as sum'))
+        ->get();
+      $count_status = QuyetDinh::select(DB::raw('count(ma_qd) as sum, status_qd'))
+        ->groupBy('status_qd')
+        ->get();
+      // $count_vienchuc_lop = Lop::leftJoin('danhsach', 'lop.ma_l', '=', 'danhsach.ma_l')
+      //   ->select(DB::raw('count(danhsach.ma_l) as sum, lop.ma_l'))
+      //   ->groupBy('lop.ma_l')
+      //   ->get();
+      $lop = '';
+      $vienchuc = '';
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      // $list_danhmuclop = DanhMucLop::where('status_dml', '<>', '1')
+      //   ->orderBy('ten_dml', 'asc')
+      //   ->get();
+      $list_vienchuc = VienChuc::orderBy('hoten_vc', 'asc')
+        ->get();
+      $list_lop = Lop::orderBy('ten_l', 'asc')
+        ->get();
+      return view('quyetdinh.quyetdinh')
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('count', $count)
+        ->with('title', $title)
+        // ->with('count_vienchuc_lop', $count_vienchuc_lop)
+        // ->with('list_danhmuclop', $list_danhmuclop)
+        ->with('count_status', $count_status)
+        ->with('list', $list)
+        ->with('lop', $lop)
+        ->with('list_vienchuc', $list_vienchuc)
+        ->with('list_lop', $list_lop)
+        ->with('vienchuc', $vienchuc)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('count_nangbac', $count_nangbac);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function delete_quyetdinh_all(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list = QuyetDinh::get();
       foreach($list as $key => $quyetdinh){
         if($quyetdinh->file_qd != ' '){
           unlink('public/uploads/quyetdinh/'.$quyetdinh->file_qd);

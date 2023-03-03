@@ -340,6 +340,9 @@
                     <a href="{{ URL::to('/danhmuclop') }}">Danh mục lớp học</a>
                   </li>
                   <li>
+                    <a href="{{ URL::to('/quyetdinh_all') }}">Quyết định</a>
+                  </li>
+                  <li>
                     <a href="{{ URL::to('/lop') }}">Quản lý lớp học và <br> quá trình học</a>
                   </li>
                   <li>
