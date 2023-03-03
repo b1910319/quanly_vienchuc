@@ -306,7 +306,7 @@
                 }
               ?>
             </td>
-            <td style="width: 21%;">
+            <td style="width: 34%;">
               <a href="{{ URL::to('/edit_lop/'.$lop->ma_l)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>
@@ -334,6 +334,9 @@
                   <?php
                 }
               ?>
+              <a href="{{ URL::to('/danhsach_vienchuc_lop_pdf/'.$lop->ma_l) }}">
+                <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file danh sách học viên</button>
+              </a>
             </td>
           </tr>
         @endforeach

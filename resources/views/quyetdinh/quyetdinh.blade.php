@@ -192,7 +192,6 @@
             <button type="button" class="btn btn-danger">Xoá tất cả</button>
           </a>
         @endif
-        
       </div>
     </div>
     <table class="table" id="mytable">
