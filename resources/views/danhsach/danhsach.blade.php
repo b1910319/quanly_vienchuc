@@ -745,7 +745,7 @@
                 </div>
               </div>
             </td>
-            <td>
+            <td> 
               <a href="{{ URL::to('/quyetdinh_dihoc_pdf/'.$danhsach->ma_l.'/'.$danhsach->ma_vc) }}">
                 <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
               </a>

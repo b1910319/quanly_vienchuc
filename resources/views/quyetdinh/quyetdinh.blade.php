@@ -207,7 +207,7 @@
           <th scope="col"></th>
         </tr>
       </thead>
-      <tbody  >
+      <tbody>
         @foreach ($list as $key => $quyetdinh)
           <tr >
             <th scope="row">{{ $key+1 }}</th>

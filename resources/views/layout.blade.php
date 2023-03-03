@@ -346,6 +346,9 @@
                     <a href="{{ URL::to('/quyetdinh_all') }}">Quyết định</a>
                   </li>
                   <li>
+                    <a href="{{ URL::to('/ketqua_all') }}">Kết quả quá trình học <br> của viên chức</a>
+                  </li>
+                  <li>
                     <a href="email-compose.html">Compose Email</a>
                   </li>
                   <li>

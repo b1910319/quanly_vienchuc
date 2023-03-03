@@ -105,7 +105,8 @@ class KetQuaController extends Controller
       $ketqua->kiennghi_kq = $data['kiennghi_kq'];
       $ketqua->status_kq = $data['status_kq'];
       $ketqua->save();
-      return Redirect::to('/ketqua/'.$data['ma_l'].'/'.$data['ma_vc'],302);
+      // return Redirect::to('/ketqua/'.$data['ma_l'].'/'.$data['ma_vc'],302);
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }
@@ -195,6 +196,7 @@ class KetQuaController extends Controller
       $ketqua->updated_kq = Carbon::now();
       $ketqua->save();
       return Redirect::to('/ketqua/'.$data['ma_l'].'/'.$data['ma_vc'],302);
+      // return redirect()->back();
     }else{
       return Redirect::to('/home');
     }
@@ -257,6 +259,83 @@ class KetQuaController extends Controller
         'vienchuc' => $vienchuc,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function ketqua_all(){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Cập nhật kết quả học tập";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list = KetQua::join('vienchuc', 'vienchuc.ma_vc', '=', 'ketqua.ma_vc')
+        ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
+        ->orderBy('ma_kq', 'desc')
+        ->get();
+      $count = KetQua::select(DB::raw('count(ma_kq) as sum'))
+        ->get();
+      $count_status = KetQua::select(DB::raw('count(ma_kq) as sum, status_kq'))
+        ->groupBy('status_kq')
+        ->get();
+      $lop = '';
+      $vienchuc = '';
+      $list_vienchuc = VienChuc::join('danhsach', 'danhsach.ma_vc', '=', 'vienchuc.ma_vc')
+        ->whereNotIn('vienchuc.ma_vc', function($query) {
+            $query->select('ketqua.ma_vc')->from('ketqua');
+          })
+        ->get();
+      $list_lop = Lop::orderBy('ten_l', 'asc')
+        ->get();
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      return view('ketqua.ketqua')
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('count', $count)
+        ->with('title', $title)
+        ->with('count_status', $count_status)
+        ->with('list', $list)
+        ->with('lop', $lop)
+        ->with('list_lop', $list_lop)
+        ->with('list_vienchuc', $list_vienchuc)
+        ->with('vienchuc', $vienchuc)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('count_nangbac', $count_nangbac);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function delete_ketqua_all(){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list = KetQua::get();
+      foreach($list as $key => $ketqua){
+        $ketqua->delete();
+      }
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }
