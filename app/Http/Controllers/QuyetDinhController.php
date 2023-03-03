@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DanhMucLop;
-use App\Models\DanhSach;
 use App\Models\Lop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

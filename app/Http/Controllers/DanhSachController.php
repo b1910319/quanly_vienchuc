@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\DanToc;
+use App\Models\DungHoc;
 use App\Models\HeDaoTao;
 use App\Models\KetQua;
 use App\Models\Khoa;
@@ -60,6 +61,11 @@ class DanhSachController extends Controller
         ->select(DB::raw('count(quyetdinh.ma_qd) as sum, vienchuc.ma_vc'))
         ->groupBy('vienchuc.ma_vc')
         ->get();
+      $count_dunghoc_vienchuc = DungHoc::join('vienchuc', 'vienchuc.ma_vc', '=', 'dunghoc.ma_vc')
+        ->where('dunghoc.ma_l', $ma_l)
+        ->select(DB::raw('count(dunghoc.ma_dh) as sum, vienchuc.ma_vc'))
+        ->groupBy('vienchuc.ma_vc')
+        ->get();
       $count_ketqua_vienchuc = KetQua::join('vienchuc', 'vienchuc.ma_vc', '=', 'ketqua.ma_vc')
         ->where('ketqua.ma_l', $ma_l)
         ->select(DB::raw('count(ketqua.ma_kq) as sum, vienchuc.ma_vc'))
@@ -107,6 +113,7 @@ class DanhSachController extends Controller
         ->with('list_hedaotao', $list_hedaotao)
         ->with('list_loiabangcap', $list_loiabangcap)
         ->with('list_tinh',$list_tinh)
+        ->with('count_dunghoc_vienchuc', $count_dunghoc_vienchuc)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('count_nangbac', $count_nangbac);

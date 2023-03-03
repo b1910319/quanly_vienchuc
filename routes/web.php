@@ -18,6 +18,7 @@ use App\Http\Controllers\HeDaoTaoController;
 use App\Http\Controllers\BangCapController;
 use App\Http\Controllers\DanhMucLopController;
 use App\Http\Controllers\DanhSachController;
+use App\Http\Controllers\DungHocController;
 use App\Http\Controllers\NghiHuuController;
 use App\Http\Controllers\ThongKeController;
 use App\Http\Controllers\LoaiKhenThuongController;
@@ -437,6 +438,54 @@ Route::get('/delete_all_ketqua/{ma_l}/{ma_vc}',[KetQuaController::class, 'delete
 Route::get('/ketqua_pdf/{ma_kq}',[KetQuaController::class, 'ketqua_pdf']);
 Route::get('/ketqua_all',[KetQuaController::class, 'ketqua_all']);
 Route::get('/delete_ketqua_all',[KetQuaController::class, 'delete_ketqua_all']);
+
+
+
+
+
+Route::get('/dunghoc/{ma_l}/{ma_vc}',[DungHocController::class, 'dunghoc']);
+Route::post('/add_dunghoc',[DungHocController::class, 'add_dunghoc']);
+Route::get('/select_dunghoc/{ma_dh}',[DungHocController::class, 'select_dunghoc']);
+Route::get('/edit_dunghoc/{ma_dh}',[DungHocController::class, 'edit_dunghoc']);
+Route::post('/update_dunghoc/{ma_dh}',[DungHocController::class, 'update_dunghoc']);
+Route::get('/delete_dunghoc/{ma_dh}',[DungHocController::class, 'delete_dunghoc']);
+Route::get('/delete_all_dunghoc/{ma_l}',[DungHocController::class, 'delete_all_dunghoc']);
+Route::get('/dunghoc_all',[DungHocController::class, 'dunghoc_all']);
+Route::get('/delete_dunghoc_all',[DungHocController::class, 'delete_dunghoc_all']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

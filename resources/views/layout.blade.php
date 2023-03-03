@@ -343,7 +343,7 @@
                     <a href="{{ URL::to('/lop') }}">Quản lý lớp học và <br> quá trình học</a>
                   </li>
                   <li>
-                    <a href="{{ URL::to('/quyetdinh_all') }}">Quyết định</a>
+                    <a href="{{ URL::to('/quyetdinh_all') }}">Quyết định cử đi học</a>
                   </li>
                   <li>
                     <a href="{{ URL::to('/ketqua_all') }}">Kết quả quá trình học <br> của viên chức</a>
