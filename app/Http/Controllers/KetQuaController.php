@@ -95,7 +95,7 @@ class KetQuaController extends Controller
       $ketqua->tennguoihuongdan_kq = $data['tennguoihuongdan_kq'];
       $ketqua->emailnguoihuongdan_kq = $data['emailnguoihuongdan_kq'];
       
-      $ketqua->noiđungaotao_kq = $data['noiđungaotao_kq'];
+      $ketqua->noidungaotao_kq = $data['noidungaotao_kq'];
       $ketqua->bangduoccap_kq = $data['bangduoccap_kq'];
       $ketqua->ngaycapbang_kq = $data['ngaycapbang_kq'];
       $ketqua->xeploai_kq = $data['xeploai_kq'];
@@ -106,6 +106,27 @@ class KetQuaController extends Controller
       $ketqua->status_kq = $data['status_kq'];
       $ketqua->save();
       return Redirect::to('/ketqua/'.$data['ma_l'].'/'.$data['ma_vc'],302);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function select_ketqua($ma_kq){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $ketqua = KetQua::find($ma_kq);
+      if($ketqua->status_kq == 1){
+        $ketqua->status_kq = KetQua::find($ma_kq)->update(['status_kq' => 0]);
+      }elseif($ketqua->status_kq == 0){
+        $ketqua->status_kq = KetQua::find($ma_kq)->update(['status_kq' => 1]);
+      }
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }

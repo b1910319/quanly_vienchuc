@@ -48,7 +48,7 @@
                         <tr>
                           <th scope="row">Nội dung đào tạo: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="noiđungaotao_kq">
+                            <input type='text' class='form-control input_table' autofocus required name="noidungaotao_kq">
                           </td>
                         </tr>
                         <tr>
@@ -84,7 +84,7 @@
                         <tr>
                           <th scope="row">Ngày về nước: </th>
                           <td class="was-validated">
-                            <input type='date' class='form-control input_table' autofocus required name="ngayvenuoc_kq">
+                            <input type='text' class='form-control input_table' autofocus required name="ngayvenuoc_kq">
                           </td>
                         </tr>
                         <tr>
@@ -96,7 +96,7 @@
                         <tr>
                           <th scope="row">Kiến nghị, đề xuất: </th>
                           <td class="was-validated">
-                            <input type='date' class='form-control input_table' autofocus required name="kiennghi_kq">
+                            <input type='text' class='form-control input_table' autofocus required name="kiennghi_kq">
                           </td>
                         </tr>
                         <tr>
@@ -202,16 +202,14 @@
         </a>
       </div>
     </div>
-    {{-- <table class="table" id="mytable">
+    <table class="table" id="mytable">
       <thead class="table-dark">
         <tr>
           <th scope="col">STT</th>
           <th scope="col">Thông tin viên chức</th>
           <th scope="col">Thông tin lớp học</th>
-          <th scope="col">Mã số quyết định</th>
+          <th scope="col">Kết quả</th>
           <th scope="col">Trạng thái</th>
-          <th scope="col">Ngày ký quyết định</th>
-          <th scope="col">file quyết định</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -234,7 +232,21 @@
               <b>Số điện thoại cơ sở đào tạo: </b> {{ $ketqua->sdtcoso_l }} <br>
             </td>
             <td>
-              {{ $ketqua->so_kq }}
+              <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
+          style="height: 150px; overflow: auto;">
+                <p>
+                  <b>Tên người hướng dẫn: </b> {{ $ketqua->tennguoihuongdan_kq }} <br>
+                  <b>Email người hướng dẫn: </b> {{ $ketqua->emailnguoihuongdan_kq }} <br>
+                  <b>Nội dung đào tạo: </b> {{ $ketqua->noidungaotao_kq }} <br>
+                  <b>Văn bằng, chứng chỉ được cấp: </b> {{ $ketqua->bangduoccap_kq }} <br>
+                  <b>Ngày cấp bằng: </b> {{ $ketqua->ngaycapbang_kq }} <br>
+                  <b>Kết quả xếp loại: </b> {{ $ketqua->xeploai_kq }} <br>
+                  <b>Đề tài tốt nghiệp: </b> {{ $ketqua->detaitotnghiep_kq }} <br>
+                  <b>Ngày về nước: </b> {{ $ketqua->ngayvenuoc_kq }} <br>
+                  <b>Đánh giá của cơ sở: </b> {{ $ketqua->danhgiacuacoso_kq }} <br>
+                  <b>Kiến nghị, đề xuất: </b> {{ $ketqua->kiennghi_kq }} <br>
+                </p>
+              </div>
             </td>
             <td>
               <?php
@@ -248,21 +260,6 @@
                   <?php
                 }
               ?>
-            </td>
-            <td>
-              {{ $ketqua->ngayky_kq }}
-            </td>
-            <td>
-              @if ($ketqua->file_kq !=' ')
-                <a href="{{ asset('public/uploads/ketqua/'.$ketqua->file_kq) }}">
-                  <button type="button" class="btn btn-warning" style="background-color: #77D970; border: none;">
-                    <i class="fa-solid fa-file"></i>
-                    File
-                  </button>
-                </a>
-              @else
-                Không có file
-              @endif
             </td>
             <td style="width: 21%;">
               <a href="{{ URL::to('/edit_ketqua/'.$ketqua->ma_kq)}}">
@@ -296,7 +293,7 @@
           </tr>
         @endforeach
       </tbody>
-    </table> --}}
+    </table>
   </div>
 </div>
 @endsection

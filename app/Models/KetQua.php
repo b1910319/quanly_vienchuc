@@ -13,7 +13,7 @@ class KetQua extends Model
     'ma_vc',
     'tennguoihuongdan_kq',
     'emailnguoihuongdan_kq',
-    'noiđungaotao_kq',
+    'noidungaotao_kq',
     'bangduoccap_kq',
     'ngaycapbang_kq',
     'xeploai_kq',
