@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 03, 2023 lúc 09:40 AM
+-- Thời gian đã tạo: Th3 03, 2023 lúc 10:33 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -245,7 +245,7 @@ CREATE TABLE `dunghoc` (
   `file_dh` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status_dh` int(11) NOT NULL DEFAULT 0,
   `created_dh` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_dh` int(11) DEFAULT NULL
+  `updated_dh` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -253,7 +253,8 @@ CREATE TABLE `dunghoc` (
 --
 
 INSERT INTO `dunghoc` (`ma_dh`, `ma_vc`, `ma_l`, `batdau_dh`, `ketthuc_dh`, `lydo_dh`, `file_dh`, `status_dh`, `created_dh`, `updated_dh`) VALUES
-(1, 56, 4, '2023-03-14', '2023-03-23', 'cdsd', '1677832834254.pdf', 0, '2023-03-03 08:40:34', NULL);
+(3, 56, 4, '2023-02-28', '2023-03-31', 'xdfrew', '1677835626636.pdf', 0, '2023-03-03 09:27:06', NULL),
+(4, 56, 4, '2023-03-14', '2023-03-22', 'trinh', '1677835644321.pdf', 0, '2023-03-03 09:27:24', '2023-03-03 09:33:26');
 
 -- --------------------------------------------------------
 
@@ -12710,7 +12711,7 @@ ALTER TABLE `dantoc`
 -- AUTO_INCREMENT cho bảng `dunghoc`
 --
 ALTER TABLE `dunghoc`
-  MODIFY `ma_dh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ma_dh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `giadinh`
