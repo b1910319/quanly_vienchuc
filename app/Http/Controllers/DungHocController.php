@@ -53,10 +53,6 @@ class DungHocController extends Controller
         ->where('ma_l', $ma_l)
         ->where('ma_vc', $ma_vc)
         ->get();
-      // $count_vienchuc_lop = Lop::leftJoin('danhsach', 'lop.ma_l', '=', 'danhsach.ma_l')
-      //   ->select(DB::raw('count(danhsach.ma_l) as sum, lop.ma_l'))
-      //   ->groupBy('lop.ma_l')
-      //   ->get();
       $lop = Lop::find($ma_l);
       $vienchuc = VienChuc::find($ma_vc);
       Carbon::now('Asia/Ho_Chi_Minh'); 
@@ -64,16 +60,11 @@ class DungHocController extends Controller
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
-      // $list_danhmuclop = DanhMucLop::where('status_dml', '<>', '1')
-      //   ->orderBy('ten_dml', 'asc')
-      //   ->get();
       return view('dunghoc.dunghoc')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
         ->with('title', $title)
-        // ->with('count_vienchuc_lop', $count_vienchuc_lop)
-        // ->with('list_danhmuclop', $list_danhmuclop)
         ->with('count_status', $count_status)
         ->with('list', $list)
         ->with('lop', $lop)
@@ -117,27 +108,27 @@ class DungHocController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function select_dunghoc($ma_dh){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $dunghoc = DungHoc::find($ma_dh);
-  //     if($dunghoc->status_dh == 1){
-  //       $dunghoc->status_dh = DungHoc::find($ma_dh)->update(['status_dh' => 0]);
-  //     }elseif($dunghoc->status_dh == 0){
-  //       $dunghoc->status_dh = DungHoc::find($ma_dh)->update(['status_dh' => 1]);
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function select_dunghoc($ma_dh){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $dunghoc = DungHoc::find($ma_dh);
+      if($dunghoc->status_dh == 1){
+        $dunghoc->status_dh = DungHoc::find($ma_dh)->update(['status_dh' => 0]);
+      }elseif($dunghoc->status_dh == 0){
+        $dunghoc->status_dh = DungHoc::find($ma_dh)->update(['status_dh' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function edit_dunghoc($ma_dh){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
