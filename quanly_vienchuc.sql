@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 04, 2023 lúc 05:03 AM
+-- Thời gian đã tạo: Th3 04, 2023 lúc 07:58 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -167,8 +167,8 @@ CREATE TABLE `chuyen` (
 --
 
 INSERT INTO `chuyen` (`ma_c`, `ma_vc`, `ma_l`, `noidung_c`, `lydo_c`, `file_c`, `status_c`, `created_c`, `updated_c`) VALUES
-(1, 49, 7, 'gt', 'fgth', '1677902605268.pdf', 0, '2023-03-04 04:03:25', NULL),
-(2, 49, 7, 'trinh', 'gfgtet', '1677902617400.pdf', 0, '2023-03-04 04:03:37', NULL);
+(3, 49, 7, 'dfg', 'fhte', '1677913087919.pdf', 0, '2023-03-04 06:58:07', NULL),
+(4, 53, 4, '̀yồy', 'thỳôy', '1677913111293.pdf', 0, '2023-03-04 06:58:31', NULL);
 
 -- --------------------------------------------------------
 
@@ -12764,7 +12764,7 @@ ALTER TABLE `chucvu`
 -- AUTO_INCREMENT cho bảng `chuyen`
 --
 ALTER TABLE `chuyen`
-  MODIFY `ma_c` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ma_c` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `danhmuclop`
