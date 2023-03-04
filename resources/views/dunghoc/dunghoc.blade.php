@@ -188,7 +188,7 @@
       </div>
       <div class="col-2">
         @if ($vienchuc != '' && $lop != '')
-          <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_dunghoc/'.$lop->ma_l) }}">
+          <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_dunghoc/'.$lop->ma_l.'/'.$vienchuc->ma_vc) }}">
             <button type="button" class="btn btn-danger">Xoá tất cả</button>
           </a>
         @else

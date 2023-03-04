@@ -219,17 +219,18 @@ class DungHocController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_all_dunghoc($ma_l){
+  public function delete_all_dunghoc($ma_l, $ma_vc){
     $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '6')
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
       $list = DungHoc::where('ma_l', $ma_l)
+        ->where('ma_vc', $ma_vc)
         ->get();
       foreach($list as $key => $dunghoc){
         if($dunghoc->file_dh != ' '){
