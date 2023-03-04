@@ -106,27 +106,27 @@ class GiaHanController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function select_giahan($ma_gh){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $giahan = GiaHan::find($ma_gh);
-  //     if($giahan->status_gh == 1){
-  //       $giahan->status_gh = GiaHan::find($ma_gh)->update(['status_gh' => 0]);
-  //     }elseif($giahan->status_gh == 0){
-  //       $giahan->status_gh = GiaHan::find($ma_gh)->update(['status_gh' => 1]);
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function select_giahan($ma_gh){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $giahan = GiaHan::find($ma_gh);
+      if($giahan->status_gh == 1){
+        $giahan->status_gh = GiaHan::find($ma_gh)->update(['status_gh' => 0]);
+      }elseif($giahan->status_gh == 0){
+        $giahan->status_gh = GiaHan::find($ma_gh)->update(['status_gh' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function edit_giahan($ma_gh){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
