@@ -826,7 +826,7 @@
                 </button>
               </a>
               <a href="{{ URL::to('/chuyen/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
-                <button type="button" class="btn btn-danger position-relative me-2" style="background-color: #04009A;border: none">
+                <button type="button" class="btn btn-danger position-relative me-2" style="background-color: #04009A; border: none;">
                   Chuyển nước,trường...
                   <?php
                     foreach ($count_chuyen_vienchuc as $key => $count) {

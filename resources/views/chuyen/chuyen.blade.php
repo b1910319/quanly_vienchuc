@@ -192,15 +192,15 @@
         @endif
       </div>
     </div>
-    {{-- <table class="table" id="mytable">
+    <table class="table" id="mytable">
       <thead class="table-dark">
         <tr>
           <th scope="col">STT</th>
           <th scope="col">Thông tin viên chức</th>
           <th scope="col">Thông tin lớp học</th>
-          <th scope="col">Thông tin tạm dừng học</th>
+          <th scope="col">Thông tin chuyển trường, nước ....</th>
           <th scope="col">Trạng thái</th>
-          <th scope="col">file tạm dừng học</th>
+          <th scope="col">file xin chuyển</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -223,9 +223,8 @@
               <b>Số điện thoại cơ sở đào tạo: </b> {{ $chuyen->sdtcoso_l }} <br>
             </td>
             <td>
-              <b>Ngày bắt đầu tạm dừng: </b> {{ $chuyen->batdau_c }} <br>
-              <b>Ngày kết thúc tạm dừng: </b> {{ $chuyen->ketthuc_c }} <br>
-              <b>Lý do tạm dừng: </b> {{ $chuyen->lydo_c }}
+              <b>Nội dung chuyển: </b> {{ $chuyen->noidung_c }} <br>
+              <b>Lý do chuyển: </b> {{ $chuyen->lydo_c }}
             </td>
             <td>
               <?php
@@ -284,7 +283,7 @@
           </tr>
         @endforeach
       </tbody>
-    </table> --}}
+    </table>
   </div>
 </div>
 @endsection

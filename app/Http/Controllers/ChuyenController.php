@@ -105,27 +105,27 @@ class ChuyenController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function select_chuyen($ma_c){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $chuyen = Chuyen::find($ma_c);
-  //     if($chuyen->status_c == 1){
-  //       $chuyen->status_c = Chuyen::find($ma_c)->update(['status_c' => 0]);
-  //     }elseif($chuyen->status_c == 0){
-  //       $chuyen->status_c = Chuyen::find($ma_c)->update(['status_c' => 1]);
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function select_chuyen($ma_c){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $chuyen = Chuyen::find($ma_c);
+      if($chuyen->status_c == 1){
+        $chuyen->status_c = Chuyen::find($ma_c)->update(['status_c' => 0]);
+      }elseif($chuyen->status_c == 0){
+        $chuyen->status_c = Chuyen::find($ma_c)->update(['status_c' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function edit_chuyen($ma_c){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
