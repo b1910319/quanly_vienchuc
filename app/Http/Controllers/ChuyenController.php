@@ -126,75 +126,75 @@ class ChuyenController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function edit_chuyen($ma_c){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   $title = "Cập nhật thông tin quyết định";
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $edit = Chuyen::find($ma_c);
-  //     Carbon::now('Asia/Ho_Chi_Minh'); 
-  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-  //       ->select(DB::raw('count(ma_vc) as sum'))
-  //       ->get();
-  //     return view('chuyen.chuyen_edit')
-  //       ->with('edit', $edit)
-  //       ->with('title', $title)
-  //       ->with('count_nangbac', $count_nangbac)
-  //       ->with('phanquyen_qltt', $phanquyen_qltt)
-  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-  //       ->with('phanquyen_admin', $phanquyen_admin);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function update_chuyen(Request $request, $ma_c){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $data = $request->all();
-  //     Carbon::now('Asia/Ho_Chi_Minh');
-  //     $chuyen = Chuyen::find($ma_c);
-  //     $chuyen->ma_vc = $data['ma_vc'];
-  //     $chuyen->ma_l = $data['ma_l'];
-  //     $chuyen->thoigian_c = $data['thoigian_c'];
-  //     $chuyen->lydo_c = $data['lydo_c'];
-  //     $chuyen->status_c = $data['status_c'];
-  //     $get_file = $request->file('file_c');
-  //     if($get_file){
-  //       $new_image = time().rand(0,999).'.'.$get_file->getClientOriginalExtension();
-  //       if($chuyen->file_c != ' '){
-  //         unlink('public/uploads/chuyen/'.$chuyen->file_c);
-  //       }
-  //       $get_file->move('public/uploads/chuyen', $new_image);
-  //       $chuyen->file_c = $new_image;
-  //     }
-  //     $chuyen->updated_c = Carbon::now();
-  //     $chuyen->save();
-  //     return Redirect::to('/chuyen/'.$data['ma_l'].'/'.$data['ma_vc'],302);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function edit_chuyen($ma_c){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Cập nhật thông tin quyết định";
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $edit = Chuyen::find($ma_c);
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      return view('chuyen.chuyen_edit')
+        ->with('edit', $edit)
+        ->with('title', $title)
+        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_admin', $phanquyen_admin);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_chuyen(Request $request, $ma_c){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $chuyen = Chuyen::find($ma_c);
+      $chuyen->ma_vc = $data['ma_vc'];
+      $chuyen->ma_l = $data['ma_l'];
+      $chuyen->noidung_c = $data['noidung_c'];
+      $chuyen->lydo_c = $data['lydo_c'];
+      $chuyen->status_c = $data['status_c'];
+      $get_file = $request->file('file_c');
+      if($get_file){
+        $new_image = time().rand(0,999).'.'.$get_file->getClientOriginalExtension();
+        if($chuyen->file_c != ' '){
+          unlink('public/uploads/chuyen/'.$chuyen->file_c);
+        }
+        $get_file->move('public/uploads/chuyen', $new_image);
+        $chuyen->file_c = $new_image;
+      }
+      $chuyen->updated_c = Carbon::now();
+      $chuyen->save();
+      return Redirect::to('/chuyen/'.$data['ma_l'].'/'.$data['ma_vc'],302);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function delete_chuyen($ma_c){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
