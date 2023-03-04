@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 04, 2023 lúc 09:28 AM
+-- Thời gian đã tạo: Th3 04, 2023 lúc 09:44 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -167,7 +167,7 @@ CREATE TABLE `chuyen` (
 --
 
 INSERT INTO `chuyen` (`ma_c`, `ma_vc`, `ma_l`, `noidung_c`, `lydo_c`, `file_c`, `status_c`, `created_c`, `updated_c`) VALUES
-(6, 49, 7, '6y65', '6u67u', '1677914656193.pdf', 0, '2023-03-04 07:24:16', NULL);
+(8, 49, 7, 'ỷu', 'juy', '1677918816869.pdf', 0, '2023-03-04 08:33:36', NULL);
 
 -- --------------------------------------------------------
 
@@ -1690,7 +1690,7 @@ CREATE TABLE `thoihoc` (
   `ma_l` int(11) NOT NULL,
   `ngay_th` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lydo_th` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `file_th` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_th` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
   `status_th` int(11) NOT NULL DEFAULT 0,
   `created_th` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_th` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
@@ -1701,7 +1701,7 @@ CREATE TABLE `thoihoc` (
 --
 
 INSERT INTO `thoihoc` (`ma_th`, `ma_vc`, `ma_l`, `ngay_th`, `lydo_th`, `file_th`, `status_th`, `created_th`, `updated_th`) VALUES
-(1, 53, 4, '2023-03-17', 'thyô', '1677917777304.pdf', 0, '2023-03-04 08:16:17', NULL);
+(4, 53, 4, '2023-03-15', 'dstôổ', '1677919468791.pdf', 0, '2023-03-04 08:44:28', NULL);
 
 -- --------------------------------------------------------
 
@@ -12794,7 +12794,7 @@ ALTER TABLE `chucvu`
 -- AUTO_INCREMENT cho bảng `chuyen`
 --
 ALTER TABLE `chuyen`
-  MODIFY `ma_c` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ma_c` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `danhmuclop`
@@ -12926,7 +12926,7 @@ ALTER TABLE `quyetdinh`
 -- AUTO_INCREMENT cho bảng `thoihoc`
 --
 ALTER TABLE `thoihoc`
-  MODIFY `ma_th` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ma_th` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `thuongbinh`

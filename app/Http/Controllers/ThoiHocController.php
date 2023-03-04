@@ -201,50 +201,60 @@ class ThoiHocController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function delete_thoihoc($ma_th){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $thoihoc = ThoiHoc::find($ma_th);
-  //     if($thoihoc->file_th != ' '){
-  //       unlink('public/uploads/thoihoc/'.$thoihoc->file_th);
-  //     }
-  //     $thoihoc->delete();
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function delete_all_thoihoc($ma_l, $ma_vc){
-  //   $this->check_login();
-  //   $ma_vc_login = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $list = ThoiHoc::where('ma_l', $ma_l)
-  //       ->where('ma_vc', $ma_vc)
-  //       ->get();
-  //     foreach($list as $key => $thoihoc){
-  //       if($thoihoc->file_th != ' '){
-  //         unlink('public/uploads/thoihoc/'.$thoihoc->file_th);
-  //       }
-  //       $thoihoc->delete();
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function delete_thoihoc($ma_th){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $thoihoc = ThoiHoc::find($ma_th);
+      if($thoihoc->file_th != ' '){
+        unlink('public/uploads/thoihoc/'.$thoihoc->file_th);
+      }
+      $thoihoc->delete();
+      $danhsach = DanhSach::where('ma_vc', $thoihoc->ma_vc)
+        ->where('ma_l', $thoihoc->ma_l)
+        ->first();
+      $danhsach->status_ds = '0';
+      $danhsach->save();
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function delete_all_thoihoc($ma_l, $ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list = ThoiHoc::where('ma_l', $ma_l)
+        ->where('ma_vc', $ma_vc)
+        ->get();
+      foreach($list as $key => $thoihoc){
+        if($thoihoc->file_th != ' '){
+          unlink('public/uploads/thoihoc/'.$thoihoc->file_th);
+        }
+        $danhsach = DanhSach::where('ma_vc', $ma_vc)
+        ->where('ma_l', $ma_l)
+        ->first();
+        $danhsach->status_ds = '0';
+        $danhsach->save();
+        $thoihoc->delete();
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function thoihoc_all(){
   //   $this->check_login();
   //   $ma_vc_login = session()->get('ma_vc');
@@ -273,7 +283,7 @@ class ThoiHocController extends Controller
   //       ->get();
   //     $lop = '';
   //     $vienchuc = '';
-  //     Carbon::now('Asia/Ho_Chi_Minh'); 
+  //     Carbon::now('Asia/Ho_thhi_Minh'); 
   //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
   //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
   //       ->select(DB::raw('count(ma_vc) as sum'))
