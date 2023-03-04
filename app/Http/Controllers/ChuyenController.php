@@ -216,6 +216,11 @@ class ChuyenController extends Controller
         unlink('public/uploads/chuyen/'.$chuyen->file_c);
       }
       $chuyen->delete();
+      $danhsach = DanhSach::where('ma_vc', $chuyen->ma_vc)
+        ->where('ma_l', $chuyen->ma_l)
+        ->first();
+      $danhsach->status_ds = '0';
+      $danhsach->save();
       return redirect()->back();
     }else{
       return Redirect::to('/home');
@@ -238,6 +243,11 @@ class ChuyenController extends Controller
         if($chuyen->file_c != ' '){
           unlink('public/uploads/chuyen/'.$chuyen->file_c);
         }
+        $danhsach = DanhSach::where('ma_vc', $ma_vc)
+        ->where('ma_l', $ma_l)
+        ->first();
+        $danhsach->status_ds = '0';
+        $danhsach->save();
         $chuyen->delete();
       }
       return redirect()->back();
