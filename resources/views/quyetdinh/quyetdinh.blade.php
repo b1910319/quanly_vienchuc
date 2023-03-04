@@ -193,7 +193,7 @@
           </a>
         @endif
       </div>
-    </div>
+    </div> 
     <table class="table" id="mytable">
       <thead class="table-dark">
         <tr>
