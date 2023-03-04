@@ -405,8 +405,8 @@
       <thead class="table-dark">
         <tr>
           <th scope="col">STT</th>
-          <th scope="col">Tên viên chức </th>
-          <th scope="col">Khoa</th>
+          <th scope="col">Viên chức </th>
+          <th scope="col">Trạng thái</th>
           <th scope="col">Thông tin viên chức</th>
           <th scope="col"></th>
         </tr>
@@ -416,14 +416,28 @@
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $danhsach->hoten_vc }}
-            </td>
-            <td>
+              <b>Tên: </b> {{ $danhsach->hoten_vc }} <br>
+              <b>Khoa: </b>
               @foreach ($list_khoa as $khoa)
                 @if ($khoa->ma_k == $danhsach->ma_k)
                   {{ $khoa->ten_k }}
                 @endif
               @endforeach
+            </td>
+            <td>
+              @if ($danhsach->status_ds == 0)
+                <span class="badge rounded-pill text-bg-info">Hiển thị</span>
+              @else
+                @if ($danhsach->status_ds == 1)
+                  <span class="badge rounded-pill text-bg-info">Ẩn</span>
+                @else
+                  @if ($danhsach->status_ds == 2)
+                    <span class="badge rounded-pill text-bg-info">Xin chuyển</span>
+                  @else
+                    
+                  @endif
+                @endif
+              @endif
             </td>
             <td>
               <!-- Button trigger modal -->

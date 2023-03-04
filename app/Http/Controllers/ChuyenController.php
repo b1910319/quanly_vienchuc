@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chuyen;
+use App\Models\DanhSach;
 use App\Models\Lop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -100,6 +101,11 @@ class ChuyenController extends Controller
         $chuyen->file_c = $new_file;
       }
       $chuyen->save();
+      $danhsach = DanhSach::where('ma_vc', $data['ma_vc'])
+        ->where('ma_l', $data['ma_l'])
+        ->first();
+      $danhsach->status_ds = '2';
+      $danhsach->save();
       return redirect()->back();
     }else{
       return Redirect::to('/home');
