@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bac;
 use App\Models\ChucVu;
+use App\Models\Chuyen;
 use App\Models\DanhSach;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -77,6 +78,11 @@ class DanhSachController extends Controller
         ->select(DB::raw('count(giahan.ma_gh) as sum, vienchuc.ma_vc'))
         ->groupBy('vienchuc.ma_vc')
         ->get();
+      $count_chuyen_vienchuc = Chuyen::join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
+        ->where('chuyen.ma_l', $ma_l)
+        ->select(DB::raw('count(chuyen.ma_c) as sum, vienchuc.ma_vc'))
+        ->groupBy('vienchuc.ma_vc')
+        ->get();
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
@@ -106,6 +112,7 @@ class DanhSachController extends Controller
         ->with('title', $title)
         ->with('ma_l', $ma_l)
         ->with('list',$list)
+        ->with('count_chuyen_vienchuc', $count_chuyen_vienchuc)
         ->with('count_giahan_vienchuc', $count_giahan_vienchuc)
         ->with('count_ketqua_vienchuc', $count_ketqua_vienchuc)
         ->with('count_quyetdinh_vienchuc', $count_quyetdinh_vienchuc)

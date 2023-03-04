@@ -809,13 +809,30 @@
                 </button>
               </a>
               <a href="{{ URL::to('/giahan/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
-                <button type="button" class="btn btn-danger position-relative me-2" style="background-color: #FF9D76">
+                <button type="button" class="btn btn-danger position-relative me-2" style="background-color: #FF9D76; border: none">
                   Gia hạn
                   <?php
                     foreach ($count_giahan_vienchuc as $key => $count) {
                       if($count->ma_vc == $danhsach->ma_vc){
                         ?>
                           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: #FF9D76 !important; font-size: 16px">
+                            <?php echo $count->sum ?>
+                            <span class="visually-hidden">unread messages</span>
+                          </span>
+                        <?php
+                      }
+                    } 
+                  ?>
+                </button>
+              </a>
+              <a href="{{ URL::to('/chuyen/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
+                <button type="button" class="btn btn-danger position-relative me-2" style="background-color: #04009A;border: none">
+                  Chuyển nước,trường...
+                  <?php
+                    foreach ($count_chuyen_vienchuc as $key => $count) {
+                      if($count->ma_vc == $danhsach->ma_vc){
+                        ?>
+                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: #04009A !important; font-size: 16px;">
                             <?php echo $count->sum ?>
                             <span class="visually-hidden">unread messages</span>
                           </span>

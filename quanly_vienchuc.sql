@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 04, 2023 lúc 02:49 AM
+-- Thời gian đã tạo: Th3 04, 2023 lúc 05:03 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -147,6 +147,32 @@ INSERT INTO `chucvu` (`ma_cv`, `ten_cv`, `status_cv`, `created_cv`, `updated_cv`
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `chuyen`
+--
+
+CREATE TABLE `chuyen` (
+  `ma_c` int(11) NOT NULL,
+  `ma_vc` int(11) NOT NULL,
+  `ma_l` int(11) NOT NULL,
+  `noidung_c` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lydo_c` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_c` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_c` int(11) NOT NULL DEFAULT 0,
+  `created_c` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_c` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chuyen`
+--
+
+INSERT INTO `chuyen` (`ma_c`, `ma_vc`, `ma_l`, `noidung_c`, `lydo_c`, `file_c`, `status_c`, `created_c`, `updated_c`) VALUES
+(1, 49, 7, 'gt', 'fgth', '1677902605268.pdf', 0, '2023-03-04 04:03:25', NULL),
+(2, 49, 7, 'trinh', 'gfgtet', '1677902617400.pdf', 0, '2023-03-04 04:03:37', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `danhmuclop`
 --
 
@@ -255,7 +281,7 @@ CREATE TABLE `dunghoc` (
 INSERT INTO `dunghoc` (`ma_dh`, `ma_vc`, `ma_l`, `batdau_dh`, `ketthuc_dh`, `lydo_dh`, `file_dh`, `status_dh`, `created_dh`, `updated_dh`) VALUES
 (3, 56, 4, '2023-02-28', '2023-03-31', 'xdfrew', '1677835626636.pdf', 0, '2023-03-03 09:27:06', NULL),
 (4, 56, 4, '2023-03-14', '2023-03-22', 'trinh', '1677835644321.pdf', 0, '2023-03-03 09:27:24', '2023-03-03 09:33:26'),
-(5, 49, 7, '2023-02-26', '2023-04-08', 'bận', '1677836133953.pdf', 0, '2023-03-03 09:35:33', NULL);
+(9, 31, 7, '2023-02-26', '2023-03-31', 'sgetổ', '1677896721763.pdf', 0, '2023-03-04 02:25:21', NULL);
 
 -- --------------------------------------------------------
 
@@ -299,8 +325,9 @@ CREATE TABLE `giahan` (
 --
 
 INSERT INTO `giahan` (`ma_gh`, `ma_l`, `ma_vc`, `thoigian_gh`, `lydo_gh`, `file_gh`, `status_gh`, `created_gh`, `updated_gh`) VALUES
-(1, 7, 49, '2023-03-11', 'sdsf', '167789454847.pdf', 0, '2023-03-04 01:49:08', NULL),
-(2, 7, 49, '2023-03-31', 'ggsxá', '1677894575122.pdf', 1, '2023-03-04 01:49:35', NULL);
+(5, 7, 49, '2023-03-15', 'fdgrte63', '1677896484317.pdf', 0, '2023-03-04 02:21:24', NULL),
+(7, 4, 53, '2023-02-28', 'fbhryẁ', '1677897078486.pdf', 0, '2023-03-04 02:31:18', NULL),
+(9, 7, 31, '2023-03-13', 'tbhth', '1677900451496.pdf', 0, '2023-03-04 03:27:31', NULL);
 
 -- --------------------------------------------------------
 
@@ -12550,6 +12577,12 @@ ALTER TABLE `chucvu`
   ADD PRIMARY KEY (`ma_cv`);
 
 --
+-- Chỉ mục cho bảng `chuyen`
+--
+ALTER TABLE `chuyen`
+  ADD PRIMARY KEY (`ma_c`);
+
+--
 -- Chỉ mục cho bảng `danhmuclop`
 --
 ALTER TABLE `danhmuclop`
@@ -12728,6 +12761,12 @@ ALTER TABLE `chucvu`
   MODIFY `ma_cv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT cho bảng `chuyen`
+--
+ALTER TABLE `chuyen`
+  MODIFY `ma_c` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT cho bảng `danhmuclop`
 --
 ALTER TABLE `danhmuclop`
@@ -12743,7 +12782,7 @@ ALTER TABLE `dantoc`
 -- AUTO_INCREMENT cho bảng `dunghoc`
 --
 ALTER TABLE `dunghoc`
-  MODIFY `ma_dh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ma_dh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `giadinh`
@@ -12755,7 +12794,7 @@ ALTER TABLE `giadinh`
 -- AUTO_INCREMENT cho bảng `giahan`
 --
 ALTER TABLE `giahan`
-  MODIFY `ma_gh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ma_gh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `hedaotao`
