@@ -20,6 +20,7 @@ use App\Models\Lop;
 use App\Models\Ngach;
 use App\Models\PhanQuyen;
 use App\Models\QuyetDinh;
+use App\Models\ThoiHoc;
 use App\Models\ThuongBinh;
 use App\Models\Tinh;
 use App\Models\TonGiao;
@@ -83,6 +84,11 @@ class DanhSachController extends Controller
         ->select(DB::raw('count(chuyen.ma_c) as sum, vienchuc.ma_vc'))
         ->groupBy('vienchuc.ma_vc')
         ->get();
+      $count_thoihoc_vienchuc = ThoiHoc::join('vienchuc', 'vienchuc.ma_vc', '=', 'thoihoc.ma_vc')
+        ->where('thoihoc.ma_l', $ma_l)
+        ->select(DB::raw('count(thoihoc.ma_th) as sum, vienchuc.ma_vc'))
+        ->groupBy('vienchuc.ma_vc')
+        ->get();
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
@@ -112,6 +118,7 @@ class DanhSachController extends Controller
         ->with('title', $title)
         ->with('ma_l', $ma_l)
         ->with('list',$list)
+        ->with('count_thoihoc_vienchuc', $count_thoihoc_vienchuc)
         ->with('count_chuyen_vienchuc', $count_chuyen_vienchuc)
         ->with('count_giahan_vienchuc', $count_giahan_vienchuc)
         ->with('count_ketqua_vienchuc', $count_ketqua_vienchuc)

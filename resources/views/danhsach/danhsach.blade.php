@@ -434,7 +434,11 @@
                   @if ($danhsach->status_ds == 2)
                     <span class="badge rounded-pill text-bg-info">Xin chuyển</span>
                   @else
-                    
+                    @if ($danhsach->status_ds == 3)
+                      <span class="badge rounded-pill text-bg-info">Thôi học</span>
+                    @else
+                      
+                    @endif
                   @endif
                 @endif
               @endif
@@ -847,6 +851,23 @@
                       if($count->ma_vc == $danhsach->ma_vc){
                         ?>
                           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: #04009A !important; font-size: 16px;">
+                            <?php echo $count->sum ?>
+                            <span class="visually-hidden">unread messages</span>
+                          </span>
+                        <?php
+                      }
+                    } 
+                  ?>
+                </button>
+              </a>
+              <a href="{{ URL::to('/thoihoc/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
+                <button type="button" class="btn btn-danger position-relative me-2" style="background-color: #E5890A; border: none;">
+                  Thôi học
+                  <?php
+                    foreach ($count_thoihoc_vienchuc as $key => $count) {
+                      if($count->ma_vc == $danhsach->ma_vc){
+                        ?>
+                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: #E5890A !important; font-size: 16px;">
                             <?php echo $count->sum ?>
                             <span class="visually-hidden">unread messages</span>
                           </span>

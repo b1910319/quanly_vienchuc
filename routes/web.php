@@ -31,6 +31,7 @@ use App\Http\Controllers\KyLuatController;
 use App\Http\Controllers\LoaiKyLuatController;
 use App\Http\Controllers\LopController;
 use App\Http\Controllers\QuyetDinhController;
+use App\Http\Controllers\ThoiHocController;
 
 Route::get('/login',[HomeController::class, 'index']);
 Route::get('/home',[HomeController::class, 'home']);
@@ -490,7 +491,15 @@ Route::get('/delete_chuyen_all',[ChuyenController::class, 'delete_chuyen_all']);
 
 
 
-
+Route::get('/thoihoc/{ma_l}/{ma_vc}',[ThoiHocController::class, 'thoihoc']);
+Route::post('/add_thoihoc',[ThoiHocController::class, 'add_thoihoc']);
+Route::get('/select_thoihoc/{ma_th}',[ThoiHocController::class, 'select_thoihoc']);
+Route::get('/edit_thoihoc/{ma_th}',[ThoiHocController::class, 'edit_thoihoc']);
+Route::post('/update_thoihoc/{ma_th}',[ThoiHocController::class, 'update_thoihoc']);
+Route::get('/delete_thoihoc/{ma_th}',[ThoiHocController::class, 'delete_thoihoc']);
+Route::get('/delete_all_thoihoc/{ma_l}/{ma_vc}',[ThoiHocController::class, 'delete_all_thoihoc']);
+Route::get('/thoihoc_all',[ThoiHocController::class, 'thoihoc_all']);
+Route::get('/delete_thoihoc_all',[ThoiHocController::class, 'delete_thoihoc_all']);
 
 
 
