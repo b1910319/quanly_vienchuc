@@ -357,6 +357,9 @@
                   <li>
                     <a href="{{ URL::to('/chuyen_all') }}">Tất cả thông tin xin chuyển trường / nước / ngành học của viên chức</a>
                   </li>
+                  <li>
+                    <a href="{{ URL::to('/thoihoc_all') }}">Tất cả thông tin xin thôi học của viên chức</a>
+                  </li>
                 </ul>
               </li>
             @endif
