@@ -216,29 +216,30 @@ class GiaHanController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function delete_all_giahan($ma_l){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $list = GiaHan::where('ma_l', $ma_l)
-  //       ->get();
-  //     foreach($list as $key => $giahan){
-  //       if($giahan->file_gh != ' '){
-  //         unlink('public/uploads/giahan/'.$giahan->file_gh);
-  //       }
-  //       $giahan->delete();
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function delete_all_giahan($ma_l, $ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list = GiaHan::where('ma_l', $ma_l)
+        ->where('ma_vc', $ma_vc)
+        ->get();
+      foreach($list as $key => $giahan){
+        if($giahan->file_gh != ' '){
+          unlink('public/uploads/giahan/'.$giahan->file_gh);
+        }
+        $giahan->delete();
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function giahan_all(){
   //   $this->check_login();
   //   $ma_vc_login = session()->get('ma_vc');
