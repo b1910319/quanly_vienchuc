@@ -111,27 +111,27 @@ class ThoiHocController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function select_thoihoc($ma_th){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $thoihoc = ThoiHoc::find($ma_th);
-  //     if($thoihoc->status_th == 1){
-  //       $thoihoc->status_th = ThoiHoc::find($ma_th)->update(['status_th' => 0]);
-  //     }elseif($thoihoc->status_th == 0){
-  //       $thoihoc->status_th = ThoiHoc::find($ma_th)->update(['status_th' => 1]);
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function select_thoihoc($ma_th){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $thoihoc = ThoiHoc::find($ma_th);
+      if($thoihoc->status_th == 1){
+        $thoihoc->status_th = ThoiHoc::find($ma_th)->update(['status_th' => 0]);
+      }elseif($thoihoc->status_th == 0){
+        $thoihoc->status_th = ThoiHoc::find($ma_th)->update(['status_th' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function edit_thoihoc($ma_th){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');

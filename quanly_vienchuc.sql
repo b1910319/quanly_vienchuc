@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 04, 2023 lúc 07:58 AM
+-- Thời gian đã tạo: Th3 04, 2023 lúc 09:28 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -167,8 +167,7 @@ CREATE TABLE `chuyen` (
 --
 
 INSERT INTO `chuyen` (`ma_c`, `ma_vc`, `ma_l`, `noidung_c`, `lydo_c`, `file_c`, `status_c`, `created_c`, `updated_c`) VALUES
-(3, 49, 7, 'dfg', 'fhte', '1677913087919.pdf', 0, '2023-03-04 06:58:07', NULL),
-(4, 53, 4, '̀yồy', 'thỳôy', '1677913111293.pdf', 0, '2023-03-04 06:58:31', NULL);
+(6, 49, 7, '6y65', '6u67u', '1677914656193.pdf', 0, '2023-03-04 07:24:16', NULL);
 
 -- --------------------------------------------------------
 
@@ -214,10 +213,10 @@ CREATE TABLE `danhsach` (
 --
 
 INSERT INTO `danhsach` (`ma_vc`, `ma_l`, `status_ds`, `created_ds`, `updated_ds`) VALUES
-(49, 7, 0, '2023-03-01 07:52:34', ' '),
+(49, 7, 2, '2023-03-01 07:52:34', ' '),
 (31, 7, 0, '2023-03-01 07:52:37', ' '),
 (56, 4, 0, '2023-03-01 07:54:19', ' '),
-(53, 4, 0, '2023-03-01 07:54:21', ' ');
+(53, 4, 3, '2023-03-01 07:54:21', ' ');
 
 -- --------------------------------------------------------
 
@@ -1678,6 +1677,31 @@ INSERT INTO `quyetdinh` (`ma_qd`, `ma_vc`, `ma_l`, `so_qd`, `ngayky_qd`, `file_q
 (22, 31, 7, '456', '2023-02-28', '1677743158589.pdf', 0, '2023-03-02 07:45:58', ' '),
 (23, 56, 4, '789', '2023-02-26', '167774322486.pdf', 0, '2023-03-02 07:47:04', ' '),
 (24, 53, 4, '159', '2023-02-27', '1677743257611.pdf', 0, '2023-03-02 07:47:37', '2023-03-03 04:32:09');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `thoihoc`
+--
+
+CREATE TABLE `thoihoc` (
+  `ma_th` int(11) NOT NULL,
+  `ma_vc` int(11) NOT NULL,
+  `ma_l` int(11) NOT NULL,
+  `ngay_th` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lydo_th` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_th` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_th` int(11) NOT NULL DEFAULT 0,
+  `created_th` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_th` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `thoihoc`
+--
+
+INSERT INTO `thoihoc` (`ma_th`, `ma_vc`, `ma_l`, `ngay_th`, `lydo_th`, `file_th`, `status_th`, `created_th`, `updated_th`) VALUES
+(1, 53, 4, '2023-03-17', 'thyô', '1677917777304.pdf', 0, '2023-03-04 08:16:17', NULL);
 
 -- --------------------------------------------------------
 
@@ -12709,6 +12733,12 @@ ALTER TABLE `quyetdinh`
   ADD PRIMARY KEY (`ma_qd`);
 
 --
+-- Chỉ mục cho bảng `thoihoc`
+--
+ALTER TABLE `thoihoc`
+  ADD PRIMARY KEY (`ma_th`);
+
+--
 -- Chỉ mục cho bảng `thuongbinh`
 --
 ALTER TABLE `thuongbinh`
@@ -12764,7 +12794,7 @@ ALTER TABLE `chucvu`
 -- AUTO_INCREMENT cho bảng `chuyen`
 --
 ALTER TABLE `chuyen`
-  MODIFY `ma_c` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ma_c` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `danhmuclop`
@@ -12891,6 +12921,12 @@ ALTER TABLE `quyen`
 --
 ALTER TABLE `quyetdinh`
   MODIFY `ma_qd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT cho bảng `thoihoc`
+--
+ALTER TABLE `thoihoc`
+  MODIFY `ma_th` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `thuongbinh`
