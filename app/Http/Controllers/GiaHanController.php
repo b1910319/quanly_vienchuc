@@ -240,81 +240,81 @@ class GiaHanController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function giahan_all(){
-  //   $this->check_login();
-  //   $ma_vc_login = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   $title = "Cập nhật thông tin tạm dừng học của viên chức";
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $list = GiaHan::join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
-  //       ->join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
-  //       ->orderBy('ma_gh', 'desc')
-  //       ->get();
-  //     $count = GiaHan::select(DB::raw('count(ma_gh) as sum'))
-  //       ->get();
-  //     $count_status = GiaHan::select(DB::raw('count(ma_gh) as sum, status_gh'))
-  //       ->groupBy('status_gh')
-  //       ->get();
-  //     $lop = '';
-  //     $vienchuc = '';
-  //     Carbon::now('Asia/Ho_Chi_Minh'); 
-  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-  //       ->select(DB::raw('count(ma_vc) as sum'))
-  //       ->get();
-  //     $list_vienchuc = VienChuc::join('danhsach', 'danhsach.ma_vc', '=', 'vienchuc.ma_vc')
-  //       ->get();
-  //     $list_lop = Lop::orderBy('ten_l', 'asc')
-  //       ->get();
-  //     return view('giahan.giahan')
-  //       ->with('phanquyen_admin', $phanquyen_admin)
-  //       ->with('phanquyen_qltt', $phanquyen_qltt)
-  //       ->with('count', $count)
-  //       ->with('title', $title)
-  //       ->with('count_status', $count_status)
-  //       ->with('list', $list)
-  //       ->with('lop', $lop)
-  //       ->with('list_vienchuc', $list_vienchuc)
-  //       ->with('list_lop', $list_lop)
-  //       ->with('vienchuc', $vienchuc)
-  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-  //       ->with('count_nangbac', $count_nangbac);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function delete_giahan_all(){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $list = GiaHan::get();
-  //     foreach($list as $key => $giahan){
-  //       if($giahan->file_gh != ' '){
-  //         unlink('public/uploads/giahan/'.$giahan->file_gh);
-  //       }
-  //       $giahan->delete();
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function giahan_all(){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Cập nhật thông tin tạm dừng học của viên chức";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list = GiaHan::join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
+        ->join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+        ->orderBy('ma_gh', 'desc')
+        ->get();
+      $count = GiaHan::select(DB::raw('count(ma_gh) as sum'))
+        ->get();
+      $count_status = GiaHan::select(DB::raw('count(ma_gh) as sum, status_gh'))
+        ->groupBy('status_gh')
+        ->get();
+      $lop = '';
+      $vienchuc = '';
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      $list_vienchuc = VienChuc::join('danhsach', 'danhsach.ma_vc', '=', 'vienchuc.ma_vc')
+        ->get();
+      $list_lop = Lop::orderBy('ten_l', 'asc')
+        ->get();
+      return view('giahan.giahan')
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('count', $count)
+        ->with('title', $title)
+        ->with('count_status', $count_status)
+        ->with('list', $list)
+        ->with('lop', $lop)
+        ->with('list_vienchuc', $list_vienchuc)
+        ->with('list_lop', $list_lop)
+        ->with('vienchuc', $vienchuc)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('count_nangbac', $count_nangbac);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function delete_giahan_all(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list = GiaHan::get();
+      foreach($list as $key => $giahan){
+        if($giahan->file_gh != ' '){
+          unlink('public/uploads/giahan/'.$giahan->file_gh);
+        }
+        $giahan->delete();
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }
