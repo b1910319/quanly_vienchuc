@@ -1988,8 +1988,12 @@ class ThongKeController extends Controller
       $count_ma_khoa = '';
       $count_kt_time = '';
       $count_ma_lkl ='';
+      $count_kl_ma_khoa = '';
+      $count_kl_thoigian ='';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
+        ->with('count_kl_thoigian',$count_kl_thoigian)
+        ->with('count_kl_ma_khoa',$count_kl_ma_khoa)
         ->with('count_ma_lkl', $count_ma_lkl)
         ->with('count_kt_time', $count_kt_time)
         ->with('count_ma_khoa', $count_ma_khoa)
@@ -2199,8 +2203,12 @@ class ThongKeController extends Controller
       $count_ma_khoa = '';
       $count_kt_time = '';
       $count_ma_lkl ='';
+      $count_kl_ma_khoa = '';
+      $count_kl_thoigian ='';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
+        ->with('count_kl_thoigian',$count_kl_thoigian)
+        ->with('count_kl_ma_khoa',$count_kl_ma_khoa)
         ->with('count_ma_lkl', $count_ma_lkl)
         ->with('count_kt_time', $count_kt_time)
         ->with('count_ma_khoa', $count_ma_khoa)
@@ -2328,8 +2336,12 @@ class ThongKeController extends Controller
       $count_ma_htkt ='';
       $count_ma_khoa = '';
       $count_ma_lkl ='';
+      $count_kl_ma_khoa = '';
+      $count_kl_thoigian ='';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
+        ->with('count_kl_thoigian',$count_kl_thoigian)
+        ->with('count_kl_ma_khoa',$count_kl_ma_khoa)
         ->with('count_ma_lkl', $count_ma_lkl)
         ->with('count_kt_time', $count_kt_time)
         ->with('count_ma_khoa', $count_ma_khoa)
@@ -2625,8 +2637,12 @@ class ThongKeController extends Controller
       $count_ma_htkt ='';
       $count_kt_time = '';
       $count_ma_lkl ='';
+      $count_kl_ma_khoa = '';
+      $count_kl_thoigian ='';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
+        ->with('count_kl_thoigian',$count_kl_thoigian)
+        ->with('count_kl_ma_khoa',$count_kl_ma_khoa)
         ->with('count_ma_lkl', $count_ma_lkl)
         ->with('count_kt_time', $count_kt_time)
         ->with('ma_k', $data['ma_k'])

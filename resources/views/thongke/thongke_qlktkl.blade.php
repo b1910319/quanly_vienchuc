@@ -391,7 +391,7 @@
             </div>
           </div>
           <div class="col-1">
-            <a href="{{ URL::to('thongke_qlktkl_lkl') }}">
+            <a href="{{ URL::to('thongke_qlktkl_kl_khoa') }}">
               <button type="button" class="btn btn-warning">
                 <i class="fa-solid fa-arrows-rotate"></i>
               </button>
