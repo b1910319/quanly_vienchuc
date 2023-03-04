@@ -93,7 +93,6 @@ class DungHocController extends Controller
       $dunghoc->batdau_dh = $data['batdau_dh'];
       $dunghoc->ketthuc_dh = $data['ketthuc_dh'];
       $dunghoc->lydo_dh = $data['lydo_dh'];
-      $dunghoc->ma_l = $data['ma_l'];
       $dunghoc->status_dh = $data['status_dh'];
       $get_file = $request->file('file_dh');
       if($get_file){
@@ -298,26 +297,26 @@ class DungHocController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function delete_dunghoc_all(){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $list = DungHoc::get();
-  //     foreach($list as $key => $dunghoc){
-  //       if($dunghoc->file_dh != ' '){
-  //         unlink('public/uploads/dunghoc/'.$dunghoc->file_dh);
-  //       }
-  //       $dunghoc->delete();
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function delete_dunghoc_all(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list = DungHoc::get();
+      foreach($list as $key => $dunghoc){
+        if($dunghoc->file_dh != ' '){
+          unlink('public/uploads/dunghoc/'.$dunghoc->file_dh);
+        }
+        $dunghoc->delete();
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }

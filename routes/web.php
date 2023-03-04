@@ -19,6 +19,7 @@ use App\Http\Controllers\BangCapController;
 use App\Http\Controllers\DanhMucLopController;
 use App\Http\Controllers\DanhSachController;
 use App\Http\Controllers\DungHocController;
+use App\Http\Controllers\GiaHanController;
 use App\Http\Controllers\NghiHuuController;
 use App\Http\Controllers\ThongKeController;
 use App\Http\Controllers\LoaiKhenThuongController;
@@ -457,7 +458,15 @@ Route::get('/delete_dunghoc_all',[DungHocController::class, 'delete_dunghoc_all'
 
 
 
-
+Route::get('/giahan/{ma_l}/{ma_vc}',[GiaHanController::class, 'giahan']);
+Route::post('/add_giahan',[GiaHanController::class, 'add_giahan']);
+Route::get('/select_giahan/{ma_gh}',[GiaHanController::class, 'select_giahan']);
+Route::get('/edit_giahan/{ma_gh}',[GiaHanController::class, 'edit_giahan']);
+Route::post('/update_giahan/{ma_gh}',[GiaHanController::class, 'update_giahan']);
+Route::get('/delete_giahan/{ma_gh}',[GiaHanController::class, 'delete_giahan']);
+Route::get('/delete_all_giahan/{ma_l}',[GiaHanController::class, 'delete_all_giahan']);
+Route::get('/giahan_all',[GiaHanController::class, 'giahan_all']);
+Route::get('/delete_giahan_all',[GiaHanController::class, 'delete_giahan_all']);
 
 
 

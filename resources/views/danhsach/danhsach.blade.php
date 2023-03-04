@@ -808,6 +808,23 @@
                   ?>
                 </button>
               </a>
+              <a href="{{ URL::to('/giahan/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
+                <button type="button" class="btn btn-danger position-relative me-2" style="background-color: #FF9D76">
+                  Gia hạn
+                  <?php
+                    foreach ($count_giahan_vienchuc as $key => $count) {
+                      if($count->ma_vc == $danhsach->ma_vc){
+                        ?>
+                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: #FF9D76 !important; font-size: 16px">
+                            <?php echo $count->sum ?>
+                            <span class="visually-hidden">unread messages</span>
+                          </span>
+                        <?php
+                      }
+                    } 
+                  ?>
+                </button>
+              </a>
               <a onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_danhsach/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
                 <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               </a>

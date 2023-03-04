@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 03, 2023 lúc 10:33 AM
+-- Thời gian đã tạo: Th3 04, 2023 lúc 02:49 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -254,7 +254,8 @@ CREATE TABLE `dunghoc` (
 
 INSERT INTO `dunghoc` (`ma_dh`, `ma_vc`, `ma_l`, `batdau_dh`, `ketthuc_dh`, `lydo_dh`, `file_dh`, `status_dh`, `created_dh`, `updated_dh`) VALUES
 (3, 56, 4, '2023-02-28', '2023-03-31', 'xdfrew', '1677835626636.pdf', 0, '2023-03-03 09:27:06', NULL),
-(4, 56, 4, '2023-03-14', '2023-03-22', 'trinh', '1677835644321.pdf', 0, '2023-03-03 09:27:24', '2023-03-03 09:33:26');
+(4, 56, 4, '2023-03-14', '2023-03-22', 'trinh', '1677835644321.pdf', 0, '2023-03-03 09:27:24', '2023-03-03 09:33:26'),
+(5, 49, 7, '2023-02-26', '2023-04-08', 'bận', '1677836133953.pdf', 0, '2023-03-03 09:35:33', NULL);
 
 -- --------------------------------------------------------
 
@@ -274,6 +275,32 @@ CREATE TABLE `giadinh` (
   `created_gd` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_gd` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `giahan`
+--
+
+CREATE TABLE `giahan` (
+  `ma_gh` int(11) NOT NULL,
+  `ma_l` int(11) NOT NULL,
+  `ma_vc` int(11) NOT NULL,
+  `thoigian_gh` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lydo_gh` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_gh` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_gh` int(11) NOT NULL DEFAULT 0,
+  `created_gh` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_gh` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `giahan`
+--
+
+INSERT INTO `giahan` (`ma_gh`, `ma_l`, `ma_vc`, `thoigian_gh`, `lydo_gh`, `file_gh`, `status_gh`, `created_gh`, `updated_gh`) VALUES
+(1, 7, 49, '2023-03-11', 'sdsf', '167789454847.pdf', 0, '2023-03-04 01:49:08', NULL),
+(2, 7, 49, '2023-03-31', 'ggsxá', '1677894575122.pdf', 1, '2023-03-04 01:49:35', NULL);
 
 -- --------------------------------------------------------
 
@@ -1080,7 +1107,6 @@ CREATE TABLE `ketqua` (
 --
 
 INSERT INTO `ketqua` (`ma_kq`, `ma_l`, `ma_vc`, `tennguoihuongdan_kq`, `emailnguoihuongdan_kq`, `noidungaotao_kq`, `bangduoccap_kq`, `ngaycapbang_kq`, `xeploai_kq`, `detaitotnghiep_kq`, `ngayvenuoc_kq`, `danhgiacuacoso_kq`, `kiennghi_kq`, `status_kq`, `created_kq`, `updated_kq`) VALUES
-(4, 7, 49, 'Lê Diểm Trinh', 'trinhle12012001@gmail.com', 'Với bằng kép về Cử nhân Nghệ thuật/Cử nhân Kinh doanh, bạn sẽ sẵn sàng trở thành một doanh nhân toàn diện, người hiểu được điều gì là tốt cho thế giới.  Xây dựng kiến ​​thức kinh doanh, quản lý và vận hành của bạn để bạn sẵn sàng tạo dấu ấn trong thế giới kinh doanh. Sau đó, đi sâu hơn, trau dồi tư duy phản biện và kỹ năng giao tiếp khi bạn khám phá các vấn đề xã hội, kinh tế và văn hóa toàn cầu quan trọng ảnh hưởng đến hoạt động của xã hội đương đại.', 'Cử nhân', '2023-02-27', 'Xuất sắc', 'Website thương mại điện tử', '2023-03-14', 'Hoàn thành xuất sắc khoá học', 'Không có', 0, '2023-03-03 01:58:01', ' '),
 (5, 7, 31, 'dfthyetgf', 'dvư', 'dvưt', 'dtew', '2023-02-26', 'dfrứ', 'fdẻw', '2023-03-06', 'dcfưư', 'fddrư', 0, '2023-03-03 02:07:08', ' ');
 
 -- --------------------------------------------------------
@@ -12548,6 +12574,12 @@ ALTER TABLE `giadinh`
   ADD PRIMARY KEY (`ma_gd`);
 
 --
+-- Chỉ mục cho bảng `giahan`
+--
+ALTER TABLE `giahan`
+  ADD PRIMARY KEY (`ma_gh`);
+
+--
 -- Chỉ mục cho bảng `hedaotao`
 --
 ALTER TABLE `hedaotao`
@@ -12711,13 +12743,19 @@ ALTER TABLE `dantoc`
 -- AUTO_INCREMENT cho bảng `dunghoc`
 --
 ALTER TABLE `dunghoc`
-  MODIFY `ma_dh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ma_dh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `giadinh`
 --
 ALTER TABLE `giadinh`
   MODIFY `ma_gd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT cho bảng `giahan`
+--
+ALTER TABLE `giahan`
+  MODIFY `ma_gh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `hedaotao`

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\DanToc;
 use App\Models\DungHoc;
+use App\Models\GiaHan;
 use App\Models\HeDaoTao;
 use App\Models\KetQua;
 use App\Models\Khoa;
@@ -71,6 +72,11 @@ class DanhSachController extends Controller
         ->select(DB::raw('count(ketqua.ma_kq) as sum, vienchuc.ma_vc'))
         ->groupBy('vienchuc.ma_vc')
         ->get();
+      $count_giahan_vienchuc = GiaHan::join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
+        ->where('giahan.ma_l', $ma_l)
+        ->select(DB::raw('count(giahan.ma_gh) as sum, vienchuc.ma_vc'))
+        ->groupBy('vienchuc.ma_vc')
+        ->get();
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
@@ -100,6 +106,7 @@ class DanhSachController extends Controller
         ->with('title', $title)
         ->with('ma_l', $ma_l)
         ->with('list',$list)
+        ->with('count_giahan_vienchuc', $count_giahan_vienchuc)
         ->with('count_ketqua_vienchuc', $count_ketqua_vienchuc)
         ->with('count_quyetdinh_vienchuc', $count_quyetdinh_vienchuc)
         ->with('list_vienchuc', $list_vienchuc)
