@@ -349,10 +349,7 @@
                     <a href="{{ URL::to('/ketqua_all') }}">Kết quả quá trình học <br> của viên chức</a>
                   </li>
                   <li>
-                    <a href="email-compose.html">Compose Email</a>
-                  </li>
-                  <li>
-                    <a href="email-templates.html">Email Templates</a>
+                    <a href="{{ URL::to('/dunghoc_all') }}">Thông tin tạm dừng học <br> của viên chức</a>
                   </li>
                 </ul>
               </li>
