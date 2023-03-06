@@ -320,6 +320,7 @@ Route::get('/thongke_qlcttc_dunghoc_time_pdf/{batdau}/{ketthuc}',[ThongKeControl
 Route::post('/thongke_qlcttc_dunghoc_khoa',[ThongKeController::class, 'thongke_qlcttc_dunghoc_khoa']);
 Route::get('/thongke_qlcttc_dunghoc_khoa_pdf/{ma_k}',[ThongKeController::class, 'thongke_qlcttc_dunghoc_khoa_pdf']);
 Route::post('/thongke_qlcttc_dunghoc_lop',[ThongKeController::class, 'thongke_qlcttc_dunghoc_lop']);
+Route::get('/thongke_qlcttc_dunghoc_lop_pdf/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_dunghoc_lop_pdf']);
 
 
 
