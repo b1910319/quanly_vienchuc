@@ -6,7 +6,7 @@
       <div class="mt-2" >
         <a href="{{ URL::to('thongke_qltt') }}">
           <button type="button" class="btn btn-primary" style="background-color:
-            @if ($count_ngach != '')
+            @if ($count_ngach != '' || $count_ngach_ma_n != '')
               #850000
             @else
               gray
@@ -19,7 +19,7 @@
       <div class="mt-2">
         <a href="{{ URL::to('thongke_qltt_lbc') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_loaibangcap != '')
+            @if ($count_loaibangcap != '' || $count_lbc != '')
               #850000
             @else
               gray
@@ -32,7 +32,7 @@
       <div class="mt-2">
         <a href="{{ URL::to('thongke_qltt_chucvu') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_chucvu != '')
+            @if ($count_chucvu != '' || $count_cv != '')
               #850000
             @else
               gray
@@ -45,7 +45,7 @@
       <div class="mt-2">
         <a href="{{ URL::to('thongke_qltt_hdt') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_hedaotao != '')
+            @if ($count_hedaotao != '' || $count_hedaotao_ma_hdt != '')
               #850000
             @else
               gray
@@ -58,7 +58,7 @@
       <div class="mt-2">
         <a href="{{ URL::to('thongke_qltt_khoa') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_khoa != '')
+            @if ($count_khoa != '' || $count_khoa_ma_k != '')
               #850000
             @else
               gray
@@ -71,7 +71,7 @@
       <div class="mt-2">
         <a href="{{ URL::to('thongke_qltt_nghihuu') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_nghihuu != '')
+            @if ($count_nghihuu != '' || $count_nghihuu_time != '' || $count_nghihuu_khoa != '')
               #850000
             @else
               gray
@@ -84,7 +84,7 @@
       <div class="mt-2">
         <a href="{{ URL::to('thongke_qltt_quequan') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_tinh != '')
+            @if ($count_tinh != '' || $count_quequan_tinh != '')
               #850000
             @else
               gray
