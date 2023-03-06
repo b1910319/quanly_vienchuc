@@ -3410,9 +3410,11 @@ class ThongKeController extends Controller
         ->get();
       $count_ketqua_ma_lop = '';
       $count_giahan = '';
+      $count_giahan_time = '';
       return view('thongke.thongke_qlcttc')
         ->with('title', $title)
         ->with('count_giahan', $count_giahan)
+        ->with('count_giahan_time',$count_giahan_time)
         ->with('count_ketqua_lop', $count_ketqua_lop)
         ->with('list_lop', $list_lop)
         ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
@@ -3485,9 +3487,11 @@ class ThongKeController extends Controller
         ->get();
       $count_ketqua_lop = '';
       $count_giahan = '';
+      $count_giahan_time = '';
       return view('thongke.thongke_qlcttc')
         ->with('title', $title)
         ->with('count_giahan', $count_giahan)
+        ->with('count_giahan_time',$count_giahan_time)
         ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
         ->with('list_lop', $list_lop)
         ->with('ma_l', $data['ma_l'])
@@ -3560,8 +3564,10 @@ class ThongKeController extends Controller
         ->select(DB::raw('count(giahan.ma_gh) as sum, giahan.thoigian_gh'))
         ->groupBy('giahan.thoigian_gh')
         ->get();
+      $count_giahan_time = '';
       return view('thongke.thongke_qlcttc')
         ->with('title', $title)
+        ->with('count_giahan_time',$count_giahan_time)
         ->with('count_ketqua_lop', $count_ketqua_lop)
         ->with('list_lop', $list_lop)
         ->with('count_giahan', $count_giahan)
@@ -3596,6 +3602,58 @@ class ThongKeController extends Controller
         'title' => $title,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlcttc_giahan_time(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Thống kê";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $data = $request->all();
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      $count_ketqua_ma_lop = '';
+      $list_lop = Lop::orderBy('ten_l', 'asc')
+        ->get();
+      $count_ketqua_lop = '';
+      $count_giahan = '';
+      $count_giahan_time = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+        ->whereBetween('thoigian_gh', [$data['batdau'], $data['ketthuc']])
+        ->select(DB::raw('count(giahan.ma_gh) as sum, giahan.thoigian_gh'))
+        ->groupBy('giahan.thoigian_gh')
+        ->get();
+      return view('thongke.thongke_qlcttc')
+        ->with('title', $title)
+        ->with('count_giahan', $count_giahan)
+        ->with('count_giahan_time',$count_giahan_time)
+        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
+        ->with('list_lop', $list_lop)
+        ->with('batdau', $data['batdau'])
+        ->with('ketthuc', $data['ketthuc'])
+        ->with('count_ketqua_lop', $count_ketqua_lop)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
     }

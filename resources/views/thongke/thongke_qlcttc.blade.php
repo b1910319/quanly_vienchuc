@@ -19,7 +19,7 @@
       <div class="mt-2">
         <a href="{{ URL::to('thongke_qlcttc_giahan') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_giahan != '')
+            @if ($count_giahan != '' || $count_giahan_time != '')
               #850000
             @else
               gray
@@ -138,14 +138,14 @@
         </div>
       </div>
     @endif
-    @if ($count_giahan)
+    @if ($count_giahan || $count_giahan_time)
       <div class="row">
         <div class="col-3">
           <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
             Khoảng thời gian
           </button>
           <div id="demo3" class="collapse mt-3">
-            <form action="{{ URL::to('thongke_qlktkl_thoigian') }}" method="post">
+            <form action="{{ URL::to('thongke_qlcttc_giahan_time') }}" method="post">
               {{ csrf_field() }}
               <div class="row">
                 <div class="col-6">
@@ -405,15 +405,15 @@
         </div>
       </div>
     @endif
-    {{-- @if ($count_lbc != '')
+    @if ($count_giahan_time != '')
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_loaibangcap_pdf/'.$ma_lbc) }}">
+          <a href="{{ URL::to('/thongke_qlcttc_giahan_time_pdf/'.$batdau.'/'.$ketthuc) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
-    @endif --}}
+    @endif
     {{-- @if ($count_chucvu != '')
       <div class="row">
         <div class="col-2">
@@ -547,6 +547,12 @@
             }
           }else if($count_giahan){
             foreach ($count_giahan as $key => $count){
+              $thoigian_gh = $count->thoigian_gh;
+              $tong = $count->sum;
+              echo "{ year: '$thoigian_gh', value: $tong },";
+            }
+          }else if($count_giahan_time){
+            foreach ($count_giahan_time as $key => $count){
               $thoigian_gh = $count->thoigian_gh;
               $tong = $count->sum;
               echo "{ year: '$thoigian_gh', value: $tong },";
