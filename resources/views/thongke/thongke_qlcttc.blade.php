@@ -32,7 +32,7 @@
       <div class="mt-2">
         <a href="{{ URL::to('thongke_qlcttc_dunghoc') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_dunghoc != '' || $count_dunghoc_time != '')
+            @if ($count_dunghoc != '' || $count_dunghoc_time != '' || $count_dunghoc_khoa != '')
               #850000
             @else
               gray
@@ -147,7 +147,7 @@
         </div>
       </div>
     @endif
-    @if ($count_dunghoc || $count_dunghoc_time)
+    @if ($count_dunghoc || $count_dunghoc_time || $count_dunghoc_khoa)
       <div class="row">
         <div class="col-3">
           <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
@@ -272,6 +272,15 @@
         </div>
       </div>
     @endif
+    @if ($count_dunghoc_khoa != '')
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlcttc_dunghoc_khoa_pdf/'.$ma_k) }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
   </div>
 </div>
 <script>
@@ -350,6 +359,17 @@
             }
           }else if($count_dunghoc_time){
             foreach ($count_dunghoc_time as $key => $count){
+              foreach($list_khoa as $key => $khoa){
+                if($count->ma_k == $khoa->ma_k){
+                  $batdau_dh = $count->batdau_dh;
+                  $ten_k = $khoa->ten_k;
+                  $tong = $count->sum;
+                  echo "{ year: '$batdau_dh ( $ten_k )', value: $tong },";
+                }
+              }
+            }
+          }else if($count_dunghoc_khoa){
+            foreach ($count_dunghoc_khoa as $key => $count){
               foreach($list_khoa as $key => $khoa){
                 if($count->ma_k == $khoa->ma_k){
                   $batdau_dh = $count->batdau_dh;
