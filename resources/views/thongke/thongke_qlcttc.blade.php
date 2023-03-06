@@ -29,71 +29,19 @@
           </button>
         </a>
       </div>
-      {{-- <div class="mt-2">
-        <a href="{{ URL::to('thongke_qltt_chucvu') }}">
+      <div class="mt-2">
+        <a href="{{ URL::to('thongke_qlcttc_dunghoc') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_chucvu != '')
+            @if ($count_dunghoc != '')
               #850000
             @else
               gray
             @endif
             ; border: none; width: 100%;">
-            Theo chức vụ
+            Viên chức xin tạm dừng học
           </button>
         </a>
-      </div> --}}
-      {{-- <div class="mt-2">
-        <a href="{{ URL::to('thongke_qltt_hdt') }}">
-          <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_hedaotao != '')
-              #850000
-            @else
-              gray
-            @endif
-            ; border: none; width: 100%;">
-            Theo hệ đào tạo
-          </button>
-        </a>
-      </div> --}}
-      {{-- <div class="mt-2">
-        <a href="{{ URL::to('thongke_qltt_khoa') }}">
-          <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_khoa != '')
-              #850000
-            @else
-              gray
-            @endif
-            ; border: none; width: 100%;">
-            Theo khoa
-          </button>
-        </a>
-      </div> --}}
-      {{-- <div class="mt-2">
-        <a href="{{ URL::to('thongke_qltt_nghihuu') }}">
-          <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_nghihuu != '')
-              #850000
-            @else
-              gray
-            @endif
-            ; border: none; width: 100%;">
-            Viên chức nghĩ hưu
-          </button>
-        </a>
-      </div> --}}
-      {{-- <div class="mt-2">
-        <a href="{{ URL::to('thongke_qltt_quequan') }}">
-          <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_tinh != '')
-              #850000
-            @else
-              gray
-            @endif
-            ; border: none; width: 100%;">
-            Quê quán viên chức
-          </button>
-        </a>
-      </div> --}}
+      </div>
     </div>
   </div>
   <div class="card-box col-10">
@@ -199,48 +147,25 @@
         </div>
       </div>
     @endif
-    {{-- @if ($count_nghihuu || $count_nghihuu_time || $count_nghihuu_khoa)
+    @if ($count_dunghoc)
       <div class="row">
         <div class="col-3">
           <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
-            Chọn khoa thống kê
+            Khoảng thời gian
           </button>
           <div id="demo3" class="collapse mt-3">
-            <form action="{{ URL::to('thongke_qltt_nghihuu_khoa') }}" method="post">
+            <form action="{{ URL::to('thongke_qlcttc_dunghoc_time') }}" method="post">
               {{ csrf_field() }}
               <div class="row">
-                <div class="col-8">
-                  <select class="custom-select input_table" id="gender2" name="ma_k">
-                    <option value="0" >Chọn khoa</option>
-                    @foreach ($list_khoa as $khoa)
-                      <option value="{{ $khoa->ma_k }}" >{{ $khoa->ten_k }}</option>
-                    @endforeach
-                  </select>
-                </div>
-                <div class="col-4">
-                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
-                    Thống kê
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="col-3">
-          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color: #00425A; border: none; width: 100%" >
-            Chọn khoảng thời gian thống kê
-          </button>
-          <div id="demo" class="collapse mt-3">
-            <form action="{{ URL::to('thongke_qltt_nghihuu_time') }}" method="post">
-              {{ csrf_field() }}
-              <div class="row">
-                <div class="col-4">
+                <div class="col-6">
                   <input type='date' class='form-control input_table' autofocus required name="batdau">
                 </div>
-                <div class="col-4">
+                <div class="col-6">
                   <input type='date' class='form-control input_table' autofocus required name="ketthuc">
                 </div>
-                <div class="col-4">
+              </div>
+              <div class="row mt-2">
+                <div class="col-6">
                   <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
                     Thống kê
                   </button>
@@ -249,131 +174,12 @@
             </form>
           </div>
         </div>
-        <div class="col-1">
-          <a href="{{ URL::to('thongke_qltt_nghihuu') }}">
-            <button type="button" class="btn btn-warning">
-              <i class="fa-solid fa-arrows-rotate"></i>
-            </button>
-          </a>
-        </div>
-      </div>
-    @endif --}}
-    {{-- @if ($count_hedaotao || $count_hedaotao_ma_hdt)
-      <div class="row">
         <div class="col-3">
-          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
-            Chọn hệ đào tạo
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo4" style="background-color: #00425A; border: none; width: 100%" >
+            Chọn khoa
           </button>
-          <div id="demo3" class="collapse mt-3">
-            <form action="{{ URL::to('thongke_qltt_hedaotao') }}" method="post">
-              {{ csrf_field() }}
-              <div class="row">
-                <div class="col-8">
-                  <select class="custom-select input_table" id="gender2" name="ma_hdt">
-                    <option value="0" >Chọn hệ đào tạo</option>
-                    @foreach ($list_hedaotao as $hedaotao)
-                      <option value="{{ $hedaotao->ma_hdt }}" >{{ $hedaotao->ten_hdt }}</option>
-                    @endforeach
-                  </select>
-                </div>
-                <div class="col-4">
-                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
-                    Thống kê
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="col-1">
-          <a href="{{ URL::to('thongke_qltt_hdt') }}">
-            <button type="button" class="btn btn-warning">
-              <i class="fa-solid fa-arrows-rotate"></i>
-            </button>
-          </a>
-        </div>
-      </div>
-    @endif --}}
-    {{-- @if ($count_loaibangcap || $count_lbc)
-      <div class="row">
-        <div class="col-3">
-          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
-            Chọn loại bằng cấp
-          </button>
-          <div id="demo3" class="collapse mt-3">
-            <form action="{{ URL::to('thongke_qltt_loaibangcap') }}" method="post">
-              {{ csrf_field() }}
-              <div class="row">
-                <div class="col-8">
-                  <select class="custom-select input_table" id="gender2" name="ma_lbc">
-                    <option value="0" >Chọn loại bằng cấp</option>
-                    @foreach ($list_loaibangcap as $loaibangcap)
-                      <option value="{{ $loaibangcap->ma_lbc }}" >{{ $loaibangcap->ten_lbc }}</option>
-                    @endforeach
-                  </select>
-                </div>
-                <div class="col-4">
-                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
-                    Thống kê
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="col-1">
-          <a href="{{ URL::to('thongke_qltt_lbc') }}">
-            <button type="button" class="btn btn-warning">
-              <i class="fa-solid fa-arrows-rotate"></i>
-            </button>
-          </a>
-        </div>
-      </div>
-    @endif --}}
-    {{-- @if ($count_chucvu || $count_cv)
-      <div class="row">
-        <div class="col-3">
-          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
-            Chọn chức vụ
-          </button>
-          <div id="demo3" class="collapse mt-3">
-            <form action="{{ URL::to('thongke_qltt_cv') }}" method="post">
-              {{ csrf_field() }}
-              <div class="row">
-                <div class="col-8">
-                  <select class="custom-select input_table" id="gender2" name="ma_cv">
-                    <option value="0" >Chọn chức vụ</option>
-                    @foreach ($list_chucvu as $chucvu)
-                      <option value="{{ $chucvu->ma_cv }}" >{{ $chucvu->ten_cv }}</option>
-                    @endforeach
-                  </select>
-                </div>
-                <div class="col-4">
-                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
-                    Thống kê
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="col-1">
-          <a href="{{ URL::to('thongke_qltt_chucvu') }}">
-            <button type="button" class="btn btn-warning">
-              <i class="fa-solid fa-arrows-rotate"></i>
-            </button>
-          </a>
-        </div>
-      </div>
-    @endif --}}
-    {{-- @if ($count_khoa || $count_khoa_ma_k)
-      <div class="row">
-        <div class="col-3">
-          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
-            Chọn khoa thống kê
-          </button>
-          <div id="demo3" class="collapse mt-3">
-            <form action="{{ URL::to('thongke_qltt_khoa_ma_k') }}" method="post">
+          <div id="demo4" class="collapse mt-3">
+            <form action="{{ URL::to('thongke_qlcttc_dunghoc_khoa') }}" method="post">
               {{ csrf_field() }}
               <div class="row">
                 <div class="col-8">
@@ -394,14 +200,14 @@
           </div>
         </div>
         <div class="col-1">
-          <a href="{{ URL::to('thongke_qltt_khoa') }}">
+          <a href="{{ URL::to('thongke_qlcttc_dunghoc') }}">
             <button type="button" class="btn btn-warning">
               <i class="fa-solid fa-arrows-rotate"></i>
             </button>
           </a>
         </div>
       </div>
-    @endif --}}
+    @endif
     <div id="myfirstchart_qltt_1" style="height: 250px;"></div>
     @if ($count_ketqua_lop != '')
       <div class="row">
@@ -448,105 +254,15 @@
         </div>
       </div>
     @endif
-    {{-- @if ($count_chucvu != '')
+    @if ($count_dunghoc != '')
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_chucvu_all_pdf') }}">
+          <a href="{{ URL::to('/thongke_qlcttc_dunghoc_pdf') }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
-    @endif --}}
-    {{-- @if ($count_hedaotao != '')
-      <div class="row">
-        <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_hdt_all_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
-          </a>
-        </div>
-      </div>
-    @endif --}}
-    {{-- @if ($count_khoa != '')
-      <div class="row">
-        <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_khoa_all_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
-          </a>
-        </div>
-      </div>
-    @endif --}}
-    {{-- @if ($count_khoa_ma_k != '')
-      <div class="row">
-        <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_khoa_pdf/'.$ma_k) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
-          </a>
-        </div>
-      </div>
-    @endif --}}
-    {{-- @if ($count_nghihuu != '')
-      <div class="row">
-        <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_nghihuu_all_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
-          </a>
-        </div>
-      </div>
-    @endif --}}
-    {{-- @if ($count_nghihuu_time != '')
-      <div class="row">
-        <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_nghihuu_time_pdf/'.$batdau.'/'.$ketthuc) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
-          </a>
-        </div>
-      </div>
-    @endif --}}
-    {{-- @if ($count_nghihuu_khoa != '')
-      <div class="row">
-        <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_nghihuu_khoa_pdf/'.$ma_k) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
-          </a>
-        </div>
-      </div>
-    @endif --}}
-    {{-- @if ($count_tinh != '')
-      <div class="row">
-        <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_quequan_all_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
-          </a>
-        </div>
-      </div>
-    @endif --}}
-    {{-- @if ($count_quequan_tinh != '')
-      <div class="row">
-        <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_quequan_tinh_pdf/'.$ma_t) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
-          </a>
-        </div>
-      </div>
-    @endif --}}
-    {{-- @if ($count_hedaotao_ma_hdt != '')
-      <div class="row">
-        <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_hedaotao_pdf/'.$ma_hdt) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
-          </a>
-        </div>
-      </div>
-    @endif --}}
-    {{-- @if ($count_cv != '')
-      <div class="row">
-        <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_cv_pdf/'.$ma_cv) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
-          </a>
-        </div>
-      </div>
-    @endif --}}
+    @endif
   </div>
 </div>
 <script>
@@ -609,6 +325,17 @@
                   $ten_k = $khoa->ten_k;
                   $tong = $count->sum;
                   echo "{ year: '$thoigian_gh ( $ten_k )', value: $tong },";
+                }
+              }
+            }
+          }else if($count_dunghoc){
+            foreach ($count_dunghoc as $key => $count){
+              foreach($list_khoa as $key => $khoa){
+                if($count->ma_k == $khoa->ma_k){
+                  $batdau_dh = $count->batdau_dh;
+                  $ten_k = $khoa->ten_k;
+                  $tong = $count->sum;
+                  echo "{ year: '$batdau_dh ( $ten_k )', value: $tong },";
                 }
               }
             }
