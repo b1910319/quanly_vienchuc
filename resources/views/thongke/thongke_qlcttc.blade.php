@@ -16,19 +16,19 @@
           </button>
         </a>
       </div>
-      {{-- <div class="mt-2">
-        <a href="{{ URL::to('thongke_qltt_lbc') }}">
+      <div class="mt-2">
+        <a href="{{ URL::to('thongke_qlcttc_giahan') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_loaibangcap != '')
+            @if ($count_giahan != '')
               #850000
             @else
               gray
             @endif
             ; border: none; width: 100%;">
-            Theo loại bằng cấp
+            Viên chức gia hạn
           </button>
         </a>
-      </div> --}}
+      </div>
       {{-- <div class="mt-2">
         <a href="{{ URL::to('thongke_qltt_chucvu') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
@@ -138,25 +138,25 @@
         </div>
       </div>
     @endif
-    {{-- @if ($count_tinh || $count_quequan_tinh)
+    @if ($count_giahan)
       <div class="row">
         <div class="col-3">
           <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
-            Chọn tỉnh/thành phố thống kê
+            Khoảng thời gian
           </button>
           <div id="demo3" class="collapse mt-3">
-            <form action="{{ URL::to('thongke_qltt_quequan_tinh') }}" method="post">
+            <form action="{{ URL::to('thongke_qlktkl_thoigian') }}" method="post">
               {{ csrf_field() }}
               <div class="row">
-                <div class="col-8">
-                  <select class="custom-select input_table" id="gender2" name="ma_t">
-                    <option value="0" >Chọn tỉnh</option>
-                    @foreach ($list_tinh as $tinh)
-                      <option value="{{ $tinh->ma_t }}" >{{ $tinh->ten_t }}</option>
-                    @endforeach
-                  </select>
+                <div class="col-6">
+                  <input type='date' class='form-control input_table' autofocus required name="batdau">
                 </div>
-                <div class="col-4">
+                <div class="col-6">
+                  <input type='date' class='form-control input_table' autofocus required name="ketthuc">
+                </div>
+              </div>
+              <div class="row mt-2">
+                <div class="col-6">
                   <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
                     Thống kê
                   </button>
@@ -166,14 +166,14 @@
           </div>
         </div>
         <div class="col-1">
-          <a href="{{ URL::to('thongke_qltt_quequan') }}">
+          <a href="{{ URL::to('thongke_qlcttc_giahan') }}">
             <button type="button" class="btn btn-warning">
               <i class="fa-solid fa-arrows-rotate"></i>
             </button>
           </a>
         </div>
       </div>
-    @endif --}}
+    @endif
     {{-- @if ($count_nghihuu || $count_nghihuu_time || $count_nghihuu_khoa)
       <div class="row">
         <div class="col-3">
@@ -545,126 +545,13 @@
                 }
               }
             }
+          }else if($count_giahan){
+            foreach ($count_giahan as $key => $count){
+              $thoigian_gh = $count->thoigian_gh;
+              $tong = $count->sum;
+              echo "{ year: '$thoigian_gh', value: $tong },";
+            }
           }
-          //else if($count_loaibangcap){
-          //   foreach ($count_loaibangcap as $key => $count){
-          //     foreach($list_loaibangcap as $key => $loaibangcap){
-          //       if($count->ma_lbc == $loaibangcap->ma_lbc){
-          //         $ten_lbc = $loaibangcap->ten_lbc;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_lbc', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }else if($count_lbc){
-          //   foreach ($count_lbc as $key => $count){
-          //     foreach($list_loaibangcap as $key => $loaibangcap){
-          //       if($count->ma_lbc == $loaibangcap->ma_lbc){
-          //         $ten_lbc = $loaibangcap->ten_lbc;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_lbc', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }else if($count_chucvu){
-          //   foreach ($count_chucvu as $key => $count){
-          //     foreach($list_chucvu as $key => $chucvu){
-          //       if($count->ma_cv == $chucvu->ma_cv){
-          //         $ten_cv = $chucvu->ten_cv;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_cv', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }else if($count_cv){
-          //   foreach ($count_cv as $key => $count){
-          //     foreach($list_chucvu as $key => $chucvu){
-          //       if($count->ma_cv == $chucvu->ma_cv){
-          //         $ten_cv = $chucvu->ten_cv;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_cv', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }else if($count_hedaotao){
-          //   foreach ($count_hedaotao as $key => $count){
-          //     foreach($list_hedaotao as $key => $hedaotao){
-          //       if($count->ma_hdt == $hedaotao->ma_hdt){
-          //         $ten_hdt = $hedaotao->ten_hdt;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_hdt', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }else if($count_hedaotao_ma_hdt){
-          //   foreach ($count_hedaotao_ma_hdt as $key => $count){
-          //     foreach($list_hedaotao as $key => $hedaotao){
-          //       if($count->ma_hdt == $hedaotao->ma_hdt){
-          //         $ten_hdt = $hedaotao->ten_hdt;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_hdt', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }else if($count_khoa){
-          //   foreach ($count_khoa as $key => $count){
-          //     foreach($list_khoa as $key => $khoa){
-          //       if($count->ma_k == $khoa->ma_k){
-          //         $ten_k = $khoa->ten_k;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_k', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }else if($count_khoa_ma_k){
-          //   foreach ($count_khoa_ma_k as $key => $count){
-          //     foreach($list_khoa as $key => $khoa){
-          //       if($count->ma_k == $khoa->ma_k){
-          //         $ten_k = $khoa->ten_k;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_k', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }else if($count_nghihuu){
-          //   foreach ($count_nghihuu as $key => $count){
-          //     $thoigiannghi_vc = $count->thoigiannghi_vc;
-          //     $tong = $count->sum;
-          //     echo "{ year: '$thoigiannghi_vc', value: $tong },";
-          //   }
-          // }else if($count_nghihuu_time){
-          //   foreach ($count_nghihuu_time as $key => $count){
-          //     $thoigiannghi_vc = $count->thoigiannghi_vc;
-          //     $tong = $count->sum;
-          //     echo "{ year: '$thoigiannghi_vc', value: $tong },";
-          //   }
-          // }else if($count_nghihuu_khoa){
-          //   foreach ($count_nghihuu_khoa as $key => $count){
-          //     $thoigiannghi_vc = $count->thoigiannghi_vc;
-          //     $tong = $count->sum;
-          //     echo "{ year: '$thoigiannghi_vc', value: $tong },";
-          //   }
-          // }else if($count_tinh){
-          //   foreach ($count_tinh as $key => $count){
-          //     foreach($list_tinh as $key => $tinh){
-          //       if($count->ma_t == $tinh->ma_t){
-          //         $ten_t = $tinh->ten_t;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_t', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }else if($count_quequan_tinh){
-          //   foreach ($count_quequan_tinh as $key => $count){
-          //     foreach($list_tinh as $key => $tinh){
-          //       if($count->ma_t == $tinh->ma_t){
-          //         $ten_t = $tinh->ten_t;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_t', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
         ?>
       ],
       xkey: 'year',

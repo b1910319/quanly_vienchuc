@@ -43,6 +43,7 @@ class KetQuaController extends Controller
     if($phanquyen_admin || $phanquyen_qlcttc){
       $list = KetQua::join('vienchuc', 'vienchuc.ma_vc', '=', 'ketqua.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->orderBy('ma_kq', 'desc')
         ->where('ketqua.ma_l', $ma_l)
         ->where('ketqua.ma_vc', $ma_vc)
@@ -281,6 +282,7 @@ class KetQuaController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
       $list = KetQua::join('vienchuc', 'vienchuc.ma_vc', '=', 'ketqua.ma_vc')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
         ->orderBy('ma_kq', 'desc')
         ->get();

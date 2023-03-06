@@ -241,6 +241,7 @@
           <th scope="col">STT</th>
           <th scope="col">Thông tin viên chức</th>
           <th scope="col">Thông tin lớp học</th>
+          <th scope="col">Khoa</th>
           <th scope="col">Kết quả</th>
           <th scope="col">Trạng thái</th>
           <th scope="col"></th>
@@ -264,7 +265,10 @@
               <b>Email cơ sở đào tạo: </b> {{ $ketqua->emailcoso_l }} <br>
               <b>Số điện thoại cơ sở đào tạo: </b> {{ $ketqua->sdtcoso_l }} <br>
             </td>
-            <td style="width: 30%">
+            <td>
+              {{ $ketqua->ten_k }}
+            </td>
+            <td style="width: 20%">
               <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
           style="height: 150px; overflow: auto;">
                 <p>
