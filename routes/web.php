@@ -305,7 +305,7 @@ Route::get('/thongke_qlktkl_lkl_pdf/{ma_lkt}',[ThongKeController::class, 'thongk
 
 Route::get('/thongke_qlcttc',[ThongKeController::class, 'thongke_qlcttc']);
 Route::get('/thongke_qlcttc_ketqua_lop_pdf',[ThongKeController::class, 'thongke_qlcttc_ketqua_lop_pdf']);
-
+Route::post('/thongke_qlcttc_ketqua_ma_lop',[ThongKeController::class, 'thongke_qlcttc_ketqua_ma_lop']);
 
 
 

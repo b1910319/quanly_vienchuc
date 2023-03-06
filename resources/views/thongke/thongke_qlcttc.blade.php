@@ -6,7 +6,7 @@
       <div class="mt-2" >
         <a href="{{ URL::to('thongke_qlcttc') }}">
           <button type="button" class="btn btn-primary" style="background-color:
-            @if ($count_ketqua_lop != '')
+            @if ($count_ketqua_lop != '' || $count_ketqua_ma_lop != '')
               #850000
             @else
               gray
@@ -102,18 +102,18 @@
         <p class="fw-bold" style="font-size: 18px;">Thống kê viên chức </p>
       </div>
     </div>
-    @if ($count_ketqua_lop)
+    @if ($count_ketqua_lop || $count_ketqua_ma_lop)
       <div class="row">
         <div class="col-3">
           <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
             Chọn lớp
           </button>
           <div id="demo3" class="collapse mt-3">
-            <form action="{{ URL::to('thongke_qlcttc_ma_lop') }}" method="post">
+            <form action="{{ URL::to('thongke_qlcttc_ketqua_ma_lop') }}" method="post">
               {{ csrf_field() }}
               <div class="row">
                 <div class="col-8">
-                  <select class="custom-select input_table" id="gender2" name="ma_n">
+                  <select class="custom-select input_table" id="gender2" name="ma_l">
                     <option value="0" >Chọn lớp</option>
                     @foreach ($list_lop as $lop)
                       <option value="{{ $lop->ma_l }}" >{{ $lop->ten_l }}</option>
@@ -387,15 +387,15 @@
         </div>
       </div>
     @endif
-    {{-- @if ($count_ngach_ma_n != '')
+    @if ($count_ketqua_ma_lop != '')
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_ma_ngach_pdf/'.$ma_n) }}">
+          <a href="{{ URL::to('/thongke_qltt_ma_ngach_pdf/'.$lop->ma_l) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
-    @endif --}}
+    @endif
     {{-- @if ($count_loaibangcap != '')
       <div class="row">
         <div class="col-2">
@@ -535,18 +535,18 @@
                 }
               }
             }
+          }else if($count_ketqua_ma_lop){
+            foreach ($count_ketqua_ma_lop as $key => $count){
+              foreach($list_lop as $key => $lop){
+                if($count->ma_l == $lop->ma_l){
+                  $ten_l = $lop->ten_l;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_l', value: $tong },";
+                }
+              }
+            }
           }
-          // else if($count_ngach_ma_n){
-          //   foreach ($count_ngach_ma_n as $key => $count){
-          //     foreach($list_ngach as $key => $ngach){
-          //       if($count->ma_n == $ngach->ma_n){
-          //         $ten_n = $ngach->ten_n;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_n', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }else if($count_loaibangcap){
+          //else if($count_loaibangcap){
           //   foreach ($count_loaibangcap as $key => $count){
           //     foreach($list_loaibangcap as $key => $loaibangcap){
           //       if($count->ma_lbc == $loaibangcap->ma_lbc){
