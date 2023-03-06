@@ -6,7 +6,7 @@
       <div>
         <a href="{{ URL::to('thongke_qlktkl_lkt') }}">
           <button type="button" class="btn btn-primary" style="background-color:
-            @if ($count_loaikhenthuong != '')
+            @if ($count_loaikhenthuong != '' || $count_ma_lkt != '')
               #850000
             @else
               gray
@@ -19,7 +19,7 @@
       <div class="mt-2">
         <a href="{{ URL::to('thongke_qlktkl_htkt') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_hinhthuckhenthuong != '')
+            @if ($count_hinhthuckhenthuong != '' || $count_ma_htkt != '')
               #850000
             @else
               gray
@@ -32,7 +32,7 @@
       <div class="mt-2">
         <a href="{{ URL::to('thongke_qlktkl_khoa') }}">
           <button type="button" class="btn btn-primary" style="background-color:
-            @if ($count_khoa != '')
+            @if ($count_khoa != '' || $count_ma_khoa != '')
               #850000
             @else
               gray
@@ -45,7 +45,7 @@
       <div class="mt-2">
         <a href="{{ URL::to('thongke_qlktkl_time') }}">
           <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color:
-            @if ($count_khenthuong_time != '')
+            @if ($count_khenthuong_time != '' || $count_kt_time != '')
               #850000
             @else
               gray
@@ -285,7 +285,7 @@
     <div>
       <a href="{{ URL::to('thongke_qlktkl_lkl') }}">
         <button type="button" class="btn btn-primary" style="background-color:
-          @if ($count_loaikyluat != '')
+          @if ($count_loaikyluat != '' || $count_ma_lkl != '')
             #850000
           @else
             gray
@@ -298,7 +298,7 @@
     <div class="mt-2">
       <a href="{{ URL::to('thongke_qlktkl_kl_khoa') }}">
         <button type="button" class="btn btn-primary" style="background-color:
-          @if ($count_kl_khoa != '')
+          @if ($count_kl_khoa != '' || $count_kl_ma_khoa != '')
             #850000
           @else
             gray
@@ -311,7 +311,7 @@
     <div class="mt-2">
       <a href="{{ URL::to('thongke_qlktkl_kl_time') }}">
         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo1" style="background-color:
-          @if ($count_kyluat_time != '')
+          @if ($count_kyluat_time != '' || $count_kl_thoigian != '')
             #850000
           @else
             gray
