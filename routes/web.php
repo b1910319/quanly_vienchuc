@@ -314,7 +314,7 @@ Route::get('/thongke_qlcttc_giahan_time_pdf/{batdau}/{ketthuc}',[ThongKeControll
 Route::post('/thongke_qlcttc_giahan_khoa',[ThongKeController::class, 'thongke_qlcttc_giahan_khoa']);
 Route::get('/thongke_qlcttc_giahan_khoa_pdf/{ma_k}',[ThongKeController::class, 'thongke_qlcttc_giahan_khoa_pdf']);
 Route::get('/thongke_qlcttc_dunghoc',[ThongKeController::class, 'thongke_qlcttc_dunghoc']);
-
+Route::get('/thongke_qlcttc_dunghoc_pdf',[ThongKeController::class, 'thongke_qlcttc_dunghoc_pdf']);
 
 
 
