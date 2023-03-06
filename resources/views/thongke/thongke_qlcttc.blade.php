@@ -390,7 +390,7 @@
     @if ($count_ketqua_ma_lop != '')
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_ma_ngach_pdf/'.$lop->ma_l) }}">
+          <a href="{{ URL::to('/thongke_qlcttc_ketqua_ma_lop_pdf/'.$ma_l) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>

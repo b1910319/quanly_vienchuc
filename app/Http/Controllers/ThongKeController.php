@@ -3482,18 +3482,45 @@ class ThongKeController extends Controller
       $list_lop = Lop::orderBy('ten_l', 'asc')
         ->get();
       $count_ketqua_lop = '';
-      $lop = Lop::find($data['ma_l']);
       return view('thongke.thongke_qlcttc')
         ->with('title', $title)
         ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
         ->with('list_lop', $list_lop)
-        ->with('lop', $lop)
+        ->with('ma_l', $data['ma_l'])
         ->with('count_ketqua_lop', $count_ketqua_lop)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlcttc_ketqua_ma_lop_pdf($ma_l){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $status = 1;
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $title = 'Viên chức hoàn thành khoá học';
+      $vienchuc = VienChuc::join('ketqua', 'ketqua.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('ketqua.ma_l', $ma_l)
+        ->where('status_vc', '<>', '2')
+        ->get();
+      $pdf = PDF::loadView('pdf.pdf_qlcttc', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+        'status' => $status,
+      ]);
+      return $pdf->stream();
     }else{
       return Redirect::to('/home');
     }

@@ -58,6 +58,7 @@
             <td>{{ $vc->ten_k }}</td>
             @if ($status == 0)
               <td style="width: 32%">
+                <b>Tên lớp học: </b>{{ $vc->ten_l }}<br>
                 <b>Ngày bắt đầu lớp học: </b>{{ $vc->ngaybatdau_l }}<br>
                 <b>Ngày kết thúc lớp học: </b>{{ $vc->ngayketthuc_l }} <br>
                 <b>Tên cơ sở đào tạo: </b>{{ $vc->tencosodaotao_l }}<br>
