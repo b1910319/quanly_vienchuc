@@ -42,6 +42,19 @@
           </button>
         </a>
       </div>
+      <div class="mt-2">
+        <a href="{{ URL::to('thongke_qlcttc_chuyen') }}">
+          <button type="button" class="btn btn-primary" style="background-color: 
+            @if ($count_chuyen != '')
+              #850000
+            @else
+              gray
+            @endif
+            ; border: none; width: 100%;">
+            Viên chức xin chuyển nước, trường ...
+          </button>
+        </a>
+      </div>
     </div>
   </div>
   <div class="card-box col-10">
@@ -261,6 +274,68 @@
         </div>
       </div>
     @endif
+    @if ($count_chuyen)
+      <div class="row">
+        <div class="col-3">
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo4" style="background-color: #00425A; border: none; width: 100%" >
+            Chọn khoa
+          </button>
+          <div id="demo4" class="collapse mt-3">
+            <form action="{{ URL::to('thongke_qlcttc_dunghoc_khoa') }}" method="post">
+              {{ csrf_field() }}
+              <div class="row">
+                <div class="col-8">
+                  <select class="custom-select input_table" id="gender2" name="ma_k">
+                    <option value="0" >Chọn khoa</option>
+                    @foreach ($list_khoa as $khoa)
+                      <option value="{{ $khoa->ma_k }}" >{{ $khoa->ten_k }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col-4">
+                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
+                    Thống kê
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-3">
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo5" style="background-color: #00425A; border: none; width: 100%" >
+            Chọn lớp
+          </button>
+          <div id="demo5" class="collapse mt-3">
+            <form action="{{ URL::to('thongke_qlcttc_dunghoc_lop') }}" method="post">
+              {{ csrf_field() }}
+              <div class="row">
+                <div class="col-8">
+                  <select class="custom-select input_table" id="gender2" name="ma_l">
+                    <option value="0" >Chọn lớp</option>
+                    @foreach ($list_lop as $lop)
+                      <option value="{{ $lop->ma_l }}" >{{ $lop->ten_l }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col-4">
+                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
+                    Thống kê
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          
+        </div>
+        <div class="col-1">
+          <a href="{{ URL::to('thongke_qlcttc_chuyen') }}">
+            <button type="button" class="btn btn-warning">
+              <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+          </a>
+        </div>
+      </div>
+    @endif
     <div id="myfirstchart_qltt_1" style="height: 250px;"></div>
     @if ($count_ketqua_lop != '')
       <div class="row">
@@ -347,6 +422,15 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_dunghoc_lop_pdf/'.$ma_l) }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
+    @if ($count_chuyen != '')
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlcttc_chuyen_pdf') }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
@@ -461,8 +545,7 @@
                 }
               }
             }
-          }
-          else if($count_dunghoc_lop){
+          }else if($count_dunghoc_lop){
             foreach ($count_dunghoc_lop as $key => $count){
               foreach($list_lop as $key => $lop){
                 if($count->ma_l == $lop->ma_l){
@@ -470,6 +553,16 @@
                   $ten_l = $lop->ten_l;
                   $tong = $count->sum;
                   echo "{ year: '$batdau_dh ( $ten_l )', value: $tong },";
+                }
+              }
+            }
+          }else if($count_chuyen){
+            foreach ($count_chuyen as $key => $count){
+              foreach($list_lop as $key => $lop){
+                if($count->ma_l == $lop->ma_l){
+                  $ten_l = $lop->ten_l;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_l', value: $tong },";
                 }
               }
             }
