@@ -547,15 +547,25 @@
             }
           }else if($count_giahan){
             foreach ($count_giahan as $key => $count){
-              $thoigian_gh = $count->thoigian_gh;
-              $tong = $count->sum;
-              echo "{ year: '$thoigian_gh', value: $tong },";
+              foreach($list_khoa as $key => $khoa){
+                if($count->ma_k == $khoa->ma_k){
+                  $thoigian_gh = $count->thoigian_gh;
+                  $ten_k = $khoa->ten_k;
+                  $tong = $count->sum;
+                  echo "{ year: '$thoigian_gh ( $ten_k )', value: $tong },";
+                }
+              }
             }
           }else if($count_giahan_time){
             foreach ($count_giahan_time as $key => $count){
-              $thoigian_gh = $count->thoigian_gh;
-              $tong = $count->sum;
-              echo "{ year: '$thoigian_gh', value: $tong },";
+              foreach($list_khoa as $key => $khoa){
+                if($count->ma_k == $khoa->ma_k){
+                  $thoigian_gh = $count->thoigian_gh;
+                  $ten_k = $khoa->ten_k;
+                  $tong = $count->sum;
+                  echo "{ year: '$thoigian_gh ( $ten_k )', value: $tong },";
+                }
+              }
             }
           }
         ?>

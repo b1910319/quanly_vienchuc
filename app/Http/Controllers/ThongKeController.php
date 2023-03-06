@@ -3560,9 +3560,17 @@ class ThongKeController extends Controller
       $list_lop = Lop::orderBy('ten_l', 'asc')
         ->get();
       $count_ketqua_ma_lop = '';
+      // $count_giahan = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+      //   ->select(DB::raw('count(giahan.ma_gh) as sum, giahan.thoigian_gh'))
+      //   ->groupBy('giahan.thoigian_gh')
+      //   ->get();
       $count_giahan = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
-        ->select(DB::raw('count(giahan.ma_gh) as sum, giahan.thoigian_gh'))
-        ->groupBy('giahan.thoigian_gh')
+        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->select(DB::raw('count(giahan.ma_gh) as sum, giahan.thoigian_gh, khoa.ma_k'))
+        ->groupBy('giahan.thoigian_gh','khoa.ma_k')
+        ->get();
+      $list_khoa = Khoa::orderBy('ten_k', 'asc')
         ->get();
       $count_giahan_time = '';
       return view('thongke.thongke_qlcttc')
@@ -3571,6 +3579,7 @@ class ThongKeController extends Controller
         ->with('count_ketqua_lop', $count_ketqua_lop)
         ->with('list_lop', $list_lop)
         ->with('count_giahan', $count_giahan)
+        ->with('list_khoa', $list_khoa)
         ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_nangbac', $count_nangbac)
@@ -3635,10 +3644,19 @@ class ThongKeController extends Controller
         ->get();
       $count_ketqua_lop = '';
       $count_giahan = '';
+      // $count_giahan_time = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+      //   ->whereBetween('thoigian_gh', [$data['batdau'], $data['ketthuc']])
+      //   ->select(DB::raw('count(giahan.ma_gh) as sum, giahan.thoigian_gh'))
+      //   ->groupBy('giahan.thoigian_gh')
+      //   ->get();
       $count_giahan_time = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->whereBetween('thoigian_gh', [$data['batdau'], $data['ketthuc']])
-        ->select(DB::raw('count(giahan.ma_gh) as sum, giahan.thoigian_gh'))
-        ->groupBy('giahan.thoigian_gh')
+        ->select(DB::raw('count(giahan.ma_gh) as sum, giahan.thoigian_gh, khoa.ma_k'))
+        ->groupBy('giahan.thoigian_gh','khoa.ma_k')
+        ->get();
+      $list_khoa = Khoa::orderBy('ten_k', 'asc')
         ->get();
       return view('thongke.thongke_qlcttc')
         ->with('title', $title)
@@ -3646,6 +3664,7 @@ class ThongKeController extends Controller
         ->with('count_giahan_time',$count_giahan_time)
         ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
         ->with('list_lop', $list_lop)
+        ->with('list_khoa', $list_khoa)
         ->with('batdau', $data['batdau'])
         ->with('ketthuc', $data['ketthuc'])
         ->with('count_ketqua_lop', $count_ketqua_lop)
