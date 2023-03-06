@@ -304,6 +304,7 @@ Route::get('/thongke_qlktkl_kl_time_pdf/{batdau}/{ketthuc}',[ThongKeController::
 Route::get('/thongke_qlktkl_lkl_pdf/{ma_lkt}',[ThongKeController::class, 'thongke_qlktkl_lkl_pdf']);
 
 Route::get('/thongke_qlcttc',[ThongKeController::class, 'thongke_qlcttc']);
+Route::get('/thongke_qlcttc_ketqua_lop_pdf',[ThongKeController::class, 'thongke_qlcttc_ketqua_lop_pdf']);
 
 
 
