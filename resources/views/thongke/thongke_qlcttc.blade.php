@@ -32,7 +32,7 @@
       <div class="mt-2">
         <a href="{{ URL::to('thongke_qlcttc_dunghoc') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_dunghoc != '' || $count_dunghoc_time != '' || $count_dunghoc_khoa != '')
+            @if ($count_dunghoc != '' || $count_dunghoc_time != '' || $count_dunghoc_khoa != '' || $count_dunghoc_lop != '')
               #850000
             @else
               gray
@@ -147,7 +147,7 @@
         </div>
       </div>
     @endif
-    @if ($count_dunghoc || $count_dunghoc_time || $count_dunghoc_khoa)
+    @if ($count_dunghoc || $count_dunghoc_time || $count_dunghoc_khoa || $count_dunghoc_lop)
       <div class="row">
         <div class="col-3">
           <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
@@ -198,6 +198,33 @@
               </div>
             </form>
           </div>
+          
+        </div>
+        <div class="col-3">
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo5" style="background-color: #00425A; border: none; width: 100%" >
+            Chọn lớp
+          </button>
+          <div id="demo5" class="collapse mt-3">
+            <form action="{{ URL::to('thongke_qlcttc_dunghoc_lop') }}" method="post">
+              {{ csrf_field() }}
+              <div class="row">
+                <div class="col-8">
+                  <select class="custom-select input_table" id="gender2" name="ma_l">
+                    <option value="0" >Chọn lớp</option>
+                    @foreach ($list_lop as $lop)
+                      <option value="{{ $lop->ma_l }}" >{{ $lop->ten_l }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col-4">
+                  <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="background-color: #850000; border: none; color: white; width: 100%;">
+                    Thống kê
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          
         </div>
         <div class="col-1">
           <a href="{{ URL::to('thongke_qlcttc_dunghoc') }}">
@@ -276,6 +303,15 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_dunghoc_khoa_pdf/'.$ma_k) }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
+    @if ($count_dunghoc_lop != '')
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlcttc_dunghoc_lop_pdf/'.$ma_l) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
@@ -376,6 +412,18 @@
                   $ten_k = $khoa->ten_k;
                   $tong = $count->sum;
                   echo "{ year: '$batdau_dh ( $ten_k )', value: $tong },";
+                }
+              }
+            }
+          }
+          else if($count_dunghoc_lop){
+            foreach ($count_dunghoc_lop as $key => $count){
+              foreach($list_lop as $key => $lop){
+                if($count->ma_l == $lop->ma_l){
+                  $batdau_dh = $count->batdau_dh;
+                  $ten_l = $lop->ten_l;
+                  $tong = $count->sum;
+                  echo "{ year: '$batdau_dh ( $ten_l )', value: $tong },";
                 }
               }
             }
