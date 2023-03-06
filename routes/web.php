@@ -310,6 +310,7 @@ Route::get('/thongke_qlcttc_ketqua_ma_lop_pdf/{ma_l}',[ThongKeController::class,
 Route::get('/thongke_qlcttc_giahan',[ThongKeController::class, 'thongke_qlcttc_giahan']);
 Route::get('/thongke_qlcttc_giahan_pdf',[ThongKeController::class, 'thongke_qlcttc_giahan_pdf']);
 Route::post('/thongke_qlcttc_giahan_time',[ThongKeController::class, 'thongke_qlcttc_giahan_time']);
+Route::get('/thongke_qlcttc_giahan_time_pdf/{batdau}/{ketthuc}',[ThongKeController::class, 'thongke_qlcttc_giahan_time_pdf']);
 
 
 
