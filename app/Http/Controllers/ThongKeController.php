@@ -3760,4 +3760,32 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function thongke_qlcttc_giahan_khoa_pdf($ma_k){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $status = 1;
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $title = 'Viên chức xin gia hạn';
+      $vienchuc = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('khoa.ma_k', $ma_k)
+        ->where('status_vc', '<>', '2')
+        ->get();
+      $pdf = PDF::loadView('pdf.pdf_qlcttc_giahan', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+        'status' => $status,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }

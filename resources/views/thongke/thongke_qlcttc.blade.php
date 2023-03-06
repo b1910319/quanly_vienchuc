@@ -19,7 +19,7 @@
       <div class="mt-2">
         <a href="{{ URL::to('thongke_qlcttc_giahan') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_giahan != '' || $count_giahan_time != '')
+            @if ($count_giahan != '' || $count_giahan_time != '' || $count_giahan_khoa != '')
               #850000
             @else
               gray
