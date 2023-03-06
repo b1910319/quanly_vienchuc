@@ -503,7 +503,7 @@
       pointFillColors: ['#F94A29'],
       parseTime: false,
       hideHover:true,
-      barColors: ['#554994'],
+      barColors: ['#FF6363'],
       data: [
         <?php
           if($count_loaikhenthuong){

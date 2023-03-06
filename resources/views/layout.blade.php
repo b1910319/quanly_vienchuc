@@ -360,6 +360,9 @@
                   <li>
                     <a href="{{ URL::to('/thoihoc_all') }}">Tất cả thông tin xin thôi học của viên chức</a>
                   </li>
+                  <li>
+                    <a href="{{ URL::to('/thongke_qlcttc') }}">Thống kê</a>
+                  </li>
                 </ul>
               </li>
             @endif
