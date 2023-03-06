@@ -99,7 +99,7 @@
   <div class="card-box col-10">
     <div class="row">
       <div class="col-6">
-        <p class="fw-bold" style="font-size: 18px;">Thống kê viên chức </p>
+        <p class="fw-bold" style="font-size: 18px;">Thống kê quản lý công tác tổ chức </p>
       </div>
     </div>
     @if ($count_ketqua_lop || $count_ketqua_ma_lop)
@@ -396,15 +396,15 @@
         </div>
       </div>
     @endif
-    {{-- @if ($count_loaibangcap != '')
+    @if ($count_giahan != '')
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_lbc_pdf') }}">
+          <a href="{{ URL::to('/thongke_qlcttc_giahan_pdf') }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
-    @endif --}}
+    @endif
     {{-- @if ($count_lbc != '')
       <div class="row">
         <div class="col-2">
