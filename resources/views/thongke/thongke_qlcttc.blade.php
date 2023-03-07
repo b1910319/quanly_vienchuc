@@ -45,7 +45,7 @@
       <div class="mt-2">
         <a href="{{ URL::to('thongke_qlcttc_chuyen') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_chuyen != '' || $count_chuyen_khoa != '')
+            @if ($count_chuyen != '' || $count_chuyen_khoa != '' || $count_chuyen_lop != '')
               #850000
             @else
               gray
@@ -274,7 +274,7 @@
         </div>
       </div>
     @endif
-    @if ($count_chuyen || $count_chuyen_khoa)
+    @if ($count_chuyen || $count_chuyen_khoa || $count_chuyen_lop)
       <div class="row">
         <div class="col-3">
           <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo4" style="background-color: #00425A; border: none; width: 100%" >
@@ -306,7 +306,7 @@
             Chọn lớp
           </button>
           <div id="demo5" class="collapse mt-3">
-            <form action="{{ URL::to('thongke_qlcttc_dunghoc_lop') }}" method="post">
+            <form action="{{ URL::to('thongke_qlcttc_chuyen_lop') }}" method="post">
               {{ csrf_field() }}
               <div class="row">
                 <div class="col-8">
@@ -440,6 +440,15 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_chuyen_khoa_pdf/'.$ma_k) }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
+    @if ($count_chuyen_lop != '')
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlcttc_chuyen_lop_pdf/'.$ma_l) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
@@ -582,6 +591,16 @@
                   $ten_k = $khoa->ten_k;
                   $tong = $count->sum;
                   echo "{ year: '$ten_k', value: $tong },";
+                }
+              }
+            }
+          }else if($count_chuyen_lop){
+            foreach ($count_chuyen_lop as $key => $count){
+              foreach($list_lop as $key => $lop){
+                if($count->ma_l == $lop->ma_l){
+                  $ten_l = $lop->ten_l;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_l', value: $tong },";
                 }
               }
             }
