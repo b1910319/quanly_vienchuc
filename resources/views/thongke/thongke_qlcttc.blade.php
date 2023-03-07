@@ -563,7 +563,7 @@
         </div>
       </div>
     @endif
-    {{-- @if ($count_thoihoc_time != '')
+    @if ($count_thoihoc_time != '')
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_thoihoc_time_pdf/'.$batdau.'/'.$ketthuc) }}">
@@ -571,7 +571,7 @@
           </a>
         </div>
       </div>
-    @endif --}}
+    @endif
   </div>
 </div>
 <script>
@@ -734,18 +734,13 @@
               }
             }
           }
-          // else if($count_thoihoc_time){
-          //   foreach ($count_thoihoc_time as $key => $count){
-          //     foreach($list_khoa as $key => $khoa){
-          //       if($count->ma_k == $khoa->ma_k){
-          //         $ngay_th = $count->ngay_th;
-          //         $ten_k = $khoa->ten_k;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ngay_th ( $ten_k )', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
+          else if($count_thoihoc_time){
+            foreach ($count_thoihoc_time as $key => $count){
+              $ngay_th = $count->ngay_th;
+              $tong = $count->sum;
+              echo "{ year: '$ngay_th', value: $tong },";
+            }
+          }
         ?>
       ],
       xkey: 'year',
