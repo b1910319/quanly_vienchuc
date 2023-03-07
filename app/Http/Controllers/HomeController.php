@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -20,7 +21,11 @@ class HomeController extends Controller
     }
   }
   public function index(){
-    return view('login');
+    $list_lop = Lop::orderBy('ma_l', 'desc')
+      ->limit(12)
+      ->get();
+    return view('login')
+      ->with('list_lop', $list_lop);
   }
   public function home(){
     $this->check_login();
