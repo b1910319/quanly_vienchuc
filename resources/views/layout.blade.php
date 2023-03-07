@@ -366,7 +366,7 @@
                 </ul>
               </li>
             @endif
-            <li>
+            {{-- <li>
               <a href="javascript: void(0);" class="waves-effect">
                 <i class="remixicon-pages-line"></i>
                 <span> Extra Pages </span>
@@ -401,11 +401,11 @@
                   <a href="extras-gallery.html">Gallery</a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
 
-            <li class="menu-title mt-2">Components</li>
+            {{-- <li class="menu-title mt-2">Components</li> --}}
 
-            <li>
+            {{-- <li>
               <a href="javascript: void(0);" class="waves-effect">
                 <i class="remixicon-briefcase-5-line"></i>
                 <span> UI Elements </span>
@@ -449,16 +449,16 @@
                   <a href="ui-grid.html">Grid</a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
 
-            <li>
+            {{-- <li>
               <a href="widgets.html" class="waves-effect">
                 <i class="remixicon-vip-crown-2-line"></i>
                 <span> Widgets </span>
               </a>
-            </li>
+            </li> --}}
 
-            <li>
+            {{-- <li>
               <a href="javascript: void(0);" class="waves-effect">
                 <i class="remixicon-trophy-line"></i>
                 <span class="badge badge-primary float-right">Hot</span>
@@ -481,9 +481,9 @@
                   <a href="admin-carousel.html">Carousel</a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
 
-            <li>
+            {{-- <li>
               <a href="javascript: void(0);" class="waves-effect">
                 <i class="remixicon-vip-diamond-line"></i>
                 <span> Forms </span>
@@ -518,9 +518,9 @@
                   <a href="forms-x-editable.html">X Editable</a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
 
-            <li>
+            {{-- <li>
               <a href="javascript: void(0);" class="waves-effect">
                 <i class="remixicon-table-line"></i>
                 <span> Tables </span>
@@ -546,9 +546,9 @@
                   <a href="tables-footables.html">FooTables</a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
 
-            <li>
+            {{-- <li>
               <a href="javascript: void(0);" class="waves-effect">
                 <i class="remixicon-bar-chart-line"></i>
                 <span> Charts </span>
@@ -583,9 +583,9 @@
                   <a href="charts-knob.html">Jquery Knob Charts</a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
 
-            <li>
+            {{-- <li>
               <a href="javascript: void(0);" class="waves-effect">
                 <i class="remixicon-honour-line"></i>
                 <span> Icons </span>
@@ -611,9 +611,9 @@
                   <a href="icons-weather.html">Weather</a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
 
-            <li>
+            {{-- <li>
               <a href="javascript: void(0);" class="waves-effect">
                 <i class="remixicon-map-pin-line"></i>
                 <span> Maps </span>
@@ -630,9 +630,9 @@
                   <a href="maps-mapael.html">Mapael Maps</a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
 
-            <li>
+            {{-- <li>
               <a href="javascript: void(0);" class="waves-effect">
                 <i class="remixicon-folder-add-line"></i>
                 <span> Multi Level </span>
@@ -656,7 +656,7 @@
                   </ul>
                 </li>
               </ul>
-            </li>
+            </li> --}}
           </ul>
 
         </div>

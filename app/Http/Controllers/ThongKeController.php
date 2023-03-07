@@ -3420,6 +3420,7 @@ class ThongKeController extends Controller
       $count_dunghoc_khoa = '';
       $count_dunghoc_lop = '';
       $count_chuyen = '';
+      $count_chuyen_khoa = '';
       return view('thongke.thongke_qlcttc')
         ->with('title', $title)
         ->with('count_giahan_khoa', $count_giahan_khoa)
@@ -3436,6 +3437,7 @@ class ThongKeController extends Controller
         ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
         ->with('count_dunghoc_lop', $count_dunghoc_lop)
         ->with('count_chuyen', $count_chuyen)
+        ->with('count_chuyen_khoa', $count_chuyen_khoa)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
@@ -3511,6 +3513,7 @@ class ThongKeController extends Controller
       $count_dunghoc_khoa = '';
       $count_dunghoc_lop = '';
       $count_chuyen = '';
+      $count_chuyen_khoa = '';
       return view('thongke.thongke_qlcttc')
         ->with('title', $title)
         ->with('count_giahan_khoa', $count_giahan_khoa)
@@ -3528,6 +3531,7 @@ class ThongKeController extends Controller
         ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
         ->with('count_dunghoc_lop', $count_dunghoc_lop)
         ->with('count_chuyen', $count_chuyen)
+        ->with('count_chuyen_khoa', $count_chuyen_khoa)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
@@ -3606,6 +3610,7 @@ class ThongKeController extends Controller
       $count_dunghoc_khoa = '';
       $count_dunghoc_lop = '';
       $count_chuyen = '';
+      $count_chuyen_khoa = '';
       return view('thongke.thongke_qlcttc')
         ->with('title', $title)
         ->with('count_giahan_time',$count_giahan_time)
@@ -3623,6 +3628,7 @@ class ThongKeController extends Controller
         ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
         ->with('count_dunghoc_lop', $count_dunghoc_lop)
         ->with('count_chuyen', $count_chuyen)
+        ->with('count_chuyen_khoa', $count_chuyen_khoa)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
@@ -3700,6 +3706,7 @@ class ThongKeController extends Controller
       $count_dunghoc_khoa = '';
       $count_dunghoc_lop = '';
       $count_chuyen = '';
+      $count_chuyen_khoa = '';
       return view('thongke.thongke_qlcttc')
         ->with('title', $title)
         ->with('count_giahan', $count_giahan)
@@ -3719,6 +3726,7 @@ class ThongKeController extends Controller
         ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
         ->with('count_dunghoc_lop', $count_dunghoc_lop)
         ->with('count_chuyen', $count_chuyen)
+        ->with('count_chuyen_khoa', $count_chuyen_khoa)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
@@ -3797,6 +3805,7 @@ class ThongKeController extends Controller
       $count_dunghoc_khoa = '';
       $count_dunghoc_lop = '';
       $count_chuyen = '';
+      $count_chuyen_khoa = '';
       return view('thongke.thongke_qlcttc')
         ->with('title', $title)
         ->with('count_giahan', $count_giahan)
@@ -3815,6 +3824,7 @@ class ThongKeController extends Controller
         ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
         ->with('count_dunghoc_lop', $count_dunghoc_lop)
         ->with('count_chuyen', $count_chuyen)
+        ->with('count_chuyen_khoa', $count_chuyen_khoa)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
@@ -3923,6 +3933,7 @@ class ThongKeController extends Controller
       $count_dunghoc_khoa = '';
       $count_dunghoc_lop = '';
       $count_chuyen = '';
+      $count_chuyen_khoa = '';
       return view('thongke.thongke_qlcttc')
         ->with('title', $title)
         ->with('count_giahan', $count_giahan)
@@ -3941,6 +3952,7 @@ class ThongKeController extends Controller
         ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
         ->with('count_dunghoc_lop', $count_dunghoc_lop)
         ->with('count_chuyen', $count_chuyen)
+        ->with('count_chuyen_khoa', $count_chuyen_khoa)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
@@ -3992,6 +4004,7 @@ class ThongKeController extends Controller
       $count_dunghoc_khoa = '';
       $count_dunghoc_lop = '';
       $count_chuyen = '';
+      $count_chuyen_khoa = '';
       return view('thongke.thongke_qlcttc')
         ->with('title', $title)
         ->with('count_giahan_time',$count_giahan_time)
@@ -4009,6 +4022,7 @@ class ThongKeController extends Controller
         ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
         ->with('count_dunghoc_lop', $count_dunghoc_lop)
         ->with('count_chuyen', $count_chuyen)
+        ->with('count_chuyen_khoa', $count_chuyen_khoa)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
@@ -4086,6 +4100,7 @@ class ThongKeController extends Controller
       $count_dunghoc_khoa = '';
       $count_dunghoc_lop = '';
       $count_chuyen = '';
+      $count_chuyen_khoa = '';
       return view('thongke.thongke_qlcttc')
         ->with('title', $title)
         ->with('count_giahan', $count_giahan)
@@ -4105,6 +4120,7 @@ class ThongKeController extends Controller
         ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
         ->with('count_dunghoc_lop', $count_dunghoc_lop)
         ->with('count_chuyen', $count_chuyen)
+        ->with('count_chuyen_khoa', $count_chuyen_khoa)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
@@ -4183,6 +4199,7 @@ class ThongKeController extends Controller
         ->get();
       $count_dunghoc_lop = '';
       $count_chuyen = '';
+      $count_chuyen_khoa = '';
       return view('thongke.thongke_qlcttc')
         ->with('title', $title)
         ->with('count_giahan', $count_giahan)
@@ -4201,6 +4218,7 @@ class ThongKeController extends Controller
         ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
         ->with('count_dunghoc_lop', $count_dunghoc_lop)
         ->with('count_chuyen', $count_chuyen)
+        ->with('count_chuyen_khoa', $count_chuyen_khoa)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
@@ -4281,6 +4299,7 @@ class ThongKeController extends Controller
         ->groupBy('dunghoc.batdau_dh','lop.ma_l')
         ->get();
       $count_chuyen = '';
+      $count_chuyen_khoa = '';
       return view('thongke.thongke_qlcttc')
         ->with('title', $title)
         ->with('count_giahan', $count_giahan)
@@ -4299,6 +4318,7 @@ class ThongKeController extends Controller
         ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
         ->with('count_dunghoc_lop', $count_dunghoc_lop)
         ->with('count_chuyen', $count_chuyen)
+        ->with('count_chuyen_khoa', $count_chuyen_khoa)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
@@ -4377,6 +4397,7 @@ class ThongKeController extends Controller
         ->select(DB::raw('count(chuyen.ma_c) as sum, lop.ma_l'))
         ->groupBy('lop.ma_l')
         ->get();
+      $count_chuyen_khoa = '';
       return view('thongke.thongke_qlcttc')
         ->with('title', $title)
         ->with('count_giahan_time',$count_giahan_time)
@@ -4394,6 +4415,7 @@ class ThongKeController extends Controller
         ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
         ->with('count_dunghoc_lop', $count_dunghoc_lop)
         ->with('count_chuyen', $count_chuyen)
+        ->with('count_chuyen_khoa', $count_chuyen_khoa)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt);
@@ -4422,6 +4444,78 @@ class ThongKeController extends Controller
         'title' => $title,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlcttc_chuyen_khoa(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Thống kê";
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $data = $request->all();
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      $count_ketqua_ma_lop = '';
+      $list_lop = Lop::orderBy('ten_l', 'asc')
+        ->get();
+      $count_ketqua_lop = '';
+      $count_giahan = '';
+      $count_giahan_time = '';
+      $count_giahan_khoa = '';
+      $count_giahan_lop = '';
+      $list_khoa = Khoa::orderBy('ten_k', 'asc')
+        ->get();
+      $count_dunghoc = '';
+      $count_dunghoc_time = '';
+      $count_dunghoc_khoa = '';
+      $count_dunghoc_lop = '';
+      $count_chuyen = '';
+      $count_chuyen_khoa = Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
+        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('khoa.ma_k', $data['ma_k'])
+        ->select(DB::raw('count(chuyen.ma_c) as sum, khoa.ma_k'))
+        ->groupBy('khoa.ma_k')
+        ->get();
+      return view('thongke.thongke_qlcttc')
+        ->with('title', $title)
+        ->with('count_giahan', $count_giahan)
+        ->with('count_giahan_time',$count_giahan_time)
+        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
+        ->with('list_lop', $list_lop)
+        ->with('list_khoa', $list_khoa)
+        ->with('count_giahan_khoa', $count_giahan_khoa)
+        ->with('count_giahan_lop', $count_giahan_lop)
+        ->with('ma_k', $data['ma_k'])
+        ->with('count_ketqua_lop', $count_ketqua_lop)
+        ->with('count_dunghoc', $count_dunghoc)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('count_nangbac', $count_nangbac)
+        ->with('count_dunghoc_time', $count_dunghoc_time)
+        ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
+        ->with('count_dunghoc_lop', $count_dunghoc_lop)
+        ->with('count_chuyen', $count_chuyen)
+        ->with('count_chuyen_khoa', $count_chuyen_khoa)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
     }

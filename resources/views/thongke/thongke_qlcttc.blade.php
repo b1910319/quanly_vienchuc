@@ -45,7 +45,7 @@
       <div class="mt-2">
         <a href="{{ URL::to('thongke_qlcttc_chuyen') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_chuyen != '')
+            @if ($count_chuyen != '' || $count_chuyen_khoa != '')
               #850000
             @else
               gray
@@ -274,14 +274,14 @@
         </div>
       </div>
     @endif
-    @if ($count_chuyen)
+    @if ($count_chuyen || $count_chuyen_khoa)
       <div class="row">
         <div class="col-3">
           <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo4" style="background-color: #00425A; border: none; width: 100%" >
             Chọn khoa
           </button>
           <div id="demo4" class="collapse mt-3">
-            <form action="{{ URL::to('thongke_qlcttc_dunghoc_khoa') }}" method="post">
+            <form action="{{ URL::to('thongke_qlcttc_chuyen_khoa') }}" method="post">
               {{ csrf_field() }}
               <div class="row">
                 <div class="col-8">
@@ -436,6 +436,15 @@
         </div>
       </div>
     @endif
+    @if ($count_chuyen_khoa != '')
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlcttc_chuyen_khoa_pdf/'.$ma_k) }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
   </div>
 </div>
 <script>
@@ -563,6 +572,16 @@
                   $ten_l = $lop->ten_l;
                   $tong = $count->sum;
                   echo "{ year: '$ten_l', value: $tong },";
+                }
+              }
+            }
+          }else if($count_chuyen_khoa){
+            foreach ($count_chuyen_khoa as $key => $count){
+              foreach($list_khoa as $key => $khoa){
+                if($count->ma_k == $khoa->ma_k){
+                  $ten_k = $khoa->ten_k;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_k', value: $tong },";
                 }
               }
             }
