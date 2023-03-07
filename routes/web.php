@@ -339,8 +339,8 @@ Route::post('/thongke_qlcttc_thoihoc_time',[ThongKeController::class, 'thongke_q
 Route::get('/thongke_qlcttc_thoihoc_time_pdf/{batdau}/{ketthuc}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_time_pdf']);
 Route::post('/thongke_qlcttc_thoihoc_khoa',[ThongKeController::class, 'thongke_qlcttc_thoihoc_khoa']);
 Route::get('/thongke_qlcttc_thoihoc_khoa_pdf/{ma_k}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_khoa_pdf']);
-// Route::post('/thongke_qlcttc_thoihoc_lop',[ThongKeController::class, 'thongke_qlcttc_thoihoc_lop']);
-// Route::get('/thongke_qlcttc_thoihoc_lop_pdf/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_lop_pdf']);
+Route::post('/thongke_qlcttc_thoihoc_lop',[ThongKeController::class, 'thongke_qlcttc_thoihoc_lop']);
+Route::get('/thongke_qlcttc_thoihoc_lop_pdf/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_lop_pdf']);
 
 
 

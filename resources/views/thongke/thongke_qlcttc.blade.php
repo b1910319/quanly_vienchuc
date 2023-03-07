@@ -58,7 +58,7 @@
       <div class="mt-2">
         <a href="{{ URL::to('thongke_qlcttc_thoihoc') }}">
           <button type="button" class="btn btn-primary" style="background-color: 
-            @if ($count_thoihoc != ''|| $count_thoihoc_time != '' || $count_thoihoc_khoa != '')
+            @if ($count_thoihoc != ''|| $count_thoihoc_time != '' || $count_thoihoc_khoa != '' || $count_thoihoc_lop != '')
               #850000
             @else
               gray
@@ -349,7 +349,7 @@
         </div>
       </div>
     @endif
-    @if ($count_thoihoc || $count_thoihoc_time || $count_thoihoc_khoa)
+    @if ($count_thoihoc || $count_thoihoc_time || $count_thoihoc_khoa || $count_thoihoc_lop)
       <div class="row">
         <div class="col-3">
           <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
@@ -581,6 +581,15 @@
         </div>
       </div>
     @endif
+    @if ($count_thoihoc_lop != '')
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlcttc_thoihoc_lop_pdf/'.$ma_l) }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
   </div>
 </div>
 <script>
@@ -756,6 +765,17 @@
                   $ten_k = $khoa->ten_k;
                   $tong = $count->sum;
                   echo "{ year: '$ngay_th ( $ten_k )', value: $tong },";
+                }
+              }
+            }
+          }else if($count_thoihoc_lop){
+            foreach ($count_thoihoc_lop as $key => $count){
+              foreach($list_lop as $key => $lop){
+                if($count->ma_l == $lop->ma_l){
+                  $ngay_th = $count->ngay_th;
+                  $ten_l = $lop->ten_l;
+                  $tong = $count->sum;
+                  echo "{ year: '$ngay_th ( $ten_l )', value: $tong },";
                 }
               }
             }
