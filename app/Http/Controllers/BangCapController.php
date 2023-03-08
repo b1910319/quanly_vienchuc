@@ -127,7 +127,10 @@ class BangCapController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
-    if($phanquyen_admin || $phanquyen_qltt){
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
       $bac = BangCap::find($ma_bc);
       if($bac->status_bc == 1){
         $bac->status_bc = BangCap::find($ma_bc)->update(['status_bc' => 0]);
