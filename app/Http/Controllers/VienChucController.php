@@ -376,9 +376,16 @@ class VienChucController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
-    if($phanquyen_admin){
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlk){
       VienChuc::find($ma_vc)->delete();
-      return Redirect::to('quanly_vienchuc_khoa');
+      if($phanquyen_qlk){
+        return Redirect::to('thongtin_vienchuc_khoa');
+      }else{
+        return Redirect::to('quanly_vienchuc_khoa');
+      }
     }else{
       return Redirect::to('/home');
     }
@@ -699,8 +706,11 @@ class VienChucController extends Controller
       $quequan->ma_x = $data['ma_x_qq'];
       $quequan->diachi_qq = $data['diachi_qq'];
       $quequan->save();
-      return Redirect::to('/thongtin_vienchuc_add');
-      // return redirect()->back();
+      if($phanquyen_qlk){
+        return Redirect::to('/thongtin_vienchuc_khoa');
+      }else{
+        return Redirect::to('/thongtin_vienchuc_add');
+      }
     }else{
       return Redirect::to('/home');
     }
@@ -751,6 +761,10 @@ class VienChucController extends Controller
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
+      $count_bangcap = VienChuc::leftJoin('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
+        ->select(DB::raw('count(ma_bc) as sum, vienchuc.ma_vc'))
+        ->groupBy('vienchuc.ma_vc')
+        ->get();
       return view('vienchuc.danhsach_thongtin_vienchuc')
         ->with('title', $title)
         ->with('list_khoa', $list_khoa)
@@ -763,6 +777,7 @@ class VienChucController extends Controller
         ->with('list_khoa_show', $list_khoa_show)
         ->with('count', $count)
         ->with('ten',' ')
+        ->with('count_bangcap', $count_bangcap)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('count_nangbac', $count_nangbac)
         ->with('list_tinh', $list_tinh)
@@ -1691,6 +1706,10 @@ class VienChucController extends Controller
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
+      $count_bangcap = VienChuc::leftJoin('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
+        ->select(DB::raw('count(ma_bc) as sum, vienchuc.ma_vc'))
+        ->groupBy('vienchuc.ma_vc')
+        ->get();
       return view('vienchuc.thongtin_vienchuc_khoa')
         ->with('title', $title)
         ->with('list_khoa', $list_khoa)
@@ -1704,6 +1723,7 @@ class VienChucController extends Controller
         ->with('count', $count)
         ->with('ten', $khoa->ten_k)
         ->with('ma_k', $ma_k)
+        ->with('count_bangcap', $count_bangcap)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('count_nangbac', $count_nangbac)
         ->with('list_tinh', $list_tinh)

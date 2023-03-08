@@ -583,8 +583,21 @@
               <b>Số CCCD: </b> {{ $vienchuc->cccd_vc }}
             </td>
             <td>
-              <a href="{{ URL::to('/bangcap/'.$vienchuc->ma_vc) }}">
-                <button type="button" class="btn btn-primary" style="background-color: #00425A; border: none;">Bằng cấp</button>
+              <?php
+                foreach ($count_bangcap as $key => $count) {
+                  if($count->ma_vc == $vienchuc->ma_vc && $count->sum > 0){
+                    ?>
+                    <a href="{{ URL::to('/bangcap/'.$vienchuc->ma_vc) }}">
+                      <button type="button" class="btn btn-primary" style="background-color: #00425A; border: none;">Bằng cấp (<?php echo $count->sum ?>)</button>
+                    <?php
+                  }elseif ($count->ma_vc == $vienchuc->ma_vc && $count->sum == 0) {
+                    ?>
+                      <a href="{{ URL::to('/bangcap/'.$vienchuc->ma_vc) }}">
+                        <button type="button" class="btn btn-primary" style="background-color: #00425A; border: none;">Bằng cấp (0)</button>
+                    <?php
+                  }
+                }
+              ?>
               </a>
             </td>
             <td style="width: 27%;">
