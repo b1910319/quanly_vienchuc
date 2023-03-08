@@ -369,13 +369,13 @@
             @if ($phanquyen_qlk)
               <li>
                 <a href="javascript: void(0);" class="waves-effect">
-                  <i class="remixicon-mail-open-line"></i>
+                  <i class="fa-solid fa-building"></i>
                   <span> Quản lý khoa </span>
                   <span class="menu-arrow"></span>
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
                   <li>
-                    <a href="{{ URL::to('/danhmuclop') }}">Danh mục lớp học</a>
+                    <a href="{{ URL::to('/thongtin_vienchuc_khoa') }}">Thông tin viên chức</a>
                   </li>
                 </ul>
               </li>

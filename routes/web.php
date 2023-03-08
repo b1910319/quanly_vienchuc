@@ -71,6 +71,8 @@ Route::post('/search_danhsach_thongtin_vienchuc_ngaybatdaulamviec',[VienChucCont
 Route::get('/search_danhsach_thongtin_vienchuc_hedaotao/{ma_hdt}',[VienChucController::class, 'search_danhsach_thongtin_vienchuc_hedaotao']);
 Route::get('/search_danhsach_thongtin_vienchuc_loiabangcap/{ma_hdt}',[VienChucController::class, 'search_danhsach_thongtin_vienchuc_loiabangcap']);
 
+Route::get('/thongtin_vienchuc_khoa',[VienChucController::class, 'thongtin_vienchuc_khoa']);
+
 
 
 
