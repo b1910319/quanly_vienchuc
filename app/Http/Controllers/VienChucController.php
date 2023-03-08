@@ -172,8 +172,8 @@ class VienChucController extends Controller
     $title = "Cập nhật thông tin viên chức";
     $ma_vc_login = session()->get('ma_vc');
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
-    ->where('ma_q', '=', '9')
-    ->first();
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
@@ -186,7 +186,7 @@ class VienChucController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '8')
       ->first();
-    if($phanquyen_admin){
+    if($phanquyen_admin || $phanquyen_qlk){
       $edit = VienChuc::find($ma_vc);
       Carbon::now('Asia/Ho_Chi_Minh'); 
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
@@ -212,7 +212,10 @@ class VienChucController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
-    if($phanquyen_admin){
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlk){
       $data = $request->all();
       Carbon::now('Asia/Ho_Chi_Minh');
       $vienchuc = VienChuc::find($ma_vc);
