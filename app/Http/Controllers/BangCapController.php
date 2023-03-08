@@ -233,7 +233,10 @@ class BangCapController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '8')
       ->first();
-    if($phanquyen_admin || $phanquyen_qltt){
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
       BangCap::find($ma_bc)->delete();
       return Redirect::to('/bangcap/'.$ma_vc);
     }else{
