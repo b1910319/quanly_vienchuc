@@ -5,7 +5,7 @@
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
-          <button role="button" class="item-question collapsed btn btn-primary" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a">
+          <button role="button" class="item-question collapsed btn btn-primary" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a" style="background-color: #379237; border: none;">
             <i class="fa-solid fa-circle-plus"></i> &ensp; Thêm
           </button>
           <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
@@ -125,7 +125,7 @@
                   </div>
                 </div>
               </form>
-              <button role="button" class="item-question collapsed btn btn-primary" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a">
+              <button role="button" class="item-question collapsed btn btn-primary" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a" style="background-color: #379237; border: none;">
                 <i class="fa-solid fa-chevron-up"></i> &ensp; Thu gọn
               </button>
             </div>
@@ -136,13 +136,22 @@
     <div class="mt-3"></div>
     <div class="alert alert-success" role="alert">
       <div class="row">
-        <a href="{{ URL::to('/thongtin_vienchuc_add') }}" class="col-1">
-          <button type="button" class="btn btn-warning">
-            <i class="fas fa-solid fa-caret-left"></i>&ensp;
-          </button> &ensp;
-        </a>
+        @if ($phanquyen_qlk)
+          <a href="{{ URL::to('/thongtin_vienchuc_khoa') }}" class="col-1">
+            <button type="button" class="btn btn-warning">
+              <i class="fas fa-solid fa-caret-left"></i>&ensp;
+            </button> &ensp;
+          </a>
+        @else
+          <a href="{{ URL::to('/thongtin_vienchuc_add') }}" class="col-1">
+            <button type="button" class="btn btn-warning">
+              <i class="fas fa-solid fa-caret-left"></i>&ensp;
+            </button> &ensp;
+          </a>
+        @endif
+        
         <h4 class="text-center col-10 mt-1" style="font-weight: bold">
-          DANH SÁCH 
+          DANH SÁCH BẰNG CẤP CỦA VIÊN CHỨC
           <span style="color: #379237;">( {{ $vienchuc->hoten_vc }} )</span>
         </h4>
       </div>

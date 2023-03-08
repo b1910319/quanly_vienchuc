@@ -2,11 +2,20 @@
 @section('content')
   <div class="card-box">
     <div class="alert alert-success row" role="alert">
-      <a href="{{ URL::to('/thongtin_vienchuc_add') }}" class="col-1">
-        <button type="button" class="btn btn-warning">
-          <i class="fas fa-solid fa-caret-left"></i>&ensp;
-        </button> &ensp;
-      </a>
+      @if ($phanquyen_qlk)
+        <a href="{{ URL::to('/thongtin_vienchuc_khoa') }}" class="col-1">
+          <button type="button" class="btn btn-warning">
+            <i class="fas fa-solid fa-caret-left"></i>&ensp;
+          </button> &ensp;
+        </a>
+      @else
+        <a href="{{ URL::to('/thongtin_vienchuc_add') }}" class="col-1">
+          <button type="button" class="btn btn-warning">
+            <i class="fas fa-solid fa-caret-left"></i>&ensp;
+          </button> &ensp;
+        </a>
+      @endif
+      
       <h4 class="text-center col-10 mt-1" style="font-weight: bold">CẬP NHẬT THÔNG TIN</h4>
     </div>
     <form action="{{ URL::to('/update_thongtin_vienchuc/'.$edit->ma_vc) }}" method="POST"
