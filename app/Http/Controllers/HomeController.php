@@ -41,6 +41,9 @@ class HomeController extends Controller
       ->where('ma_q', '=', '7')
       ->first();
     Carbon::now('Asia/Ho_Chi_Minh'); 
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
@@ -70,6 +73,7 @@ class HomeController extends Controller
         ->with('count_vienchuc_kyluat', $count_vienchuc_kyluat)
         ->with('count_vienchuc_khenthuong', $count_vienchuc_khenthuong)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -86,6 +90,7 @@ class HomeController extends Controller
         ->with('count_vienchuc_nghihuu', $count_vienchuc_nghihuu)
         ->with('count_vienchuc', $count_vienchuc)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qltt', $phanquyen_qltt)
@@ -108,6 +113,7 @@ class HomeController extends Controller
         ->with('count_vienchuc_khenthuong', $count_vienchuc_khenthuong)
         ->with('count_vienchuc', $count_vienchuc)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qltt', $phanquyen_qltt)
@@ -116,6 +122,7 @@ class HomeController extends Controller
       return view('home.home')
         ->with('title', $title)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qltt', $phanquyen_qltt)

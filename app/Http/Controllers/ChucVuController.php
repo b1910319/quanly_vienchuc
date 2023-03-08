@@ -30,6 +30,9 @@ class ChucVuController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Quản lý chức vụ";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -53,6 +56,7 @@ class ChucVuController extends Controller
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
         ->with('title', $title)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('count_status', $count_status)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -114,6 +118,9 @@ class ChucVuController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Cập nhật thông tin chức vụ";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -130,6 +137,7 @@ class ChucVuController extends Controller
       return view('chucvu.chucvu_edit')
         ->with('edit', $edit)
         ->with('title', $title)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)

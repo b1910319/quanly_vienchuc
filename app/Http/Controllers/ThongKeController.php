@@ -48,6 +48,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -116,6 +119,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -134,6 +138,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -205,6 +212,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -274,6 +282,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -343,6 +354,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -361,6 +373,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -433,6 +448,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -524,6 +540,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -593,6 +612,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -611,6 +631,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -683,6 +706,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -773,6 +797,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -841,6 +868,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -859,6 +887,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -930,6 +961,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -995,6 +1027,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -1064,6 +1099,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -1082,6 +1118,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -1154,6 +1193,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -1221,6 +1261,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -1290,6 +1333,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -1308,6 +1352,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -1381,6 +1428,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -1447,6 +1495,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -1519,6 +1570,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -1562,6 +1614,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -1631,6 +1686,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -1649,6 +1705,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -1721,6 +1780,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -1792,6 +1852,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -1855,6 +1918,7 @@ class ThongKeController extends Controller
         ->with('count_kl_khoa', $count_kl_khoa)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -1873,6 +1937,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -1936,6 +2003,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -1954,6 +2022,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -2020,6 +2091,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -2088,6 +2160,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -2151,6 +2226,7 @@ class ThongKeController extends Controller
         ->with('list_loaikyluat', $list_loaikyluat)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -2169,6 +2245,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -2235,6 +2314,7 @@ class ThongKeController extends Controller
         ->with('list_loaikyluat', $list_loaikyluat)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -2303,6 +2383,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -2369,6 +2452,7 @@ class ThongKeController extends Controller
         ->with('list_loaikyluat', $list_loaikyluat)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -2387,6 +2471,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -2449,6 +2536,7 @@ class ThongKeController extends Controller
         ->with('list_loaikyluat', $list_loaikyluat)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -2516,6 +2604,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -2582,6 +2673,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -2600,6 +2692,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -2671,6 +2766,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -2743,6 +2839,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -2806,6 +2905,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -2851,6 +2951,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -2917,6 +3020,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -2959,6 +3063,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -3027,6 +3134,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -3045,6 +3153,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -3114,6 +3225,7 @@ class ThongKeController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -3181,6 +3293,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -3247,6 +3362,7 @@ class ThongKeController extends Controller
         ->with('list_loaikyluat', $list_loaikyluat)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -3262,6 +3378,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
@@ -3327,6 +3446,7 @@ class ThongKeController extends Controller
         ->with('list_loaikyluat', $list_loaikyluat)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -3395,6 +3515,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -3451,6 +3574,7 @@ class ThongKeController extends Controller
         ->with('count_thoihoc_lop', $count_thoihoc_lop)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -3496,6 +3620,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -3555,6 +3682,7 @@ class ThongKeController extends Controller
         ->with('count_thoihoc_lop', $count_thoihoc_lop)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -3601,6 +3729,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -3662,6 +3793,7 @@ class ThongKeController extends Controller
         ->with('count_thoihoc_lop', $count_thoihoc_lop)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -3705,6 +3837,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -3770,6 +3905,7 @@ class ThongKeController extends Controller
         ->with('count_thoihoc_lop', $count_thoihoc_lop)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -3814,6 +3950,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -3878,6 +4017,7 @@ class ThongKeController extends Controller
         ->with('count_thoihoc_lop', $count_thoihoc_lop)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -3952,6 +4092,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -4016,6 +4159,7 @@ class ThongKeController extends Controller
         ->with('count_thoihoc_lop', $count_thoihoc_lop)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -4035,6 +4179,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -4096,6 +4243,7 @@ class ThongKeController extends Controller
         ->with('count_thoihoc_lop', $count_thoihoc_lop)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -4139,6 +4287,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -4204,6 +4355,7 @@ class ThongKeController extends Controller
         ->with('count_thoihoc_lop', $count_thoihoc_lop)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -4248,6 +4400,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -4312,6 +4467,7 @@ class ThongKeController extends Controller
         ->with('count_thoihoc_lop', $count_thoihoc_lop)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -4358,6 +4514,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -4422,6 +4581,7 @@ class ThongKeController extends Controller
         ->with('count_thoihoc_lop', $count_thoihoc_lop)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -4468,6 +4628,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -4529,6 +4692,7 @@ class ThongKeController extends Controller
         ->with('count_thoihoc_lop', $count_thoihoc_lop)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -4572,6 +4736,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -4636,6 +4803,7 @@ class ThongKeController extends Controller
         ->with('count_thoihoc_lop', $count_thoihoc_lop)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -4682,6 +4850,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -4746,6 +4917,7 @@ class ThongKeController extends Controller
         ->with('count_thoihoc_lop', $count_thoihoc_lop)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -4792,6 +4964,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -4853,6 +5028,7 @@ class ThongKeController extends Controller
         ->with('count_thoihoc_lop', $count_thoihoc_lop)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -4896,6 +5072,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -4961,6 +5140,7 @@ class ThongKeController extends Controller
         ->with('count_thoihoc_lop', $count_thoihoc_lop)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -5005,6 +5185,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -5069,6 +5252,7 @@ class ThongKeController extends Controller
         ->with('count_thoihoc_lop', $count_thoihoc_lop)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
@@ -5115,6 +5299,9 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -5179,6 +5366,7 @@ class ThongKeController extends Controller
         ->with('count_thoihoc_lop', $count_thoihoc_lop)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');

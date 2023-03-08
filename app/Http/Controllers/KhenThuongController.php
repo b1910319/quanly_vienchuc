@@ -42,6 +42,9 @@ class KhenThuongController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Quản lý khen thưởng";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
@@ -89,6 +92,7 @@ class KhenThuongController extends Controller
         ->with('count_khenthuong_vienchuc', $count_khenthuong_vienchuc)
         ->with('list_vienchuc_khenthuong', $list_vienchuc_khenthuong)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('list_vienchuc', $list_vienchuc);
     }else{
@@ -105,6 +109,9 @@ class KhenThuongController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thêm thông tin khen thưởng";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '6')
       ->first();
@@ -141,6 +148,7 @@ class KhenThuongController extends Controller
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('count', $count)
         ->with('title', $title)
         ->with('ma_vc', $ma_vc)
@@ -204,6 +212,9 @@ class KhenThuongController extends Controller
     $this->check_login();
     $title = "Cập nhật thông tin khen thưởng";
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '6')
       ->first();
@@ -223,7 +234,6 @@ class KhenThuongController extends Controller
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
-
       $list_hinhthuckhenthuong = HinhThucKhenThuong::where('status_htkt', '<>', '1')
         ->orderBy('ten_htkt', 'asc')
         ->get();
@@ -239,6 +249,7 @@ class KhenThuongController extends Controller
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{

@@ -32,6 +32,9 @@ class ThoiHocController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Cập nhật quá trình dừng học của viên chức";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
@@ -70,6 +73,7 @@ class ThoiHocController extends Controller
         ->with('list', $list)
         ->with('lop', $lop)
         ->with('vienchuc', $vienchuc)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('count_nangbac', $count_nangbac);
@@ -142,6 +146,9 @@ class ThoiHocController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Cập nhật thông tin quyết định";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
@@ -161,6 +168,7 @@ class ThoiHocController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
@@ -265,6 +273,9 @@ class ThoiHocController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Cập nhật thông tin tạm dừng học của viên chức";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
@@ -303,6 +314,7 @@ class ThoiHocController extends Controller
         ->with('list_vienchuc', $list_vienchuc)
         ->with('list_lop', $list_lop)
         ->with('vienchuc', $vienchuc)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('count_nangbac', $count_nangbac);

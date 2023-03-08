@@ -366,6 +366,20 @@
                 </ul>
               </li>
             @endif
+            @if ($phanquyen_qlk)
+              <li>
+                <a href="javascript: void(0);" class="waves-effect">
+                  <i class="remixicon-mail-open-line"></i>
+                  <span> Quản lý khoa </span>
+                  <span class="menu-arrow"></span>
+                </a>
+                <ul class="nav-second-level" aria-expanded="false">
+                  <li>
+                    <a href="{{ URL::to('/danhmuclop') }}">Danh mục lớp học</a>
+                  </li>
+                </ul>
+              </li>
+            @endif
             {{-- <li>
               <a href="javascript: void(0);" class="waves-effect">
                 <i class="remixicon-pages-line"></i>

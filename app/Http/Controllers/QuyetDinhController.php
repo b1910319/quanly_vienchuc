@@ -31,6 +31,9 @@ class QuyetDinhController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Cập nhật file quyết định";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
@@ -53,10 +56,6 @@ class QuyetDinhController extends Controller
         ->where('ma_l', $ma_l)
         ->where('ma_vc', $ma_vc)
         ->get();
-      // $count_vienchuc_lop = Lop::leftJoin('danhsach', 'lop.ma_l', '=', 'danhsach.ma_l')
-      //   ->select(DB::raw('count(danhsach.ma_l) as sum, lop.ma_l'))
-      //   ->groupBy('lop.ma_l')
-      //   ->get();
       $lop = Lop::find($ma_l);
       $vienchuc = VienChuc::find($ma_vc);
       Carbon::now('Asia/Ho_Chi_Minh'); 
@@ -64,16 +63,12 @@ class QuyetDinhController extends Controller
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
-      // $list_danhmuclop = DanhMucLop::where('status_dml', '<>', '1')
-      //   ->orderBy('ten_dml', 'asc')
-      //   ->get();
       return view('quyetdinh.quyetdinh')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
         ->with('title', $title)
-        // ->with('count_vienchuc_lop', $count_vienchuc_lop)
-        // ->with('list_danhmuclop', $list_danhmuclop)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('count_status', $count_status)
         ->with('list', $list)
         ->with('lop', $lop)
@@ -109,7 +104,6 @@ class QuyetDinhController extends Controller
         $quyetdinh->file_qd = $new_file;
       }
       $quyetdinh->save();
-      // return Redirect::to('/quyetdinh/'.$data['ma_l'].'/'.$data['ma_vc'],302);
       return redirect()->back();
     }else{
       return Redirect::to('/home');
@@ -146,6 +140,9 @@ class QuyetDinhController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Cập nhật thông tin quyết định";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
@@ -164,6 +161,7 @@ class QuyetDinhController extends Controller
         ->with('title', $title)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_admin', $phanquyen_admin);
@@ -260,6 +258,9 @@ class QuyetDinhController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Cập nhật file quyết định";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
@@ -301,6 +302,7 @@ class QuyetDinhController extends Controller
         ->with('list_vienchuc', $list_vienchuc)
         ->with('list_lop', $list_lop)
         ->with('vienchuc', $vienchuc)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('count_nangbac', $count_nangbac);

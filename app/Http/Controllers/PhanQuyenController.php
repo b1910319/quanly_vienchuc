@@ -27,6 +27,9 @@ class PhanQuyenController extends Controller
       ->where('ma_q', '=', '5')
       ->first();
     $title = "Phân quyền";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
@@ -56,6 +59,7 @@ class PhanQuyenController extends Controller
         ->with('list_quyen', $list_quyen)
         ->with('title', $title)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('list_phanquyen', $list_phanquyen)

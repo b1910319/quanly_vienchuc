@@ -41,6 +41,9 @@ class KyLuatController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Quản lý kỷ luật";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
@@ -73,6 +76,7 @@ class KyLuatController extends Controller
         ->get();
       return view('kyluat.kyluat')
         ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('list_hedaotao', $list_hedaotao)
@@ -107,6 +111,9 @@ class KyLuatController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Thêm thông tin khen thưởng";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
@@ -134,6 +141,7 @@ class KyLuatController extends Controller
       return view('kyluat.kyluat_add')
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
@@ -197,6 +205,9 @@ class KyLuatController extends Controller
     $this->check_login();
     $title = "Cập nhật thông tin kỷ luật";
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '6')
       ->first();
@@ -226,6 +237,7 @@ class KyLuatController extends Controller
         ->with('list_loaikyluat', $list_loaikyluat)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_admin', $phanquyen_admin);

@@ -48,6 +48,9 @@ class DanhSachController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $title = "Quản lý thông tin dân tộc";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
@@ -136,6 +139,7 @@ class DanhSachController extends Controller
         ->with('list_tinh',$list_tinh)
         ->with('count_dunghoc_vienchuc', $count_dunghoc_vienchuc)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('count_nangbac', $count_nangbac);
     }else{
