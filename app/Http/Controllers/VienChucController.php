@@ -76,7 +76,7 @@ class VienChucController extends Controller
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
-    if($phanquyen_admin){
+    if($phanquyen_admin || $phanquyen_qlk ){
       $count = VienChuc::select(DB::raw('count(ma_vc) as sum'))
         ->where('ma_k', $ma_k)
         ->get();
@@ -119,7 +119,10 @@ class VienChucController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    if($phanquyen_admin){
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlk){
       $data = $request->all();
       $vienchuc = new VienChuc();
       $vienchuc->hoten_vc = $data['hoten_vc'];
@@ -1685,6 +1688,7 @@ class VienChucController extends Controller
         ->with('list_khoa_show', $list_khoa_show)
         ->with('count', $count)
         ->with('ten', $khoa->ten_k)
+        ->with('ma_k', $ma_k)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('count_nangbac', $count_nangbac)
         ->with('list_tinh', $list_tinh)

@@ -91,11 +91,19 @@
     </div>
     <div class="mt-3"></div>
     <div class="alert alert-success row" role="alert">
-      <a href="{{ URL::to('/quanly_khoa') }}" class="col-1">
-        <button type="button" class="btn btn-warning">
-          <i class="fas fa-solid fa-caret-left"></i>&ensp;
-        </button> &ensp;
-      </a>
+      @if ($phanquyen_qlk)
+        <a href="{{ URL::to('/thongtin_vienchuc_khoa') }}" class="col-1">
+          <button type="button" class="btn btn-warning">
+            <i class="fas fa-solid fa-caret-left"></i>&ensp;
+          </button> &ensp;
+        </a>
+      @else
+        <a href="{{ URL::to('/quanly_khoa') }}" class="col-1">
+          <button type="button" class="btn btn-warning">
+            <i class="fas fa-solid fa-caret-left"></i>&ensp;
+          </button> &ensp;
+        </a>
+      @endif
       <h4 class="text-center col-10 mt-1" style="font-weight: bold">
         DANH SÁCH 
         <span style="color: #379237;">( {{ $khoa->ten_k }} )</span>

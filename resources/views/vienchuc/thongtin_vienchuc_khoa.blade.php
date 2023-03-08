@@ -4,7 +4,7 @@
   <div class="card-box col-2">
     <div class="row">
       <div class="mb-2">
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="width: 100%; background-color: #379237">Thống kê</button>
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="width: 100%; background-color: #850000">Thống kê</button>
   
         <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
           <div class="offcanvas-header">
@@ -39,7 +39,7 @@
         </div>
       </div>
       <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">
-        <button type="button" class="btn btn-warning" style="width: 100%; background-color: #00425A; border: none">
+        <button type="button" class="btn btn-warning" style="width: 100%; background-color: #850000; border: none">
           <i class="fa-solid fa-rotate-right"></i>
         </button>
       </a>
@@ -53,7 +53,7 @@
         </div>
       </div>
       <div class="dropdown mt-2" >
-        <button class="dropbtn" style="background-color: #460C68">Dân tộc</button>
+        <button class="dropbtn" style="background-color: #850000">Dân tộc</button>
         <div class="dropdown-content">
           @foreach ($list_dantoc as  $dantoc)
             <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_dantoc/'.$dantoc->ma_dt) }}">{{ $dantoc->ten_dt }}</a>
@@ -62,7 +62,7 @@
         </div>
       </div>
       <div class="dropdown mt-2" >
-        <button class="dropbtn" style="background-color: #379237">Tôn giáo</button>
+        <button class="dropbtn" style="background-color: #850000">Tôn giáo</button>
         <div class="dropdown-content">
           @foreach ($list_tongiao as  $tongiao)
             <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_tongiao/'.$tongiao->ma_tg) }}">{{ $tongiao->ten_tg }}</a>
@@ -71,7 +71,7 @@
         </div>
       </div>
       <div class="dropdown mt-2" >
-        <button class="dropbtn" style="background-color: #00425A">Giới tính</button>
+        <button class="dropbtn" style="background-color: #850000">Giới tính</button>
         <div class="dropdown-content">
           <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_gioitinh/0') }}">
             Nam
@@ -90,7 +90,7 @@
         </div>
       </div>
       <div class="dropdown mt-2" >
-        <button class="dropbtn" style="background-color: #460C68">Hệ đào tạo</button>
+        <button class="dropbtn" style="background-color: #850000">Hệ đào tạo</button>
         <div class="dropdown-content">
           @foreach ($list_hedaotao as  $hedaotao)
             <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_hedaotao/'.$hedaotao->ma_hdt) }}">{{ $hedaotao->ten_hdt }}</a>
@@ -98,7 +98,7 @@
         </div>
       </div>
       <div class="dropdown mt-2" >
-        <button class="dropbtn" style="background-color: #379237">Loại bằng cấp</button>
+        <button class="dropbtn" style="background-color: #850000">Loại bằng cấp</button>
         <div class="dropdown-content">
           @foreach ($list_loiabangcap as  $loiabangcap)
             <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_loiabangcap/'.$loiabangcap->ma_lbc) }}">{{ $loiabangcap->ten_lbc }}</a>
@@ -114,18 +114,12 @@
         <h4 class="text-center" style="font-weight: bold">
           DANH SÁCH
           <sub style="color: #379237; font-size: 18px">( {{ $ten }} )</sub>
-
         </h4>
       </div>
     </div>
     <div class="row">
-      <div class="col-1">
-        @foreach ($count as $key => $count)
-          <p class="fw-bold" style="color: #379237; ">Tổng có: {{ $count->sum }}</p>
-        @endforeach
-      </div>
       <div class="col-3">
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo1" style="background-color: #379237; border: none; width: 100%">Lọc theo quê quán</button>
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo1" style="background-color: #00425A; border: none; width: 100%">Lọc theo quê quán</button>
         <div id="demo1" class="collapse mt-3">
           <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_quequan') }}" method="post">
             {{ csrf_field() }}
@@ -151,18 +145,21 @@
         </div>
       </div>
 
-      <div class="col-4">
+      <div class="col-3">
         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color: #00425A; border: none; width: 100%" >Lọc theo ngày sinh của viên chức</button>
         <div id="demo" class="collapse mt-3">
           <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_ngaysinh') }}" method="post">
             {{ csrf_field() }}
             <div class="row">
-              <div class="col-4">
+              <div class="col-6">
                 <input type='date' class='form-control input_table' autofocus required name="batdau">
               </div>
-              <div class="col-4">
+              <div class="col-6">
                 <input type='date' class='form-control input_table' autofocus required name="ketthuc">
               </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-8"></div>
               <div class="col-4">
                 <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="width: 100%">
                   <i class="fa-solid fa-magnifying-glass-plus"></i>
@@ -170,17 +167,16 @@
                 </button>
               </div>
             </div>
-            
           </form>
         </div>
       </div>
-      <div class="col-4">
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2" style="background-color: #850000; border: none; width: 100%" >Lọc theo ngạch</button>
+      <div class="col-3">
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2" style="background-color: #00425A; border: none; width: 100%" >Lọc theo ngạch</button>
         <div id="demo2" class="collapse mt-3 mb-3">
           <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_ngach') }}" method="post">
             {{ csrf_field() }}
             <div class="row">
-              <div class="col-4">
+              <div class="col-6">
                 <select class="custom-select input_table choose ngach" name="ma_n" id="ngach">
                   <option value="0" >Chọn ngạch</option>
                   @foreach ($list_ngach as $ngach)
@@ -189,11 +185,14 @@
                 </select>
                 
               </div>
-              <div class="col-4">
+              <div class="col-6">
                 <select class="custom-select input_table choose bac" name="ma_b" id="bac">
   
                 </select>
               </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-8"></div>
               <div class="col-4">
                 <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="width: 100%">
                   <i class="fa-solid fa-magnifying-glass-plus"></i>
@@ -204,18 +203,21 @@
           </form>
         </div>
       </div>
-      <div class="col-4 mt-2 mb-2">
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #460C68; border: none; width: 100%" >Lọc theo ngày viên chức bắt đầu làm việc</button>
+      <div class="col-3 mb-2">
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >Lọc theo ngày viên chức bắt đầu làm việc</button>
         <div id="demo3" class="collapse mt-3">
           <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_ngaybatdaulamviec') }}" method="post">
             {{ csrf_field() }}
             <div class="row">
-              <div class="col-4">
+              <div class="col-6">
                 <input type='date' class='form-control input_table' autofocus required name="batdau">
               </div>
-              <div class="col-4">
+              <div class="col-6">
                 <input type='date' class='form-control input_table' autofocus required name="ketthuc">
               </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-8"></div>
               <div class="col-4">
                 <button type="submit"  class="btn btn-outline-primary font-weight-bold" style="width: 100%">
                   <i class="fa-solid fa-magnifying-glass-plus"></i>
@@ -223,9 +225,16 @@
                 </button>
               </div>
             </div>
-            
           </form>
         </div>
+      </div>
+      <div class="col-2 mt-1 mb-2">
+        <a href="{{ URL::to('/vienchuc_khoa/'.$ma_k) }}">
+          <button type="button" class="btn btn-success" style="background-color: #379237; border: none;">
+            <i class="fa-solid fa-circle-plus"></i>
+            &ensp;Thêm viên chức
+          </button>
+        </a>
       </div>
     </div>
     <table class="table mt-2" id="mytable">
