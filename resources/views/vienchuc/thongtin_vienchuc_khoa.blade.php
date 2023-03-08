@@ -8,10 +8,16 @@
   
         <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Thống kê</h5>
+            <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel">Thống kê</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
+            <div class="alert alert-warning fw-bold" role="alert">
+              @foreach ($count as $key => $count)
+                Có: {{ $count->sum }} viên chức thuộc 
+                <span style="color: #D2001A">{{ $ten }}</span>
+              @endforeach
+            </div>
             <table class="table">
               <thead>
                 <tr>
@@ -38,20 +44,11 @@
           </div>
         </div>
       </div>
-      <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">
+      <a href="{{ URL::to('thongtin_vienchuc_khoa') }}">
         <button type="button" class="btn btn-warning" style="width: 100%; background-color: #850000; border: none">
           <i class="fa-solid fa-rotate-right"></i>
         </button>
       </a>
-      <div class="dropdown mt-2" >
-        <button class="dropbtn" style="background-color: #850000">Khoa</button>
-        <div class="dropdown-content">
-          @foreach ($list_khoa_show as  $khoa)
-            <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_khoa/'.$khoa->ma_k) }}">{{ $khoa->ten_k }}</a>
-          @endforeach
-          <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
-        </div>
-      </div>
       <div class="dropdown mt-2" >
         <button class="dropbtn" style="background-color: #850000">Dân tộc</button>
         <div class="dropdown-content">

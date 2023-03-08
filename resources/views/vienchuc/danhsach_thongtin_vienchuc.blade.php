@@ -12,6 +12,12 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
+            <div class="alert alert-warning fw-bold" role="alert">
+              @foreach ($count as $key => $count)
+                {{-- <p class="fw-bold" style="color: #379237; ">Tổng có: {{ $count->sum }}</p> --}}
+                Có: {{ $count->sum }} viên chức thuộc trường
+              @endforeach
+            </div>
             <table class="table">
               <thead>
                 <tr>
