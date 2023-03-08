@@ -285,8 +285,8 @@ class VienChucController extends Controller
     $title = "Quản lý viên chức thuộc khoa";
     $ma_vc = session()->get('ma_vc');
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
@@ -355,7 +355,10 @@ class VienChucController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
-    if($phanquyen_admin){
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlk){
       $vienchuc = VienChuc::find($ma_vc);
       if($vienchuc->status_vc == 1){
         $vienchuc->status_vc = VienChuc::find($ma_vc)->update(['status_vc' => 0]);

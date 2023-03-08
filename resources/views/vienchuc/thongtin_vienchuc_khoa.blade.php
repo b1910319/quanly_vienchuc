@@ -186,9 +186,7 @@
                 
               </div>
               <div class="col-6">
-                <select class="custom-select input_table choose bac" name="ma_b" id="bac">
-  
-                </select>
+                <select class="custom-select input_table choose bac" name="ma_b" id="bac"></select>
               </div>
             </div>
             <div class="row mt-2">
@@ -589,7 +587,7 @@
                 <button type="button" class="btn btn-primary" style="background-color: #00425A; border: none;">Bằng cấp</button>
               </a>
             </td>
-            <td style="width: 25%;">
+            <td style="width: 27%;">
               <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>
@@ -602,7 +600,7 @@
                     <a href="{{ URL::to('/admin_select_vienchuc/'.$vienchuc->ma_vc) }}">
                       <button type="button" class="btn btn-secondary">
                         <i class="fa-solid fa-eye-slash"></i> 
-                        &ensp; Ẩn
+                        &ensp; Vô hiệu hoá
                       </button>
                     </a>
                   <?php
@@ -611,7 +609,7 @@
                     <a href="{{ URL::to('/admin_select_vienchuc/'.$vienchuc->ma_vc) }}">
                       <button type="button" class="btn btn-success">
                         <i class="fa-solid fa-eye"></i>
-                        &ensp; Hiển thị
+                        &ensp; Kích hoạt
                       </button>
                     </a>
                   <?php
