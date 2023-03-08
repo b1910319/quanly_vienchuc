@@ -147,8 +147,8 @@ class BangCapController extends Controller
     $title = "Cập nhật thông tin bằng cấp";
     $ma_vc_login = session()->get('ma_vc');
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
-    ->where('ma_q', '=', '9')
-    ->first();
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
@@ -161,7 +161,7 @@ class BangCapController extends Controller
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '6')
       ->first();
-    if($phanquyen_admin || $phanquyen_qltt){
+    if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
       $edit = BangCap::find($ma_bc);
       Carbon::now('Asia/Ho_Chi_Minh'); 
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
@@ -196,10 +196,13 @@ class BangCapController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '8')
       ->first();
-    if($phanquyen_admin || $phanquyen_qltt){
+    if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
       $data = $request->all();
       Carbon::now('Asia/Ho_Chi_Minh');
       $bangcap = BangCap::find($ma_bc);
