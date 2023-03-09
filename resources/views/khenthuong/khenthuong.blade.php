@@ -7,7 +7,7 @@
         <h4 class="text-center" style="font-weight: bold">DANH SÁCH</h4>
       </div>
     </div>
-    <div class="faqs-page block mb-3 ">
+    {{-- <div class="faqs-page block mb-3 ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
           <button role="button" class="item-question collapsed btn btn-primary" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a" style="background-color: #850000; border: none;">
@@ -347,9 +347,24 @@
                                   </tbody>
                                 </table>
                               </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                              </div>
+                              @if ($phanquyen_qlk)
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Đóng
+                                  </button>
+                                  <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc) }}">
+                                    <button type="button" class="btn btn-primary">
+                                      Cập nhật thông tin
+                                    </button>
+                                  </a>
+                                </div>
+                              @else
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Đóng
+                                  </button>
+                                </div>
+                              @endif
                             </div>
                           </div>
                         </div>
@@ -388,7 +403,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
     <table class="table mt-2" id="mytable">
       <thead class="table-dark">
         <tr>
@@ -721,9 +736,24 @@
                         </tbody>
                       </table>
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    </div>
+                    @if ($phanquyen_qlk)
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                          Đóng
+                        </button>
+                        <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc) }}">
+                          <button type="button" class="btn btn-primary">
+                            Cập nhật thông tin
+                          </button>
+                        </a>
+                      </div>
+                    @else
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                          Đóng
+                        </button>
+                      </div>
+                    @endif
                   </div>
                 </div>
               </div>

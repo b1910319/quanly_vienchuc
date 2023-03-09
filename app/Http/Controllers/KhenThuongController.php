@@ -35,6 +35,7 @@ class KhenThuongController extends Controller
   public function khenthuong(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -51,11 +52,7 @@ class KhenThuongController extends Controller
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
-    if($phanquyen_admin || $phanquyen_qlktkl){
-      $list_vienchuc = VienChuc::orderBy('ma_vc', 'desc')
-        ->get();
-      $list_vienchuc_khenthuong = VienChuc::join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
-        ->get();
+    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
       $list_khoa = Khoa::get();
       $list_chucvu = ChucVu::get();
       $list_ngach = Ngach::get();
@@ -68,13 +65,30 @@ class KhenThuongController extends Controller
         ->get();
       Carbon::now('Asia/Ho_Chi_Minh'); 
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $count_khenthuong_vienchuc = VienChuc::leftJoin('khenthuong', 'vienchuc.ma_vc', '=', 'khenthuong.ma_vc')
-        ->select(DB::raw('count(ma_kt) as sum, vienchuc.ma_vc'))
-        ->groupBy('vienchuc.ma_vc')
-        ->get();
+      if ($phanquyen_qlk) {
+        $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+          ->where('ma_k', $ma_k)
+          ->select(DB::raw('count(ma_vc) as sum'))
+          ->get();
+        $list_vienchuc = VienChuc::orderBy('ma_vc', 'desc')
+          ->where('ma_k', $ma_k)
+          ->get();
+        $count_khenthuong_vienchuc = VienChuc::leftJoin('khenthuong', 'vienchuc.ma_vc', '=', 'khenthuong.ma_vc')
+          ->where('ma_k', $ma_k)
+          ->select(DB::raw('count(ma_kt) as sum, vienchuc.ma_vc'))
+          ->groupBy('vienchuc.ma_vc')
+          ->get();
+      } else {
+        $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+          ->select(DB::raw('count(ma_vc) as sum'))
+          ->get();
+        $list_vienchuc = VienChuc::orderBy('ma_vc', 'desc')
+          ->get();
+        $count_khenthuong_vienchuc = VienChuc::leftJoin('khenthuong', 'vienchuc.ma_vc', '=', 'khenthuong.ma_vc')
+          ->select(DB::raw('count(ma_kt) as sum, vienchuc.ma_vc'))
+          ->groupBy('vienchuc.ma_vc')
+          ->get();
+      }
       return view('khenthuong.khenthuong')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -90,7 +104,6 @@ class KhenThuongController extends Controller
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('title', $title)
         ->with('count_khenthuong_vienchuc', $count_khenthuong_vienchuc)
-        ->with('list_vienchuc_khenthuong', $list_vienchuc_khenthuong)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
@@ -110,15 +123,15 @@ class KhenThuongController extends Controller
       ->first();
     $title = "Thêm thông tin khen thưởng";
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
-    ->where('ma_q', '=', '9')
-    ->first();
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '6')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
-    if($phanquyen_admin || $phanquyen_qlktkl){
+    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
       $list = KhenThuong::join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
         ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
         ->where('ma_vc', $ma_vc)
@@ -165,13 +178,16 @@ class KhenThuongController extends Controller
   public function add_khenthuong(Request $request, $ma_vc){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
-    if($phanquyen_admin || $phanquyen_qlktkl){
+    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
       $data = $request->all();
       $khenthuong = new KhenThuong();
       $khenthuong->ma_lkt = $data['ma_lkt'];

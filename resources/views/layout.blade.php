@@ -387,8 +387,17 @@
                       @foreach ($count_nangbac as $count )
                         <span class="badge badge badge-pill float-right" style="background-color: #379237;">{{ $count->sum }}</span>
                       @endforeach
-                      
                       Nâng bậc
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ URL::to('/khenthuong') }}">
+                      Khen thưởng
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ URL::to('/kyluat') }}">
+                      Kỷ luật
                     </a>
                   </li>
                   <li>
