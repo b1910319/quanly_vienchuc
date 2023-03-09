@@ -206,13 +206,16 @@ class KhenThuongController extends Controller
   public function select_khenthuong($ma_kt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
-    if($phanquyen_admin || $phanquyen_qlktkl){
+    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
       $khenthuong = KhenThuong::find($ma_kt);
       if($khenthuong->status_kt == 1){
         $khenthuong->status_kt = KhenThuong::find($ma_kt)->update(['status_kt' => 0]);
