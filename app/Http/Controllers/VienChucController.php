@@ -1350,8 +1350,9 @@ class VienChucController extends Controller
   }
   public function search_danhsach_thongtin_vienchuc_gioitinh($gt){
     $this->check_login();
-    $title = "Viên chức theo tôn giáo";
+    $title = "Viên chức theo giới tính viên chức";
     $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
     ->where('ma_q', '=', '9')
     ->first();
@@ -1367,7 +1368,7 @@ class VienChucController extends Controller
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
-    if($phanquyen_admin || $phanquyen_qltt){
+    if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
       $count = VienChuc::select(DB::raw('count(ma_vc) as sum'))
         ->where('gioitinh_vc', $gt)
         ->get();
@@ -1376,9 +1377,6 @@ class VienChucController extends Controller
         ->groupBy('status_vc')
         ->get();
       $list_khoa_show = Khoa::where('status_k', '<>', '1')
-        ->get();
-      $list_vienchuc = VienChuc::where('gioitinh_vc', $gt)
-        ->orderBy('ma_vc', 'desc')
         ->get();
       $list_khoa = Khoa::get();
       $list_chucvu = ChucVu::get();
@@ -1405,30 +1403,67 @@ class VienChucController extends Controller
         ->select(DB::raw('count(ma_bc) as sum, vienchuc.ma_vc'))
         ->groupBy('vienchuc.ma_vc')
         ->get();
-      return view('vienchuc.danhsach_thongtin_vienchuc')
-        ->with('title', $title)
-        ->with('list_khoa', $list_khoa)
-        ->with('list_chucvu', $list_chucvu)
-        ->with('list_ngach', $list_ngach)
-        ->with('list_bac', $list_bac)
-        ->with('list_dantoc', $list_dantoc)
-        ->with('list_tongiao', $list_tongiao)
-        ->with('list_thuongbinh', $list_thuongbinh)
-        ->with('list_khoa_show', $list_khoa_show)
-        ->with('count', $count)
-        ->with('count_bangcap', $count_bangcap)
-        ->with('ten', $ten)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('list_tinh', $list_tinh)
-        ->with('list_vienchuc', $list_vienchuc)
-        ->with('count_status', $count_status)
-        ->with('list_hedaotao', $list_hedaotao)
-        ->with('list_loiabangcap', $list_loiabangcap)
-        ->with('phanquyen_qltt', $phanquyen_qltt)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_admin', $phanquyen_admin);
+      if ($phanquyen_qlk) {
+        $list_vienchuc = VienChuc::where('gioitinh_vc', $gt)
+          ->where('status_vc', '<>', '2')
+          ->where('ma_k', $ma_k)
+          ->orderBy('ma_vc', 'desc')
+          ->get();
+        return view('vienchuc.thongtin_vienchuc_khoa')
+          ->with('title', $title)
+          ->with('list_khoa', $list_khoa)
+          ->with('list_chucvu', $list_chucvu)
+          ->with('list_ngach', $list_ngach)
+          ->with('list_bac', $list_bac)
+          ->with('list_dantoc', $list_dantoc)
+          ->with('list_tongiao', $list_tongiao)
+          ->with('list_thuongbinh', $list_thuongbinh)
+          ->with('list_khoa_show', $list_khoa_show)
+          ->with('count', $count)
+          ->with('ma_k', $ma_k)
+          ->with('count_bangcap', $count_bangcap)
+          ->with('ten', $ten)
+          ->with('count_nangbac', $count_nangbac)
+          ->with('list_tinh', $list_tinh)
+          ->with('list_vienchuc', $list_vienchuc)
+          ->with('count_status', $count_status)
+          ->with('list_hedaotao', $list_hedaotao)
+          ->with('list_loiabangcap', $list_loiabangcap)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_admin', $phanquyen_admin);
+      } else {
+        $list_vienchuc = VienChuc::where('gioitinh_vc', $gt)
+          ->where('status_vc', '<>', '2')
+          ->orderBy('ma_vc', 'desc')
+          ->get();
+        return view('vienchuc.danhsach_thongtin_vienchuc')
+          ->with('title', $title)
+          ->with('list_khoa', $list_khoa)
+          ->with('list_chucvu', $list_chucvu)
+          ->with('list_ngach', $list_ngach)
+          ->with('list_bac', $list_bac)
+          ->with('list_dantoc', $list_dantoc)
+          ->with('list_tongiao', $list_tongiao)
+          ->with('list_thuongbinh', $list_thuongbinh)
+          ->with('list_khoa_show', $list_khoa_show)
+          ->with('count', $count)
+          ->with('count_bangcap', $count_bangcap)
+          ->with('ten', $ten)
+          ->with('count_nangbac', $count_nangbac)
+          ->with('list_tinh', $list_tinh)
+          ->with('list_vienchuc', $list_vienchuc)
+          ->with('count_status', $count_status)
+          ->with('list_hedaotao', $list_hedaotao)
+          ->with('list_loiabangcap', $list_loiabangcap)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_admin', $phanquyen_admin);
+      }
     }else{
       return Redirect::to('/home');
     }
