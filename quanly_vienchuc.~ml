@@ -14810,7 +14810,6 @@
 </XPD:OBJ>
 <XPD:OBJ name="OwnedViews[65]" type="UMLUseCaseView" guid="lvNNQxL+2UuOFIsbSDyBewAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
-<XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <XPD:ATTR name="Left" type="integer">1032</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">612</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">145</XPD:ATTR>

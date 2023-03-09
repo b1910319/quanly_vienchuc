@@ -34,6 +34,7 @@ class KyLuatController extends Controller
   public function kyluat(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -42,19 +43,15 @@ class KyLuatController extends Controller
       ->first();
     $title = "Quản lý kỷ luật";
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
-    if($phanquyen_admin || $phanquyen_qlktkl){
-      $list_vienchuc = VienChuc::orderBy('ma_vc', 'desc')
-        ->get();
-      $list_vienchuc_kyluat = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
-        ->get();
+    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
       $list_khoa = Khoa::get();
       $list_chucvu = ChucVu::get();
       $list_ngach = Ngach::get();
@@ -66,14 +63,38 @@ class KyLuatController extends Controller
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $count_kyluat_vienchuc = VienChuc::leftJoin('kyluat', 'vienchuc.ma_vc', '=', 'kyluat.ma_vc')
-        ->select(DB::raw('count(ma_kl) as sum, vienchuc.ma_vc'))
-        ->groupBy('vienchuc.ma_vc')
-        ->get();
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d');
+      if ($phanquyen_qlk) {
+        $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+          ->where('status_vc', '<>', '2')
+          ->where('ma_k', $ma_k)
+          ->select(DB::raw('count(ma_vc) as sum'))
+          ->get();
+        $list_vienchuc = VienChuc::orderBy('ma_vc', 'desc')
+          ->where('ma_k', $ma_k)
+          ->get();
+        $list_vienchuc_kyluat = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
+          ->where('ma_k', $ma_k)
+          ->get();
+        $count_kyluat_vienchuc = VienChuc::leftJoin('kyluat', 'vienchuc.ma_vc', '=', 'kyluat.ma_vc')
+          ->where('ma_k', $ma_k)
+          ->select(DB::raw('count(ma_kl) as sum, vienchuc.ma_vc'))
+          ->groupBy('vienchuc.ma_vc')
+          ->get();
+      } else {
+        $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+          ->where('status_vc', '<>', '2')
+          ->select(DB::raw('count(ma_vc) as sum'))
+          ->get();
+        $list_vienchuc = VienChuc::orderBy('ma_vc', 'desc')
+          ->get();
+        $list_vienchuc_kyluat = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
+          ->get();
+        $count_kyluat_vienchuc = VienChuc::leftJoin('kyluat', 'vienchuc.ma_vc', '=', 'kyluat.ma_vc')
+          ->select(DB::raw('count(ma_kl) as sum, vienchuc.ma_vc'))
+          ->groupBy('vienchuc.ma_vc')
+          ->get();
+      }
       return view('kyluat.kyluat')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qlk', $phanquyen_qlk)
@@ -110,14 +131,14 @@ class KyLuatController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '8')
       ->first();
-    $title = "Thêm thông tin khen thưởng";
+    $title = "Thêm thông tin kỷ luật";
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
-    ->where('ma_q', '=', '9')
-    ->first();
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
-    if($phanquyen_admin || $phanquyen_qlktkl){
+    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
       $list = KyLuat::join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
         ->where('ma_vc', $ma_vc)
         ->orderBy('ma_kl', 'desc')
@@ -159,13 +180,16 @@ class KyLuatController extends Controller
   public function add_kyluat(Request $request, $ma_vc){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
-    if($phanquyen_admin || $phanquyen_qlktkl){
+    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
       $data = $request->all();
       $kyluat = new KyLuat();
       $kyluat->ma_lkl = $data['ma_lkl'];
