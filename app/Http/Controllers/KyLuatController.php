@@ -322,13 +322,16 @@ class KyLuatController extends Controller
   public function delete_all_kyluat($ma_vc){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
-    if($phanquyen_admin || $phanquyen_qlktkl){
+    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
       $list = KyLuat::where('ma_vc', $ma_vc)
         ->get();
       foreach($list as $key => $kyluat){
@@ -342,13 +345,16 @@ class KyLuatController extends Controller
   public function kyluat_pdf($ma_kl){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
-    if($phanquyen_admin || $phanquyen_qlktkl){
+    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
       $kyluat = KyLuat::join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
         ->join('vienchuc', 'vienchuc.ma_vc', '=', 'kyluat.ma_vc')
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
