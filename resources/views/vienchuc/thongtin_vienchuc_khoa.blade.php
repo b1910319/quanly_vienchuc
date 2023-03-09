@@ -55,7 +55,7 @@
           @foreach ($list_dantoc as  $dantoc)
             <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_dantoc/'.$dantoc->ma_dt) }}">{{ $dantoc->ten_dt }}</a>
           @endforeach
-          <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
+          <a href="{{ URL::to('thongtin_vienchuc_khoa') }}">Tất cả</a>
         </div>
       </div>
       <div class="dropdown mt-2" >
@@ -64,7 +64,7 @@
           @foreach ($list_tongiao as  $tongiao)
             <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_tongiao/'.$tongiao->ma_tg) }}">{{ $tongiao->ten_tg }}</a>
           @endforeach
-          <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">Tất cả</a>
+          <a href="{{ URL::to('thongtin_vienchuc_khoa') }}">Tất cả</a>
         </div>
       </div>
       <div class="dropdown mt-2" >
