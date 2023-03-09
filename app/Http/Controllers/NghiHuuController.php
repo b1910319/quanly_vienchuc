@@ -29,6 +29,7 @@ class NghiHuuController extends Controller
   public function nghihuu(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -37,19 +38,15 @@ class NghiHuuController extends Controller
       ->first();
     $title = "Quản lý nghĩ hưu";
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
-    if($phanquyen_admin || $phanquyen_qltt){
-      $list_vienchuc_nghihuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('status_vc', '2')
-        ->orderBy('hoten_vc','asc')
-        ->get();
+    if($phanquyen_admin || $phanquyen_qltt ||$phanquyen_qlk){
       Carbon::now('Asia/Ho_Chi_Minh'); 
       $batdau_nam = Carbon::parse(Carbon::now()->subMonths(745))->format('Y-m-d');
       $ketthuc_nam = Carbon::parse(Carbon::now()->subMonths(744))->format('Y-m-d');
@@ -63,8 +60,55 @@ class NghiHuuController extends Controller
       // echo $batdau_nu.'bat dau nu';
       // echo '<br>';
       // echo $ketthuc_nu.'ketthuc nu';
-
-      $list_vienchuc_nam_ganhuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+      $list_khoa = Khoa::get();
+      $list_chucvu = ChucVu::get();
+      $list_ngach = Ngach::get();
+      $list_bac = Bac::get();
+      $list_dantoc = DanToc::get();
+      $list_tongiao = TonGiao::get();
+      $list_thuongbinh = ThuongBinh::get();
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      if ($phanquyen_qlk) {
+        $list_vienchuc_nghihuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('status_vc', '2')
+          ->where('vienchuc.ma_k', $ma_k)
+          ->orderBy('hoten_vc','asc')
+          ->get();
+        $list_vienchuc_nam_ganhuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->whereBetween('ngaysinh_vc', [$batdau_nam, $ketthuc_nam])
+          ->where('gioitinh_vc', '0')
+          ->where('vienchuc.ma_k', $ma_k)
+          ->where('status_vc', '<>', '2')
+          ->get();
+        $list_vienchuc_nu_ganhuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->whereBetween('ngaysinh_vc', [$batdau_nu, $ketthuc_nu])
+          ->where('gioitinh_vc', '1')
+          ->where('vienchuc.ma_k', $ma_k)
+          ->where('status_vc', '<>', '2')
+          ->get();
+        $list_nghihuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('status_vc', '2')
+          ->where('vienchuc.ma_k', $ma_k)
+          ->get();
+        $list_nu_nghihuu_homnay = VienChuc::where('ngaysinh_vc','LIKE', $ketthuc_nu)
+          ->where('gioitinh_vc', '1')
+          ->where('vienchuc.ma_k', $ma_k)
+          ->where('status_vc','<>','2')
+          ->get();
+        $list_nam_nghihuu_homnay = VienChuc::where('ngaysinh_vc','LIKE', $ketthuc_nam)
+          ->where('gioitinh_vc', '0')
+          ->where('vienchuc.ma_k', $ma_k)
+          ->where('status_vc','<>','2')
+          ->get();
+      } else {
+        $list_vienchuc_nghihuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_vc', '2')
+        ->orderBy('hoten_vc','asc')
+        ->get();
+        $list_vienchuc_nam_ganhuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->whereBetween('ngaysinh_vc', [$batdau_nam, $ketthuc_nam])
         ->where('gioitinh_vc', '0')
         ->where('status_vc', '<>', '2')
@@ -85,17 +129,7 @@ class NghiHuuController extends Controller
         ->where('gioitinh_vc', '0')
         ->where('status_vc','<>','2')
         ->get();
-      $list_khoa = Khoa::get();
-      $list_chucvu = ChucVu::get();
-      $list_ngach = Ngach::get();
-      $list_bac = Bac::get();
-      $list_dantoc = DanToc::get();
-      $list_tongiao = TonGiao::get();
-      $list_thuongbinh = ThuongBinh::get();
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
+      }
       return view('nghihuu.nghihuu')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -130,7 +164,10 @@ class NghiHuuController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
-    if($phanquyen_admin || $phanquyen_qltt){
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
       $data = $request->all();
       $vienchuc = VienChuc::find($data['ma_vc']);
       $vienchuc->status_vc = '2';

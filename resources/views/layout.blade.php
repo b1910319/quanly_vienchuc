@@ -377,6 +377,11 @@
                   <li>
                     <a href="{{ URL::to('/thongtin_vienchuc_khoa') }}">Thông tin viên chức</a>
                   </li>
+                  <li>
+                    <a href="{{ URL::to('/nghihuu') }}">
+                      Nghĩ hưu
+                    </a>
+                  </li>
                 </ul>
               </li>
             @endif
