@@ -349,13 +349,16 @@ class KhenThuongController extends Controller
   public function khenthuong_pdf($ma_kt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
-    if($phanquyen_admin || $phanquyen_qlktkl){
+    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
       $khenthuong = KhenThuong::join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
         ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
         ->join('vienchuc', 'vienchuc.ma_vc', '=', 'khenthuong.ma_vc')
