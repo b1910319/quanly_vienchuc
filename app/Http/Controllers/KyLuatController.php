@@ -207,13 +207,16 @@ class KyLuatController extends Controller
   public function select_kyluat($ma_kl){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
-    if($phanquyen_admin || $phanquyen_qlktkl){
+    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
       $kyluat = KyLuat::find($ma_kl);
       if($kyluat->status_kl == 1){
         $kyluat->status_kl = KyLuat::find($ma_kl)->update(['status_kl' => 0]);
