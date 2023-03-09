@@ -303,13 +303,16 @@ class KyLuatController extends Controller
   public function delete_kyluat($ma_kl, $ma_vc){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
-    if($phanquyen_admin || $phanquyen_qlktkl){
+    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
       KyLuat::find($ma_kl)->delete();
       return Redirect::to('/kyluat_add/'.$ma_vc);
     }else{
