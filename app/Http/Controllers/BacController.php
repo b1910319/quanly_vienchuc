@@ -442,9 +442,11 @@ class BacController extends Controller
       return $output;
     }
   }
+
   public function nangbac(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '9')
       ->first();
@@ -460,7 +462,7 @@ class BacController extends Controller
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
-    if($phanquyen_admin || $phanquyen_qltt){
+    if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
       $list_khoa = Khoa::get();
       $list_chucvu = ChucVu::get();
       $list_ngach = Ngach::get();
@@ -472,14 +474,34 @@ class BacController extends Controller
       Carbon::now('Asia/Ho_Chi_Minh'); 
       $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
       $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $list_vienchuc = VienChuc::whereBetween('ngaynangbac_vc', [$batdau, $ketthuc])
-        ->orderBy('vienchuc.ma_vc', 'desc')
-        ->get();
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $list_nangbac_homnay = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->get();
+      if ($phanquyen_qlk) {
+        $list_vienchuc = VienChuc::whereBetween('ngaynangbac_vc', [$batdau, $ketthuc])
+          ->where('status_vc', '<>', '2')
+          ->where('vienchuc.ma_k', $ma_k)
+          ->orderBy('vienchuc.ma_vc', 'desc')
+          ->get();
+        $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+          ->where('status_vc', '<>', '2')
+          ->where('vienchuc.ma_k', $ma_k)
+          ->select(DB::raw('count(ma_vc) as sum'))
+          ->get();
+        $list_nangbac_homnay = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+          ->where('status_vc', '<>', '2')
+          ->where('vienchuc.ma_k', $ma_k)
+          ->get();
+      } else {
+        $list_vienchuc = VienChuc::whereBetween('ngaynangbac_vc', [$batdau, $ketthuc])
+          ->where('status_vc', '<>', '2')
+          ->orderBy('vienchuc.ma_vc', 'desc')
+          ->get();
+        $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+          ->where('status_vc', '<>', '2')
+          ->select(DB::raw('count(ma_vc) as sum'))
+          ->get();
+        $list_nangbac_homnay = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+          ->where('status_vc', '<>', '2')
+          ->get();
+      }
       return view('bac.nangbac')
         ->with('title', $title)
         ->with('phanquyen_qlk', $phanquyen_qlk)
@@ -504,13 +526,17 @@ class BacController extends Controller
   public function updated_nangbac(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
-    if($phanquyen_admin || $phanquyen_qltt){
+    if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
       $data = $request->all();
       $vienchuc = VienChuc::find($data['ma_vc']);
       $vienchuc->ma_b = $data['ma_b'];

@@ -382,6 +382,20 @@
                       Nghĩ hưu
                     </a>
                   </li>
+                  <li>
+                    <a href="{{ URL::to('/nangbac') }}">
+                      @foreach ($count_nangbac as $count )
+                        <span class="badge badge badge-pill float-right" style="background-color: #379237;">{{ $count->sum }}</span>
+                      @endforeach
+                      
+                      Nâng bậc
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ URL::to('/thongke_qltt') }}">
+                      Thống kê
+                    </a>
+                  </li>
                 </ul>
               </li>
             @endif
