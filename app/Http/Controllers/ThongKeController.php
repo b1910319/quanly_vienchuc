@@ -896,6 +896,7 @@ class ThongKeController extends Controller
       $list = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
+        ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
         ->where('status_vc', '<>', '2')
         ->orderBy('hoten_vc', 'asc')
         ->get();
@@ -993,8 +994,17 @@ class ThongKeController extends Controller
         ->get();
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
+      $list = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
+        ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+        ->where('hedaotao.ma_hdt', $data['ma_hdt'])
+        ->where('status_vc', '<>', '2')
+        ->orderBy('hoten_vc', 'asc')
+        ->get();
       return view('thongke.thongke_qltt')
         ->with('title', $title)
+        ->with('list', $list)
         ->with('count_ngach_ma_n', $count_ngach_ma_n)
         ->with('count_lbc', $count_lbc)
         ->with('count_cv', $count_cv)
