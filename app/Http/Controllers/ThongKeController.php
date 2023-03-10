@@ -96,6 +96,8 @@ class ThongKeController extends Controller
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->join('bac', 'bac.ma_b', 'vienchuc.ma_b')
         ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+        ->join('dantoc', 'dantoc.ma_dt', '=', 'vienchuc.ma_dt')
+        ->join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
         ->where('status_vc', '<>', '2')
         ->orderBy('ten_n', 'asc')
         ->get();
@@ -196,6 +198,8 @@ class ThongKeController extends Controller
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->join('bac', 'bac.ma_b', 'vienchuc.ma_b')
         ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+        ->join('dantoc', 'dantoc.ma_dt', '=', 'vienchuc.ma_dt')
+        ->join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
         ->where('ngach.ma_n', $data['ma_n'])
         ->where('status_vc', '<>', '2')
         ->orderBy('ten_n', 'asc')
