@@ -943,13 +943,63 @@
   <!-- App js -->
   <script src="{{ asset('public\assets\js\app.min.js') }}"></script>
   {{-- datatable hỗ trợ tìm kiếm --}}
-  <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js">
-  </script>
+  <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
   <script>
       $(document).ready(function() {
-          $('#mytable').DataTable();
-          $('#mytable1').DataTable();
-          $('#mytable2').DataTable();
+          $('#mytable').DataTable({
+            language: {
+              search: "Tìm kiếm",
+              lengthMenu: "Số lượng bản ghi trên 1 trang _MENU_ ",
+              info: "Bản ghi từ _START_ đến _END_ Tổng cộng _TOTAL_ bản ghi",
+              infoEmpty: "Khi không có dữ liệu, Hiển thị 0 bản ghi trong 0 tổng cộng 0 ",
+              infoFiltered: "(_MAX_)",
+              loadingRecords: "",
+              zeroRecords: "Không tìm thấy bản ghi phù hợp",
+              emptyTable: "Không có dữ liệu",
+              paginate: {
+                  first: "Trang đầu",
+                  previous: "Trang trước",
+                  next: "Trang sau",
+                  last: "Trang cuối"
+              },
+            },
+          });
+          $('#mytable1').DataTable({
+            language: {
+              search: "Tìm kiếm",
+              lengthMenu: "Số lượng bản ghi trên 1 trang _MENU_ ",
+              info: "Bản ghi từ _START_ đến _END_ Tổng cộng _TOTAL_ bản ghi",
+              infoEmpty: "Khi không có dữ liệu, Hiển thị 0 bản ghi trong 0 tổng cộng 0 ",
+              infoFiltered: "(_MAX_)",
+              loadingRecords: "",
+              zeroRecords: "Không tìm thấy bản ghi phù hợp",
+              emptyTable: "Không có dữ liệu",
+              paginate: {
+                  first: "Trang đầu",
+                  previous: "Trang trước",
+                  next: "Trang sau",
+                  last: "Trang cuối"
+              },
+            },
+          });
+          $('#mytable2').DataTable({
+            language: {
+              search: "Tìm kiếm",
+              lengthMenu: "Số lượng bản ghi trên 1 trang _MENU_ ",
+              info: "Bản ghi từ _START_ đến _END_ Tổng cộng _TOTAL_ bản ghi",
+              infoEmpty: "Khi không có dữ liệu, Hiển thị 0 bản ghi trong 0 tổng cộng 0 ",
+              infoFiltered: "(_MAX_)",
+              loadingRecords: "",
+              zeroRecords: "Không tìm thấy bản ghi phù hợp",
+              emptyTable: "Không có dữ liệu",
+              paginate: {
+                  first: "Trang đầu",
+                  previous: "Trang trước",
+                  next: "Trang sau",
+                  last: "Trang cuối"
+              },
+            },
+          });
       });
   </script>
   {{--  --}}
