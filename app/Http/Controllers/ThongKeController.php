@@ -348,8 +348,15 @@ class ThongKeController extends Controller
         ->get();
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
+      $list = VienChuc::join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_vc', '<>', '2')
+        ->orderBy('ten_lbc', 'asc')
+        ->get();
       return view('thongke.thongke_qltt')
         ->with('title', $title)
+        ->with('list', $list)
         ->with('count_ngach_ma_n', $count_ngach_ma_n)
         ->with('count_lbc', $count_lbc)
         ->with('count_cv', $count_cv)
@@ -441,8 +448,16 @@ class ThongKeController extends Controller
         ->get();
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
+      $list = VienChuc::join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('loaibangcap.ma_lbc', $data['ma_lbc'])
+        ->where('status_vc', '<>', '2')
+        ->orderBy('ten_lbc', 'asc')
+        ->get();
       return view('thongke.thongke_qltt')
         ->with('title', $title)
+        ->with('list', $list)
         ->with('count_ngach_ma_n', $count_ngach_ma_n)
         ->with('count_lbc', $count_lbc)
         ->with('count_cv', $count_cv)
@@ -486,11 +501,11 @@ class ThongKeController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $vienchuc = VienChuc::join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
-      ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
-      ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-      ->where('status_vc', '<>', '2')
-      ->orderBy('ten_lbc', 'asc')
-      ->get();
+        ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_vc', '<>', '2')
+        ->orderBy('ten_lbc', 'asc')
+        ->get();
       $pdf = PDF::loadView('pdf.pdf_loaibangcap', [
         'vienchuc' => $vienchuc,
       ]);
