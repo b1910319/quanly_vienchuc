@@ -621,8 +621,16 @@ class ThongKeController extends Controller
         ->get();
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
+      $list = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+        // ->join('dantoc', 'dantoc.ma_dt', '=', 'vienchuc.ma_dt')
+        // ->join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
+        ->where('status_vc', '<>', '2')
+        ->orderBy('hoten_vc', 'asc')
+        ->get();
       return view('thongke.thongke_qltt')
         ->with('title', $title)
+        ->with('list', $list)
         ->with('count_ngach_ma_n', $count_ngach_ma_n)
         ->with('count_lbc', $count_lbc)
         ->with('count_cv', $count_cv)
@@ -714,8 +722,15 @@ class ThongKeController extends Controller
         ->get();
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
+      $list = VienChuc::join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('chucvu.ma_cv', $data['ma_cv'])
+        ->where('status_vc', '<>', '2')
+        ->orderBy('ten_cv', 'asc')
+        ->get();
       return view('thongke.thongke_qltt')
         ->with('title', $title)
+        ->with('list', $list)
         ->with('count_ngach_ma_n', $count_ngach_ma_n)
         ->with('count_lbc', $count_lbc)
         ->with('count_cv', $count_cv)
@@ -784,11 +799,11 @@ class ThongKeController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $vienchuc = VienChuc::join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
-      ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-      ->where('chucvu.ma_cv', $ma_cv)
-      ->where('status_vc', '<>', '2')
-      ->orderBy('ten_cv', 'asc')
-      ->get();
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('chucvu.ma_cv', $ma_cv)
+        ->where('status_vc', '<>', '2')
+        ->orderBy('ten_cv', 'asc')
+        ->get();
       $pdf = PDF::loadView('pdf.pdf_chucvu', [
         'vienchuc' => $vienchuc,
       ]);
