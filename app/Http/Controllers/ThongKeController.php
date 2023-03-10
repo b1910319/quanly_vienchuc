@@ -1143,8 +1143,14 @@ class ThongKeController extends Controller
         ->get();
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
+      $list = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+        ->where('status_vc', '<>', '2')
+        ->orderBy('ten_k', 'asc')
+        ->get();
       return view('thongke.thongke_qltt')
         ->with('title', $title)
+        ->with('list', $list)
         ->with('count_ngach_ma_n', $count_ngach_ma_n)
         ->with('count_lbc', $count_lbc)
         ->with('count_cv', $count_cv)
