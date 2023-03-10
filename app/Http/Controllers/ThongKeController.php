@@ -192,8 +192,17 @@ class ThongKeController extends Controller
         ->get();
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
+      $list = VienChuc::join('ngach', 'ngach.ma_n', '=', 'vienchuc.ma_n')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('bac', 'bac.ma_b', 'vienchuc.ma_b')
+        ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+        ->where('ngach.ma_n', $data['ma_n'])
+        ->where('status_vc', '<>', '2')
+        ->orderBy('ten_n', 'asc')
+        ->get();
       return view('thongke.thongke_qltt')
         ->with('title', $title)
+        ->with('list', $list)
         ->with('count_ngach_ma_n', $count_ngach_ma_n)
         ->with('ma_n', $data['ma_n'])
         ->with('count_lbc', $count_lbc)
@@ -262,13 +271,13 @@ class ThongKeController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $vienchuc = VienChuc::join('ngach', 'ngach.ma_n', '=', 'vienchuc.ma_n')
-      ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-      ->join('bac', 'bac.ma_b', 'vienchuc.ma_b')
-      ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
-      ->where('ngach.ma_n', $ma_n)
-      ->where('status_vc', '<>', '2')
-      ->orderBy('ten_n', 'asc')
-      ->get();
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('bac', 'bac.ma_b', 'vienchuc.ma_b')
+        ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+        ->where('ngach.ma_n', $ma_n)
+        ->where('status_vc', '<>', '2')
+        ->orderBy('ten_n', 'asc')
+        ->get();
       $pdf = PDF::loadView('pdf.pdf_thongtin_vienchuc', [
         'vienchuc' => $vienchuc,
       ]);

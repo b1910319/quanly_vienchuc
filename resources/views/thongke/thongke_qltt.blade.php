@@ -391,19 +391,19 @@
         </thead>
         <tbody  >
           @foreach($list as $key => $vc)
-          <tr>
-            <td>{{ $key+1 }}</td>
-            <td>
-              <b>Họ tên: </b>{{ $vc->hoten_vc }} <br>
-              <b>Email: </b>{{ $vc->user_vc }} <br>
-              <b>Số điện thoại: </b> {{ $vc->sdt_vc }} <br>
-              <b>Chức vụ: </b>{{ $vc->ten_cv }}
-            </td>
-            <td>{{ $vc->ten_k }}</td>
-            <td>{{ $vc->ten_n }}</td>
-            <td>{{ $vc->ten_b }} - {{ $vc->hesoluong_b }}</td>
-          </tr>
-        @endforeach
+            <tr>
+              <td>{{ $key+1 }}</td>
+              <td>
+                <b>Họ tên: </b>{{ $vc->hoten_vc }} <br>
+                <b>Email: </b>{{ $vc->user_vc }} <br>
+                <b>Số điện thoại: </b> {{ $vc->sdt_vc }} <br>
+                <b>Chức vụ: </b>{{ $vc->ten_cv }}
+              </td>
+              <td>{{ $vc->ten_k }}</td>
+              <td>{{ $vc->ten_n }}</td>
+              <td>{{ $vc->ten_b }} - {{ $vc->hesoluong_b }}</td>
+            </tr>
+          @endforeach
         </tbody>
       </table>
       <div class="row">
@@ -415,6 +415,33 @@
       </div>
     @endif
     @if ($count_ngach_ma_n != '')
+      <table class="table" id="mytable">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Thông tin viên chức </th>
+            <th scope="col">Khoa</th>
+            <th scope="col">Ngạch</th>
+            <th scope="col">Bậc</th>
+          </tr>
+        </thead>
+        <tbody  >
+          @foreach($list as $key => $vc)
+            <tr>
+              <td>{{ $key+1 }}</td>
+              <td>
+                <b>Họ tên: </b>{{ $vc->hoten_vc }} <br>
+                <b>Email: </b>{{ $vc->user_vc }} <br>
+                <b>Số điện thoại: </b> {{ $vc->sdt_vc }} <br>
+                <b>Chức vụ: </b>{{ $vc->ten_cv }}
+              </td>
+              <td>{{ $vc->ten_k }}</td>
+              <td>{{ $vc->ten_n }}</td>
+              <td>{{ $vc->ten_b }} - {{ $vc->hesoluong_b }}</td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_ma_ngach_pdf/'.$ma_n) }}">
