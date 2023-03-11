@@ -96,12 +96,15 @@ class ThongKeController extends Controller
         ->orderBy('ten_n', 'asc')
         ->get();
       $list_all ='';
+      $list_pdf_khoa ='';
       return view('thongke.thongke_qltt')
         ->with('title', $title)
+
         ->with('count_nangbac', $count_nangbac)
+        ->with('count', $count)
+
         ->with('list', $list)
         ->with('list_all', $list_all)
-        ->with('count', $count)
         ->with('list_khoa', $list_khoa)
         ->with('list_loaibangcap', $list_loaibangcap)
         ->with('list_ngach', $list_ngach)
@@ -110,6 +113,8 @@ class ThongKeController extends Controller
         ->with('list_tinh', $list_tinh)
         ->with('list_dantoc', $list_dantoc)
         ->with('list_tongiao', $list_tongiao)
+        ->with('list_pdf_khoa', $list_pdf_khoa)
+
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -194,7 +199,8 @@ class ThongKeController extends Controller
         ->get();
       $data = $request->all();
       $list = '';
-      if($data['ma_k'] && $data['ma_cv'] && $data['ma_hdt'] && $data['ma_lbc'] && $data['ma_n'] && $data['ma_t'] && $data['ma_dt'] && $data['ma_tg'] && $data['ma_tb'] ){
+      $list_pdf_khoa = '';
+      if(isset($data['ma_k'])  && isset($data['ma_cv'])  && isset($data['ma_hdt'])  && isset($data['ma_lbc'])  && isset($data['ma_n'])  && isset( $data['ma_t']) && isset($data['ma_dt'])  && isset($data['ma_tg'])  && isset($data['ma_tb'])){
         $count = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '<>', '2')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, khoa.ma_k'))
@@ -224,10 +230,12 @@ class ThongKeController extends Controller
           ->get();
         return view('thongke.thongke_qltt')
           ->with('title', $title)
+
           ->with('count_nangbac', $count_nangbac)
+          ->with('count', $count)
+
           ->with('list', $list)
           ->with('list_all', $list_all)
-          ->with('count', $count)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaibangcap', $list_loaibangcap)
           ->with('list_ngach', $list_ngach)
@@ -236,6 +244,7 @@ class ThongKeController extends Controller
           ->with('list_tinh', $list_tinh)
           ->with('list_dantoc', $list_dantoc)
           ->with('list_tongiao', $list_tongiao)
+          ->with('list_pdf_khoa', $list_pdf_khoa)
 
           ->with('ma_k', $data['ma_k'])
           ->with('ma_cv', $data['ma_cv'])
@@ -248,6 +257,47 @@ class ThongKeController extends Controller
           ->with('ma_tb', $data['ma_tb'])
 
           ->with('list_thuongbinh', $list_thuongbinh)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qltt', $phanquyen_qltt);
+      }else if(isset($data['ma_k'])){
+        $count = '';
+        $count_khoa = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('status_vc', '<>', '2')
+          ->where('vienchuc.ma_k', $data['ma_k'])
+          ->select(DB::raw('count(vienchuc.ma_vc) as sum, khoa.ma_k'))
+          ->groupBy('khoa.ma_k')
+          ->get();
+        $list_pdf_khoa = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+          ->where('status_vc', '<>', '2')
+          ->where('vienchuc.ma_k', $data['ma_k'])
+          ->get();
+        $list_all = '';
+        return view('thongke.thongke_qltt')
+          ->with('title', $title)
+
+          ->with('count_nangbac', $count_nangbac)
+          ->with('count', $count)
+          ->with('count_khoa', $count_khoa)
+
+          ->with('list_pdf_khoa', $list_pdf_khoa)
+          ->with('list', $list)
+          ->with('list_all', $list_all)
+          ->with('list_khoa', $list_khoa)
+          ->with('list_loaibangcap', $list_loaibangcap)
+          ->with('list_ngach', $list_ngach)
+          ->with('list_hedaotao', $list_hedaotao)
+          ->with('list_chucvu', $list_chucvu)
+          ->with('list_tinh', $list_tinh)
+          ->with('list_dantoc', $list_dantoc)
+          ->with('list_tongiao', $list_tongiao)
+          ->with('list_thuongbinh', $list_thuongbinh)
+
+          ->with('ma_k', $data['ma_k'])
+
           ->with('phanquyen_admin', $phanquyen_admin)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
           ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
@@ -290,6 +340,31 @@ class ThongKeController extends Controller
         ->where('vienchuc.ma_dt', $ma_dt)
         ->where('vienchuc.ma_tg', $ma_tg)
         ->where('vienchuc.ma_tb', $ma_tb)
+        ->get();
+      $pdf = PDF::loadView('pdf.thongke_qltt_pdf', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qltt_loc_khoa_pdf($ma_k){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $title = '';
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+        ->where('vienchuc.ma_k', $ma_k)
+        ->where('status_vc', '<>', '2')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qltt_pdf', [
         'vienchuc' => $vienchuc,
