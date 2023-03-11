@@ -40,7 +40,6 @@
           <th scope="col">#</th>
           <th scope="col">Viên chức</th>
           <th scope="col">Khoa</th>
-          <th scope="col">Ngạch</th>
         </tr>
       </thead>
       <tbody>
@@ -53,7 +52,6 @@
               <b>Số điện thoại: </b> {{ $vc->sdt_vc }} <br>
             </td>
             <td>{{ $vc->ten_k }}</td>
-            <td>{{ $vc->ten_n }}</td>
           </tr>
         @endforeach
       </tbody>
