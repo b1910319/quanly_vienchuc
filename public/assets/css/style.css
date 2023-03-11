@@ -17,7 +17,7 @@
   position: absolute;
   background-color: #f1f1f1;
   min-width: 280px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -28,9 +28,67 @@
   display: block;
 }
 
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
 
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
 
+/* bộ lọc thống kê */
+
+:root {
+  --color-black: #232323;
+  --color-pink: #ff6393;
+  --color-purple: #342a47;
+  --color-blue: deepskyblue;
+  --color-gray: #525252;
+  --color-green: #54B435;
+  --transition-fast: 0.1s;
+}
+
+.InputGroup {
+  display: flex;
+  height: 40px;
+}
+
+.radio {
+  visibility: hidden;
+}
+
+.label {
+  display: flex;
+  flex: auto;
+  /* vertical-align: middle; */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  background-color: var(--color-gray);
+  color: white;
+  padding: 5px;
+  border-radius: 6px;
+  transition: color --transition-fast ease-out,
+    background-color --transition-fast ease-in;
+  margin-right: 5px;
+  height: 60px;
+}
+
+.label:last-of-type {
+  margin-right: 0;
+}
+
+.radio:checked+.label {
+  background-color: var(--color-green);
+}
+
+.radio:hover:not(:checked)+.label {
+  background-color: #01ff2f;
+  color: black;
+}
+/*  */

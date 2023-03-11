@@ -176,7 +176,7 @@
     @endif
     @if ($count_nghihuu || $count_nghihuu_time || $count_nghihuu_khoa)
       <div class="row">
-        <div class="col-3">
+        {{-- <div class="col-3">
           <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3" style="background-color: #00425A; border: none; width: 100%" >
             Chọn khoa thống kê
           </button>
@@ -222,6 +222,55 @@
                 </div>
               </div>
             </form>
+          </div>
+        </div> --}}
+        <!-- Button trigger modal -->
+        <div class="col-2">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #379237; border: none; width: 100%">
+            <i class="fa-solid fa-filter"></i>
+            &ensp;
+            Bộ lọc
+          </button>
+          <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 60%;">
+            <div class="modal-dialog modal-dialog-scrollable modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Bộ lọc</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ URL::to('thongke_qltt_nghihuu_loc') }}" method="post">
+                  {{ csrf_field() }}
+                  <div class="modal-body">
+                    <div class="row">
+                      <span style="font-weight: bold; font-size: 20px;">Khoa</span>
+                      @foreach ($list_khoa as $key => $khoa)
+                        <div class="col-3">
+                          <input type="radio" class="radio" name="ma_k" id="size_{{ $key+1 }}" value="{{ $khoa->ma_k }}"/>
+                          <label class="label" for="size_{{ $key+1 }}">{{ $khoa->ten_k }}</label>
+                        </div>
+                      @endforeach
+                    </div>
+                    <div class="row mt-3">
+                      <span style="font-weight: bold; font-size: 20px;">Thời gian nghĩ</span>
+                      <div class="col-6 mt-3">
+                        <input type='date' class='form-control input_table' autofocus name="batdau">
+                      </div>
+                      <div class="col-6 mt-3">
+                        <input type='date' class='form-control input_table' autofocus name="ketthuc">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">
+                      <i class="fa-solid fa-filter"></i>
+                      &ensp;
+                      Lọc
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-1">
@@ -993,6 +1042,58 @@
       </div>
     @endif
     @if ($count_nghihuu != '')
+      <table class="table" id="mytable">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Thông tin viên chức </th>
+            <th scope="col">Khoa</th>
+            <th scope="col">Thời gian nghỉ</th>
+          </tr>
+        </thead>
+        <tbody  >
+          @foreach($list as $key => $vc)
+            <tr>
+              <td>{{ $key+1 }}</td>
+              <td>
+                <div class="row ">
+                  <div class="col-md-12">
+                    <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
+                      style="height: 100px; overflow: auto;">
+                      <p>
+                        <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
+                        <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b> Email: </b> {{ $vc->user_vc }} <br>
+                        <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
+                        <b> Giới tính: </b>
+                        @if ($vc->giotinh_vc == 0)
+                          Nam
+                        @else
+                          Nữ
+                        @endif
+                        <br>
+                        <b> Địa chỉ hiện tại: </b> {{ $vc->hientai_vc }} <br>
+                        <b> Địa chỉ thường trú: </b> {{ $vc->thuongtru_vc }} <br>
+                        <b> Trình độ phổ thông: </b> {{ $vc->trinhdophothong_vc }} <br>
+                        <b> Ngoại ngữ: </b> {{ $vc->ngoaingu_vc }} <br>
+                        <b> Tin học: </b> {{ $vc->tinhoc_vc }} <br>
+                        <b> Ngày vào đảng: </b> {{ $vc->ngayvaodang_vc }} <br>
+                        <b> Ngày chính thức: </b> {{ $vc->ngaychinhthuc_vc }} <br>
+                        <b> Ngày bắt đầu làm việc: </b> {{ $vc->ngaybatdaulamviec_vc }} <br>
+                        <b> Chức vụ: </b> {{ $vc->ten_cv }} <br>
+                        {{-- <b> Dân tộc: </b> {{ $vc->ten_dt }} <br>
+                        <b> Tôn giáo: </b> {{ $vc->ten_tg }} <br> --}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>{{ $vc->ten_k }}</td>
+              <td>{{ $vc->thoigiannghi_vc }}</td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_nghihuu_all_pdf') }}">
