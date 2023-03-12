@@ -107,6 +107,7 @@ class ThongKeController extends Controller
       $list_pdf_thuongbinh = '';
       $list_nghihuu_all = '';
       $list_nghihuu_khoa = '';
+      $list_nghihuu_time = '';
       return view('thongke.thongke_qltt')
         ->with('title', $title)
 
@@ -134,6 +135,7 @@ class ThongKeController extends Controller
         ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
         ->with('list_nghihuu_all', $list_nghihuu_all)
         ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
+        ->with('list_nghihuu_time', $list_nghihuu_time)
 
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('phanquyen_admin', $phanquyen_admin)
@@ -257,6 +259,7 @@ class ThongKeController extends Controller
         $list_pdf_thuongbinh = '';
         $list_nghihuu_all = '';
         $list_nghihuu_khoa = '';
+        $list_nghihuu_time = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -283,6 +286,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
           ->with('list_nghihuu_all', $list_nghihuu_all)
           ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
+          ->with('list_nghihuu_time', $list_nghihuu_time)
 
           ->with('ma_k', $data['ma_k'])
           ->with('ma_cv', $data['ma_cv'])
@@ -331,6 +335,7 @@ class ThongKeController extends Controller
         $list_pdf_thuongbinh = '';
         $list_nghihuu_all = '';
         $list_nghihuu_khoa = '';
+        $list_nghihuu_time = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -368,6 +373,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
           ->with('list_nghihuu_all', $list_nghihuu_all)
           ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
+          ->with('list_nghihuu_time', $list_nghihuu_time)
 
           ->with('ma_k', $data['ma_k'])
 
@@ -407,6 +413,7 @@ class ThongKeController extends Controller
         $list_pdf_thuongbinh = '';
         $list_nghihuu_all = '';
         $list_nghihuu_khoa = '';
+        $list_nghihuu_time = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -444,6 +451,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
           ->with('list_nghihuu_all', $list_nghihuu_all)
           ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
+          ->with('list_nghihuu_time', $list_nghihuu_time)
 
           ->with('ma_cv', $data['ma_cv'])
 
@@ -485,6 +493,7 @@ class ThongKeController extends Controller
         $list_pdf_thuongbinh = '';
         $list_nghihuu_all = '';
         $list_nghihuu_khoa = '';
+        $list_nghihuu_time = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -521,6 +530,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
           ->with('list_nghihuu_all', $list_nghihuu_all)
           ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
+          ->with('list_nghihuu_time', $list_nghihuu_time)
 
           ->with('ma_hdt', $data['ma_hdt'])
 
@@ -563,6 +573,7 @@ class ThongKeController extends Controller
         $list_pdf_thuongbinh = '';
         $list_nghihuu_all = '';
         $list_nghihuu_khoa = '';
+        $list_nghihuu_time = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -599,6 +610,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
           ->with('list_nghihuu_all', $list_nghihuu_all)
           ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
+          ->with('list_nghihuu_time', $list_nghihuu_time)
 
           ->with('ma_lbc', $data['ma_lbc'])
 
@@ -639,6 +651,7 @@ class ThongKeController extends Controller
         $list_pdf_thuongbinh = '';
         $list_nghihuu_all = '';
         $list_nghihuu_khoa = '';
+        $list_nghihuu_time = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -676,6 +689,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
           ->with('list_nghihuu_all', $list_nghihuu_all)
           ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
+          ->with('list_nghihuu_time', $list_nghihuu_time)
 
           ->with('ma_n', $data['ma_n'])
 
@@ -717,6 +731,7 @@ class ThongKeController extends Controller
         $list_pdf_thuongbinh = '';
         $list_nghihuu_all = '';
         $list_nghihuu_khoa = '';
+        $list_nghihuu_time = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -753,6 +768,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
           ->with('list_nghihuu_all', $list_nghihuu_all)
           ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
+          ->with('list_nghihuu_time', $list_nghihuu_time)
 
           ->with('ma_t', $data['ma_t'])
 
@@ -793,6 +809,7 @@ class ThongKeController extends Controller
         $list_pdf_thuongbinh = '';
         $list_nghihuu_all = '';
         $list_nghihuu_khoa = '';
+        $list_nghihuu_time = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -830,6 +847,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
           ->with('list_nghihuu_all', $list_nghihuu_all)
           ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
+          ->with('list_nghihuu_time', $list_nghihuu_time)
 
           ->with('ma_dt', $data['ma_dt'])
 
@@ -869,6 +887,7 @@ class ThongKeController extends Controller
         $list_pdf_thuongbinh = '';
         $list_nghihuu_all = '';
         $list_nghihuu_khoa = '';
+        $list_nghihuu_time = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -906,6 +925,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
           ->with('list_nghihuu_all', $list_nghihuu_all)
           ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
+          ->with('list_nghihuu_time', $list_nghihuu_time)
 
           ->with('ma_tg', $data['ma_tg'])
 
@@ -945,6 +965,7 @@ class ThongKeController extends Controller
         $list_pdf_tongiao = '';
         $list_nghihuu_all = '';
         $list_nghihuu_khoa = '';
+        $list_nghihuu_time = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -982,6 +1003,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
           ->with('list_nghihuu_all', $list_nghihuu_all)
           ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
+          ->with('list_nghihuu_time', $list_nghihuu_time)
 
           ->with('ma_tb', $data['ma_tb'])
 
@@ -1345,6 +1367,7 @@ class ThongKeController extends Controller
         $list_all = '';
         $list_pdf_lbc = '';
         $list_nghihuu_khoa = '';
+        $list_nghihuu_time = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -1382,6 +1405,7 @@ class ThongKeController extends Controller
           ->with('list_nghihuu_all', $list_nghihuu_all)
           ->with('list_pdf_lbc', $list_pdf_lbc)
           ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
+          ->with('list_nghihuu_time', $list_nghihuu_time)
 
           ->with('ma_k', $data['ma_k'])
           ->with('batdau', $data['batdau'])
@@ -1425,6 +1449,7 @@ class ThongKeController extends Controller
         $list_all = '';
         $list_pdf_lbc = '';
         $list_nghihuu_all = '';
+        $list_nghihuu_time = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -1463,6 +1488,7 @@ class ThongKeController extends Controller
           ->with('list_nghihuu_all', $list_nghihuu_all)
           ->with('list_pdf_lbc', $list_pdf_lbc)
           ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
+          ->with('list_nghihuu_time', $list_nghihuu_time)
 
           ->with('ma_k', $data['ma_k'])
           ->with('batdau', $data['batdau'])
