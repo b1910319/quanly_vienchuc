@@ -105,6 +105,7 @@ class ThongKeController extends Controller
       $list_pdf_dantoc ='';
       $list_pdf_tongiao = '';
       $list_pdf_thuongbinh = '';
+      $list_nghihuu_all = '';
       return view('thongke.thongke_qltt')
         ->with('title', $title)
 
@@ -130,6 +131,7 @@ class ThongKeController extends Controller
         ->with('list_pdf_dantoc', $list_pdf_dantoc)
         ->with('list_pdf_tongiao', $list_pdf_tongiao)
         ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
+        ->with('list_nghihuu_all', $list_nghihuu_all)
 
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('phanquyen_admin', $phanquyen_admin)
@@ -251,6 +253,7 @@ class ThongKeController extends Controller
         $list_pdf_dantoc ='';
         $list_pdf_tongiao = '';
         $list_pdf_thuongbinh = '';
+        $list_nghihuu_all = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -275,6 +278,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_dantoc', $list_pdf_dantoc)
           ->with('list_pdf_tongiao', $list_pdf_tongiao)
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
+          ->with('list_nghihuu_all', $list_nghihuu_all)
 
           ->with('ma_k', $data['ma_k'])
           ->with('ma_cv', $data['ma_cv'])
@@ -321,6 +325,7 @@ class ThongKeController extends Controller
         $list_pdf_dantoc ='';
         $list_pdf_tongiao = '';
         $list_pdf_thuongbinh = '';
+        $list_nghihuu_all = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -356,6 +361,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_dantoc', $list_pdf_dantoc)
           ->with('list_pdf_tongiao', $list_pdf_tongiao)
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
+          ->with('list_nghihuu_all', $list_nghihuu_all)
 
           ->with('ma_k', $data['ma_k'])
 
@@ -393,6 +399,7 @@ class ThongKeController extends Controller
         $list_pdf_dantoc ='';
         $list_pdf_tongiao = '';
         $list_pdf_thuongbinh = '';
+        $list_nghihuu_all = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -428,6 +435,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_dantoc', $list_pdf_dantoc)
           ->with('list_pdf_tongiao', $list_pdf_tongiao)
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
+          ->with('list_nghihuu_all', $list_nghihuu_all)
 
           ->with('ma_cv', $data['ma_cv'])
 
@@ -467,6 +475,7 @@ class ThongKeController extends Controller
         $list_pdf_dantoc ='';
         $list_pdf_tongiao = '';
         $list_pdf_thuongbinh = '';
+        $list_nghihuu_all = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -501,6 +510,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_dantoc', $list_pdf_dantoc)
           ->with('list_pdf_tongiao', $list_pdf_tongiao)
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
+          ->with('list_nghihuu_all', $list_nghihuu_all)
 
           ->with('ma_hdt', $data['ma_hdt'])
 
@@ -541,6 +551,7 @@ class ThongKeController extends Controller
         $list_pdf_dantoc ='';
         $list_pdf_tongiao = '';
         $list_pdf_thuongbinh = '';
+        $list_nghihuu_all = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -575,6 +586,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_dantoc', $list_pdf_dantoc)
           ->with('list_pdf_tongiao', $list_pdf_tongiao)
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
+          ->with('list_nghihuu_all', $list_nghihuu_all)
 
           ->with('ma_lbc', $data['ma_lbc'])
 
@@ -613,6 +625,7 @@ class ThongKeController extends Controller
         $list_pdf_dantoc ='';
         $list_pdf_tongiao = '';
         $list_pdf_thuongbinh = '';
+        $list_nghihuu_all = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -648,6 +661,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_dantoc', $list_pdf_dantoc)
           ->with('list_pdf_tongiao', $list_pdf_tongiao)
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
+          ->with('list_nghihuu_all', $list_nghihuu_all)
 
           ->with('ma_n', $data['ma_n'])
 
@@ -687,6 +701,7 @@ class ThongKeController extends Controller
         $list_pdf_dantoc ='';
         $list_pdf_tongiao = '';
         $list_pdf_thuongbinh = '';
+        $list_nghihuu_all = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -721,6 +736,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_dantoc', $list_pdf_dantoc)
           ->with('list_pdf_tongiao', $list_pdf_tongiao)
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
+          ->with('list_nghihuu_all', $list_nghihuu_all)
 
           ->with('ma_t', $data['ma_t'])
 
@@ -759,6 +775,7 @@ class ThongKeController extends Controller
         $list_pdf_ngach = '';
         $list_pdf_tongiao = '';
         $list_pdf_thuongbinh = '';
+        $list_nghihuu_all = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -794,6 +811,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_dantoc', $list_pdf_dantoc)
           ->with('list_pdf_tongiao', $list_pdf_tongiao)
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
+          ->with('list_nghihuu_all', $list_nghihuu_all)
 
           ->with('ma_dt', $data['ma_dt'])
 
@@ -831,6 +849,7 @@ class ThongKeController extends Controller
         $list_pdf_ngach = '';
         $list_pdf_dantoc ='';
         $list_pdf_thuongbinh = '';
+        $list_nghihuu_all = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -866,6 +885,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_dantoc', $list_pdf_dantoc)
           ->with('list_pdf_tongiao', $list_pdf_tongiao)
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
+          ->with('list_nghihuu_all', $list_nghihuu_all)
 
           ->with('ma_tg', $data['ma_tg'])
 
@@ -903,6 +923,7 @@ class ThongKeController extends Controller
         $list_pdf_ngach = '';
         $list_pdf_dantoc ='';
         $list_pdf_tongiao = '';
+        $list_nghihuu_all = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
@@ -938,6 +959,7 @@ class ThongKeController extends Controller
           ->with('list_pdf_dantoc', $list_pdf_dantoc)
           ->with('list_pdf_tongiao', $list_pdf_tongiao)
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
+          ->with('list_nghihuu_all', $list_nghihuu_all)
 
           ->with('ma_tb', $data['ma_tb'])
 
@@ -1211,6 +1233,162 @@ class ThongKeController extends Controller
         ->join('thuongbinh', 'thuongbinh.ma_tb', '=', 'vienchuc.ma_tb')
         ->where('vienchuc.ma_tb', $ma_tb)
         ->where('status_vc', '<>', '2')
+        ->get();
+      $pdf = PDF::loadView('pdf.thongke_qltt_pdf', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qltt_nghihuu_loc(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      $list_loaibangcap = LoaiBangCap::orderBy('ten_lbc', 'asc')
+        ->get();
+      $list_hedaotao = HeDaoTao::orderBy('ten_hdt', 'asc')
+        ->get();
+      $list_ngach = Ngach::orderBy('ten_n', 'asc')
+        ->get();
+      $list_chucvu = ChucVu::orderBy('ten_cv', 'asc')
+        ->get();
+      $list_khoa = Khoa::orderBy('ten_k', 'asc')
+        ->get();
+      $list_tinh = Tinh::orderBy('ten_t', 'asc')
+        ->get();
+      $list_dantoc = DanToc::orderBy('ten_dt', 'asc')
+        ->get();
+      $list_tongiao = TonGiao::orderBy('ten_tg', 'asc')
+        ->get();
+      $list_thuongbinh = ThuongBinh::orderBy('ten_tb', 'asc')
+        ->get();
+      $data = $request->all();
+      $list = '';
+      $list_pdf_khoa = '';
+      if(isset($data['ma_k'])  && isset($data['batdau'])  && isset($data['ketthuc'])){
+        $count = '';
+        $count_khoa = '';
+        $count_chucvu = '';
+        $count_hedaotao = '';
+        $count_loaibangcap ='';
+        $count_ngach = '';
+        $count_tinh = '';
+        $count_dantoc = '';
+        $count_tongiao = '';
+        $count_thuongbinh = '';
+        $count_nghihuu_all = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('status_vc', '2')
+          ->where('vienchuc.ma_k', $data['ma_k'])
+          ->whereBetween('vienchuc.thoigiannghi_vc', [$data['batdau'], $data['ketthuc']])
+          ->select(DB::raw('count(vienchuc.ma_vc) as sum, khoa.ma_k, vienchuc.thoigiannghi_vc'))
+          ->groupBy('khoa.ma_k', 'vienchuc.thoigiannghi_vc')
+          ->get();
+        $list_nghihuu_all = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_vc', '2')
+        ->where('vienchuc.ma_k', $data['ma_k'])
+        ->whereBetween('vienchuc.thoigiannghi_vc', [$data['batdau'], $data['ketthuc']])
+          ->get();
+        $list_pdf_chucvu = '';
+        $list_pdf_hdt = '';
+        $list_pdf_ngach = '';
+        $list_pdf_tinh = '';
+        $list_pdf_dantoc ='';
+        $list_pdf_tongiao = '';
+        $list_pdf_thuongbinh = '';
+        $list_all = '';
+        $list_pdf_lbc = '';
+        return view('thongke.thongke_qltt')
+          ->with('title', $title)
+
+          ->with('count_nangbac', $count_nangbac)
+          ->with('count', $count)
+          ->with('count_nghihuu_all', $count_nghihuu_all)
+          ->with('count_khoa', $count_khoa)
+          ->with('count_chucvu',$count_chucvu)
+          ->with('count_hedaotao', $count_hedaotao)
+          ->with('count_loaibangcap', $count_loaibangcap)
+          ->with('count_ngach', $count_ngach)
+          ->with('count_tinh',$count_tinh)
+          ->with('count_dantoc', $count_dantoc)
+          ->with('count_tongiao', $count_tongiao)
+          ->with('count_thuongbinh', $count_thuongbinh)
+
+          ->with('list', $list)
+          ->with('list_all', $list_all)
+          ->with('list_khoa', $list_khoa)
+          ->with('list_loaibangcap', $list_loaibangcap)
+          ->with('list_ngach', $list_ngach)
+          ->with('list_hedaotao', $list_hedaotao)
+          ->with('list_chucvu', $list_chucvu)
+          ->with('list_tinh', $list_tinh)
+          ->with('list_dantoc', $list_dantoc)
+          ->with('list_tongiao', $list_tongiao)
+          ->with('list_pdf_khoa', $list_pdf_khoa)
+          ->with('list_pdf_chucvu', $list_pdf_chucvu)
+          ->with('list_pdf_hdt', $list_pdf_hdt)
+          ->with('list_pdf_ngach', $list_pdf_ngach)
+          ->with('list_pdf_tinh', $list_pdf_tinh)
+          ->with('list_pdf_dantoc', $list_pdf_dantoc)
+          ->with('list_pdf_tongiao', $list_pdf_tongiao)
+          ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
+          ->with('list_nghihuu_all', $list_nghihuu_all)
+          ->with('list_pdf_lbc', $list_pdf_lbc)
+
+          ->with('ma_k', $data['ma_k'])
+          ->with('batdau', $data['batdau'])
+          ->with('ketthuc', $data['ketthuc'])
+
+          ->with('list_thuongbinh', $list_thuongbinh)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qltt', $phanquyen_qltt);
+      }
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qltt_loc_nghihuu_all_pdf($ma_k, $batdau, $ketthuc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $title = '';
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_vc', '2')
+        ->where('vienchuc.ma_k', $ma_k)
+        ->whereBetween('vienchuc.thoigiannghi_vc', [$batdau, $ketthuc])
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qltt_pdf', [
         'vienchuc' => $vienchuc,
