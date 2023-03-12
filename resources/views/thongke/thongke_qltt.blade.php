@@ -473,11 +473,76 @@
         </div>
       </div>
     @endif
+    @if ($list_pdf_hdt != '')
+      <p style="font-weight: bold; color: #D36B00; font-size: 18px">
+        Danh sách được lọc theo: 
+        @foreach ($list_hedaotao as $hedaotao )
+          @if ($hedaotao->ma_hdt == $ma_hdt)
+          <span class="badge text-bg-primary">{{ $hedaotao->ten_hdt }}</span>
+          @endif
+        @endforeach
+      </p>
+      <table class="table" id="mytable">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Thông tin viên chức </th>
+            <th scope="col">Khoa</th>
+            <th scope="col">Hệ đào tạo</th>
+          </tr>
+        </thead>
+        <tbody  >
+          @foreach($list_pdf_hdt as $key => $vc)
+            <tr>
+              <td>{{ $key+1 }}</td>
+              <td>
+                <div class="row ">
+                  <div class="col-md-12">
+                    <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
+                      style="height: 100px; overflow: auto;">
+                      <p>
+                        <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
+                        <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b> Email: </b> {{ $vc->user_vc }} <br>
+                        <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
+                        <b> Giới tính: </b>
+                        @if ($vc->giotinh_vc == 0)
+                          Nam
+                        @else
+                          Nữ
+                        @endif
+                        <br>
+                        <b> Địa chỉ hiện tại: </b> {{ $vc->hientai_vc }} <br>
+                        <b> Địa chỉ thường trú: </b> {{ $vc->thuongtru_vc }} <br>
+                        <b> Trình độ phổ thông: </b> {{ $vc->trinhdophothong_vc }} <br>
+                        <b> Ngoại ngữ: </b> {{ $vc->ngoaingu_vc }} <br>
+                        <b> Tin học: </b> {{ $vc->tinhoc_vc }} <br>
+                        <b> Ngày vào đảng: </b> {{ $vc->ngayvaodang_vc }} <br>
+                        <b> Ngày chính thức: </b> {{ $vc->ngaychinhthuc_vc }} <br>
+                        <b> Ngày bắt đầu làm việc: </b> {{ $vc->ngaybatdaulamviec_vc }} <br>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>{{ $vc->ten_k }}</td>
+              <td>{{ $vc->ten_hdt }}</td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qltt_loc_hdt_pdf/'.$ma_hdt) }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
   </div>
 </div>
 <script>
   $(document).ready(function(){
-    // Thống kê viên chức theo loại khen thưởng
     new Morris.Bar({
       element: 'myfirstchart_qltt_1',
       pointFillColors: ['#F94A29'],
@@ -516,149 +581,17 @@
                 }
               }
             }
+          }else if($count_hedaotao){
+            foreach ($count_hedaotao as $key => $count){
+              foreach($list_hedaotao as $key => $hedaotao){
+                if($count->ma_hdt == $hedaotao->ma_hdt){
+                  $ten_hdt = $hedaotao->ten_hdt;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_hdt', value: $tong },";
+                }
+              }
+            }
           }
-          // else if($count_ngach_ma_n){
-          //   foreach ($count_ngach_ma_n as $key => $count){
-          //     foreach($list_ngach as $key => $ngach){
-          //       if($count->ma_n == $ngach->ma_n){
-          //         $ten_n = $ngach->ten_n;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_n', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
-          // else if($count_loaibangcap){
-          //   foreach ($count_loaibangcap as $key => $count){
-          //     foreach($list_loaibangcap as $key => $loaibangcap){
-          //       if($count->ma_lbc == $loaibangcap->ma_lbc){
-          //         $ten_lbc = $loaibangcap->ten_lbc;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_lbc', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
-          // else if($count_lbc){
-          //   foreach ($count_lbc as $key => $count){
-          //     foreach($list_loaibangcap as $key => $loaibangcap){
-          //       if($count->ma_lbc == $loaibangcap->ma_lbc){
-          //         $ten_lbc = $loaibangcap->ten_lbc;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_lbc', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
-          // else if($count_chucvu){
-          //   foreach ($count_chucvu as $key => $count){
-          //     foreach($list_chucvu as $key => $chucvu){
-          //       if($count->ma_cv == $chucvu->ma_cv){
-          //         $ten_cv = $chucvu->ten_cv;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_cv', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
-          // else if($count_cv){
-          //   foreach ($count_cv as $key => $count){
-          //     foreach($list_chucvu as $key => $chucvu){
-          //       if($count->ma_cv == $chucvu->ma_cv){
-          //         $ten_cv = $chucvu->ten_cv;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_cv', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
-          // else if($count_hedaotao){
-          //   foreach ($count_hedaotao as $key => $count){
-          //     foreach($list_hedaotao as $key => $hedaotao){
-          //       if($count->ma_hdt == $hedaotao->ma_hdt){
-          //         $ten_hdt = $hedaotao->ten_hdt;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_hdt', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
-          // else if($count_hedaotao_ma_hdt){
-          //   foreach ($count_hedaotao_ma_hdt as $key => $count){
-          //     foreach($list_hedaotao as $key => $hedaotao){
-          //       if($count->ma_hdt == $hedaotao->ma_hdt){
-          //         $ten_hdt = $hedaotao->ten_hdt;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_hdt', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
-          // else if($count_khoa){
-          //   foreach ($count_khoa as $key => $count){
-          //     foreach($list_khoa as $key => $khoa){
-          //       if($count->ma_k == $khoa->ma_k){
-          //         $ten_k = $khoa->ten_k;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_k', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
-          // else if($count_khoa_ma_k){
-          //   foreach ($count_khoa_ma_k as $key => $count){
-          //     foreach($list_khoa as $key => $khoa){
-          //       if($count->ma_k == $khoa->ma_k){
-          //         $ten_k = $khoa->ten_k;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_k', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
-          // else if($count_nghihuu){
-          //   foreach ($count_nghihuu as $key => $count){
-          //     $thoigiannghi_vc = $count->thoigiannghi_vc;
-          //     $tong = $count->sum;
-          //     echo "{ year: '$thoigiannghi_vc', value: $tong },";
-          //   }
-          // }
-          // else if($count_nghihuu_loc){
-          //   foreach ($count_nghihuu_loc as $key => $count){
-          //     $thoigiannghi_vc = $count->thoigiannghi_vc;
-          //     $tong = $count->sum;
-          //     echo "{ year: '$thoigiannghi_vc', value: $tong },";
-          //   }
-          // }
-          // else if($count_nghihuu_khoa){
-          //   foreach ($count_nghihuu_khoa as $key => $count){
-          //     $thoigiannghi_vc = $count->thoigiannghi_vc;
-          //     $tong = $count->sum;
-          //     echo "{ year: '$thoigiannghi_vc', value: $tong },";
-          //   }
-          // }
-          // else if($count_tinh){
-          //   foreach ($count_tinh as $key => $count){
-          //     foreach($list_tinh as $key => $tinh){
-          //       if($count->ma_t == $tinh->ma_t){
-          //         $ten_t = $tinh->ten_t;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_t', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
-          // else if($count_quequan_tinh){
-          //   foreach ($count_quequan_tinh as $key => $count){
-          //     foreach($list_tinh as $key => $tinh){
-          //       if($count->ma_t == $tinh->ma_t){
-          //         $ten_t = $tinh->ten_t;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_t', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
         ?>
       ],
       xkey: 'year',
