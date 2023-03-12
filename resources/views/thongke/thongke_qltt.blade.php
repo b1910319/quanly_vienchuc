@@ -63,7 +63,7 @@
                   {{-- <div class="row mt-1">
                     <span style="font-weight: bold; font-size: 20px;">Hưu</span>
                     <div class="col-4 mt-1">
-                      <select class="custom-select input_table" id="gender2" name="ma_k">
+                      <select class="custom-select input_table"  name="ma_k">
                         <option value="0" >Chọn khoa</option>
                         @foreach ($list_khoa as $khoa)
                           <option value="{{ $khoa->ma_k }}" >{{ $khoa->ten_k }}</option>
@@ -81,8 +81,8 @@
                     <div class="col-4">
                       <span style="font-weight: bold; font-size: 20px;">Ngạch</span>
                       <div class="mt-2">
-                        <select class="custom-select input_table" id="gender2" name="ma_n">
-                          <option value="0" >Chọn ngạch viên chức</option>
+                        <select class="custom-select input_table"  name="ma_n">
+                          <option value="" >Chọn ngạch viên chức</option>
                           @foreach ($list_ngach as $ngach)
                             <option value="{{ $ngach->ma_n }}" >{{ $ngach->ten_n }}</option>
                           @endforeach
@@ -92,8 +92,8 @@
                     <div class="col-4">
                       <span style="font-weight: bold; font-size: 20px;">Quê quán</span>
                       <div class="mt-2">
-                        <select class="custom-select input_table" id="gender2" name="ma_t">
-                          <option value="0" >Chọn tỉnh\thành phố</option>
+                        <select class="custom-select input_table"  name="ma_t">
+                          <option value="" >Chọn tỉnh\thành phố</option>
                           @foreach ($list_tinh as $tinh)
                             <option value="{{ $tinh->ma_t }}" >{{ $tinh->ten_t }}</option>
                           @endforeach
@@ -103,8 +103,8 @@
                     <div class="col-4">
                       <span style="font-weight: bold; font-size: 20px;">Dân tộc</span>
                       <div class="mt-2">
-                        <select class="custom-select input_table" id="gender2" name="ma_dt">
-                          <option value="0" >Chọn dân tộc</option>
+                        <select class="custom-select input_table"  name="ma_dt">
+                          <option value="" >Chọn dân tộc</option>
                           @foreach ($list_dantoc as $dantoc)
                             <option value="{{ $dantoc->ma_dt }}" >{{ $dantoc->ten_dt }}</option>
                           @endforeach
@@ -116,8 +116,8 @@
                     <div class="col-4">
                       <span style="font-weight: bold; font-size: 20px;">Tôn giáo</span>
                       <div class="mt-2">
-                        <select class="custom-select input_table" id="gender2" name="ma_tg">
-                          <option value="0" >Chọn tôn giáo của viên chức</option>
+                        <select class="custom-select input_table"  name="ma_tg">
+                          <option value="" >Chọn tôn giáo của viên chức</option>
                           @foreach ($list_tongiao as $tongiao)
                             <option value="{{ $tongiao->ma_tg }}" >{{ $tongiao->ten_tg }}</option>
                           @endforeach
@@ -127,8 +127,8 @@
                     <div class="col-4">
                       <span style="font-weight: bold; font-size: 20px;">Thương binh</span>
                       <div class="mt-2">
-                        <select class="custom-select input_table" id="gender2" name="ma_tb">
-                          <option value="0" >Hạng thương binh</option>
+                        <select class="custom-select input_table"  name="ma_tb">
+                          <option value="" >Hạng thương binh</option>
                           @foreach ($list_thuongbinh as $thuongbinh)
                             <option value="{{ $thuongbinh->ma_tb }}" >{{ $thuongbinh->ten_tb }}</option>
                           @endforeach
@@ -671,6 +671,72 @@
         </div>
       </div>
     @endif
+    @if ($list_pdf_tinh != '')
+      <p style="font-weight: bold; color: #D36B00; font-size: 18px">
+        Danh sách được lọc theo: 
+        @foreach ($list_tinh as $tinh )
+          @if ($tinh->ma_t == $ma_t)
+          <span class="badge text-bg-primary">{{ $tinh->ten_t }}</span>
+          @endif
+        @endforeach
+      </p>
+      <table class="table" id="mytable">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Thông tin viên chức </th>
+            <th scope="col">Khoa</th>
+            <th scope="col">Quê quán</th>
+          </tr>
+        </thead>
+        <tbody  >
+          @foreach($list_pdf_tinh as $key => $vc)
+            <tr>
+              <td>{{ $key+1 }}</td>
+              <td>
+                <div class="row ">
+                  <div class="col-md-12">
+                    <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
+                      style="height: 100px; overflow: auto;">
+                      <p>
+                        <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
+                        <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b> Email: </b> {{ $vc->user_vc }} <br>
+                        <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
+                        <b> Giới tính: </b>
+                        @if ($vc->giotinh_vc == 0)
+                          Nam
+                        @else
+                          Nữ
+                        @endif
+                        <br>
+                        <b> Địa chỉ hiện tại: </b> {{ $vc->hientai_vc }} <br>
+                        <b> Địa chỉ thường trú: </b> {{ $vc->thuongtru_vc }} <br>
+                        <b> Trình độ phổ thông: </b> {{ $vc->trinhdophothong_vc }} <br>
+                        <b> Ngoại ngữ: </b> {{ $vc->ngoaingu_vc }} <br>
+                        <b> Tin học: </b> {{ $vc->tinhoc_vc }} <br>
+                        <b> Ngày vào đảng: </b> {{ $vc->ngayvaodang_vc }} <br>
+                        <b> Ngày chính thức: </b> {{ $vc->ngaychinhthuc_vc }} <br>
+                        <b> Ngày bắt đầu làm việc: </b> {{ $vc->ngaybatdaulamviec_vc }} <br>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>{{ $vc->ten_k }}</td>
+              <td>{{ $vc->ten_t }}</td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qltt_loc_tinh_pdf/'.$ma_t) }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
   </div>
 </div>
 <script>
@@ -733,14 +799,23 @@
                 }
               }
             }
-          }
-          else if($count_ngach){
+          }else if($count_ngach){
             foreach ($count_ngach as $key => $count){
               foreach($list_ngach as $key => $ngach){
                 if($count->ma_n == $ngach->ma_n){
                   $ten_n = $ngach->ten_n;
                   $tong = $count->sum;
                   echo "{ year: '$ten_n', value: $tong },";
+                }
+              }
+            }
+          }else if($count_tinh){
+            foreach ($count_tinh as $key => $count){
+              foreach($list_tinh as $key => $tinh){
+                if($count->ma_t == $tinh->ma_t){
+                  $ten_t = $tinh->ten_t;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_t', value: $tong },";
                 }
               }
             }
