@@ -1852,7 +1852,7 @@ class ThongKeController extends Controller
         ->where('status_vc', '<>', '2')
         ->get();
       $list = '';
-
+      $list_all = '';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
 
@@ -1866,6 +1866,7 @@ class ThongKeController extends Controller
         ->with('list_pdf_lkt', $list_pdf_lkt)
         ->with('list', $list)
         ->with('list_vienchuc', $list_vienchuc)
+        ->with('list_all', $list_all)
 
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -1888,6 +1889,121 @@ class ThongKeController extends Controller
     if($phanquyen_admin || $phanquyen_qlktkl){
       $khenthuong = KhenThuong::join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
         ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
+        ->where('status_kt', '<>', '2')
+        ->get();
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_vc', '<>', '2')
+        ->get();
+      $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
+        'vienchuc' => $vienchuc,
+        'khenthuong' => $khenthuong,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qltktkl_kt_loc(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      $list_loaikhenthuong = LoaiKhenThuong::orderBy('ten_lkt', 'asc')
+        ->get();
+      $list_hinhthuckhenthuong = HinhThucKhenThuong::orderBy('ten_htkt', 'asc')
+        ->get();
+      $list_khoa = Khoa::orderBy('ten_k', 'asc')
+        ->get();
+      $list_loaikyluat = LoaiKyLuat::orderBy('ten_lkl','asc')
+        ->get();
+      $data = $request->all();
+      if(isset($data['ma_lkt'])  && isset($data['ma_k'])  && isset($data['ma_htkt'])  && isset($data['batdau_kt'])  && isset($data['ketthuc_kt'])){
+        $count_loaikhenthuong = KhenThuong::join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
+        ->where('status_kt', '<>', '2')
+        ->select(DB::raw('count(khenthuong.ma_kt) as sum, loaikhenthuong.ma_lkt'))
+        ->groupBy('loaikhenthuong.ma_lkt')
+        ->get();
+        $list_all = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
+          ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
+          ->where('khenthuong.ma_lkt', $data['ma_lkt'])
+          ->where('vienchuc.ma_k', $data['ma_k'])
+          ->where('khenthuong.ma_htkt', $data['ma_htkt'])
+          ->whereBetween('khenthuong.ngay_kt', [$data['batdau_kt'], $data['ketthuc_kt']])
+          ->where('status_vc', '<>', '2')
+          ->where('status_kt', '<>', '2')
+          ->get();
+        $list_pdf_lkt = '';
+        return view('thongke.thongke_qlktkl')
+          ->with('title', $title)
+
+          ->with('count_nangbac', $count_nangbac)
+          ->with('count_loaikhenthuong', $count_loaikhenthuong)
+
+          ->with('list_all', $list_all)
+          ->with('list_khoa', $list_khoa)
+          ->with('list_loaikhenthuong', $list_loaikhenthuong)
+          ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
+          ->with('list_loaikyluat', $list_loaikyluat)
+          ->with('list_pdf_lkt', $list_pdf_lkt)
+
+          ->with('ma_lkt', $data['ma_lkt'])
+          ->with('ma_k', $data['ma_k'])
+          ->with('ma_htkt', $data['ma_htkt'])
+          ->with('batdau_kt', $data['batdau_kt'])
+          ->with('ketthuc_kt', $data['ketthuc_kt'])
+
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qltt', $phanquyen_qltt);
+      }
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlktkl_kt_loc_all_pdf($ma_lkt, $ma_k, $ma_htkt, $batdau_kt, $ketthuc_kt){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $khenthuong = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
+        ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
+        ->where('khenthuong.ma_lkt', $ma_lkt)
+        ->where('vienchuc.ma_k', $ma_k)
+        ->where('khenthuong.ma_htkt', $ma_htkt)
+        ->whereBetween('khenthuong.ngay_kt', [$batdau_kt, $ketthuc_kt])
+        ->where('status_vc', '<>', '2')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
