@@ -29,7 +29,7 @@
         <b>TRƯỜNG CÔNG NGHỆ THÔNG TIN VÀ TRUYỀN THÔNG - ĐẠI HỌC CẦN THƠ</b>
       </i>
     </p>
-    <p  style="font-size: 16px; font-weight: bold; text-align: center;">BẢNG THỐNG KÊ VIÊN CHỨC ĐƯỢC KHEN THƯỞNG</p>
+    <p  style="font-size: 16px; font-weight: bold; text-align: center;">BẢNG THỐNG KÊ KHEN THƯỞNG CỦA VIÊN CHỨC</p>
     <table class="table">
       <thead>
         <tr>
@@ -40,19 +40,23 @@
         </tr>
       </thead>
       <tbody>
-        @foreach($vienchuc as $key => $vc)
+        @foreach($khenthuong as $key => $kt)
           <tr>
             <td>{{ $key+1 }}</td>
             <td>
-              <b>Họ tên: </b>{{ $vc->hoten_vc }} <br>
-              <b>Email: </b>{{ $vc->user_vc }} <br>
-              <b>Số điện thoại: </b> {{ $vc->sdt_vc }} <br>
+              @foreach ($vienchuc as $vc )
+                @if ($vc->ma_vc == $kt->ma_vc)
+                  <b>Họ tên: </b>{{ $vc->hoten_vc }} <br>
+                  <b>Email: </b>{{ $vc->user_vc }} <br>
+                  <b>Số điện thoại: </b> {{ $vc->sdt_vc }} <br>
+                @endif
+              @endforeach
             </td>
-            <td>{{ $vc->ten_k }}</td>
+            <td>{{ $kt->ten_k }}</td>
             <td>
-              <b>Loaị khen thưởng: </b>{{ $vc->ten_lkt }}<br>
-              <b>Hình thức khen thưởng: </b>{{ $vc->ten_htkt }}<br>
-              <b>Ngày: </b>{{ $vc->ngay_kt }}<br>
+              <b>Loaị khen thưởng: </b>{{ $kt->ten_lkt }}<br>
+              <b>Hình thức khen thưởng: </b>{{ $kt->ten_htkt }}<br>
+              <b>Ngày: </b>{{ $kt->ngay_kt }}<br>
             </td>
           </tr>
         @endforeach

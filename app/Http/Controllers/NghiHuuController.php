@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bac;
 use App\Models\ChucVu;
 use App\Models\DanToc;
+use App\Models\KhenThuong;
 use App\Models\Khoa;
 use App\Models\Ngach;
 use Illuminate\Http\Request;
@@ -173,6 +174,12 @@ class NghiHuuController extends Controller
       $vienchuc->status_vc = '2';
       $vienchuc->thoigiannghi_vc = $data['thoigiannghi_vc'];
       $vienchuc->save();
+      $khenthuong = KhenThuong::where('ma_vc', $data['ma_vc'])
+        ->get();
+      foreach ($khenthuong as $key => $kt) {
+        $kt->status_kt = '2';
+        $kt->save();
+      }
       return Redirect::to('/nghihuu');
     }else{
       return Redirect::to('/home');
