@@ -1859,6 +1859,7 @@ class ThongKeController extends Controller
       $list_5 = '';
       $list_6 = '';
       $list_7 = '';
+      $list_8 = '';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
 
@@ -1879,6 +1880,7 @@ class ThongKeController extends Controller
         ->with('list_5', $list_5)
         ->with('list_6', $list_6)
         ->with('list_7', $list_7)
+        ->with('list_8', $list_8)
 
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -1973,6 +1975,7 @@ class ThongKeController extends Controller
         $list_5 = '';   
         $list_6 = '';  
         $list_7 = '';
+        $list_8 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -1991,6 +1994,7 @@ class ThongKeController extends Controller
           ->with('list_5', $list_5)
           ->with('list_6', $list_6)
           ->with('list_7', $list_7)
+          ->with('list_8', $list_8)
 
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_k', $data['ma_k'])
@@ -2026,6 +2030,7 @@ class ThongKeController extends Controller
         $list_5 = '';
         $list_6 = '';
         $list_7 = '';
+        $list_8 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -2044,6 +2049,7 @@ class ThongKeController extends Controller
           ->with('list_5', $list_5)
           ->with('list_6', $list_6)
           ->with('list_7', $list_7)
+          ->with('list_8', $list_8)
 
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_htkt', $data['ma_htkt'])
@@ -2078,6 +2084,7 @@ class ThongKeController extends Controller
         $list_5 = '';
         $list_6 = '';
         $list_7 = '';
+        $list_8 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -2096,6 +2103,7 @@ class ThongKeController extends Controller
           ->with('list_5', $list_5)
           ->with('list_6', $list_6)
           ->with('list_7', $list_7)
+          ->with('list_8', $list_8)
 
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_k', $data['ma_k'])
@@ -2129,6 +2137,7 @@ class ThongKeController extends Controller
         $list_5 = '';
         $list_6 = '';
         $list_7 = '';
+        $list_8 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -2147,6 +2156,7 @@ class ThongKeController extends Controller
           ->with('list_5', $list_5)
           ->with('list_6', $list_6)
           ->with('list_7', $list_7)
+          ->with('list_8', $list_8)
 
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_k', $data['ma_k'])
@@ -2180,6 +2190,7 @@ class ThongKeController extends Controller
         $list_2 = '';
         $list_6 = '';
         $list_7 = '';
+        $list_8 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -2199,6 +2210,7 @@ class ThongKeController extends Controller
           ->with('list_5', $list_5)
           ->with('list_6', $list_6)
           ->with('list_7', $list_7)
+          ->with('list_8', $list_8)
 
           ->with('ma_htkt', $data['ma_htkt'])
           ->with('batdau_kt', $data['batdau_kt'])
@@ -2234,6 +2246,7 @@ class ThongKeController extends Controller
         $list_2 = '';
         $list_5 = '';
         $list_7 = '';
+        $list_8 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -2254,6 +2267,7 @@ class ThongKeController extends Controller
           ->with('list_5', $list_5)
           ->with('list_6', $list_6)
           ->with('list_7', $list_7)
+          ->with('list_8', $list_8)
 
           ->with('ma_k', $data['ma_k'])
           ->with('batdau_kt', $data['batdau_kt'])
@@ -2292,6 +2306,7 @@ class ThongKeController extends Controller
         $list_4 = '';
         $list_5 = '';
         $list_6 = '';
+        $list_8 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -2313,9 +2328,72 @@ class ThongKeController extends Controller
           ->with('list_5', $list_5)
           ->with('list_6', $list_6)
           ->with('list_7', $list_7)
+          ->with('list_8', $list_8)
 
           ->with('ma_k', $data['ma_k'])
           ->with('ma_htkt', $data['ma_htkt'])
+
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qltt', $phanquyen_qltt);
+      }else if( isset($data['ma_lkt'])  && isset($data['batdau_kt'])  && isset($data['ketthuc_kt'])){
+        $count_loaikhenthuong = '';
+        $count_5 = '';
+        $count_6 = '';
+        $count_7 = '';
+        $count_8 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
+          ->where('status_kt', '<>', '2')
+          ->select(DB::raw('count(khenthuong.ma_kt) as sum, khenthuong.ma_lkt, ngay_kt'))
+          ->groupBy('khenthuong.ma_lkt', 'ngay_kt')
+          ->get();
+        $list_8 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
+          ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
+          ->where('khenthuong.ma_lkt', $data['ma_lkt'])
+          ->whereBetween('khenthuong.ngay_kt', [$data['batdau_kt'], $data['ketthuc_kt']])
+          ->where('status_vc', '<>', '2')
+          ->where('status_kt', '<>', '2')
+          ->get();
+        $list_pdf_lkt = '';
+        $list_all = '';
+        $list_3 = '';
+        $list_4 = '';
+        $list_2 = '';
+        $list_5 = '';
+        $list_6 = '';
+        $list_7 = '';
+        return view('thongke.thongke_qlktkl')
+          ->with('title', $title)
+
+          ->with('count_nangbac', $count_nangbac)
+          ->with('count_loaikhenthuong', $count_loaikhenthuong)
+          ->with('count_5', $count_5)
+          ->with('count_6', $count_6)
+          ->with('count_7', $count_7)
+          ->with('count_8', $count_8)
+
+          ->with('list_all', $list_all)
+          ->with('list_khoa', $list_khoa)
+          ->with('list_loaikhenthuong', $list_loaikhenthuong)
+          ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
+          ->with('list_loaikyluat', $list_loaikyluat)
+          ->with('list_pdf_lkt', $list_pdf_lkt)
+          ->with('list_2', $list_2)
+          ->with('list_3', $list_3)
+          ->with('list_4', $list_4)
+          ->with('list_5', $list_5)
+          ->with('list_6', $list_6)
+          ->with('list_7', $list_7)
+          ->with('list_8', $list_8)
+
+          ->with('ma_lkt', $data['ma_lkt'])
+          ->with('batdau_kt', $data['batdau_kt'])
+          ->with('ketthuc_kt', $data['ketthuc_kt'])
 
           ->with('phanquyen_admin', $phanquyen_admin)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -2534,6 +2612,37 @@ class ThongKeController extends Controller
         ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('hinhthuckhenthuong.ma_htkt', $ma_htkt)
+        ->where('status_vc', '<>', '2')
+        ->where('status_kt', '<>', '2')
+        ->get();
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_vc', '<>', '2')
+        ->get();
+      $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
+        'vienchuc' => $vienchuc,
+        'khenthuong' => $khenthuong,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlktkl_kt_loc_8_pdf($ma_lkt, $batdau_kt, $ketthuc_kt){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $khenthuong = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
+        ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
+        ->where('khenthuong.ma_lkt', $ma_lkt)
+        ->whereBetween('khenthuong.ngay_kt', [$batdau_kt, $ketthuc_kt])
         ->where('status_vc', '<>', '2')
         ->where('status_kt', '<>', '2')
         ->get();
