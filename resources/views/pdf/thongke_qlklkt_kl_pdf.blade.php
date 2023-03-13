@@ -29,30 +29,34 @@
         <b>TRƯỜNG CÔNG NGHỆ THÔNG TIN VÀ TRUYỀN THÔNG - ĐẠI HỌC CẦN THƠ</b>
       </i>
     </p>
-    <p  style="font-size: 16px; font-weight: bold; text-align: center;">BẢNG THỐNG KÊ VIÊN CHỨC BỊ KỶ LUẬT</p>
+    <p  style="font-size: 16px; font-weight: bold; text-align: center;">BẢNG THỐNG KÊ KỶ LUẬT CỦA VIÊN CHỨC</p>
     <table class="table">
       <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">Viên chức</th>
           <th scope="col">Khoa</th>
-          <th scope="col">Thông tin kỷ luật</th>
+          <th scope="col">Thông tin khen thưởng</th>
         </tr>
       </thead>
       <tbody>
-        @foreach($vienchuc as $key => $vc)
+        @foreach($kyluat as $key => $kl)
           <tr>
             <td>{{ $key+1 }}</td>
             <td>
-              <b>Họ tên: </b>{{ $vc->hoten_vc }} <br>
-              <b>Email: </b>{{ $vc->user_vc }} <br>
-              <b>Số điện thoại: </b> {{ $vc->sdt_vc }} <br>
+              @foreach ($vienchuc as $vc )
+                @if ($vc->ma_vc == $kl->ma_vc)
+                  <b>Họ tên: </b>{{ $vc->hoten_vc }} <br>
+                  <b>Email: </b>{{ $vc->user_vc }} <br>
+                  <b>Số điện thoại: </b> {{ $vc->sdt_vc }} <br>
+                @endif
+              @endforeach
             </td>
-            <td>{{ $vc->ten_k }}</td>
+            <td>{{ $kl->ten_k }}</td>
             <td>
-              <b>Loaị kỷ luật: </b>{{ $vc->ten_lkl }}<br>
-              <b>Lý do: </b>{{ $vc->lydo_kl }} <br>
-              <b>Ngày: </b>{{ $vc->ngay_kl }}<br>
+              <b>Loaị kỷ luật: </b>{{ $kl->ten_lkl }}<br>
+              <b>Lý do kỷ luật: </b>{{ $kl->lydo_kl }}<br>
+              <b>Ngày: </b>{{ $kl->ngay_kl }}<br>
             </td>
           </tr>
         @endforeach

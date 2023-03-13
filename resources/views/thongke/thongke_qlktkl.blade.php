@@ -75,6 +75,64 @@
           </div>
         </div>
       </div>
+      <div class="col-2">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="background-color: #D36B00; border: none; width: 100%">
+          <i class="fa-solid fa-filter"></i>
+          &ensp;
+          Bộ lọc kỷ luật
+        </button>
+        <div class="modal fade " id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 100%;">
+          <div class="modal-dialog modal-dialog-scrollabl modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Bộ lọc</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form action="{{ URL::to('thongke_qltktkl_kl_loc') }}" method="post">
+                {{ csrf_field() }}
+                <div class="modal-body">
+                  <div class="row">
+                    <span class="text-center fw-bold" style="color: #D36B00; font-size: 20px">KỶ LUẬT</span>
+                    <span style="font-weight: bold; font-size: 20px;">Loại kỷ luật</span>
+                    @foreach ($list_loaikyluat as $key => $loaikyluat)
+                      <div class="col-3">
+                        <input type="radio" class="radio" name="ma_lkl" id="size_{{ $loaikyluat->created_lkl }}" value="{{ $loaikyluat->ma_lkl }}"/>
+                        <label class="label" for="size_{{ $loaikyluat->created_lkl }}">{{ $loaikyluat->ten_lkl }}</label>
+                      </div>
+                    @endforeach
+                  </div>
+                  <div class="row">
+                    <span style="font-weight: bold; font-size: 20px;">Khoa</span>
+                    @foreach ($list_khoa as $key => $khoa)
+                      <div class="col-3">
+                        <input type="radio" class="radio" name="ma_k" id="size_{{ $khoa->created_k }}" value="{{ $khoa->ma_k }}"/>
+                        <label class="label" for="size_{{ $khoa->created_k }}">{{ $khoa->ten_k }}</label>
+                      </div>
+                    @endforeach
+                  </div>
+                  <div class="row mt-1">
+                    <span style="font-weight: bold; font-size: 20px;">Thời gian kỷ luật</span>
+                    <div class="col-4 mt-1">
+                      <input type='date' class='form-control input_table' autofocus name="batdau_kl">
+                    </div>
+                    <div class="col-4 mt-1">
+                      <input type='date' class='form-control input_table' autofocus name="ketthuc_kl">
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-filter"></i>
+                    &ensp;
+                    Lọc
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="col-1">
         <a href="{{ URL::to('thongke_qlktkl') }}">
           <button type="button" class="btn btn-warning">
@@ -82,6 +140,7 @@
           </button>
         </a>
       </div>
+      
     </div>
     
     <div id="myfirstchart_qlktkl" style="height: 250px;">
@@ -1408,6 +1467,99 @@
         </div>
       </div>
     @endif
+
+    @if ($list_kl_all != '')
+      <p style="font-weight: bold; color: #D36B00; font-size: 18px">
+        Danh sách được lọc theo: 
+        @foreach ($list_khoa as $khoa )
+          @if ($khoa->ma_k == $ma_k)
+          <span class="badge text-bg-primary">{{ $khoa->ten_k }}</span>
+          @endif
+        @endforeach
+        ,
+        @foreach ($list_loaikyluat as $loaikyluat )
+          @if ($loaikyluat->ma_lkl == $ma_lkl)
+          <span class="badge text-bg-secondary">{{ $loaikyluat->ten_lkl }}</span>
+          @endif
+        @endforeach
+        ,
+        <span class="badge text-bg-danger">{{ $batdau_kl }}</span>
+        ,
+        <span class="badge text-bg-warning">{{ $ketthuc_kl }}</span>
+      </p>
+      <table class="table" id="mytable">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Thông tin viên chức </th>
+            <th scope="col">Khoa</th>
+            <th scope="col">Thông tin kỷ luật</th>
+          </tr>
+        </thead>
+        <tbody  >
+          @foreach($list_kl_all as $key => $vc)
+            <tr>
+              <td>{{ $key+1 }}</td>
+              <td>
+                <div class="row ">
+                  <div class="col-md-12">
+                    <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
+                      style="height: 100px; overflow: auto;">
+                      <p>
+                        <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
+                        <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b> Email: </b> {{ $vc->user_vc }} <br>
+                        <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
+                        <b> Giới tính: </b>
+                        @if ($vc->giotinh_vc == 0)
+                          Nam
+                        @else
+                          Nữ
+                        @endif
+                        <br>
+                        <b> Địa chỉ hiện tại: </b> {{ $vc->hientai_vc }} <br>
+                        <b> Địa chỉ thường trú: </b> {{ $vc->thuongtru_vc }} <br>
+                        <b> Trình độ phổ thông: </b> {{ $vc->trinhdophothong_vc }} <br>
+                        <b> Ngoại ngữ: </b> {{ $vc->ngoaingu_vc }} <br>
+                        <b> Tin học: </b> {{ $vc->tinhoc_vc }} <br>
+                        <b> Ngày vào đảng: </b> {{ $vc->ngayvaodang_vc }} <br>
+                        <b> Ngày chính thức: </b> {{ $vc->ngaychinhthuc_vc }} <br>
+                        <b> Ngày bắt đầu làm việc: </b> {{ $vc->ngaybatdaulamviec_vc }} <br>
+                        <b> Chức vụ: </b> {{ $vc->ten_cv }} <br>
+                        <b> Dân tộc: </b> {{ $vc->ten_dt }} <br>
+                        <b> Tôn giáo: </b> {{ $vc->ten_tg }} <br>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>{{ $vc->ten_k }}</td>
+              <td>
+                <div class="row ">
+                  <div class="col-md-12">
+                    <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
+                      style="height: 100px; overflow: auto;">
+                      <p>
+                        <b> Loại kỷ luật:</b> {{ $vc->ten_lkl }} <br>
+                        <b> Lý do kỷ luật:</b> {{ $vc->lydo_kl }} <br>
+                        <b> Ngày kỷ luật: </b> {{ $vc->ngay_kl }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlktkl_kl_loc_all_pdf/'.$ma_lkl.'/'.$ma_k.'/'.$batdau_kl.'/'.$ketthuc_kl) }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
   </div>
 </div>
 <script>
@@ -1528,6 +1680,16 @@
               $ngay_kt = $count->ngay_kt;
               $tong = $count->sum;
               echo "{ year: '$ngay_kt', value: $tong },";
+            }
+          }else if($count_kl_all ){
+            foreach ($count_kl_all as $key => $count){
+              foreach($list_loaikyluat as $key => $loaikyluat){
+                if($count->ma_lkl == $loaikyluat->ma_lkl){
+                  $ten_lkl = $loaikyluat->ten_lkl;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_lkl', value: $tong },";
+                }
+              }
             }
           }
         ?>

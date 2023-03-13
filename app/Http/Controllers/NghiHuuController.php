@@ -7,6 +7,7 @@ use App\Models\ChucVu;
 use App\Models\DanToc;
 use App\Models\KhenThuong;
 use App\Models\Khoa;
+use App\Models\KyLuat;
 use App\Models\Ngach;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -180,6 +181,12 @@ class NghiHuuController extends Controller
         $kt->status_kt = '2';
         $kt->save();
       }
+      $kyluat = KyLuat::where('ma_vc', $data['ma_vc'])
+        ->get();
+      foreach ($kyluat as $key => $kl) {
+          $kl->status_kl = '2';
+          $kl->save();
+        }
       return Redirect::to('/nghihuu');
     }else{
       return Redirect::to('/home');
