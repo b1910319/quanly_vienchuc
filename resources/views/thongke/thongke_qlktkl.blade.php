@@ -1327,6 +1327,87 @@
         </div>
       </div>
     @endif
+    @if ($list_14 != '')
+      <p style="font-weight: bold; color: #D36B00; font-size: 18px">
+        Danh sách được lọc theo: 
+        <span class="badge text-bg-danger">{{ $batdau_kt }}</span>
+        ,
+        <span class="badge text-bg-warning">{{ $ketthuc_kt }}</span>
+      </p>
+      <table class="table" id="mytable">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Thông tin viên chức </th>
+            <th scope="col">Khoa</th>
+            <th scope="col">Thông tin khen thưởng</th>
+          </tr>
+        </thead>
+        <tbody  >
+          @foreach($list_14 as $key => $vc)
+            <tr>
+              <td>{{ $key+1 }}</td>
+              <td>
+                <div class="row ">
+                  <div class="col-md-12">
+                    <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
+                      style="height: 100px; overflow: auto;">
+                      <p>
+                        <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
+                        <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b> Email: </b> {{ $vc->user_vc }} <br>
+                        <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
+                        <b> Giới tính: </b>
+                        @if ($vc->giotinh_vc == 0)
+                          Nam
+                        @else
+                          Nữ
+                        @endif
+                        <br>
+                        <b> Địa chỉ hiện tại: </b> {{ $vc->hientai_vc }} <br>
+                        <b> Địa chỉ thường trú: </b> {{ $vc->thuongtru_vc }} <br>
+                        <b> Trình độ phổ thông: </b> {{ $vc->trinhdophothong_vc }} <br>
+                        <b> Ngoại ngữ: </b> {{ $vc->ngoaingu_vc }} <br>
+                        <b> Tin học: </b> {{ $vc->tinhoc_vc }} <br>
+                        <b> Ngày vào đảng: </b> {{ $vc->ngayvaodang_vc }} <br>
+                        <b> Ngày chính thức: </b> {{ $vc->ngaychinhthuc_vc }} <br>
+                        <b> Ngày bắt đầu làm việc: </b> {{ $vc->ngaybatdaulamviec_vc }} <br>
+                        <b> Chức vụ: </b> {{ $vc->ten_cv }} <br>
+                        <b> Dân tộc: </b> {{ $vc->ten_dt }} <br>
+                        <b> Tôn giáo: </b> {{ $vc->ten_tg }} <br>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>{{ $vc->ten_k }}</td>
+              <td>
+                <div class="row ">
+                  <div class="col-md-12">
+                    <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
+                      style="height: 100px; overflow: auto;">
+                      <p>
+                        <b> Loại khen thưởng:</b> {{ $vc->ten_lkt }} <br>
+                        <b> Hình thức khen thưởng:</b> {{ $vc->ten_htkt }} <br>
+                        <b> Ngày khen thưởng: </b> {{ $vc->ngay_kt }} <br>
+                        <b> Nội dung: </b> {{ $vc->noidung_kt }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlktkl_kt_loc_14_pdf/'.$batdau_kt.'/'.$ketthuc_kt) }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
   </div>
 </div>
 <script>
@@ -1441,6 +1522,12 @@
                   echo "{ year: '$ten_htkt', value: $tong },";
                 }
               }
+            }
+          }else if($count_14){
+            foreach($count_14 as $count){
+              $ngay_kt = $count->ngay_kt;
+              $tong = $count->sum;
+              echo "{ year: '$ngay_kt', value: $tong },";
             }
           }
         ?>
