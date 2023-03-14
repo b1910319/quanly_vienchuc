@@ -298,6 +298,7 @@ Route::post('/thongke_qlcttc_loc',[ThongKeController::class, 'thongke_qlcttc_loc
 Route::get('/thongke_qlcttc_loc_1_pdf',[ThongKeController::class, 'thongke_qlcttc_loc_1_pdf']);
 Route::get('/thongke_qlktkl_loc_all_pdf',[ThongKeController::class, 'thongke_qlktkl_loc_all_pdf']);
 Route::get('/thongke_qlcttc_loc_hoanthanh_pdf',[ThongKeController::class, 'thongke_qlcttc_loc_hoanthanh_pdf']);
+Route::get('/thongke_qlcttc_loc_giahan_pdf',[ThongKeController::class, 'thongke_qlcttc_loc_giahan_pdf']);
 
 
 // ----------------------------------------------------------
