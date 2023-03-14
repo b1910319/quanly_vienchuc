@@ -4670,158 +4670,35 @@ class ThongKeController extends Controller
         ->where('status_vc', '<>', '2')
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
-      $count_ketqua_lop =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
+      $count_1 =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
+        ->where('status_kq', '<>', '2')
         ->select(DB::raw('count(ketqua.ma_kq) as sum, lop.ma_l'))
         ->groupBy('lop.ma_l')
         ->get();
       $list_lop = Lop::orderBy('ten_l', 'asc')
         ->get();
-      $count_ketqua_ma_lop = '';
-      $count_giahan = '';
-      $count_giahan_time = '';
-      $count_giahan_khoa = '';
-      $count_giahan_lop = '';
-      $count_dunghoc = '';
-      $count_dunghoc_time = '';
-      $count_dunghoc_khoa = '';
-      $count_dunghoc_lop = '';
-      $count_chuyen = '';
-      $count_chuyen_khoa = '';
-      $count_chuyen_lop = '';
-      $count_thoihoc = '';
-      $count_thoihoc_time = '';
-      $count_thoihoc_khoa = '';
-      $count_thoihoc_lop = '';
-      return view('thongke.thongke_qlcttc')
-        ->with('title', $title)
-        ->with('count_giahan_khoa', $count_giahan_khoa)
-        ->with('count_giahan', $count_giahan)
-        ->with('count_giahan_time',$count_giahan_time)
-        ->with('count_giahan_lop', $count_giahan_lop)
-        ->with('count_ketqua_lop', $count_ketqua_lop)
-        ->with('list_lop', $list_lop)
-        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
-        ->with('count_dunghoc', $count_dunghoc)
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('count_dunghoc_time', $count_dunghoc_time)
-        ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
-        ->with('count_dunghoc_lop', $count_dunghoc_lop)
-        ->with('count_chuyen', $count_chuyen)
-        ->with('count_chuyen_khoa', $count_chuyen_khoa)
-        ->with('count_chuyen_lop', $count_chuyen_lop)
-        ->with('count_thoihoc', $count_thoihoc)
-        ->with('count_thoihoc_time', $count_thoihoc_time)
-        ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
-        ->with('count_thoihoc_lop', $count_thoihoc_lop)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qltt', $phanquyen_qltt);
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_ketqua_lop_pdf(){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $status = 0;
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      $title = 'Viên chức hoàn thành khoá học';
-      $vienchuc = VienChuc::join('ketqua', 'ketqua.ma_vc', '=', 'vienchuc.ma_vc')
+      $list_khoa = Khoa::orderBy('ten_k', 'asc')
+        ->get();
+      $list_vienchuc = VienChuc::orderBy('hoten_vc', 'asc')
+        ->get();
+      $list_1 = VienChuc::join('ketqua', 'ketqua.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_kq', '<>', '2')
         ->get();
-      $pdf = PDF::loadView('pdf.pdf_qlcttc', [
-        'vienchuc' => $vienchuc,
-        'title' => $title,
-        'status' => $status,
-      ]);
-      return $pdf->stream();
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_ketqua_ma_lop(Request $request){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $title = "Thống kê";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $data = $request->all();
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->where('status_vc', '<>', '2')
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $count_ketqua_ma_lop =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
-        ->where('ketqua.ma_l', $data['ma_l'])
-        ->select(DB::raw('count(ketqua.ma_kq) as sum, lop.ma_l'))
-        ->groupBy('lop.ma_l')
-        ->get();
-      $list_lop = Lop::orderBy('ten_l', 'asc')
-        ->get();
-      $count_ketqua_lop = '';
-      $count_giahan = '';
-      $count_giahan_time = '';
-      $count_giahan_lop = '';
-      $count_giahan_khoa = '';
-      $count_dunghoc = '';
-      $count_dunghoc_time = '';
-      $count_dunghoc_khoa = '';
-      $count_dunghoc_lop = '';
-      $count_chuyen = '';
-      $count_chuyen_khoa = '';
-      $count_chuyen_lop = '';
-      $count_thoihoc = '';
-      $count_thoihoc_time = '';
-      $count_thoihoc_khoa = '';
-      $count_thoihoc_lop = '';
       return view('thongke.thongke_qlcttc')
         ->with('title', $title)
-        ->with('count_giahan_khoa', $count_giahan_khoa)
-        ->with('count_giahan', $count_giahan)
-        ->with('count_giahan_time',$count_giahan_time)
-        ->with('count_giahan_lop', $count_giahan_lop)
-        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
-        ->with('list_lop', $list_lop)
-        ->with('ma_l', $data['ma_l'])
-        ->with('count_ketqua_lop', $count_ketqua_lop)
-        ->with('count_dunghoc', $count_dunghoc)
-        ->with('phanquyen_admin', $phanquyen_admin)
+
+        ->with('count_1', $count_1)
         ->with('count_nangbac', $count_nangbac)
-        ->with('count_dunghoc_time', $count_dunghoc_time)
-        ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
-        ->with('count_dunghoc_lop', $count_dunghoc_lop)
-        ->with('count_chuyen', $count_chuyen)
-        ->with('count_chuyen_khoa', $count_chuyen_khoa)
-        ->with('count_chuyen_lop', $count_chuyen_lop)
-        ->with('count_thoihoc', $count_thoihoc)
-        ->with('count_thoihoc_time', $count_thoihoc_time)
-        ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
-        ->with('count_thoihoc_lop', $count_thoihoc_lop)
+
+        ->with('list_lop', $list_lop)
+        ->with('list_khoa', $list_khoa)
+        ->with('list_1', $list_1)
+        ->with('list_vienchuc', $list_vienchuc)
+
+        ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qlk', $phanquyen_qlk)
@@ -4830,7 +4707,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function thongke_qlcttc_ketqua_ma_lop_pdf($ma_l){
+  public function thongke_qlcttc_loc_1_pdf(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -4839,1707 +4716,1842 @@ class ThongKeController extends Controller
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
-    $status = 1;
     if($phanquyen_admin || $phanquyen_qlcttc){
       $title = 'Viên chức hoàn thành khoá học';
-      $vienchuc = VienChuc::join('ketqua', 'ketqua.ma_vc', '=', 'vienchuc.ma_vc')
-        ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('ketqua.ma_l', $ma_l)
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $pdf = PDF::loadView('pdf.pdf_qlcttc', [
-        'vienchuc' => $vienchuc,
-        'title' => $title,
-        'status' => $status,
-      ]);
-      return $pdf->stream();
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_giahan(){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $title = "Thống kê";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->where('status_vc', '<>', '2')
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $count_ketqua_lop = '';
-      $list_lop = Lop::orderBy('ten_l', 'asc')
-        ->get();
-      $count_ketqua_ma_lop = '';
-      $count_giahan = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->select(DB::raw('count(giahan.ma_gh) as sum, giahan.thoigian_gh, khoa.ma_k'))
-        ->groupBy('giahan.thoigian_gh','khoa.ma_k')
-        ->get();
-      $list_khoa = Khoa::orderBy('ten_k', 'asc')
-        ->get();
-      $count_giahan_time = '';
-      $count_giahan_khoa = '';
-      $count_giahan_lop = '';
-      $count_dunghoc = '';
-      $count_dunghoc_time = '';
-      $count_dunghoc_khoa = '';
-      $count_dunghoc_lop = '';
-      $count_chuyen = '';
-      $count_chuyen_khoa = '';
-      $count_chuyen_lop = '';
-      $count_thoihoc = '';
-      $count_thoihoc_time = '';
-      $count_thoihoc_khoa = '';
-      $count_thoihoc_lop = '';
-      return view('thongke.thongke_qlcttc')
-        ->with('title', $title)
-        ->with('count_giahan_time',$count_giahan_time)
-        ->with('count_ketqua_lop', $count_ketqua_lop)
-        ->with('list_lop', $list_lop)
-        ->with('count_giahan', $count_giahan)
-        ->with('count_giahan_khoa', $count_giahan_khoa)
-        ->with('count_giahan_lop', $count_giahan_lop)
-        ->with('list_khoa', $list_khoa)
-        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
-        ->with('count_dunghoc', $count_dunghoc)
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('count_dunghoc_time', $count_dunghoc_time)
-        ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
-        ->with('count_dunghoc_lop', $count_dunghoc_lop)
-        ->with('count_chuyen', $count_chuyen)
-        ->with('count_chuyen_khoa', $count_chuyen_khoa)
-        ->with('count_chuyen_lop', $count_chuyen_lop)
-        ->with('count_thoihoc', $count_thoihoc)
-        ->with('count_thoihoc_time', $count_thoihoc_time)
-        ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
-        ->with('count_thoihoc_lop', $count_thoihoc_lop)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qltt', $phanquyen_qltt);
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_giahan_pdf(){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      $title = 'Viên chức xin gia hạn thời gian học';
-      $vienchuc = VienChuc::join('giahan', 'giahan.ma_vc', '=', 'vienchuc.ma_vc')
-        ->join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+      $vienchuc = KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
+        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'ketqua.ma_vc')
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_kq', '<>', '2')
         ->get();
-      $pdf = PDF::loadView('pdf.pdf_qlcttc_giahan', [
+      $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
         'vienchuc' => $vienchuc,
         'title' => $title,
       ]);
       return $pdf->stream();
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_giahan_time(Request $request){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $title = "Thống kê";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $data = $request->all();
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->where('status_vc', '<>', '2')
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $count_ketqua_ma_lop = '';
-      $list_lop = Lop::orderBy('ten_l', 'asc')
-        ->get();
-      $count_ketqua_lop = '';
-      $count_giahan = '';
-      $count_giahan_time = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->whereBetween('thoigian_gh', [$data['batdau'], $data['ketthuc']])
-        ->select(DB::raw('count(giahan.ma_gh) as sum, giahan.thoigian_gh, khoa.ma_k'))
-        ->groupBy('giahan.thoigian_gh','khoa.ma_k')
-        ->get();
-      $list_khoa = Khoa::orderBy('ten_k', 'asc')
-        ->get();
-      $count_giahan_khoa = '';
-      $count_giahan_lop = '';
-      $count_dunghoc = '';
-      $count_dunghoc_time = '';
-      $count_dunghoc_khoa = '';
-      $count_dunghoc_lop = '';
-      $count_chuyen = '';
-      $count_chuyen_khoa = '';
-      $count_chuyen_lop = '';
-      $count_thoihoc = '';
-      $count_thoihoc_time = '';
-      $count_thoihoc_khoa = '';
-      $count_thoihoc_lop = '';
-      return view('thongke.thongke_qlcttc')
-        ->with('title', $title)
-        ->with('count_giahan', $count_giahan)
-        ->with('count_giahan_time',$count_giahan_time)
-        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
-        ->with('count_giahan_khoa', $count_giahan_khoa)
-        ->with('count_giahan_lop', $count_giahan_lop)
-        ->with('list_lop', $list_lop)
-        ->with('list_khoa', $list_khoa)
-        ->with('batdau', $data['batdau'])
-        ->with('ketthuc', $data['ketthuc'])
-        ->with('count_ketqua_lop', $count_ketqua_lop)
-        ->with('count_dunghoc', $count_dunghoc)
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('count_dunghoc_time', $count_dunghoc_time)
-        ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
-        ->with('count_dunghoc_lop', $count_dunghoc_lop)
-        ->with('count_chuyen', $count_chuyen)
-        ->with('count_chuyen_khoa', $count_chuyen_khoa)
-        ->with('count_chuyen_lop', $count_chuyen_lop)
-        ->with('count_thoihoc', $count_thoihoc)
-        ->with('count_thoihoc_time', $count_thoihoc_time)
-        ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
-        ->with('count_thoihoc_lop', $count_thoihoc_lop)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qltt', $phanquyen_qltt);
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_giahan_time_pdf( $batdau, $ketthuc){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      $title = 'Viên chức xin gia hạn thời gian học';
-      $vienchuc = VienChuc::join('giahan', 'giahan.ma_vc', '=', 'vienchuc.ma_vc')
-        ->whereBetween('thoigian_gh', [$batdau, $ketthuc])
-        ->join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $pdf = PDF::loadView('pdf.pdf_qlcttc_giahan', [
-        'vienchuc' => $vienchuc,
-        'title' => $title,
-      ]);
-      return $pdf->stream();
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_giahan_khoa(Request $request){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $title = "Thống kê";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $data = $request->all();
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->where('status_vc', '<>', '2')
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $count_ketqua_ma_lop = '';
-      $list_lop = Lop::orderBy('ten_l', 'asc')
-        ->get();
-      $count_ketqua_lop = '';
-      $count_giahan = '';
-      $count_giahan_time = '';
-      $count_giahan_lop = '';
-      $count_giahan_khoa = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('khoa.ma_k', $data['ma_k'])
-        ->select(DB::raw('count(giahan.ma_gh) as sum, giahan.thoigian_gh, khoa.ma_k'))
-        ->groupBy('giahan.thoigian_gh','khoa.ma_k')
-        ->get();
-      $list_khoa = Khoa::orderBy('ten_k', 'asc')
-        ->get();
-      $count_dunghoc = '';
-      $count_dunghoc_time = '';
-      $count_dunghoc_khoa = '';
-      $count_dunghoc_lop = '';
-      $count_chuyen = '';
-      $count_chuyen_khoa = '';
-      $count_chuyen_lop = '';
-      $count_thoihoc = '';
-      $count_thoihoc_time = '';
-      $count_thoihoc_khoa = '';
-      $count_thoihoc_lop = '';
-      return view('thongke.thongke_qlcttc')
-        ->with('title', $title)
-        ->with('count_giahan', $count_giahan)
-        ->with('count_giahan_time',$count_giahan_time)
-        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
-        ->with('list_lop', $list_lop)
-        ->with('list_khoa', $list_khoa)
-        ->with('count_giahan_khoa', $count_giahan_khoa)
-        ->with('count_giahan_lop', $count_giahan_lop)
-        ->with('ma_k', $data['ma_k'])
-        ->with('count_ketqua_lop', $count_ketqua_lop)
-        ->with('count_dunghoc', $count_dunghoc)
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('count_dunghoc_time', $count_dunghoc_time)
-        ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
-        ->with('count_dunghoc_lop', $count_dunghoc_lop)
-        ->with('count_chuyen', $count_chuyen)
-        ->with('count_chuyen_khoa', $count_chuyen_khoa)
-        ->with('count_chuyen_lop', $count_chuyen_lop)
-        ->with('count_thoihoc', $count_thoihoc)
-        ->with('count_thoihoc_time', $count_thoihoc_time)
-        ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
-        ->with('count_thoihoc_lop', $count_thoihoc_lop)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qltt', $phanquyen_qltt);
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_giahan_khoa_pdf($ma_k){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $status = 1;
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      $title = 'Viên chức xin gia hạn';
-      $vienchuc = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('khoa.ma_k', $ma_k)
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $pdf = PDF::loadView('pdf.pdf_qlcttc_giahan', [
-        'vienchuc' => $vienchuc,
-        'title' => $title,
-        'status' => $status,
-      ]);
-      return $pdf->stream();
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_giahan_lop_pdf($ma_l){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $status = 1;
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      $title = 'Viên chức xin gia hạn';
-      $vienchuc = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('lop.ma_l', $ma_l)
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $pdf = PDF::loadView('pdf.pdf_qlcttc_giahan', [
-        'vienchuc' => $vienchuc,
-        'title' => $title,
-        'status' => $status,
-      ]);
-      return $pdf->stream();
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_giahan_lop(Request $request){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $title = "Thống kê";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $data = $request->all();
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->where('status_vc', '<>', '2')
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $count_ketqua_ma_lop = '';
-      $list_lop = Lop::orderBy('ten_l', 'asc')
-        ->get();
-      $count_ketqua_lop = '';
-      $count_giahan = '';
-      $count_giahan_time = '';
-      $count_giahan_khoa = '';
-      $count_giahan_lop = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('lop.ma_l', $data['ma_l'])
-        ->select(DB::raw('count(giahan.ma_gh) as sum, giahan.thoigian_gh, lop.ma_l'))
-        ->groupBy('giahan.thoigian_gh','lop.ma_l')
-        ->get();
-      $list_khoa = Khoa::orderBy('ten_k', 'asc')
-        ->get();
-      $count_dunghoc = '';
-      $count_dunghoc_time = '';
-      $count_dunghoc_khoa = '';
-      $count_dunghoc_lop = '';
-      $count_chuyen = '';
-      $count_chuyen_khoa = '';
-      $count_chuyen_lop = '';
-      $count_thoihoc = '';
-      $count_thoihoc_time = '';
-      $count_thoihoc_khoa = '';
-      $count_thoihoc_lop = '';
-      return view('thongke.thongke_qlcttc')
-        ->with('title', $title)
-        ->with('count_giahan', $count_giahan)
-        ->with('count_giahan_time',$count_giahan_time)
-        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
-        ->with('list_lop', $list_lop)
-        ->with('list_khoa', $list_khoa)
-        ->with('count_giahan_khoa', $count_giahan_khoa)
-        ->with('count_giahan_lop', $count_giahan_lop)
-        ->with('ma_l', $data['ma_l'])
-        ->with('count_ketqua_lop', $count_ketqua_lop)
-        ->with('count_dunghoc', $count_dunghoc)
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('count_dunghoc_time', $count_dunghoc_time)
-        ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
-        ->with('count_dunghoc_lop', $count_dunghoc_lop)
-        ->with('count_chuyen', $count_chuyen)
-        ->with('count_chuyen_khoa', $count_chuyen_khoa)
-        ->with('count_chuyen_lop', $count_chuyen_lop)
-        ->with('count_thoihoc', $count_thoihoc)
-        ->with('count_thoihoc_time', $count_thoihoc_time)
-        ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
-        ->with('count_thoihoc_lop', $count_thoihoc_lop)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
     }
   }
 
-  public function thongke_qlcttc_dunghoc(){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $title = "Thống kê";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->where('status_vc', '<>', '2')
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $count_ketqua_lop = '';
-      $list_lop = Lop::orderBy('ten_l', 'asc')
-        ->get();
-      $count_ketqua_ma_lop = '';
-      $count_giahan = '';
-      $count_giahan_lop = '';
-      $list_khoa = Khoa::orderBy('ten_k', 'asc')
-        ->get();
-      $count_giahan_time = '';
-      $count_giahan_khoa = '';
-      $count_dunghoc = DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'dunghoc.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->select(DB::raw('count(dunghoc.ma_dh) as sum, dunghoc.batdau_dh, khoa.ma_k'))
-        ->groupBy('dunghoc.batdau_dh','khoa.ma_k')
-        ->get();
-      $count_dunghoc_time = '';
-      $count_dunghoc_khoa = '';
-      $count_dunghoc_lop = '';
-      $count_chuyen = '';
-      $count_chuyen_khoa = '';
-      $count_chuyen_lop = '';
-      $count_thoihoc = '';
-      $count_thoihoc_time = '';
-      $count_thoihoc_khoa = '';
-      $count_thoihoc_lop = '';
-      return view('thongke.thongke_qlcttc')
-        ->with('title', $title)
-        ->with('count_giahan_time',$count_giahan_time)
-        ->with('count_ketqua_lop', $count_ketqua_lop)
-        ->with('list_lop', $list_lop)
-        ->with('count_giahan', $count_giahan)
-        ->with('count_giahan_khoa', $count_giahan_khoa)
-        ->with('count_giahan_lop', $count_giahan_lop)
-        ->with('list_khoa', $list_khoa)
-        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
-        ->with('count_dunghoc', $count_dunghoc)
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('count_dunghoc_time', $count_dunghoc_time)
-        ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
-        ->with('count_dunghoc_lop', $count_dunghoc_lop)
-        ->with('count_chuyen', $count_chuyen)
-        ->with('count_chuyen_khoa', $count_chuyen_khoa)
-        ->with('count_chuyen_lop', $count_chuyen_lop)
-        ->with('count_thoihoc', $count_thoihoc)
-        ->with('count_thoihoc_time', $count_thoihoc_time)
-        ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
-        ->with('count_thoihoc_lop', $count_thoihoc_lop)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qltt', $phanquyen_qltt);
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_dunghoc_pdf(){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      $title = 'Viên chức xin tạm dừng học';
-      $vienchuc = VienChuc::join('dunghoc', 'dunghoc.ma_vc', '=', 'vienchuc.ma_vc')
-        ->join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $pdf = PDF::loadView('pdf.pdf_qlcttc_dunghoc', [
-        'vienchuc' => $vienchuc,
-        'title' => $title,
-      ]);
-      return $pdf->stream();
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_dunghoc_time(Request $request){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $title = "Thống kê";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $data = $request->all();
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->where('status_vc', '<>', '2')
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $count_ketqua_ma_lop = '';
-      $list_lop = Lop::orderBy('ten_l', 'asc')
-        ->get();
-      $count_ketqua_lop = '';
-      $count_giahan = '';
-      $count_giahan_time = '';
-      $list_khoa = Khoa::orderBy('ten_k', 'asc')
-        ->get();
-      $count_giahan_khoa = '';
-      $count_giahan_lop = '';
-      $count_dunghoc = '';
-      $count_dunghoc_time = DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'dunghoc.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->whereBetween('batdau_dh', [$data['batdau'], $data['ketthuc']])
-        ->select(DB::raw('count(dunghoc.ma_dh) as sum, dunghoc.batdau_dh, khoa.ma_k'))
-        ->groupBy('dunghoc.batdau_dh','khoa.ma_k')
-        ->get();
-      $count_dunghoc_khoa = '';
-      $count_dunghoc_lop = '';
-      $count_chuyen = '';
-      $count_chuyen_khoa = '';
-      $count_chuyen_lop = '';
-      $count_thoihoc = '';
-      $count_thoihoc_time = '';
-      $count_thoihoc_khoa = '';
-      $count_thoihoc_lop = '';
-      return view('thongke.thongke_qlcttc')
-        ->with('title', $title)
-        ->with('count_giahan', $count_giahan)
-        ->with('count_giahan_time',$count_giahan_time)
-        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
-        ->with('count_giahan_khoa', $count_giahan_khoa)
-        ->with('count_giahan_lop', $count_giahan_lop)
-        ->with('list_lop', $list_lop)
-        ->with('list_khoa', $list_khoa)
-        ->with('batdau', $data['batdau'])
-        ->with('ketthuc', $data['ketthuc'])
-        ->with('count_dunghoc_time', $count_dunghoc_time)
-        ->with('count_ketqua_lop', $count_ketqua_lop)
-        ->with('count_dunghoc', $count_dunghoc)
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
-        ->with('count_dunghoc_lop', $count_dunghoc_lop)
-        ->with('count_chuyen', $count_chuyen)
-        ->with('count_chuyen_khoa', $count_chuyen_khoa)
-        ->with('count_chuyen_lop', $count_chuyen_lop)
-        ->with('count_thoihoc', $count_thoihoc)
-        ->with('count_thoihoc_time', $count_thoihoc_time)
-        ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
-        ->with('count_thoihoc_lop', $count_thoihoc_lop)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qltt', $phanquyen_qltt);
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_dunghoc_time_pdf( $batdau, $ketthuc){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      $title = 'Viên chức xin tạm dừng học';
-      $vienchuc = VienChuc::join('dunghoc', 'dunghoc.ma_vc', '=', 'vienchuc.ma_vc')
-        ->whereBetween('batdau_dh', [$batdau, $ketthuc])
-        ->join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $pdf = PDF::loadView('pdf.pdf_qlcttc_dunghoc', [
-        'vienchuc' => $vienchuc,
-        'title' => $title,
-      ]);
-      return $pdf->stream();
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_dunghoc_khoa(Request $request){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $title = "Thống kê";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $data = $request->all();
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->where('status_vc', '<>', '2')
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $count_ketqua_ma_lop = '';
-      $list_lop = Lop::orderBy('ten_l', 'asc')
-        ->get();
-      $count_ketqua_lop = '';
-      $count_giahan = '';
-      $count_giahan_time = '';
-      $count_giahan_khoa = '';
-      $count_giahan_lop = '';
-      $list_khoa = Khoa::orderBy('ten_k', 'asc')
-        ->get();
-      $count_dunghoc = '';
-      $count_dunghoc_time = '';
-      $count_dunghoc_khoa = DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'dunghoc.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('khoa.ma_k', $data['ma_k'])
-        ->select(DB::raw('count(dunghoc.ma_dh) as sum, dunghoc.batdau_dh, khoa.ma_k'))
-        ->groupBy('dunghoc.batdau_dh','khoa.ma_k')
-        ->get();
-      $count_dunghoc_lop = '';
-      $count_chuyen = '';
-      $count_chuyen_khoa = '';
-      $count_chuyen_lop = '';
-      $count_thoihoc = '';
-      $count_thoihoc_time = '';
-      $count_thoihoc_khoa = '';
-      $count_thoihoc_lop = '';
-      return view('thongke.thongke_qlcttc')
-        ->with('title', $title)
-        ->with('count_giahan', $count_giahan)
-        ->with('count_giahan_time',$count_giahan_time)
-        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
-        ->with('list_lop', $list_lop)
-        ->with('list_khoa', $list_khoa)
-        ->with('count_giahan_khoa', $count_giahan_khoa)
-        ->with('count_giahan_lop', $count_giahan_lop)
-        ->with('ma_k', $data['ma_k'])
-        ->with('count_ketqua_lop', $count_ketqua_lop)
-        ->with('count_dunghoc', $count_dunghoc)
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('count_dunghoc_time', $count_dunghoc_time)
-        ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
-        ->with('count_dunghoc_lop', $count_dunghoc_lop)
-        ->with('count_chuyen', $count_chuyen)
-        ->with('count_chuyen_khoa', $count_chuyen_khoa)
-        ->with('count_chuyen_lop', $count_chuyen_lop)
-        ->with('count_thoihoc', $count_thoihoc)
-        ->with('count_thoihoc_time', $count_thoihoc_time)
-        ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
-        ->with('count_thoihoc_lop', $count_thoihoc_lop)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qltt', $phanquyen_qltt);
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_dunghoc_khoa_pdf($ma_k){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $status = 1;
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      $title = 'Viên chức xin tạm dừng học';
-      $vienchuc = DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'dunghoc.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('khoa.ma_k', $ma_k)
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $pdf = PDF::loadView('pdf.pdf_qlcttc_dunghoc', [
-        'vienchuc' => $vienchuc,
-        'title' => $title,
-        'status' => $status,
-      ]);
-      return $pdf->stream();
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_dunghoc_lop(Request $request){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $title = "Thống kê";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $data = $request->all();
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->where('status_vc', '<>', '2')
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $count_ketqua_ma_lop = '';
-      $list_lop = Lop::orderBy('ten_l', 'asc')
-        ->get();
-      $count_ketqua_lop = '';
-      $count_giahan = '';
-      $count_giahan_time = '';
-      $count_giahan_khoa = '';
-      $count_giahan_lop = '';
-      $list_khoa = Khoa::orderBy('ten_k', 'asc')
-        ->get();
-      $count_dunghoc = '';
-      $count_dunghoc_time = '';
-      $count_dunghoc_khoa = '';
-      $count_dunghoc_lop = DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'dunghoc.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('lop.ma_l', $data['ma_l'])
-        ->select(DB::raw('count(dunghoc.ma_dh) as sum, dunghoc.batdau_dh, lop.ma_l'))
-        ->groupBy('dunghoc.batdau_dh','lop.ma_l')
-        ->get();
-      $count_chuyen = '';
-      $count_chuyen_khoa = '';
-      $count_chuyen_lop = '';
-      $count_thoihoc = '';
-      $count_thoihoc_time = '';
-      $count_thoihoc_khoa = '';
-      $count_thoihoc_lop = '';
-      return view('thongke.thongke_qlcttc')
-        ->with('title', $title)
-        ->with('count_giahan', $count_giahan)
-        ->with('count_giahan_time',$count_giahan_time)
-        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
-        ->with('list_lop', $list_lop)
-        ->with('list_khoa', $list_khoa)
-        ->with('count_giahan_khoa', $count_giahan_khoa)
-        ->with('ma_l', $data['ma_l'])
-        ->with('count_giahan_lop', $count_giahan_lop)
-        ->with('count_ketqua_lop', $count_ketqua_lop)
-        ->with('count_dunghoc', $count_dunghoc)
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('count_dunghoc_time', $count_dunghoc_time)
-        ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
-        ->with('count_dunghoc_lop', $count_dunghoc_lop)
-        ->with('count_chuyen', $count_chuyen)
-        ->with('count_chuyen_khoa', $count_chuyen_khoa)
-        ->with('count_chuyen_lop', $count_chuyen_lop)
-        ->with('count_thoihoc', $count_thoihoc)
-        ->with('count_thoihoc_time', $count_thoihoc_time)
-        ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
-        ->with('count_thoihoc_lop', $count_thoihoc_lop)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qltt', $phanquyen_qltt);
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_dunghoc_lop_pdf($ma_l){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $status = 1;
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      $title = 'Viên chức xin tạm dừng học';
-      $vienchuc = DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'dunghoc.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('lop.ma_l', $ma_l)
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $pdf = PDF::loadView('pdf.pdf_qlcttc_dunghoc', [
-        'vienchuc' => $vienchuc,
-        'title' => $title,
-        'status' => $status,
-      ]);
-      return $pdf->stream();
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_chuyen(){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $title = "Thống kê";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->where('status_vc', '<>', '2')
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $count_ketqua_lop = '';
-      $list_lop = Lop::orderBy('ten_l', 'asc')
-        ->get();
-      $count_ketqua_ma_lop = '';
-      $count_giahan = '';
-      $count_giahan_lop = '';
-      $list_khoa = Khoa::orderBy('ten_k', 'asc')
-        ->get();
-      $count_giahan_time = '';
-      $count_giahan_khoa = '';
-      $count_dunghoc = '';
-      $count_dunghoc_time = '';
-      $count_dunghoc_khoa = '';
-      $count_dunghoc_lop = '';
-      $count_chuyen = Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->select(DB::raw('count(chuyen.ma_c) as sum, lop.ma_l'))
-        ->groupBy('lop.ma_l')
-        ->get();
-      $count_chuyen_khoa = '';
-      $count_chuyen_lop = '';
-      $count_thoihoc = '';
-      $count_thoihoc_time = '';
-      $count_thoihoc_khoa = '';
-      $count_thoihoc_lop = '';
-      return view('thongke.thongke_qlcttc')
-        ->with('title', $title)
-        ->with('count_giahan_time',$count_giahan_time)
-        ->with('count_ketqua_lop', $count_ketqua_lop)
-        ->with('list_lop', $list_lop)
-        ->with('count_giahan', $count_giahan)
-        ->with('count_giahan_khoa', $count_giahan_khoa)
-        ->with('count_giahan_lop', $count_giahan_lop)
-        ->with('list_khoa', $list_khoa)
-        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
-        ->with('count_dunghoc', $count_dunghoc)
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('count_dunghoc_time', $count_dunghoc_time)
-        ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
-        ->with('count_dunghoc_lop', $count_dunghoc_lop)
-        ->with('count_chuyen', $count_chuyen)
-        ->with('count_chuyen_khoa', $count_chuyen_khoa)
-        ->with('count_chuyen_lop', $count_chuyen_lop)
-        ->with('count_thoihoc', $count_thoihoc)
-        ->with('count_thoihoc_time', $count_thoihoc_time)
-        ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
-        ->with('count_thoihoc_lop', $count_thoihoc_lop)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qltt', $phanquyen_qltt);
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_chuyen_pdf(){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      $title = 'Viên chức xin chuyển nước, trường, ngành học';
-      $vienchuc = VienChuc::join('chuyen', 'chuyen.ma_vc', '=', 'vienchuc.ma_vc')
-        ->join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $pdf = PDF::loadView('pdf.pdf_qlcttc_chuyen', [
-        'vienchuc' => $vienchuc,
-        'title' => $title,
-      ]);
-      return $pdf->stream();
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_chuyen_khoa(Request $request){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $title = "Thống kê";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $data = $request->all();
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->where('status_vc', '<>', '2')
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $count_ketqua_ma_lop = '';
-      $list_lop = Lop::orderBy('ten_l', 'asc')
-        ->get();
-      $count_ketqua_lop = '';
-      $count_giahan = '';
-      $count_giahan_time = '';
-      $count_giahan_khoa = '';
-      $count_giahan_lop = '';
-      $list_khoa = Khoa::orderBy('ten_k', 'asc')
-        ->get();
-      $count_dunghoc = '';
-      $count_dunghoc_time = '';
-      $count_dunghoc_khoa = '';
-      $count_dunghoc_lop = '';
-      $count_chuyen = '';
-      $count_chuyen_khoa = Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('khoa.ma_k', $data['ma_k'])
-        ->select(DB::raw('count(chuyen.ma_c) as sum, khoa.ma_k'))
-        ->groupBy('khoa.ma_k')
-        ->get();
-      $count_chuyen_lop = '';
-      $count_thoihoc = '';
-      $count_thoihoc_time = '';
-      $count_thoihoc_khoa = '';
-      $count_thoihoc_lop = '';
-      return view('thongke.thongke_qlcttc')
-        ->with('title', $title)
-        ->with('count_giahan', $count_giahan)
-        ->with('count_giahan_time',$count_giahan_time)
-        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
-        ->with('list_lop', $list_lop)
-        ->with('list_khoa', $list_khoa)
-        ->with('count_giahan_khoa', $count_giahan_khoa)
-        ->with('count_giahan_lop', $count_giahan_lop)
-        ->with('ma_k', $data['ma_k'])
-        ->with('count_ketqua_lop', $count_ketqua_lop)
-        ->with('count_dunghoc', $count_dunghoc)
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('count_dunghoc_time', $count_dunghoc_time)
-        ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
-        ->with('count_dunghoc_lop', $count_dunghoc_lop)
-        ->with('count_chuyen', $count_chuyen)
-        ->with('count_chuyen_khoa', $count_chuyen_khoa)
-        ->with('count_chuyen_lop', $count_chuyen_lop)
-        ->with('count_thoihoc', $count_thoihoc)
-        ->with('count_thoihoc_time', $count_thoihoc_time)
-        ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
-        ->with('count_thoihoc_lop', $count_thoihoc_lop)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qltt', $phanquyen_qltt);
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_chuyen_khoa_pdf($ma_k){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $status = 1;
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      $title = 'Viên chức xin chuyển trường, nước, ngành học';
-      $vienchuc = Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('khoa.ma_k', $ma_k)
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $pdf = PDF::loadView('pdf.pdf_qlcttc_chuyen', [
-        'vienchuc' => $vienchuc,
-        'title' => $title,
-        'status' => $status,
-      ]);
-      return $pdf->stream();
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_chuyen_lop(Request $request){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $title = "Thống kê";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $data = $request->all();
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->where('status_vc', '<>', '2')
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $count_ketqua_ma_lop = '';
-      $list_lop = Lop::orderBy('ten_l', 'asc')
-        ->get();
-      $count_ketqua_lop = '';
-      $count_giahan = '';
-      $count_giahan_time = '';
-      $count_giahan_khoa = '';
-      $count_giahan_lop = '';
-      $list_khoa = Khoa::orderBy('ten_k', 'asc')
-        ->get();
-      $count_dunghoc = '';
-      $count_dunghoc_time = '';
-      $count_dunghoc_khoa = '';
-      $count_dunghoc_lop = '';
-      $count_chuyen = '';
-      $count_chuyen_khoa = '';
-      $count_chuyen_lop = Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('lop.ma_l', $data['ma_l'])
-        ->select(DB::raw('count(chuyen.ma_c) as sum, lop.ma_l'))
-        ->groupBy('lop.ma_l')
-        ->get();
-      $count_thoihoc = '';
-      $count_thoihoc_time = '';
-      $count_thoihoc_khoa = '';
-      $count_thoihoc_lop = '';
-      return view('thongke.thongke_qlcttc')
-        ->with('title', $title)
-        ->with('count_giahan', $count_giahan)
-        ->with('count_giahan_time',$count_giahan_time)
-        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
-        ->with('list_lop', $list_lop)
-        ->with('list_khoa', $list_khoa)
-        ->with('count_giahan_khoa', $count_giahan_khoa)
-        ->with('ma_l', $data['ma_l'])
-        ->with('count_giahan_lop', $count_giahan_lop)
-        ->with('count_ketqua_lop', $count_ketqua_lop)
-        ->with('count_dunghoc', $count_dunghoc)
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('count_dunghoc_time', $count_dunghoc_time)
-        ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
-        ->with('count_dunghoc_lop', $count_dunghoc_lop)
-        ->with('count_chuyen', $count_chuyen)
-        ->with('count_chuyen_khoa', $count_chuyen_khoa)
-        ->with('count_chuyen_lop', $count_chuyen_lop)
-        ->with('count_thoihoc', $count_thoihoc)
-        ->with('count_thoihoc_time', $count_thoihoc_time)
-        ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
-        ->with('count_thoihoc_lop', $count_thoihoc_lop)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qltt', $phanquyen_qltt);
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_chuyen_lop_pdf($ma_l){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $status = 1;
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      $title = 'Viên chức xin chuyển trường, nước, ngành học theo lớp';
-      $vienchuc = Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('lop.ma_l', $ma_l)
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $pdf = PDF::loadView('pdf.pdf_qlcttc_chuyen', [
-        'vienchuc' => $vienchuc,
-        'title' => $title,
-        'status' => $status,
-      ]);
-      return $pdf->stream();
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_thoihoc(){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $title = "Thống kê";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->where('status_vc', '<>', '2')
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $count_ketqua_lop = '';
-      $list_lop = Lop::orderBy('ten_l', 'asc')
-        ->get();
-      $count_ketqua_ma_lop = '';
-      $count_giahan = '';
-      $list_khoa = Khoa::orderBy('ten_k', 'asc')
-        ->get();
-      $count_giahan_time = '';
-      $count_giahan_khoa = '';
-      $count_giahan_lop = '';
-      $count_dunghoc = '';
-      $count_dunghoc_time = '';
-      $count_dunghoc_khoa = '';
-      $count_dunghoc_lop = '';
-      $count_chuyen = '';
-      $count_chuyen_khoa = '';
-      $count_chuyen_lop = '';
-      $count_thoihoc = ThoiHoc::join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'thoihoc.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->select(DB::raw('count(thoihoc.ma_th) as sum, thoihoc.ngay_th, khoa.ma_k'))
-        ->groupBy('thoihoc.ngay_th','khoa.ma_k')
-        ->get();
-      $count_thoihoc_time = '';
-      $count_thoihoc_khoa = '';
-      $count_thoihoc_lop = '';
-      return view('thongke.thongke_qlcttc')
-        ->with('title', $title)
-        ->with('count_giahan_time',$count_giahan_time)
-        ->with('count_ketqua_lop', $count_ketqua_lop)
-        ->with('list_lop', $list_lop)
-        ->with('count_giahan', $count_giahan)
-        ->with('count_giahan_khoa', $count_giahan_khoa)
-        ->with('count_giahan_lop', $count_giahan_lop)
-        ->with('list_khoa', $list_khoa)
-        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
-        ->with('count_dunghoc', $count_dunghoc)
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('count_dunghoc_time', $count_dunghoc_time)
-        ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
-        ->with('count_dunghoc_lop', $count_dunghoc_lop)
-        ->with('count_chuyen', $count_chuyen)
-        ->with('count_chuyen_khoa', $count_chuyen_khoa)
-        ->with('count_chuyen_lop', $count_chuyen_lop)
-        ->with('count_thoihoc', $count_thoihoc)
-        ->with('count_thoihoc_time', $count_thoihoc_time)
-        ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
-        ->with('count_thoihoc_lop', $count_thoihoc_lop)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qltt', $phanquyen_qltt);
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_thoihoc_pdf(){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      $title = 'Viên chức xin thôi học';
-      $vienchuc = VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
-        ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $pdf = PDF::loadView('pdf.pdf_qlcttc_thoihoc', [
-        'vienchuc' => $vienchuc,
-        'title' => $title,
-      ]);
-      return $pdf->stream();
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_thoihoc_time(Request $request){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $title = "Thống kê";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $data = $request->all();
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->where('status_vc', '<>', '2')
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $count_ketqua_ma_lop = '';
-      $list_lop = Lop::orderBy('ten_l', 'asc')
-        ->get();
-      $count_ketqua_lop = '';
-      $count_giahan = '';
-      $count_giahan_time = '';
-      $list_khoa = Khoa::orderBy('ten_k', 'asc')
-        ->get();
-      $count_giahan_khoa = '';
-      $count_giahan_lop = '';
-      $count_dunghoc = '';
-      $count_dunghoc_time = '';
-      $count_dunghoc_khoa = '';
-      $count_dunghoc_lop = '';
-      $count_chuyen = '';
-      $count_chuyen_khoa = '';
-      $count_chuyen_lop = '';
-      $count_thoihoc = '';
-      $count_thoihoc_time = ThoiHoc::join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'thoihoc.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->whereBetween('ngay_th', [$data['batdau'], $data['ketthuc']])
-        ->select(DB::raw('count(thoihoc.ma_th) as sum, thoihoc.ngay_th'))
-        ->groupBy('thoihoc.ngay_th')
-        ->get();
-      $count_thoihoc_khoa = '';
-      $count_thoihoc_lop = '';
-      return view('thongke.thongke_qlcttc')
-        ->with('title', $title)
-        ->with('count_giahan', $count_giahan)
-        ->with('count_giahan_time',$count_giahan_time)
-        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
-        ->with('count_giahan_khoa', $count_giahan_khoa)
-        ->with('count_giahan_lop', $count_giahan_lop)
-        ->with('list_lop', $list_lop)
-        ->with('list_khoa', $list_khoa)
-        ->with('batdau', $data['batdau'])
-        ->with('ketthuc', $data['ketthuc'])
-        ->with('count_dunghoc_time', $count_dunghoc_time)
-        ->with('count_ketqua_lop', $count_ketqua_lop)
-        ->with('count_dunghoc', $count_dunghoc)
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
-        ->with('count_dunghoc_lop', $count_dunghoc_lop)
-        ->with('count_chuyen', $count_chuyen)
-        ->with('count_chuyen_khoa', $count_chuyen_khoa)
-        ->with('count_chuyen_lop', $count_chuyen_lop)
-        ->with('count_thoihoc', $count_thoihoc)
-        ->with('count_thoihoc_time', $count_thoihoc_time)
-        ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
-        ->with('count_thoihoc_lop', $count_thoihoc_lop)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qltt', $phanquyen_qltt);
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_thoihoc_time_pdf( $batdau, $ketthuc){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      $title = 'Viên chức xin tạm dừng học';
-      $vienchuc = VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
-        ->whereBetween('ngay_th', [$batdau, $ketthuc])
-        ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $pdf = PDF::loadView('pdf.pdf_qlcttc_thoihoc', [
-        'vienchuc' => $vienchuc,
-        'title' => $title,
-      ]);
-      return $pdf->stream();
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_thoihoc_khoa(Request $request){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $title = "Thống kê";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $data = $request->all();
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->where('status_vc', '<>', '2')
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $count_ketqua_ma_lop = '';
-      $list_lop = Lop::orderBy('ten_l', 'asc')
-        ->get();
-      $count_ketqua_lop = '';
-      $count_giahan = '';
-      $count_giahan_time = '';
-      $count_giahan_khoa = '';
-      $count_giahan_lop = '';
-      $list_khoa = Khoa::orderBy('ten_k', 'asc')
-        ->get();
-      $count_dunghoc = '';
-      $count_dunghoc_time = '';
-      $count_dunghoc_khoa = '';
-      $count_dunghoc_lop = '';
-      $count_chuyen = '';
-      $count_chuyen_khoa = '';
-      $count_chuyen_lop = '';
-      $count_thoihoc = '';
-      $count_thoihoc_time = '';
-      $count_thoihoc_khoa = ThoiHoc::join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'thoihoc.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('khoa.ma_k', $data['ma_k'])
-        ->select(DB::raw('count(thoihoc.ma_th) as sum, thoihoc.ngay_th, khoa.ma_k'))
-        ->groupBy('thoihoc.ngay_th','khoa.ma_k')
-        ->get();
-      $count_thoihoc_lop = '';
-      return view('thongke.thongke_qlcttc')
-        ->with('title', $title)
-        ->with('count_giahan', $count_giahan)
-        ->with('count_giahan_time',$count_giahan_time)
-        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
-        ->with('list_lop', $list_lop)
-        ->with('list_khoa', $list_khoa)
-        ->with('count_giahan_khoa', $count_giahan_khoa)
-        ->with('count_giahan_lop', $count_giahan_lop)
-        ->with('ma_k', $data['ma_k'])
-        ->with('count_ketqua_lop', $count_ketqua_lop)
-        ->with('count_dunghoc', $count_dunghoc)
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('count_dunghoc_time', $count_dunghoc_time)
-        ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
-        ->with('count_dunghoc_lop', $count_dunghoc_lop)
-        ->with('count_chuyen', $count_chuyen)
-        ->with('count_chuyen_khoa', $count_chuyen_khoa)
-        ->with('count_chuyen_lop', $count_chuyen_lop)
-        ->with('count_thoihoc', $count_thoihoc)
-        ->with('count_thoihoc_time', $count_thoihoc_time)
-        ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
-        ->with('count_thoihoc_lop', $count_thoihoc_lop)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qltt', $phanquyen_qltt);
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_thoihoc_khoa_pdf($ma_k){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $status = 1;
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      $title = 'Viên chức xin thôi học';
-      $vienchuc = ThoiHoc::join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'thoihoc.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('khoa.ma_k', $ma_k)
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $pdf = PDF::loadView('pdf.pdf_qlcttc_thoihoc', [
-        'vienchuc' => $vienchuc,
-        'title' => $title,
-        'status' => $status,
-      ]);
-      return $pdf->stream();
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_thoihoc_lop(Request $request){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $title = "Thống kê";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $data = $request->all();
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->where('status_vc', '<>', '2')
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-      $count_ketqua_ma_lop = '';
-      $list_lop = Lop::orderBy('ten_l', 'asc')
-        ->get();
-      $count_ketqua_lop = '';
-      $count_giahan = '';
-      $count_giahan_time = '';
-      $count_giahan_khoa = '';
-      $count_giahan_lop = '';
-      $list_khoa = Khoa::orderBy('ten_k', 'asc')
-        ->get();
-      $count_dunghoc = '';
-      $count_dunghoc_time = '';
-      $count_dunghoc_khoa = '';
-      $count_dunghoc_lop = '';
-      $count_chuyen = '';
-      $count_chuyen_khoa = '';
-      $count_chuyen_lop = '';
-      $count_thoihoc = '';
-      $count_thoihoc_time = '';
-      $count_thoihoc_khoa = '';
-      $count_thoihoc_lop = ThoiHoc::join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'thoihoc.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('lop.ma_l', $data['ma_l'])
-        ->select(DB::raw('count(thoihoc.ma_th) as sum, lop.ma_l'))
-        ->groupBy('lop.ma_l')
-        ->get();
-      return view('thongke.thongke_qlcttc')
-        ->with('title', $title)
-        ->with('count_giahan', $count_giahan)
-        ->with('count_giahan_time',$count_giahan_time)
-        ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
-        ->with('list_lop', $list_lop)
-        ->with('list_khoa', $list_khoa)
-        ->with('count_giahan_khoa', $count_giahan_khoa)
-        ->with('ma_l', $data['ma_l'])
-        ->with('count_giahan_lop', $count_giahan_lop)
-        ->with('count_ketqua_lop', $count_ketqua_lop)
-        ->with('count_dunghoc', $count_dunghoc)
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('count_dunghoc_time', $count_dunghoc_time)
-        ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
-        ->with('count_dunghoc_lop', $count_dunghoc_lop)
-        ->with('count_chuyen', $count_chuyen)
-        ->with('count_chuyen_khoa', $count_chuyen_khoa)
-        ->with('count_chuyen_lop', $count_chuyen_lop)
-        ->with('count_thoihoc', $count_thoihoc)
-        ->with('count_thoihoc_time', $count_thoihoc_time)
-        ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
-        ->with('count_thoihoc_lop', $count_thoihoc_lop)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qltt', $phanquyen_qltt);
-    }else{
-      return Redirect::to('/home');
-    }
-  }
-  public function thongke_qlcttc_thoihoc_lop_pdf($ma_l){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    $status = 1;
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      $title = 'Viên chức xin chuyển trường, nước, ngành học theo lớp';
-      $vienchuc = ThoiHoc::join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
-        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'thoihoc.ma_vc')
-        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('lop.ma_l', $ma_l)
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $pdf = PDF::loadView('pdf.pdf_qlcttc_thoihoc', [
-        'vienchuc' => $vienchuc,
-        'title' => $title,
-        'status' => $status,
-      ]);
-      return $pdf->stream();
-    }else{
-      return Redirect::to('/home');
-    }
-  }
+  // public function thongke_qlcttc_ketqua_lop_pdf(){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $status = 0;
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     $title = 'Viên chức hoàn thành khoá học';
+  //     $vienchuc = VienChuc::join('ketqua', 'ketqua.ma_vc', '=', 'vienchuc.ma_vc')
+  //       ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('status_vc', '<>', '2')
+  //       ->get();
+  //     $pdf = PDF::loadView('pdf.pdf_qlcttc', [
+  //       'vienchuc' => $vienchuc,
+  //       'title' => $title,
+  //       'status' => $status,
+  //     ]);
+  //     return $pdf->stream();
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_ketqua_ma_lop(Request $request){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   $title = "Thống kê";
+  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+  //   ->where('ma_q', '=', '9')
+  //   ->first();
+  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '7')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     Carbon::now('Asia/Ho_Chi_Minh'); 
+  //     $data = $request->all();
+  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+  //       ->where('status_vc', '<>', '2')
+  //       ->select(DB::raw('count(ma_vc) as sum'))
+  //       ->get();
+  //     $count_ketqua_ma_lop =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
+  //       ->where('ketqua.ma_l', $data['ma_l'])
+  //       ->select(DB::raw('count(ketqua.ma_kq) as sum, lop.ma_l'))
+  //       ->groupBy('lop.ma_l')
+  //       ->get();
+  //     $list_lop = Lop::orderBy('ten_l', 'asc')
+  //       ->get();
+  //     $count_ketqua_lop = '';
+  //     $count_giahan = '';
+  //     $count_giahan_time = '';
+  //     $count_giahan_lop = '';
+  //     $count_giahan_khoa = '';
+  //     $count_dunghoc = '';
+  //     $count_dunghoc_time = '';
+  //     $count_dunghoc_khoa = '';
+  //     $count_dunghoc_lop = '';
+  //     $count_chuyen = '';
+  //     $count_chuyen_khoa = '';
+  //     $count_chuyen_lop = '';
+  //     $count_thoihoc = '';
+  //     $count_thoihoc_time = '';
+  //     $count_thoihoc_khoa = '';
+  //     $count_thoihoc_lop = '';
+  //     return view('thongke.thongke_qlcttc')
+  //       ->with('title', $title)
+  //       ->with('count_giahan_khoa', $count_giahan_khoa)
+  //       ->with('count_giahan', $count_giahan)
+  //       ->with('count_giahan_time',$count_giahan_time)
+  //       ->with('count_giahan_lop', $count_giahan_lop)
+  //       ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
+  //       ->with('list_lop', $list_lop)
+  //       ->with('ma_l', $data['ma_l'])
+  //       ->with('count_ketqua_lop', $count_ketqua_lop)
+  //       ->with('count_dunghoc', $count_dunghoc)
+  //       ->with('phanquyen_admin', $phanquyen_admin)
+  //       ->with('count_nangbac', $count_nangbac)
+  //       ->with('count_dunghoc_time', $count_dunghoc_time)
+  //       ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
+  //       ->with('count_dunghoc_lop', $count_dunghoc_lop)
+  //       ->with('count_chuyen', $count_chuyen)
+  //       ->with('count_chuyen_khoa', $count_chuyen_khoa)
+  //       ->with('count_chuyen_lop', $count_chuyen_lop)
+  //       ->with('count_thoihoc', $count_thoihoc)
+  //       ->with('count_thoihoc_time', $count_thoihoc_time)
+  //       ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
+  //       ->with('count_thoihoc_lop', $count_thoihoc_lop)
+  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+  //       ->with('phanquyen_qlk', $phanquyen_qlk)
+  //       ->with('phanquyen_qltt', $phanquyen_qltt);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_ketqua_ma_lop_pdf($ma_l){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $status = 1;
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     $title = 'Viên chức hoàn thành khoá học';
+  //     $vienchuc = VienChuc::join('ketqua', 'ketqua.ma_vc', '=', 'vienchuc.ma_vc')
+  //       ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('ketqua.ma_l', $ma_l)
+  //       ->where('status_vc', '<>', '2')
+  //       ->get();
+  //     $pdf = PDF::loadView('pdf.pdf_qlcttc', [
+  //       'vienchuc' => $vienchuc,
+  //       'title' => $title,
+  //       'status' => $status,
+  //     ]);
+  //     return $pdf->stream();
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_giahan(){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   $title = "Thống kê";
+  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+  //   ->where('ma_q', '=', '9')
+  //   ->first();
+  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '7')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     Carbon::now('Asia/Ho_Chi_Minh'); 
+  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+  //       ->where('status_vc', '<>', '2')
+  //       ->select(DB::raw('count(ma_vc) as sum'))
+  //       ->get();
+  //     $count_ketqua_lop = '';
+  //     $list_lop = Lop::orderBy('ten_l', 'asc')
+  //       ->get();
+  //     $count_ketqua_ma_lop = '';
+  //     $count_giahan = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->select(DB::raw('count(giahan.ma_gh) as sum, giahan.thoigian_gh, khoa.ma_k'))
+  //       ->groupBy('giahan.thoigian_gh','khoa.ma_k')
+  //       ->get();
+  //     $list_khoa = Khoa::orderBy('ten_k', 'asc')
+  //       ->get();
+  //     $count_giahan_time = '';
+  //     $count_giahan_khoa = '';
+  //     $count_giahan_lop = '';
+  //     $count_dunghoc = '';
+  //     $count_dunghoc_time = '';
+  //     $count_dunghoc_khoa = '';
+  //     $count_dunghoc_lop = '';
+  //     $count_chuyen = '';
+  //     $count_chuyen_khoa = '';
+  //     $count_chuyen_lop = '';
+  //     $count_thoihoc = '';
+  //     $count_thoihoc_time = '';
+  //     $count_thoihoc_khoa = '';
+  //     $count_thoihoc_lop = '';
+  //     return view('thongke.thongke_qlcttc')
+  //       ->with('title', $title)
+  //       ->with('count_giahan_time',$count_giahan_time)
+  //       ->with('count_ketqua_lop', $count_ketqua_lop)
+  //       ->with('list_lop', $list_lop)
+  //       ->with('count_giahan', $count_giahan)
+  //       ->with('count_giahan_khoa', $count_giahan_khoa)
+  //       ->with('count_giahan_lop', $count_giahan_lop)
+  //       ->with('list_khoa', $list_khoa)
+  //       ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
+  //       ->with('count_dunghoc', $count_dunghoc)
+  //       ->with('phanquyen_admin', $phanquyen_admin)
+  //       ->with('count_nangbac', $count_nangbac)
+  //       ->with('count_dunghoc_time', $count_dunghoc_time)
+  //       ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
+  //       ->with('count_dunghoc_lop', $count_dunghoc_lop)
+  //       ->with('count_chuyen', $count_chuyen)
+  //       ->with('count_chuyen_khoa', $count_chuyen_khoa)
+  //       ->with('count_chuyen_lop', $count_chuyen_lop)
+  //       ->with('count_thoihoc', $count_thoihoc)
+  //       ->with('count_thoihoc_time', $count_thoihoc_time)
+  //       ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
+  //       ->with('count_thoihoc_lop', $count_thoihoc_lop)
+  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+  //       ->with('phanquyen_qlk', $phanquyen_qlk)
+  //       ->with('phanquyen_qltt', $phanquyen_qltt);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_giahan_pdf(){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     $title = 'Viên chức xin gia hạn thời gian học';
+  //     $vienchuc = VienChuc::join('giahan', 'giahan.ma_vc', '=', 'vienchuc.ma_vc')
+  //       ->join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('status_vc', '<>', '2')
+  //       ->get();
+  //     $pdf = PDF::loadView('pdf.pdf_qlcttc_giahan', [
+  //       'vienchuc' => $vienchuc,
+  //       'title' => $title,
+  //     ]);
+  //     return $pdf->stream();
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_giahan_time(Request $request){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   $title = "Thống kê";
+  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+  //   ->where('ma_q', '=', '9')
+  //   ->first();
+  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '7')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     Carbon::now('Asia/Ho_Chi_Minh'); 
+  //     $data = $request->all();
+  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+  //       ->where('status_vc', '<>', '2')
+  //       ->select(DB::raw('count(ma_vc) as sum'))
+  //       ->get();
+  //     $count_ketqua_ma_lop = '';
+  //     $list_lop = Lop::orderBy('ten_l', 'asc')
+  //       ->get();
+  //     $count_ketqua_lop = '';
+  //     $count_giahan = '';
+  //     $count_giahan_time = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->whereBetween('thoigian_gh', [$data['batdau'], $data['ketthuc']])
+  //       ->select(DB::raw('count(giahan.ma_gh) as sum, giahan.thoigian_gh, khoa.ma_k'))
+  //       ->groupBy('giahan.thoigian_gh','khoa.ma_k')
+  //       ->get();
+  //     $list_khoa = Khoa::orderBy('ten_k', 'asc')
+  //       ->get();
+  //     $count_giahan_khoa = '';
+  //     $count_giahan_lop = '';
+  //     $count_dunghoc = '';
+  //     $count_dunghoc_time = '';
+  //     $count_dunghoc_khoa = '';
+  //     $count_dunghoc_lop = '';
+  //     $count_chuyen = '';
+  //     $count_chuyen_khoa = '';
+  //     $count_chuyen_lop = '';
+  //     $count_thoihoc = '';
+  //     $count_thoihoc_time = '';
+  //     $count_thoihoc_khoa = '';
+  //     $count_thoihoc_lop = '';
+  //     return view('thongke.thongke_qlcttc')
+  //       ->with('title', $title)
+  //       ->with('count_giahan', $count_giahan)
+  //       ->with('count_giahan_time',$count_giahan_time)
+  //       ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
+  //       ->with('count_giahan_khoa', $count_giahan_khoa)
+  //       ->with('count_giahan_lop', $count_giahan_lop)
+  //       ->with('list_lop', $list_lop)
+  //       ->with('list_khoa', $list_khoa)
+  //       ->with('batdau', $data['batdau'])
+  //       ->with('ketthuc', $data['ketthuc'])
+  //       ->with('count_ketqua_lop', $count_ketqua_lop)
+  //       ->with('count_dunghoc', $count_dunghoc)
+  //       ->with('phanquyen_admin', $phanquyen_admin)
+  //       ->with('count_nangbac', $count_nangbac)
+  //       ->with('count_dunghoc_time', $count_dunghoc_time)
+  //       ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
+  //       ->with('count_dunghoc_lop', $count_dunghoc_lop)
+  //       ->with('count_chuyen', $count_chuyen)
+  //       ->with('count_chuyen_khoa', $count_chuyen_khoa)
+  //       ->with('count_chuyen_lop', $count_chuyen_lop)
+  //       ->with('count_thoihoc', $count_thoihoc)
+  //       ->with('count_thoihoc_time', $count_thoihoc_time)
+  //       ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
+  //       ->with('count_thoihoc_lop', $count_thoihoc_lop)
+  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+  //       ->with('phanquyen_qlk', $phanquyen_qlk)
+  //       ->with('phanquyen_qltt', $phanquyen_qltt);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_giahan_time_pdf( $batdau, $ketthuc){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     $title = 'Viên chức xin gia hạn thời gian học';
+  //     $vienchuc = VienChuc::join('giahan', 'giahan.ma_vc', '=', 'vienchuc.ma_vc')
+  //       ->whereBetween('thoigian_gh', [$batdau, $ketthuc])
+  //       ->join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('status_vc', '<>', '2')
+  //       ->get();
+  //     $pdf = PDF::loadView('pdf.pdf_qlcttc_giahan', [
+  //       'vienchuc' => $vienchuc,
+  //       'title' => $title,
+  //     ]);
+  //     return $pdf->stream();
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_giahan_khoa(Request $request){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   $title = "Thống kê";
+  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+  //   ->where('ma_q', '=', '9')
+  //   ->first();
+  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '7')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     Carbon::now('Asia/Ho_Chi_Minh'); 
+  //     $data = $request->all();
+  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+  //       ->where('status_vc', '<>', '2')
+  //       ->select(DB::raw('count(ma_vc) as sum'))
+  //       ->get();
+  //     $count_ketqua_ma_lop = '';
+  //     $list_lop = Lop::orderBy('ten_l', 'asc')
+  //       ->get();
+  //     $count_ketqua_lop = '';
+  //     $count_giahan = '';
+  //     $count_giahan_time = '';
+  //     $count_giahan_lop = '';
+  //     $count_giahan_khoa = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('khoa.ma_k', $data['ma_k'])
+  //       ->select(DB::raw('count(giahan.ma_gh) as sum, giahan.thoigian_gh, khoa.ma_k'))
+  //       ->groupBy('giahan.thoigian_gh','khoa.ma_k')
+  //       ->get();
+  //     $list_khoa = Khoa::orderBy('ten_k', 'asc')
+  //       ->get();
+  //     $count_dunghoc = '';
+  //     $count_dunghoc_time = '';
+  //     $count_dunghoc_khoa = '';
+  //     $count_dunghoc_lop = '';
+  //     $count_chuyen = '';
+  //     $count_chuyen_khoa = '';
+  //     $count_chuyen_lop = '';
+  //     $count_thoihoc = '';
+  //     $count_thoihoc_time = '';
+  //     $count_thoihoc_khoa = '';
+  //     $count_thoihoc_lop = '';
+  //     return view('thongke.thongke_qlcttc')
+  //       ->with('title', $title)
+  //       ->with('count_giahan', $count_giahan)
+  //       ->with('count_giahan_time',$count_giahan_time)
+  //       ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
+  //       ->with('list_lop', $list_lop)
+  //       ->with('list_khoa', $list_khoa)
+  //       ->with('count_giahan_khoa', $count_giahan_khoa)
+  //       ->with('count_giahan_lop', $count_giahan_lop)
+  //       ->with('ma_k', $data['ma_k'])
+  //       ->with('count_ketqua_lop', $count_ketqua_lop)
+  //       ->with('count_dunghoc', $count_dunghoc)
+  //       ->with('phanquyen_admin', $phanquyen_admin)
+  //       ->with('count_nangbac', $count_nangbac)
+  //       ->with('count_dunghoc_time', $count_dunghoc_time)
+  //       ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
+  //       ->with('count_dunghoc_lop', $count_dunghoc_lop)
+  //       ->with('count_chuyen', $count_chuyen)
+  //       ->with('count_chuyen_khoa', $count_chuyen_khoa)
+  //       ->with('count_chuyen_lop', $count_chuyen_lop)
+  //       ->with('count_thoihoc', $count_thoihoc)
+  //       ->with('count_thoihoc_time', $count_thoihoc_time)
+  //       ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
+  //       ->with('count_thoihoc_lop', $count_thoihoc_lop)
+  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+  //       ->with('phanquyen_qlk', $phanquyen_qlk)
+  //       ->with('phanquyen_qltt', $phanquyen_qltt);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_giahan_khoa_pdf($ma_k){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $status = 1;
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     $title = 'Viên chức xin gia hạn';
+  //     $vienchuc = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('khoa.ma_k', $ma_k)
+  //       ->where('status_vc', '<>', '2')
+  //       ->get();
+  //     $pdf = PDF::loadView('pdf.pdf_qlcttc_giahan', [
+  //       'vienchuc' => $vienchuc,
+  //       'title' => $title,
+  //       'status' => $status,
+  //     ]);
+  //     return $pdf->stream();
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_giahan_lop_pdf($ma_l){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $status = 1;
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     $title = 'Viên chức xin gia hạn';
+  //     $vienchuc = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('lop.ma_l', $ma_l)
+  //       ->where('status_vc', '<>', '2')
+  //       ->get();
+  //     $pdf = PDF::loadView('pdf.pdf_qlcttc_giahan', [
+  //       'vienchuc' => $vienchuc,
+  //       'title' => $title,
+  //       'status' => $status,
+  //     ]);
+  //     return $pdf->stream();
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_giahan_lop(Request $request){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   $title = "Thống kê";
+  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+  //   ->where('ma_q', '=', '9')
+  //   ->first();
+  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '7')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     Carbon::now('Asia/Ho_Chi_Minh'); 
+  //     $data = $request->all();
+  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+  //       ->where('status_vc', '<>', '2')
+  //       ->select(DB::raw('count(ma_vc) as sum'))
+  //       ->get();
+  //     $count_ketqua_ma_lop = '';
+  //     $list_lop = Lop::orderBy('ten_l', 'asc')
+  //       ->get();
+  //     $count_ketqua_lop = '';
+  //     $count_giahan = '';
+  //     $count_giahan_time = '';
+  //     $count_giahan_khoa = '';
+  //     $count_giahan_lop = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('lop.ma_l', $data['ma_l'])
+  //       ->select(DB::raw('count(giahan.ma_gh) as sum, giahan.thoigian_gh, lop.ma_l'))
+  //       ->groupBy('giahan.thoigian_gh','lop.ma_l')
+  //       ->get();
+  //     $list_khoa = Khoa::orderBy('ten_k', 'asc')
+  //       ->get();
+  //     $count_dunghoc = '';
+  //     $count_dunghoc_time = '';
+  //     $count_dunghoc_khoa = '';
+  //     $count_dunghoc_lop = '';
+  //     $count_chuyen = '';
+  //     $count_chuyen_khoa = '';
+  //     $count_chuyen_lop = '';
+  //     $count_thoihoc = '';
+  //     $count_thoihoc_time = '';
+  //     $count_thoihoc_khoa = '';
+  //     $count_thoihoc_lop = '';
+  //     return view('thongke.thongke_qlcttc')
+  //       ->with('title', $title)
+  //       ->with('count_giahan', $count_giahan)
+  //       ->with('count_giahan_time',$count_giahan_time)
+  //       ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
+  //       ->with('list_lop', $list_lop)
+  //       ->with('list_khoa', $list_khoa)
+  //       ->with('count_giahan_khoa', $count_giahan_khoa)
+  //       ->with('count_giahan_lop', $count_giahan_lop)
+  //       ->with('ma_l', $data['ma_l'])
+  //       ->with('count_ketqua_lop', $count_ketqua_lop)
+  //       ->with('count_dunghoc', $count_dunghoc)
+  //       ->with('phanquyen_admin', $phanquyen_admin)
+  //       ->with('count_nangbac', $count_nangbac)
+  //       ->with('count_dunghoc_time', $count_dunghoc_time)
+  //       ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
+  //       ->with('count_dunghoc_lop', $count_dunghoc_lop)
+  //       ->with('count_chuyen', $count_chuyen)
+  //       ->with('count_chuyen_khoa', $count_chuyen_khoa)
+  //       ->with('count_chuyen_lop', $count_chuyen_lop)
+  //       ->with('count_thoihoc', $count_thoihoc)
+  //       ->with('count_thoihoc_time', $count_thoihoc_time)
+  //       ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
+  //       ->with('count_thoihoc_lop', $count_thoihoc_lop)
+  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+  //       ->with('phanquyen_qlk', $phanquyen_qlk)
+  //       ->with('phanquyen_qltt', $phanquyen_qltt);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+
+  // public function thongke_qlcttc_dunghoc(){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   $title = "Thống kê";
+  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+  //   ->where('ma_q', '=', '9')
+  //   ->first();
+  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '7')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     Carbon::now('Asia/Ho_Chi_Minh'); 
+  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+  //       ->where('status_vc', '<>', '2')
+  //       ->select(DB::raw('count(ma_vc) as sum'))
+  //       ->get();
+  //     $count_ketqua_lop = '';
+  //     $list_lop = Lop::orderBy('ten_l', 'asc')
+  //       ->get();
+  //     $count_ketqua_ma_lop = '';
+  //     $count_giahan = '';
+  //     $count_giahan_lop = '';
+  //     $list_khoa = Khoa::orderBy('ten_k', 'asc')
+  //       ->get();
+  //     $count_giahan_time = '';
+  //     $count_giahan_khoa = '';
+  //     $count_dunghoc = DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'dunghoc.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->select(DB::raw('count(dunghoc.ma_dh) as sum, dunghoc.batdau_dh, khoa.ma_k'))
+  //       ->groupBy('dunghoc.batdau_dh','khoa.ma_k')
+  //       ->get();
+  //     $count_dunghoc_time = '';
+  //     $count_dunghoc_khoa = '';
+  //     $count_dunghoc_lop = '';
+  //     $count_chuyen = '';
+  //     $count_chuyen_khoa = '';
+  //     $count_chuyen_lop = '';
+  //     $count_thoihoc = '';
+  //     $count_thoihoc_time = '';
+  //     $count_thoihoc_khoa = '';
+  //     $count_thoihoc_lop = '';
+  //     return view('thongke.thongke_qlcttc')
+  //       ->with('title', $title)
+  //       ->with('count_giahan_time',$count_giahan_time)
+  //       ->with('count_ketqua_lop', $count_ketqua_lop)
+  //       ->with('list_lop', $list_lop)
+  //       ->with('count_giahan', $count_giahan)
+  //       ->with('count_giahan_khoa', $count_giahan_khoa)
+  //       ->with('count_giahan_lop', $count_giahan_lop)
+  //       ->with('list_khoa', $list_khoa)
+  //       ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
+  //       ->with('count_dunghoc', $count_dunghoc)
+  //       ->with('phanquyen_admin', $phanquyen_admin)
+  //       ->with('count_nangbac', $count_nangbac)
+  //       ->with('count_dunghoc_time', $count_dunghoc_time)
+  //       ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
+  //       ->with('count_dunghoc_lop', $count_dunghoc_lop)
+  //       ->with('count_chuyen', $count_chuyen)
+  //       ->with('count_chuyen_khoa', $count_chuyen_khoa)
+  //       ->with('count_chuyen_lop', $count_chuyen_lop)
+  //       ->with('count_thoihoc', $count_thoihoc)
+  //       ->with('count_thoihoc_time', $count_thoihoc_time)
+  //       ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
+  //       ->with('count_thoihoc_lop', $count_thoihoc_lop)
+  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+  //       ->with('phanquyen_qlk', $phanquyen_qlk)
+  //       ->with('phanquyen_qltt', $phanquyen_qltt);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_dunghoc_pdf(){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     $title = 'Viên chức xin tạm dừng học';
+  //     $vienchuc = VienChuc::join('dunghoc', 'dunghoc.ma_vc', '=', 'vienchuc.ma_vc')
+  //       ->join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('status_vc', '<>', '2')
+  //       ->get();
+  //     $pdf = PDF::loadView('pdf.pdf_qlcttc_dunghoc', [
+  //       'vienchuc' => $vienchuc,
+  //       'title' => $title,
+  //     ]);
+  //     return $pdf->stream();
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_dunghoc_time(Request $request){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   $title = "Thống kê";
+  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+  //   ->where('ma_q', '=', '9')
+  //   ->first();
+  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '7')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     Carbon::now('Asia/Ho_Chi_Minh'); 
+  //     $data = $request->all();
+  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+  //       ->where('status_vc', '<>', '2')
+  //       ->select(DB::raw('count(ma_vc) as sum'))
+  //       ->get();
+  //     $count_ketqua_ma_lop = '';
+  //     $list_lop = Lop::orderBy('ten_l', 'asc')
+  //       ->get();
+  //     $count_ketqua_lop = '';
+  //     $count_giahan = '';
+  //     $count_giahan_time = '';
+  //     $list_khoa = Khoa::orderBy('ten_k', 'asc')
+  //       ->get();
+  //     $count_giahan_khoa = '';
+  //     $count_giahan_lop = '';
+  //     $count_dunghoc = '';
+  //     $count_dunghoc_time = DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'dunghoc.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->whereBetween('batdau_dh', [$data['batdau'], $data['ketthuc']])
+  //       ->select(DB::raw('count(dunghoc.ma_dh) as sum, dunghoc.batdau_dh, khoa.ma_k'))
+  //       ->groupBy('dunghoc.batdau_dh','khoa.ma_k')
+  //       ->get();
+  //     $count_dunghoc_khoa = '';
+  //     $count_dunghoc_lop = '';
+  //     $count_chuyen = '';
+  //     $count_chuyen_khoa = '';
+  //     $count_chuyen_lop = '';
+  //     $count_thoihoc = '';
+  //     $count_thoihoc_time = '';
+  //     $count_thoihoc_khoa = '';
+  //     $count_thoihoc_lop = '';
+  //     return view('thongke.thongke_qlcttc')
+  //       ->with('title', $title)
+  //       ->with('count_giahan', $count_giahan)
+  //       ->with('count_giahan_time',$count_giahan_time)
+  //       ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
+  //       ->with('count_giahan_khoa', $count_giahan_khoa)
+  //       ->with('count_giahan_lop', $count_giahan_lop)
+  //       ->with('list_lop', $list_lop)
+  //       ->with('list_khoa', $list_khoa)
+  //       ->with('batdau', $data['batdau'])
+  //       ->with('ketthuc', $data['ketthuc'])
+  //       ->with('count_dunghoc_time', $count_dunghoc_time)
+  //       ->with('count_ketqua_lop', $count_ketqua_lop)
+  //       ->with('count_dunghoc', $count_dunghoc)
+  //       ->with('phanquyen_admin', $phanquyen_admin)
+  //       ->with('count_nangbac', $count_nangbac)
+  //       ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
+  //       ->with('count_dunghoc_lop', $count_dunghoc_lop)
+  //       ->with('count_chuyen', $count_chuyen)
+  //       ->with('count_chuyen_khoa', $count_chuyen_khoa)
+  //       ->with('count_chuyen_lop', $count_chuyen_lop)
+  //       ->with('count_thoihoc', $count_thoihoc)
+  //       ->with('count_thoihoc_time', $count_thoihoc_time)
+  //       ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
+  //       ->with('count_thoihoc_lop', $count_thoihoc_lop)
+  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+  //       ->with('phanquyen_qlk', $phanquyen_qlk)
+  //       ->with('phanquyen_qltt', $phanquyen_qltt);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_dunghoc_time_pdf( $batdau, $ketthuc){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     $title = 'Viên chức xin tạm dừng học';
+  //     $vienchuc = VienChuc::join('dunghoc', 'dunghoc.ma_vc', '=', 'vienchuc.ma_vc')
+  //       ->whereBetween('batdau_dh', [$batdau, $ketthuc])
+  //       ->join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('status_vc', '<>', '2')
+  //       ->get();
+  //     $pdf = PDF::loadView('pdf.pdf_qlcttc_dunghoc', [
+  //       'vienchuc' => $vienchuc,
+  //       'title' => $title,
+  //     ]);
+  //     return $pdf->stream();
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_dunghoc_khoa(Request $request){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   $title = "Thống kê";
+  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+  //   ->where('ma_q', '=', '9')
+  //   ->first();
+  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '7')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     Carbon::now('Asia/Ho_Chi_Minh'); 
+  //     $data = $request->all();
+  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+  //       ->where('status_vc', '<>', '2')
+  //       ->select(DB::raw('count(ma_vc) as sum'))
+  //       ->get();
+  //     $count_ketqua_ma_lop = '';
+  //     $list_lop = Lop::orderBy('ten_l', 'asc')
+  //       ->get();
+  //     $count_ketqua_lop = '';
+  //     $count_giahan = '';
+  //     $count_giahan_time = '';
+  //     $count_giahan_khoa = '';
+  //     $count_giahan_lop = '';
+  //     $list_khoa = Khoa::orderBy('ten_k', 'asc')
+  //       ->get();
+  //     $count_dunghoc = '';
+  //     $count_dunghoc_time = '';
+  //     $count_dunghoc_khoa = DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'dunghoc.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('khoa.ma_k', $data['ma_k'])
+  //       ->select(DB::raw('count(dunghoc.ma_dh) as sum, dunghoc.batdau_dh, khoa.ma_k'))
+  //       ->groupBy('dunghoc.batdau_dh','khoa.ma_k')
+  //       ->get();
+  //     $count_dunghoc_lop = '';
+  //     $count_chuyen = '';
+  //     $count_chuyen_khoa = '';
+  //     $count_chuyen_lop = '';
+  //     $count_thoihoc = '';
+  //     $count_thoihoc_time = '';
+  //     $count_thoihoc_khoa = '';
+  //     $count_thoihoc_lop = '';
+  //     return view('thongke.thongke_qlcttc')
+  //       ->with('title', $title)
+  //       ->with('count_giahan', $count_giahan)
+  //       ->with('count_giahan_time',$count_giahan_time)
+  //       ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
+  //       ->with('list_lop', $list_lop)
+  //       ->with('list_khoa', $list_khoa)
+  //       ->with('count_giahan_khoa', $count_giahan_khoa)
+  //       ->with('count_giahan_lop', $count_giahan_lop)
+  //       ->with('ma_k', $data['ma_k'])
+  //       ->with('count_ketqua_lop', $count_ketqua_lop)
+  //       ->with('count_dunghoc', $count_dunghoc)
+  //       ->with('phanquyen_admin', $phanquyen_admin)
+  //       ->with('count_nangbac', $count_nangbac)
+  //       ->with('count_dunghoc_time', $count_dunghoc_time)
+  //       ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
+  //       ->with('count_dunghoc_lop', $count_dunghoc_lop)
+  //       ->with('count_chuyen', $count_chuyen)
+  //       ->with('count_chuyen_khoa', $count_chuyen_khoa)
+  //       ->with('count_chuyen_lop', $count_chuyen_lop)
+  //       ->with('count_thoihoc', $count_thoihoc)
+  //       ->with('count_thoihoc_time', $count_thoihoc_time)
+  //       ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
+  //       ->with('count_thoihoc_lop', $count_thoihoc_lop)
+  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+  //       ->with('phanquyen_qlk', $phanquyen_qlk)
+  //       ->with('phanquyen_qltt', $phanquyen_qltt);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_dunghoc_khoa_pdf($ma_k){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $status = 1;
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     $title = 'Viên chức xin tạm dừng học';
+  //     $vienchuc = DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'dunghoc.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('khoa.ma_k', $ma_k)
+  //       ->where('status_vc', '<>', '2')
+  //       ->get();
+  //     $pdf = PDF::loadView('pdf.pdf_qlcttc_dunghoc', [
+  //       'vienchuc' => $vienchuc,
+  //       'title' => $title,
+  //       'status' => $status,
+  //     ]);
+  //     return $pdf->stream();
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_dunghoc_lop(Request $request){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   $title = "Thống kê";
+  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+  //   ->where('ma_q', '=', '9')
+  //   ->first();
+  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '7')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     Carbon::now('Asia/Ho_Chi_Minh'); 
+  //     $data = $request->all();
+  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+  //       ->where('status_vc', '<>', '2')
+  //       ->select(DB::raw('count(ma_vc) as sum'))
+  //       ->get();
+  //     $count_ketqua_ma_lop = '';
+  //     $list_lop = Lop::orderBy('ten_l', 'asc')
+  //       ->get();
+  //     $count_ketqua_lop = '';
+  //     $count_giahan = '';
+  //     $count_giahan_time = '';
+  //     $count_giahan_khoa = '';
+  //     $count_giahan_lop = '';
+  //     $list_khoa = Khoa::orderBy('ten_k', 'asc')
+  //       ->get();
+  //     $count_dunghoc = '';
+  //     $count_dunghoc_time = '';
+  //     $count_dunghoc_khoa = '';
+  //     $count_dunghoc_lop = DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'dunghoc.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('lop.ma_l', $data['ma_l'])
+  //       ->select(DB::raw('count(dunghoc.ma_dh) as sum, dunghoc.batdau_dh, lop.ma_l'))
+  //       ->groupBy('dunghoc.batdau_dh','lop.ma_l')
+  //       ->get();
+  //     $count_chuyen = '';
+  //     $count_chuyen_khoa = '';
+  //     $count_chuyen_lop = '';
+  //     $count_thoihoc = '';
+  //     $count_thoihoc_time = '';
+  //     $count_thoihoc_khoa = '';
+  //     $count_thoihoc_lop = '';
+  //     return view('thongke.thongke_qlcttc')
+  //       ->with('title', $title)
+  //       ->with('count_giahan', $count_giahan)
+  //       ->with('count_giahan_time',$count_giahan_time)
+  //       ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
+  //       ->with('list_lop', $list_lop)
+  //       ->with('list_khoa', $list_khoa)
+  //       ->with('count_giahan_khoa', $count_giahan_khoa)
+  //       ->with('ma_l', $data['ma_l'])
+  //       ->with('count_giahan_lop', $count_giahan_lop)
+  //       ->with('count_ketqua_lop', $count_ketqua_lop)
+  //       ->with('count_dunghoc', $count_dunghoc)
+  //       ->with('phanquyen_admin', $phanquyen_admin)
+  //       ->with('count_nangbac', $count_nangbac)
+  //       ->with('count_dunghoc_time', $count_dunghoc_time)
+  //       ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
+  //       ->with('count_dunghoc_lop', $count_dunghoc_lop)
+  //       ->with('count_chuyen', $count_chuyen)
+  //       ->with('count_chuyen_khoa', $count_chuyen_khoa)
+  //       ->with('count_chuyen_lop', $count_chuyen_lop)
+  //       ->with('count_thoihoc', $count_thoihoc)
+  //       ->with('count_thoihoc_time', $count_thoihoc_time)
+  //       ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
+  //       ->with('count_thoihoc_lop', $count_thoihoc_lop)
+  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+  //       ->with('phanquyen_qlk', $phanquyen_qlk)
+  //       ->with('phanquyen_qltt', $phanquyen_qltt);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_dunghoc_lop_pdf($ma_l){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $status = 1;
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     $title = 'Viên chức xin tạm dừng học';
+  //     $vienchuc = DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'dunghoc.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('lop.ma_l', $ma_l)
+  //       ->where('status_vc', '<>', '2')
+  //       ->get();
+  //     $pdf = PDF::loadView('pdf.pdf_qlcttc_dunghoc', [
+  //       'vienchuc' => $vienchuc,
+  //       'title' => $title,
+  //       'status' => $status,
+  //     ]);
+  //     return $pdf->stream();
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_chuyen(){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   $title = "Thống kê";
+  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+  //   ->where('ma_q', '=', '9')
+  //   ->first();
+  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '7')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     Carbon::now('Asia/Ho_Chi_Minh'); 
+  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+  //       ->where('status_vc', '<>', '2')
+  //       ->select(DB::raw('count(ma_vc) as sum'))
+  //       ->get();
+  //     $count_ketqua_lop = '';
+  //     $list_lop = Lop::orderBy('ten_l', 'asc')
+  //       ->get();
+  //     $count_ketqua_ma_lop = '';
+  //     $count_giahan = '';
+  //     $count_giahan_lop = '';
+  //     $list_khoa = Khoa::orderBy('ten_k', 'asc')
+  //       ->get();
+  //     $count_giahan_time = '';
+  //     $count_giahan_khoa = '';
+  //     $count_dunghoc = '';
+  //     $count_dunghoc_time = '';
+  //     $count_dunghoc_khoa = '';
+  //     $count_dunghoc_lop = '';
+  //     $count_chuyen = Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->select(DB::raw('count(chuyen.ma_c) as sum, lop.ma_l'))
+  //       ->groupBy('lop.ma_l')
+  //       ->get();
+  //     $count_chuyen_khoa = '';
+  //     $count_chuyen_lop = '';
+  //     $count_thoihoc = '';
+  //     $count_thoihoc_time = '';
+  //     $count_thoihoc_khoa = '';
+  //     $count_thoihoc_lop = '';
+  //     return view('thongke.thongke_qlcttc')
+  //       ->with('title', $title)
+  //       ->with('count_giahan_time',$count_giahan_time)
+  //       ->with('count_ketqua_lop', $count_ketqua_lop)
+  //       ->with('list_lop', $list_lop)
+  //       ->with('count_giahan', $count_giahan)
+  //       ->with('count_giahan_khoa', $count_giahan_khoa)
+  //       ->with('count_giahan_lop', $count_giahan_lop)
+  //       ->with('list_khoa', $list_khoa)
+  //       ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
+  //       ->with('count_dunghoc', $count_dunghoc)
+  //       ->with('phanquyen_admin', $phanquyen_admin)
+  //       ->with('count_nangbac', $count_nangbac)
+  //       ->with('count_dunghoc_time', $count_dunghoc_time)
+  //       ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
+  //       ->with('count_dunghoc_lop', $count_dunghoc_lop)
+  //       ->with('count_chuyen', $count_chuyen)
+  //       ->with('count_chuyen_khoa', $count_chuyen_khoa)
+  //       ->with('count_chuyen_lop', $count_chuyen_lop)
+  //       ->with('count_thoihoc', $count_thoihoc)
+  //       ->with('count_thoihoc_time', $count_thoihoc_time)
+  //       ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
+  //       ->with('count_thoihoc_lop', $count_thoihoc_lop)
+  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+  //       ->with('phanquyen_qlk', $phanquyen_qlk)
+  //       ->with('phanquyen_qltt', $phanquyen_qltt);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_chuyen_pdf(){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     $title = 'Viên chức xin chuyển nước, trường, ngành học';
+  //     $vienchuc = VienChuc::join('chuyen', 'chuyen.ma_vc', '=', 'vienchuc.ma_vc')
+  //       ->join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('status_vc', '<>', '2')
+  //       ->get();
+  //     $pdf = PDF::loadView('pdf.pdf_qlcttc_chuyen', [
+  //       'vienchuc' => $vienchuc,
+  //       'title' => $title,
+  //     ]);
+  //     return $pdf->stream();
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_chuyen_khoa(Request $request){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   $title = "Thống kê";
+  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+  //   ->where('ma_q', '=', '9')
+  //   ->first();
+  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '7')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     Carbon::now('Asia/Ho_Chi_Minh'); 
+  //     $data = $request->all();
+  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+  //       ->where('status_vc', '<>', '2')
+  //       ->select(DB::raw('count(ma_vc) as sum'))
+  //       ->get();
+  //     $count_ketqua_ma_lop = '';
+  //     $list_lop = Lop::orderBy('ten_l', 'asc')
+  //       ->get();
+  //     $count_ketqua_lop = '';
+  //     $count_giahan = '';
+  //     $count_giahan_time = '';
+  //     $count_giahan_khoa = '';
+  //     $count_giahan_lop = '';
+  //     $list_khoa = Khoa::orderBy('ten_k', 'asc')
+  //       ->get();
+  //     $count_dunghoc = '';
+  //     $count_dunghoc_time = '';
+  //     $count_dunghoc_khoa = '';
+  //     $count_dunghoc_lop = '';
+  //     $count_chuyen = '';
+  //     $count_chuyen_khoa = Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('khoa.ma_k', $data['ma_k'])
+  //       ->select(DB::raw('count(chuyen.ma_c) as sum, khoa.ma_k'))
+  //       ->groupBy('khoa.ma_k')
+  //       ->get();
+  //     $count_chuyen_lop = '';
+  //     $count_thoihoc = '';
+  //     $count_thoihoc_time = '';
+  //     $count_thoihoc_khoa = '';
+  //     $count_thoihoc_lop = '';
+  //     return view('thongke.thongke_qlcttc')
+  //       ->with('title', $title)
+  //       ->with('count_giahan', $count_giahan)
+  //       ->with('count_giahan_time',$count_giahan_time)
+  //       ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
+  //       ->with('list_lop', $list_lop)
+  //       ->with('list_khoa', $list_khoa)
+  //       ->with('count_giahan_khoa', $count_giahan_khoa)
+  //       ->with('count_giahan_lop', $count_giahan_lop)
+  //       ->with('ma_k', $data['ma_k'])
+  //       ->with('count_ketqua_lop', $count_ketqua_lop)
+  //       ->with('count_dunghoc', $count_dunghoc)
+  //       ->with('phanquyen_admin', $phanquyen_admin)
+  //       ->with('count_nangbac', $count_nangbac)
+  //       ->with('count_dunghoc_time', $count_dunghoc_time)
+  //       ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
+  //       ->with('count_dunghoc_lop', $count_dunghoc_lop)
+  //       ->with('count_chuyen', $count_chuyen)
+  //       ->with('count_chuyen_khoa', $count_chuyen_khoa)
+  //       ->with('count_chuyen_lop', $count_chuyen_lop)
+  //       ->with('count_thoihoc', $count_thoihoc)
+  //       ->with('count_thoihoc_time', $count_thoihoc_time)
+  //       ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
+  //       ->with('count_thoihoc_lop', $count_thoihoc_lop)
+  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+  //       ->with('phanquyen_qlk', $phanquyen_qlk)
+  //       ->with('phanquyen_qltt', $phanquyen_qltt);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_chuyen_khoa_pdf($ma_k){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $status = 1;
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     $title = 'Viên chức xin chuyển trường, nước, ngành học';
+  //     $vienchuc = Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('khoa.ma_k', $ma_k)
+  //       ->where('status_vc', '<>', '2')
+  //       ->get();
+  //     $pdf = PDF::loadView('pdf.pdf_qlcttc_chuyen', [
+  //       'vienchuc' => $vienchuc,
+  //       'title' => $title,
+  //       'status' => $status,
+  //     ]);
+  //     return $pdf->stream();
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_chuyen_lop(Request $request){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   $title = "Thống kê";
+  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+  //   ->where('ma_q', '=', '9')
+  //   ->first();
+  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '7')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     Carbon::now('Asia/Ho_Chi_Minh'); 
+  //     $data = $request->all();
+  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+  //       ->where('status_vc', '<>', '2')
+  //       ->select(DB::raw('count(ma_vc) as sum'))
+  //       ->get();
+  //     $count_ketqua_ma_lop = '';
+  //     $list_lop = Lop::orderBy('ten_l', 'asc')
+  //       ->get();
+  //     $count_ketqua_lop = '';
+  //     $count_giahan = '';
+  //     $count_giahan_time = '';
+  //     $count_giahan_khoa = '';
+  //     $count_giahan_lop = '';
+  //     $list_khoa = Khoa::orderBy('ten_k', 'asc')
+  //       ->get();
+  //     $count_dunghoc = '';
+  //     $count_dunghoc_time = '';
+  //     $count_dunghoc_khoa = '';
+  //     $count_dunghoc_lop = '';
+  //     $count_chuyen = '';
+  //     $count_chuyen_khoa = '';
+  //     $count_chuyen_lop = Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('lop.ma_l', $data['ma_l'])
+  //       ->select(DB::raw('count(chuyen.ma_c) as sum, lop.ma_l'))
+  //       ->groupBy('lop.ma_l')
+  //       ->get();
+  //     $count_thoihoc = '';
+  //     $count_thoihoc_time = '';
+  //     $count_thoihoc_khoa = '';
+  //     $count_thoihoc_lop = '';
+  //     return view('thongke.thongke_qlcttc')
+  //       ->with('title', $title)
+  //       ->with('count_giahan', $count_giahan)
+  //       ->with('count_giahan_time',$count_giahan_time)
+  //       ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
+  //       ->with('list_lop', $list_lop)
+  //       ->with('list_khoa', $list_khoa)
+  //       ->with('count_giahan_khoa', $count_giahan_khoa)
+  //       ->with('ma_l', $data['ma_l'])
+  //       ->with('count_giahan_lop', $count_giahan_lop)
+  //       ->with('count_ketqua_lop', $count_ketqua_lop)
+  //       ->with('count_dunghoc', $count_dunghoc)
+  //       ->with('phanquyen_admin', $phanquyen_admin)
+  //       ->with('count_nangbac', $count_nangbac)
+  //       ->with('count_dunghoc_time', $count_dunghoc_time)
+  //       ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
+  //       ->with('count_dunghoc_lop', $count_dunghoc_lop)
+  //       ->with('count_chuyen', $count_chuyen)
+  //       ->with('count_chuyen_khoa', $count_chuyen_khoa)
+  //       ->with('count_chuyen_lop', $count_chuyen_lop)
+  //       ->with('count_thoihoc', $count_thoihoc)
+  //       ->with('count_thoihoc_time', $count_thoihoc_time)
+  //       ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
+  //       ->with('count_thoihoc_lop', $count_thoihoc_lop)
+  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+  //       ->with('phanquyen_qlk', $phanquyen_qlk)
+  //       ->with('phanquyen_qltt', $phanquyen_qltt);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_chuyen_lop_pdf($ma_l){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $status = 1;
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     $title = 'Viên chức xin chuyển trường, nước, ngành học theo lớp';
+  //     $vienchuc = Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('lop.ma_l', $ma_l)
+  //       ->where('status_vc', '<>', '2')
+  //       ->get();
+  //     $pdf = PDF::loadView('pdf.pdf_qlcttc_chuyen', [
+  //       'vienchuc' => $vienchuc,
+  //       'title' => $title,
+  //       'status' => $status,
+  //     ]);
+  //     return $pdf->stream();
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_thoihoc(){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   $title = "Thống kê";
+  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+  //   ->where('ma_q', '=', '9')
+  //   ->first();
+  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '7')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     Carbon::now('Asia/Ho_Chi_Minh'); 
+  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+  //       ->where('status_vc', '<>', '2')
+  //       ->select(DB::raw('count(ma_vc) as sum'))
+  //       ->get();
+  //     $count_ketqua_lop = '';
+  //     $list_lop = Lop::orderBy('ten_l', 'asc')
+  //       ->get();
+  //     $count_ketqua_ma_lop = '';
+  //     $count_giahan = '';
+  //     $list_khoa = Khoa::orderBy('ten_k', 'asc')
+  //       ->get();
+  //     $count_giahan_time = '';
+  //     $count_giahan_khoa = '';
+  //     $count_giahan_lop = '';
+  //     $count_dunghoc = '';
+  //     $count_dunghoc_time = '';
+  //     $count_dunghoc_khoa = '';
+  //     $count_dunghoc_lop = '';
+  //     $count_chuyen = '';
+  //     $count_chuyen_khoa = '';
+  //     $count_chuyen_lop = '';
+  //     $count_thoihoc = ThoiHoc::join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'thoihoc.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->select(DB::raw('count(thoihoc.ma_th) as sum, thoihoc.ngay_th, khoa.ma_k'))
+  //       ->groupBy('thoihoc.ngay_th','khoa.ma_k')
+  //       ->get();
+  //     $count_thoihoc_time = '';
+  //     $count_thoihoc_khoa = '';
+  //     $count_thoihoc_lop = '';
+  //     return view('thongke.thongke_qlcttc')
+  //       ->with('title', $title)
+  //       ->with('count_giahan_time',$count_giahan_time)
+  //       ->with('count_ketqua_lop', $count_ketqua_lop)
+  //       ->with('list_lop', $list_lop)
+  //       ->with('count_giahan', $count_giahan)
+  //       ->with('count_giahan_khoa', $count_giahan_khoa)
+  //       ->with('count_giahan_lop', $count_giahan_lop)
+  //       ->with('list_khoa', $list_khoa)
+  //       ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
+  //       ->with('count_dunghoc', $count_dunghoc)
+  //       ->with('phanquyen_admin', $phanquyen_admin)
+  //       ->with('count_nangbac', $count_nangbac)
+  //       ->with('count_dunghoc_time', $count_dunghoc_time)
+  //       ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
+  //       ->with('count_dunghoc_lop', $count_dunghoc_lop)
+  //       ->with('count_chuyen', $count_chuyen)
+  //       ->with('count_chuyen_khoa', $count_chuyen_khoa)
+  //       ->with('count_chuyen_lop', $count_chuyen_lop)
+  //       ->with('count_thoihoc', $count_thoihoc)
+  //       ->with('count_thoihoc_time', $count_thoihoc_time)
+  //       ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
+  //       ->with('count_thoihoc_lop', $count_thoihoc_lop)
+  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+  //       ->with('phanquyen_qlk', $phanquyen_qlk)
+  //       ->with('phanquyen_qltt', $phanquyen_qltt);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_thoihoc_pdf(){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     $title = 'Viên chức xin thôi học';
+  //     $vienchuc = VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+  //       ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('status_vc', '<>', '2')
+  //       ->get();
+  //     $pdf = PDF::loadView('pdf.pdf_qlcttc_thoihoc', [
+  //       'vienchuc' => $vienchuc,
+  //       'title' => $title,
+  //     ]);
+  //     return $pdf->stream();
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_thoihoc_time(Request $request){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   $title = "Thống kê";
+  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+  //   ->where('ma_q', '=', '9')
+  //   ->first();
+  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '7')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     Carbon::now('Asia/Ho_Chi_Minh'); 
+  //     $data = $request->all();
+  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+  //       ->where('status_vc', '<>', '2')
+  //       ->select(DB::raw('count(ma_vc) as sum'))
+  //       ->get();
+  //     $count_ketqua_ma_lop = '';
+  //     $list_lop = Lop::orderBy('ten_l', 'asc')
+  //       ->get();
+  //     $count_ketqua_lop = '';
+  //     $count_giahan = '';
+  //     $count_giahan_time = '';
+  //     $list_khoa = Khoa::orderBy('ten_k', 'asc')
+  //       ->get();
+  //     $count_giahan_khoa = '';
+  //     $count_giahan_lop = '';
+  //     $count_dunghoc = '';
+  //     $count_dunghoc_time = '';
+  //     $count_dunghoc_khoa = '';
+  //     $count_dunghoc_lop = '';
+  //     $count_chuyen = '';
+  //     $count_chuyen_khoa = '';
+  //     $count_chuyen_lop = '';
+  //     $count_thoihoc = '';
+  //     $count_thoihoc_time = ThoiHoc::join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'thoihoc.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->whereBetween('ngay_th', [$data['batdau'], $data['ketthuc']])
+  //       ->select(DB::raw('count(thoihoc.ma_th) as sum, thoihoc.ngay_th'))
+  //       ->groupBy('thoihoc.ngay_th')
+  //       ->get();
+  //     $count_thoihoc_khoa = '';
+  //     $count_thoihoc_lop = '';
+  //     return view('thongke.thongke_qlcttc')
+  //       ->with('title', $title)
+  //       ->with('count_giahan', $count_giahan)
+  //       ->with('count_giahan_time',$count_giahan_time)
+  //       ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
+  //       ->with('count_giahan_khoa', $count_giahan_khoa)
+  //       ->with('count_giahan_lop', $count_giahan_lop)
+  //       ->with('list_lop', $list_lop)
+  //       ->with('list_khoa', $list_khoa)
+  //       ->with('batdau', $data['batdau'])
+  //       ->with('ketthuc', $data['ketthuc'])
+  //       ->with('count_dunghoc_time', $count_dunghoc_time)
+  //       ->with('count_ketqua_lop', $count_ketqua_lop)
+  //       ->with('count_dunghoc', $count_dunghoc)
+  //       ->with('phanquyen_admin', $phanquyen_admin)
+  //       ->with('count_nangbac', $count_nangbac)
+  //       ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
+  //       ->with('count_dunghoc_lop', $count_dunghoc_lop)
+  //       ->with('count_chuyen', $count_chuyen)
+  //       ->with('count_chuyen_khoa', $count_chuyen_khoa)
+  //       ->with('count_chuyen_lop', $count_chuyen_lop)
+  //       ->with('count_thoihoc', $count_thoihoc)
+  //       ->with('count_thoihoc_time', $count_thoihoc_time)
+  //       ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
+  //       ->with('count_thoihoc_lop', $count_thoihoc_lop)
+  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+  //       ->with('phanquyen_qlk', $phanquyen_qlk)
+  //       ->with('phanquyen_qltt', $phanquyen_qltt);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_thoihoc_time_pdf( $batdau, $ketthuc){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     $title = 'Viên chức xin tạm dừng học';
+  //     $vienchuc = VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+  //       ->whereBetween('ngay_th', [$batdau, $ketthuc])
+  //       ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('status_vc', '<>', '2')
+  //       ->get();
+  //     $pdf = PDF::loadView('pdf.pdf_qlcttc_thoihoc', [
+  //       'vienchuc' => $vienchuc,
+  //       'title' => $title,
+  //     ]);
+  //     return $pdf->stream();
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_thoihoc_khoa(Request $request){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   $title = "Thống kê";
+  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+  //   ->where('ma_q', '=', '9')
+  //   ->first();
+  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '7')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     Carbon::now('Asia/Ho_Chi_Minh'); 
+  //     $data = $request->all();
+  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+  //       ->where('status_vc', '<>', '2')
+  //       ->select(DB::raw('count(ma_vc) as sum'))
+  //       ->get();
+  //     $count_ketqua_ma_lop = '';
+  //     $list_lop = Lop::orderBy('ten_l', 'asc')
+  //       ->get();
+  //     $count_ketqua_lop = '';
+  //     $count_giahan = '';
+  //     $count_giahan_time = '';
+  //     $count_giahan_khoa = '';
+  //     $count_giahan_lop = '';
+  //     $list_khoa = Khoa::orderBy('ten_k', 'asc')
+  //       ->get();
+  //     $count_dunghoc = '';
+  //     $count_dunghoc_time = '';
+  //     $count_dunghoc_khoa = '';
+  //     $count_dunghoc_lop = '';
+  //     $count_chuyen = '';
+  //     $count_chuyen_khoa = '';
+  //     $count_chuyen_lop = '';
+  //     $count_thoihoc = '';
+  //     $count_thoihoc_time = '';
+  //     $count_thoihoc_khoa = ThoiHoc::join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'thoihoc.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('khoa.ma_k', $data['ma_k'])
+  //       ->select(DB::raw('count(thoihoc.ma_th) as sum, thoihoc.ngay_th, khoa.ma_k'))
+  //       ->groupBy('thoihoc.ngay_th','khoa.ma_k')
+  //       ->get();
+  //     $count_thoihoc_lop = '';
+  //     return view('thongke.thongke_qlcttc')
+  //       ->with('title', $title)
+  //       ->with('count_giahan', $count_giahan)
+  //       ->with('count_giahan_time',$count_giahan_time)
+  //       ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
+  //       ->with('list_lop', $list_lop)
+  //       ->with('list_khoa', $list_khoa)
+  //       ->with('count_giahan_khoa', $count_giahan_khoa)
+  //       ->with('count_giahan_lop', $count_giahan_lop)
+  //       ->with('ma_k', $data['ma_k'])
+  //       ->with('count_ketqua_lop', $count_ketqua_lop)
+  //       ->with('count_dunghoc', $count_dunghoc)
+  //       ->with('phanquyen_admin', $phanquyen_admin)
+  //       ->with('count_nangbac', $count_nangbac)
+  //       ->with('count_dunghoc_time', $count_dunghoc_time)
+  //       ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
+  //       ->with('count_dunghoc_lop', $count_dunghoc_lop)
+  //       ->with('count_chuyen', $count_chuyen)
+  //       ->with('count_chuyen_khoa', $count_chuyen_khoa)
+  //       ->with('count_chuyen_lop', $count_chuyen_lop)
+  //       ->with('count_thoihoc', $count_thoihoc)
+  //       ->with('count_thoihoc_time', $count_thoihoc_time)
+  //       ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
+  //       ->with('count_thoihoc_lop', $count_thoihoc_lop)
+  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+  //       ->with('phanquyen_qlk', $phanquyen_qlk)
+  //       ->with('phanquyen_qltt', $phanquyen_qltt);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_thoihoc_khoa_pdf($ma_k){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $status = 1;
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     $title = 'Viên chức xin thôi học';
+  //     $vienchuc = ThoiHoc::join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'thoihoc.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('khoa.ma_k', $ma_k)
+  //       ->where('status_vc', '<>', '2')
+  //       ->get();
+  //     $pdf = PDF::loadView('pdf.pdf_qlcttc_thoihoc', [
+  //       'vienchuc' => $vienchuc,
+  //       'title' => $title,
+  //       'status' => $status,
+  //     ]);
+  //     return $pdf->stream();
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_thoihoc_lop(Request $request){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   $title = "Thống kê";
+  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+  //   ->where('ma_q', '=', '9')
+  //   ->first();
+  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '7')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     Carbon::now('Asia/Ho_Chi_Minh'); 
+  //     $data = $request->all();
+  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+  //       ->where('status_vc', '<>', '2')
+  //       ->select(DB::raw('count(ma_vc) as sum'))
+  //       ->get();
+  //     $count_ketqua_ma_lop = '';
+  //     $list_lop = Lop::orderBy('ten_l', 'asc')
+  //       ->get();
+  //     $count_ketqua_lop = '';
+  //     $count_giahan = '';
+  //     $count_giahan_time = '';
+  //     $count_giahan_khoa = '';
+  //     $count_giahan_lop = '';
+  //     $list_khoa = Khoa::orderBy('ten_k', 'asc')
+  //       ->get();
+  //     $count_dunghoc = '';
+  //     $count_dunghoc_time = '';
+  //     $count_dunghoc_khoa = '';
+  //     $count_dunghoc_lop = '';
+  //     $count_chuyen = '';
+  //     $count_chuyen_khoa = '';
+  //     $count_chuyen_lop = '';
+  //     $count_thoihoc = '';
+  //     $count_thoihoc_time = '';
+  //     $count_thoihoc_khoa = '';
+  //     $count_thoihoc_lop = ThoiHoc::join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'thoihoc.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('lop.ma_l', $data['ma_l'])
+  //       ->select(DB::raw('count(thoihoc.ma_th) as sum, lop.ma_l'))
+  //       ->groupBy('lop.ma_l')
+  //       ->get();
+  //     return view('thongke.thongke_qlcttc')
+  //       ->with('title', $title)
+  //       ->with('count_giahan', $count_giahan)
+  //       ->with('count_giahan_time',$count_giahan_time)
+  //       ->with('count_ketqua_ma_lop', $count_ketqua_ma_lop)
+  //       ->with('list_lop', $list_lop)
+  //       ->with('list_khoa', $list_khoa)
+  //       ->with('count_giahan_khoa', $count_giahan_khoa)
+  //       ->with('ma_l', $data['ma_l'])
+  //       ->with('count_giahan_lop', $count_giahan_lop)
+  //       ->with('count_ketqua_lop', $count_ketqua_lop)
+  //       ->with('count_dunghoc', $count_dunghoc)
+  //       ->with('phanquyen_admin', $phanquyen_admin)
+  //       ->with('count_nangbac', $count_nangbac)
+  //       ->with('count_dunghoc_time', $count_dunghoc_time)
+  //       ->with('count_dunghoc_khoa', $count_dunghoc_khoa)
+  //       ->with('count_dunghoc_lop', $count_dunghoc_lop)
+  //       ->with('count_chuyen', $count_chuyen)
+  //       ->with('count_chuyen_khoa', $count_chuyen_khoa)
+  //       ->with('count_chuyen_lop', $count_chuyen_lop)
+  //       ->with('count_thoihoc', $count_thoihoc)
+  //       ->with('count_thoihoc_time', $count_thoihoc_time)
+  //       ->with('count_thoihoc_khoa', $count_thoihoc_khoa)
+  //       ->with('count_thoihoc_lop', $count_thoihoc_lop)
+  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+  //       ->with('phanquyen_qlk', $phanquyen_qlk)
+  //       ->with('phanquyen_qltt', $phanquyen_qltt);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  // public function thongke_qlcttc_thoihoc_lop_pdf($ma_l){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //   $status = 1;
+  //   if($phanquyen_admin || $phanquyen_qlcttc){
+  //     $title = 'Viên chức xin chuyển trường, nước, ngành học theo lớp';
+  //     $vienchuc = ThoiHoc::join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+  //       ->join('vienchuc', 'vienchuc.ma_vc', '=', 'thoihoc.ma_vc')
+  //       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+  //       ->where('lop.ma_l', $ma_l)
+  //       ->where('status_vc', '<>', '2')
+  //       ->get();
+  //     $pdf = PDF::loadView('pdf.pdf_qlcttc_thoihoc', [
+  //       'vienchuc' => $vienchuc,
+  //       'title' => $title,
+  //       'status' => $status,
+  //     ]);
+  //     return $pdf->stream();
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
 }

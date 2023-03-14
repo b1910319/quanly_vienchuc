@@ -40,9 +40,7 @@
           <th scope="col">#</th>
           <th scope="col">Viên chức</th>
           <th scope="col">Khoa</th>
-          @if ($status == 0)
-            <th scope="col">Thông tin lớp</th>
-          @endif
+          <th scope="col">Thông tin lớp</th>
           <th scope="col">Thông tin kết quả</th>
         </tr>
       </thead>
@@ -56,18 +54,16 @@
               <b>Số điện thoại: </b> {{ $vc->sdt_vc }} <br>
             </td>
             <td>{{ $vc->ten_k }}</td>
-            @if ($status == 0)
-              <td style="width: 32%">
-                <b>Tên lớp học: </b>{{ $vc->ten_l }}<br>
-                <b>Ngày bắt đầu lớp học: </b>{{ $vc->ngaybatdau_l }}<br>
-                <b>Ngày kết thúc lớp học: </b>{{ $vc->ngayketthuc_l }} <br>
-                <b>Tên cơ sở đào tạo: </b>{{ $vc->tencosodaotao_l }}<br>
-                <b>Quốc gia đào tạo: </b>{{ $vc->quocgiaodaotao_l }}<br>
-                <b>Ngành học: </b>{{ $vc->nganhhoc_l }}<br>
-                <b>Email cơ sở: </b>{{ $vc->emailcoso_l }}<br>
-                <b>Địa chỉ cơ sở: </b>{{ $vc->diachidaotao_l }}<br>
-              </td>
-            @endif
+            <td style="width: 32%">
+              <b>Tên lớp học: </b>{{ $vc->ten_l }}<br>
+              <b>Ngày bắt đầu lớp học: </b>{{ $vc->ngaybatdau_l }}<br>
+              <b>Ngày kết thúc lớp học: </b>{{ $vc->ngayketthuc_l }} <br>
+              <b>Tên cơ sở đào tạo: </b>{{ $vc->tencosodaotao_l }}<br>
+              <b>Quốc gia đào tạo: </b>{{ $vc->quocgiaodaotao_l }}<br>
+              <b>Ngành học: </b>{{ $vc->nganhhoc_l }}<br>
+              <b>Email cơ sở: </b>{{ $vc->emailcoso_l }}<br>
+              <b>Địa chỉ cơ sở: </b>{{ $vc->diachidaotao_l }}<br>
+            </td>
             <td style="width: 30%"> 
               <b>Tên người hướng dẫn: </b>{{ $vc->tennguoihuongdan_kq }}<br>
               <b>Email người hướng dẫn: </b>{{ $vc->emailnguoihuongdan_kq }} <br>

@@ -291,44 +291,49 @@ Route::get('/thongke_qlktkl_kl_loc_7_pdf/{batdau_kl}/{ketthuc_kl}',[ThongKeContr
 // ----------------------------------------------------------
 
 
+
 Route::get('/thongke_qlcttc',[ThongKeController::class, 'thongke_qlcttc']);
-Route::get('/thongke_qlcttc_ketqua_lop_pdf',[ThongKeController::class, 'thongke_qlcttc_ketqua_lop_pdf']);
-Route::post('/thongke_qlcttc_ketqua_ma_lop',[ThongKeController::class, 'thongke_qlcttc_ketqua_ma_lop']);
-Route::get('/thongke_qlcttc_ketqua_ma_lop_pdf/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_ketqua_ma_lop_pdf']);
 
-Route::get('/thongke_qlcttc_giahan',[ThongKeController::class, 'thongke_qlcttc_giahan']);
-Route::get('/thongke_qlcttc_giahan_pdf',[ThongKeController::class, 'thongke_qlcttc_giahan_pdf']);
-Route::post('/thongke_qlcttc_giahan_time',[ThongKeController::class, 'thongke_qlcttc_giahan_time']);
-Route::get('/thongke_qlcttc_giahan_time_pdf/{batdau}/{ketthuc}',[ThongKeController::class, 'thongke_qlcttc_giahan_time_pdf']);
-Route::post('/thongke_qlcttc_giahan_khoa',[ThongKeController::class, 'thongke_qlcttc_giahan_khoa']);
-Route::get('/thongke_qlcttc_giahan_khoa_pdf/{ma_k}',[ThongKeController::class, 'thongke_qlcttc_giahan_khoa_pdf']);
-Route::post('/thongke_qlcttc_giahan_lop',[ThongKeController::class, 'thongke_qlcttc_giahan_lop']);
-Route::get('/thongke_qlcttc_giahan_lop_pdf/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_giahan_lop_pdf']);
+Route::post('/thongke_qlcttc_loc',[ThongKeController::class, 'thongke_qlcttc_loc']);
+Route::get('/thongke_qlcttc_loc_1_pdf',[ThongKeController::class, 'thongke_qlcttc_loc_1_pdf']);
 
-Route::get('/thongke_qlcttc_dunghoc',[ThongKeController::class, 'thongke_qlcttc_dunghoc']);
-Route::get('/thongke_qlcttc_dunghoc_pdf',[ThongKeController::class, 'thongke_qlcttc_dunghoc_pdf']);
-Route::post('/thongke_qlcttc_dunghoc_time',[ThongKeController::class, 'thongke_qlcttc_dunghoc_time']);
-Route::get('/thongke_qlcttc_dunghoc_time_pdf/{batdau}/{ketthuc}',[ThongKeController::class, 'thongke_qlcttc_dunghoc_time_pdf']);
-Route::post('/thongke_qlcttc_dunghoc_khoa',[ThongKeController::class, 'thongke_qlcttc_dunghoc_khoa']);
-Route::get('/thongke_qlcttc_dunghoc_khoa_pdf/{ma_k}',[ThongKeController::class, 'thongke_qlcttc_dunghoc_khoa_pdf']);
-Route::post('/thongke_qlcttc_dunghoc_lop',[ThongKeController::class, 'thongke_qlcttc_dunghoc_lop']);
-Route::get('/thongke_qlcttc_dunghoc_lop_pdf/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_dunghoc_lop_pdf']);
+// Route::get('/thongke_qlcttc_ketqua_lop_pdf',[ThongKeController::class, 'thongke_qlcttc_ketqua_lop_pdf']);
+// Route::post('/thongke_qlcttc_ketqua_ma_lop',[ThongKeController::class, 'thongke_qlcttc_ketqua_ma_lop']);
+// Route::get('/thongke_qlcttc_ketqua_ma_lop_pdf/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_ketqua_ma_lop_pdf']);
 
-Route::get('/thongke_qlcttc_chuyen',[ThongKeController::class, 'thongke_qlcttc_chuyen']);
-Route::get('/thongke_qlcttc_chuyen_pdf',[ThongKeController::class, 'thongke_qlcttc_chuyen_pdf']);
-Route::post('/thongke_qlcttc_chuyen_khoa',[ThongKeController::class, 'thongke_qlcttc_chuyen_khoa']);
-Route::get('/thongke_qlcttc_chuyen_khoa_pdf/{ma_k}',[ThongKeController::class, 'thongke_qlcttc_chuyen_khoa_pdf']);
-Route::post('/thongke_qlcttc_chuyen_lop',[ThongKeController::class, 'thongke_qlcttc_chuyen_lop']);
-Route::get('/thongke_qlcttc_chuyen_lop_pdf/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_chuyen_lop_pdf']);
+// Route::get('/thongke_qlcttc_giahan',[ThongKeController::class, 'thongke_qlcttc_giahan']);
+// Route::get('/thongke_qlcttc_giahan_pdf',[ThongKeController::class, 'thongke_qlcttc_giahan_pdf']);
+// Route::post('/thongke_qlcttc_giahan_time',[ThongKeController::class, 'thongke_qlcttc_giahan_time']);
+// Route::get('/thongke_qlcttc_giahan_time_pdf/{batdau}/{ketthuc}',[ThongKeController::class, 'thongke_qlcttc_giahan_time_pdf']);
+// Route::post('/thongke_qlcttc_giahan_khoa',[ThongKeController::class, 'thongke_qlcttc_giahan_khoa']);
+// Route::get('/thongke_qlcttc_giahan_khoa_pdf/{ma_k}',[ThongKeController::class, 'thongke_qlcttc_giahan_khoa_pdf']);
+// Route::post('/thongke_qlcttc_giahan_lop',[ThongKeController::class, 'thongke_qlcttc_giahan_lop']);
+// Route::get('/thongke_qlcttc_giahan_lop_pdf/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_giahan_lop_pdf']);
 
-Route::get('/thongke_qlcttc_thoihoc',[ThongKeController::class, 'thongke_qlcttc_thoihoc']);
-Route::get('/thongke_qlcttc_thoihoc_pdf',[ThongKeController::class, 'thongke_qlcttc_thoihoc_pdf']);
-Route::post('/thongke_qlcttc_thoihoc_time',[ThongKeController::class, 'thongke_qlcttc_thoihoc_time']);
-Route::get('/thongke_qlcttc_thoihoc_time_pdf/{batdau}/{ketthuc}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_time_pdf']);
-Route::post('/thongke_qlcttc_thoihoc_khoa',[ThongKeController::class, 'thongke_qlcttc_thoihoc_khoa']);
-Route::get('/thongke_qlcttc_thoihoc_khoa_pdf/{ma_k}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_khoa_pdf']);
-Route::post('/thongke_qlcttc_thoihoc_lop',[ThongKeController::class, 'thongke_qlcttc_thoihoc_lop']);
-Route::get('/thongke_qlcttc_thoihoc_lop_pdf/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_lop_pdf']);
+// Route::get('/thongke_qlcttc_dunghoc',[ThongKeController::class, 'thongke_qlcttc_dunghoc']);
+// Route::get('/thongke_qlcttc_dunghoc_pdf',[ThongKeController::class, 'thongke_qlcttc_dunghoc_pdf']);
+// Route::post('/thongke_qlcttc_dunghoc_time',[ThongKeController::class, 'thongke_qlcttc_dunghoc_time']);
+// Route::get('/thongke_qlcttc_dunghoc_time_pdf/{batdau}/{ketthuc}',[ThongKeController::class, 'thongke_qlcttc_dunghoc_time_pdf']);
+// Route::post('/thongke_qlcttc_dunghoc_khoa',[ThongKeController::class, 'thongke_qlcttc_dunghoc_khoa']);
+// Route::get('/thongke_qlcttc_dunghoc_khoa_pdf/{ma_k}',[ThongKeController::class, 'thongke_qlcttc_dunghoc_khoa_pdf']);
+// Route::post('/thongke_qlcttc_dunghoc_lop',[ThongKeController::class, 'thongke_qlcttc_dunghoc_lop']);
+// Route::get('/thongke_qlcttc_dunghoc_lop_pdf/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_dunghoc_lop_pdf']);
+
+// Route::get('/thongke_qlcttc_chuyen',[ThongKeController::class, 'thongke_qlcttc_chuyen']);
+// Route::get('/thongke_qlcttc_chuyen_pdf',[ThongKeController::class, 'thongke_qlcttc_chuyen_pdf']);
+// Route::post('/thongke_qlcttc_chuyen_khoa',[ThongKeController::class, 'thongke_qlcttc_chuyen_khoa']);
+// Route::get('/thongke_qlcttc_chuyen_khoa_pdf/{ma_k}',[ThongKeController::class, 'thongke_qlcttc_chuyen_khoa_pdf']);
+// Route::post('/thongke_qlcttc_chuyen_lop',[ThongKeController::class, 'thongke_qlcttc_chuyen_lop']);
+// Route::get('/thongke_qlcttc_chuyen_lop_pdf/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_chuyen_lop_pdf']);
+
+// Route::get('/thongke_qlcttc_thoihoc',[ThongKeController::class, 'thongke_qlcttc_thoihoc']);
+// Route::get('/thongke_qlcttc_thoihoc_pdf',[ThongKeController::class, 'thongke_qlcttc_thoihoc_pdf']);
+// Route::post('/thongke_qlcttc_thoihoc_time',[ThongKeController::class, 'thongke_qlcttc_thoihoc_time']);
+// Route::get('/thongke_qlcttc_thoihoc_time_pdf/{batdau}/{ketthuc}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_time_pdf']);
+// Route::post('/thongke_qlcttc_thoihoc_khoa',[ThongKeController::class, 'thongke_qlcttc_thoihoc_khoa']);
+// Route::get('/thongke_qlcttc_thoihoc_khoa_pdf/{ma_k}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_khoa_pdf']);
+// Route::post('/thongke_qlcttc_thoihoc_lop',[ThongKeController::class, 'thongke_qlcttc_thoihoc_lop']);
+// Route::get('/thongke_qlcttc_thoihoc_lop_pdf/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_lop_pdf']);
 
 
 
