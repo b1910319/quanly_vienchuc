@@ -3,16 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bac;
+use App\Models\BangCap;
 use App\Models\ChucVu;
+use App\Models\Chuyen;
 use App\Models\DanToc;
+use App\Models\DungHoc;
+use App\Models\GiaDinh;
+use App\Models\GiaHan;
+use App\Models\KetQua;
 use App\Models\KhenThuong;
 use App\Models\Khoa;
 use App\Models\KyLuat;
 use App\Models\Ngach;
+use App\Models\NoiSinh;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
+use App\Models\QueQuan;
+use App\Models\QuyetDinh;
+use App\Models\ThoiHoc;
 use App\Models\ThuongBinh;
 use App\Models\TonGiao;
 use App\Models\VienChuc;
@@ -184,9 +194,69 @@ class NghiHuuController extends Controller
       $kyluat = KyLuat::where('ma_vc', $data['ma_vc'])
         ->get();
       foreach ($kyluat as $key => $kl) {
-          $kl->status_kl = '2';
-          $kl->save();
-        }
+        $kl->status_kl = '2';
+        $kl->save();
+      }
+      $bangcap =  BangCap::where('ma_vc', $data['ma_vc'])
+        ->get();
+      foreach ($bangcap as $key => $bc) {
+        $bc->status_bc = '2';
+        $bc->save();
+      }
+      $noisinh =  NoiSinh::where('ma_vc', $data['ma_vc'])
+        ->get();
+      foreach ($noisinh as $key => $ns) {
+        $ns->status_ns = '2';
+        $ns->save();
+      }
+      $giadinh =  GiaDinh::where('ma_vc', $data['ma_vc'])
+        ->get();
+      foreach ($giadinh as $key => $gd) {
+        $gd->status_gd = '2';
+        $gd->save();
+      }
+      $ketqua =  KetQua::where('ma_vc', $data['ma_vc'])
+        ->get();
+      foreach ($ketqua as $key => $kq) {
+        $kq->status_kq = '2';
+        $kq->save();
+      }
+      $quyetdinh =  QuyetDinh::where('ma_vc', $data['ma_vc'])
+        ->get();
+      foreach ($quyetdinh as $key => $qd) {
+        $qd->status_qd = '2';
+        $qd->save();
+      }
+      $giahan =  GiaHan::where('ma_vc', $data['ma_vc'])
+        ->get();
+      foreach ($giahan as $key => $gh) {
+        $gh->status_gh = '2';
+        $gh->save();
+      }
+      $dunghoc =  DungHoc::where('ma_vc', $data['ma_vc'])
+        ->get();
+      foreach ($dunghoc as $key => $dh) {
+        $dh->status_dh = '2';
+        $dh->save();
+      }
+      $thoihoc =  ThoiHoc::where('ma_vc', $data['ma_vc'])
+        ->get();
+      foreach ($thoihoc as $key => $th) {
+        $th->status_th = '2';
+        $th->save();
+      }
+      $chuyen =  Chuyen::where('ma_vc', $data['ma_vc'])
+        ->get();
+      foreach ($chuyen as $key => $c) {
+        $c->status_c = '2';
+        $c->save();
+      }
+      $quequan =  QueQuan::where('ma_vc', $data['ma_vc'])
+        ->get();
+      foreach ($quequan as $key => $qq) {
+        $qq->status_qq = '2';
+        $qq->save();
+      }
       return Redirect::to('/nghihuu');
     }else{
       return Redirect::to('/home');
