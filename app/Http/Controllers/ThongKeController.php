@@ -1872,6 +1872,7 @@ class ThongKeController extends Controller
       $list_kl_3 = '';
       $list_kl_4 = '';
       $list_kl_5 = '';
+      $list_kl_6 = '';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
 
@@ -1904,6 +1905,7 @@ class ThongKeController extends Controller
         ->with('list_kl_3', $list_kl_3)
         ->with('list_kl_4', $list_kl_4)
         ->with('list_kl_5', $list_kl_5)
+        ->with('list_kl_6', $list_kl_6)
 
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -2010,6 +2012,7 @@ class ThongKeController extends Controller
         $list_kl_3 = '';
         $list_kl_4 = '';
         $list_kl_5 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -2040,6 +2043,7 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_k', $data['ma_k'])
@@ -2087,6 +2091,7 @@ class ThongKeController extends Controller
         $list_kl_3 = '';
         $list_kl_4 = '';
         $list_kl_5 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -2117,6 +2122,7 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_htkt', $data['ma_htkt'])
@@ -2163,6 +2169,7 @@ class ThongKeController extends Controller
         $list_kl_3 = '';
         $list_kl_4 = '';
         $list_kl_5 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -2193,6 +2200,7 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_k', $data['ma_k'])
@@ -2238,6 +2246,7 @@ class ThongKeController extends Controller
         $list_kl_3 = '';
         $list_kl_4 = '';
         $list_kl_5 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -2268,6 +2277,7 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_k', $data['ma_k'])
@@ -2313,6 +2323,7 @@ class ThongKeController extends Controller
         $list_kl_3 = '';
         $list_kl_4 = '';
         $list_kl_5 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -2344,6 +2355,7 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
           ->with('ma_htkt', $data['ma_htkt'])
           ->with('batdau_kt', $data['batdau_kt'])
@@ -2391,6 +2403,7 @@ class ThongKeController extends Controller
         $list_kl_3 = '';
         $list_kl_4 = '';
         $list_kl_5 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -2423,6 +2436,7 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
           ->with('ma_k', $data['ma_k'])
           ->with('batdau_kt', $data['batdau_kt'])
@@ -2473,6 +2487,7 @@ class ThongKeController extends Controller
         $list_kl_3 = '';
         $list_kl_4 = '';
         $list_kl_5 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -2506,6 +2521,7 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
           ->with('ma_k', $data['ma_k'])
           ->with('ma_htkt', $data['ma_htkt'])
@@ -2555,6 +2571,7 @@ class ThongKeController extends Controller
         $list_kl_3 = '';
         $list_kl_4 = '';
         $list_kl_5 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -2589,6 +2606,7 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('batdau_kt', $data['batdau_kt'])
@@ -2641,6 +2659,7 @@ class ThongKeController extends Controller
         $list_kl_3 = '';
         $list_kl_4 = '';
         $list_kl_5 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -2676,6 +2695,7 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_htkt', $data['ma_htkt'])
@@ -2728,6 +2748,7 @@ class ThongKeController extends Controller
         $list_kl_3 = '';
         $list_kl_4 = '';
         $list_kl_5 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -2764,6 +2785,7 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_k', $data['ma_k'])
@@ -2816,6 +2838,7 @@ class ThongKeController extends Controller
         $list_kl_3 = '';
         $list_kl_4 = '';
         $list_kl_5 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -2853,6 +2876,7 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
           ->with('ma_lkt', $data['ma_lkt'])
 
@@ -2905,6 +2929,7 @@ class ThongKeController extends Controller
         $list_kl_3 = '';
         $list_kl_4 = '';
         $list_kl_5 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -2943,6 +2968,7 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
           ->with('ma_k', $data['ma_k'])
 
@@ -2996,6 +3022,7 @@ class ThongKeController extends Controller
         $list_kl_3 = '';
         $list_kl_4 = '';
         $list_kl_5 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -3035,6 +3062,7 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
 
           ->with('ma_htkt', $data['ma_htkt'])
@@ -3090,6 +3118,7 @@ class ThongKeController extends Controller
         $list_kl_3 = '';
         $list_kl_4 = '';
         $list_kl_5 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -3131,6 +3160,7 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
           ->with('batdau_kt', $data['batdau_kt'])
           ->with('ketthuc_kt', $data['ketthuc_kt'])
@@ -3659,6 +3689,7 @@ class ThongKeController extends Controller
         $list_kl_3 = '';
         $list_kl_4 = '';
         $list_kl_5 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -3700,6 +3731,7 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
           ->with('ma_lkl', $data['ma_lkl'])
           ->with('ma_k', $data['ma_k'])
@@ -3758,6 +3790,7 @@ class ThongKeController extends Controller
         $list_kl_3 = '';
         $list_kl_4 = '';
         $list_kl_5 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -3800,6 +3833,7 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
           ->with('ma_k', $data['ma_k'])
           ->with('batdau_kl', $data['batdau_kl'])
@@ -3859,6 +3893,7 @@ class ThongKeController extends Controller
         $list_kl_2 = '';
         $list_kl_4 = '';
         $list_kl_5 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -3902,6 +3937,7 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
           ->with('ma_lkl', $data['ma_lkl'])
           ->with('batdau_kl', $data['batdau_kl'])
@@ -3964,6 +4000,7 @@ class ThongKeController extends Controller
         $list_kl_2 = '';
         $list_kl_3 = '';
         $list_kl_5 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -4009,6 +4046,7 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
           ->with('ma_lkl', $data['ma_lkl'])
           ->with('ma_k', $data['ma_k'])
@@ -4070,6 +4108,7 @@ class ThongKeController extends Controller
         $list_kl_2 = '';
         $list_kl_3 = '';
         $list_kl_4 = '';
+        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
@@ -4116,8 +4155,119 @@ class ThongKeController extends Controller
           ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
 
           ->with('ma_k', $data['ma_k'])
+
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qltt', $phanquyen_qltt);
+      }else if(isset($data['ma_lkl'])){
+        $count_kl_6 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
+          ->where('status_kl', '<>', '2')
+          ->where('status_vc', '<>', '2')
+          ->select(DB::raw('count(kyluat.ma_kl) as sum, loaikyluat.ma_lkl'))
+          ->groupBy('loaikyluat.ma_lkl')
+          ->get();
+        $count_loaikhenthuong = '';
+        $count_4 = '';
+        $count_kl_all = '';
+        $count_5 = '';
+        $count_6 = '';
+        $count_7 = '';
+        $count_8 = '';
+        $count_9 = '';
+        $count_10 = '';
+        $count_11 = '';
+        $count_12 = '';
+        $count_13 = '';
+        $count_14 = '';
+        $count_kl_2 = '';
+        $count_kl_3 = '';
+        $count_kl_4 = '';
+        $count_kl_5 = '';
+
+        $list_kl_6 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
+          ->where('kyluat.ma_lkl', $data['ma_lkl'])
+          ->where('status_vc', '<>', '2')
+          ->where('status_kl', '<>', '2')
+          ->get();
+        $list_pdf_lkt = '';
+        $list_kl_all = '';
+        $list_all = '';
+        $list_3 = '';
+        $list_4 = '';
+        $list_2 = '';
+        $list_5 = '';
+        $list_6 = '';
+        $list_7 = '';
+        $list_8 = '';
+        $list_9 = '';
+        $list_10 = '';
+        $list_11 = '';
+        $list_12 = '';
+        $list_13 ='';
+        $list_14 = '';
+        $list_kl_2 = '';
+        $list_kl_3 = '';
+        $list_kl_4 = '';
+        $list_kl_5 = '';
+        return view('thongke.thongke_qlktkl')
+          ->with('title', $title)
+
+          ->with('count_nangbac', $count_nangbac)
+          ->with('count_kl_all', $count_kl_all)
+          ->with('count_loaikhenthuong', $count_loaikhenthuong)
+          ->with('count_4', $count_4)
+          ->with('count_5', $count_5)
+          ->with('count_6', $count_6)
+          ->with('count_7', $count_7)
+          ->with('count_8', $count_8)
+          ->with('count_9', $count_9)
+          ->with('count_10', $count_10)
+          ->with('count_11', $count_11)
+          ->with('count_12', $count_12)
+          ->with('count_13', $count_13)
+          ->with('count_14', $count_14)
+          ->with('count_kl_2', $count_kl_2)
+          ->with('count_kl_3', $count_kl_3)
+          ->with('count_kl_4', $count_kl_4)
+          ->with('count_kl_5', $count_kl_5)
+          ->with('count_kl_6', $count_kl_6)
+
+          ->with('list_kl_all', $list_kl_all)
+          ->with('list_khoa', $list_khoa)
+          ->with('list_loaikhenthuong', $list_loaikhenthuong)
+          ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
+          ->with('list_loaikyluat', $list_loaikyluat)
+          ->with('list_pdf_lkt', $list_pdf_lkt)
+          ->with('list_all', $list_all)
+          ->with('list_2', $list_2)
+          ->with('list_3', $list_3)
+          ->with('list_4', $list_4)
+          ->with('list_5', $list_5)
+          ->with('list_6', $list_6)
+          ->with('list_7', $list_7)
+          ->with('list_8', $list_8)
+          ->with('list_9', $list_9)
+          ->with('list_10', $list_10)
+          ->with('list_11', $list_11)
+          ->with('list_12', $list_12)
+          ->with('list_13', $list_13)
+          ->with('list_14', $list_14)
+          ->with('list_kl_2', $list_kl_2)
+          ->with('list_kl_3', $list_kl_3)
+          ->with('list_kl_4', $list_kl_4)
+          ->with('list_kl_5', $list_kl_5)
+          ->with('list_kl_6', $list_kl_6)
+
+          ->with('ma_lkl', $data['ma_lkl'])
 
           ->with('phanquyen_admin', $phanquyen_admin)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -4264,6 +4414,35 @@ class ThongKeController extends Controller
         ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
         ->where('vienchuc.ma_k', $ma_k)
+        ->where('status_vc', '<>', '2')
+        ->where('status_kl', '<>', '2')
+        ->get();
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_vc', '<>', '2')
+        ->get();
+      $pdf = PDF::loadView('pdf.thongke_qlklkt_kl_pdf', [
+        'vienchuc' => $vienchuc,
+        'kyluat' => $kyluat,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlktkl_kl_loc_6_pdf($ma_lkl){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $kyluat = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
+        ->where('kyluat.ma_lkl', $ma_lkl)
         ->where('status_vc', '<>', '2')
         ->where('status_kl', '<>', '2')
         ->get();
