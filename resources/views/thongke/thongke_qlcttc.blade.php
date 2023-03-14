@@ -4,7 +4,7 @@
   <div class="card-box col-12">
     <div class="row">
       <div class="col-12">
-        <p class="fw-bold" style="font-size: 18px;">Thống kê thông tin khen thưởng, kỷ luật của viên chức </p>
+        <p class="fw-bold" style="font-size: 18px;">Thống kê quản lý công tác tổ chức </p>
       </div>
     </div>
     <div class="row">
@@ -26,31 +26,31 @@
                 <div class="modal-body">
                   <div class="row">
                     <div class="col-6">
-                      <input type="radio" class="radio" name="hoanthanh" id="size_1" value=""/>
+                      <input type="radio" class="radio" name="hoanthanh" id="size_1" value="1"/>
                       <label class="label" for="size_1">
                         Hoàn thành khoá học
                       </label>
                     </div>
                     <div class="col-6">
-                      <input type="radio" class="radio" name="giahan" id="size_2" value=""/>
+                      <input type="radio" class="radio" name="giahan" id="size_2" value="1"/>
                       <label class="label" for="size_2">
                         Xin gia hạn
                       </label>
                     </div>
                     <div class="col-6">
-                      <input type="radio" class="radio" name="tamdung" id="size_3" value=""/>
+                      <input type="radio" class="radio" name="tamdung" id="size_3" value="1"/>
                       <label class="label" for="size_3">
                         Xin tạm dừng
                       </label>
                     </div>
                     <div class="col-6">
-                      <input type="radio" class="radio" name="xinchuyen" id="size_4" value=""/>
+                      <input type="radio" class="radio" name="xinchuyen" id="size_4" value="1"/>
                       <label class="label" for="size_4">
                         Xin chuyển
                       </label>
                     </div>
                     <div class="col-6">
-                      <input type="radio" class="radio" name="thoihoc" id="size_5" value=""/>
+                      <input type="radio" class="radio" name="thoihoc" id="size_5" value="1"/>
                       <label class="label" for="size_5">
                         Xin thôi học
                       </label>
@@ -479,6 +479,86 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_loc_1_pdf') }}">
+            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+          </a>
+        </div>
+      </div>
+    @endif
+    @if ($list_all != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          DANH SÁCH VIÊN CHỨC
+        </h3>
+      </div>
+      <p style="font-weight: bold; color: #D36B00; font-size: 18px">
+        Danh sách được lọc theo: 
+        <span class="badge text-bg-primary">Hoàn thành khoá học</span>
+        ,
+        <span class="badge text-bg-secondary">Xin gia hạn</span>
+        ,
+        <span class="badge text-bg-success">Xin tạm dừng</span>
+        ,
+        <span class="badge text-bg-danger">Xin chuyển</span>
+        ,
+        <span class="badge text-bg-warning">Xin thôi học</span>
+      </p>
+      <table class="table" id="mytable">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Thông tin viên chức </th>
+            <th scope="col">Khoa</th>
+          </tr>
+        </thead>
+        <tbody  >
+          @foreach($list_all as $key => $vc)
+            <tr>
+              <td>{{ $key+1 }}</td>
+              <td>
+                <div class="row ">
+                  <div class="col-md-12">
+                    <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
+                      style="height: 100px; overflow: auto;">
+                      @foreach ($list_vienchuc as $vienchuc )
+                        @if ($vienchuc->ma_vc == $vc->ma_vc)
+                          <p>
+                            <b> Tên viên chức:</b> {{ $vienchuc->hoten_vc }} <br>
+                            <b> Số điện thoại:</b> {{ $vienchuc->sdt_vc }} <br>
+                            <b> Email: </b> {{ $vienchuc->user_vc }} <br>
+                            <b> Ngày sinh: </b> {{ $vienchuc->ngaysinh_vc }} <br>
+                            <b> Giới tính: </b>
+                            @if ($vienchuc->giotinh_vc == 0)
+                              Nam
+                            @else
+                              Nữ
+                            @endif
+                            <br>
+                            <b> Địa chỉ hiện tại: </b> {{ $vienchuc->hientai_vc }} <br>
+                            <b> Địa chỉ thường trú: </b> {{ $vienchuc->thuongtru_vc }} <br>
+                            <b> Trình độ phổ thông: </b> {{ $vienchuc->trinhdophothong_vc }} <br>
+                            <b> Ngoại ngữ: </b> {{ $vienchuc->ngoaingu_vc }} <br>
+                            <b> Tin học: </b> {{ $vienchuc->tinhoc_vc }} <br>
+                            <b> Ngày vào đảng: </b> {{ $vienchuc->ngayvaodang_vc }} <br>
+                            <b> Ngày chính thức: </b> {{ $vienchuc->ngaychinhthuc_vc }} <br>
+                            <b> Ngày bắt đầu làm việc: </b> {{ $vienchuc->ngaybatdaulamviec_vc }} <br>
+                            <b> Chức vụ: </b> {{ $vienchuc->ten_cv }} <br>
+                            <b> Dân tộc: </b> {{ $vienchuc->ten_dt }} <br>
+                            <b> Tôn giáo: </b> {{ $vienchuc->ten_tg }}
+                          </p>
+                        @endif
+                      @endforeach
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>{{ $vc->ten_k }}</td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlktkl_loc_all_pdf') }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>

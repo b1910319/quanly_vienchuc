@@ -192,6 +192,11 @@
     
     <div id="myfirstchart_qltt_1" style="height: 250px;"></div>
     @if ($list != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          DANH SÁCH VIÊN CHỨC
+        </h3>
+      </div>
       <table class="table" id="mytable">
         <thead class="table-dark">
           <tr>
@@ -254,6 +259,11 @@
     @endif
 
     @if ($list_all != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          DANH SÁCH VIÊN CHỨC
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_khoa as $khoa )
@@ -371,6 +381,11 @@
       </div>
     @endif
     @if ($list_pdf_khoa != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          DANH SÁCH VIÊN CHỨC THEO KHOA
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_khoa as $khoa )
@@ -440,6 +455,11 @@
       </div>
     @endif
     @if ($list_pdf_chucvu != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          DANH SÁCH VIÊN CHỨC THEO CHỨC VỤ
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_chucvu as $chucvu )
@@ -506,6 +526,11 @@
       </div>
     @endif
     @if ($list_pdf_hdt != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          DANH SÁCH VIÊN CHỨC THEO HỆ ĐÀO TẠO
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_hedaotao as $hedaotao )
@@ -572,6 +597,11 @@
       </div>
     @endif
     @if ($list_pdf_lbc != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          DANH SÁCH VIÊN CHỨC THEO LOẠI BẰNG CẤP
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_loaibangcap as $loaibangcap )
@@ -638,6 +668,11 @@
       </div>
     @endif
     @if ($list_pdf_ngach != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          DANH SÁCH VIÊN CHỨC THEO NGẠCH
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_ngach as $ngach )
@@ -704,6 +739,11 @@
       </div>
     @endif
     @if ($list_pdf_tinh != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          DANH SÁCH VIÊN CHỨC THEO TỈNH
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_tinh as $tinh )
@@ -770,6 +810,11 @@
       </div>
     @endif
     @if ($list_pdf_dantoc != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          DANH SÁCH VIÊN CHỨC THEO DÂN TỘC
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_dantoc as $dantoc )
@@ -836,6 +881,11 @@
       </div>
     @endif
     @if ($list_pdf_tongiao != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          DANH SÁCH VIÊN CHỨC THEO TÔN GIÁO
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_tongiao as $tongiao )
@@ -902,6 +952,11 @@
       </div>
     @endif
     @if ($list_pdf_thuongbinh != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          DANH SÁCH VIÊN CHỨC THEO HẠNG THƯƠNG BINH
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_thuongbinh as $thuongbinh )
@@ -968,6 +1023,11 @@
       </div>
     @endif
     @if ($list_nghihuu_all != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          DANH SÁCH VIÊN CHỨC NGHĨ HƯU
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_khoa as $khoa )
@@ -1038,6 +1098,11 @@
       </div>
     @endif
     @if ($list_nghihuu_khoa != '' || $list_nghihuu_time != '' )
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          DANH SÁCH VIÊN CHỨC NGHĨ HƯU
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @if ($list_nghihuu_khoa != '')
@@ -1159,6 +1224,11 @@
     @endif
 
     @if ($list_2 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          DANH SÁCH VIÊN CHỨC THEO KHOA & CHỨC VỤ
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_khoa as $khoa )

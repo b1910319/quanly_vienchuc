@@ -146,6 +146,11 @@
     <div id="myfirstchart_qlktkl" style="height: 250px;">
     </div>
     @if ($list_pdf_lkt != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
+        </h3>
+      </div>
       <table class="table" id="mytable">
         <thead class="table-dark">
           <tr>
@@ -230,6 +235,11 @@
     @endif
 
     @if ($list_all != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_khoa as $khoa )
@@ -329,6 +339,11 @@
       </div>
     @endif
     @if ($list_2 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_loaikhenthuong as $loaikhenthuong )
@@ -422,6 +437,11 @@
       </div>
     @endif
     @if ($list_3 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_loaikhenthuong as $loaikhenthuong )
@@ -515,6 +535,11 @@
       </div>
     @endif
     @if ($list_4 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_loaikhenthuong as $loaikhenthuong )
@@ -610,6 +635,11 @@
       </div>
     @endif
     @if ($list_5 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_hinhthuckhenthuong as $hinhthuckhenthuong )
@@ -697,6 +727,11 @@
       </div>
     @endif
     @if ($list_6 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_khoa as $khoa )
@@ -784,6 +819,11 @@
       </div>
     @endif
     @if ($list_7 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_khoa as $khoa )
@@ -873,6 +913,11 @@
       </div>
     @endif
     @if ($list_8 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_loaikhenthuong as $loaikhenthuong )
@@ -960,6 +1005,11 @@
       </div>
     @endif
     @if ($list_9 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC LỌC THEO LOẠI KHEN THƯỞNG & HÌNH THỨC KHEN THƯỞNG
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_loaikhenthuong as $loaikhenthuong )
@@ -1049,6 +1099,11 @@
       </div>
     @endif
     @if ($list_10 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC LỌC THEO LOẠI KHEN THƯỞNG & KHOA
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_loaikhenthuong as $loaikhenthuong )
@@ -1138,6 +1193,11 @@
       </div>
     @endif
     @if ($list_11 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC LỌC THEO LOẠI KHEN THƯỞNG
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_loaikhenthuong as $loaikhenthuong )
@@ -1221,6 +1281,11 @@
       </div>
     @endif
     @if ($list_12 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC LỌC THEO KHOA
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_khoa as $khoa )
@@ -1304,6 +1369,11 @@
       </div>
     @endif
     @if ($list_13 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC LỌC HÌNH THỨC KHEN THƯỞNG
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_hinhthuckhenthuong as $hinhthuckhenthuong )
@@ -1387,6 +1457,11 @@
       </div>
     @endif
     @if ($list_14 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC LỌC THEO THỜI GIAN
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         <span class="badge text-bg-danger">{{ $batdau_kt }}</span>
@@ -1469,6 +1544,11 @@
     @endif
 
     @if ($list_kl_all != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KỶ LUẬT CỦA VIÊN CHỨC
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_khoa as $khoa )
@@ -1561,6 +1641,11 @@
       </div>
     @endif
     @if ($list_kl_2 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KỶ LUẬT CỦA VIÊN CHỨC
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_khoa as $khoa )
@@ -1647,6 +1732,11 @@
       </div>
     @endif
     @if ($list_kl_3 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KỶ LUẬT CỦA VIÊN CHỨC
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_loaikyluat as $loaikyluat )
@@ -1733,6 +1823,11 @@
       </div>
     @endif
     @if ($list_kl_4 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KỶ LUẬT CỦA VIÊN CHỨC LỌC THEO KHOA & LOẠI KỶ LUẬT
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_khoa as $khoa )
@@ -1821,6 +1916,11 @@
       </div>
     @endif
     @if ($list_kl_5 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KỶ LUẬT CỦA VIÊN CHỨC LỌC THEO KHOA
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_khoa as $khoa )
@@ -1903,6 +2003,11 @@
       </div>
     @endif
     @if ($list_kl_6 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KỶ LUẬT CỦA VIÊN CHỨC LỌC THEO LOẠI KỶ LUẬT
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_loaikyluat as $loaikyluat )
@@ -1985,6 +2090,11 @@
       </div>
     @endif
     @if ($list_kl_7 != '')
+      <div class="alert alert-dark" role="alert">
+        <h3 class="text-center fw-bold" style="color: black" >
+          THÔNG TIN KỶ LUẬT CỦA VIÊN CHỨC LỌC THEO THỜI GIAN
+        </h3>
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         <span class="badge text-bg-danger">{{ $batdau_kl }}</span>
