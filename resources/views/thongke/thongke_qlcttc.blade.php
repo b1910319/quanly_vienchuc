@@ -382,7 +382,7 @@
     
     <div id="myfirstchart_qlcttc" style="height: 250px;">
     </div>
-    @if ($list_1 != '')
+    @if (isset($list_1))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC
@@ -494,7 +494,7 @@
         </div>
       </div>
     @endif
-    @if ($list_all != '')
+    @if (isset($list_all))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC
@@ -574,7 +574,7 @@
         </div>
       </div>
     @endif
-    @if ($list_hoanthanh != '')
+    @if (isset($list_hoanthanh))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC
@@ -584,7 +584,6 @@
         Danh sách được lọc theo: 
         <span class="badge text-bg-primary">Hoàn thành khoá học</span>
       </p>
-      
       <table class="table" id="mytable">
         <thead class="table-dark">
           <tr>
@@ -687,7 +686,7 @@
         </div>
       </div>
     @endif
-    @if ($list_giahan != '')
+    @if (isset($list_giahan))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC  XIN GIA HẠN KHOÁ HỌC
@@ -794,7 +793,7 @@
         </div>
       </div>
     @endif
-    @if ($list_dunghoc != '')
+    @if (isset($list_dunghoc))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC XIN TẠM DỪNG KHOÁ HỌC
@@ -902,7 +901,7 @@
         </div>
       </div>
     @endif
-    @if ($list_chuyen != '')
+    @if (isset($list_chuyen))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC XIN CHUYỂN NƯỚC, TRƯỜNG, NGÀNH HỌC .....
@@ -1009,7 +1008,7 @@
         </div>
       </div>
     @endif
-    @if ($list_thoihoc != '')
+    @if (isset($list_thoihoc))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC XIN THÔI HỌC
@@ -1117,7 +1116,7 @@
       </div>
     @endif
 
-    @if ($list_hoanthanh_all != '')
+    @if (isset($list_hoanthanh_all))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC
@@ -1239,7 +1238,7 @@
         </div>
       </div>
     @endif
-    @if ($list_hoanthanh_2 != '')
+    @if (isset($list_hoanthanh_2))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC
@@ -1356,7 +1355,7 @@
         </div>
       </div>
     @endif
-    @if ($list_hoanthanh_3 != '')
+    @if (isset($list_hoanthanh_3))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC
@@ -1474,7 +1473,7 @@
         </div>
       </div>
     @endif
-    @if ($list_hoanthanh_4 != '')
+    @if (isset($list_hoanthanh_4))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC
@@ -1592,7 +1591,7 @@
         </div>
       </div>
     @endif
-    @if ($list_hoanthanh_5 != '')
+    @if (isset($list_hoanthanh_5))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC
@@ -1707,7 +1706,7 @@
         </div>
       </div>
     @endif
-    @if ($list_hoanthanh_6 != '')
+    @if (isset($list_hoanthanh_6))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC
@@ -1820,7 +1819,7 @@
         </div>
       </div>
     @endif
-    @if ($list_hoanthanh_7 != '')
+    @if (isset($list_hoanthanh_7))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC
@@ -1934,7 +1933,7 @@
       </div>
     @endif
 
-    @if ($list_giahan_all != '')
+    @if (isset($list_giahan_all))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC
@@ -2066,7 +2065,7 @@
       barColors: ['#FF6363'],
       data: [
         <?php
-          if($count_1 ){
+          if(isset($count_1) ){
             foreach ($count_1 as $key => $count){
               foreach($list_lop as $key => $lop){
                 if($count->ma_l == $lop->ma_l){
@@ -2076,7 +2075,7 @@
                 }
               }
             }
-          }else if($count_hoanthanh ){
+          }else if(isset($count_hoanthanh) ){
             foreach ($count_hoanthanh as $key => $count){
               foreach($list_lop as $key => $lop){
                 if($count->ma_l == $lop->ma_l){
@@ -2086,7 +2085,7 @@
                 }
               }
             }
-          }else if($count_giahan ){
+          }else if(isset($count_giahan) ){
             foreach ($count_giahan as $key => $count){
               foreach($list_lop as $key => $lop){
                 if($count->ma_l == $lop->ma_l){
@@ -2096,7 +2095,7 @@
                 }
               }
             }
-          }else if($count_dunghoc ){
+          }else if(isset($count_dunghoc) ){
             foreach ($count_dunghoc as $key => $count){
               foreach($list_lop as $key => $lop){
                 if($count->ma_l == $lop->ma_l){
@@ -2106,7 +2105,7 @@
                 }
               }
             }
-          }else if($count_chuyen ){
+          }else if(isset($count_chuyen) ){
             foreach ($count_chuyen as $key => $count){
               foreach($list_lop as $key => $lop){
                 if($count->ma_l == $lop->ma_l){
@@ -2116,7 +2115,7 @@
                 }
               }
             }
-          }else if($count_thoihoc ){
+          }else if(isset($count_thoihoc) ){
             foreach ($count_thoihoc as $key => $count){
               foreach($list_lop as $key => $lop){
                 if($count->ma_l == $lop->ma_l){
@@ -2126,7 +2125,7 @@
                 }
               }
             }
-          }else if($count_hoanthanh_all ){
+          }else if(isset($count_hoanthanh_all) ){
             foreach ($count_hoanthanh_all as $key => $count){
               foreach($list_lop as $key => $lop){
                 if($count->ma_l == $lop->ma_l){
@@ -2136,13 +2135,13 @@
                 }
               }
             }
-          }else if($count_hoanthanh_2 ){
+          }else if(isset($count_hoanthanh_2) ){
             foreach ($count_hoanthanh_2 as $key => $count){
               $ngaycapbang_kq = $count->ngaycapbang_kq;
               $tong = $count->sum;
               echo "{ year: '$ngaycapbang_kq', value: $tong },";
             }
-          }else if($count_hoanthanh_3 ){
+          }else if(isset($count_hoanthanh_3) ){
             foreach ($count_hoanthanh_3 as $key => $count){
               foreach($list_lop as $key => $lop){
                 if($count->ma_l == $lop->ma_l){
@@ -2153,7 +2152,7 @@
                 }
               }
             }
-          }else if($count_hoanthanh_4 ){
+          }else if(isset($count_hoanthanh_4) ){
             foreach ($count_hoanthanh_4 as $key => $count){
               foreach($list_lop as $key => $lop){
                 if($count->ma_l == $lop->ma_l){
@@ -2164,7 +2163,7 @@
                 }
               }
             }
-          }else if($count_hoanthanh_5 ){
+          }else if(isset($count_hoanthanh_5) ){
             foreach ($count_hoanthanh_5 as $key => $count){
               foreach($list_lop as $key => $lop){
                 if($count->ma_l == $lop->ma_l){
@@ -2174,19 +2173,19 @@
                 }
               }
             }
-          }else if($count_hoanthanh_6 ){
+          }else if(isset($count_hoanthanh_6) ){
             foreach ($count_hoanthanh_6 as $key => $count){
               $ngaycapbang_kq = $count->ngaycapbang_kq;
               $tong = $count->sum;
               echo "{ year: '$ngaycapbang_kq', value: $tong },";
             }
-          }else if($count_hoanthanh_7 ){
+          }else if(isset($count_hoanthanh_7) ){
             foreach ($count_hoanthanh_7 as $key => $count){
               $ngayvenuoc_kq = $count->ngayvenuoc_kq;
               $tong = $count->sum;
               echo "{ year: '$ngayvenuoc_kq', value: $tong },";
             }
-          }else if($count_giahan_all ){
+          }else if(isset($count_giahan_all) ){
             foreach ($count_giahan_all as $key => $count){
               foreach($list_lop as $key => $lop){
                 if($count->ma_l == $lop->ma_l){
@@ -2197,8 +2196,6 @@
               }
             }
           }
-          
-          
         ?>
       ],
       xkey: 'year',

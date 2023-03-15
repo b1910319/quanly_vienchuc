@@ -191,7 +191,7 @@
     </div>
     
     <div id="myfirstchart_qltt_1" style="height: 250px;"></div>
-    @if ($list != '')
+    @if (isset($list))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC
@@ -258,7 +258,7 @@
       </div>
     @endif
 
-    @if ($list_all != '')
+    @if (isset($list_all))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC
@@ -380,7 +380,7 @@
         </div>
       </div>
     @endif
-    @if ($list_pdf_khoa != '')
+    @if ( isset($list_pdf_khoa))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO KHOA
@@ -454,7 +454,7 @@
         </div>
       </div>
     @endif
-    @if ($list_pdf_chucvu != '')
+    @if (isset($list_pdf_chucvu))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO CHỨC VỤ
@@ -525,7 +525,7 @@
         </div>
       </div>
     @endif
-    @if ($list_pdf_hdt != '')
+    @if (isset($list_pdf_hdt) )
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO HỆ ĐÀO TẠO
@@ -596,7 +596,7 @@
         </div>
       </div>
     @endif
-    @if ($list_pdf_lbc != '')
+    @if (isset($list_pdf_lbc))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO LOẠI BẰNG CẤP
@@ -667,7 +667,7 @@
         </div>
       </div>
     @endif
-    @if ($list_pdf_ngach != '')
+    @if (isset($list_pdf_ngach))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO NGẠCH
@@ -738,7 +738,7 @@
         </div>
       </div>
     @endif
-    @if ($list_pdf_tinh != '')
+    @if (isset($list_pdf_tinh))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO TỈNH
@@ -809,7 +809,7 @@
         </div>
       </div>
     @endif
-    @if ($list_pdf_dantoc != '')
+    @if (isset($list_pdf_dantoc))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO DÂN TỘC
@@ -880,7 +880,7 @@
         </div>
       </div>
     @endif
-    @if ($list_pdf_tongiao != '')
+    @if (isset($list_pdf_tongiao) )
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO TÔN GIÁO
@@ -951,7 +951,7 @@
         </div>
       </div>
     @endif
-    @if ($list_pdf_thuongbinh != '')
+    @if (isset($list_pdf_thuongbinh) )
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO HẠNG THƯƠNG BINH
@@ -1022,7 +1022,7 @@
         </div>
       </div>
     @endif
-    @if ($list_nghihuu_all != '')
+    @if (isset($list_nghihuu_all) )
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC NGHĨ HƯU
@@ -1097,7 +1097,7 @@
         </div>
       </div>
     @endif
-    @if ($list_nghihuu_khoa != '' || $list_nghihuu_time != '' )
+    @if (isset($list_nghihuu_khoa)  || isset($list_nghihuu_time) )
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC NGHĨ HƯU
@@ -1223,7 +1223,7 @@
       </div>
     @endif
 
-    @if ($list_2 != '')
+    @if (isset($list_2 ))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO KHOA & CHỨC VỤ
@@ -1311,7 +1311,7 @@
       barColors: ['#FF6363'],
       data: [
         <?php
-          if($count){
+          if(isset($count)){
             foreach ($count as $key => $count){
               foreach($list_khoa as $key => $khoa){
                 if($count->ma_k == $khoa->ma_k){
@@ -1321,7 +1321,7 @@
                 }
               }
             }
-          }else if($count_khoa){
+          }else if(isset($count_khoa)){
             foreach ($count_khoa as $key => $count){
               foreach($list_khoa as $key => $khoa){
                 if($count->ma_k == $khoa->ma_k){
@@ -1331,7 +1331,7 @@
                 }
               }
             }
-          }else if($count_chucvu){
+          }else if(isset($count_chucvu)){
             foreach ($count_chucvu as $key => $count){
               foreach($list_chucvu as $key => $chucvu){
                 if($count->ma_cv == $chucvu->ma_cv){
@@ -1341,7 +1341,7 @@
                 }
               }
             }
-          }else if($count_hedaotao){
+          }else if(isset($count_hedaotao)){
             foreach ($count_hedaotao as $key => $count){
               foreach($list_hedaotao as $key => $hedaotao){
                 if($count->ma_hdt == $hedaotao->ma_hdt){
@@ -1351,7 +1351,7 @@
                 }
               }
             }
-          }else if($count_loaibangcap){
+          }else if(isset($count_loaibangcap)){
             foreach ($count_loaibangcap as $key => $count){
               foreach($list_loaibangcap as $key => $loaibangcap){
                 if($count->ma_lbc == $loaibangcap->ma_lbc){
@@ -1361,7 +1361,7 @@
                 }
               }
             }
-          }else if($count_ngach){
+          }else if(isset($count_ngach)){
             foreach ($count_ngach as $key => $count){
               foreach($list_ngach as $key => $ngach){
                 if($count->ma_n == $ngach->ma_n){
@@ -1371,7 +1371,7 @@
                 }
               }
             }
-          }else if($count_tinh){
+          }else if(isset($count_tinh)){
             foreach ($count_tinh as $key => $count){
               foreach($list_tinh as $key => $tinh){
                 if($count->ma_t == $tinh->ma_t){
@@ -1381,7 +1381,7 @@
                 }
               }
             }
-          }else if($count_dantoc){
+          }else if(isset($count_dantoc)){
             foreach ($count_dantoc as $key => $count){
               foreach($list_dantoc as $key => $dantoc){
                 if($count->ma_dt == $dantoc->ma_dt){
@@ -1391,7 +1391,7 @@
                 }
               }
             }
-          }else if($count_tongiao){
+          }else if(isset($count_tongiao)){
             foreach ($count_tongiao as $key => $count){
               foreach($list_tongiao as $key => $tongiao){
                 if($count->ma_tg == $tongiao->ma_tg){
@@ -1401,7 +1401,7 @@
                 }
               }
             }
-          }else if($count_thuongbinh){
+          }else if(isset($count_thuongbinh)){
             foreach ($count_thuongbinh as $key => $count){
               foreach($list_thuongbinh as $key => $thuongbinh){
                 if($count->ma_tb == $thuongbinh->ma_tb){
@@ -1411,7 +1411,7 @@
                 }
               }
             }
-          }else if($count_nghihuu_all){
+          }else if(isset($count_nghihuu_all)){
             foreach ($count_nghihuu_all as $key => $count){
               foreach($list_khoa as $key => $khoa){
                 if($count->ma_k == $khoa->ma_k){
@@ -1422,7 +1422,7 @@
                 }
               }
             }
-          }else if($count_nghihuu_khoa){
+          }else if(isset($count_nghihuu_khoa)){
             foreach ($count_nghihuu_khoa as $key => $count){
               foreach($list_khoa as $key => $khoa){
                 if($count->ma_k == $khoa->ma_k){
@@ -1433,7 +1433,7 @@
                 }
               }
             }
-          }else if($count_nghihuu_time){
+          }else if(isset($count_nghihuu_time)){
             foreach ($count_nghihuu_time as $key => $count){
               $thoigiannghi_vc = $count->thoigiannghi_vc;
               $tong = $count->sum;

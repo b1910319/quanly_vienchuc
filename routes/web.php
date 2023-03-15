@@ -318,7 +318,6 @@ Route::get('/thongke_qlcttc_giahan_loc_all_pdf/{ma_k}/{ma_l}/{batdau_giahan}/{ke
 
 // ----------------------------------------------------------
 
-
 Route::get('/loaikhenthuong',[LoaiKhenThuongController::class, 'loaikhenthuong']);
 Route::post('/add_loaikhenthuong',[LoaiKhenThuongController::class, 'add_loaikhenthuong']);
 Route::get('/select_loaikhenthuong/{ma_lkt}',[LoaiKhenThuongController::class, 'select_loaikhenthuong']);

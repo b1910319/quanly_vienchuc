@@ -97,20 +97,6 @@ class ThongKeController extends Controller
         ->where('status_vc', '<>', '2')
         ->orderBy('ten_n', 'asc')
         ->get();
-      $list_all ='';
-      $list_pdf_khoa ='';
-      $list_pdf_chucvu = '';
-      $list_pdf_hdt = '';
-      $list_pdf_lbc = '';
-      $list_pdf_ngach = '';
-      $list_pdf_tinh = '';
-      $list_pdf_dantoc ='';
-      $list_pdf_tongiao = '';
-      $list_pdf_thuongbinh = '';
-      $list_nghihuu_all = '';
-      $list_nghihuu_khoa = '';
-      $list_nghihuu_time = '';
-      $list_2 = '';
       return view('thongke.thongke_qltt')
         ->with('title', $title)
 
@@ -118,7 +104,6 @@ class ThongKeController extends Controller
         ->with('count', $count)
 
         ->with('list', $list)
-        ->with('list_all', $list_all)
         ->with('list_khoa', $list_khoa)
         ->with('list_loaibangcap', $list_loaibangcap)
         ->with('list_ngach', $list_ngach)
@@ -127,19 +112,6 @@ class ThongKeController extends Controller
         ->with('list_tinh', $list_tinh)
         ->with('list_dantoc', $list_dantoc)
         ->with('list_tongiao', $list_tongiao)
-        ->with('list_pdf_khoa', $list_pdf_khoa)
-        ->with('list_pdf_chucvu', $list_pdf_chucvu)
-        ->with('list_pdf_hdt', $list_pdf_hdt)
-        ->with('list_pdf_lbc', $list_pdf_lbc)
-        ->with('list_pdf_ngach', $list_pdf_ngach)
-        ->with('list_pdf_tinh', $list_pdf_tinh)
-        ->with('list_pdf_dantoc', $list_pdf_dantoc)
-        ->with('list_pdf_tongiao', $list_pdf_tongiao)
-        ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
-        ->with('list_nghihuu_all', $list_nghihuu_all)
-        ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
-        ->with('list_nghihuu_time', $list_nghihuu_time)
-        ->with('list_2', $list_2)
 
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('phanquyen_admin', $phanquyen_admin)
@@ -225,33 +197,6 @@ class ThongKeController extends Controller
         ->get();
       $data = $request->all();
 
-      $list = '';
-      $list_pdf_khoa = '';
-      $list_pdf_chucvu = '';
-      $list_pdf_hdt = '';
-      $list_pdf_ngach = '';
-      $list_pdf_tinh = '';
-      $list_pdf_dantoc ='';
-      $list_pdf_tongiao = '';
-      $list_pdf_thuongbinh = '';
-      $list_nghihuu_all = '';
-      $list_nghihuu_khoa = '';
-      $list_nghihuu_time = '';
-      $list_pdf_lbc = '';
-      $list_2 = '';
-      $list_all = '';
-
-      $count_chucvu = '';
-      $count_hedaotao = '';
-      $count_loaibangcap = '';
-      $count_ngach = '';
-      $count_tinh = '';
-      $count_dantoc = '';
-      $count_tongiao = '';
-      $count_thuongbinh = '';
-      $count_khoa = '';
-      $count = '';
-
       if(isset($data['ma_k'])  && isset($data['ma_cv'])  && isset($data['ma_hdt'])  && isset($data['ma_lbc'])  && isset($data['ma_n'])  && isset( $data['ma_t']) && isset($data['ma_dt'])  && isset($data['ma_tg'])  && isset($data['ma_tb'])){
         $count = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '<>', '2')
@@ -286,7 +231,6 @@ class ThongKeController extends Controller
           ->with('count_nangbac', $count_nangbac)
           ->with('count', $count)
 
-          ->with('list', $list)
           ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaibangcap', $list_loaibangcap)
@@ -296,20 +240,7 @@ class ThongKeController extends Controller
           ->with('list_tinh', $list_tinh)
           ->with('list_dantoc', $list_dantoc)
           ->with('list_tongiao', $list_tongiao)
-          ->with('list_pdf_khoa', $list_pdf_khoa)
-          ->with('list_pdf_chucvu', $list_pdf_chucvu)
-          ->with('list_pdf_hdt', $list_pdf_hdt)
-          ->with('list_pdf_ngach', $list_pdf_ngach)
-          ->with('list_pdf_tinh', $list_pdf_tinh)
-          ->with('list_pdf_dantoc', $list_pdf_dantoc)
-          ->with('list_pdf_tongiao', $list_pdf_tongiao)
-          ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
-          ->with('list_nghihuu_all', $list_nghihuu_all)
-          ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
-          ->with('list_nghihuu_time', $list_nghihuu_time)
-          ->with('list_pdf_lbc', $list_pdf_lbc)
           ->with('list_thuongbinh', $list_thuongbinh)
-          ->with('list_2', $list_2)
 
           ->with('ma_k', $data['ma_k'])
           ->with('ma_cv', $data['ma_cv'])
@@ -343,20 +274,7 @@ class ThongKeController extends Controller
 
           ->with('count_nangbac', $count_nangbac)
           ->with('count', $count)
-          ->with('count_chucvu', $count_chucvu)
-          ->with('count_hedaotao', $count_hedaotao)
-          ->with('count_loaibangcap', $count_loaibangcap)
-          ->with('count_ngach',$count_ngach)
-          ->with('count_khoa', $count_khoa)
-          ->with('count_tinh', $count_tinh)
-          ->with('count_dantoc', $count_dantoc)
-          ->with('count_tongiao', $count_tongiao)
-          ->with('count_thuongbinh', $count_thuongbinh)
 
-          ->with('list_pdf_khoa', $list_pdf_khoa)
-          ->with('list_pdf_chucvu', $list_pdf_chucvu)
-          ->with('list', $list)
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaibangcap', $list_loaibangcap)
           ->with('list_ngach', $list_ngach)
@@ -366,16 +284,6 @@ class ThongKeController extends Controller
           ->with('list_dantoc', $list_dantoc)
           ->with('list_tongiao', $list_tongiao)
           ->with('list_thuongbinh', $list_thuongbinh)
-          ->with('list_pdf_hdt', $list_pdf_hdt)
-          ->with('list_pdf_lbc', $list_pdf_lbc)
-          ->with('list_pdf_ngach', $list_pdf_ngach)
-          ->with('list_pdf_tinh', $list_pdf_tinh)
-          ->with('list_pdf_dantoc', $list_pdf_dantoc)
-          ->with('list_pdf_tongiao', $list_pdf_tongiao)
-          ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
-          ->with('list_nghihuu_all', $list_nghihuu_all)
-          ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
-          ->with('list_nghihuu_time', $list_nghihuu_time)
           ->with('list_2', $list_2)
 
           ->with('ma_k', $data['ma_k'])
@@ -401,21 +309,9 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count', $count)
-          ->with('count_chucvu', $count_chucvu)
-          ->with('count_hedaotao', $count_hedaotao)
-          ->with('count_loaibangcap', $count_loaibangcap)
-          ->with('count_ngach',$count_ngach)
           ->with('count_khoa', $count_khoa)
-          ->with('count_tinh', $count_tinh)
-          ->with('count_dantoc', $count_dantoc)
-          ->with('count_tongiao', $count_tongiao)
-          ->with('count_thuongbinh', $count_thuongbinh)
 
           ->with('list_pdf_khoa', $list_pdf_khoa)
-          ->with('list_pdf_chucvu', $list_pdf_chucvu)
-          ->with('list', $list)
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaibangcap', $list_loaibangcap)
           ->with('list_ngach', $list_ngach)
@@ -425,17 +321,6 @@ class ThongKeController extends Controller
           ->with('list_dantoc', $list_dantoc)
           ->with('list_tongiao', $list_tongiao)
           ->with('list_thuongbinh', $list_thuongbinh)
-          ->with('list_pdf_hdt', $list_pdf_hdt)
-          ->with('list_pdf_lbc', $list_pdf_lbc)
-          ->with('list_pdf_ngach', $list_pdf_ngach)
-          ->with('list_pdf_tinh', $list_pdf_tinh)
-          ->with('list_pdf_dantoc', $list_pdf_dantoc)
-          ->with('list_pdf_tongiao', $list_pdf_tongiao)
-          ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
-          ->with('list_nghihuu_all', $list_nghihuu_all)
-          ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
-          ->with('list_nghihuu_time', $list_nghihuu_time)
-          ->with('list_2', $list_2)
 
           ->with('ma_k', $data['ma_k'])
 
@@ -459,21 +344,9 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count', $count)
           ->with('count_chucvu', $count_chucvu)
-          ->with('count_hedaotao', $count_hedaotao)
-          ->with('count_loaibangcap', $count_loaibangcap)
-          ->with('count_ngach',$count_ngach)
-          ->with('count_khoa', $count_khoa)
-          ->with('count_tinh', $count_tinh)
-          ->with('count_dantoc', $count_dantoc)
-          ->with('count_tongiao', $count_tongiao)
-          ->with('count_thuongbinh', $count_thuongbinh)
 
-          ->with('list_pdf_khoa', $list_pdf_khoa)
           ->with('list_pdf_chucvu', $list_pdf_chucvu)
-          ->with('list', $list)
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaibangcap', $list_loaibangcap)
           ->with('list_ngach', $list_ngach)
@@ -483,17 +356,6 @@ class ThongKeController extends Controller
           ->with('list_dantoc', $list_dantoc)
           ->with('list_tongiao', $list_tongiao)
           ->with('list_thuongbinh', $list_thuongbinh)
-          ->with('list_pdf_hdt', $list_pdf_hdt)
-          ->with('list_pdf_lbc', $list_pdf_lbc)
-          ->with('list_pdf_ngach', $list_pdf_ngach)
-          ->with('list_pdf_tinh', $list_pdf_tinh)
-          ->with('list_pdf_dantoc', $list_pdf_dantoc)
-          ->with('list_pdf_tongiao', $list_pdf_tongiao)
-          ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
-          ->with('list_nghihuu_all', $list_nghihuu_all)
-          ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
-          ->with('list_nghihuu_time', $list_nghihuu_time)
-          ->with('list_2', $list_2)
 
           ->with('ma_cv', $data['ma_cv'])
 
@@ -519,19 +381,8 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count', $count)
-          ->with('count_khoa', $count_khoa)
-          ->with('count_chucvu', $count_chucvu)
           ->with('count_hedaotao', $count_hedaotao)
-          ->with('count_loaibangcap', $count_loaibangcap)
-          ->with('count_ngach', $count_ngach)
-          ->with('count_tinh', $count_tinh)
-          ->with('count_dantoc', $count_dantoc)
-          ->with('count_tongiao', $count_tongiao)
-          ->with('count_thuongbinh', $count_thuongbinh)
 
-          ->with('list', $list)
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaibangcap', $list_loaibangcap)
           ->with('list_ngach', $list_ngach)
@@ -540,19 +391,7 @@ class ThongKeController extends Controller
           ->with('list_tinh', $list_tinh)
           ->with('list_dantoc', $list_dantoc)
           ->with('list_tongiao', $list_tongiao)
-          ->with('list_pdf_khoa', $list_pdf_khoa)
-          ->with('list_pdf_chucvu', $list_pdf_chucvu)
           ->with('list_pdf_hdt', $list_pdf_hdt)
-          ->with('list_pdf_lbc', $list_pdf_lbc)
-          ->with('list_pdf_ngach', $list_pdf_ngach)
-          ->with('list_pdf_tinh', $list_pdf_tinh)
-          ->with('list_pdf_dantoc', $list_pdf_dantoc)
-          ->with('list_pdf_tongiao', $list_pdf_tongiao)
-          ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
-          ->with('list_nghihuu_all', $list_nghihuu_all)
-          ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
-          ->with('list_nghihuu_time', $list_nghihuu_time)
-          ->with('list_2', $list_2)
 
           ->with('ma_hdt', $data['ma_hdt'])
 
@@ -579,19 +418,8 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count', $count)
-          ->with('count_khoa', $count_khoa)
-          ->with('count_chucvu', $count_chucvu)
-          ->with('count_hedaotao', $count_hedaotao)
           ->with('count_loaibangcap', $count_loaibangcap)
-          ->with('count_ngach', $count_ngach)
-          ->with('count_tinh', $count_tinh)
-          ->with('count_dantoc', $count_dantoc)
-          ->with('count_tongiao', $count_tongiao)
-          ->with('count_thuongbinh', $count_thuongbinh)
 
-          ->with('list', $list)
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaibangcap', $list_loaibangcap)
           ->with('list_ngach', $list_ngach)
@@ -600,19 +428,7 @@ class ThongKeController extends Controller
           ->with('list_tinh', $list_tinh)
           ->with('list_dantoc', $list_dantoc)
           ->with('list_tongiao', $list_tongiao)
-          ->with('list_pdf_khoa', $list_pdf_khoa)
-          ->with('list_pdf_chucvu', $list_pdf_chucvu)
-          ->with('list_pdf_hdt', $list_pdf_hdt)
           ->with('list_pdf_lbc', $list_pdf_lbc)
-          ->with('list_pdf_ngach', $list_pdf_ngach)
-          ->with('list_pdf_tinh', $list_pdf_tinh)
-          ->with('list_pdf_dantoc', $list_pdf_dantoc)
-          ->with('list_pdf_tongiao', $list_pdf_tongiao)
-          ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
-          ->with('list_nghihuu_all', $list_nghihuu_all)
-          ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
-          ->with('list_nghihuu_time', $list_nghihuu_time)
-          ->with('list_2', $list_2)
 
           ->with('ma_lbc', $data['ma_lbc'])
 
@@ -637,21 +453,8 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count', $count)
-          ->with('count_khoa', $count_khoa)
-          ->with('count_chucvu', $count_chucvu)
-          ->with('count_loaibangcap', $count_loaibangcap)
           ->with('count_ngach',$count_ngach)
-          ->with('count_hedaotao', $count_hedaotao)
-          ->with('count_tinh', $count_tinh)
-          ->with('count_dantoc', $count_dantoc)
-          ->with('count_tongiao', $count_tongiao)
-          ->with('count_thuongbinh', $count_thuongbinh)
 
-          ->with('list_pdf_khoa', $list_pdf_khoa)
-          ->with('list_pdf_chucvu', $list_pdf_chucvu)
-          ->with('list', $list)
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaibangcap', $list_loaibangcap)
           ->with('list_ngach', $list_ngach)
@@ -661,17 +464,7 @@ class ThongKeController extends Controller
           ->with('list_dantoc', $list_dantoc)
           ->with('list_tongiao', $list_tongiao)
           ->with('list_thuongbinh', $list_thuongbinh)
-          ->with('list_pdf_hdt', $list_pdf_hdt)
-          ->with('list_pdf_lbc', $list_pdf_lbc)
           ->with('list_pdf_ngach', $list_pdf_ngach)
-          ->with('list_pdf_tinh', $list_pdf_tinh)
-          ->with('list_pdf_dantoc', $list_pdf_dantoc)
-          ->with('list_pdf_tongiao', $list_pdf_tongiao)
-          ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
-          ->with('list_nghihuu_all', $list_nghihuu_all)
-          ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
-          ->with('list_nghihuu_time', $list_nghihuu_time)
-          ->with('list_2', $list_2)
 
           ->with('ma_n', $data['ma_n'])
 
@@ -697,19 +490,8 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count', $count)
-          ->with('count_khoa', $count_khoa)
-          ->with('count_chucvu', $count_chucvu)
-          ->with('count_hedaotao', $count_hedaotao)
-          ->with('count_loaibangcap', $count_loaibangcap)
-          ->with('count_ngach', $count_ngach)
           ->with('count_tinh', $count_tinh)
-          ->with('count_dantoc', $count_dantoc)
-          ->with('count_tongiao', $count_tongiao)
-          ->with('count_thuongbinh', $count_thuongbinh)
 
-          ->with('list', $list)
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaibangcap', $list_loaibangcap)
           ->with('list_ngach', $list_ngach)
@@ -718,19 +500,7 @@ class ThongKeController extends Controller
           ->with('list_tinh', $list_tinh)
           ->with('list_dantoc', $list_dantoc)
           ->with('list_tongiao', $list_tongiao)
-          ->with('list_pdf_khoa', $list_pdf_khoa)
-          ->with('list_pdf_chucvu', $list_pdf_chucvu)
-          ->with('list_pdf_hdt', $list_pdf_hdt)
-          ->with('list_pdf_lbc', $list_pdf_lbc)
-          ->with('list_pdf_ngach', $list_pdf_ngach)
           ->with('list_pdf_tinh', $list_pdf_tinh)
-          ->with('list_pdf_dantoc', $list_pdf_dantoc)
-          ->with('list_pdf_tongiao', $list_pdf_tongiao)
-          ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
-          ->with('list_nghihuu_all', $list_nghihuu_all)
-          ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
-          ->with('list_nghihuu_time', $list_nghihuu_time)
-          ->with('list_2', $list_2)
 
           ->with('ma_t', $data['ma_t'])
 
@@ -755,21 +525,8 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count', $count)
-          ->with('count_khoa', $count_khoa)
-          ->with('count_chucvu', $count_chucvu)
-          ->with('count_loaibangcap', $count_loaibangcap)
-          ->with('count_ngach',$count_ngach)
-          ->with('count_hedaotao', $count_hedaotao)
-          ->with('count_tinh', $count_tinh)
           ->with('count_dantoc', $count_dantoc)
-          ->with('count_tongiao', $count_tongiao)
-          ->with('count_thuongbinh', $count_thuongbinh)
 
-          ->with('list_pdf_khoa', $list_pdf_khoa)
-          ->with('list_pdf_chucvu', $list_pdf_chucvu)
-          ->with('list', $list)
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaibangcap', $list_loaibangcap)
           ->with('list_ngach', $list_ngach)
@@ -779,17 +536,7 @@ class ThongKeController extends Controller
           ->with('list_dantoc', $list_dantoc)
           ->with('list_tongiao', $list_tongiao)
           ->with('list_thuongbinh', $list_thuongbinh)
-          ->with('list_pdf_hdt', $list_pdf_hdt)
-          ->with('list_pdf_lbc', $list_pdf_lbc)
-          ->with('list_pdf_ngach', $list_pdf_ngach)
-          ->with('list_pdf_tinh', $list_pdf_tinh)
           ->with('list_pdf_dantoc', $list_pdf_dantoc)
-          ->with('list_pdf_tongiao', $list_pdf_tongiao)
-          ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
-          ->with('list_nghihuu_all', $list_nghihuu_all)
-          ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
-          ->with('list_nghihuu_time', $list_nghihuu_time)
-          ->with('list_2', $list_2)
 
           ->with('ma_dt', $data['ma_dt'])
 
@@ -813,21 +560,8 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count', $count)
-          ->with('count_khoa', $count_khoa)
-          ->with('count_chucvu', $count_chucvu)
-          ->with('count_loaibangcap', $count_loaibangcap)
-          ->with('count_ngach',$count_ngach)
-          ->with('count_hedaotao', $count_hedaotao)
-          ->with('count_tinh', $count_tinh)
-          ->with('count_dantoc', $count_dantoc)
           ->with('count_tongiao', $count_tongiao)
-          ->with('count_thuongbinh', $count_thuongbinh)
 
-          ->with('list_pdf_khoa', $list_pdf_khoa)
-          ->with('list_pdf_chucvu', $list_pdf_chucvu)
-          ->with('list', $list)
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaibangcap', $list_loaibangcap)
           ->with('list_ngach', $list_ngach)
@@ -837,17 +571,7 @@ class ThongKeController extends Controller
           ->with('list_dantoc', $list_dantoc)
           ->with('list_tongiao', $list_tongiao)
           ->with('list_thuongbinh', $list_thuongbinh)
-          ->with('list_pdf_hdt', $list_pdf_hdt)
-          ->with('list_pdf_lbc', $list_pdf_lbc)
-          ->with('list_pdf_ngach', $list_pdf_ngach)
-          ->with('list_pdf_tinh', $list_pdf_tinh)
-          ->with('list_pdf_dantoc', $list_pdf_dantoc)
           ->with('list_pdf_tongiao', $list_pdf_tongiao)
-          ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
-          ->with('list_nghihuu_all', $list_nghihuu_all)
-          ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
-          ->with('list_nghihuu_time', $list_nghihuu_time)
-          ->with('list_2', $list_2)
 
           ->with('ma_tg', $data['ma_tg'])
 
@@ -871,21 +595,8 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count', $count)
-          ->with('count_khoa', $count_khoa)
-          ->with('count_chucvu', $count_chucvu)
-          ->with('count_loaibangcap', $count_loaibangcap)
-          ->with('count_ngach',$count_ngach)
-          ->with('count_hedaotao', $count_hedaotao)
-          ->with('count_tinh', $count_tinh)
-          ->with('count_dantoc', $count_dantoc)
-          ->with('count_tongiao', $count_tongiao)
           ->with('count_thuongbinh', $count_thuongbinh)
 
-          ->with('list_pdf_khoa', $list_pdf_khoa)
-          ->with('list_pdf_chucvu', $list_pdf_chucvu)
-          ->with('list', $list)
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaibangcap', $list_loaibangcap)
           ->with('list_ngach', $list_ngach)
@@ -895,17 +606,7 @@ class ThongKeController extends Controller
           ->with('list_dantoc', $list_dantoc)
           ->with('list_tongiao', $list_tongiao)
           ->with('list_thuongbinh', $list_thuongbinh)
-          ->with('list_pdf_hdt', $list_pdf_hdt)
-          ->with('list_pdf_lbc', $list_pdf_lbc)
-          ->with('list_pdf_ngach', $list_pdf_ngach)
-          ->with('list_pdf_tinh', $list_pdf_tinh)
-          ->with('list_pdf_dantoc', $list_pdf_dantoc)
-          ->with('list_pdf_tongiao', $list_pdf_tongiao)
           ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
-          ->with('list_nghihuu_all', $list_nghihuu_all)
-          ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
-          ->with('list_nghihuu_time', $list_nghihuu_time)
-          ->with('list_2', $list_2)
 
           ->with('ma_tb', $data['ma_tb'])
 
@@ -1260,19 +961,7 @@ class ThongKeController extends Controller
       $list_thuongbinh = ThuongBinh::orderBy('ten_tb', 'asc')
         ->get();
       $data = $request->all();
-      $list = '';
-      $list_pdf_khoa = '';
       if(isset($data['ma_k'])  && isset($data['batdau'])  && isset($data['ketthuc'])){
-        $count = '';
-        $count_khoa = '';
-        $count_chucvu = '';
-        $count_hedaotao = '';
-        $count_loaibangcap ='';
-        $count_ngach = '';
-        $count_tinh = '';
-        $count_dantoc = '';
-        $count_tongiao = '';
-        $count_thuongbinh = '';
         $count_nghihuu_all = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '2')
           ->where('vienchuc.ma_k', $data['ma_k'])
@@ -1285,36 +974,12 @@ class ThongKeController extends Controller
         ->where('vienchuc.ma_k', $data['ma_k'])
         ->whereBetween('vienchuc.thoigiannghi_vc', [$data['batdau'], $data['ketthuc']])
           ->get();
-        $list_pdf_chucvu = '';
-        $list_pdf_hdt = '';
-        $list_pdf_ngach = '';
-        $list_pdf_tinh = '';
-        $list_pdf_dantoc ='';
-        $list_pdf_tongiao = '';
-        $list_pdf_thuongbinh = '';
-        $list_all = '';
-        $list_pdf_lbc = '';
-        $list_nghihuu_khoa = '';
-        $list_nghihuu_time = '';
-        $list_2 = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count', $count)
           ->with('count_nghihuu_all', $count_nghihuu_all)
-          ->with('count_khoa', $count_khoa)
-          ->with('count_chucvu',$count_chucvu)
-          ->with('count_hedaotao', $count_hedaotao)
-          ->with('count_loaibangcap', $count_loaibangcap)
-          ->with('count_ngach', $count_ngach)
-          ->with('count_tinh',$count_tinh)
-          ->with('count_dantoc', $count_dantoc)
-          ->with('count_tongiao', $count_tongiao)
-          ->with('count_thuongbinh', $count_thuongbinh)
 
-          ->with('list', $list)
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaibangcap', $list_loaibangcap)
           ->with('list_ngach', $list_ngach)
@@ -1323,19 +988,7 @@ class ThongKeController extends Controller
           ->with('list_tinh', $list_tinh)
           ->with('list_dantoc', $list_dantoc)
           ->with('list_tongiao', $list_tongiao)
-          ->with('list_pdf_khoa', $list_pdf_khoa)
-          ->with('list_pdf_chucvu', $list_pdf_chucvu)
-          ->with('list_pdf_hdt', $list_pdf_hdt)
-          ->with('list_pdf_ngach', $list_pdf_ngach)
-          ->with('list_pdf_tinh', $list_pdf_tinh)
-          ->with('list_pdf_dantoc', $list_pdf_dantoc)
-          ->with('list_pdf_tongiao', $list_pdf_tongiao)
-          ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
           ->with('list_nghihuu_all', $list_nghihuu_all)
-          ->with('list_pdf_lbc', $list_pdf_lbc)
-          ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
-          ->with('list_nghihuu_time', $list_nghihuu_time)
-          ->with('list_2', $list_2)
 
           ->with('ma_k', $data['ma_k'])
           ->with('batdau', $data['batdau'])
@@ -1348,17 +1001,6 @@ class ThongKeController extends Controller
           ->with('phanquyen_qlk', $phanquyen_qlk)
           ->with('phanquyen_qltt', $phanquyen_qltt);
       }else if(isset($data['ma_k'])){
-        $count = '';
-        $count_khoa = '';
-        $count_chucvu = '';
-        $count_hedaotao = '';
-        $count_loaibangcap ='';
-        $count_ngach = '';
-        $count_tinh = '';
-        $count_dantoc = '';
-        $count_tongiao = '';
-        $count_thuongbinh = '';
-        $count_nghihuu_all = '';
         $count_nghihuu_khoa = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '2')
           ->where('vienchuc.ma_k', $data['ma_k'])
@@ -1369,37 +1011,12 @@ class ThongKeController extends Controller
         ->where('status_vc', '2')
         ->where('vienchuc.ma_k', $data['ma_k'])
           ->get();
-        $list_pdf_chucvu = '';
-        $list_pdf_hdt = '';
-        $list_pdf_ngach = '';
-        $list_pdf_tinh = '';
-        $list_pdf_dantoc ='';
-        $list_pdf_tongiao = '';
-        $list_pdf_thuongbinh = '';
-        $list_all = '';
-        $list_pdf_lbc = '';
-        $list_nghihuu_all = '';
-        $list_nghihuu_time = '';
-        $list_2 = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count', $count)
-          ->with('count_nghihuu_all', $count_nghihuu_all)
-          ->with('count_khoa', $count_khoa)
-          ->with('count_chucvu',$count_chucvu)
-          ->with('count_hedaotao', $count_hedaotao)
-          ->with('count_loaibangcap', $count_loaibangcap)
-          ->with('count_ngach', $count_ngach)
-          ->with('count_tinh',$count_tinh)
-          ->with('count_dantoc', $count_dantoc)
-          ->with('count_tongiao', $count_tongiao)
-          ->with('count_thuongbinh', $count_thuongbinh)
           ->with('count_nghihuu_khoa', $count_nghihuu_khoa)
 
-          ->with('list', $list)
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaibangcap', $list_loaibangcap)
           ->with('list_ngach', $list_ngach)
@@ -1408,19 +1025,7 @@ class ThongKeController extends Controller
           ->with('list_tinh', $list_tinh)
           ->with('list_dantoc', $list_dantoc)
           ->with('list_tongiao', $list_tongiao)
-          ->with('list_pdf_khoa', $list_pdf_khoa)
-          ->with('list_pdf_chucvu', $list_pdf_chucvu)
-          ->with('list_pdf_hdt', $list_pdf_hdt)
-          ->with('list_pdf_ngach', $list_pdf_ngach)
-          ->with('list_pdf_tinh', $list_pdf_tinh)
-          ->with('list_pdf_dantoc', $list_pdf_dantoc)
-          ->with('list_pdf_tongiao', $list_pdf_tongiao)
-          ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
-          ->with('list_nghihuu_all', $list_nghihuu_all)
-          ->with('list_pdf_lbc', $list_pdf_lbc)
           ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
-          ->with('list_nghihuu_time', $list_nghihuu_time)
-          ->with('list_2', $list_2)
 
           ->with('ma_k', $data['ma_k'])
           ->with('batdau', $data['batdau'])
@@ -1433,18 +1038,6 @@ class ThongKeController extends Controller
           ->with('phanquyen_qlk', $phanquyen_qlk)
           ->with('phanquyen_qltt', $phanquyen_qltt);
       }else if(isset($data['batdau']) && isset($data['ketthuc']) ){
-        $count = '';
-        $count_khoa = '';
-        $count_chucvu = '';
-        $count_hedaotao = '';
-        $count_loaibangcap ='';
-        $count_ngach = '';
-        $count_tinh = '';
-        $count_dantoc = '';
-        $count_tongiao = '';
-        $count_thuongbinh = '';
-        $count_nghihuu_all = '';
-        $count_nghihuu_khoa = '';
         $count_nghihuu_time = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '2')
           ->whereBetween('vienchuc.thoigiannghi_vc', [$data['batdau'], $data['ketthuc']])
@@ -1455,38 +1048,12 @@ class ThongKeController extends Controller
           ->where('status_vc', '2')
           ->whereBetween('vienchuc.thoigiannghi_vc', [$data['batdau'], $data['ketthuc']])
           ->get();
-        $list_pdf_chucvu = '';
-        $list_pdf_hdt = '';
-        $list_pdf_ngach = '';
-        $list_pdf_tinh = '';
-        $list_pdf_dantoc ='';
-        $list_pdf_tongiao = '';
-        $list_pdf_thuongbinh = '';
-        $list_all = '';
-        $list_pdf_lbc = '';
-        $list_nghihuu_all = '';
-        $list_nghihuu_khoa = '';
-        $list_2 = '';
         return view('thongke.thongke_qltt')
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count', $count)
-          ->with('count_nghihuu_all', $count_nghihuu_all)
-          ->with('count_khoa', $count_khoa)
-          ->with('count_chucvu',$count_chucvu)
-          ->with('count_hedaotao', $count_hedaotao)
-          ->with('count_loaibangcap', $count_loaibangcap)
-          ->with('count_ngach', $count_ngach)
-          ->with('count_tinh',$count_tinh)
-          ->with('count_dantoc', $count_dantoc)
-          ->with('count_tongiao', $count_tongiao)
-          ->with('count_thuongbinh', $count_thuongbinh)
-          ->with('count_nghihuu_khoa', $count_nghihuu_khoa)
           ->with('count_nghihuu_time', $count_nghihuu_time)
 
-          ->with('list', $list)
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaibangcap', $list_loaibangcap)
           ->with('list_ngach', $list_ngach)
@@ -1495,19 +1062,7 @@ class ThongKeController extends Controller
           ->with('list_tinh', $list_tinh)
           ->with('list_dantoc', $list_dantoc)
           ->with('list_tongiao', $list_tongiao)
-          ->with('list_pdf_khoa', $list_pdf_khoa)
-          ->with('list_pdf_chucvu', $list_pdf_chucvu)
-          ->with('list_pdf_hdt', $list_pdf_hdt)
-          ->with('list_pdf_ngach', $list_pdf_ngach)
-          ->with('list_pdf_tinh', $list_pdf_tinh)
-          ->with('list_pdf_dantoc', $list_pdf_dantoc)
-          ->with('list_pdf_tongiao', $list_pdf_tongiao)
-          ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
-          ->with('list_nghihuu_all', $list_nghihuu_all)
-          ->with('list_pdf_lbc', $list_pdf_lbc)
-          ->with('list_nghihuu_khoa', $list_nghihuu_khoa)
           ->with('list_nghihuu_time', $list_nghihuu_time)
-          ->with('list_2', $list_2)
 
           ->with('batdau', $data['batdau'])
           ->with('ketthuc', $data['ketthuc'])
@@ -1627,7 +1182,6 @@ class ThongKeController extends Controller
         ->where('status_vc', '<>', '2')
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
-
       $count_loaikhenthuong = KhenThuong::join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
         ->where('status_kt', '<>', '2')
         ->select(DB::raw('count(khenthuong.ma_kt) as sum, loaikhenthuong.ma_lkt'))
@@ -1648,28 +1202,6 @@ class ThongKeController extends Controller
       $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
         ->get();
-      $list = '';
-      $list_all = '';
-      $list_3 = '';
-      $list_2 = '';
-      $list_4 = '';
-      $list_5 = '';
-      $list_6 = '';
-      $list_7 = '';
-      $list_8 = '';
-      $list_9 = '';
-      $list_10 = '';
-      $list_11 = '';
-      $list_12 = '';
-      $list_13 ='';
-      $list_14 = '';
-      $list_kl_all = '';
-      $list_kl_2 = '';
-      $list_kl_3 = '';
-      $list_kl_4 = '';
-      $list_kl_5 = '';
-      $list_kl_6 = '';
-      $list_kl_7 = '';
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
 
@@ -1681,29 +1213,7 @@ class ThongKeController extends Controller
         ->with('list_khoa', $list_khoa)
         ->with('list_loaikyluat', $list_loaikyluat)
         ->with('list_pdf_lkt', $list_pdf_lkt)
-        ->with('list', $list)
         ->with('list_vienchuc', $list_vienchuc)
-        ->with('list_all', $list_all)
-        ->with('list_3', $list_3)
-        ->with('list_2', $list_2)
-        ->with('list_4', $list_4)
-        ->with('list_5', $list_5)
-        ->with('list_6', $list_6)
-        ->with('list_7', $list_7)
-        ->with('list_8', $list_8)
-        ->with('list_9', $list_9)
-        ->with('list_10', $list_10)
-        ->with('list_11', $list_11)
-        ->with('list_12', $list_12)
-        ->with('list_13', $list_13)
-        ->with('list_14', $list_14)
-        ->with('list_kl_all', $list_kl_all)
-        ->with('list_kl_2', $list_kl_2)
-        ->with('list_kl_3', $list_kl_3)
-        ->with('list_kl_4', $list_kl_4)
-        ->with('list_kl_5', $list_kl_5)
-        ->with('list_kl_6', $list_kl_6)
-        ->with('list_kl_7', $list_kl_7)
 
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -1774,43 +1284,6 @@ class ThongKeController extends Controller
       $list_loaikyluat = LoaiKyLuat::orderBy('ten_lkl','asc')
         ->get();
       $data = $request->all();
-
-      $list_all ='';
-      $list_pdf_lkt = '';
-      $list_3 = '';
-      $list_4 = '';
-      $list_2 ='';   
-      $list_5 = '';   
-      $list_6 = '';  
-      $list_7 = '';
-      $list_8 = '';
-      $list_9 = '';
-      $list_10 = '';
-      $list_11 = '';
-      $list_12 = '';
-      $list_13 ='';
-      $list_14 = '';
-      $list_kl_all = '';
-      $list_kl_2 = '';
-      $list_kl_3 = '';
-      $list_kl_4 = '';
-      $list_kl_5 = '';
-      $list_kl_6 = '';
-      $list_kl_7 = '';
-
-      $count_loaikhenthuong = '';
-      $count = '';
-      $count_5 = '';
-      $count_6 = '';
-      $count_7 = '';
-      $count_8 = '';
-      $count_9 = '';
-      $count_10 = '';
-      $count_11 = '';
-      $count_12 = '';
-      $count_13 = '';
-      $count_14 = '';
-      
       if(isset($data['ma_lkt'])  && isset($data['ma_k'])  && isset($data['ma_htkt'])  && isset($data['batdau_kt'])  && isset($data['ketthuc_kt'])){
         $count_loaikhenthuong = KhenThuong::join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
         ->where('status_kt', '<>', '2')
@@ -1839,27 +1312,6 @@ class ThongKeController extends Controller
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_3', $list_3)
-          ->with('list_2', $list_2)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_all', $list_kl_all)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
 
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_k', $data['ma_k'])
@@ -1894,32 +1346,11 @@ class ThongKeController extends Controller
           ->with('count_nangbac', $count_nangbac)
           ->with('count_loaikhenthuong', $count_loaikhenthuong)
 
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
           ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_all', $list_kl_all)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
 
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_htkt', $data['ma_htkt'])
@@ -1953,32 +1384,11 @@ class ThongKeController extends Controller
           ->with('count_nangbac', $count_nangbac)
           ->with('count_loaikhenthuong', $count_loaikhenthuong)
 
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_2', $list_2)
           ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_all', $list_kl_all)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
 
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_k', $data['ma_k'])
@@ -2011,32 +1421,11 @@ class ThongKeController extends Controller
           ->with('count_nangbac', $count_nangbac)
           ->with('count_loaikhenthuong', $count_loaikhenthuong)
 
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
           ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_all', $list_kl_all)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
 
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_k', $data['ma_k'])
@@ -2070,32 +1459,11 @@ class ThongKeController extends Controller
           ->with('count_loaikhenthuong', $count_loaikhenthuong)
           ->with('count_5', $count_5)
 
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
           ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_all', $list_kl_all)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
 
           ->with('ma_htkt', $data['ma_htkt'])
           ->with('batdau_kt', $data['batdau_kt'])
@@ -2126,36 +1494,13 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_loaikhenthuong', $count_loaikhenthuong)
-          ->with('count_5', $count_5)
           ->with('count_6', $count_6)
 
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
           ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_all', $list_kl_all)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
 
           ->with('ma_k', $data['ma_k'])
           ->with('batdau_kt', $data['batdau_kt'])
@@ -2188,38 +1533,14 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_loaikhenthuong', $count_loaikhenthuong)
-          ->with('count_5', $count_5)
-          ->with('count_6', $count_6)
           ->with('count_7', $count_7)
 
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
           ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_all', $list_kl_all)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
-
+          
           ->with('ma_k', $data['ma_k'])
           ->with('ma_htkt', $data['ma_htkt'])
 
@@ -2249,39 +1570,14 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_loaikhenthuong', $count_loaikhenthuong)
-          ->with('count_5', $count_5)
-          ->with('count_6', $count_6)
-          ->with('count_7', $count_7)
           ->with('count_8', $count_8)
 
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
           ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_all', $list_kl_all)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
-
+        
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('batdau_kt', $data['batdau_kt'])
           ->with('ketthuc_kt', $data['ketthuc_kt'])
@@ -2313,39 +1609,13 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_loaikhenthuong', $count_loaikhenthuong)
-          ->with('count_5', $count_5)
-          ->with('count_6', $count_6)
-          ->with('count_7', $count_7)
-          ->with('count_8', $count_8)
           ->with('count_9', $count_9)
 
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
           ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_all', $list_kl_all)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
 
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_htkt', $data['ma_htkt'])
@@ -2377,40 +1647,13 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_loaikhenthuong', $count_loaikhenthuong)
-          ->with('count_5', $count_5)
-          ->with('count_6', $count_6)
-          ->with('count_7', $count_7)
-          ->with('count_8', $count_8)
-          ->with('count_9', $count_9)
           ->with('count_10', $count_10)
 
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
           ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_all', $list_kl_all)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
 
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_k', $data['ma_k'])
@@ -2441,41 +1684,13 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_loaikhenthuong', $count_loaikhenthuong)
-          ->with('count_5', $count_5)
-          ->with('count_6', $count_6)
-          ->with('count_7', $count_7)
-          ->with('count_8', $count_8)
-          ->with('count_9', $count_9)
-          ->with('count_10', $count_10)
           ->with('count_11', $count_11)
 
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
           ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_all', $list_kl_all)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
 
           ->with('ma_lkt', $data['ma_lkt'])
 
@@ -2505,42 +1720,13 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_loaikhenthuong', $count_loaikhenthuong)
-          ->with('count_5', $count_5)
-          ->with('count_6', $count_6)
-          ->with('count_7', $count_7)
-          ->with('count_8', $count_8)
-          ->with('count_9', $count_9)
-          ->with('count_10', $count_10)
-          ->with('count_11', $count_11)
           ->with('count_12', $count_12)
 
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
           ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_all', $list_kl_all)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
 
           ->with('ma_k', $data['ma_k'])
 
@@ -2570,44 +1756,13 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_loaikhenthuong', $count_loaikhenthuong)
-          ->with('count_5', $count_5)
-          ->with('count_6', $count_6)
-          ->with('count_7', $count_7)
-          ->with('count_8', $count_8)
-          ->with('count_9', $count_9)
-          ->with('count_10', $count_10)
-          ->with('count_11', $count_11)
-          ->with('count_12', $count_12)
           ->with('count_13', $count_13)
 
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
           ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_all', $list_kl_all)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
-
 
           ->with('ma_htkt', $data['ma_htkt'])
 
@@ -2636,45 +1791,13 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_loaikhenthuong', $count_loaikhenthuong)
-          ->with('count', $count)
-          ->with('count_5', $count_5)
-          ->with('count_6', $count_6)
-          ->with('count_7', $count_7)
-          ->with('count_8', $count_8)
-          ->with('count_9', $count_9)
-          ->with('count_10', $count_10)
-          ->with('count_11', $count_11)
-          ->with('count_12', $count_12)
-          ->with('count_13', $count_13)
           ->with('count_14', $count_14)
 
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
           ->with('list_14', $list_14)
-          ->with('list_kl_all', $list_kl_all)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
 
           ->with('batdau_kt', $data['batdau_kt'])
           ->with('ketthuc_kt', $data['ketthuc_kt'])
@@ -3164,17 +2287,6 @@ class ThongKeController extends Controller
         ->select(DB::raw('count(kyluat.ma_kl) as sum, loaikyluat.ma_lkl'))
         ->groupBy('loaikyluat.ma_lkl')
         ->get();
-        $count_loaikhenthuong = '';
-        $count_5 = '';
-        $count_6 = '';
-        $count_7 = '';
-        $count_8 = '';
-        $count_9 = '';
-        $count_10 = '';
-        $count_11 = '';
-        $count_12 = '';
-        $count_13 = '';
-        $count_14 = '';
         $list_kl_all = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
@@ -3184,70 +2296,17 @@ class ThongKeController extends Controller
           ->where('status_vc', '<>', '2')
           ->where('status_kl', '<>', '2')
           ->get();
-        $list_pdf_lkt = '';
-        $list_all = '';
-        $list_3 = '';
-        $list_4 = '';
-        $list_2 = '';
-        $list_5 = '';
-        $list_6 = '';
-        $list_7 = '';
-        $list_8 = '';
-        $list_9 = '';
-        $list_10 = '';
-        $list_11 = '';
-        $list_12 = '';
-        $list_13 ='';
-        $list_14 = '';
-        $list_kl_2 = '';
-        $list_kl_3 = '';
-        $list_kl_4 = '';
-        $list_kl_5 = '';
-        $list_kl_6 = '';
-        $list_kl_7 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
           ->with('count_kl_all', $count_kl_all)
-          ->with('count_loaikhenthuong', $count_loaikhenthuong)
-          ->with('count_5', $count_5)
-          ->with('count_6', $count_6)
-          ->with('count_7', $count_7)
-          ->with('count_8', $count_8)
-          ->with('count_9', $count_9)
-          ->with('count_10', $count_10)
-          ->with('count_11', $count_11)
-          ->with('count_12', $count_12)
-          ->with('count_13', $count_13)
-          ->with('count_14', $count_14)
 
           ->with('list_kl_all', $list_kl_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_all', $list_all)
-          ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
 
           ->with('ma_lkl', $data['ma_lkl'])
           ->with('ma_k', $data['ma_k'])
@@ -3267,18 +2326,6 @@ class ThongKeController extends Controller
           ->select(DB::raw('count(kyluat.ma_kl) as sum, khoa.ma_k, ngay_kl'))
           ->groupBy('khoa.ma_k', 'ngay_kl')
           ->get();
-        $count_loaikhenthuong = '';
-        $count_kl_all = '';
-        $count_5 = '';
-        $count_6 = '';
-        $count_7 = '';
-        $count_8 = '';
-        $count_9 = '';
-        $count_10 = '';
-        $count_11 = '';
-        $count_12 = '';
-        $count_13 = '';
-        $count_14 = '';
         $list_kl_2 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
@@ -3287,71 +2334,17 @@ class ThongKeController extends Controller
           ->where('status_vc', '<>', '2')
           ->where('status_kl', '<>', '2')
           ->get();
-        $list_pdf_lkt = '';
-        $list_kl_all = '';
-        $list_all = '';
-        $list_3 = '';
-        $list_4 = '';
-        $list_2 = '';
-        $list_5 = '';
-        $list_6 = '';
-        $list_7 = '';
-        $list_8 = '';
-        $list_9 = '';
-        $list_10 = '';
-        $list_11 = '';
-        $list_12 = '';
-        $list_13 ='';
-        $list_14 = '';
-        $list_kl_3 = '';
-        $list_kl_4 = '';
-        $list_kl_5 = '';
-        $list_kl_6 = '';
-        $list_kl_7 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_kl_all', $count_kl_all)
-          ->with('count_loaikhenthuong', $count_loaikhenthuong)
-          ->with('count_5', $count_5)
-          ->with('count_6', $count_6)
-          ->with('count_7', $count_7)
-          ->with('count_8', $count_8)
-          ->with('count_9', $count_9)
-          ->with('count_10', $count_10)
-          ->with('count_11', $count_11)
-          ->with('count_12', $count_12)
-          ->with('count_13', $count_13)
-          ->with('count_14', $count_14)
           ->with('count_kl_2', $count_kl_2)
 
-          ->with('list_kl_all', $list_kl_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_all', $list_all)
-          ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
           ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
 
           ->with('ma_k', $data['ma_k'])
           ->with('batdau_kl', $data['batdau_kl'])
@@ -3371,19 +2364,6 @@ class ThongKeController extends Controller
           ->select(DB::raw('count(kyluat.ma_kl) as sum, loaikyluat.ma_lkl, ngay_kl'))
           ->groupBy('loaikyluat.ma_lkl', 'ngay_kl')
           ->get();
-        $count_loaikhenthuong = '';
-        $count_kl_all = '';
-        $count_5 = '';
-        $count_6 = '';
-        $count_7 = '';
-        $count_8 = '';
-        $count_9 = '';
-        $count_10 = '';
-        $count_11 = '';
-        $count_12 = '';
-        $count_13 = '';
-        $count_14 = '';
-        $count_kl_2 = '';
         $list_kl_3 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
@@ -3392,72 +2372,17 @@ class ThongKeController extends Controller
           ->where('status_vc', '<>', '2')
           ->where('status_kl', '<>', '2')
           ->get();
-        $list_pdf_lkt = '';
-        $list_kl_all = '';
-        $list_all = '';
-        $list_3 = '';
-        $list_4 = '';
-        $list_2 = '';
-        $list_5 = '';
-        $list_6 = '';
-        $list_7 = '';
-        $list_8 = '';
-        $list_9 = '';
-        $list_10 = '';
-        $list_11 = '';
-        $list_12 = '';
-        $list_13 ='';
-        $list_14 = '';
-        $list_kl_2 = '';
-        $list_kl_4 = '';
-        $list_kl_5 = '';
-        $list_kl_6 = '';
-        $list_kl_7 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_kl_all', $count_kl_all)
-          ->with('count_loaikhenthuong', $count_loaikhenthuong)
-          ->with('count_5', $count_5)
-          ->with('count_6', $count_6)
-          ->with('count_7', $count_7)
-          ->with('count_8', $count_8)
-          ->with('count_9', $count_9)
-          ->with('count_10', $count_10)
-          ->with('count_11', $count_11)
-          ->with('count_12', $count_12)
-          ->with('count_13', $count_13)
-          ->with('count_14', $count_14)
-          ->with('count_kl_2', $count_kl_2)
           ->with('count_kl_3', $count_kl_3)
 
-          ->with('list_kl_all', $list_kl_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_all', $list_all)
-          ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_2', $list_kl_2)
           ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
 
           ->with('ma_lkl', $data['ma_lkl'])
           ->with('batdau_kl', $data['batdau_kl'])
@@ -3477,22 +2402,6 @@ class ThongKeController extends Controller
           ->select(DB::raw('count(kyluat.ma_kl) as sum, loaikyluat.ma_lkl'))
           ->groupBy('loaikyluat.ma_lkl')
           ->get();
-        $count_loaikhenthuong = '';
-        $count_4 = '';
-        $count_kl_all = '';
-        $count_5 = '';
-        $count_6 = '';
-        $count_7 = '';
-        $count_8 = '';
-        $count_9 = '';
-        $count_10 = '';
-        $count_11 = '';
-        $count_12 = '';
-        $count_13 = '';
-        $count_14 = '';
-        $count_kl_2 = '';
-        $count_kl_3 = '';
-
         $list_kl_4 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
@@ -3501,74 +2410,17 @@ class ThongKeController extends Controller
           ->where('status_vc', '<>', '2')
           ->where('status_kl', '<>', '2')
           ->get();
-        $list_pdf_lkt = '';
-        $list_kl_all = '';
-        $list_all = '';
-        $list_3 = '';
-        $list_4 = '';
-        $list_2 = '';
-        $list_5 = '';
-        $list_6 = '';
-        $list_7 = '';
-        $list_8 = '';
-        $list_9 = '';
-        $list_10 = '';
-        $list_11 = '';
-        $list_12 = '';
-        $list_13 ='';
-        $list_14 = '';
-        $list_kl_2 = '';
-        $list_kl_3 = '';
-        $list_kl_5 = '';
-        $list_kl_6 = '';
-        $list_kl_7 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_kl_all', $count_kl_all)
-          ->with('count_loaikhenthuong', $count_loaikhenthuong)
-          ->with('count_4', $count_4)
-          ->with('count_5', $count_5)
-          ->with('count_6', $count_6)
-          ->with('count_7', $count_7)
-          ->with('count_8', $count_8)
-          ->with('count_9', $count_9)
-          ->with('count_10', $count_10)
-          ->with('count_11', $count_11)
-          ->with('count_12', $count_12)
-          ->with('count_13', $count_13)
-          ->with('count_14', $count_14)
-          ->with('count_kl_2', $count_kl_2)
-          ->with('count_kl_3', $count_kl_3)
           ->with('count_kl_4', $count_kl_4)
 
-          ->with('list_kl_all', $list_kl_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_all', $list_all)
-          ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
           ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
 
           ->with('ma_lkl', $data['ma_lkl'])
           ->with('ma_k', $data['ma_k'])
@@ -3587,23 +2439,6 @@ class ThongKeController extends Controller
           ->select(DB::raw('count(kyluat.ma_kl) as sum, khoa.ma_k'))
           ->groupBy('khoa.ma_k')
           ->get();
-        $count_loaikhenthuong = '';
-        $count_4 = '';
-        $count_kl_all = '';
-        $count_5 = '';
-        $count_6 = '';
-        $count_7 = '';
-        $count_8 = '';
-        $count_9 = '';
-        $count_10 = '';
-        $count_11 = '';
-        $count_12 = '';
-        $count_13 = '';
-        $count_14 = '';
-        $count_kl_2 = '';
-        $count_kl_3 = '';
-        $count_kl_4 = '';
-
         $list_kl_5 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
@@ -3611,75 +2446,17 @@ class ThongKeController extends Controller
           ->where('status_vc', '<>', '2')
           ->where('status_kl', '<>', '2')
           ->get();
-        $list_pdf_lkt = '';
-        $list_kl_all = '';
-        $list_all = '';
-        $list_3 = '';
-        $list_4 = '';
-        $list_2 = '';
-        $list_5 = '';
-        $list_6 = '';
-        $list_7 = '';
-        $list_8 = '';
-        $list_9 = '';
-        $list_10 = '';
-        $list_11 = '';
-        $list_12 = '';
-        $list_13 ='';
-        $list_14 = '';
-        $list_kl_2 = '';
-        $list_kl_3 = '';
-        $list_kl_4 = '';
-        $list_kl_6 = '';
-        $list_kl_7 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_kl_all', $count_kl_all)
-          ->with('count_loaikhenthuong', $count_loaikhenthuong)
-          ->with('count_4', $count_4)
-          ->with('count_5', $count_5)
-          ->with('count_6', $count_6)
-          ->with('count_7', $count_7)
-          ->with('count_8', $count_8)
-          ->with('count_9', $count_9)
-          ->with('count_10', $count_10)
-          ->with('count_11', $count_11)
-          ->with('count_12', $count_12)
-          ->with('count_13', $count_13)
-          ->with('count_14', $count_14)
-          ->with('count_kl_2', $count_kl_2)
-          ->with('count_kl_3', $count_kl_3)
-          ->with('count_kl_4', $count_kl_4)
           ->with('count_kl_5', $count_kl_5)
 
-          ->with('list_kl_all', $list_kl_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_all', $list_all)
-          ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
           ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
 
           ->with('ma_k', $data['ma_k'])
 
@@ -3697,24 +2474,6 @@ class ThongKeController extends Controller
           ->select(DB::raw('count(kyluat.ma_kl) as sum, loaikyluat.ma_lkl'))
           ->groupBy('loaikyluat.ma_lkl')
           ->get();
-        $count_loaikhenthuong = '';
-        $count_4 = '';
-        $count_kl_all = '';
-        $count_5 = '';
-        $count_6 = '';
-        $count_7 = '';
-        $count_8 = '';
-        $count_9 = '';
-        $count_10 = '';
-        $count_11 = '';
-        $count_12 = '';
-        $count_13 = '';
-        $count_14 = '';
-        $count_kl_2 = '';
-        $count_kl_3 = '';
-        $count_kl_4 = '';
-        $count_kl_5 = '';
-
         $list_kl_6 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
@@ -3722,76 +2481,17 @@ class ThongKeController extends Controller
           ->where('status_vc', '<>', '2')
           ->where('status_kl', '<>', '2')
           ->get();
-        $list_pdf_lkt = '';
-        $list_kl_all = '';
-        $list_all = '';
-        $list_3 = '';
-        $list_4 = '';
-        $list_2 = '';
-        $list_5 = '';
-        $list_6 = '';
-        $list_7 = '';
-        $list_8 = '';
-        $list_9 = '';
-        $list_10 = '';
-        $list_11 = '';
-        $list_12 = '';
-        $list_13 ='';
-        $list_14 = '';
-        $list_kl_2 = '';
-        $list_kl_3 = '';
-        $list_kl_4 = '';
-        $list_kl_5 = '';
-        $list_kl_7 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_kl_all', $count_kl_all)
-          ->with('count_loaikhenthuong', $count_loaikhenthuong)
-          ->with('count_4', $count_4)
-          ->with('count_5', $count_5)
-          ->with('count_6', $count_6)
-          ->with('count_7', $count_7)
-          ->with('count_8', $count_8)
-          ->with('count_9', $count_9)
-          ->with('count_10', $count_10)
-          ->with('count_11', $count_11)
-          ->with('count_12', $count_12)
-          ->with('count_13', $count_13)
-          ->with('count_14', $count_14)
-          ->with('count_kl_2', $count_kl_2)
-          ->with('count_kl_3', $count_kl_3)
-          ->with('count_kl_4', $count_kl_4)
-          ->with('count_kl_5', $count_kl_5)
           ->with('count_kl_6', $count_kl_6)
 
-          ->with('list_kl_all', $list_kl_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_all', $list_all)
-          ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
           ->with('list_kl_6', $list_kl_6)
-          ->with('list_kl_7', $list_kl_7)
 
           ->with('ma_lkl', $data['ma_lkl'])
 
@@ -3809,23 +2509,6 @@ class ThongKeController extends Controller
           ->select(DB::raw('count(kyluat.ma_kl) as sum, ngay_kl'))
           ->groupBy('ngay_kl')
           ->get();
-        $count_loaikhenthuong = '';
-        $count_kl_all = '';
-        $count_5 = '';
-        $count_6 = '';
-        $count_7 = '';
-        $count_8 = '';
-        $count_9 = '';
-        $count_10 = '';
-        $count_11 = '';
-        $count_12 = '';
-        $count_13 = '';
-        $count_14 = '';
-        $count_kl_2 = '';
-        $count_kl_3 = '';
-        $count_kl_4 = '';
-        $count_kl_5 = '';
-        $count_kl_6 = '';
         $list_kl_7 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
@@ -3833,75 +2516,16 @@ class ThongKeController extends Controller
           ->where('status_vc', '<>', '2')
           ->where('status_kl', '<>', '2')
           ->get();
-        $list_pdf_lkt = '';
-        $list_kl_all = '';
-        $list_all = '';
-        $list_3 = '';
-        $list_4 = '';
-        $list_2 = '';
-        $list_5 = '';
-        $list_6 = '';
-        $list_7 = '';
-        $list_8 = '';
-        $list_9 = '';
-        $list_10 = '';
-        $list_11 = '';
-        $list_12 = '';
-        $list_13 ='';
-        $list_14 = '';
-        $list_kl_2 = '';
-        $list_kl_3 = '';
-        $list_kl_4 = '';
-        $list_kl_5 = '';
-        $list_kl_6 = '';
         return view('thongke.thongke_qlktkl')
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_kl_all', $count_kl_all)
-          ->with('count_loaikhenthuong', $count_loaikhenthuong)
-          ->with('count_5', $count_5)
-          ->with('count_6', $count_6)
-          ->with('count_7', $count_7)
-          ->with('count_8', $count_8)
-          ->with('count_9', $count_9)
-          ->with('count_10', $count_10)
-          ->with('count_11', $count_11)
-          ->with('count_12', $count_12)
-          ->with('count_13', $count_13)
-          ->with('count_14', $count_14)
-          ->with('count_kl_2', $count_kl_2)
-          ->with('count_kl_3', $count_kl_3)
-          ->with('count_kl_4', $count_kl_4)
-          ->with('count_kl_5', $count_kl_5)
-          ->with('count_kl_6', $count_kl_6)
           ->with('count_kl_7', $count_kl_7)
 
-          ->with('list_kl_all', $list_kl_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
           ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
           ->with('list_loaikyluat', $list_loaikyluat)
-          ->with('list_pdf_lkt', $list_pdf_lkt)
-          ->with('list_all', $list_all)
-          ->with('list_2', $list_2)
-          ->with('list_3', $list_3)
-          ->with('list_4', $list_4)
-          ->with('list_5', $list_5)
-          ->with('list_6', $list_6)
-          ->with('list_7', $list_7)
-          ->with('list_8', $list_8)
-          ->with('list_9', $list_9)
-          ->with('list_10', $list_10)
-          ->with('list_11', $list_11)
-          ->with('list_12', $list_12)
-          ->with('list_13', $list_13)
-          ->with('list_14', $list_14)
-          ->with('list_kl_2', $list_kl_2)
-          ->with('list_kl_3', $list_kl_3)
-          ->with('list_kl_4', $list_kl_4)
-          ->with('list_kl_5', $list_kl_5)
-          ->with('list_kl_6', $list_kl_6)
           ->with('list_kl_7', $list_kl_7)
 
           ->with('batdau_kl', $data['batdau_kl'])
@@ -4171,27 +2795,6 @@ class ThongKeController extends Controller
         ->where('status_vc', '<>', '2')
         ->where('status_kq', '<>', '2')
         ->get();
-      $list_all ='';
-      $list_hoanthanh = '';
-      $list_giahan = '';
-      $list_dunghoc = '';
-      $list_chuyen = '';
-      $list_thoihoc = '';
-      $list_hoanthanh_all = '';
-      $list_hoanthanh_2 = '';
-      $list_hoanthanh_3 = '';
-      $list_hoanthanh_4 = '';
-      $list_hoanthanh_5 = '';
-      $list_hoanthanh_6 = '';
-      $list_hoanthanh_7 = '';
-
-      $list_giahan_all = '';
-      $list_giahan_2 = '';
-      $list_giahan_3 = '';
-      $list_giahan_4 = '';
-      $list_giahan_5 = '';
-      $list_giahan_6 = '';
-      $list_giahan_7 = '';
       return view('thongke.thongke_qlcttc')
         ->with('title', $title)
 
@@ -4202,27 +2805,6 @@ class ThongKeController extends Controller
         ->with('list_khoa', $list_khoa)
         ->with('list_1', $list_1)
         ->with('list_vienchuc', $list_vienchuc)
-        ->with('list_all', $list_all)
-        ->with('list_hoanthanh'. $list_hoanthanh)
-        ->with('list_giahan', $list_giahan)
-        ->with('list_dunghoc', $list_dunghoc)
-        ->with('list_chuyen', $list_chuyen)
-        ->with('list_thoihoc',$list_thoihoc)
-        ->with('list_hoanthanh_all', $list_hoanthanh_all)
-        ->with('list_hoanthanh_2', $list_hoanthanh_2)
-        ->with('list_hoanthanh_3', $list_hoanthanh_3)
-        ->with('list_hoanthanh_4', $list_hoanthanh_4)
-        ->with('list_hoanthanh_5', $list_hoanthanh_5)
-        ->with('list_hoanthanh_6', $list_hoanthanh_6)
-        ->with('list_hoanthanh_7', $list_hoanthanh_7)
-        ->with('list_giahan_all', $list_giahan_all)
-        ->with('list_giahan_2', $list_giahan_2)
-        ->with('list_giahan_3', $list_giahan_3)
-        ->with('list_giahan_4', $list_giahan_4)
-        ->with('list_giahan_5', $list_giahan_5)
-        ->with('list_giahan_6', $list_giahan_6)
-        ->with('list_giahan_7', $list_giahan_7)
-        
 
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -4292,31 +2874,6 @@ class ThongKeController extends Controller
       $list_vienchuc = VienChuc::orderBy('hoten_vc', 'asc')
         ->get();
       $data = $request->all();
-
-      $list_all ='';
-      $list_1 = '';
-      $list_hoanthanh = '';
-      $list_giahan = '';
-      $list_dunghoc = '';
-      $list_chuyen = '';
-      $list_thoihoc = '';
-      $list_hoanthanh_all = '';
-      $list_hoanthanh_2 = '';
-      $list_giahan_all = '';
-      $list_giahan_2 = '';
-      $list_giahan_3 = '';
-      $list_giahan_4 = '';
-      $list_giahan_5 = '';
-      $list_giahan_6 = '';
-      $list_giahan_7 = '';
-      
-      $count_1 = '';
-      $count_hoanthanh = '';
-      $count_giahan = '';
-      $count_dunghoc = '';
-      $count_thoihoc = '';
-      $count_chuyen = '';
-
       if(isset($data['hoanthanh'])  && isset($data['giahan'])  && isset($data['tamdung'])  && isset($data['xinchuyen'])  && isset($data['thoihoc'])){
         $count_1 =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
           ->where('status_kq', '<>', '2')
@@ -4341,30 +2898,11 @@ class ThongKeController extends Controller
 
           ->with('count_nangbac', $count_nangbac)
           ->with('count_1', $count_1)
-          ->with('count_hoanthanh', $count_hoanthanh)
-          ->with('count_giahan', $count_giahan)
-          ->with('count_dunghoc', $count_dunghoc)
-          ->with('count_thoihoc', $count_thoihoc)
 
           ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
-          ->with('list_1'. $list_1)
-          ->with('list_hoanthanh'. $list_hoanthanh)
-          ->with('list_giahan', $list_giahan)
-          ->with('list_dunghoc', $list_dunghoc)
-          ->with('list_chuyen', $list_chuyen)
-          ->with('list_thoihoc', $list_thoihoc)
-          ->with('list_hoanthanh_all', $list_hoanthanh_all)
-          ->with('list_hoanthanh_2', $list_hoanthanh_2)
-          ->with('list_giahan_all', $list_giahan_all)
-          ->with('list_giahan_2', $list_giahan_2)
-          ->with('list_giahan_3', $list_giahan_3)
-          ->with('list_giahan_4', $list_giahan_4)
-          ->with('list_giahan_5', $list_giahan_5)
-          ->with('list_giahan_6', $list_giahan_6)
-          ->with('list_giahan_7', $list_giahan_7)
 
           ->with('phanquyen_admin', $phanquyen_admin)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -4378,40 +2916,21 @@ class ThongKeController extends Controller
           ->groupBy('lop.ma_l')
           ->get();
         $list_hoanthanh = VienChuc::join('ketqua', 'ketqua.ma_vc', '=', 'vienchuc.ma_vc')
-          ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
-          ->join('khoa', 'khoa.ma_k','=', 'vienchuc.ma_k')
-          ->where('status_kq', '<>', '2')
-          ->where('status_vc', '<>', '2')
-          ->get();
+            ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
+            ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+            ->where('status_vc', '<>', '2')
+            ->where('status_kq', '<>', '2')
+            ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_1', $count_1)
-          ->with('count_dunghoc', $count_dunghoc)
           ->with('count_hoanthanh', $count_hoanthanh)
-          ->with('count_giahan', $count_giahan)
-          ->with('count_thoihoc', $count_thoihoc)
 
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
-          ->with('list_1', $list_1)
-          ->with('list_hoanthanh', $list_hoanthanh)
-          ->with('list_giahan', $list_giahan)
-          ->with('list_dunghoc', $list_dunghoc)
-          ->with('list_chuyen', $list_chuyen)
-          ->with('list_thoihoc', $list_thoihoc)
-          ->with('list_hoanthanh_all', $list_hoanthanh_all)
-          ->with('list_hoanthanh_2', $list_hoanthanh_2)
-          ->with('list_giahan_all', $list_giahan_all)
-          ->with('list_giahan_2', $list_giahan_2)
-          ->with('list_giahan_3', $list_giahan_3)
-          ->with('list_giahan_4', $list_giahan_4)
-          ->with('list_giahan_5', $list_giahan_5)
-          ->with('list_giahan_6', $list_giahan_6)
-          ->with('list_giahan_7', $list_giahan_7)
+          ->with('list_hoanthanh'. $list_hoanthanh)
 
           ->with('phanquyen_admin', $phanquyen_admin)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -4434,31 +2953,12 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_1', $count_1)
-          ->with('count_hoanthanh', $count_hoanthanh)
-          ->with('count_dunghoc', $count_dunghoc)
           ->with('count_giahan', $count_giahan)
-          ->with('count_thoihoc', $count_thoihoc)
 
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
-          ->with('list_1', $list_1)
-          ->with('list_hoanthanh', $list_hoanthanh)
           ->with('list_giahan', $list_giahan)
-          ->with('list_dunghoc', $list_dunghoc)
-          ->with('list_chuyen', $list_chuyen)
-          ->with('list_thoihoc', $list_thoihoc)
-          ->with('list_hoanthanh_all', $list_hoanthanh_all)
-          ->with('list_hoanthanh_2', $list_hoanthanh_2)
-          ->with('list_giahan_all', $list_giahan_all)
-          ->with('list_giahan_2', $list_giahan_2)
-          ->with('list_giahan_3', $list_giahan_3)
-          ->with('list_giahan_4', $list_giahan_4)
-          ->with('list_giahan_5', $list_giahan_5)
-          ->with('list_giahan_6', $list_giahan_6)
-          ->with('list_giahan_7', $list_giahan_7)
 
           ->with('phanquyen_admin', $phanquyen_admin)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -4481,31 +2981,12 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_1', $count_1)
-          ->with('count_hoanthanh', $count_hoanthanh)
-          ->with('count_giahan', $count_giahan)
           ->with('count_dunghoc', $count_dunghoc)
-          ->with('count_thoihoc', $count_thoihoc)
 
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
-          ->with('list_1', $list_1)
-          ->with('list_hoanthanh', $list_hoanthanh)
-          ->with('list_giahan', $list_giahan)
           ->with('list_dunghoc', $list_dunghoc)
-          ->with('list_chuyen', $list_chuyen)
-          ->with('list_thoihoc', $list_thoihoc)
-          ->with('list_hoanthanh_all', $list_hoanthanh_all)
-          ->with('list_hoanthanh_2', $list_hoanthanh_2)
-          ->with('list_giahan_all', $list_giahan_all)
-          ->with('list_giahan_2', $list_giahan_2)
-          ->with('list_giahan_3', $list_giahan_3)
-          ->with('list_giahan_4', $list_giahan_4)
-          ->with('list_giahan_5', $list_giahan_5)
-          ->with('list_giahan_6', $list_giahan_6)
-          ->with('list_giahan_7', $list_giahan_7)
 
           ->with('phanquyen_admin', $phanquyen_admin)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -4528,32 +3009,12 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_1', $count_1)
-          ->with('count_hoanthanh', $count_hoanthanh)
-          ->with('count_giahan', $count_giahan)
-          ->with('count_dunghoc', $count_dunghoc)
           ->with('count_chuyen', $count_chuyen)
-          ->with('count_thoihoc', $count_thoihoc)
 
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
-          ->with('list_1', $list_1)
-          ->with('list_hoanthanh', $list_hoanthanh)
-          ->with('list_giahan', $list_giahan)
-          ->with('list_dunghoc', $list_dunghoc)
           ->with('list_chuyen', $list_chuyen)
-          ->with('list_thoihoc', $list_thoihoc)
-          ->with('list_hoanthanh_all', $list_hoanthanh_all)
-          ->with('list_hoanthanh_2', $list_hoanthanh_2)
-          ->with('list_giahan_all', $list_giahan_all)
-          ->with('list_giahan_2', $list_giahan_2)
-          ->with('list_giahan_3', $list_giahan_3)
-          ->with('list_giahan_4', $list_giahan_4)
-          ->with('list_giahan_5', $list_giahan_5)
-          ->with('list_giahan_6', $list_giahan_6)
-          ->with('list_giahan_7', $list_giahan_7)
 
           ->with('phanquyen_admin', $phanquyen_admin)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -4576,32 +3037,12 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_1', $count_1)
-          ->with('count_hoanthanh', $count_hoanthanh)
-          ->with('count_giahan', $count_giahan)
-          ->with('count_dunghoc', $count_dunghoc)
-          ->with('count_chuyen', $count_chuyen)
           ->with('count_thoihoc', $count_thoihoc)
 
-          ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
-          ->with('list_1', $list_1)
-          ->with('list_hoanthanh', $list_hoanthanh)
-          ->with('list_giahan', $list_giahan)
-          ->with('list_dunghoc', $list_dunghoc)
-          ->with('list_chuyen', $list_chuyen)
           ->with('list_thoihoc', $list_thoihoc)
-          ->with('list_hoanthanh_all', $list_hoanthanh_all)
-          ->with('list_hoanthanh_2', $list_hoanthanh_2)
-          ->with('list_giahan_all', $list_giahan_all)
-          ->with('list_giahan_2', $list_giahan_2)
-          ->with('list_giahan_3', $list_giahan_3)
-          ->with('list_giahan_4', $list_giahan_4)
-          ->with('list_giahan_5', $list_giahan_5)
-          ->with('list_giahan_6', $list_giahan_6)
-          ->with('list_giahan_7', $list_giahan_7)
 
           ->with('phanquyen_admin', $phanquyen_admin)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -4811,42 +3252,6 @@ class ThongKeController extends Controller
         ->get();
       $data = $request->all();
 
-      $list_all ='';
-      $list_1 = '';
-      $list_hoanthanh = '';
-      $list_giahan = '';
-      $list_dunghoc = '';
-      $list_chuyen = '';
-      $list_thoihoc = '';
-      $list_hoanthanh_all = '';
-      $list_hoanthanh_2 = '';
-      $list_hoanthanh_3 = '';
-      $list_hoanthanh_4 = '';
-      $list_hoanthanh_5 = '';
-      $list_hoanthanh_6 = '';
-      $list_hoanthanh_7 = '';
-      $list_giahan_all = '';
-      $list_giahan_2 = '';
-      $list_giahan_3 = '';
-      $list_giahan_4 = '';
-      $list_giahan_5 = '';
-      $list_giahan_6 = '';
-      $list_giahan_7 = '';
-      
-      $count_1 = '';
-      $count_hoanthanh = '';
-      $count_giahan = '';
-      $count_dunghoc = '';
-      $count_thoihoc = '';
-      $count_chuyen = '';
-      $count_hoanthanh_all = '';
-      $count_hoanthanh_2 = '';
-      $count_hoanthanh_3 = '';
-      $count_hoanthanh_4 = '';
-      $count_hoanthanh_5 = '';
-      $count_hoanthanh_6 = '';
-      $count_hoanthanh_7 = '';
-
       if(isset($data['ma_l'])  && isset($data['batdau_capbang'])  && isset($data['ketthuc_capbang'])  && isset($data['batdau_venuoc'])  && isset($data['ketthuc_venuoc'])){
         $count_hoanthanh_all =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
         ->where('status_kq', '<>', '2')
@@ -4867,37 +3272,11 @@ class ThongKeController extends Controller
 
           ->with('count_nangbac', $count_nangbac)
           ->with('count_hoanthanh_all', $count_hoanthanh_all)
-          ->with('count_hoanthanh', $count_hoanthanh)
-          ->with('count_giahan', $count_giahan)
-          ->with('count_dunghoc', $count_dunghoc)
-          ->with('count_thoihoc', $count_thoihoc)
-          ->with('count_1', $count_1)
-          ->with('count_chuyen', $count_chuyen)
 
-          ->with('list_hoanthanh_all', $list_hoanthanh_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
-          ->with('list_1'. $list_1)
-          ->with('list_hoanthanh'. $list_hoanthanh)
-          ->with('list_giahan', $list_giahan)
-          ->with('list_dunghoc', $list_dunghoc)
-          ->with('list_chuyen', $list_chuyen)
-          ->with('list_thoihoc', $list_thoihoc)
-          ->with('list_all', $list_all)
-          ->with('list_hoanthanh_2', $list_hoanthanh_2)
-          ->with('list_hoanthanh_3', $list_hoanthanh_3)
-          ->with('list_hoanthanh_4', $list_hoanthanh_4)
-          ->with('list_hoanthanh_5', $list_hoanthanh_5)
-          ->with('list_hoanthanh_6', $list_hoanthanh_6)
-          ->with('list_hoanthanh_7', $list_hoanthanh_7)
-          ->with('list_giahan_all', $list_giahan_all)
-          ->with('list_giahan_2', $list_giahan_2)
-          ->with('list_giahan_3', $list_giahan_3)
-          ->with('list_giahan_4', $list_giahan_4)
-          ->with('list_giahan_5', $list_giahan_5)
-          ->with('list_giahan_6', $list_giahan_6)
-          ->with('list_giahan_7', $list_giahan_7)
+          ->with('list_hoanthanh_all', $list_hoanthanh_all)
 
           ->with('ma_l', $data['ma_l'])
           ->with('batdau_capbang', $data['batdau_capbang'])
@@ -4928,44 +3307,12 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_hoanthanh_all', $count_hoanthanh_all)
-          ->with('count_hoanthanh', $count_hoanthanh)
-          ->with('count_giahan', $count_giahan)
-          ->with('count_dunghoc', $count_dunghoc)
-          ->with('count_thoihoc', $count_thoihoc)
-          ->with('count_1', $count_1)
-          ->with('count_chuyen', $count_chuyen)
           ->with('count_hoanthanh_2', $count_hoanthanh_2)
-          ->with('count_hoanthanh_3', $count_hoanthanh_3)
-          ->with('count_hoanthanh_4', $count_hoanthanh_4)
-          ->with('count_hoanthanh_5', $count_hoanthanh_5)
-          ->with('count_hoanthanh_6', $count_hoanthanh_6)
-          ->with('count_hoanthanh_7', $count_hoanthanh_7)
 
-          ->with('list_hoanthanh_all', $list_hoanthanh_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
-          ->with('list_1'. $list_1)
-          ->with('list_hoanthanh'. $list_hoanthanh)
-          ->with('list_giahan', $list_giahan)
-          ->with('list_dunghoc', $list_dunghoc)
-          ->with('list_chuyen', $list_chuyen)
-          ->with('list_thoihoc', $list_thoihoc)
-          ->with('list_all', $list_all)
           ->with('list_hoanthanh_2', $list_hoanthanh_2)
-          ->with('list_hoanthanh_3', $list_hoanthanh_3)
-          ->with('list_hoanthanh_4', $list_hoanthanh_4)
-          ->with('list_hoanthanh_5', $list_hoanthanh_5)
-          ->with('list_hoanthanh_6', $list_hoanthanh_6)
-          ->with('list_hoanthanh_7', $list_hoanthanh_7)
-          ->with('list_giahan_all', $list_giahan_all)
-          ->with('list_giahan_2', $list_giahan_2)
-          ->with('list_giahan_3', $list_giahan_3)
-          ->with('list_giahan_4', $list_giahan_4)
-          ->with('list_giahan_5', $list_giahan_5)
-          ->with('list_giahan_6', $list_giahan_6)
-          ->with('list_giahan_7', $list_giahan_7)
 
           ->with('batdau_capbang', $data['batdau_capbang'])
           ->with('ketthuc_capbang', $data['ketthuc_capbang'])
@@ -4995,44 +3342,12 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_hoanthanh_all', $count_hoanthanh_all)
-          ->with('count_hoanthanh', $count_hoanthanh)
-          ->with('count_giahan', $count_giahan)
-          ->with('count_dunghoc', $count_dunghoc)
-          ->with('count_thoihoc', $count_thoihoc)
-          ->with('count_1', $count_1)
-          ->with('count_chuyen', $count_chuyen)
-          ->with('count_hoanthanh_2', $count_hoanthanh_2)
           ->with('count_hoanthanh_3', $count_hoanthanh_3)
-          ->with('count_hoanthanh_4', $count_hoanthanh_4)
-          ->with('count_hoanthanh_5', $count_hoanthanh_5)
-          ->with('count_hoanthanh_6', $count_hoanthanh_6)
-          ->with('count_hoanthanh_7', $count_hoanthanh_7)
 
-          ->with('list_hoanthanh_all', $list_hoanthanh_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
-          ->with('list_1'. $list_1)
-          ->with('list_hoanthanh'. $list_hoanthanh)
-          ->with('list_giahan', $list_giahan)
-          ->with('list_dunghoc', $list_dunghoc)
-          ->with('list_chuyen', $list_chuyen)
-          ->with('list_thoihoc', $list_thoihoc)
-          ->with('list_all', $list_all)
-          ->with('list_hoanthanh_2', $list_hoanthanh_2)
           ->with('list_hoanthanh_3', $list_hoanthanh_3)
-          ->with('list_hoanthanh_4', $list_hoanthanh_4)
-          ->with('list_hoanthanh_5', $list_hoanthanh_5)
-          ->with('list_hoanthanh_6', $list_hoanthanh_6)
-          ->with('list_hoanthanh_7', $list_hoanthanh_7)
-          ->with('list_giahan_all', $list_giahan_all)
-          ->with('list_giahan_2', $list_giahan_2)
-          ->with('list_giahan_3', $list_giahan_3)
-          ->with('list_giahan_4', $list_giahan_4)
-          ->with('list_giahan_5', $list_giahan_5)
-          ->with('list_giahan_6', $list_giahan_6)
-          ->with('list_giahan_7', $list_giahan_7)
 
           ->with('ma_l', $data['ma_l'])
           ->with('batdau_venuoc', $data['batdau_venuoc'])
@@ -5061,44 +3376,12 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_hoanthanh_all', $count_hoanthanh_all)
-          ->with('count_hoanthanh', $count_hoanthanh)
-          ->with('count_giahan', $count_giahan)
-          ->with('count_dunghoc', $count_dunghoc)
-          ->with('count_thoihoc', $count_thoihoc)
-          ->with('count_1', $count_1)
-          ->with('count_chuyen', $count_chuyen)
-          ->with('count_hoanthanh_2', $count_hoanthanh_2)
-          ->with('count_hoanthanh_3', $count_hoanthanh_3)
           ->with('count_hoanthanh_4', $count_hoanthanh_4)
-          ->with('count_hoanthanh_5', $count_hoanthanh_5)
-          ->with('count_hoanthanh_6', $count_hoanthanh_6)
-          ->with('count_hoanthanh_7', $count_hoanthanh_7)
 
-          ->with('list_hoanthanh_all', $list_hoanthanh_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
-          ->with('list_1'. $list_1)
-          ->with('list_hoanthanh'. $list_hoanthanh)
-          ->with('list_giahan', $list_giahan)
-          ->with('list_dunghoc', $list_dunghoc)
-          ->with('list_chuyen', $list_chuyen)
-          ->with('list_thoihoc', $list_thoihoc)
-          ->with('list_all', $list_all)
-          ->with('list_hoanthanh_2', $list_hoanthanh_2)
-          ->with('list_hoanthanh_3', $list_hoanthanh_3)
           ->with('list_hoanthanh_4', $list_hoanthanh_4)
-          ->with('list_hoanthanh_5', $list_hoanthanh_5)
-          ->with('list_hoanthanh_6', $list_hoanthanh_6)
-          ->with('list_hoanthanh_7', $list_hoanthanh_7)
-          ->with('list_giahan_all', $list_giahan_all)
-          ->with('list_giahan_2', $list_giahan_2)
-          ->with('list_giahan_3', $list_giahan_3)
-          ->with('list_giahan_4', $list_giahan_4)
-          ->with('list_giahan_5', $list_giahan_5)
-          ->with('list_giahan_6', $list_giahan_6)
-          ->with('list_giahan_7', $list_giahan_7)
 
           ->with('ma_l', $data['ma_l'])
           ->with('batdau_capbang', $data['batdau_capbang'])
@@ -5126,44 +3409,12 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_hoanthanh_all', $count_hoanthanh_all)
-          ->with('count_hoanthanh', $count_hoanthanh)
-          ->with('count_giahan', $count_giahan)
-          ->with('count_dunghoc', $count_dunghoc)
-          ->with('count_thoihoc', $count_thoihoc)
-          ->with('count_1', $count_1)
-          ->with('count_chuyen', $count_chuyen)
-          ->with('count_hoanthanh_2', $count_hoanthanh_2)
-          ->with('count_hoanthanh_3', $count_hoanthanh_3)
-          ->with('count_hoanthanh_4', $count_hoanthanh_4)
           ->with('count_hoanthanh_5', $count_hoanthanh_5)
-          ->with('count_hoanthanh_6', $count_hoanthanh_6)
-          ->with('count_hoanthanh_7', $count_hoanthanh_7)
 
-          ->with('list_hoanthanh_all', $list_hoanthanh_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
-          ->with('list_1'. $list_1)
-          ->with('list_hoanthanh'. $list_hoanthanh)
-          ->with('list_giahan', $list_giahan)
-          ->with('list_dunghoc', $list_dunghoc)
-          ->with('list_chuyen', $list_chuyen)
-          ->with('list_thoihoc', $list_thoihoc)
-          ->with('list_all', $list_all)
-          ->with('list_hoanthanh_2', $list_hoanthanh_2)
-          ->with('list_hoanthanh_3', $list_hoanthanh_3)
-          ->with('list_hoanthanh_4', $list_hoanthanh_4)
           ->with('list_hoanthanh_5', $list_hoanthanh_5)
-          ->with('list_hoanthanh_6', $list_hoanthanh_6)
-          ->with('list_hoanthanh_7', $list_hoanthanh_7)
-          ->with('list_giahan_all', $list_giahan_all)
-          ->with('list_giahan_2', $list_giahan_2)
-          ->with('list_giahan_3', $list_giahan_3)
-          ->with('list_giahan_4', $list_giahan_4)
-          ->with('list_giahan_5', $list_giahan_5)
-          ->with('list_giahan_6', $list_giahan_6)
-          ->with('list_giahan_7', $list_giahan_7)
 
           ->with('ma_l', $data['ma_l'])
 
@@ -5189,44 +3440,12 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_hoanthanh_all', $count_hoanthanh_all)
-          ->with('count_hoanthanh', $count_hoanthanh)
-          ->with('count_giahan', $count_giahan)
-          ->with('count_dunghoc', $count_dunghoc)
-          ->with('count_thoihoc', $count_thoihoc)
-          ->with('count_1', $count_1)
-          ->with('count_chuyen', $count_chuyen)
-          ->with('count_hoanthanh_2', $count_hoanthanh_2)
-          ->with('count_hoanthanh_3', $count_hoanthanh_3)
-          ->with('count_hoanthanh_4', $count_hoanthanh_4)
-          ->with('count_hoanthanh_5', $count_hoanthanh_5)
           ->with('count_hoanthanh_6', $count_hoanthanh_6)
-          ->with('count_hoanthanh_7', $count_hoanthanh_7)
 
-          ->with('list_hoanthanh_all', $list_hoanthanh_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
-          ->with('list_1'. $list_1)
-          ->with('list_hoanthanh'. $list_hoanthanh)
-          ->with('list_giahan', $list_giahan)
-          ->with('list_dunghoc', $list_dunghoc)
-          ->with('list_chuyen', $list_chuyen)
-          ->with('list_thoihoc', $list_thoihoc)
-          ->with('list_all', $list_all)
-          ->with('list_hoanthanh_2', $list_hoanthanh_2)
-          ->with('list_hoanthanh_3', $list_hoanthanh_3)
-          ->with('list_hoanthanh_4', $list_hoanthanh_4)
-          ->with('list_hoanthanh_5', $list_hoanthanh_5)
           ->with('list_hoanthanh_6', $list_hoanthanh_6)
-          ->with('list_hoanthanh_7', $list_hoanthanh_7)
-          ->with('list_giahan_all', $list_giahan_all)
-          ->with('list_giahan_2', $list_giahan_2)
-          ->with('list_giahan_3', $list_giahan_3)
-          ->with('list_giahan_4', $list_giahan_4)
-          ->with('list_giahan_5', $list_giahan_5)
-          ->with('list_giahan_6', $list_giahan_6)
-          ->with('list_giahan_7', $list_giahan_7)
 
           ->with('batdau_capbang', $data['batdau_capbang'])
           ->with('ketthuc_capbang', $data['ketthuc_capbang'])
@@ -5253,44 +3472,12 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_hoanthanh_all', $count_hoanthanh_all)
-          ->with('count_hoanthanh', $count_hoanthanh)
-          ->with('count_giahan', $count_giahan)
-          ->with('count_dunghoc', $count_dunghoc)
-          ->with('count_thoihoc', $count_thoihoc)
-          ->with('count_1', $count_1)
-          ->with('count_chuyen', $count_chuyen)
-          ->with('count_hoanthanh_2', $count_hoanthanh_2)
-          ->with('count_hoanthanh_3', $count_hoanthanh_3)
-          ->with('count_hoanthanh_4', $count_hoanthanh_4)
-          ->with('count_hoanthanh_5', $count_hoanthanh_5)
-          ->with('count_hoanthanh_6', $count_hoanthanh_6)
           ->with('count_hoanthanh_7', $count_hoanthanh_7)
 
-          ->with('list_hoanthanh_all', $list_hoanthanh_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
-          ->with('list_1'. $list_1)
-          ->with('list_hoanthanh'. $list_hoanthanh)
-          ->with('list_giahan', $list_giahan)
-          ->with('list_dunghoc', $list_dunghoc)
-          ->with('list_chuyen', $list_chuyen)
-          ->with('list_thoihoc', $list_thoihoc)
-          ->with('list_all', $list_all)
-          ->with('list_hoanthanh_2', $list_hoanthanh_2)
-          ->with('list_hoanthanh_3', $list_hoanthanh_3)
-          ->with('list_hoanthanh_4', $list_hoanthanh_4)
-          ->with('list_hoanthanh_5', $list_hoanthanh_5)
-          ->with('list_hoanthanh_6', $list_hoanthanh_6)
           ->with('list_hoanthanh_7', $list_hoanthanh_7)
-          ->with('list_giahan_all', $list_giahan_all)
-          ->with('list_giahan_2', $list_giahan_2)
-          ->with('list_giahan_3', $list_giahan_3)
-          ->with('list_giahan_4', $list_giahan_4)
-          ->with('list_giahan_5', $list_giahan_5)
-          ->with('list_giahan_6', $list_giahan_6)
-          ->with('list_giahan_7', $list_giahan_7)
 
           ->with('batdau_venuoc', $data['batdau_venuoc'])
           ->with('ketthuc_venuoc', $data['ketthuc_venuoc'])
@@ -5533,50 +3720,6 @@ class ThongKeController extends Controller
       $list_vienchuc = VienChuc::orderBy('hoten_vc', 'asc')
         ->get();
       $data = $request->all();
-
-      $list_all ='';
-      $list_1 = '';
-      $list_hoanthanh = '';
-      $list_giahan = '';
-      $list_dunghoc = '';
-      $list_chuyen = '';
-      $list_thoihoc = '';
-      $list_hoanthanh_all = '';
-      $list_hoanthanh_2 = '';
-      $list_hoanthanh_3 = '';
-      $list_hoanthanh_4 = '';
-      $list_hoanthanh_5 = '';
-      $list_hoanthanh_6 = '';
-      $list_hoanthanh_7 = '';
-      $list_giahan_all = '';
-      $list_giahan_2 = '';
-      $list_giahan_3 = '';
-      $list_giahan_4 = '';
-      $list_giahan_5 = '';
-      $list_giahan_6 = '';
-      $list_giahan_7 = '';
-      
-      $count_1 = '';
-      $count_hoanthanh = '';
-      $count_giahan = '';
-      $count_dunghoc = '';
-      $count_thoihoc = '';
-      $count_chuyen = '';
-      $count_hoanthanh_all = '';
-      $count_hoanthanh_2 = '';
-      $count_hoanthanh_3 = '';
-      $count_hoanthanh_4 = '';
-      $count_hoanthanh_5 = '';
-      $count_hoanthanh_6 = '';
-      $count_hoanthanh_7 = '';
-      $count_giahan_all = '';
-      $count_giahan_2 = '';
-      $count_giahan_3 = '';
-      $count_giahan_4 = '';
-      $count_giahan_5 = '';
-      $count_giahan_6 = '';
-      $count_giahan_7 = '';
-
       if(isset($data['ma_k'])  && isset($data['ma_l'])  && isset($data['batdau_giahan'])  && isset($data['ketthuc_giahan'])){
         $count_giahan_all =  GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
         ->where('status_gh', '<>', '2')
@@ -5597,39 +3740,11 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_hoanthanh_all', $count_hoanthanh_all)
-          ->with('count_hoanthanh', $count_hoanthanh)
-          ->with('count_giahan', $count_giahan)
-          ->with('count_dunghoc', $count_dunghoc)
-          ->with('count_thoihoc', $count_thoihoc)
-          ->with('count_1', $count_1)
-          ->with('count_chuyen', $count_chuyen)
-          ->with('count_hoanthanh_2', $count_hoanthanh_2)
-          ->with('count_hoanthanh_3', $count_hoanthanh_3)
-          ->with('count_hoanthanh_4', $count_hoanthanh_4)
-          ->with('count_hoanthanh_5', $count_hoanthanh_5)
-          ->with('count_hoanthanh_6', $count_hoanthanh_6)
-          ->with('count_hoanthanh_7', $count_hoanthanh_7)
-
           ->with('count_giahan_all', $count_giahan_all)
 
-          ->with('list_hoanthanh_all', $list_hoanthanh_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
-          ->with('list_1'. $list_1)
-          ->with('list_hoanthanh'. $list_hoanthanh)
-          ->with('list_giahan', $list_giahan)
-          ->with('list_dunghoc', $list_dunghoc)
-          ->with('list_chuyen', $list_chuyen)
-          ->with('list_thoihoc', $list_thoihoc)
-          ->with('list_all', $list_all)
-          ->with('list_hoanthanh_2', $list_hoanthanh_2)
-          ->with('list_hoanthanh_3', $list_hoanthanh_3)
-          ->with('list_hoanthanh_4', $list_hoanthanh_4)
-          ->with('list_hoanthanh_5', $list_hoanthanh_5)
-          ->with('list_hoanthanh_6', $list_hoanthanh_6)
-          ->with('list_hoanthanh_7', $list_hoanthanh_7)
           ->with('list_giahan_all', $list_giahan_all)
 
           ->with('ma_l', $data['ma_l'])

@@ -140,12 +140,10 @@
           </button>
         </a>
       </div>
-      
     </div>
-    
     <div id="myfirstchart_qlktkl" style="height: 250px;">
     </div>
-    @if ($list_pdf_lkt != '')
+    @if (isset($list_pdf_lkt))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
@@ -234,7 +232,7 @@
       </div>
     @endif
 
-    @if ($list_all != '')
+    @if (isset($list_all))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
@@ -338,7 +336,7 @@
         </div>
       </div>
     @endif
-    @if ($list_2 != '')
+    @if (isset($list_2))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
@@ -436,7 +434,7 @@
         </div>
       </div>
     @endif
-    @if ($list_3 != '')
+    @if (isset($list_3))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
@@ -534,7 +532,7 @@
         </div>
       </div>
     @endif
-    @if ($list_4 != '')
+    @if (isset($list_4))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
@@ -634,7 +632,7 @@
         </div>
       </div>
     @endif
-    @if ($list_5 != '')
+    @if (isset($list_5))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
@@ -726,7 +724,7 @@
         </div>
       </div>
     @endif
-    @if ($list_6 != '')
+    @if (isset($list_6))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
@@ -818,7 +816,7 @@
         </div>
       </div>
     @endif
-    @if ($list_7 != '')
+    @if (isset($list_7))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
@@ -912,7 +910,7 @@
         </div>
       </div>
     @endif
-    @if ($list_8 != '')
+    @if (isset($list_8))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
@@ -1004,7 +1002,7 @@
         </div>
       </div>
     @endif
-    @if ($list_9 != '')
+    @if (isset($list_9))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC LỌC THEO LOẠI KHEN THƯỞNG & HÌNH THỨC KHEN THƯỞNG
@@ -1098,7 +1096,7 @@
         </div>
       </div>
     @endif
-    @if ($list_10 != '')
+    @if (isset($list_10))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC LỌC THEO LOẠI KHEN THƯỞNG & KHOA
@@ -1192,7 +1190,7 @@
         </div>
       </div>
     @endif
-    @if ($list_11 != '')
+    @if (isset($list_11))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC LỌC THEO LOẠI KHEN THƯỞNG
@@ -1280,7 +1278,7 @@
         </div>
       </div>
     @endif
-    @if ($list_12 != '')
+    @if (isset($list_12))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC LỌC THEO KHOA
@@ -1368,7 +1366,7 @@
         </div>
       </div>
     @endif
-    @if ($list_13 != '')
+    @if (isset($list_13))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC LỌC HÌNH THỨC KHEN THƯỞNG
@@ -1456,7 +1454,7 @@
         </div>
       </div>
     @endif
-    @if ($list_14 != '')
+    @if (isset($list_14))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC LỌC THEO THỜI GIAN
@@ -1543,7 +1541,7 @@
       </div>
     @endif
 
-    @if ($list_kl_all != '')
+    @if (isset($list_kl_all))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KỶ LUẬT CỦA VIÊN CHỨC
@@ -1640,7 +1638,7 @@
         </div>
       </div>
     @endif
-    @if ($list_kl_2 != '')
+    @if (isset($list_kl_2))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KỶ LUẬT CỦA VIÊN CHỨC
@@ -1731,7 +1729,7 @@
         </div>
       </div>
     @endif
-    @if ($list_kl_3 != '')
+    @if (isset($list_kl_3))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KỶ LUẬT CỦA VIÊN CHỨC
@@ -1822,7 +1820,7 @@
         </div>
       </div>
     @endif
-    @if ($list_kl_4 != '')
+    @if (isset($list_kl_4))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KỶ LUẬT CỦA VIÊN CHỨC LỌC THEO KHOA & LOẠI KỶ LUẬT
@@ -1915,7 +1913,7 @@
         </div>
       </div>
     @endif
-    @if ($list_kl_5 != '')
+    @if (isset($list_kl_5))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KỶ LUẬT CỦA VIÊN CHỨC LỌC THEO KHOA
@@ -2002,7 +2000,7 @@
         </div>
       </div>
     @endif
-    @if ($list_kl_6 != '')
+    @if (isset($list_kl_6))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KỶ LUẬT CỦA VIÊN CHỨC LỌC THEO LOẠI KỶ LUẬT
@@ -2089,7 +2087,7 @@
         </div>
       </div>
     @endif
-    @if ($list_kl_7 != '')
+    @if (isset($list_kl_7))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KỶ LUẬT CỦA VIÊN CHỨC LỌC THEO THỜI GIAN
@@ -2186,7 +2184,7 @@
       barColors: ['#FF6363'],
       data: [
         <?php
-          if($count_loaikhenthuong ){
+          if(isset($count_loaikhenthuong) ){
             foreach ($count_loaikhenthuong as $key => $count){
               foreach($list_loaikhenthuong as $key => $loaikhenthuong){
                 if($count->ma_lkt == $loaikhenthuong->ma_lkt){
@@ -2196,7 +2194,7 @@
                 }
               }
             }
-          }else if($count_5){
+          }else if(isset($count_5)){
             foreach ($count_5 as $key => $count){
               foreach($list_hinhthuckhenthuong as $key => $hinhthuckhenthuong){
                 if($count->ma_htkt == $hinhthuckhenthuong->ma_htkt){
@@ -2207,7 +2205,7 @@
                 }
               }
             }
-          }else if($count_6){
+          }else if(isset($count_6)){
             foreach ($count_6 as $key => $count){
               foreach($list_khoa as $key => $khoa){
                 if($count->ma_k == $khoa->ma_k){
@@ -2218,7 +2216,7 @@
                 }
               }
             }
-          }else if($count_7){
+          }else if(isset($count_7)){
             foreach ($count_7 as $key => $count){
               foreach($list_khoa as $key => $khoa){
                 if($count->ma_k == $khoa->ma_k){
@@ -2228,7 +2226,7 @@
                 }
               }
             }
-          }else if($count_8){
+          }else if(isset($count_8)){
             foreach ($count_8 as $key => $count){
               foreach($list_loaikhenthuong as $key => $loaikhenthuong){
                 if($count->ma_lkt == $loaikhenthuong->ma_lkt){
@@ -2239,7 +2237,7 @@
                 }
               }
             }
-          }else if($count_9){
+          }else if(isset($count_9)){
             foreach ($count_9 as $key => $count){
               foreach($list_loaikhenthuong as $key => $loaikhenthuong){
                 if($count->ma_lkt == $loaikhenthuong->ma_lkt){
@@ -2249,7 +2247,7 @@
                 }
               }
             }
-          }else if($count_10){
+          }else if(isset($count_10)){
             foreach ($count_10 as $key => $count){
               foreach($list_loaikhenthuong as $key => $loaikhenthuong){
                 if($count->ma_lkt == $loaikhenthuong->ma_lkt){
@@ -2259,7 +2257,7 @@
                 }
               }
             }
-          }else if($count_11){
+          }else if(isset($count_11)){
             foreach ($count_11 as $key => $count){
               foreach($list_loaikhenthuong as $key => $loaikhenthuong){
                 if($count->ma_lkt == $loaikhenthuong->ma_lkt){
@@ -2269,7 +2267,7 @@
                 }
               }
             }
-          }else if($count_12){
+          }else if(isset($count_12)){
             foreach ($count_12 as $key => $count){
               foreach($list_khoa as $key => $khoa){
                 if($count->ma_k == $khoa->ma_k){
@@ -2279,7 +2277,7 @@
                 }
               }
             }
-          }else if($count_13){
+          }else if(isset($count_13)){
             foreach ($count_13 as $key => $count){
               foreach($list_hinhthuckhenthuong as $key => $hinhthuckhenthuong){
                 if($count->ma_htkt == $hinhthuckhenthuong->ma_htkt){
@@ -2289,13 +2287,13 @@
                 }
               }
             }
-          }else if($count_14){
+          }else if(isset($count_14)){
             foreach($count_14 as $count){
               $ngay_kt = $count->ngay_kt;
               $tong = $count->sum;
               echo "{ year: '$ngay_kt', value: $tong },";
             }
-          }else if($count_kl_all ){
+          }else if(isset($count_kl_all)){
             foreach ($count_kl_all as $key => $count){
               foreach($list_loaikyluat as $key => $loaikyluat){
                 if($count->ma_lkl == $loaikyluat->ma_lkl){
@@ -2305,7 +2303,7 @@
                 }
               }
             }
-          }else if($count_kl_2){
+          }else if(isset($count_kl_2)){
             foreach ($count_kl_2 as $key => $count){
               foreach($list_khoa as $key => $khoa){
                 if($count->ma_k == $khoa->ma_k){
@@ -2316,7 +2314,7 @@
                 }
               }
             }
-          }else if($count_kl_3){
+          }else if(isset($count_kl_3)){
             foreach ($count_kl_3 as $key => $count){
               foreach($list_loaikyluat as $key => $loaikyluat){
                 if($count->ma_lkl == $loaikyluat->ma_lkl){
@@ -2327,7 +2325,7 @@
                 }
               }
             }
-          }else if($count_kl_4){
+          }else if(isset($count_kl_4)){
             foreach ($count_kl_4 as $key => $count){
               foreach($list_loaikyluat as $key => $loaikyluat){
                 if($count->ma_lkl == $loaikyluat->ma_lkl){
@@ -2337,7 +2335,7 @@
                 }
               }
             }
-          }else if($count_kl_5){
+          }else if(isset($count_kl_5)){
             foreach ($count_kl_5 as $key => $count){
               foreach($list_khoa as $key => $khoa){
                 if($count->ma_k == $khoa->ma_k){
@@ -2347,7 +2345,7 @@
                 }
               }
             }
-          }else if($count_kl_6){
+          }else if(isset($count_kl_6)){
             foreach ($count_kl_6 as $key => $count){
               foreach($list_loaikyluat as $key => $loaikyluat){
                 if($count->ma_lkl == $loaikyluat->ma_lkl){
@@ -2357,7 +2355,7 @@
                 }
               }
             }
-          }else if($count_kl_7){
+          }else if(isset($count_kl_7)){
             foreach ($count_kl_7 as $key => $count){
               $ngay_kl = $count->ngay_kl;
               $tong = $count->sum;
