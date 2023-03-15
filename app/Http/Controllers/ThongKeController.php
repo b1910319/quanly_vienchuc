@@ -3792,6 +3792,43 @@ class ThongKeController extends Controller
           ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
           ->with('phanquyen_qlk', $phanquyen_qlk)
           ->with('phanquyen_qltt', $phanquyen_qltt);
+      }else if(isset($data['ma_k']) && isset($data['batdau_giahan'])  && isset($data['ketthuc_giahan'])){
+        $count_giahan_3 =  VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('giahan', 'giahan.ma_vc', '=', 'vienchuc.ma_vc')
+        ->where('status_gh', '<>', '2')
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(giahan.ma_gh) as sum, khoa.ma_k, giahan.thoigian_gh'))
+        ->groupBy('khoa.ma_k', 'giahan.thoigian_gh')
+        ->get();
+        $list_giahan_3 = VienChuc::join('giahan', 'giahan.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+          ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('status_gh', '<>', '2')
+          ->where('khoa.ma_k', $data['ma_k'] )
+          ->whereBetween('giahan.thoigian_gh', [$data['batdau_giahan'], $data['ketthuc_giahan']])
+          ->where('status_gh', '<>', '2')
+          ->where('status_vc', '<>', '2')
+          ->get();
+        return view('thongke.thongke_qlcttc')
+          ->with('title', $title)
+
+          ->with('count_nangbac', $count_nangbac)
+          ->with('count_giahan_3', $count_giahan_3)
+
+          ->with('list_khoa', $list_khoa)
+          ->with('list_lop', $list_lop)
+          ->with('list_vienchuc', $list_vienchuc)
+          ->with('list_giahan_3', $list_giahan_3)
+
+          ->with('ma_k', $data['ma_k'])
+          ->with('batdau_giahan', $data['batdau_giahan'])
+          ->with('ketthuc_giahan', $data['ketthuc_giahan'])
+
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qltt', $phanquyen_qltt);
       }
     }else{
       return Redirect::to('/home');
@@ -3843,6 +3880,35 @@ class ThongKeController extends Controller
       ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
       ->where('status_gh', '<>', '2')
       ->where('lop.ma_l', $ma_l )
+      ->whereBetween('giahan.thoigian_gh', [$batdau_giahan, $ketthuc_giahan])
+      ->where('status_gh', '<>', '2')
+      ->where('status_vc', '<>', '2')
+      ->get();
+      $pdf = PDF::loadView('pdf.thongke_qlcttc_giahan', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlcttc_giahan_loc_3_pdf($ma_k, $batdau_giahan, $ketthuc_giahan){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $title = 'Viên chức xin gia hạn';
+      $vienchuc = VienChuc::join('giahan', 'giahan.ma_vc', '=', 'vienchuc.ma_vc')
+      ->join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+      ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+      ->where('status_gh', '<>', '2')
+      ->where('khoa.ma_k', $ma_k )
       ->whereBetween('giahan.thoigian_gh', [$batdau_giahan, $ketthuc_giahan])
       ->where('status_gh', '<>', '2')
       ->where('status_vc', '<>', '2')
