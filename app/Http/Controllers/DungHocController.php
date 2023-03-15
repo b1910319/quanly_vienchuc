@@ -272,6 +272,7 @@ class DungHocController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
       $list = DungHoc::join('vienchuc', 'vienchuc.ma_vc', '=', 'dunghoc.ma_vc')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
         ->orderBy('ma_dh', 'desc')
         ->get();

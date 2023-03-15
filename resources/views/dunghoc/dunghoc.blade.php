@@ -218,6 +218,7 @@
               <b>Họ tên viên chức: </b> {{ $dunghoc->hoten_vc }} <br>
               <b>Email viên chức: </b> {{ $dunghoc->user_vc }} <br>
               <b>Số điện thoại viên chức: </b> {{ $dunghoc->sdt_vc }} <br>
+              <b>Khoa: </b> {{ $dunghoc->ten_k}}
             </td>
             <td>
               <b>Tên lớp học: </b> {{ $dunghoc->ten_l }} <br>
