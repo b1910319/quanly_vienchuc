@@ -313,6 +313,9 @@ Route::get('/thongke_qlcttc_hoanthanh_loc_6_pdf/{batdau_capbang}/{ketthuc_capban
 Route::get('/thongke_qlcttc_hoanthanh_loc_7_pdf/{batdau_venuoc}/{ketthuc_venuoc}',[ThongKeController::class, 'thongke_qlcttc_hoanthanh_loc_7_pdf']);
 
 
+Route::post('/thongke_qlcttc_giahan_loc',[ThongKeController::class, 'thongke_qlcttc_giahan_loc']);
+Route::get('/thongke_qlcttc_giahan_loc_all_pdf/{ma_k}/{ma_l}/{batdau_giahan}/{ketthuc_giahan}',[ThongKeController::class, 'thongke_qlcttc_giahan_loc_all_pdf']);
+
 // ----------------------------------------------------------
 
 
