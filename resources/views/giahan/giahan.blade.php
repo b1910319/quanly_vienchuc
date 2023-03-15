@@ -211,6 +211,7 @@
               <b>Họ tên viên chức: </b> {{ $giahan->hoten_vc }} <br>
               <b>Email viên chức: </b> {{ $giahan->user_vc }} <br>
               <b>Số điện thoại viên chức: </b> {{ $giahan->sdt_vc }} <br>
+              <b>Khoa: </b> {{ $giahan->ten_k }}
             </td>
             <td>
               <b>Tên lớp học: </b> {{ $giahan->ten_l }} <br>
