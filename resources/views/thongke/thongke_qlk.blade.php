@@ -512,7 +512,7 @@
         </div>
       </div>
     @endif
-    {{-- @if (isset($list_pdf_lbc))
+    @if (isset($list_pdf_lbc))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO LOẠI BẰNG CẤP
@@ -577,12 +577,12 @@
       </table>
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_loc_lbc_pdf/'.$ma_lbc) }}">
+          <a href="{{ URL::to('/thongke_qlk_loc_lbc_pdf/'.$ma_lbc) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
-    @endif --}}
+    @endif
     {{-- @if (isset($list_pdf_ngach))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
@@ -1260,17 +1260,17 @@
               }
             }
           }
-          // else if(isset($count_loaibangcap)){
-          //   foreach ($count_loaibangcap as $key => $count){
-          //     foreach($list_loaibangcap as $key => $loaibangcap){
-          //       if($count->ma_lbc == $loaibangcap->ma_lbc){
-          //         $ten_lbc = $loaibangcap->ten_lbc;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_lbc', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
+          else if(isset($count_loaibangcap)){
+            foreach ($count_loaibangcap as $key => $count){
+              foreach($list_loaibangcap as $key => $loaibangcap){
+                if($count->ma_lbc == $loaibangcap->ma_lbc){
+                  $ten_lbc = $loaibangcap->ten_lbc;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_lbc', value: $tong },";
+                }
+              }
+            }
+          }
           // else if(isset($count_ngach)){
           //   foreach ($count_ngach as $key => $count){
           //     foreach($list_ngach as $key => $ngach){

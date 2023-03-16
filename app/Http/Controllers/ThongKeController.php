@@ -5688,44 +5688,46 @@ class ThongKeController extends Controller
           ->with('phanquyen_qlk', $phanquyen_qlk)
           ->with('phanquyen_qltt', $phanquyen_qltt);
       }
-      // else if(isset($data['ma_lbc'])){
-      //   $count_loaibangcap = VienChuc::join('bangcap','bangcap.ma_vc', '=', 'vienchuc.ma_vc')
-      //     ->join('loaibangcap', 'loaibangcap.ma_lbc','=', 'bangcap.ma_lbc')
-      //     ->where('status_vc', '<>', '2')
-      //     ->select(DB::raw('count(vienchuc.ma_vc) as sum, loaibangcap.ma_lbc'))
-      //     ->groupBy('loaibangcap.ma_lbc')
-      //     ->get();
-      //   $list_pdf_lbc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-      //     ->join('bangcap','bangcap.ma_vc', '=', 'vienchuc.ma_vc')
-      //     ->join('loaibangcap', 'loaibangcap.ma_lbc','=', 'bangcap.ma_lbc')
-      //     ->where('status_vc', '<>', '2')
-      //     ->where('bangcap.ma_lbc', $data['ma_lbc'])
-      //     ->get();
-      //   return view('thongke.thongke_qltt')
-      //     ->with('title', $title)
+      else if(isset($data['ma_lbc'])){
+        $count_loaibangcap = VienChuc::join('bangcap','bangcap.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('loaibangcap', 'loaibangcap.ma_lbc','=', 'bangcap.ma_lbc')
+          ->where('vienchuc.ma_k', $ma_k)
+          ->where('status_vc', '<>', '2')
+          ->select(DB::raw('count(vienchuc.ma_vc) as sum, loaibangcap.ma_lbc'))
+          ->groupBy('loaibangcap.ma_lbc')
+          ->get();
+        $list_pdf_lbc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->join('bangcap','bangcap.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('loaibangcap', 'loaibangcap.ma_lbc','=', 'bangcap.ma_lbc')
+          ->where('vienchuc.ma_k', $ma_k)
+          ->where('status_vc', '<>', '2')
+          ->where('bangcap.ma_lbc', $data['ma_lbc'])
+          ->get();
+        return view('thongke.thongke_qlk')
+          ->with('title', $title)
 
-      //     ->with('count_nangbac', $count_nangbac)
-      //     ->with('count_loaibangcap', $count_loaibangcap)
+          ->with('count_nangbac', $count_nangbac)
+          ->with('count_loaibangcap', $count_loaibangcap)
 
-      //     ->with('list_khoa', $list_khoa)
-      //     ->with('list_loaibangcap', $list_loaibangcap)
-      //     ->with('list_ngach', $list_ngach)
-      //     ->with('list_hedaotao', $list_hedaotao)
-      //     ->with('list_chucvu', $list_chucvu)
-      //     ->with('list_tinh', $list_tinh)
-      //     ->with('list_dantoc', $list_dantoc)
-      //     ->with('list_tongiao', $list_tongiao)
-      //     ->with('list_pdf_lbc', $list_pdf_lbc)
+          ->with('list_khoa', $list_khoa)
+          ->with('list_loaibangcap', $list_loaibangcap)
+          ->with('list_ngach', $list_ngach)
+          ->with('list_hedaotao', $list_hedaotao)
+          ->with('list_chucvu', $list_chucvu)
+          ->with('list_tinh', $list_tinh)
+          ->with('list_dantoc', $list_dantoc)
+          ->with('list_tongiao', $list_tongiao)
+          ->with('list_pdf_lbc', $list_pdf_lbc)
 
-      //     ->with('ma_lbc', $data['ma_lbc'])
+          ->with('ma_lbc', $data['ma_lbc'])
 
-      //     ->with('list_thuongbinh', $list_thuongbinh)
-      //     ->with('phanquyen_admin', $phanquyen_admin)
-      //     ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-      //     ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-      //     ->with('phanquyen_qlk', $phanquyen_qlk)
-      //     ->with('phanquyen_qltt', $phanquyen_qltt);
-      // }
+          ->with('list_thuongbinh', $list_thuongbinh)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qltt', $phanquyen_qltt);
+      }
       // else if(isset($data['ma_n'])){
       //   $count_ngach = VienChuc::join('ngach', 'ngach.ma_n', '=', 'vienchuc.ma_n')
       //     ->where('status_vc', '<>', '2')
@@ -6001,32 +6003,31 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function thongke_qltt_loc_lbc_pdf($ma_lbc){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $title = '';
-  //     $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-  //         ->join('bangcap','bangcap.ma_vc', '=', 'vienchuc.ma_vc')
-  //         ->join('loaibangcap', 'loaibangcap.ma_lbc', 'bangcap.ma_lbc')
-  //         ->where('status_vc', '<>', '2')
-  //         ->where('bangcap.ma_lbc', $ma_lbc)
-  //         ->get();
-  //     $pdf = PDF::loadView('pdf.thongke_qltt_pdf', [
-  //       'vienchuc' => $vienchuc,
-  //       'title' => $title,
-  //     ]);
-  //     return $pdf->stream();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function thongke_qlk_loc_lbc_pdf($ma_lbc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_qlk){
+      $title = 'Lọc theo loại bằng cấp';
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('bangcap','bangcap.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaibangcap', 'loaibangcap.ma_lbc','=', 'bangcap.ma_lbc')
+        ->where('vienchuc.ma_k', $ma_k)
+        ->where('status_vc', '<>', '2')
+        ->where('bangcap.ma_lbc', $ma_lbc)
+        ->get();
+      $pdf = PDF::loadView('pdf.thongke_qltt_pdf', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function thongke_qltt_loc_ngach_pdf($ma_n){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
