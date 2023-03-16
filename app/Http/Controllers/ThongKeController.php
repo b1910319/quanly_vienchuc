@@ -3182,7 +3182,7 @@ class ThongKeController extends Controller
         ->where('status_c', '<>', '2')
         ->where('status_vc', '<>', '2')
         ->get();
-      $pdf = PDF::loadView('pdf.thongke_qlcttc_dunghoc', [
+      $pdf = PDF::loadView('pdf.thongke_qlcttc_chuyen', [
         'vienchuc' => $vienchuc,
         'title' => $title,
       ]);
@@ -4658,6 +4658,110 @@ class ThongKeController extends Controller
       ->where('status_vc', '<>', '2')
       ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_dunghoc', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+
+  public function thongke_qlcttc_xinchuyen_loc(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      $list_lop = Lop::orderBy('ten_l', 'asc')
+        ->get();
+      $list_khoa = Khoa::orderBy('ten_k', 'asc')
+        ->get();
+      $list_vienchuc = VienChuc::orderBy('hoten_vc', 'asc')
+        ->get();
+      $data = $request->all();
+      if(isset($data['ma_k'])  && isset($data['ma_l'])){
+        $count_chuyen_all =  Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
+          ->join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
+          ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('status_c', '<>', '2')
+          ->select(DB::raw('count(chuyen.ma_c) as sum, lop.ma_l, khoa.ma_k'))
+          ->groupBy('lop.ma_l', 'khoa.ma_k')
+          ->get();
+        $list_chuyen_all = VienChuc::join('chuyen', 'chuyen.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
+          ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('status_c', '<>', '2')
+          ->where('khoa.ma_k', $data['ma_k'] )
+          ->where('lop.ma_l', $data['ma_l'] )
+          ->where('status_c', '<>', '2')
+          ->where('status_vc', '<>', '2')
+          ->get();
+        return view('thongke.thongke_qlcttc')
+          ->with('title', $title)
+
+          ->with('count_nangbac', $count_nangbac)
+          ->with('count_chuyen_all', $count_chuyen_all)
+
+          ->with('list_khoa', $list_khoa)
+          ->with('list_lop', $list_lop)
+          ->with('list_vienchuc', $list_vienchuc)
+          ->with('list_chuyen_all', $list_chuyen_all)
+
+          ->with('ma_l', $data['ma_l'])
+          ->with('ma_k', $data['ma_k'])
+
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qltt', $phanquyen_qltt);
+      }
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlcttc_chuyen_loc_all_pdf($ma_k, $ma_l){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $title = 'Viên chức xin dừng học';
+      $vienchuc = VienChuc::join('chuyen', 'chuyen.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_c', '<>', '2')
+        ->where('khoa.ma_k', $ma_k )
+        ->where('lop.ma_l', $ma_l )
+        ->where('status_c', '<>', '2')
+        ->where('status_vc', '<>', '2')
+        ->get();
+      $pdf = PDF::loadView('pdf.thongke_qlcttc_chuyen', [
         'vienchuc' => $vienchuc,
         'title' => $title,
       ]);

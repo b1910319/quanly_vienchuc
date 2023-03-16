@@ -284,6 +284,7 @@ class ChuyenController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
       $list = Chuyen::join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
         ->orderBy('ma_c', 'desc')
         ->get();

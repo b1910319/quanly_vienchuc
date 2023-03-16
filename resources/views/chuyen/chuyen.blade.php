@@ -212,6 +212,7 @@
               <b>Họ tên viên chức: </b> {{ $chuyen->hoten_vc }} <br>
               <b>Email viên chức: </b> {{ $chuyen->user_vc }} <br>
               <b>Số điện thoại viên chức: </b> {{ $chuyen->sdt_vc }} <br>
+              <b>Khoa: </b> {{ $chuyen->ten_k }}
             </td>
             <td>
               <b>Tên lớp học: </b> {{ $chuyen->ten_l }} <br>
