@@ -124,7 +124,7 @@
           </div>
         </div>
       </div>
-      {{-- <div class="col-2">
+      <div class="col-2">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="background-color: #D36B00; border: none; width: 100%">
           <i class="fa-solid fa-filter"></i>
           &ensp;
@@ -137,18 +137,9 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel1">Bộ lọc</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <form action="{{ URL::to('thongke_qltt_nghihuu_loc') }}" method="post">
+              <form action="{{ URL::to('thongke_qlk_nghihuu_loc') }}" method="post">
                 {{ csrf_field() }}
                 <div class="modal-body">
-                  <div class="row">
-                    <span style="font-weight: bold; font-size: 20px;">Khoa</span>
-                    @foreach ($list_khoa as $key => $khoa)
-                      <div class="col-3">
-                        <input type="radio" class="radio" name="ma_k" id="size_{{ $khoa->created_k }}" value="{{ $khoa->ma_k }}"/>
-                        <label class="label" for="size_{{ $khoa->created_k }}">{{ $khoa->ten_k }}</label>
-                      </div>
-                    @endforeach
-                  </div>
                   <div class="row mt-1">
                     <span style="font-weight: bold; font-size: 20px;">Thời gian nghĩ</span>
                     <div class="col-4 mt-1">
@@ -171,7 +162,7 @@
             </div>
           </div>
         </div>
-      </div> --}}
+      </div>
       <div class="col-1">
         <a href="{{ URL::to('thongke_qlk') }}">
           <button type="button" class="btn btn-warning">
@@ -938,7 +929,7 @@
         </div>
       </div>
     @endif
-    {{-- @if (isset($list_nghihuu_all) )
+    @if (isset($list_nghihuu_time) )
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC NGHĨ HƯU
@@ -946,15 +937,10 @@
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
-        @foreach ($list_khoa as $khoa )
-          @if ($khoa->ma_k == $ma_k)
-          <span class="badge text-bg-primary">{{ $khoa->ten_k }}</span>
-          @endif
-        @endforeach
         Bắt đầu 
-        <span class="badge text-bg-secondary">{{ $batdau }}</span>
+        <span class="badge text-bg-primary">{{ $batdau }}</span>
         Kết thúc
-        <span class="badge text-bg-success">{{ $ketthuc }}</span>
+        <span class="badge text-bg-secondary">{{ $ketthuc }}</span>
       </p>
       <table class="table" id="mytable">
         <thead class="table-dark">
@@ -966,7 +952,7 @@
           </tr>
         </thead>
         <tbody  >
-          @foreach($list_nghihuu_all as $key => $vc)
+          @foreach($list_nghihuu_time as $key => $vc)
             <tr>
               <td>{{ $key+1 }}</td>
               <td>
@@ -1007,137 +993,12 @@
       </table>
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_all_pdf/'.$ma_k.'/'.$batdau.'/'.$ketthuc) }}">
+          <a href="{{ URL::to('/thongke_qlk_loc_nghihuu_time_pdf/'.$batdau.'/'.$ketthuc) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
-    @endif --}}
-    {{-- @if (isset($list_nghihuu_khoa)  || isset($list_nghihuu_time) )
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC NGHĨ HƯU
-        </h3>
-      </div>
-      <p style="font-weight: bold; color: #D36B00; font-size: 18px">
-        Danh sách được lọc theo: 
-        @if ($list_nghihuu_khoa != '')
-          @foreach ($list_khoa as $khoa )
-            @if ($khoa->ma_k == $ma_k)
-            <span class="badge text-bg-primary">{{ $khoa->ten_k }}</span>
-            @endif
-          @endforeach
-        @else
-          Bắt đầu 
-          <span class="badge text-bg-primary">{{ $batdau }}</span>
-          Kết thúc
-          <span class="badge text-bg-secondary">{{ $ketthuc }}</span>
-        @endif
-      </p>
-      <table class="table" id="mytable">
-        <thead class="table-dark">
-          <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thời gian nghĩ</th>
-          </tr>
-        </thead>
-        <tbody  >
-          @if ($list_nghihuu_khoa)
-            @foreach($list_nghihuu_khoa as $key => $vc)
-              <tr>
-                <td>{{ $key+1 }}</td>
-                <td>
-                  <div class="row ">
-                    <div class="col-md-12">
-                      <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
-                        style="height: 100px; overflow: auto;">
-                        <p>
-                          <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
-                          <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
-                          <b> Email: </b> {{ $vc->user_vc }} <br>
-                          <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
-                          <b> Giới tính: </b>
-                          @if ($vc->giotinh_vc == 0)
-                            Nam
-                          @else
-                            Nữ
-                          @endif
-                          <br>
-                          <b> Địa chỉ hiện tại: </b> {{ $vc->hientai_vc }} <br>
-                          <b> Địa chỉ thường trú: </b> {{ $vc->thuongtru_vc }} <br>
-                          <b> Trình độ phổ thông: </b> {{ $vc->trinhdophothong_vc }} <br>
-                          <b> Ngoại ngữ: </b> {{ $vc->ngoaingu_vc }} <br>
-                          <b> Tin học: </b> {{ $vc->tinhoc_vc }} <br>
-                          <b> Ngày vào đảng: </b> {{ $vc->ngayvaodang_vc }} <br>
-                          <b> Ngày chính thức: </b> {{ $vc->ngaychinhthuc_vc }} <br>
-                          <b> Ngày bắt đầu làm việc: </b> {{ $vc->ngaybatdaulamviec_vc }} <br>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>{{ $vc->ten_k }}</td>
-                <td>{{ $vc->thoigiannghi_vc }}</td>
-              </tr>
-            @endforeach
-          @else
-            @foreach($list_nghihuu_time as $key => $vc)
-              <tr>
-                <td>{{ $key+1 }}</td>
-                <td>
-                  <div class="row ">
-                    <div class="col-md-12">
-                      <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
-                        style="height: 100px; overflow: auto;">
-                        <p>
-                          <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
-                          <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
-                          <b> Email: </b> {{ $vc->user_vc }} <br>
-                          <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
-                          <b> Giới tính: </b>
-                          @if ($vc->giotinh_vc == 0)
-                            Nam
-                          @else
-                            Nữ
-                          @endif
-                          <br>
-                          <b> Địa chỉ hiện tại: </b> {{ $vc->hientai_vc }} <br>
-                          <b> Địa chỉ thường trú: </b> {{ $vc->thuongtru_vc }} <br>
-                          <b> Trình độ phổ thông: </b> {{ $vc->trinhdophothong_vc }} <br>
-                          <b> Ngoại ngữ: </b> {{ $vc->ngoaingu_vc }} <br>
-                          <b> Tin học: </b> {{ $vc->tinhoc_vc }} <br>
-                          <b> Ngày vào đảng: </b> {{ $vc->ngayvaodang_vc }} <br>
-                          <b> Ngày chính thức: </b> {{ $vc->ngaychinhthuc_vc }} <br>
-                          <b> Ngày bắt đầu làm việc: </b> {{ $vc->ngaybatdaulamviec_vc }} <br>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>{{ $vc->ten_k }}</td>
-                <td>{{ $vc->thoigiannghi_vc }}</td>
-              </tr>
-            @endforeach
-          @endif
-          
-        </tbody>
-      </table>
-      <div class="row">
-        <div class="col-2">
-          @if ($list_nghihuu_khoa != '')
-            <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_khoa_pdf/'.$ma_k) }}">
-              <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
-            </a>
-          @else
-            <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_time_pdf/'.$batdau.'/'.$ketthuc) }}">
-              <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
-            </a>
-          @endif
-        </div>
-      </div>
-    @endif --}}
+    @endif
 
     {{-- @if (isset($list_2 ))
       <div class="alert alert-dark" role="alert">
@@ -1326,37 +1187,13 @@
               }
             }
           }
-          // else if(isset($count_nghihuu_all)){
-          //   foreach ($count_nghihuu_all as $key => $count){
-          //     foreach($list_khoa as $key => $khoa){
-          //       if($count->ma_k == $khoa->ma_k){
-          //         $thoigiannghi_vc = $count->thoigiannghi_vc;
-          //         $ten_k = $khoa->ten_k;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$thoigiannghi_vc ( $ten_k )', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
-          // else if(isset($count_nghihuu_khoa)){
-          //   foreach ($count_nghihuu_khoa as $key => $count){
-          //     foreach($list_khoa as $key => $khoa){
-          //       if($count->ma_k == $khoa->ma_k){
-          //         $thoigiannghi_vc = $count->thoigiannghi_vc;
-          //         $ten_k = $khoa->ten_k;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$thoigiannghi_vc ( $ten_k )', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
-          // else if(isset($count_nghihuu_time)){
-          //   foreach ($count_nghihuu_time as $key => $count){
-          //     $thoigiannghi_vc = $count->thoigiannghi_vc;
-          //     $tong = $count->sum;
-          //     echo "{ year: '$thoigiannghi_vc', value: $tong },";
-          //   }
-          // }
+          else if(isset($count_nghihuu_time)){
+            foreach ($count_nghihuu_time as $key => $count){
+              $thoigiannghi_vc = $count->thoigiannghi_vc;
+              $tong = $count->sum;
+              echo "{ year: '$thoigiannghi_vc', value: $tong },";
+            }
+          }
         ?>
       ],
       xkey: 'year',
