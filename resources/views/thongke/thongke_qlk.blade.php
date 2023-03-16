@@ -583,7 +583,7 @@
         </div>
       </div>
     @endif
-    {{-- @if (isset($list_pdf_ngach))
+    @if (isset($list_pdf_ngach))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO NGẠCH
@@ -648,13 +648,13 @@
       </table>
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_loc_ngach_pdf/'.$ma_n) }}">
+          <a href="{{ URL::to('/thongke_qlk_loc_ngach_pdf/'.$ma_n) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
-    @endif --}}
-    {{-- @if (isset($list_pdf_tinh))
+    @endif
+    @if (isset($list_pdf_tinh))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO TỈNH
@@ -719,12 +719,12 @@
       </table>
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_loc_tinh_pdf/'.$ma_t) }}">
+          <a href="{{ URL::to('/thongke_qlk_loc_tinh_pdf/'.$ma_t) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
-    @endif --}}
+    @endif
     {{-- @if (isset($list_pdf_dantoc))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
@@ -1271,28 +1271,28 @@
               }
             }
           }
-          // else if(isset($count_ngach)){
-          //   foreach ($count_ngach as $key => $count){
-          //     foreach($list_ngach as $key => $ngach){
-          //       if($count->ma_n == $ngach->ma_n){
-          //         $ten_n = $ngach->ten_n;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_n', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
-          // else if(isset($count_tinh)){
-          //   foreach ($count_tinh as $key => $count){
-          //     foreach($list_tinh as $key => $tinh){
-          //       if($count->ma_t == $tinh->ma_t){
-          //         $ten_t = $tinh->ten_t;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_t', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
+          else if(isset($count_ngach)){
+            foreach ($count_ngach as $key => $count){
+              foreach($list_ngach as $key => $ngach){
+                if($count->ma_n == $ngach->ma_n){
+                  $ten_n = $ngach->ten_n;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_n', value: $tong },";
+                }
+              }
+            }
+          }
+          else if(isset($count_tinh)){
+            foreach ($count_tinh as $key => $count){
+              foreach($list_tinh as $key => $tinh){
+                if($count->ma_t == $tinh->ma_t){
+                  $ten_t = $tinh->ten_t;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_t', value: $tong },";
+                }
+              }
+            }
+          }
           // else if(isset($count_dantoc)){
           //   foreach ($count_dantoc as $key => $count){
           //     foreach($list_dantoc as $key => $dantoc){
