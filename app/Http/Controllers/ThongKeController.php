@@ -5857,7 +5857,7 @@ class ThongKeController extends Controller
           ->where('vienchuc.ma_k', $ma_k)
           ->where('vienchuc.ma_tg', $data['ma_tg'])
           ->get();
-        return view('thongke.thongke_qltt')
+        return view('thongke.thongke_qlk')
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
@@ -5882,42 +5882,44 @@ class ThongKeController extends Controller
           ->with('phanquyen_qlk', $phanquyen_qlk)
           ->with('phanquyen_qltt', $phanquyen_qltt);
       }
-      // else if(isset($data['ma_tb'])){
-      //   $count_thuongbinh = VienChuc::join('thuongbinh', 'thuongbinh.ma_tb', '=', 'vienchuc.ma_tb')
-      //     ->where('status_vc', '<>', '2')
-      //     ->select(DB::raw('count(vienchuc.ma_vc) as sum, vienchuc.ma_tb'))
-      //     ->groupBy('vienchuc.ma_tb')
-      //     ->get();
-      //   $list_pdf_thuongbinh = VienChuc::join('thuongbinh', 'thuongbinh.ma_tb', '=', 'vienchuc.ma_tb')
-      //     ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-      //     ->where('status_vc', '<>', '2')
-      //     ->where('vienchuc.ma_tb', $data['ma_tb'])
-      //     ->get();
-      //   return view('thongke.thongke_qltt')
-      //     ->with('title', $title)
+      else if(isset($data['ma_tb'])){
+        $count_thuongbinh = VienChuc::join('thuongbinh', 'thuongbinh.ma_tb', '=', 'vienchuc.ma_tb')
+          ->where('status_vc', '<>', '2')
+          ->where('vienchuc.ma_k', $ma_k)
+          ->select(DB::raw('count(vienchuc.ma_vc) as sum, vienchuc.ma_tb'))
+          ->groupBy('vienchuc.ma_tb')
+          ->get();
+        $list_pdf_thuongbinh = VienChuc::join('thuongbinh', 'thuongbinh.ma_tb', '=', 'vienchuc.ma_tb')
+          ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('vienchuc.ma_k', $ma_k)
+          ->where('status_vc', '<>', '2')
+          ->where('vienchuc.ma_tb', $data['ma_tb'])
+          ->get();
+        return view('thongke.thongke_qlk')
+          ->with('title', $title)
 
-      //     ->with('count_nangbac', $count_nangbac)
-      //     ->with('count_thuongbinh', $count_thuongbinh)
+          ->with('count_nangbac', $count_nangbac)
+          ->with('count_thuongbinh', $count_thuongbinh)
 
-      //     ->with('list_khoa', $list_khoa)
-      //     ->with('list_loaibangcap', $list_loaibangcap)
-      //     ->with('list_ngach', $list_ngach)
-      //     ->with('list_hedaotao', $list_hedaotao)
-      //     ->with('list_chucvu', $list_chucvu)
-      //     ->with('list_tinh', $list_tinh)
-      //     ->with('list_dantoc', $list_dantoc)
-      //     ->with('list_tongiao', $list_tongiao)
-      //     ->with('list_thuongbinh', $list_thuongbinh)
-      //     ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
+          ->with('list_khoa', $list_khoa)
+          ->with('list_loaibangcap', $list_loaibangcap)
+          ->with('list_ngach', $list_ngach)
+          ->with('list_hedaotao', $list_hedaotao)
+          ->with('list_chucvu', $list_chucvu)
+          ->with('list_tinh', $list_tinh)
+          ->with('list_dantoc', $list_dantoc)
+          ->with('list_tongiao', $list_tongiao)
+          ->with('list_thuongbinh', $list_thuongbinh)
+          ->with('list_pdf_thuongbinh', $list_pdf_thuongbinh)
 
-      //     ->with('ma_tb', $data['ma_tb'])
+          ->with('ma_tb', $data['ma_tb'])
 
-      //     ->with('phanquyen_admin', $phanquyen_admin)
-      //     ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-      //     ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-      //     ->with('phanquyen_qlk', $phanquyen_qlk)
-      //     ->with('phanquyen_qltt', $phanquyen_qltt);
-      // }
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qltt', $phanquyen_qltt);
+      }
     }else{
       return Redirect::to('/home');
     }
@@ -6117,7 +6119,7 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '9')
       ->first();
     if($phanquyen_qlk){
-      $title = '';
+      $title = 'Lọc theo tôn giáo';
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
         ->where('vienchuc.ma_k', $ma_k)
@@ -6133,31 +6135,30 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function thongke_qltt_loc_thuongbinh_pdf($ma_tb){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $title = '';
-  //     $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-  //       ->join('thuongbinh', 'thuongbinh.ma_tb', '=', 'vienchuc.ma_tb')
-  //       ->where('vienchuc.ma_tb', $ma_tb)
-  //       ->where('status_vc', '<>', '2')
-  //       ->get();
-  //     $pdf = PDF::loadView('pdf.thongke_qlk', [
-  //       'vienchuc' => $vienchuc,
-  //       'title' => $title,
-  //     ]);
-  //     return $pdf->stream();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function thongke_qlk_loc_thuongbinh_pdf($ma_tb){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_qlk){
+      $title = 'Lọc theo hạng của thương binh';
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('thuongbinh', 'thuongbinh.ma_tb', '=', 'vienchuc.ma_tb')
+        ->where('vienchuc.ma_k', $ma_k)
+        ->where('vienchuc.ma_tb', $ma_tb)
+        ->where('status_vc', '<>', '2')
+        ->get();
+      $pdf = PDF::loadView('pdf.thongke_qlk', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function thongke_qltt_loc_2_pdf($ma_k, $ma_cv){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');

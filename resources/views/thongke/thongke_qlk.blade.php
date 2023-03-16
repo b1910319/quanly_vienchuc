@@ -796,7 +796,7 @@
         </div>
       </div>
     @endif
-    {{-- @if (isset($list_pdf_tongiao) )
+    @if (isset($list_pdf_tongiao) )
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO TÔN GIÁO
@@ -861,13 +861,13 @@
       </table>
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_loc_tongiao_pdf/'.$ma_tg) }}">
+          <a href="{{ URL::to('/thongke_qlk_loc_tongiao_pdf/'.$ma_tg) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
-    @endif --}}
-    {{-- @if (isset($list_pdf_thuongbinh) )
+    @endif
+    @if (isset($list_pdf_thuongbinh) )
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO HẠNG THƯƠNG BINH
@@ -932,12 +932,12 @@
       </table>
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_loc_thuongbinh_pdf/'.$ma_tb) }}">
+          <a href="{{ URL::to('/thongke_qlk_loc_thuongbinh_pdf/'.$ma_tb) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
-    @endif --}}
+    @endif
     {{-- @if (isset($list_nghihuu_all) )
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
@@ -1304,28 +1304,28 @@
               }
             }
           }
-          // else if(isset($count_tongiao)){
-          //   foreach ($count_tongiao as $key => $count){
-          //     foreach($list_tongiao as $key => $tongiao){
-          //       if($count->ma_tg == $tongiao->ma_tg){
-          //         $ten_tg = $tongiao->ten_tg;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_tg', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
-          // else if(isset($count_thuongbinh)){
-          //   foreach ($count_thuongbinh as $key => $count){
-          //     foreach($list_thuongbinh as $key => $thuongbinh){
-          //       if($count->ma_tb == $thuongbinh->ma_tb){
-          //         $ten_tb = $thuongbinh->ten_tb;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_tb', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
+          else if(isset($count_tongiao)){
+            foreach ($count_tongiao as $key => $count){
+              foreach($list_tongiao as $key => $tongiao){
+                if($count->ma_tg == $tongiao->ma_tg){
+                  $ten_tg = $tongiao->ten_tg;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_tg', value: $tong },";
+                }
+              }
+            }
+          }
+          else if(isset($count_thuongbinh)){
+            foreach ($count_thuongbinh as $key => $count){
+              foreach($list_thuongbinh as $key => $thuongbinh){
+                if($count->ma_tb == $thuongbinh->ma_tb){
+                  $ten_tb = $thuongbinh->ten_tb;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_tb', value: $tong },";
+                }
+              }
+            }
+          }
           // else if(isset($count_nghihuu_all)){
           //   foreach ($count_nghihuu_all as $key => $count){
           //     foreach($list_khoa as $key => $khoa){
