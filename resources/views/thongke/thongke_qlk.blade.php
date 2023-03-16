@@ -441,7 +441,7 @@
         </div>
       </div>
     @endif
-    {{-- @if (isset($list_pdf_hdt) )
+    @if (isset($list_pdf_hdt) )
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO HỆ ĐÀO TẠO
@@ -506,12 +506,12 @@
       </table>
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_loc_hdt_pdf/'.$ma_hdt) }}">
+          <a href="{{ URL::to('/thongke_qlk_loc_hdt_pdf/'.$ma_hdt) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
-    @endif --}}
+    @endif
     {{-- @if (isset($list_pdf_lbc))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
@@ -1249,17 +1249,18 @@
               }
             }
           }
-          // else if(isset($count_hedaotao)){
-          //   foreach ($count_hedaotao as $key => $count){
-          //     foreach($list_hedaotao as $key => $hedaotao){
-          //       if($count->ma_hdt == $hedaotao->ma_hdt){
-          //         $ten_hdt = $hedaotao->ten_hdt;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_hdt', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }else if(isset($count_loaibangcap)){
+          else if(isset($count_hedaotao)){
+            foreach ($count_hedaotao as $key => $count){
+              foreach($list_hedaotao as $key => $hedaotao){
+                if($count->ma_hdt == $hedaotao->ma_hdt){
+                  $ten_hdt = $hedaotao->ten_hdt;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_hdt', value: $tong },";
+                }
+              }
+            }
+          }
+          // else if(isset($count_loaibangcap)){
           //   foreach ($count_loaibangcap as $key => $count){
           //     foreach($list_loaibangcap as $key => $loaibangcap){
           //       if($count->ma_lbc == $loaibangcap->ma_lbc){
@@ -1269,7 +1270,8 @@
           //       }
           //     }
           //   }
-          // }else if(isset($count_ngach)){
+          // }
+          // else if(isset($count_ngach)){
           //   foreach ($count_ngach as $key => $count){
           //     foreach($list_ngach as $key => $ngach){
           //       if($count->ma_n == $ngach->ma_n){
@@ -1279,7 +1281,8 @@
           //       }
           //     }
           //   }
-          // }else if(isset($count_tinh)){
+          // }
+          // else if(isset($count_tinh)){
           //   foreach ($count_tinh as $key => $count){
           //     foreach($list_tinh as $key => $tinh){
           //       if($count->ma_t == $tinh->ma_t){
@@ -1289,7 +1292,8 @@
           //       }
           //     }
           //   }
-          // }else if(isset($count_dantoc)){
+          // }
+          // else if(isset($count_dantoc)){
           //   foreach ($count_dantoc as $key => $count){
           //     foreach($list_dantoc as $key => $dantoc){
           //       if($count->ma_dt == $dantoc->ma_dt){
@@ -1299,7 +1303,8 @@
           //       }
           //     }
           //   }
-          // }else if(isset($count_tongiao)){
+          // }
+          // else if(isset($count_tongiao)){
           //   foreach ($count_tongiao as $key => $count){
           //     foreach($list_tongiao as $key => $tongiao){
           //       if($count->ma_tg == $tongiao->ma_tg){
@@ -1309,7 +1314,8 @@
           //       }
           //     }
           //   }
-          // }else if(isset($count_thuongbinh)){
+          // }
+          // else if(isset($count_thuongbinh)){
           //   foreach ($count_thuongbinh as $key => $count){
           //     foreach($list_thuongbinh as $key => $thuongbinh){
           //       if($count->ma_tb == $thuongbinh->ma_tb){
@@ -1319,7 +1325,8 @@
           //       }
           //     }
           //   }
-          // }else if(isset($count_nghihuu_all)){
+          // }
+          // else if(isset($count_nghihuu_all)){
           //   foreach ($count_nghihuu_all as $key => $count){
           //     foreach($list_khoa as $key => $khoa){
           //       if($count->ma_k == $khoa->ma_k){
@@ -1330,7 +1337,8 @@
           //       }
           //     }
           //   }
-          // }else if(isset($count_nghihuu_khoa)){
+          // }
+          // else if(isset($count_nghihuu_khoa)){
           //   foreach ($count_nghihuu_khoa as $key => $count){
           //     foreach($list_khoa as $key => $khoa){
           //       if($count->ma_k == $khoa->ma_k){
@@ -1341,7 +1349,8 @@
           //       }
           //     }
           //   }
-          // }else if(isset($count_nghihuu_time)){
+          // }
+          // else if(isset($count_nghihuu_time)){
           //   foreach ($count_nghihuu_time as $key => $count){
           //     $thoigiannghi_vc = $count->thoigiannghi_vc;
           //     $tong = $count->sum;
