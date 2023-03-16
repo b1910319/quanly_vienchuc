@@ -254,7 +254,7 @@
       </div>
     @endif
 
-    {{-- @if (isset($list_all))
+    @if (isset($list_all))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC
@@ -262,12 +262,6 @@
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
-        @foreach ($list_khoa as $khoa )
-          @if ($khoa->ma_k == $ma_k)
-          <span class="badge text-bg-primary">{{ $khoa->ten_k }}</span>
-          @endif
-        @endforeach
-        ,
         @foreach ($list_chucvu as $chucvu )
           @if ($chucvu->ma_cv == $ma_cv)
           <span class="badge text-bg-secondary">{{ $chucvu->ten_cv }}</span>
@@ -370,13 +364,13 @@
       </table>
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_loc_all_pdf/'.$ma_k.'/'.$ma_cv.'/'.$ma_hdt.'/'.$ma_lbc.'/'.$ma_n.'/'.$ma_t.'/'.$ma_dt.'/'.$ma_tg.'/'.$ma_tb.'/') }}">
+          <a href="{{ URL::to('/thongke_qlk_loc_all_pdf/'.$ma_cv.'/'.$ma_hdt.'/'.$ma_lbc.'/'.$ma_n.'/'.$ma_t.'/'.$ma_dt.'/'.$ma_tg.'/'.$ma_tb.'/') }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
     @endif
-    @if ( isset($list_pdf_khoa))
+    {{-- @if ( isset($list_pdf_khoa))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO KHOA
@@ -449,8 +443,8 @@
           </a>
         </div>
       </div>
-    @endif
-    @if (isset($list_pdf_chucvu))
+    @endif --}}
+    {{-- @if (isset($list_pdf_chucvu))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO CHỨC VỤ
@@ -520,8 +514,8 @@
           </a>
         </div>
       </div>
-    @endif
-    @if (isset($list_pdf_hdt) )
+    @endif --}}
+    {{-- @if (isset($list_pdf_hdt) )
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO HỆ ĐÀO TẠO
@@ -591,8 +585,8 @@
           </a>
         </div>
       </div>
-    @endif
-    @if (isset($list_pdf_lbc))
+    @endif --}}
+    {{-- @if (isset($list_pdf_lbc))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO LOẠI BẰNG CẤP
@@ -662,8 +656,8 @@
           </a>
         </div>
       </div>
-    @endif
-    @if (isset($list_pdf_ngach))
+    @endif --}}
+    {{-- @if (isset($list_pdf_ngach))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO NGẠCH
@@ -733,8 +727,8 @@
           </a>
         </div>
       </div>
-    @endif
-    @if (isset($list_pdf_tinh))
+    @endif --}}
+    {{-- @if (isset($list_pdf_tinh))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO TỈNH
@@ -804,8 +798,8 @@
           </a>
         </div>
       </div>
-    @endif
-    @if (isset($list_pdf_dantoc))
+    @endif --}}
+    {{-- @if (isset($list_pdf_dantoc))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO DÂN TỘC
@@ -875,8 +869,8 @@
           </a>
         </div>
       </div>
-    @endif
-    @if (isset($list_pdf_tongiao) )
+    @endif --}}
+    {{-- @if (isset($list_pdf_tongiao) )
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO TÔN GIÁO
@@ -946,8 +940,8 @@
           </a>
         </div>
       </div>
-    @endif
-    @if (isset($list_pdf_thuongbinh) )
+    @endif --}}
+    {{-- @if (isset($list_pdf_thuongbinh) )
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO HẠNG THƯƠNG BINH
@@ -1017,8 +1011,8 @@
           </a>
         </div>
       </div>
-    @endif
-    @if (isset($list_nghihuu_all) )
+    @endif --}}
+    {{-- @if (isset($list_nghihuu_all) )
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC NGHĨ HƯU
@@ -1092,8 +1086,8 @@
           </a>
         </div>
       </div>
-    @endif
-    @if (isset($list_nghihuu_khoa)  || isset($list_nghihuu_time) )
+    @endif --}}
+    {{-- @if (isset($list_nghihuu_khoa)  || isset($list_nghihuu_time) )
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC NGHĨ HƯU
@@ -1217,9 +1211,9 @@
           @endif
         </div>
       </div>
-    @endif
+    @endif --}}
 
-    @if (isset($list_2 ))
+    {{-- @if (isset($list_2 ))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO KHOA & CHỨC VỤ
