@@ -56,7 +56,7 @@
                         <tr>
                           <th scope="row">Email: </th>
                           <td class="was-validated">
-                            <div class="mb-3">
+                            <div>
                               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="user_vc" >
                             </div>
                           </td>

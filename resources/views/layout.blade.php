@@ -137,7 +137,6 @@
             <li>
               <a href="{{ URL::to('/home') }}" class="waves-effect">
                 <i class="remixicon-dashboard-line"></i>
-                {{-- <span class="badge badge-success badge-pill float-right">2</span> --}}
                 <span> Trang Chủ </span>
               </a>
             </li>
@@ -259,38 +258,10 @@
                 </ul>
               </li>
             @endif
-            {{-- <li>
-              <a href="javascript: void(0);" class="waves-effect">
-                <i class="remixicon-layout-line"></i>
-                <span class="badge badge-pink float-right">New</span>
-                <span> Layouts </span>
-              </a>
-              <ul class="nav-second-level" aria-expanded="false">
-                <li>
-                  <a href="layouts-sidebar-sm.html">Small Sidebar</a>
-                </li>
-                <li>
-                  <a href="layouts-dark-sidebar.html">Dark Sidebar</a>
-                </li>
-                <li>
-                  <a href="layouts-light-topbar.html">Light Topbar</a>
-                </li>
-                <li>
-                  <a href="layouts-preloader.html">Preloader</a>
-                </li>
-                <li>
-                  <a href="layouts-sidebar-collapsed.html">Sidebar Collapsed</a>
-                </li>
-                <li>
-                  <a href="layouts-boxed.html">Boxed</a>
-                </li>
-              </ul>
-            </li> --}}
             @if ($phanquyen_qlktkl || $phanquyen_admin)
               <li>
                 <a href="javascript: void(0);" class="waves-effect">
                   <i class="remixicon-layout-line"></i>
-                  {{-- <span class="badge badge-pink float-right">New</span> --}}
                   <span> Quản Lý Khen Thưởng , <br>Kỉ Luật </span>
                   <span class="menu-arrow"></span>
                 </a>
@@ -401,7 +372,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="{{ URL::to('/thongke_qltt') }}">
+                    <a href="{{ URL::to('/thongke_qlk') }}">
                       Thống kê
                     </a>
                   </li>
