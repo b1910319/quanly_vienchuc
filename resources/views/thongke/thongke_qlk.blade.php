@@ -725,7 +725,7 @@
         </div>
       </div>
     @endif
-    {{-- @if (isset($list_pdf_dantoc))
+    @if (isset($list_pdf_dantoc))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO DÂN TỘC
@@ -790,12 +790,12 @@
       </table>
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_loc_dantoc_pdf/'.$ma_dt) }}">
+          <a href="{{ URL::to('/thongke_qlk_loc_dantoc_pdf/'.$ma_dt) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
-    @endif --}}
+    @endif
     {{-- @if (isset($list_pdf_tongiao) )
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
@@ -1293,17 +1293,17 @@
               }
             }
           }
-          // else if(isset($count_dantoc)){
-          //   foreach ($count_dantoc as $key => $count){
-          //     foreach($list_dantoc as $key => $dantoc){
-          //       if($count->ma_dt == $dantoc->ma_dt){
-          //         $ten_dt = $dantoc->ten_dt;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_dt', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
+          else if(isset($count_dantoc)){
+            foreach ($count_dantoc as $key => $count){
+              foreach($list_dantoc as $key => $dantoc){
+                if($count->ma_dt == $dantoc->ma_dt){
+                  $ten_dt = $dantoc->ten_dt;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_dt', value: $tong },";
+                }
+              }
+            }
+          }
           // else if(isset($count_tongiao)){
           //   foreach ($count_tongiao as $key => $count){
           //     foreach($list_tongiao as $key => $tongiao){
