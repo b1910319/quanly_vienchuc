@@ -299,7 +299,7 @@ Route::get('/thongke_qlk_loc_lbc_pdf/{ma_lbc}',[ThongKeController::class, 'thong
 Route::get('/thongke_qlk_loc_ngach_pdf/{ma_n}',[ThongKeController::class, 'thongke_qlk_loc_ngach_pdf']);
 Route::get('/thongke_qlk_loc_tinh_pdf/{ma_t}',[ThongKeController::class, 'thongke_qlk_loc_tinh_pdf']);
 Route::get('/thongke_qlk_loc_dantoc_pdf/{ma_dt}',[ThongKeController::class, 'thongke_qlk_loc_dantoc_pdf']);
-// Route::get('/thongke_qlk_loc_tongiao_pdf/{ma_tg}',[ThongKeController::class, 'thongke_qlk_loc_tongiao_pdf']);
+Route::get('/thongke_qlk_loc_tongiao_pdf/{ma_tg}',[ThongKeController::class, 'thongke_qlk_loc_tongiao_pdf']);
 // Route::get('/thongke_qlk_loc_thuongbinh_pdf/{ma_tb}',[ThongKeController::class, 'thongke_qlk_loc_thuongbinh_pdf']);
 // Route::get('/thongke_qlk_loc_2_pdf/{ma_k}/{ma_cv}',[ThongKeController::class, 'thongke_qlk_loc_2_pdf']);
 
