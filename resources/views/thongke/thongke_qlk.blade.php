@@ -370,81 +370,7 @@
         </div>
       </div>
     @endif
-    {{-- @if ( isset($list_pdf_khoa))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC THEO KHOA
-        </h3>
-      </div>
-      <p style="font-weight: bold; color: #D36B00; font-size: 18px">
-        Danh sách được lọc theo: 
-        @foreach ($list_khoa as $khoa )
-          @if ($khoa->ma_k == $ma_k)
-          <span class="badge text-bg-primary">{{ $khoa->ten_k }}</span>
-          @endif
-        @endforeach
-      </p>
-      <table class="table" id="mytable">
-        <thead class="table-dark">
-          <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Ngạch</th>
-          </tr>
-        </thead>
-        <tbody  >
-          @foreach($list_pdf_khoa as $key => $vc)
-            <tr>
-              <td>{{ $key+1 }}</td>
-              <td>
-                <div class="row ">
-                  <div class="col-md-12">
-                    <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
-                      style="height: 100px; overflow: auto;">
-                      <p>
-                        <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
-                        <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
-                        <b> Email: </b> {{ $vc->user_vc }} <br>
-                        <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
-                        <b> Giới tính: </b>
-                        @if ($vc->giotinh_vc == 0)
-                          Nam
-                        @else
-                          Nữ
-                        @endif
-                        <br>
-                        <b> Địa chỉ hiện tại: </b> {{ $vc->hientai_vc }} <br>
-                        <b> Địa chỉ thường trú: </b> {{ $vc->thuongtru_vc }} <br>
-                        <b> Trình độ phổ thông: </b> {{ $vc->trinhdophothong_vc }} <br>
-                        <b> Ngoại ngữ: </b> {{ $vc->ngoaingu_vc }} <br>
-                        <b> Tin học: </b> {{ $vc->tinhoc_vc }} <br>
-                        <b> Ngày vào đảng: </b> {{ $vc->ngayvaodang_vc }} <br>
-                        <b> Ngày chính thức: </b> {{ $vc->ngaychinhthuc_vc }} <br>
-                        <b> Ngày bắt đầu làm việc: </b> {{ $vc->ngaybatdaulamviec_vc }} <br>
-                        <b> Chức vụ: </b> {{ $vc->ten_cv }} <br>
-                        <b> Dân tộc: </b> {{ $vc->ten_dt }} <br>
-                        <b> Tôn giáo: </b> {{ $vc->ten_tg }} <br>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>{{ $vc->ten_k }}</td>
-              <td>{{ $vc->ten_n }}</td>
-            </tr>
-          @endforeach
-        </tbody>
-      </table>
-      <div class="row">
-        <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_loc_khoa_pdf/'.$ma_k) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
-          </a>
-        </div>
-      </div>
-    @endif --}}
-    {{-- @if (isset($list_pdf_chucvu))
+    @if (isset($list_pdf_chucvu))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           DANH SÁCH VIÊN CHỨC THEO CHỨC VỤ
@@ -509,12 +435,12 @@
       </table>
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('/thongke_qltt_loc_chucvu_pdf/'.$ma_cv) }}">
+          <a href="{{ URL::to('/thongke_qlk_loc_chucvu_pdf/'.$ma_cv) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
-    @endif --}}
+    @endif
     {{-- @if (isset($list_pdf_hdt) )
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
@@ -1312,27 +1238,18 @@
               }
             }
           }
-          // else if(isset($count_khoa)){
-          //   foreach ($count_khoa as $key => $count){
-          //     foreach($list_khoa as $key => $khoa){
-          //       if($count->ma_k == $khoa->ma_k){
-          //         $ten_k = $khoa->ten_k;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_k', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }else if(isset($count_chucvu)){
-          //   foreach ($count_chucvu as $key => $count){
-          //     foreach($list_chucvu as $key => $chucvu){
-          //       if($count->ma_cv == $chucvu->ma_cv){
-          //         $ten_cv = $chucvu->ten_cv;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_cv', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }else if(isset($count_hedaotao)){
+          else if(isset($count_chucvu)){
+            foreach ($count_chucvu as $key => $count){
+              foreach($list_chucvu as $key => $chucvu){
+                if($count->ma_cv == $chucvu->ma_cv){
+                  $ten_cv = $chucvu->ten_cv;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_cv', value: $tong },";
+                }
+              }
+            }
+          }
+          // else if(isset($count_hedaotao)){
           //   foreach ($count_hedaotao as $key => $count){
           //     foreach($list_hedaotao as $key => $hedaotao){
           //       if($count->ma_hdt == $hedaotao->ma_hdt){
