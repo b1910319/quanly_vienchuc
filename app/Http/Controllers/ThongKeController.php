@@ -4894,4 +4894,494 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
+  public function thongke_qlcttc_thoihoc_loc(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Thống kê";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->where('status_vc', '<>', '2')
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      $list_lop = Lop::orderBy('ten_l', 'asc')
+        ->get();
+      $list_khoa = Khoa::orderBy('ten_k', 'asc')
+        ->get();
+      $list_vienchuc = VienChuc::orderBy('hoten_vc', 'asc')
+        ->get();
+      $data = $request->all();
+      if(isset($data['ma_k'])  && isset($data['ma_l'])  && isset($data['batdau_thoihoc'])  && isset($data['ketthuc_thoihoc'])){
+        $count_thoihoc_all =  ThoiHoc::join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+        ->where('status_th', '<>', '2')
+        ->select(DB::raw('count(thoihoc.ma_th) as sum, lop.ma_l'))
+        ->groupBy('lop.ma_l')
+        ->get();
+        $list_thoihoc_all = VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+          ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('status_th', '<>', '2')
+          ->where('khoa.ma_k', $data['ma_k'] )
+          ->where('lop.ma_l', $data['ma_l'] )
+          ->whereBetween('thoihoc.ngay_th', [$data['batdau_thoihoc'], $data['ketthuc_thoihoc']])
+          ->where('status_th', '<>', '2')
+          ->where('status_vc', '<>', '2')
+          ->get();
+        return view('thongke.thongke_qlcttc')
+          ->with('title', $title)
+
+          ->with('count_nangbac', $count_nangbac)
+          ->with('count_thoihoc_all', $count_thoihoc_all)
+
+          ->with('list_khoa', $list_khoa)
+          ->with('list_lop', $list_lop)
+          ->with('list_vienchuc', $list_vienchuc)
+          ->with('list_thoihoc_all', $list_thoihoc_all)
+
+          ->with('ma_l', $data['ma_l'])
+          ->with('ma_k', $data['ma_k'])
+          ->with('batdau_thoihoc', $data['batdau_thoihoc'])
+          ->with('ketthuc_thoihoc', $data['ketthuc_thoihoc'])
+
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qltt', $phanquyen_qltt);
+      }else if(isset($data['ma_l'])  && isset($data['batdau_thoihoc'])  && isset($data['ketthuc_thoihoc'])){
+        $count_thoihoc_2 =  ThoiHoc::join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+        ->where('status_th', '<>', '2')
+        ->select(DB::raw('count(thoihoc.ma_th) as sum, lop.ma_l, thoihoc.ngay_th'))
+        ->groupBy('lop.ma_l', 'thoihoc.ngay_th')
+        ->get();
+        $list_thoihoc_2 = VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+          ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('status_th', '<>', '2')
+          ->where('lop.ma_l', $data['ma_l'] )
+          ->whereBetween('thoihoc.ngay_th', [$data['batdau_thoihoc'], $data['ketthuc_thoihoc']])
+          ->where('status_th', '<>', '2')
+          ->where('status_vc', '<>', '2')
+          ->get();
+        return view('thongke.thongke_qlcttc')
+          ->with('title', $title)
+
+          ->with('count_nangbac', $count_nangbac)
+          ->with('count_thoihoc_2', $count_thoihoc_2)
+
+          ->with('list_khoa', $list_khoa)
+          ->with('list_lop', $list_lop)
+          ->with('list_vienchuc', $list_vienchuc)
+          ->with('list_thoihoc_2', $list_thoihoc_2)
+
+          ->with('ma_l', $data['ma_l'])
+          ->with('batdau_thoihoc', $data['batdau_thoihoc'])
+          ->with('ketthuc_thoihoc', $data['ketthuc_thoihoc'])
+
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qltt', $phanquyen_qltt);
+      }else if(isset($data['ma_k']) && isset($data['batdau_thoihoc'])  && isset($data['ketthuc_thoihoc'])){
+        $count_thoihoc_3 =  VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+          ->where('status_th', '<>', '2')
+          ->where('status_vc', '<>', '2')
+          ->select(DB::raw('count(thoihoc.ma_th) as sum, khoa.ma_k, thoihoc.ngay_th'))
+          ->groupBy('khoa.ma_k', 'thoihoc.ngay_th')
+          ->get();
+        $list_thoihoc_3 = VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+          ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('status_th', '<>', '2')
+          ->where('khoa.ma_k', $data['ma_k'] )
+          ->whereBetween('thoihoc.ngay_th', [$data['batdau_thoihoc'], $data['ketthuc_thoihoc']])
+          ->where('status_th', '<>', '2')
+          ->where('status_vc', '<>', '2')
+          ->get();
+        return view('thongke.thongke_qlcttc')
+          ->with('title', $title)
+
+          ->with('count_nangbac', $count_nangbac)
+          ->with('count_thoihoc_3', $count_thoihoc_3)
+
+          ->with('list_khoa', $list_khoa)
+          ->with('list_lop', $list_lop)
+          ->with('list_vienchuc', $list_vienchuc)
+          ->with('list_thoihoc_3', $list_thoihoc_3)
+
+          ->with('ma_k', $data['ma_k'])
+          ->with('batdau_thoihoc', $data['batdau_thoihoc'])
+          ->with('ketthuc_thoihoc', $data['ketthuc_thoihoc'])
+
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qltt', $phanquyen_qltt);
+      }else if(isset($data['ma_k'])  && isset($data['ma_l'])){
+        $count_thoihoc_4 =  VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_th', '<>', '2')
+        ->select(DB::raw('count(thoihoc.ma_th) as sum, lop.ma_l, khoa.ma_k'))
+        ->groupBy('lop.ma_l','khoa.ma_k')
+        ->get();
+        $list_thoihoc_4 = VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+          ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('status_th', '<>', '2')
+          ->where('khoa.ma_k', $data['ma_k'] )
+          ->where('lop.ma_l', $data['ma_l'] )
+          ->where('status_th', '<>', '2')
+          ->where('status_vc', '<>', '2')
+          ->get();
+        return view('thongke.thongke_qlcttc')
+          ->with('title', $title)
+
+          ->with('count_nangbac', $count_nangbac)
+          ->with('count_thoihoc_4', $count_thoihoc_4)
+
+          ->with('list_khoa', $list_khoa)
+          ->with('list_lop', $list_lop)
+          ->with('list_vienchuc', $list_vienchuc)
+          ->with('list_thoihoc_4', $list_thoihoc_4)
+
+          ->with('ma_l', $data['ma_l'])
+          ->with('ma_k', $data['ma_k'])
+
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qltt', $phanquyen_qltt);
+      }else if(isset($data['ma_k'])){
+        $count_thoihoc_5 =  VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_th', '<>', '2')
+        ->select(DB::raw('count(thoihoc.ma_th) as sum, khoa.ma_k'))
+        ->groupBy('khoa.ma_k')
+        ->get();
+        $list_thoihoc_5 = VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+          ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('status_th', '<>', '2')
+          ->where('khoa.ma_k', $data['ma_k'] )
+          ->where('status_th', '<>', '2')
+          ->where('status_vc', '<>', '2')
+          ->get();
+        return view('thongke.thongke_qlcttc')
+          ->with('title', $title)
+
+          ->with('count_nangbac', $count_nangbac)
+          ->with('count_thoihoc_5', $count_thoihoc_5)
+
+          ->with('list_khoa', $list_khoa)
+          ->with('list_lop', $list_lop)
+          ->with('list_vienchuc', $list_vienchuc)
+          ->with('list_thoihoc_5', $list_thoihoc_5)
+
+          ->with('ma_k', $data['ma_k'])
+
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qltt', $phanquyen_qltt);
+      }else if(isset($data['ma_l'])){
+        $count_thoihoc_6 =  VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_th', '<>', '2')
+        ->select(DB::raw('count(thoihoc.ma_th) as sum, lop.ma_l'))
+        ->groupBy('lop.ma_l')
+        ->get();
+        $list_thoihoc_6 = VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+          ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('status_th', '<>', '2')
+          ->where('lop.ma_l', $data['ma_l'] )
+          ->where('status_th', '<>', '2')
+          ->where('status_vc', '<>', '2')
+          ->get();
+        return view('thongke.thongke_qlcttc')
+          ->with('title', $title)
+
+          ->with('count_nangbac', $count_nangbac)
+          ->with('count_thoihoc_6', $count_thoihoc_6)
+
+          ->with('list_khoa', $list_khoa)
+          ->with('list_lop', $list_lop)
+          ->with('list_vienchuc', $list_vienchuc)
+          ->with('list_thoihoc_6', $list_thoihoc_6)
+
+          ->with('ma_l', $data['ma_l'])
+
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qltt', $phanquyen_qltt);
+      }else if(isset($data['batdau_thoihoc'])  && isset($data['ketthuc_thoihoc'])){
+        $count_thoihoc_7 =  VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+          ->where('status_th', '<>', '2')
+          ->where('status_vc', '<>', '2')
+          ->select(DB::raw('count(thoihoc.ma_th) as sum, thoihoc.ngay_th'))
+          ->groupBy('thoihoc.ngay_th')
+          ->get();
+        $list_thoihoc_7 = VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+          ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('status_th', '<>', '2')
+          ->whereBetween('thoihoc.ngay_th', [$data['batdau_thoihoc'], $data['ketthuc_thoihoc']])
+          ->where('status_th', '<>', '2')
+          ->where('status_vc', '<>', '2')
+          ->get();
+        return view('thongke.thongke_qlcttc')
+          ->with('title', $title)
+
+          ->with('count_nangbac', $count_nangbac)
+          ->with('count_thoihoc_7', $count_thoihoc_7)
+
+          ->with('list_khoa', $list_khoa)
+          ->with('list_lop', $list_lop)
+          ->with('list_vienchuc', $list_vienchuc)
+          ->with('list_thoihoc_7', $list_thoihoc_7)
+
+          ->with('batdau_thoihoc', $data['batdau_thoihoc'])
+          ->with('ketthuc_thoihoc', $data['ketthuc_thoihoc'])
+
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qltt', $phanquyen_qltt);
+      }
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlcttc_thoihoc_loc_all_pdf($ma_k, $ma_l, $batdau_thoihoc, $ketthuc_thoihoc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $title = 'Viên chức xin gia hạn';
+      $vienchuc = VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+      ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+      ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+      ->where('status_th', '<>', '2')
+      ->where('khoa.ma_k', $ma_k )
+      ->where('lop.ma_l', $ma_l )
+      ->whereBetween('thoihoc.ngay_th', [$batdau_thoihoc, $ketthuc_thoihoc])
+      ->where('status_th', '<>', '2')
+      ->where('status_vc', '<>', '2')
+      ->get();
+      $pdf = PDF::loadView('pdf.thongke_qlcttc_thoihoc', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlcttc_thoihoc_loc_2_pdf($ma_l, $batdau_thoihoc, $ketthuc_thoihoc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $title = 'Viên chức xin gia hạn';
+      $vienchuc = VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+      ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+      ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+      ->where('status_th', '<>', '2')
+      ->where('lop.ma_l', $ma_l )
+      ->whereBetween('thoihoc.ngay_th', [$batdau_thoihoc, $ketthuc_thoihoc])
+      ->where('status_th', '<>', '2')
+      ->where('status_vc', '<>', '2')
+      ->get();
+      $pdf = PDF::loadView('pdf.thongke_qlcttc_thoihoc', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlcttc_thoihoc_loc_3_pdf($ma_k, $batdau_thoihoc, $ketthuc_thoihoc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $title = 'Viên chức xin gia hạn';
+      $vienchuc = VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+      ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+      ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+      ->where('status_th', '<>', '2')
+      ->where('khoa.ma_k', $ma_k )
+      ->whereBetween('thoihoc.ngay_th', [$batdau_thoihoc, $ketthuc_thoihoc])
+      ->where('status_th', '<>', '2')
+      ->where('status_vc', '<>', '2')
+      ->get();
+      $pdf = PDF::loadView('pdf.thongke_qlcttc_thoihoc', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlcttc_thoihoc_loc_4_pdf($ma_k, $ma_l){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $title = 'Viên chức xin gia hạn';
+      $vienchuc = VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+      ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+      ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+      ->where('status_th', '<>', '2')
+      ->where('khoa.ma_k', $ma_k )
+      ->where('lop.ma_l', $ma_l )
+      ->where('status_th', '<>', '2')
+      ->where('status_vc', '<>', '2')
+      ->get();
+      $pdf = PDF::loadView('pdf.thongke_qlcttc_thoihoc', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlcttc_thoihoc_loc_5_pdf($ma_k){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $title = 'Viên chức xin gia hạn';
+      $vienchuc = VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+      ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+      ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+      ->where('status_th', '<>', '2')
+      ->where('khoa.ma_k', $ma_k )
+      ->where('status_th', '<>', '2')
+      ->where('status_vc', '<>', '2')
+      ->get();
+      $pdf = PDF::loadView('pdf.thongke_qlcttc_thoihoc', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlcttc_thoihoc_loc_6_pdf($ma_l){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $title = 'Viên chức xin gia hạn';
+      $vienchuc = VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+      ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+      ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+      ->where('status_th', '<>', '2')
+      ->where('lop.ma_l', $ma_l )
+      ->where('status_th', '<>', '2')
+      ->where('status_vc', '<>', '2')
+      ->get();
+      $pdf = PDF::loadView('pdf.thongke_qlcttc_thoihoc', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlcttc_thoihoc_loc_7_pdf($batdau_thoihoc, $ketthuc_thoihoc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $title = 'Viên chức xin gia hạn';
+      $vienchuc = VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
+      ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+      ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+      ->where('status_th', '<>', '2')
+      ->whereBetween('thoihoc.ngay_th', [$batdau_thoihoc, $ketthuc_thoihoc])
+      ->where('status_th', '<>', '2')
+      ->where('status_vc', '<>', '2')
+      ->get();
+      $pdf = PDF::loadView('pdf.thongke_qlcttc_thoihoc', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }

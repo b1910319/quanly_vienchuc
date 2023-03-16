@@ -285,6 +285,7 @@ class ThoiHocController extends Controller
     if($phanquyen_admin || $phanquyen_qlcttc){
       $list = ThoiHoc::join('vienchuc', 'vienchuc.ma_vc', '=', 'thoihoc.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->orderBy('ma_th', 'desc')
         ->get();
       $count = ThoiHoc::select(DB::raw('count(ma_th) as sum'))

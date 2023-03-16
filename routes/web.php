@@ -335,6 +335,14 @@ Route::get('/thongke_qlcttc_chuyen_loc_all_pdf/{ma_k}/{ma_l}',[ThongKeController
 Route::get('/thongke_qlcttc_chuyen_loc_2_pdf/{ma_k}',[ThongKeController::class, 'thongke_qlcttc_chuyen_loc_2_pdf']);
 Route::get('/thongke_qlcttc_chuyen_loc_3_pdf/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_chuyen_loc_3_pdf']);
 
+Route::post('/thongke_qlcttc_thoihoc_loc',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc']);
+Route::get('/thongke_qlcttc_thoihoc_loc_all_pdf/{ma_k}/{ma_l}/{batdau_thoihoc}/{ketthuc_thoihoc}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_all_pdf']);
+Route::get('/thongke_qlcttc_thoihoc_loc_2_pdf/{ma_l}/{batdau_thoihoc}/{ketthuc_thoihoc}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_2_pdf']);
+Route::get('/thongke_qlcttc_thoihoc_loc_3_pdf/{ma_k}/{batdau_thoihoc}/{ketthuc_thoihoc}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_3_pdf']);
+Route::get('/thongke_qlcttc_thoihoc_loc_4_pdf/{ma_k}/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_4_pdf']);
+Route::get('/thongke_qlcttc_thoihoc_loc_5_pdf/{ma_k}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_5_pdf']);
+Route::get('/thongke_qlcttc_thoihoc_loc_6_pdf/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_6_pdf']);
+Route::get('/thongke_qlcttc_thoihoc_loc_7_pdf/{batdau_thoihoc}/{ketthuc_thoihoc}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_7_pdf']);
 
 // ----------------------------------------------------------
 
