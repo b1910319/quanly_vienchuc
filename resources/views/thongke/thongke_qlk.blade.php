@@ -2148,7 +2148,7 @@
         </div>
       </div>
     @endif --}}
-    {{-- @if (isset($list_11))
+    @if (isset($list_kt_5))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC LỌC THEO LOẠI KHEN THƯỞNG
@@ -2172,7 +2172,7 @@
           </tr>
         </thead>
         <tbody  >
-          @foreach($list_11 as $key => $vc)
+          @foreach($list_kt_5 as $key => $vc)
             <tr>
               <td>{{ $key+1 }}</td>
               <td>
@@ -2230,12 +2230,12 @@
       </table>
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('/thongke_qlktkl_kt_loc_11_pdf/'.$ma_lkt) }}">
+          <a href="{{ URL::to('/thongke_qlk_kt_loc_5_pdf/'.$ma_lkt) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
-    @endif --}}
+    @endif
     {{-- @if (isset($list_12))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
@@ -3328,17 +3328,17 @@
           //     }
           //   }
           // }
-          // else if(isset($count_11)){
-          //   foreach ($count_11 as $key => $count){
-          //     foreach($list_loaikhenthuong as $key => $loaikhenthuong){
-          //       if($count->ma_lkt == $loaikhenthuong->ma_lkt){
-          //         $ten_lkt = $loaikhenthuong->ten_lkt;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ten_lkt', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
+          else if(isset($count_kt_5)){
+            foreach ($count_kt_5 as $key => $count){
+              foreach($list_loaikhenthuong as $key => $loaikhenthuong){
+                if($count->ma_lkt == $loaikhenthuong->ma_lkt){
+                  $ten_lkt = $loaikhenthuong->ten_lkt;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_lkt', value: $tong },";
+                }
+              }
+            }
+          }
           // else if(isset($count_12)){
           //   foreach ($count_12 as $key => $count){
           //     foreach($list_khoa as $key => $khoa){
