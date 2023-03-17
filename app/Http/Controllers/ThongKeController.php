@@ -6664,45 +6664,55 @@ class ThongKeController extends Controller
       //     ->with('phanquyen_qlk', $phanquyen_qlk)
       //     ->with('phanquyen_qltt', $phanquyen_qltt);
       // }
-      // else if( isset($data['ma_lkt'])  && isset($data['batdau_kt'])  && isset($data['ketthuc_kt'])){
-      //   $count_8 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-      //     ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
-      //     ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
-      //     ->where('status_kt', '<>', '2')
-      //     ->select(DB::raw('count(khenthuong.ma_kt) as sum, khenthuong.ma_lkt, ngay_kt'))
-      //     ->groupBy('khenthuong.ma_lkt', 'ngay_kt')
-      //     ->get();
-      //   $list_8 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-      //     ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
-      //     ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
-      //     ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
-      //     ->where('khenthuong.ma_lkt', $data['ma_lkt'])
-      //     ->whereBetween('khenthuong.ngay_kt', [$data['batdau_kt'], $data['ketthuc_kt']])
-      //     ->where('status_vc', '<>', '2')
-      //     ->where('status_kt', '<>', '2')
-      //     ->get();
-      //   return view('thongke.thongke_qlktkl')
-      //     ->with('title', $title)
+      else if( isset($data['ma_lkt'])  && isset($data['batdau_kt'])  && isset($data['ketthuc_kt'])){
+        $count_kt_3 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
+          ->where('status_kt', '<>', '2')
+          ->where('vienchuc.ma_k', $ma_k)
+          ->select(DB::raw('count(khenthuong.ma_kt) as sum, khenthuong.ma_lkt, ngay_kt'))
+          ->groupBy('khenthuong.ma_lkt', 'ngay_kt')
+          ->get();
+        $list_kt_3 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
+          ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
+          ->where('vienchuc.ma_k', $ma_k)
+          ->where('khenthuong.ma_lkt', $data['ma_lkt'])
+          ->whereBetween('khenthuong.ngay_kt', [$data['batdau_kt'], $data['ketthuc_kt']])
+          ->where('status_vc', '<>', '2')
+          ->where('status_kt', '<>', '2')
+          ->get();
+        return view('thongke.thongke_qlk')
+          ->with('title', $title)
 
-      //     ->with('count_nangbac', $count_nangbac)
-      //     ->with('count_8', $count_8)
+          ->with('count_nangbac', $count_nangbac)
+          ->with('count_kt_3', $count_kt_3)
 
-      //     ->with('list_khoa', $list_khoa)
-      //     ->with('list_loaikhenthuong', $list_loaikhenthuong)
-      //     ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
-      //     ->with('list_loaikyluat', $list_loaikyluat)
-      //     ->with('list_8', $list_8)
+          ->with('list_khoa', $list_khoa)
+          ->with('list_loaikhenthuong', $list_loaikhenthuong)
+          ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
+          ->with('list_loaikyluat', $list_loaikyluat)
+          ->with('list_loaibangcap', $list_loaibangcap)
+          ->with('list_ngach', $list_ngach)
+          ->with('list_hedaotao', $list_hedaotao)
+          ->with('list_chucvu', $list_chucvu)
+          ->with('list_tinh', $list_tinh)
+          ->with('list_dantoc', $list_dantoc)
+          ->with('list_tongiao', $list_tongiao)
+          ->with('list_thuongbinh', $list_thuongbinh)
+          ->with('list_kt_3', $list_kt_3)
         
-      //     ->with('ma_lkt', $data['ma_lkt'])
-      //     ->with('batdau_kt', $data['batdau_kt'])
-      //     ->with('ketthuc_kt', $data['ketthuc_kt'])
+          ->with('ma_lkt', $data['ma_lkt'])
+          ->with('batdau_kt', $data['batdau_kt'])
+          ->with('ketthuc_kt', $data['ketthuc_kt'])
 
-      //     ->with('phanquyen_admin', $phanquyen_admin)
-      //     ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-      //     ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-      //     ->with('phanquyen_qlk', $phanquyen_qlk)
-      //     ->with('phanquyen_qltt', $phanquyen_qltt);
-      // }
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qltt', $phanquyen_qltt);
+      }
       // else if(isset($data['ma_lkt'])  && isset($data['ma_htkt'])){
       //   $count_9 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
       //     ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
@@ -7152,37 +7162,36 @@ class ThongKeController extends Controller
   //     return Redirect::to('/home');
   //   }
   // }
-  // public function thongke_qlk_kt_loc_8_pdf($ma_lkt, $batdau_kt, $ketthuc_kt){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlktkl){
-  //     $khenthuong = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-  //       ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
-  //       ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
-  //       ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
-  //       ->where('khenthuong.ma_lkt', $ma_lkt)
-  //       ->whereBetween('khenthuong.ngay_kt', [$batdau_kt, $ketthuc_kt])
-  //       ->where('status_vc', '<>', '2')
-  //       ->where('status_kt', '<>', '2')
-  //       ->get();
-  //     $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-  //       ->where('status_vc', '<>', '2')
-  //       ->get();
-  //     $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
-  //       'vienchuc' => $vienchuc,
-  //       'khenthuong' => $khenthuong,
-  //     ]);
-  //     return $pdf->stream();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function thongke_qlk_kt_loc_3_pdf($ma_lkt, $batdau_kt, $ketthuc_kt){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_qlk){
+      $khenthuong = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
+        ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
+        ->where('vienchuc.ma_k', $ma_k)
+        ->where('khenthuong.ma_lkt', $ma_lkt)
+        ->whereBetween('khenthuong.ngay_kt', [$batdau_kt, $ketthuc_kt])
+        ->where('status_vc', '<>', '2')
+        ->where('status_kt', '<>', '2')
+        ->get();
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_vc', '<>', '2')
+        ->get();
+      $pdf = PDF::loadView('pdf.thongke_qlk_kt_pdf', [
+        'vienchuc' => $vienchuc,
+        'khenthuong' => $khenthuong,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function thongke_qlk_kt_loc_9_pdf($ma_lkt, $ma_htkt){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');

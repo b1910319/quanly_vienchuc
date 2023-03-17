@@ -1868,13 +1868,13 @@
         </div>
       </div>
     @endif --}}
-    {{-- @if (isset($list_8))
+    @if (isset($list_kt_3))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
         </h3>
       </div>
-      <p style="font-weight: bold; color: #D36B00; font-size: 18px">
+      <p style="font-weight: bold; color: #D36B00; font-size: 1kt_3px">
         Danh sách được lọc theo: 
         @foreach ($list_loaikhenthuong as $loaikhenthuong )
           @if ($loaikhenthuong->ma_lkt == $ma_lkt)
@@ -1896,7 +1896,7 @@
           </tr>
         </thead>
         <tbody  >
-          @foreach($list_8 as $key => $vc)
+          @foreach($list_kt_3 as $key => $vc)
             <tr>
               <td>{{ $key+1 }}</td>
               <td>
@@ -1954,12 +1954,12 @@
       </table>
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('/thongke_qlktkl_kt_loc_8_pdf/'.$ma_lkt.'/'.$batdau_kt.'/'.$ketthuc_kt) }}">
+          <a href="{{ URL::to('/thongke_qlk_kt_loc_3_pdf/'.$ma_lkt.'/'.$batdau_kt.'/'.$ketthuc_kt) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
-    @endif --}}
+    @endif
     {{-- @if (isset($list_9))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
@@ -3294,18 +3294,18 @@
           //     }
           //   }
           // }
-          // else if(isset($count_8)){
-          //   foreach ($count_8 as $key => $count){
-          //     foreach($list_loaikhenthuong as $key => $loaikhenthuong){
-          //       if($count->ma_lkt == $loaikhenthuong->ma_lkt){
-          //         $ten_lkt = $loaikhenthuong->ten_lkt;
-          //         $ngay_kt = $count->ngay_kt;
-          //         $tong = $count->sum;
-          //         echo "{ year: '$ngay_kt ($ten_lkt)', value: $tong },";
-          //       }
-          //     }
-          //   }
-          // }
+          else if(isset($count_kt_3)){
+            foreach ($count_kt_3 as $key => $count){
+              foreach($list_loaikhenthuong as $key => $loaikhenthuong){
+                if($count->ma_lkt == $loaikhenthuong->ma_lkt){
+                  $ten_lkt = $loaikhenthuong->ten_lkt;
+                  $ngay_kt = $count->ngay_kt;
+                  $tong = $count->sum;
+                  echo "{ year: '$ngay_kt ($ten_lkt)', value: $tong },";
+                }
+              }
+            }
+          }
           // else if(isset($count_9)){
           //   foreach ($count_9 as $key => $count){
           //     foreach($list_loaikhenthuong as $key => $loaikhenthuong){
