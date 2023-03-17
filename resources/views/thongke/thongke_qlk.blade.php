@@ -2324,7 +2324,7 @@
         </div>
       </div>
     @endif
-    {{-- @if (isset($list_14))
+    @if (isset($list_kt_7))
       <div class="alert alert-dark" role="alert">
         <h3 class="text-center fw-bold" style="color: black" >
           THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC LỌC THEO THỜI GIAN
@@ -2346,7 +2346,7 @@
           </tr>
         </thead>
         <tbody  >
-          @foreach($list_14 as $key => $vc)
+          @foreach($list_kt_7 as $key => $vc)
             <tr>
               <td>{{ $key+1 }}</td>
               <td>
@@ -2404,12 +2404,12 @@
       </table>
       <div class="row">
         <div class="col-2">
-          <a href="{{ URL::to('/thongke_qlktkl_kt_loc_14_pdf/'.$batdau_kt.'/'.$ketthuc_kt) }}">
+          <a href="{{ URL::to('/thongke_qlk_kt_loc_7_pdf/'.$batdau_kt.'/'.$ketthuc_kt) }}">
             <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
           </a>
         </div>
       </div>
-    @endif --}}
+    @endif
 
     {{-- @if (isset($list_kl_all))
       <div class="alert alert-dark" role="alert">
@@ -3228,13 +3228,13 @@
               }
             }
           }
-          // else if(isset($count_14)){
-          //   foreach($count_14 as $count){
-          //     $ngay_kt = $count->ngay_kt;
-          //     $tong = $count->sum;
-          //     echo "{ year: '$ngay_kt', value: $tong },";
-          //   }
-          // }
+          else if(isset($count_kt_7)){
+            foreach($count_kt_7 as $count){
+              $ngay_kt = $count->ngay_kt;
+              $tong = $count->sum;
+              echo "{ year: '$ngay_kt', value: $tong },";
+            }
+          }
           // else if(isset($count_kl_all)){
           //   foreach ($count_kl_all as $key => $count){
           //     foreach($list_loaikyluat as $key => $loaikyluat){
