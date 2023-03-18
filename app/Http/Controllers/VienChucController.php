@@ -22,6 +22,8 @@ use App\Models\TonGiao;
 use App\Models\VienChuc;
 use App\Models\Xa;
 use Illuminate\Support\Carbon;
+use App\Rules\Captcha; 
+use Validator;
 
 class VienChucController extends Controller
 {
@@ -34,6 +36,12 @@ class VienChucController extends Controller
     }
   }
   public function login(Request $request){
+    $data = $request->validate([
+      'user_vc' => 'required',
+      'pass_vc' => 'required',
+      'g-recaptcha-response' => new Captcha(), 		//dòng kiểm tra Captcha
+    ]);
+
     $user_vc = $request->user_vc;
     $pass_vc = md5($request->pass_vc);
     $result = VienChuc::where('user_vc', $user_vc)

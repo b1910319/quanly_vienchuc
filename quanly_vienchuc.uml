@@ -14106,7 +14106,6 @@
 </XPD:OBJ>
 <XPD:OBJ name="OwnedViews[47]" type="UMLUseCaseView" guid="2unJkf93v0y7b+N/KZsYCgAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
-<XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <XPD:ATTR name="Left" type="integer">81</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">880</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">106</XPD:ATTR>
@@ -15153,7 +15152,6 @@
 </XPD:OBJ>
 <XPD:OBJ name="OwnedViews[77]" type="UMLUseCaseView" guid="q/X96kwJfk647w0axK6iPQAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
-<XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <XPD:ATTR name="Left" type="integer">180</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">1260</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">175</XPD:ATTR>
@@ -15212,7 +15210,6 @@
 </XPD:OBJ>
 <XPD:OBJ name="OwnedViews[79]" type="UMLUseCaseView" guid="B7CO+y50pEeJ79SVCcpY5QAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
-<XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <XPD:ATTR name="Left" type="integer">76</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">1308</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">189</XPD:ATTR>

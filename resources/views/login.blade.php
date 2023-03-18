@@ -69,6 +69,12 @@
               <div>
                 <input type="password" name="pass_vc" placeholder="Password" required="" id="password" value="ldtrinh" />
               </div>
+              <div class="g-recaptcha ms-4" data-sitekey="{{env('CAPTCHA_KEY')}}"></div>
+              @if($errors->has('g-recaptcha-response'))
+              <span class="invalid-feedback" style="display:block">
+                <strong>{{$errors->first('g-recaptcha-response')}}</strong>
+              </span>
+              @endif
               <div class="ms-3">
                 <input type="submit" value="Đăng nhập" />
               </div>
@@ -111,6 +117,7 @@
 
   <!-- App js -->
   <script src="{{ asset('public\assets\js\app.min.js') }}"></script> --}}
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 
 </html>
