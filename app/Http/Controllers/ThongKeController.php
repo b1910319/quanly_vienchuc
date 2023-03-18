@@ -7073,26 +7073,28 @@ class ThongKeController extends Controller
           ->with('phanquyen_qlk', $phanquyen_qlk)
           ->with('phanquyen_qltt', $phanquyen_qltt);
       }else if(isset($data['batdau_kl'])  && isset($data['ketthuc_kl'])){
-        $count_kl_7 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        $count_kl_3 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
           ->where('status_kl', '<>', '2')
+          ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc', '<>', '2')
           ->select(DB::raw('count(kyluat.ma_kl) as sum, ngay_kl'))
           ->groupBy('ngay_kl')
           ->get();
-        $list_kl_7 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        $list_kl_3 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
           ->whereBetween('kyluat.ngay_kl', [$data['batdau_kl'], $data['ketthuc_kl']])
+          ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc', '<>', '2')
           ->where('status_kl', '<>', '2')
           ->get();
-        return view('thongke.thongke_qlktkl')
+        return view('thongke.thongke_qlk')
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_kl_7', $count_kl_7)
+          ->with('count_kl_3', $count_kl_3)
 
           ->with('list_khoa', $list_khoa)
           ->with('list_loaikhenthuong', $list_loaikhenthuong)
@@ -7106,7 +7108,7 @@ class ThongKeController extends Controller
           ->with('list_dantoc', $list_dantoc)
           ->with('list_tongiao', $list_tongiao)
           ->with('list_thuongbinh', $list_thuongbinh)
-          ->with('list_kl_7', $list_kl_7)
+          ->with('list_kl_3', $list_kl_3)
 
           ->with('batdau_kl', $data['batdau_kl'])
           ->with('ketthuc_kl', $data['ketthuc_kl'])
@@ -7178,35 +7180,34 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function thongke_qlktkl_kl_loc_7_pdf($batdau_kl, $ketthuc_kl){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlktkl){
-  //     $kyluat = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-  //       ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
-  //       ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
-  //       ->whereBetween('kyluat.ngay_kl', [$batdau_kl, $ketthuc_kl])
-  //       ->where('status_vc', '<>', '2')
-  //       ->where('status_kl', '<>', '2')
-  //       ->get();
-  //     $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-  //       ->where('status_vc', '<>', '2')
-  //       ->get();
-  //     $pdf = PDF::loadView('pdf.thongke_qlk_kl_pdf', [
-  //       'vienchuc' => $vienchuc,
-  //       'kyluat' => $kyluat,
-  //     ]);
-  //     return $pdf->stream();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function thongke_qlk_kl_loc_3_pdf($batdau_kl, $ketthuc_kl){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_qlk){
+      $kyluat = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
+        ->whereBetween('kyluat.ngay_kl', [$batdau_kl, $ketthuc_kl])
+        ->where('status_vc', '<>', '2')
+        ->where('vienchuc.ma_k', $ma_k)
+        ->where('status_kl', '<>', '2')
+        ->get();
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_vc', '<>', '2')
+        ->get();
+      $pdf = PDF::loadView('pdf.thongke_qlk_kl_pdf', [
+        'vienchuc' => $vienchuc,
+        'kyluat' => $kyluat,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 
 
 }
