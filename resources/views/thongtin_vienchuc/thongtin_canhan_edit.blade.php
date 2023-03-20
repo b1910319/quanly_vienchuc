@@ -1,13 +1,36 @@
 @extends('layout')
 @section('content')
-  <div class="card-box">
-    <div class="alert alert-success row" role="alert">
+<div class="row">
+  <div class="col-2 card-box">
+    <div class="row">
+      <a href="{{ URL::to('thongtin_canhan') }}">
+        <button type="button" class="btn btn-success fw-bold" style="background-color: #81B214; border: #81B214;width: 100%">Thông tin viên chức</button>
+      </a>
+      <a href="{{ URL::to('thongtin_giadinh') }}" class="mt-2">
+        <button type="button" class="btn btn-light fw-bold" style="width: 100%">Gia đình</button>
+      </a>
+      <a href="{{ URL::to('thongtin_bangcap') }}" class="mt-2">
+        <button type="button" class="btn btn-light fw-bold" style="width: 100%">Bằng cấp</button>
+      </a>
+      <a href="{{ URL::to('thongtin_khenthuong') }}" class="mt-2">
+        <button type="button" class="btn btn-light fw-bold" style="width: 100%">Khen thưởng</button>
+      </a>
+      <a href="{{ URL::to('thongtin_kyluat') }}" class="mt-2">
+        <button type="button" class="btn btn-light fw-bold" style="width: 100%">Kỷ luật</button>
+      </a>
+      <a href="{{ URL::to('thongtin_lophoc') }}" class="mt-2">
+        <button type="button" class="btn btn-light fw-bold" style="width: 100%">Lớp học tham gia</button>
+      </a>
+    </div>
+  </div>
+  <div class="card-box col-10">
+    <div class="alert alert-success row" role="alert" style="background-color: #3F979B;">
       <a href="{{ URL::to('/thongtin_canhan') }}" class="col-1">
         <button type="button" class="btn btn-warning" style="background-color: #E83A14; border-radius: 50%; border: none;">
           <i class="fa-solid fa-angle-left fw-bold" style="font-size: 18px;"></i>
         </button>
       </a>
-      <h4 class="text-center col-10 mt-1" style="font-weight: bold">CẬP NHẬT THÔNG TIN CÁ NHÂN</h4>
+      <h4 class="text-center col-10 mt-1" style=" color: white; text-align: center; font-weight: bold; font-size: 20px">CẬP NHẬT THÔNG TIN GIA ĐÌNH VIÊN CHỨC</h4>
     </div>
     <form action="{{ URL::to('/update_thongtin_canhan/'.$edit->ma_vc) }}" method="POST"
       autocomplete="off" enctype="multipart/form-data">
@@ -559,6 +582,7 @@
       </div>
     </form>
   </div>
+</div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script>

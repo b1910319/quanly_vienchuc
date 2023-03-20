@@ -30,7 +30,7 @@
             <i class="fa-solid fa-angle-left fw-bold" style="font-size: 18px;"></i>
           </button>
         </a>
-        <h4 class="text-center col-10 mt-1" style=" color: white; text-align: center; font-weight: bold;">CẬP NHẬT THÔNG TIN GIA ĐÌNH VIÊN CHỨC</h4>
+        <h4 class="text-center col-10 mt-1" style=" color: white; text-align: center; font-weight: bold; font-size: 20px">CẬP NHẬT THÔNG TIN GIA ĐÌNH VIÊN CHỨC</h4>
       </div>
       <form action="{{ URL::to('/update_thongtin_giadinh/'.$edit->ma_gd) }}" method="POST" autocomplete="off" enctype="multipart/form-data">
         {{ csrf_field() }}
