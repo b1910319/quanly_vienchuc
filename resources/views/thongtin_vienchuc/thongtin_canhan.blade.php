@@ -3,22 +3,22 @@
   <div class="row">
     <div class="col-2 card-box">
       <div class="row">
-        <a href="">
-          <button type="button" class="btn btn-success fw-bold" style="background-color: #3e8e41; border: #3e8e41;width: 100%">Thông tin viên chức</button>
+        <a href="{{ URL::to('thongtin_canhan') }}">
+          <button type="button" class="btn btn-success fw-bold" style="background-color: #81B214; border: #81B214;width: 100%">Thông tin viên chức</button>
         </a>
-        <a href="" class="mt-2">
+        <a href="{{ URL::to('thongtin_giadinh') }}" class="mt-2">
           <button type="button" class="btn btn-light fw-bold" style="width: 100%">Gia đình</button>
         </a>
-        <a href="" class="mt-2">
+        <a href="{{ URL::to('thongtin_bangcap') }}" class="mt-2">
           <button type="button" class="btn btn-light fw-bold" style="width: 100%">Bằng cấp</button>
         </a>
-        <a href="" class="mt-2">
+        <a href="{{ URL::to('thongtin_khenthuong') }}" class="mt-2">
           <button type="button" class="btn btn-light fw-bold" style="width: 100%">Khen thưởng</button>
         </a>
-        <a href="" class="mt-2">
+        <a href="{{ URL::to('thongtin_kyluat') }}" class="mt-2">
           <button type="button" class="btn btn-light fw-bold" style="width: 100%">Kỷ luật</button>
         </a>
-        <a href="" class="mt-2">
+        <a href="{{ URL::to('thongtin_lophoc') }}" class="mt-2">
           <button type="button" class="btn btn-light fw-bold" style="width: 100%">Lớp học tham gia</button>
         </a>
       </div>

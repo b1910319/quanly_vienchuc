@@ -79,26 +79,38 @@
             </a>
 
             <!-- item-->
-            <a href="javascript:void(0);" class="dropdown-item notify-item">
-              <i class="remixicon-settings-3-line"></i>
-              <span>Settings</span>
+            <a href="{{ URL::to('thongtin_giadinh') }}" class="dropdown-item notify-item">
+              <i class="fa-solid fa-people-roof"></i>
+              <span>Gia đình</span>
             </a>
 
             <!-- item-->
-            <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <a href="{{ URL::to('thongtin_bangcap') }}" class="dropdown-item notify-item">
               <i class="remixicon-wallet-line"></i>
-              <span>My Wallet <span class="badge badge-success float-right">3</span> </span>
+              <span>Bằng cấp </span>
             </a>
 
             <!-- item-->
-            <a href="javascript:void(0);" class="dropdown-item notify-item">
-              <i class="remixicon-lock-line"></i>
-              <span>Lock Screen</span>
+            <a href="{{ URL::to('thongtin_khenthuong') }}" class="dropdown-item notify-item">
+              <i class="fa-solid fa-award"></i>
+              <span>Khen thưởng</span>
+            </a>
+            <a href="{{ URL::to('thongtin_kyluat') }}" class="dropdown-item notify-item">
+              <i class="fa-solid fa-face-frown"></i>
+              <span>Kỷ luật</span>
+            </a>
+            <a href="{{ URL::to('thongtin_lophoc') }}" class="dropdown-item notify-item">
+              <i class="fa-solid fa-person-shelter"></i>
+              <span>Lớp học</span>
             </a>
 
             <div class="dropdown-divider"></div>
 
             <!-- item-->
+            <a href="{{ URL::to('/change_matkhau') }}" class="dropdown-item notify-item">
+              <i class="fa-solid fa-lock"></i>
+              <span>Đổi mật khẩu</span>
+            </a>
             <a href="{{ URL::to('/logout') }}" class="dropdown-item notify-item">
               <i class="remixicon-logout-box-line"></i>
               <span>Đăng xuất</span>
