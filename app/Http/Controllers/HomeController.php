@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Bac;
 use App\Models\BangCap;
 use App\Models\ChucVu;
+use App\Models\Chuyen;
 use App\Models\DanToc;
+use App\Models\DungHoc;
 use App\Models\GiaDinh;
+use App\Models\GiaHan;
 use App\Models\HeDaoTao;
 use App\Models\HinhThucKhenThuong;
 use App\Models\Huyen;
+use App\Models\KetQua;
 use App\Models\KhenThuong;
 use App\Models\Khoa;
 use App\Models\KyLuat;
@@ -24,6 +28,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
 use App\Models\QueQuan;
+use App\Models\ThoiHoc;
 use App\Models\ThuongBinh;
 use App\Models\Tinh;
 use App\Models\TonGiao;
@@ -615,6 +620,60 @@ class HomeController extends Controller
       ->with('count_nangbac', $count_nangbac)
 
       ->with('list_loaikyluat', $list_loaikyluat)
+
+      ->with('phanquyen_qlk', $phanquyen_qlk)
+      ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+      ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+      ->with('phanquyen_qltt', $phanquyen_qltt)
+      ->with('phanquyen_admin', $phanquyen_admin);
+  }
+
+  public function thongtin_lophoc(){
+    $this->check_login();
+    $title = 'Thông tin gia đình viên chức';
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    Carbon::now('Asia/Ho_Chi_Minh'); 
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+      ->select(DB::raw('count(ma_vc) as sum'))
+      ->get();
+    $list = VienChuc::join('danhsach', 'vienchuc.ma_vc', '=', 'danhsach.ma_vc')
+      ->join('lop', 'lop.ma_l', '=', 'danhsach.ma_l')
+      ->where('vienchuc.ma_vc', $ma_vc)
+      ->get();
+    $ketqua = KetQua::get();
+    $giahan = GiaHan::get();
+    $dunghoc = DungHoc::get();
+    $thoihoc = ThoiHoc::get();
+    $chuyen = Chuyen::get();
+    return view('thongtin_vienchuc.thongtin_lophoc')
+      ->with('title', $title)
+
+      ->with('list', $list)
+      ->with('ma_vc', $ma_vc)
+
+      ->with('ketqua', $ketqua)
+      ->with('giahan', $giahan)
+      ->with('dunghoc', $dunghoc)
+      ->with('thoihoc', $thoihoc)
+      ->with('chuyen', $chuyen)
+
+      ->with('count_nangbac', $count_nangbac)
 
       ->with('phanquyen_qlk', $phanquyen_qlk)
       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
