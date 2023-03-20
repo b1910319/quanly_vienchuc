@@ -73,9 +73,9 @@
             </div>
 
             <!-- item-->
-            <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <a href="{{ URL::to('thongtin_canhan') }}" class="dropdown-item notify-item">
               <i class="remixicon-account-circle-line"></i>
-              <span>My Account</span>
+              <span>Thông tin</span>
             </a>
 
             <!-- item-->
@@ -101,7 +101,7 @@
             <!-- item-->
             <a href="{{ URL::to('/logout') }}" class="dropdown-item notify-item">
               <i class="remixicon-logout-box-line"></i>
-              <span>Logout</span>
+              <span>Đăng xuất</span>
             </a>
 
           </div>
