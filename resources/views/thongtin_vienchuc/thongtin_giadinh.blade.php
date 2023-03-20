@@ -98,16 +98,6 @@
                                 <input type='text' class='form-control input_table' autofocus required name="nghenghiep_gd">
                               </td>
                             </tr>
-                            <tr>
-                              <th scope="row">Trạng thái: </th>
-                              <td class="was-validated">
-                                <select class="custom-select input_table" id="gender2" name="status_gd">
-                                  <option value="0" >Chọn trạng thái</option>
-                                  <option value="1" >Ẩn</option>
-                                  <option selected value="0" >Hiển thị</option>
-                                </select>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
                       </div>

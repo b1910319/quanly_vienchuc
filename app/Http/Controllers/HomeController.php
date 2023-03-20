@@ -387,7 +387,59 @@ class HomeController extends Controller
     $giadinh->sdt_gd = $data['sdt_gd'];
     $giadinh->ngaysinh_gd = $data['ngaysinh_gd'];
     $giadinh->nghenghiep_gd = $data['nghenghiep_gd'];
-    $giadinh->status_gd = $data['status_gd'];
+    $giadinh->ma_vc = $ma_vc;
+    $giadinh->save();
+    return Redirect::to('/thongtin_giadinh');
+  }
+  public function thongtin_giadinh_edit($ma_gd){
+    $this->check_login();
+    $title = 'Cập nhật thông tin';
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    Carbon::now('Asia/Ho_Chi_Minh'); 
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+      ->select(DB::raw('count(ma_vc) as sum'))
+      ->get();
+    
+    $edit = GiaDinh::find($ma_gd);
+    return view('thongtin_vienchuc.thongtin_giadinh_edit')
+      ->with('title', $title)
+
+      ->with('edit', $edit)
+
+      ->with('count_nangbac', $count_nangbac)
+
+      ->with('phanquyen_qlk', $phanquyen_qlk)
+      ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+      ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+      ->with('phanquyen_qltt', $phanquyen_qltt)
+      ->with('phanquyen_admin', $phanquyen_admin);
+  }
+  public function update_thongtin_giadinh(Request $request, $ma_gd){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $data = $request->all();
+    $giadinh = GiaDinh::find($ma_gd);
+    $giadinh->moiquanhe_gd = $data['moiquanhe_gd'];
+    $giadinh->hoten_gd = $data['hoten_gd'];
+    $giadinh->sdt_gd = $data['sdt_gd'];
+    $giadinh->ngaysinh_gd = $data['ngaysinh_gd'];
+    $giadinh->nghenghiep_gd = $data['nghenghiep_gd'];
     $giadinh->ma_vc = $ma_vc;
     $giadinh->save();
     return Redirect::to('/thongtin_giadinh');

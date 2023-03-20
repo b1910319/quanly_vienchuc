@@ -41,8 +41,8 @@ Route::post('/update_thongtin_canhan/{ma_vc}',[HomeController::class, 'update_th
 
 Route::get('/thongtin_giadinh',[HomeController::class, 'thongtin_giadinh']);
 Route::post('/add_thongtin_giadinh',[HomeController::class, 'add_thongtin_giadinh']);
-// Route::get('/thongtin_giadinh_edit/{ma_vc}',[HomeController::class, 'thongtin_giadinh_edit']);
-
+Route::get('/thongtin_giadinh_edit/{ma_gd}',[HomeController::class, 'thongtin_giadinh_edit']);
+Route::post('/update_thongtin_giadinh/{ma_gd}',[HomeController::class, 'update_thongtin_giadinh']);
 
 
 
