@@ -172,7 +172,7 @@
                       &ensp; Cập nhật
                     </button>
                   </a>
-                  <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/thongtin_giadinh_delete/'.$giadinh->ma_gd)}}">
+                  <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_thongtin_giadinh/'.$giadinh->ma_gd)}}">
                     <button type="button" class="btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
                   </a>
                 </td>
