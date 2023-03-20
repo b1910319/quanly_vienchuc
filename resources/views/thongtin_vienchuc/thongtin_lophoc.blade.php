@@ -139,76 +139,25 @@
                     </div>
                   </div>
                 </td>
-                {{-- <td>
-                  <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="background-color: #FFBE0F; border: none; color: black;">
-                    <i class="fa-solid fa-square-poll-vertical"></i>
-                    &ensp;
-                    Gia hạn
-                  </button>
-                  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">GIA HẠN</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          @foreach ($ketqua as $kq )
-                            @if ($ma_vc == $kq->ma_vc && $lop->ma_l == $kq->ma_l )
-                              <table class="table">
-                                <tbody>
-                                  <tr>
-                                    <th scope="row">Tên người hướng dẫn</th>
-                                    <td>{{ $kq->tennguoihuongdan_kq }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Email người hướng dẫn</th>
-                                    <td>{{ $kq->emailnguoihuongdan_kq }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Nội dung đào tạo</th>
-                                    <td>{{ $kq->noidungaotao_kq }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Bằng được cấp</th>
-                                    <td>{{ $kq->bangduoccap_kq }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Ngày cấp bằng</th>
-                                    <td>{{ $kq->ngaycapbang_kq }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Xếp loại</th>
-                                    <td>{{ $kq->xeploai_kq }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Đề tài tốt nghiệp</th>
-                                    <td>{{ $kq->detaitotnghiep_kq }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Ngày về nước</th>
-                                    <td>{{ $kq->ngayvenuoc_kq }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Đánh giá của cơ sở</th>
-                                    <td>{{ $kq->danhgiacuacoso_kq }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Kiến nghị</th>
-                                    <td>{{ $kq->kiennghi_kq }}</td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            @endif
-                          @endforeach
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </td> --}}
+                <td>
+                  @foreach ($giahan as $gh )
+                    @if ($gh->ma_l == $lop->ma_l && $gh->ma_vc == $lop->ma_vc)
+                      <b>Thời gian gia hạn: </b> {{ $gh->thoigian_gh }} <br>
+                      <b>Lý do gia hạn: </b> {{ $gh->lydo_gh }} <br>
+                      @if ($gh->file_gh !=' ')
+                        <a href="{{ asset('public/uploads/giahan/'.$gh->file_gh) }}">
+                          <button type="button" class="btn btn-warning mt-2" style="background-color: #379237; border: none;">
+                            <i class="fa-solid fa-file"></i>
+                            &ensp;
+                            File
+                          </button>
+                        </a>
+                      @else
+                        Không có file
+                      @endif
+                    @endif
+                  @endforeach
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>
