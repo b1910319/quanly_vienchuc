@@ -46,6 +46,8 @@ Route::post('/update_thongtin_giadinh/{ma_gd}',[HomeController::class, 'update_t
 Route::get('/delete_thongtin_giadinh/{ma_gd}',[HomeController::class, 'delete_thongtin_giadinh']);
 Route::get('/delete_all_thongtin_giadinh',[HomeController::class, 'delete_all_thongtin_giadinh']);
 
+Route::get('/thongtin_bangcap',[HomeController::class, 'thongtin_bangcap']);
+
 
 Route::post('/login',[VienChucController::class, 'login']);
 Route::get('/logout',[VienChucController::class, 'logout']);
