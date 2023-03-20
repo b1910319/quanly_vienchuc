@@ -44,8 +44,8 @@
           <tbody  >
             @foreach ($list as $key => $lop)
               <tr >
-                <th scope="row">{{ $key+1 }}</th>
-                <td style="width: 30%">
+                <th scope="row" style="width: 5%;">{{ $key+1 }}</th>
+                <td style="width: 21%">
                   <div class="row ">
                     <div class="col-md-12">
                       <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
@@ -69,7 +69,7 @@
                     </div>
                   </div>
                 </td>
-                <td>
+                <td style="width: 10%;">
                   <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #FFBE0F; border: none; color: black;">
                     <i class="fa-solid fa-square-poll-vertical"></i>
                     &ensp;
@@ -139,11 +139,13 @@
                     </div>
                   </div>
                 </td>
-                <td>
+                <td style="width: 16%;">
                   @foreach ($giahan as $gh )
                     @if ($gh->ma_l == $lop->ma_l && $gh->ma_vc == $lop->ma_vc)
-                      <b>Thời gian gia hạn: </b> {{ $gh->thoigian_gh }} <br>
-                      <b>Lý do gia hạn: </b> {{ $gh->lydo_gh }} <br>
+                      <div style="height: 120px">
+                        <b>Thời gian gia hạn: </b> {{ $gh->thoigian_gh }} <br>
+                        <b>Lý do gia hạn: </b> {{ $gh->lydo_gh }} <br>
+                      </div>
                       @if ($gh->file_gh !=' ')
                         <a href="{{ asset('public/uploads/giahan/'.$gh->file_gh) }}">
                           <button type="button" class="btn btn-warning mt-2" style="background-color: #379237; border: none;">
@@ -158,9 +160,70 @@
                     @endif
                   @endforeach
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td style="width: 16%;">
+                  @foreach ($dunghoc as $dh )
+                    @if ($dh->ma_l == $lop->ma_l && $dh->ma_vc == $lop->ma_vc)
+                      <div style="height: 120px">
+                        <b>Thời gian bắt đầu: </b> {{ $dh->batdau_dh }} <br>
+                        <b>Thời gian kết thúc: </b> {{ $dh->ketthuc_dh }} <br>
+                        <b>Lý do dừng học: </b> {{ $dh->lydo_dh }} <br>
+                      </div>
+                      @if ($dh->file_dh !=' ')
+                        <a href="{{ asset('public/uploads/dunghoc/'.$dh->file_dh) }}">
+                          <button type="button" class="btn btn-warning mt-2" style="background-color: #379237; border: none;">
+                            <i class="fa-solid fa-file"></i>
+                            &ensp;
+                            File
+                          </button>
+                        </a>
+                      @else
+                        Không có file
+                      @endif
+                    @endif
+                  @endforeach
+                </td>
+                <td style="width: 16%;">
+                  @foreach ($chuyen as $c )
+                    @if ($c->ma_l == $lop->ma_l && $c->ma_vc == $lop->ma_vc)
+                      <div style="height: 120px">
+                        <b>Nội dung xin chyển: </b> {{ $c->noidung_c }} <br>
+                        <b>Lý do xin chuyển: </b> {{ $c->lydo_c }} <br>
+                      </div>
+                      @if ($c->file_c !=' ')
+                        <a href="{{ asset('public/uploads/chuyen/'.$c->file_c) }}">
+                          <button type="button" class="btn btn-warning mt-2" style="background-color: #379237; border: none;">
+                            <i class="fa-solid fa-file"></i>
+                            &ensp;
+                            File
+                          </button>
+                        </a>
+                      @else
+                        Không có file
+                      @endif
+                    @endif
+                  @endforeach
+                </td>
+                <td style="width: 16%;">
+                  @foreach ($thoihoc as $th )
+                    @if ($th->ma_l == $lop->ma_l && $th->ma_vc == $lop->ma_vc)
+                      <div style="height: 120px">
+                        <b>Ngày xin thôi học: </b> {{ $th->ngay_th }} <br>
+                        <b>Lý do xin thôi học: </b> {{ $th->lydo_th }} <br>
+                      </div>
+                      @if ($th->file_th !=' ')
+                        <a href="{{ asset('public/uploads/thoihoc/'.$th->file_th) }}">
+                          <button type="button" class="btn btn-warning mt-2" style="background-color: #379237; border: none;">
+                            <i class="fa-solid fa-file"></i>
+                            &ensp;
+                            File
+                          </button>
+                        </a>
+                      @else
+                        Không có file
+                      @endif
+                    @endif
+                  @endforeach
+                </td>
               </tr>
             @endforeach
           </tbody>
