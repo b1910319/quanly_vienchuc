@@ -48,6 +48,8 @@ Route::get('/delete_all_thongtin_giadinh',[HomeController::class, 'delete_all_th
 
 Route::get('/thongtin_bangcap',[HomeController::class, 'thongtin_bangcap']);
 
+Route::get('/thongtin_khenthuong',[HomeController::class, 'thongtin_khenthuong']);
+
 
 Route::post('/login',[VienChucController::class, 'login']);
 Route::get('/logout',[VienChucController::class, 'logout']);

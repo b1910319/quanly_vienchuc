@@ -8,9 +8,12 @@ use App\Models\ChucVu;
 use App\Models\DanToc;
 use App\Models\GiaDinh;
 use App\Models\HeDaoTao;
+use App\Models\HinhThucKhenThuong;
 use App\Models\Huyen;
+use App\Models\KhenThuong;
 use App\Models\Khoa;
 use App\Models\LoaiBangCap;
+use App\Models\LoaiKhenThuong;
 use App\Models\Lop;
 use App\Models\Ngach;
 use App\Models\NoiSinh;
@@ -528,49 +531,49 @@ class HomeController extends Controller
       ->with('phanquyen_admin', $phanquyen_admin);
   }
 
-  // public function thongtin_khenthuong(){
-  //   $this->check_login();
-  //   $title = 'Thông tin gia đình viên chức';
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   Carbon::now('Asia/Ho_Chi_Minh'); 
-  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-  //   ->where('ma_q', '=', '9')
-  //   ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-  //   $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-  //     ->select(DB::raw('count(ma_vc) as sum'))
-  //     ->get();
-  //   $list_loaibangcap = LoaiBangCap::get();
-  //   $list_hedaotao = HeDaoTao::get();
-  //   $list = BangCap::where('ma_vc', $ma_vc)
-  //     ->get();
-  //   return view('thongtin_vienchuc.thongtin_khenthuong')
-  //     ->with('title', $title)
+  public function thongtin_khenthuong(){
+    $this->check_login();
+    $title = 'Thông tin gia đình viên chức';
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    Carbon::now('Asia/Ho_Chi_Minh'); 
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+      ->select(DB::raw('count(ma_vc) as sum'))
+      ->get();
+    $list_loaikhenthuong = LoaiKhenThuong::get();
+    $list_hinhthuckhenthuong = HinhThucKhenThuong::get();
+    $list = KhenThuong::where('ma_vc', $ma_vc)
+      ->get();
+    return view('thongtin_vienchuc.thongtin_khenthuong')
+      ->with('title', $title)
 
-  //     ->with('list', $list)
-  //     ->with('ma_vc', $ma_vc)
+      ->with('list', $list)
+      ->with('ma_vc', $ma_vc)
 
-  //     ->with('count_nangbac', $count_nangbac)
+      ->with('count_nangbac', $count_nangbac)
 
-  //     ->with('list_loaibangcap', $list_loaibangcap)
-  //     ->with('list_hedaotao', $list_hedaotao)
+      ->with('list_loaikhenthuong', $list_loaikhenthuong)
+      ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
 
-  //     ->with('phanquyen_qlk', $phanquyen_qlk)
-  //     ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-  //     ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-  //     ->with('phanquyen_qltt', $phanquyen_qltt)
-  //     ->with('phanquyen_admin', $phanquyen_admin);
-  // }
+      ->with('phanquyen_qlk', $phanquyen_qlk)
+      ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+      ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+      ->with('phanquyen_qltt', $phanquyen_qltt)
+      ->with('phanquyen_admin', $phanquyen_admin);
+  }
 }
