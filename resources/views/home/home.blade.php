@@ -267,102 +267,6 @@
 <!-- end row -->
 
 <div class="row">
-
-  <div class="col-xl-6">
-    <div class="card-box">
-      <div class="row">
-        <div class="col-md-7">
-          <div class="row align-items-center">
-            <div class="col-6 text-center">
-              <h1 class="display-4"><i class="wi wi-day-sleet text-primary"></i>
-              </h1>
-            </div>
-            <div class="col-6">
-              <div class="text-muted">
-                <h2 class="mt-1"><b>32°</b></h2>
-                <p>Partly cloudy</p>
-                <p class=" mb-0">15km/h - 37%</p>
-              </div>
-            </div>
-          </div><!-- End row -->
-        </div>
-        <div class="col-md-5">
-          <div class="row">
-            <div class="col-4 text-center">
-              <h4 class="text-muted mt-0">SAT</h4>
-              <h3 class="my-3"><i class="wi wi-night-alt-cloudy text-primary"></i>
-              </h3>
-              <h4 class="text-muted mb-0">30<i class="wi wi-degrees"></i></h4>
-            </div>
-            <div class="col-4 text-center">
-              <h4 class="text-muted mt-0">SUN</h4>
-              <h3 class="my-3"><i class="wi wi-day-sprinkle text-primary"></i>
-              </h3>
-              <h4 class="text-muted mb-0">28<i class="wi wi-degrees"></i></h4>
-            </div>
-            <div class="col-4 text-center">
-              <h4 class="text-muted mt-0">MON</h4>
-              <h3 class="my-3"><i class="wi wi-hot text-primary"></i></h3>
-              <h4 class="text-muted mb-0">33<i class="wi wi-degrees"></i></h4>
-            </div>
-          </div><!-- end row -->
-        </div>
-      </div><!-- end row -->
-    </div><!-- cardbox -->
-    <!-- END Weather WIDGET 1 -->
-
-  </div><!-- End col-xl-6 -->
-
-  <div class="col-xl-6">
-
-    <!-- WEATHER WIDGET 2 -->
-    <div class="card-box">
-
-      <div class="row">
-        <div class="col-md-7">
-          <div class="row align-items-center">
-            <div class="col-6 text-center">
-              <h1 class="display-4"><i class="wi wi-night-sprinkle text-primary"></i></h1>
-            </div>
-            <div class="col-6">
-              <div class="text-muted">
-                <h2 class="mt-1"><b>18°</b></h2>
-                <p>Partly cloudy</p>
-                <p class=" mb-0">15km/h - 37%</p>
-              </div>
-            </div>
-          </div><!-- End row -->
-        </div>
-        <div class="col-md-5">
-          <div class="row">
-            <div class="col-4 text-center">
-              <h4 class="text-muted mt-0">SAT</h4>
-              <h3 class="my-3"><i class="wi wi-day-sprinkle text-primary"></i>
-              </h3>
-              <h4 class="text-muted mb-0">30<i class="wi wi-degrees"></i></h4>
-            </div>
-            <div class="col-4 text-center">
-              <h4 class="text-muted mt-0">SUN</h4>
-              <h3 class="my-3"><i class="wi wi-storm-showers text-primary"></i>
-              </h3>
-              <h4 class="text-muted mb-0">28<i class="wi wi-degrees"></i></h4>
-            </div>
-            <div class="col-4 text-center">
-              <h4 class="text-muted mt-0">MON</h4>
-              <h3 class="my-3"><i class="wi wi-night-alt-cloudy text-primary"></i>
-              </h3>
-              <h4 class="text-muted mb-0">33<i class="wi wi-degrees"></i></h4>
-            </div>
-          </div><!-- end row -->
-        </div>
-      </div><!-- end row -->
-    </div><!-- card-box -->
-    <!-- END WEATHER WIDGET 2 -->
-
-  </div><!-- /.col-xl-6 -->
-</div>
-
-<div class="row">
   <div class="col-xl-4">
     <div class="card-box">
       <div class="dropdown float-right">
@@ -422,177 +326,193 @@
           <a href="javascript:void(0);" class="dropdown-item">Action</a>
         </div>
       </div>
-      <h4 class="header-title mb-3">Revenue History</h4>
+      <h4 class="header-title mb-3">Danh sách các lớp học hiện có</h4>
 
       <div class="table-responsive">
-        <table class="table table-borderless table-hover table-centered m-0">
+        <table class="table table-borderless table-hover table-centered m-0" id="mytable1">
 
           <thead class="thead-light">
             <tr>
-              <th>Marketplaces</th>
-              <th>Date</th>
-              <th>US Tax Hold</th>
-              <th>Payouts</th>
-              <th>Status</th>
-              <th>Action</th>
+              <th>Tên lớp</th>
+              <th>Ngày bắt đầu học</th>
+              <th>Ngày kết thúc</th>
+              <th>Cơ sở đào tạo</th>
+              <th>Quốc gia</th>
+              <th>Chi tiết</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <h5 class="m-0 font-weight-normal">Themes Market</h5>
-              </td>
+            @foreach ($list_lop as $lop )
+              <tr>
+                <td>
+                  <h5 class="m-0 font-weight-normal">
+                    {{ $lop->ten_l }}
+                  </h5>
+                </td>
+                <td>
+                  {{ $lop->ngaybatdau_l }}
+                </td>
 
-              <td>
-                Oct 15, 2018
-              </td>
+                <td>
+                  {{ $lop->ngayketthuc_l }}
+                </td>
 
-              <td>
-                $125.23
-              </td>
+                <td>
+                  {{ $lop->tencosodaotao_l }}
+                </td>
 
-              <td>
-                $5848.68
-              </td>
+                <td>
+                  <span class="badge badge-light-danger">
+                    {{ $lop->quocgiaodaotao_l }}
+                  </span>
+                </td>
 
-              <td>
-                <span class="badge badge-light-warning">Upcoming</span>
-              </td>
+                <td>
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $lop->ma_l }}">
+                    <i class="fa-solid fa-circle-info"></i>
+                  </button>
 
-              <td>
-                <a href="javascript: void(0);" class="btn btn-xs btn-secondary"><i class="mdi mdi-pencil"></i></a>
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <h5 class="m-0 font-weight-normal">Freelance</h5>
-              </td>
-
-              <td>
-                Oct 12, 2018
-              </td>
-
-              <td>
-                $78.03
-              </td>
-
-              <td>
-                $1247.25
-              </td>
-
-              <td>
-                <span class="badge badge-light-success">Paid</span>
-              </td>
-
-              <td>
-                <a href="javascript: void(0);" class="btn btn-xs btn-secondary"><i class="mdi mdi-pencil"></i></a>
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <h5 class="m-0 font-weight-normal">Share Holding</h5>
-              </td>
-
-              <td>
-                Oct 10, 2018
-              </td>
-
-              <td>
-                $358.24
-              </td>
-
-              <td>
-                $815.89
-              </td>
-
-              <td>
-                <span class="badge badge-light-success">Paid</span>
-              </td>
-
-              <td>
-                <a href="javascript: void(0);" class="btn btn-xs btn-secondary"><i class="mdi mdi-pencil"></i></a>
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <h5 class="m-0 font-weight-normal">Envato's Affiliates</h5>
-              </td>
-
-              <td>
-                Oct 03, 2018
-              </td>
-
-              <td>
-                $18.78
-              </td>
-
-              <td>
-                $248.75
-              </td>
-
-              <td>
-                <span class="badge badge-light-danger">Overdue</span>
-              </td>
-
-              <td>
-                <a href="javascript: void(0);" class="btn btn-xs btn-secondary"><i class="mdi mdi-pencil"></i></a>
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <h5 class="m-0 font-weight-normal">Marketing Revenue</h5>
-              </td>
-
-              <td>
-                Sep 21, 2018
-              </td>
-
-              <td>
-                $185.36
-              </td>
-
-              <td>
-                $978.21
-              </td>
-
-              <td>
-                <span class="badge badge-light-warning">Upcoming</span>
-              </td>
-
-              <td>
-                <a href="javascript: void(0);" class="btn btn-xs btn-secondary"><i class="mdi mdi-pencil"></i></a>
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <h5 class="m-0 font-weight-normal">Advertise Revenue</h5>
-              </td>
-
-              <td>
-                Sep 15, 2018
-              </td>
-
-              <td>
-                $29.56
-              </td>
-
-              <td>
-                $358.10
-              </td>
-
-              <td>
-                <span class="badge badge-light-success">Paid</span>
-              </td>
-
-              <td>
-                <a href="javascript: void(0);" class="btn btn-xs btn-secondary"><i class="mdi mdi-pencil"></i></a>
-              </td>
-            </tr>
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal{{ $lop->ma_l }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $lop->ten_l }}</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <table class="table table-borderless table-hover table-centered m-0">
+                            <tbody>
+                              <tr>
+                                <td style="width: 20%;">
+                                  <h5 class="m-0 font-weight-normal">Tên lớp</h5>
+                                </td>
+                  
+                                <td>
+                                  {{ $lop->ten_l }}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <h5 class="m-0 font-weight-normal">Ngày bắt đầu</h5>
+                                </td>
+                  
+                                <td>
+                                  {{ $lop->ngaybatdau_l }}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <h5 class="m-0 font-weight-normal">Ngày kết thúc</h5>
+                                </td>
+                  
+                                <td>
+                                  {{ $lop->ngayketthuc_l }}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <h5 class="m-0 font-weight-normal">Yêu cầu</h5>
+                                </td>
+                  
+                                <td>
+                                  {{ $lop->yeucau_l }}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <h5 class="m-0 font-weight-normal">Tên cơ sở đào tạo</h5>
+                                </td>
+                  
+                                <td>
+                                  {{ $lop->tencosodaotao_l }}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <h5 class="m-0 font-weight-normal">Quốc gia đào tạo</h5>
+                                </td>
+                  
+                                <td>
+                                  {{ $lop->quocgiaodaotao_l }}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <h5 class="m-0 font-weight-normal">Ngành học</h5>
+                                </td>
+                  
+                                <td>
+                                  {{ $lop->nganhhoc_l }}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <h5 class="m-0 font-weight-normal">Trình độ đào tạo</h5>
+                                </td>
+                  
+                                <td>
+                                  {{ $lop->trinhdodaotao_l }}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <h5 class="m-0 font-weight-normal">Nguồn kinh phí</h5>
+                                </td>
+                  
+                                <td>
+                                  {{ $lop->nguonkinhphi_l }}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <h5 class="m-0 font-weight-normal">Địa chỉ đào tạo</h5>
+                                </td>
+                  
+                                <td>
+                                  {{ $lop->diachidaotao_l }}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <h5 class="m-0 font-weight-normal">Nội dung học</h5>
+                                </td>
+                  
+                                <td>
+                                  {{ $lop->noidunghoc_l }}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <h5 class="m-0 font-weight-normal">Email cơ sở</h5>
+                                </td>
+                  
+                                <td>
+                                  {{ $lop->emailcoso_l }}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <h5 class="m-0 font-weight-normal">Số điện thoại cơ sở</h5>
+                                </td>
+                  
+                                <td>
+                                  {{ $lop->sdtcoso_l }}
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            @endforeach
 
           </tbody>
         </table>

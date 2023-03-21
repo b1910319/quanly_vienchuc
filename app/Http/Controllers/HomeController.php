@@ -111,6 +111,9 @@ class HomeController extends Controller
       ->where('status_vc', '<>', '2')
       ->where('vienchuc.ma_k', $ma_k)
       ->get();
+
+    $list_lop = Lop::orderBy('ma_l', 'desc')
+      ->get();
     return view('home.home')
       ->with('title', $title)
 
@@ -123,6 +126,8 @@ class HomeController extends Controller
       ->with('count_vienchuc_nghihuu_khoa', $count_vienchuc_nghihuu_khoa)
       ->with('count_vienchuc_kyluat_khoa', $count_vienchuc_kyluat_khoa)
       ->with('count_vienchuc_khenthuong_khoa', $count_vienchuc_khenthuong_khoa)
+
+      ->with('list_lop', $list_lop)
 
       ->with('phanquyen_qlk', $phanquyen_qlk)
       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
