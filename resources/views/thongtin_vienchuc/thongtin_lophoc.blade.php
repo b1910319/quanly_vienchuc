@@ -70,7 +70,7 @@
                   </div>
                 </td>
                 <td style="width: 10%;">
-                  <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #FFBE0F; border: none; color: black;">
+                  <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #FFBE0F; border: none; color: black; width: 100%;">
                     <i class="fa-solid fa-square-poll-vertical"></i>
                     &ensp;
                     Kết quả
@@ -148,7 +148,7 @@
                       </div>
                       @if ($gh->file_gh !=' ')
                         <a href="{{ asset('public/uploads/giahan/'.$gh->file_gh) }}">
-                          <button type="button" class="btn btn-warning mt-2" style="background-color: #379237; border: none;">
+                          <button type="button" class="btn btn-warning mt-2 fw-bold" style="background-color: #379237; border: none;">
                             <i class="fa-solid fa-file"></i>
                             &ensp;
                             File
@@ -170,7 +170,7 @@
                       </div>
                       @if ($dh->file_dh !=' ')
                         <a href="{{ asset('public/uploads/dunghoc/'.$dh->file_dh) }}">
-                          <button type="button" class="btn btn-warning mt-2" style="background-color: #379237; border: none;">
+                          <button type="button" class="btn btn-warning mt-2 fw-bold" style="background-color: #379237; border: none;">
                             <i class="fa-solid fa-file"></i>
                             &ensp;
                             File
@@ -191,7 +191,7 @@
                       </div>
                       @if ($c->file_c !=' ')
                         <a href="{{ asset('public/uploads/chuyen/'.$c->file_c) }}">
-                          <button type="button" class="btn btn-warning mt-2" style="background-color: #379237; border: none;">
+                          <button type="button" class="btn btn-warning mt-2 fw-bold" style="background-color: #379237; border: none;">
                             <i class="fa-solid fa-file"></i>
                             &ensp;
                             File
@@ -212,7 +212,7 @@
                       </div>
                       @if ($th->file_th !=' ')
                         <a href="{{ asset('public/uploads/thoihoc/'.$th->file_th) }}">
-                          <button type="button" class="btn btn-warning mt-2" style="background-color: #379237; border: none;">
+                          <button type="button" class="btn btn-warning mt-2 fw-bold" style="background-color: #379237; border: none;">
                             <i class="fa-solid fa-file"></i>
                             &ensp;
                             File

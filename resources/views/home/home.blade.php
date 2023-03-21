@@ -1,53 +1,160 @@
 @extends('layout')
 @section('content')
 <div class="row">
-  <div class="col-xl-3 col-md-6">
-    <div class="card-box">
-      <div class="float-left" dir="ltr">
-        <input data-plugin="knob" data-width="70" data-height="70" data-fgcolor="#1abc9c" data-bgcolor="#d1f2eb" value="58" data-skin="tron" data-angleoffset="0" data-readonly="true" data-thickness=".15">
-      </div>
-      <div class="text-right">
-        <h3 class="mb-1"> 268 </h3>
-        <p class="text-muted mb-1">Viên chức</p>
+  @if ($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlktkl || $phanquyen_qlcttc  )
+    <div class="col-xl-3 col-md-6">
+      <div class="card-box">
+        <div class="float-left" dir="ltr">
+          <input data-plugin="knob" data-width="70" data-height="70" data-fgcolor="#1abc9c" data-bgcolor="#d1f2eb" value="100" data-skin="tron" data-angleoffset="0" data-readonly="true" data-thickness=".15">
+        </div>
+        <div class="text-right">
+          @foreach ($count_vienchuc as $vienchuc )
+            <h3 class="mb-1"> {{ $vienchuc->sum }} </h3>
+          @endforeach
+          <p class="text-muted mb-1">Viên chức</p>
+        </div>
       </div>
     </div>
-  </div><!-- end col -->
+  @endif
 
-  <div class="col-xl-3 col-md-6">
-    <div class="card-box">
-      <div class="float-left" dir="ltr">
-        <input data-plugin="knob" data-width="70" data-height="70" data-fgcolor="#3bafda" data-bgcolor="#d8eff8" value="80" data-skin="tron" data-angleoffset="0" data-readonly="true" data-thickness=".15">
-      </div>
-      <div class="text-right">
-        <h3 class="mb-1"> 8715 </h3>
-        <p class="text-muted mb-1">Online Orders</p>
+  @if ($phanquyen_qlk)
+    <div class="col-xl-3 col-md-6">
+      <div class="card-box">
+        <div class="float-left" dir="ltr">
+          @foreach ($count_vienchuc as $vc )
+            @foreach ($count_vienchuc_khoa as $vck )
+              <input data-plugin="knob" data-width="70" data-height="70" data-fgcolor="#3bafda" data-bgcolor="#d8eff8" value="<?php echo ceil(($vck->sum*100)/($vc->sum)) ?>" data-skin="tron" data-angleoffset="0" data-readonly="true" data-thickness=".15">
+            @endforeach
+          @endforeach
+        </div>
+        <div class="text-right">
+          @foreach ($count_vienchuc_khoa as $vienchuc )
+            <h3 class="mb-1"> {{ $vienchuc->sum }} </h3>
+          @endforeach
+          <p class="text-muted mb-1">Viên chức</p>
+        </div>
       </div>
     </div>
-  </div><!-- end col -->
+  @endif
 
-  <div class="col-xl-3 col-md-6">
-    <div class="card-box">
-      <div class="float-left" dir="ltr">
-        <input data-plugin="knob" data-width="70" data-height="70" data-fgcolor="#f672a7" data-bgcolor="#fde3ed" value="77" data-skin="tron" data-angleoffset="0" data-readonly="true" data-thickness=".15">
-      </div>
-      <div class="text-right">
-        <h3 class="mb-1"> $925.78 </h3>
-        <p class="text-muted mb-1">Revenue</p>
+  @if ($phanquyen_admin || $phanquyen_qltt)
+    <div class="col-xl-3 col-md-6">
+      <div class="card-box">
+        <div class="float-left" dir="ltr">
+          @foreach ($count_vienchuc as $vc )
+            @foreach ($count_vienchuc_nghihuu as $vcnh )
+              <input data-plugin="knob" data-width="70" data-height="70" data-fgcolor="#3bafda" data-bgcolor="#d8eff8" value="<?php echo ceil(($vcnh->sum*100)/($vc->sum)) ?>" data-skin="tron" data-angleoffset="0" data-readonly="true" data-thickness=".15">
+            @endforeach
+          @endforeach
+        </div>
+        <div class="text-right">
+          @foreach ($count_vienchuc_nghihuu as $vienchuc )
+            <h3 class="mb-1"> {{ $vienchuc->sum }} </h3>
+          @endforeach
+          <p class="text-muted mb-1">Nghĩ hưu</p>
+        </div>
       </div>
     </div>
-  </div><!-- end col -->
+  @endif
 
-  <div class="col-xl-3 col-md-6">
-    <div class="card-box">
-      <div class="float-left" dir="ltr">
-        <input data-plugin="knob" data-width="70" data-height="70" data-fgcolor="#6c757d" data-bgcolor="#e2e3e5" value="35" data-skin="tron" data-angleoffset="0" data-readonly="true" data-thickness=".15">
-      </div>
-      <div class="text-right">
-        <h3 class="mb-1"> $78.58 </h3>
-        <p class="text-muted mb-1">Daily Average</p>
+  @if ($phanquyen_qlk)
+    <div class="col-xl-3 col-md-6">
+      <div class="card-box">
+        <div class="float-left" dir="ltr">
+          @foreach ($count_vienchuc as $vc )
+            @foreach ($count_vienchuc_nghihuu_khoa as $vcnhk )
+              <input data-plugin="knob" data-width="70" data-height="70" data-fgcolor="#3bafda" data-bgcolor="#d8eff8" value="<?php echo ceil(($vcnhk->sum*100)/($vc->sum)) ?>" data-skin="tron" data-angleoffset="0" data-readonly="true" data-thickness=".15">
+            @endforeach
+          @endforeach
+        </div>
+        <div class="text-right">
+          @foreach ($count_vienchuc_nghihuu_khoa as $vienchuc )
+            <h3 class="mb-1"> {{ $vienchuc->sum }} </h3>
+          @endforeach
+          <p class="text-muted mb-1">Nghĩ hưu</p>
+        </div>
       </div>
     </div>
-  </div><!-- end col -->
+  @endif
+  @if ($phanquyen_admin || $phanquyen_qlktkl)
+    <div class="col-xl-3 col-md-6">
+      <div class="card-box">
+        <div class="float-left" dir="ltr">
+          @foreach ($count_vienchuc as $vc )
+            @foreach ($count_vienchuc_kyluat as $vckl )
+              <input data-plugin="knob" data-width="70" data-height="70" data-fgcolor="#f672a7" data-bgcolor="#fde3ed" value="<?php echo ceil(($vckl->sum*100)/($vc->sum)) ?>" data-skin="tron" data-angleoffset="0" data-readonly="true" data-thickness=".15">
+            @endforeach
+          @endforeach
+        </div>
+        <div class="text-right">
+          @foreach ($count_vienchuc_kyluat as $vienchuc )
+            <h3 class="mb-1"> {{ $vienchuc->sum }} </h3>
+          @endforeach
+          <p class="text-muted mb-1">Kỷ luật</p>
+        </div>
+      </div>
+    </div>
+  @endif
+
+  @if ($phanquyen_qlk)
+    <div class="col-xl-3 col-md-6">
+      <div class="card-box">
+        <div class="float-left" dir="ltr">
+          @foreach ($count_vienchuc as $vc )
+            @foreach ($count_vienchuc_kyluat_khoa as $vcklk )
+              <input data-plugin="knob" data-width="70" data-height="70" data-fgcolor="#f672a7" data-bgcolor="#fde3ed" value="<?php echo ceil(($vcklk->sum*100)/($vc->sum)) ?>" data-skin="tron" data-angleoffset="0" data-readonly="true" data-thickness=".15">
+            @endforeach
+          @endforeach
+        </div>
+        <div class="text-right">
+          @foreach ($count_vienchuc_kyluat_khoa as $vienchuc )
+            <h3 class="mb-1"> {{ $vienchuc->sum }} </h3>
+          @endforeach
+          <p class="text-muted mb-1">Kỷ luật</p>
+        </div>
+      </div>
+    </div>
+  @endif
+
+  @if ($phanquyen_admin || $phanquyen_qlktkl)
+    <div class="col-xl-3 col-md-6">
+      <div class="card-box">
+        <div class="float-left" dir="ltr">
+          @foreach ($count_vienchuc as $vc )
+            @foreach ($count_vienchuc_khenthuong as $vckt )
+            <input data-plugin="knob" data-width="70" data-height="70" data-fgcolor="#6c757d" data-bgcolor="#e2e3e5" value="<?php echo ceil(($vckt->sum*100)/($vc->sum)) ?>" data-skin="tron" data-angleoffset="0" data-readonly="true" data-thickness=".15">
+            @endforeach
+          @endforeach
+        </div>
+        <div class="text-right">
+          @foreach ($count_vienchuc_khenthuong as $vienchuc )
+            <h3 class="mb-1"> {{ $vienchuc->sum }} </h3>
+          @endforeach
+          <p class="text-muted mb-1">Khen thưởng</p>
+        </div>
+      </div>
+    </div>
+  @endif
+
+  @if ($phanquyen_qlk)
+    <div class="col-xl-3 col-md-6">
+      <div class="card-box">
+        <div class="float-left" dir="ltr">
+          @foreach ($count_vienchuc as $vc )
+            @foreach ($count_vienchuc_khenthuong_khoa as $vcktk )
+            <input data-plugin="knob" data-width="70" data-height="70" data-fgcolor="#6c757d" data-bgcolor="#e2e3e5" value="<?php echo ceil(($vcktk->sum*100)/($vc->sum)) ?>" data-skin="tron" data-angleoffset="0" data-readonly="true" data-thickness=".15">
+            @endforeach
+          @endforeach
+        </div>
+        <div class="text-right">
+          @foreach ($count_vienchuc_khenthuong_khoa as $vienchuc )
+            <h3 class="mb-1"> {{ $vienchuc->sum }} </h3>
+          @endforeach
+          <p class="text-muted mb-1">Khen thưởng</p>
+        </div>
+      </div>
+    </div>
+  @endif
 
 </div>
 <!-- end row -->

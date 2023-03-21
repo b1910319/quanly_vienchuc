@@ -57,6 +57,7 @@ class HomeController extends Controller
     $this->check_login();
     $title = 'Trang chủ';
     $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -73,87 +74,61 @@ class HomeController extends Controller
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
+
     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
       ->select(DB::raw('count(ma_vc) as sum'))
       ->get();
-    if($phanquyen_admin){
-      $count_vienchuc = VienChuc::select(DB::raw('count(ma_vc) as sum'))
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $count_vienchuc_nghihuu = VienChuc::select(DB::raw('count(ma_vc) as sum'))
-        ->where('status_vc', '2')
-        ->get();
-      $count_vienchuc_kyluat = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
-        ->select(DB::raw('count(DISTINCT kyluat.ma_vc) as sum'))
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $count_vienchuc_khenthuong = VienChuc::join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
-        ->select(DB::raw('count(DISTINCT khenthuong.ma_vc) as sum'))
-        ->where('status_vc', '<>', '2')
-        ->get();
-      return view('home.home_admin')
-        ->with('title', $title)
-        ->with('count_vienchuc', $count_vienchuc)
-        ->with('count_vienchuc_nghihuu', $count_vienchuc_nghihuu)
-        ->with('count_vienchuc_kyluat', $count_vienchuc_kyluat)
-        ->with('count_vienchuc_khenthuong', $count_vienchuc_khenthuong)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qltt', $phanquyen_qltt)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_admin', $phanquyen_admin);
-    }else if( $phanquyen_qltt){
-      $count_vienchuc = VienChuc::select(DB::raw('count(ma_vc) as sum'))
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $count_vienchuc_nghihuu = VienChuc::select(DB::raw('count(ma_vc) as sum'))
-        ->where('status_vc', '2')
-        ->get();
-      return view('home.home_qltt')
-        ->with('title', $title)
-        ->with('count_vienchuc_nghihuu', $count_vienchuc_nghihuu)
-        ->with('count_vienchuc', $count_vienchuc)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qltt', $phanquyen_qltt)
-        ->with('phanquyen_admin', $phanquyen_admin);
-    }else if($phanquyen_qlktkl){
-      $count_vienchuc = VienChuc::select(DB::raw('count(ma_vc) as sum'))
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $count_vienchuc_kyluat = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
-        ->select(DB::raw('count(DISTINCT kyluat.ma_vc) as sum'))
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $count_vienchuc_khenthuong = VienChuc::join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
-        ->select(DB::raw('count(DISTINCT khenthuong.ma_vc) as sum'))
-        ->where('status_vc', '<>', '2')
-        ->get();
-      return view('home.home_qlktkl')
-        ->with('title', $title)
-        ->with('count_vienchuc_kyluat', $count_vienchuc_kyluat)
-        ->with('count_vienchuc_khenthuong', $count_vienchuc_khenthuong)
-        ->with('count_vienchuc', $count_vienchuc)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qltt', $phanquyen_qltt)
-        ->with('phanquyen_admin', $phanquyen_admin);
-    }else{
-      return view('home.home')
-        ->with('title', $title)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qltt', $phanquyen_qltt)
-        ->with('phanquyen_admin', $phanquyen_admin);
-    }
+    $count_vienchuc = VienChuc::select(DB::raw('count(ma_vc) as sum'))
+      ->where('status_vc', '<>', '2')
+      ->get();
+    $count_vienchuc_khoa = VienChuc::select(DB::raw('count(ma_vc) as sum'))
+      ->where('status_vc', '<>', '2')
+      ->where('vienchuc.ma_k', $ma_k)
+      ->get();
+    $count_vienchuc_nghihuu = VienChuc::select(DB::raw('count(ma_vc) as sum'))
+      ->where('status_vc', '2')
+      ->get();
+    $count_vienchuc_nghihuu_khoa = VienChuc::select(DB::raw('count(ma_vc) as sum'))
+      ->where('status_vc', '2')
+      ->where('vienchuc.ma_k', $ma_k)
+      ->get();
+    $count_vienchuc_kyluat = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
+      ->where('status_vc', '<>', '2')
+      ->select(DB::raw('count(DISTINCT kyluat.ma_vc) as sum'))
+      ->get();
+    $count_vienchuc_kyluat_khoa = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
+      ->where('vienchuc.ma_k', $ma_k)
+      ->where('status_vc', '<>', '2')
+      ->select(DB::raw('count(DISTINCT kyluat.ma_vc) as sum'))
+      ->get();
+    $count_vienchuc_khenthuong = VienChuc::join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
+      ->select(DB::raw('count(DISTINCT khenthuong.ma_vc) as sum'))
+      ->where('status_vc', '<>', '2')
+      ->get();
+    $count_vienchuc_khenthuong_khoa = VienChuc::join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
+      ->select(DB::raw('count(DISTINCT khenthuong.ma_vc) as sum'))
+      ->where('status_vc', '<>', '2')
+      ->where('vienchuc.ma_k', $ma_k)
+      ->get();
+    return view('home.home')
+      ->with('title', $title)
+
+      ->with('count_vienchuc', $count_vienchuc)
+      ->with('count_vienchuc_nghihuu', $count_vienchuc_nghihuu)
+      ->with('count_vienchuc_kyluat', $count_vienchuc_kyluat)
+      ->with('count_vienchuc_khenthuong', $count_vienchuc_khenthuong)
+      ->with('count_nangbac', $count_nangbac)
+      ->with('count_vienchuc_khoa', $count_vienchuc_khoa)
+      ->with('count_vienchuc_nghihuu_khoa', $count_vienchuc_nghihuu_khoa)
+      ->with('count_vienchuc_kyluat_khoa', $count_vienchuc_kyluat_khoa)
+      ->with('count_vienchuc_khenthuong_khoa', $count_vienchuc_khenthuong_khoa)
+
+      ->with('phanquyen_qlk', $phanquyen_qlk)
+      ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+      ->with('phanquyen_qltt', $phanquyen_qltt)
+      ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+      ->with('phanquyen_admin', $phanquyen_admin);
   }
   public function thongtin_canhan(){
     $this->check_login();

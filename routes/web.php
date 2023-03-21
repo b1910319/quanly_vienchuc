@@ -35,6 +35,7 @@ use App\Http\Controllers\ThoiHocController;
 
 Route::get('/login',[HomeController::class, 'index']);
 Route::get('/home',[HomeController::class, 'home']);
+
 Route::get('/thongtin_canhan',[HomeController::class, 'thongtin_canhan']);
 Route::get('/thongtin_canhan_edit/{ma_vc}',[HomeController::class, 'thongtin_canhan_edit']);
 Route::post('/update_thongtin_canhan/{ma_vc}',[HomeController::class, 'update_thongtin_canhan']);
