@@ -12,6 +12,7 @@ class File extends Model
     'ma_vc',
     'ten_f',
     'file_f',
+    'luottai_f',
     'status_f',
     'updated_f'
 

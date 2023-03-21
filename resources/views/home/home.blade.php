@@ -527,6 +527,7 @@
             <tr>
               <th>STT</th>
               <th>Tên file</th>
+              <th>Lượt tải</th>
               <th>File</th>
             </tr>
           </thead>
@@ -536,13 +537,19 @@
                 <td>
                   {{ $key+1 }}
                 </td>
-                <td>
+                <td style="width: 70%">
                   <h5 class="m-0 font-weight-normal">
                     {{ $file->ten_f }}
                   </h5>
                 </td>
                 <td>
-                  <a href="{{ asset('public/uploads/file/'.$file->file_f) }}">
+                  <i class="fa-solid fa-download" style="color: #FF5B00;"></i>
+                  &ensp;
+                  {{ $file->luottai_f }}
+                </td>
+                <td>
+                  <a href="{{ asset('public/uploads/file/'.$file->file_f) }}" class="taive{{ $key+1 }}">
+                    <input class="ma_f{{ $key+1 }}" type="hidden" value="{{ $file->ma_f }}">
                     <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none;">
                       <i class="fa-solid fa-download"></i>
                       &ensp;
@@ -560,4 +567,20 @@
   </div>
 </div>
 <!-- end row -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function(){
+    @foreach ($list_file as $key => $file )
+      $('.taive{{ $key+1 }}').click(function(){
+        var id= $('.ma_f{{ $key+1 }}').val();
+        $.ajax({
+          url:"{{ url("/file_luottai") }}",
+          type:"GET",
+          data:{id:id},
+        });
+      });
+    @endforeach
+  });
+</script>
 @endsection

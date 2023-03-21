@@ -219,4 +219,15 @@ class FileController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function file_luottai(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $id =$request->id;
+      if($id != null){
+        $file = File::find($id);
+        $file->luottai_f = $file->luottai_f + 1;
+        $file->save();
+      }
+    }
+  }
 }

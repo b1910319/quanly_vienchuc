@@ -600,6 +600,7 @@ Route::get('/edit_file/{ma_f}',[FileController::class, 'edit_file']);
 Route::post('/update_file/{ma_f}',[FileController::class, 'update_file']);
 Route::get('/delete_file/{ma_f}',[FileController::class, 'delete_file']);
 Route::get('/delete_all_file',[FileController::class, 'delete_all_file']);
+Route::get('/file_luottai',[FileController::class, 'file_luottai']);
 
 
 
