@@ -160,11 +160,13 @@
               <?php
                 if($file->status_f == 0){
                   ?>
-                    <span class="badge rounded-pill text-bg-success"><i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị</span>
+                    <span class="badge badge-light-success">
+                      <i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị
+                    </span>
                   <?php
                 }else if($file->status_f == 1) {
                   ?>
-                    <span class="badge text-bg-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
+                    <span class="badge badge-light-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
                   <?php
                 }
               ?>
@@ -172,7 +174,7 @@
             <td>
               @if ($file->file_f != NULL)
                 <a href="{{ asset('public/uploads/file/'.$file->file_f) }}">
-                  <button type="button" class="btn btn-warning" style="background-color: #77D970; border: none;">
+                  <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none;">
                     <i class="fa-solid fa-file"></i>
                     &ensp;
                     File
@@ -184,10 +186,13 @@
             </td>
             <td style="width: 21%;">
               <a href="{{ URL::to('/edit_file/'.$file->ma_f)}}">
-                <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
+                <button type="submit" class="btn btn-warning fw-bold" style=" background-color: #FC7300">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  &ensp; Cập nhật
+                </button>
               </a>
               <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_file/'.$file->ma_f)}}">
-                <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
+                <button type="button" class="btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               </a>
               <?php
                 if($file->status_f == 0){

@@ -94,27 +94,24 @@ class FileController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function select_giadinh($ma_f){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     $giadinh = File::find($ma_f);
-  //     if($giadinh->status_f == 1){
-  //       $giadinh->status_f = File::find($ma_f)->update(['status_f' => 0]);
-  //     }elseif($giadinh->status_f == 0){
-  //       $giadinh->status_f = File::find($ma_f)->update(['status_f' => 1]);
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function select_file($ma_f){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      $file = File::find($ma_f);
+      if($file->status_f == 1){
+        $file->status_f = File::find($ma_f)->update(['status_f' => 0]);
+      }elseif($file->status_f == 0){
+        $file->status_f = File::find($ma_f)->update(['status_f' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function edit_giadinh($ma_f){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
