@@ -596,8 +596,8 @@ Route::get('/delete_thoihoc_all',[ThoiHocController::class, 'delete_thoihoc_all'
 Route::get('/file',[FileController::class, 'file']);
 Route::post('/add_file',[FileController::class, 'add_file']);
 Route::get('/select_file/{ma_f}',[FileController::class, 'select_file']);
-// Route::get('/edit_file/{ma_f}',[FileController::class, 'edit_file']);
-// Route::post('/update_file/{ma_f}',[FileController::class, 'update_file']);
+Route::get('/edit_file/{ma_f}',[FileController::class, 'edit_file']);
+Route::post('/update_file/{ma_f}',[FileController::class, 'update_file']);
 // Route::get('/delete_file/{ma_f}',[FileController::class, 'delete_file']);
 // Route::get('/delete_all_file',[FileController::class, 'delete_all_file']);
 

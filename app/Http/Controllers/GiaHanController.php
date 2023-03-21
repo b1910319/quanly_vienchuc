@@ -104,7 +104,6 @@ class GiaHanController extends Controller
         $giahan->file_gh = $new_file;
       }
       $giahan->save();
-      // return Redirect::to('/giahan/'.$data['ma_l'].'/'.$data['ma_vc'],302);
       return redirect()->back();
     }else{
       return Redirect::to('/home');

@@ -198,7 +198,7 @@
                 if($file->status_f == 0){
                   ?>
                     <a href="{{ URL::to('/select_file/'.$file->ma_f) }}">
-                      <button type="button" class="btn btn-secondary">
+                      <button type="button" class="btn btn-secondary fw-bold">
                         <i class="fa-solid fa-eye-slash"></i> 
                         &ensp; Ẩn
                       </button>
@@ -207,7 +207,7 @@
                 }else if($file->status_f == 1) {
                   ?>
                     <a href="{{ URL::to('/select_file/'.$file->ma_f) }}">
-                      <button type="button" class="btn btn-success">
+                      <button type="button" class="btn btn-success fw-bold">
                         <i class="fa-solid fa-eye"></i>
                         &ensp; Hiển thị
                       </button>
