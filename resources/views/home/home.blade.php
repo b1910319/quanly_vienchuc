@@ -160,6 +160,13 @@
 <!-- end row -->
 
 <div class="row">
+  {{-- thời tiết --}}
+  <div class="col-xl-4">
+    <div class="card-box">
+      <!-- weather widget start --><a target="_blank" href="https://hotelmix.vn/weather/can-tho-33807"><img src="https://w.bookcdn.com/weather/picture/3_33807_1_33_137AE9_430_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=38699&domid=1180&anc_id=20094"  alt="booked.net"/></a><!-- weather widget end -->
+    </div> <!-- end card-box -->
+  </div> <!-- end col -->
+
   <div class="col-xl-4">
     <div class="card-box">
       <div class="dropdown float-right">
@@ -202,54 +209,6 @@
             <h4><i class="fe-arrow-down text-danger"></i> $7,845</h4>
           </div>
         </div>
-      </div>
-    </div> <!-- end card-box -->
-  </div> <!-- end col -->
-
-  <div class="col-xl-4">
-    <div class="card-box">
-      <div class="dropdown float-right">
-        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-          <i class="mdi mdi-dots-horizontal"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right">
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Settings</a>
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Download</a>
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Upload</a>
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Action</a>
-        </div>
-      </div>
-
-      <h4 class="header-title">Yearly Sales Report</h4>
-
-      <div class="mt-3 text-center">
-        <p class="text-muted font-15 font-family-secondary mb-0">
-          <span class="mx-2"><i class="mdi mdi-checkbox-blank-circle text-primary"></i> Revenue</span>
-          <span class="mx-2"><i class="mdi mdi-checkbox-blank-circle text-light"></i>
-            Number of Sales</span>
-        </p>
-
-        <div id="sparkline2" class="text-center mt-3"></div>
-
-        <div class="row mt-3">
-          <div class="col-4">
-            <p class="text-muted font-15 mb-1 text-truncate">Target</p>
-            <h4>$8712</h4>
-          </div>
-          <div class="col-4">
-            <p class="text-muted font-15 mb-1 text-truncate">Last week</p>
-            <h4><i class="fe-arrow-up text-success"></i> $523</h4>
-          </div>
-          <div class="col-4">
-            <p class="text-muted font-15 mb-1 text-truncate">Last Month</p>
-            <h4><i class="fe-arrow-down text-danger"></i> $965</h4>
-          </div>
-        </div>
-
       </div>
     </div> <!-- end card-box -->
   </div> <!-- end col -->
