@@ -148,7 +148,7 @@
 
             <li>
               <a href="{{ URL::to('/home') }}" class="waves-effect">
-                <i class="remixicon-dashboard-line"></i>
+                <i class="fa-solid fa-house-chimney"></i>
                 <span> Trang Chủ </span>
               </a>
             </li>
@@ -186,11 +186,18 @@
                 </ul>
               </li>
             @endif
+            @if ($phanquyen_admin)
+              <li>
+                <a href="{{ URL::to('file') }}" class="waves-effect">
+                  <i class="fa-solid fa-file"></i>
+                  <span> Quản lý file </span>
+                </a>
+              </li>
+            @endif
             @if ($phanquyen_qltt || $phanquyen_admin)
               <li>
                 <a href="javascript: void(0);" class="waves-effect">
-                  <i class="remixicon-layout-line"></i>
-                  {{-- <span class="badge badge-pink float-right">New</span> --}}
+                  <i class="fa-solid fa-circle-info"></i>
                   <span> Quản Lý Thông Tin <br> Viên Chức </span>
                   <span class="menu-arrow"></span>
                 </a>
@@ -273,7 +280,7 @@
             @if ($phanquyen_qlktkl || $phanquyen_admin)
               <li>
                 <a href="javascript: void(0);" class="waves-effect">
-                  <i class="remixicon-layout-line"></i>
+                  <i class="fa-solid fa-award"></i>
                   <span> Quản Lý Khen Thưởng , <br>Kỉ Luật </span>
                   <span class="menu-arrow"></span>
                 </a>
@@ -314,7 +321,7 @@
             @if ($phanquyen_qlcttc || $phanquyen_admin)
               <li>
                 <a href="javascript: void(0);" class="waves-effect">
-                  <i class="remixicon-mail-open-line"></i>
+                  <i class="fa-solid fa-sitemap"></i>
                   <span> Quản lý công tác <br> tổ chức </span>
                   <span class="menu-arrow"></span>
                 </a>

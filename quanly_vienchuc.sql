@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 20, 2023 lúc 02:30 AM
+-- Thời gian đã tạo: Th3 21, 2023 lúc 07:42 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -117,10 +117,10 @@ INSERT INTO `bangcap` (`ma_bc`, `ma_vc`, `ma_hdt`, `ma_lbc`, `trinhdochuyenmon_b
 (7, 62, 4, 5, 'yhyy', 'gt5', 't54', 't54', '2023-02-06', 't5', 'tr54', 0, '2023-02-22 08:43:43', ' '),
 (8, 59, 5, 8, 'scfẻê', 'dfẻ̀', 'dtồ', 'dtô', '2023-02-06', 'cddẻ', 'dfẻ', 0, '2023-02-23 08:19:42', ' '),
 (9, 57, 5, 8, 'dfẻ', 'dt', 'fgr', 'dfẻê', '2023-02-08', 'cdfẻ', 'dfẻ', 0, '2023-02-23 08:22:05', ' '),
-(10, 55, 6, 10, 'vdfrô', 'fgrtô', 'fgrtô', 'grtô', '2023-02-21', 'cfêê', 'dfẻ', 0, '2023-02-23 08:22:36', ' '),
+(10, 1, 6, 10, 'vdfrô', 'fgrtô', 'fgrtô', 'grtô', '2023-02-21', 'cfêê', 'dfẻ', 0, '2023-02-23 08:22:36', ' '),
 (11, 55, 4, 8, 'csf', 'sd', 'cd', 'cs', '2023-02-06', 'cd', 'sd', 0, '2023-02-23 08:22:49', ' '),
 (15, 30, 5, 9, 'sfr', 'frdt', 'rte', 'grt5', '2023-03-07', 'rt564', 't564', 0, '2023-03-09 03:07:51', ' '),
-(16, 27, 4, 5, 'defr', 'rte', 'rte5', 'ggre', '2023-03-01', 'sdefwt', 'efw', 0, '2023-03-09 03:08:22', ' '),
+(16, 1, 4, 5, 'defr', 'rte', 'rte5', 'ggre', '2023-03-01', 'sdefwt', 'efw', 0, '2023-03-09 03:08:22', ' '),
 (17, 23, 4, 8, 'fgre', 'frt', 'rgte5', 'gre5', '2023-03-06', 'ty', 'gtr5', 0, '2023-03-09 03:08:55', ' ');
 
 -- --------------------------------------------------------
@@ -171,7 +171,8 @@ CREATE TABLE `chuyen` (
 
 INSERT INTO `chuyen` (`ma_c`, `ma_vc`, `ma_l`, `noidung_c`, `lydo_c`, `file_c`, `status_c`, `created_c`, `updated_c`) VALUES
 (8, 31, 7, 'ỷu', 'juy', '1677918816869.pdf', 0, '2023-03-04 08:33:36', NULL),
-(9, 53, 4, 'et4', 'grt', '1678094876460.pdf', 0, '2023-03-06 09:27:56', NULL);
+(9, 53, 4, 'et4', 'grt', '1678094876460.pdf', 0, '2023-03-06 09:27:56', NULL),
+(10, 61, 7, 'thty', 'yuyu', '167930276783.pdf', 0, '2023-03-20 08:59:27', NULL);
 
 -- --------------------------------------------------------
 
@@ -223,7 +224,8 @@ INSERT INTO `danhsach` (`ma_vc`, `ma_l`, `status_ds`, `created_ds`, `updated_ds`
 (53, 4, 2, '2023-03-01 07:54:21', ' '),
 (16, 7, 0, '2023-03-06 04:21:34', ' '),
 (15, 7, 3, '2023-03-06 04:21:41', ' '),
-(30, 3, 3, '2023-03-07 03:18:41', ' ');
+(30, 3, 3, '2023-03-07 03:18:41', ' '),
+(61, 7, 3, '2023-03-20 07:32:04', ' ');
 
 -- --------------------------------------------------------
 
@@ -287,7 +289,32 @@ CREATE TABLE `dunghoc` (
 INSERT INTO `dunghoc` (`ma_dh`, `ma_vc`, `ma_l`, `batdau_dh`, `ketthuc_dh`, `lydo_dh`, `file_dh`, `status_dh`, `created_dh`, `updated_dh`) VALUES
 (4, 56, 4, '2023-03-14', '2023-03-22', 'trinh', '1677835644321.pdf', 0, '2023-03-03 09:27:24', '2023-03-03 09:33:26'),
 (9, 31, 7, '2023-02-26', '2023-03-31', 'sgetổ', '1677896721763.pdf', 0, '2023-03-04 02:25:21', NULL),
-(10, 16, 7, '2023-02-28', '2023-03-15', 'fbgsfg', '1678090698899.pdf', 0, '2023-03-06 08:18:18', NULL);
+(10, 16, 7, '2023-02-28', '2023-03-15', 'fbgsfg', '1678090698899.pdf', 0, '2023-03-06 08:18:18', NULL),
+(11, 61, 7, '2023-03-06', '2023-03-20', 'yuyuy', '1679298529388.pdf', 0, '2023-03-20 07:48:49', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `file`
+--
+
+CREATE TABLE `file` (
+  `ma_f` int(11) NOT NULL,
+  `ma_vc` int(11) NOT NULL,
+  `ten_f` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file_f` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status_f` int(11) NOT NULL DEFAULT 0,
+  `created_f` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_f` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `file`
+--
+
+INSERT INTO `file` (`ma_f`, `ma_vc`, `ten_f`, `file_f`, `status_f`, `created_f`, `updated_f`) VALUES
+(5, 1, 'rgrgth', '1679380135155.docx', 0, '2023-03-21 06:28:55', NULL),
+(6, 1, 'jjkjủ̉', '1679380186222.docx', 0, '2023-03-21 06:29:46', NULL);
 
 -- --------------------------------------------------------
 
@@ -307,6 +334,14 @@ CREATE TABLE `giadinh` (
   `created_gd` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_gd` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `giadinh`
+--
+
+INSERT INTO `giadinh` (`ma_gd`, `ma_vc`, `moiquanhe_gd`, `hoten_gd`, `sdt_gd`, `ngaysinh_gd`, `nghenghiep_gd`, `status_gd`, `created_gd`, `updated_gd`) VALUES
+(7, 61, 'fhre', 'hgtdu', 'gtju', '2100-12-20', 'sedftert', 0, '2023-03-20 03:20:03', ' '),
+(8, 1, 'fgrdey', 'thyr6u', '0874519524', '1987-06-04', 'edfretr', 0, '2023-03-20 03:54:06', ' ');
 
 -- --------------------------------------------------------
 
@@ -332,9 +367,10 @@ CREATE TABLE `giahan` (
 
 INSERT INTO `giahan` (`ma_gh`, `ma_l`, `ma_vc`, `thoigian_gh`, `lydo_gh`, `file_gh`, `status_gh`, `created_gh`, `updated_gh`) VALUES
 (5, 7, 31, '2023-03-15', 'fdgrte63', '1677896484317.pdf', 0, '2023-03-04 02:21:24', NULL),
-(7, 4, 53, '2023-02-20', 'fbhryẁ', '1677897078486.pdf', 0, '2023-03-04 02:31:18', '2023-03-15 09:18:42'),
+(7, 4, 53, '2023-02-20', 'fbhryẁ', '1679362470824.docx', 0, '2023-03-04 02:31:18', '2023-03-21 01:34:30'),
 (10, 7, 16, '2023-02-28', 'fregtr', '1678076519874.pdf', 0, '2023-03-06 04:21:59', NULL),
-(11, 7, 15, '2023-02-28', 'gngrdh', '167807656770.pdf', 0, '2023-03-06 04:22:47', NULL);
+(11, 7, 15, '2023-02-28', 'gngrdh', '167807656770.pdf', 0, '2023-03-06 04:22:47', NULL),
+(12, 7, 61, '2023-03-07', 'htyujyu', '1679298548321.pdf', 0, '2023-03-20 07:49:08', NULL);
 
 -- --------------------------------------------------------
 
@@ -1144,7 +1180,8 @@ INSERT INTO `ketqua` (`ma_kq`, `ma_l`, `ma_vc`, `tennguoihuongdan_kq`, `emailngu
 (5, 7, 31, 'dfthyetgf', 'dvư', 'dvưt', 'dtew', '2023-02-26', 'dfrứ', 'fdẻw', '2023-03-06', 'dcfưư', 'fddrư', 0, '2023-03-03 02:07:08', ' '),
 (8, 7, 49, 'yjty', 'hytu65', 'ty47', 'tu53', '2023-03-27', 'u6', 'r56', '2023-03-29', 'hty6', 't6', 0, '2023-03-06 01:07:37', ' '),
 (9, 4, 56, 'gj', 'bnj', 'bf', 'hgjhgj', '2023-03-07', 'hmf', 'jhjgh', '2023-03-15', 'hjf', 'gjd', 0, '2023-03-06 01:08:13', ' '),
-(10, 7, 16, 'efef', 'eewfe', 'efefe', 'edfefwe', '2023-03-02', 'dfef', 'efef', '2023-03-08', 'dsefe', 'efewf', 0, '2023-03-15 03:16:28', ' ');
+(10, 7, 16, 'efef', 'eewfe', 'efefe', 'edfefwe', '2023-03-02', 'dfef', 'efef', '2023-03-08', 'dsefe', 'efewf', 0, '2023-03-15 03:16:28', ' '),
+(11, 7, 61, 'fgfth', 'hjyti', 'jkiyui', 'jukiyú', '2023-02-28', 'fh', 'htgủ', '2023-03-07', 'thỷ', 'tg̉', 0, '2023-03-20 08:07:33', ' ');
 
 -- --------------------------------------------------------
 
@@ -1169,10 +1206,10 @@ CREATE TABLE `khenthuong` (
 --
 
 INSERT INTO `khenthuong` (`ma_kt`, `ma_vc`, `ma_lkt`, `ma_htkt`, `ngay_kt`, `noidung_kt`, `status_kt`, `created_kt`, `updated_kt`) VALUES
-(7, 56, 4, 6, '2023-02-13', 'scfêqềr', 0, '2023-02-25 06:30:50', ' '),
+(7, 1, 4, 6, '2023-02-13', 'scfêqềr', 0, '2023-02-25 06:30:50', ' '),
 (8, 55, 4, 6, '2023-02-22', 'u7u67u7', 0, '2023-02-25 07:18:55', '2023-03-13 03:03:11'),
 (9, 54, 5, 7, '2023-02-13', 'cfewr35refd', 0, '2023-02-25 07:19:37', ' '),
-(10, 26, 4, 8, '2023-02-21', 'dewt452', 2, '2023-02-25 07:56:05', ' '),
+(10, 1, 4, 8, '2023-02-21', 'dewt452', 2, '2023-02-25 07:56:05', ' '),
 (14, 61, 4, 6, '2023-03-06', 'ádsể', 0, '2023-03-09 07:25:27', ' '),
 (15, 61, 5, 7, '2023-01-23', 'ăewrử', 0, '2023-03-09 07:25:38', ' '),
 (16, 23, 5, 6, '2023-02-28', 'wrwr54e5', 0, '2023-03-09 07:26:26', ' ');
@@ -1231,8 +1268,8 @@ INSERT INTO `kyluat` (`ma_kl`, `ma_vc`, `ma_lkl`, `lydo_kl`, `ngay_kl`, `status_
 (4, 54, 4, 'Chưa hoàn thành nhiệm vụ được giao', '2023-02-13', 0, '2023-02-25 03:31:01', ' '),
 (5, 56, 5, 'Làm sai quy định', '2023-02-14', 0, '2023-02-25 03:39:47', ' '),
 (6, 56, 5, 'bbbbbbbbbbbbbbbb', '2023-02-22', 0, '2023-02-25 06:13:45', ' '),
-(7, 27, 6, 'dsvgetw', '2023-02-26', 0, '2023-02-27 01:30:13', '2023-03-14 01:02:08'),
-(8, 37, 5, 'tgv', '2023-02-16', 0, '2023-02-27 02:22:48', ' '),
+(7, 37, 6, 'dsvgetw', '2023-02-26', 0, '2023-02-27 01:30:13', '2023-03-14 01:02:08'),
+(8, 1, 5, 'tgv', '2023-02-16', 0, '2023-02-27 02:22:48', ' '),
 (9, 30, 5, 'ujyujuy', '2023-03-06', 0, '2023-03-09 07:57:23', ' '),
 (10, 30, 4, 'lediemtrinh', '2023-02-26', 0, '2023-03-09 07:57:45', '2023-03-09 08:22:49'),
 (11, 30, 6, 'sdfsdf', '2023-03-14', 0, '2023-03-09 08:23:49', ' ');
@@ -1342,9 +1379,9 @@ CREATE TABLE `lop` (
 --
 
 INSERT INTO `lop` (`ma_l`, `ma_dml`, `ten_l`, `ngaybatdau_l`, `ngayketthuc_l`, `yeucau_l`, `tencosodaotao_l`, `quocgiaodaotao_l`, `nganhhoc_l`, `trinhdodaotao_l`, `nguonkinhphi_l`, `noidunghoc_l`, `diachidaotao_l`, `emailcoso_l`, `sdtcoso_l`, `status_l`, `created_l`, `updated_l`) VALUES
-(3, 8, 'Associate of Arts Degree', '2021-03-15', '2023-03-15', 'Ứng viên phải từ 18 tuổi trở lên trong năm dương lịch mà họ đăng ký học. Việc xem xét có thể được đưa ra cho những học sinh nhỏ tuổi đã hoàn thành bậc trung học. Để đáp ứng yêu cầu về tiếng Anh cho các chương trình học thuật, học sinh phải hoàn thành: BC English 12 hoặc BC English First Peoples 12 với điểm tối thiểu là C; hoặc Đầu vào thông qua chương trình Anh ngữ của NIC – đạt điểm C+ trong ESL 092 và ESL 095 Hoặc một trong những điều sau: Điểm tổng thể IELTS Học thuật là 6.0 (không có kỹ năng nào thấp hơn 5.5). Những học sinh không có điểm IELTS 6.0 trở lên ở môn Đọc và Viết sẽ phải thi tiếng Anh 104. TOEFL ibt 80 tổng thể không có tiểu mục nào dưới 19; TOEFL 550; CAEL 60 và viết 60 và PTE Academic 54 tổng thể không có thành phần nào dưới 46.', 'North Island College', 'Canada', 'Công nghệ thông tin', 'Tiến sĩ', 'CAD$16,015.00 (266,916,667 đ) một năm', 'Bắt đầu chương trình học của bạn tại NIC và nhận tín chỉ chuyển tiếp hai năm (60 tín chỉ) vào bất kỳ trường đại học BC nào. Học các kỹ năng nghiên cứu và tư duy phản biện mạnh mẽ mà các nhà tuyển dụng tìm kiếm khi bạn học nhân chủng học, tội phạm học, nghiên cứu về các quốc gia đầu tiên, tiếng Anh, địa lý, lịch sử, nghiên cứu tự do, ngôn ngữ hiện đại (tiếng Trung, tiếng Pháp và tiếng Tây Ban Nha), triết học, khoa học chính trị, tâm lý học, xã hội học và nghiên cứu của phụ nữ.\r\nĐiểm nổi bật của chương trình:\r\nKhám phá nhân chủng học, tội phạm học, tiếng Anh, các quốc gia đầu tiên, lịch sử, ngôn ngữ hiện đại (tiếng Trung, tiếng Pháp và tiếng Tây Ban Nha), nghiên cứu về Bắc Mỹ, triết học, khoa học chính trị, tâm lý học, xã hội học và nghiên cứu về phụ nữ, cũng như các môn tự chọn về toán và khoa học.\r\nBằng liên kết được cung cấp tại nhiều trường cao đẳng và đại học trên khắp BC. Họ công nhận việc hoàn thành thành công 60 tín chỉ học tập, tức là khoảng 20 khóa học. Với chương trình học toàn thời gian, bạn có thể hoàn thành bằng cao đẳng trong vòng hai năm học. Lựa chọn nghiên cứu bán thời gian cũng có sẵn.\r\nBằng liên kết cung cấp rất nhiều tính linh hoạt. Bạn có thể chọn các khóa học ưa thích của mình từ một danh sách cụ thể các khóa học đủ điều kiện, giúp bạn có thể tập trung học tập vào một lĩnh vực cụ thể hoặc khám phá nhiều môn học khác nhau.', '2300 Ryan Rd, Courtenay, BC V9N 8N6, Canada', 'questions@nic.bc.ca', '+1 800-715-0914', 0, '2023-03-01 01:16:47', '2023-03-01 01:34:30'),
-(4, 7, 'Cử nhân Báo chí Phát thanh và Đa phương tiện', '2023-04-20', '2026-04-20', 'Những người có Tốt Nghiệp Phổ Thông Trung Học (Chứng nhận Tốt nghiệp Trung học Phổ thông) sẽ được xem xét để vào Tổ chức Quốc tế INTO UEA, lý tưởng nhất là với điểm trung bình từ 7.0 trở lên. Sinh viên hoàn thành năm thứ nhất chương trình cử nhân tại một trường đại học Việt Nam với điểm trung bình từ 7,5 trở lên sẽ được xét tuyển vào năm thứ nhất chương trình đại học tại UEA. Học sinh cần có điểm IELTS tổng thể là 6.0 với tối thiểu 5.5 trong mỗi thành phần.', 'Đại học East Anglia UEA', 'Anh', 'Phát thanh và Đa phương tiện', 'Cử nhân', '£19,250.00 (481,250,000 đ) một năm', 'Những người tìm kiếm sự thật và những người kể chuyện áp dụng ở đây. Nếu muốn tạo ra sự khác biệt trên thế giới, nắm giữ quyền lực để giải thích và tìm hiểu điều gì đang thực sự xảy ra, thì đây là khóa học dành cho bạn. Với bằng báo chí truyền hình và đa phương tiện này, bạn sẽ học các kỹ năng cần thiết để trở thành một nhà báo chuyên nghiệp có thể làm việc trên TV, đài phát thanh, báo in, phương tiện truyền thông xã hội và các nền tảng trực tuyến ở Vương quốc Anh và hơn thế nữa. Bạn sẽ học các kỹ năng nghiên cứu, kể chuyện và sản xuất cho thời đại kỹ thuật số. Bạn sẽ được dạy các kỹ năng điều tra và cách sử dụng dữ liệu trong báo chí của mình. Bạn sẽ hiểu các cấu trúc chính trị cung cấp các dịch vụ công cộng mà tất cả chúng ta đều dựa vào và bạn sẽ thực hành báo chí toàn diện, làm việc với các cộng đồng đa dạng để giúp họ kể câu chuyện của mình. Chúng tôi có trụ sở tại Bộ Chính trị tại UEA,', 'Norwich Research Park, Norwich NR4 7TJ, Vương quốc Anh', 'University.secretary@uea.ac.uk', '+44 1603 456161', 0, '2023-03-01 01:46:58', ' '),
-(7, 7, 'Bachelor of Arts / Bachelor of Business', '2022-02-26', '2026-02-26', 'Hoàn thành thỏa đáng một trong những điều sau đây: hoàn thành thành công Chứng chỉ Giáo dục Victoria (VCE) hoặc tương đương, chẳng hạn như bằng cấp Lớp 12 liên bang hoặc quốc tế; hoàn thành hoặc hoàn thành một phần bằng cấp đại học đã được phê duyệt (bao gồm Chứng chỉ IV (đã hoàn thành), văn bằng, văn bằng nâng cao, bằng cao đẳng và bằng cấp).', 'Swinburne University of Technology', 'Úc', 'Công nghệ quảng cáo kỹ thuật số', 'Cử nhân', 'A$34,040.00 (567,333,333 đ) một năm', 'Với bằng kép về Cử nhân Nghệ thuật/Cử nhân Kinh doanh, bạn sẽ sẵn sàng trở thành một doanh nhân toàn diện, người hiểu được điều gì là tốt cho thế giới.\r\n\r\nXây dựng kiến ​​thức kinh doanh, quản lý và vận hành của bạn để bạn sẵn sàng tạo dấu ấn trong thế giới kinh doanh. Sau đó, đi sâu hơn, trau dồi tư duy phản biện và kỹ năng giao tiếp khi bạn khám phá các vấn đề xã hội, kinh tế và văn hóa toàn cầu quan trọng ảnh hưởng đến hoạt động của xã hội đương đại.\r\n\r\nVới sự kết hợp của các bằng cấp này - bạn sẽ có nhiều kỹ năng chuyển đổi cần thiết cho lực lượng lao động trong tương lai. Bạn sẽ học cách trở thành một nhà tư tưởng kinh doanh và nhà đổi mới, đồng thời tìm thấy vô số cơ hội nghề nghiệp đa dạng trong các tập đoàn, chính phủ và tổ chức phi lợi nhuận, doanh nghiệp nhỏ và công ty mới thành lập.\r\n\r\nXây dựng sơ yếu lý lịch của bạn với kinh nghiệm thực tế trong ngành với các chương trình Học tập Tích hợp Công việc của chúng tôi, được đảm bảo trên tất cả các bằng cử nhân của chúng tôi bao gồm các vị trí, thực tập hoặc các dự án liên kết với ngành.', 'John St, Hawthorn VIC 3122, Australia', 'jane.doe@swinburne.edu.au', '+61 1300 794 628', 0, '2023-03-01 03:27:43', ' ');
+(3, 8, 'Associate of Arts Degree', '2023-10-15', '2026-10-15', 'Ứng viên phải từ 18 tuổi trở lên trong năm dương lịch mà họ đăng ký học. Việc xem xét có thể được đưa ra cho những học sinh nhỏ tuổi đã hoàn thành bậc trung học. Để đáp ứng yêu cầu về tiếng Anh cho các chương trình học thuật, học sinh phải hoàn thành: BC English 12 hoặc BC English First Peoples 12 với điểm tối thiểu là C; hoặc Đầu vào thông qua chương trình Anh ngữ của NIC – đạt điểm C+ trong ESL 092 và ESL 095 Hoặc một trong những điều sau: Điểm tổng thể IELTS Học thuật là 6.0 (không có kỹ năng nào thấp hơn 5.5). Những học sinh không có điểm IELTS 6.0 trở lên ở môn Đọc và Viết sẽ phải thi tiếng Anh 104. TOEFL ibt 80 tổng thể không có tiểu mục nào dưới 19; TOEFL 550; CAEL 60 và viết 60 và PTE Academic 54 tổng thể không có thành phần nào dưới 46.', 'North Island College', 'Canada', 'Công nghệ thông tin', 'Tiến sĩ', 'CAD$16,015.00 (266,916,667 đ) một năm', 'Bắt đầu chương trình học của bạn tại NIC và nhận tín chỉ chuyển tiếp hai năm (60 tín chỉ) vào bất kỳ trường đại học BC nào. Học các kỹ năng nghiên cứu và tư duy phản biện mạnh mẽ mà các nhà tuyển dụng tìm kiếm khi bạn học nhân chủng học, tội phạm học, nghiên cứu về các quốc gia đầu tiên, tiếng Anh, địa lý, lịch sử, nghiên cứu tự do, ngôn ngữ hiện đại (tiếng Trung, tiếng Pháp và tiếng Tây Ban Nha), triết học, khoa học chính trị, tâm lý học, xã hội học và nghiên cứu của phụ nữ.\r\nĐiểm nổi bật của chương trình:\r\nKhám phá nhân chủng học, tội phạm học, tiếng Anh, các quốc gia đầu tiên, lịch sử, ngôn ngữ hiện đại (tiếng Trung, tiếng Pháp và tiếng Tây Ban Nha), nghiên cứu về Bắc Mỹ, triết học, khoa học chính trị, tâm lý học, xã hội học và nghiên cứu về phụ nữ, cũng như các môn tự chọn về toán và khoa học.\r\nBằng liên kết được cung cấp tại nhiều trường cao đẳng và đại học trên khắp BC. Họ công nhận việc hoàn thành thành công 60 tín chỉ học tập, tức là khoảng 20 khóa học. Với chương trình học toàn thời gian, bạn có thể hoàn thành bằng cao đẳng trong vòng hai năm học. Lựa chọn nghiên cứu bán thời gian cũng có sẵn.\r\nBằng liên kết cung cấp rất nhiều tính linh hoạt. Bạn có thể chọn các khóa học ưa thích của mình từ một danh sách cụ thể các khóa học đủ điều kiện, giúp bạn có thể tập trung học tập vào một lĩnh vực cụ thể hoặc khám phá nhiều môn học khác nhau.', '2300 Ryan Rd, Courtenay, BC V9N 8N6, Canada', 'questions@nic.bc.ca', '+1 800-715-0914', 0, '2023-02-28 18:16:47', '2023-03-21 03:03:10'),
+(4, 7, 'Cử nhân Báo chí Phát thanh và Đa phương tiện', '2023-04-20', '2026-04-20', 'Những người có Tốt Nghiệp Phổ Thông Trung Học (Chứng nhận Tốt nghiệp Trung học Phổ thông) sẽ được xem xét để vào Tổ chức Quốc tế INTO UEA, lý tưởng nhất là với điểm trung bình từ 7.0 trở lên. Sinh viên hoàn thành năm thứ nhất chương trình cử nhân tại một trường đại học Việt Nam với điểm trung bình từ 7,5 trở lên sẽ được xét tuyển vào năm thứ nhất chương trình đại học tại UEA. Học sinh cần có điểm IELTS tổng thể là 6.0 với tối thiểu 5.5 trong mỗi thành phần.', 'Đại học East Anglia UEA', 'Anh', 'Phát thanh và Đa phương tiện', 'Cử nhân', '£19,250.00 (481,250,000 đ) một năm', 'Những người tìm kiếm sự thật và những người kể chuyện áp dụng ở đây. Nếu muốn tạo ra sự khác biệt trên thế giới, nắm giữ quyền lực để giải thích và tìm hiểu điều gì đang thực sự xảy ra, thì đây là khóa học dành cho bạn. Với bằng báo chí truyền hình và đa phương tiện này, bạn sẽ học các kỹ năng cần thiết để trở thành một nhà báo chuyên nghiệp có thể làm việc trên TV, đài phát thanh, báo in, phương tiện truyền thông xã hội và các nền tảng trực tuyến ở Vương quốc Anh và hơn thế nữa. Bạn sẽ học các kỹ năng nghiên cứu, kể chuyện và sản xuất cho thời đại kỹ thuật số. Bạn sẽ được dạy các kỹ năng điều tra và cách sử dụng dữ liệu trong báo chí của mình. Bạn sẽ hiểu các cấu trúc chính trị cung cấp các dịch vụ công cộng mà tất cả chúng ta đều dựa vào và bạn sẽ thực hành báo chí toàn diện, làm việc với các cộng đồng đa dạng để giúp họ kể câu chuyện của mình. Chúng tôi có trụ sở tại Bộ Chính trị tại UEA,', 'Norwich Research Park, Norwich NR4 7TJ, Vương quốc Anh', 'University.secretary@uea.ac.uk', '+44 1603 456161', 0, '2023-02-28 18:46:58', ' '),
+(7, 7, 'Bachelor of Arts / Bachelor of Business', '2023-09-26', '2027-09-26', 'Hoàn thành thỏa đáng một trong những điều sau đây: hoàn thành thành công Chứng chỉ Giáo dục Victoria (VCE) hoặc tương đương, chẳng hạn như bằng cấp Lớp 12 liên bang hoặc quốc tế; hoàn thành hoặc hoàn thành một phần bằng cấp đại học đã được phê duyệt (bao gồm Chứng chỉ IV (đã hoàn thành), văn bằng, văn bằng nâng cao, bằng cao đẳng và bằng cấp).', 'Swinburne University of Technology', 'Úc', 'Công nghệ quảng cáo kỹ thuật số', 'Cử nhân', 'A$34,040.00 (567,333,333 đ) một năm', 'Với bằng kép về Cử nhân Nghệ thuật/Cử nhân Kinh doanh, bạn sẽ sẵn sàng trở thành một doanh nhân toàn diện, người hiểu được điều gì là tốt cho thế giới.\r\n\r\nXây dựng kiến ​​thức kinh doanh, quản lý và vận hành của bạn để bạn sẵn sàng tạo dấu ấn trong thế giới kinh doanh. Sau đó, đi sâu hơn, trau dồi tư duy phản biện và kỹ năng giao tiếp khi bạn khám phá các vấn đề xã hội, kinh tế và văn hóa toàn cầu quan trọng ảnh hưởng đến hoạt động của xã hội đương đại.\r\n\r\nVới sự kết hợp của các bằng cấp này - bạn sẽ có nhiều kỹ năng chuyển đổi cần thiết cho lực lượng lao động trong tương lai. Bạn sẽ học cách trở thành một nhà tư tưởng kinh doanh và nhà đổi mới, đồng thời tìm thấy vô số cơ hội nghề nghiệp đa dạng trong các tập đoàn, chính phủ và tổ chức phi lợi nhuận, doanh nghiệp nhỏ và công ty mới thành lập.\r\n\r\nXây dựng sơ yếu lý lịch của bạn với kinh nghiệm thực tế trong ngành với các chương trình Học tập Tích hợp Công việc của chúng tôi, được đảm bảo trên tất cả các bằng cử nhân của chúng tôi bao gồm các vị trí, thực tập hoặc các dự án liên kết với ngành.', 'John St, Hawthorn VIC 3122, Australia', 'jane.doe@swinburne.edu.au', '+61 1300 794 628', 0, '2023-02-28 20:27:43', '2023-03-21 03:01:19');
 
 -- --------------------------------------------------------
 
@@ -1555,7 +1592,6 @@ INSERT INTO `phanquyen` (`ma_q`, `ma_vc`, `status_pq`, `created_pq`, `updated_pq
 (10, 60, 0, '2023-02-15 07:17:19', ' '),
 (10, 61, 0, '2023-02-15 07:17:30', ' '),
 (10, 62, 0, '2023-02-15 07:17:41', ' '),
-(5, 1, 0, '2023-02-16 00:57:56', ' '),
 (10, 63, 0, '2023-02-16 02:38:07', ' '),
 (10, 64, 0, '2023-02-18 02:39:05', ' '),
 (10, 65, 0, '2023-02-18 02:40:07', ' '),
@@ -1564,11 +1600,12 @@ INSERT INTO `phanquyen` (`ma_q`, `ma_vc`, `status_pq`, `created_pq`, `updated_pq
 (10, 68, 0, '2023-02-18 03:09:07', ' '),
 (10, 69, 0, '2023-02-20 06:48:49', ' '),
 (8, 62, 0, '2023-02-28 07:49:19', ' '),
-(9, 61, 0, '2023-03-08 00:58:22', ' '),
 (10, 70, 0, '2023-03-08 07:06:41', ' '),
 (10, 71, 0, '2023-03-08 07:16:56', ' '),
 (9, 60, 0, '2023-03-08 09:02:01', ' '),
-(10, 72, 0, '2023-03-18 06:56:38', ' ');
+(10, 72, 0, '2023-03-18 06:56:38', ' '),
+(9, 61, 0, '2023-03-21 00:50:56', ' '),
+(5, 1, 0, '2023-03-21 01:33:02', ' ');
 
 -- --------------------------------------------------------
 
@@ -1698,7 +1735,8 @@ INSERT INTO `quyetdinh` (`ma_qd`, `ma_vc`, `ma_l`, `so_qd`, `ngayky_qd`, `file_q
 (22, 31, 7, '456', '2023-02-28', '1677743158589.pdf', 0, '2023-03-02 07:45:58', ' '),
 (23, 56, 4, '789', '2023-02-26', '167774322486.pdf', 0, '2023-03-02 07:47:04', ' '),
 (24, 53, 4, '159', '2023-02-27', '1677743257611.pdf', 0, '2023-03-02 07:47:37', '2023-03-03 04:32:09'),
-(27, 16, 7, 'thyt', '2023-03-08', '1678850165595.pdf', 0, '2023-03-15 03:16:05', ' ');
+(27, 16, 7, 'thyt', '2023-03-08', '1678850165595.pdf', 0, '2023-03-15 03:16:05', ' '),
+(28, 61, 7, '5y5y6', '2023-03-20', '1679298493691.pdf', 0, '2023-03-20 07:48:13', ' ');
 
 -- --------------------------------------------------------
 
@@ -1725,7 +1763,8 @@ CREATE TABLE `thoihoc` (
 INSERT INTO `thoihoc` (`ma_th`, `ma_vc`, `ma_l`, `ngay_th`, `lydo_th`, `file_th`, `status_th`, `created_th`, `updated_th`) VALUES
 (4, 31, 4, '2023-03-15', 'dstôổ', '1677919468791.pdf', 0, '2023-03-04 08:44:28', NULL),
 (5, 15, 7, '2023-03-05', 'dfs', '1678158459634.pdf', 0, '2023-03-07 03:07:39', NULL),
-(6, 30, 3, '2023-03-15', 'fewrf', '1678159143782.pdf', 0, '2023-03-07 03:19:03', NULL);
+(6, 30, 3, '2023-03-15', 'fewrf', '1678159143782.pdf', 0, '2023-03-07 03:19:03', NULL),
+(7, 61, 7, '2023-03-08', 'dfsg', '1679302876520.pdf', 0, '2023-03-20 09:01:16', NULL);
 
 -- --------------------------------------------------------
 
@@ -12643,6 +12682,12 @@ ALTER TABLE `dunghoc`
   ADD PRIMARY KEY (`ma_dh`);
 
 --
+-- Chỉ mục cho bảng `file`
+--
+ALTER TABLE `file`
+  ADD PRIMARY KEY (`ma_f`);
+
+--
 -- Chỉ mục cho bảng `giadinh`
 --
 ALTER TABLE `giadinh`
@@ -12812,7 +12857,7 @@ ALTER TABLE `chucvu`
 -- AUTO_INCREMENT cho bảng `chuyen`
 --
 ALTER TABLE `chuyen`
-  MODIFY `ma_c` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ma_c` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `danhmuclop`
@@ -12830,19 +12875,25 @@ ALTER TABLE `dantoc`
 -- AUTO_INCREMENT cho bảng `dunghoc`
 --
 ALTER TABLE `dunghoc`
-  MODIFY `ma_dh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ma_dh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT cho bảng `file`
+--
+ALTER TABLE `file`
+  MODIFY `ma_f` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `giadinh`
 --
 ALTER TABLE `giadinh`
-  MODIFY `ma_gd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ma_gd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `giahan`
 --
 ALTER TABLE `giahan`
-  MODIFY `ma_gh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ma_gh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `hedaotao`
@@ -12866,7 +12917,7 @@ ALTER TABLE `huyen`
 -- AUTO_INCREMENT cho bảng `ketqua`
 --
 ALTER TABLE `ketqua`
-  MODIFY `ma_kq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ma_kq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `khenthuong`
@@ -12938,13 +12989,13 @@ ALTER TABLE `quyen`
 -- AUTO_INCREMENT cho bảng `quyetdinh`
 --
 ALTER TABLE `quyetdinh`
-  MODIFY `ma_qd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `ma_qd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT cho bảng `thoihoc`
 --
 ALTER TABLE `thoihoc`
-  MODIFY `ma_th` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ma_th` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `thuongbinh`

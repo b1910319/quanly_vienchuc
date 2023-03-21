@@ -311,7 +311,7 @@
   </div> <!-- end col -->
   <div class="col-xl-8">
     <div class="card-box">
-      <div class="dropdown float-right">
+      {{-- <div class="dropdown float-right">
         <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
           <i class="mdi mdi-dots-horizontal"></i>
         </a>
@@ -325,7 +325,7 @@
           <!-- item-->
           <a href="javascript:void(0);" class="dropdown-item">Action</a>
         </div>
-      </div>
+      </div> --}}
       <h4 class="header-title mb-3">Danh sách các lớp học hiện có</h4>
 
       <div class="table-responsive">
@@ -505,7 +505,18 @@
                           </table>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="fa-solid fa-square-xmark"></i>
+                            &ensp; Đóng
+                          </button>
+                          @if ($phanquyen_admin || $phanquyen_qlcttc)
+                          <a href="{{ URL::to('/edit_lop_danhmuclop/'.$lop->ma_l) }}">
+                            <button type="submit" class="btn btn-warning fw-bold" style="background-color: #FC7300">
+                              <i class="fa-solid fa-pen-to-square"></i>
+                              &ensp; Cập nhật
+                            </button>
+                          </a>
+                          @endif
                         </div>
                       </div>
                     </div>

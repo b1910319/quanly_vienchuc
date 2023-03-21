@@ -32,6 +32,7 @@ use App\Http\Controllers\LoaiKyLuatController;
 use App\Http\Controllers\LopController;
 use App\Http\Controllers\QuyetDinhController;
 use App\Http\Controllers\ThoiHocController;
+use App\Http\Controllers\FileController;
 
 Route::get('/login',[HomeController::class, 'index']);
 Route::get('/home',[HomeController::class, 'home']);
@@ -403,7 +404,7 @@ Route::get('/delete_loaikhenthuong/{ma_lkt}',[LoaiKhenThuongController::class, '
 Route::get('/delete_all_loaikhenthuong',[LoaiKhenThuongController::class, 'delete_all_loaikhenthuong']);
 
 
-
+// -------------------------------------------------------
 
 Route::get('/hinhthuckhenthuong',[HinhThucKhenThuongController::class, 'hinhthuckhenthuong']);
 Route::post('/add_hinhthuckhenthuong',[HinhThucKhenThuongController::class, 'add_hinhthuckhenthuong']);
@@ -592,7 +593,13 @@ Route::get('/delete_thoihoc_all',[ThoiHocController::class, 'delete_thoihoc_all'
 
 
 
-
+Route::get('/file',[FileController::class, 'file']);
+Route::post('/add_file',[FileController::class, 'add_file']);
+// Route::get('/select_file/{ma_f}',[FileController::class, 'select_file']);
+// Route::get('/edit_file/{ma_f}',[FileController::class, 'edit_file']);
+// Route::post('/update_file/{ma_f}',[FileController::class, 'update_file']);
+// Route::get('/delete_file/{ma_f}',[FileController::class, 'delete_file']);
+// Route::get('/delete_all_file',[FileController::class, 'delete_all_file']);
 
 
 
