@@ -9,7 +9,9 @@
           </button>
         </a>
       </div>
-      <h4 class="text-center col-11 mt-1" style="font-weight: bold; color: white; font-size: 20px;">CẬP NHẬT THÔNG TIN</h4>
+      <h4 class="text-center col-11 mt-1" style="font-weight: bold; color: white; font-size: 20px;">
+        CẬP NHẬT THÔNG TIN
+      </h4>
     </div>
     <form action="{{ URL::to('/update_file/'.$edit->ma_f) }}" method="POST"
       autocomplete="off" enctype="multipart/form-data">
