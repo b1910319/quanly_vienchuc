@@ -112,7 +112,10 @@ class HomeController extends Controller
       ->where('vienchuc.ma_k', $ma_k)
       ->get();
 
+    $date = Carbon::parse(Carbon::now()->addMonths(2))->format('Y-m-d');
+    // echo $date;
     $list_lop = Lop::orderBy('ma_l', 'desc')
+      ->where('ngaybatdau_l', '>=', $date)
       ->get();
     return view('home.home')
       ->with('title', $title)
