@@ -102,14 +102,15 @@
                         </table>
                       </div>
                       <div class="row mb-2">
-                        <div class="col-6"></div>
-                        <div class="col-6">
-                          <button type="submit"  class="btn btn-primary font-weight-bold" style="background-color: #379237; border: none;">
+                        <div class="col-5"></div>
+                        <div class="col-2">
+                          <button type="submit"  class="btn btn-primary font-weight-bold" style="background-color: #379237; border: none; width: 100%;">
                             <i class="fas fa-plus-square"></i>
                             &ensp;
                             Thêm
                           </button>
                         </div>
+                        <div class="col-5"></div>
                       </div>
                     </div>
                   </form>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 21, 2023 lúc 07:42 AM
+-- Thời gian đã tạo: Th3 21, 2023 lúc 08:37 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -313,8 +313,27 @@ CREATE TABLE `file` (
 --
 
 INSERT INTO `file` (`ma_f`, `ma_vc`, `ten_f`, `file_f`, `status_f`, `created_f`, `updated_f`) VALUES
-(5, 1, 'rgrgth', '1679380135155.docx', 0, '2023-03-21 06:28:55', NULL),
-(6, 1, 'jjkjủ̉', '1679380186222.docx', 0, '2023-03-21 06:29:46', NULL);
+(8, 1, 'Đơn xin dự tuyển', '1679383706886.doc', 0, '2023-03-21 07:28:26', NULL),
+(9, 1, 'Sơ yếu lý lịch (đối với VC-NLĐ đăng ký dự tuyển tiến sĩ)', '1679383720470.doc', 0, '2023-03-21 07:28:40', NULL),
+(10, 1, 'Phiếu đăng ký đi học', '1679383734210.doc', 0, '2023-03-21 07:28:54', NULL),
+(11, 1, 'Cam kết của người được cử đi học', '1679383747844.doc', 0, '2023-03-21 07:29:07', NULL),
+(12, 1, 'Giấy báo thời gian chính thức đi học', '1679383761119.doc', 0, '2023-03-21 07:29:21', NULL),
+(13, 1, 'Đơn xin gia hạn thời gian học tập', '1679383776550.doc', 0, '2023-03-21 07:29:36', NULL),
+(14, 1, 'Báo cáo kết quả học tập đến thời điểm xin gia hạn', '1679383788878.doc', 0, '2023-03-21 07:29:48', NULL),
+(15, 1, 'Báo cáo kết thúc chương trình học tập', '167938380263.doc', 0, '2023-03-21 07:30:02', NULL),
+(16, 1, 'Đơn xin tạm dừng học', '1679383818461.doc', 0, '2023-03-21 07:30:18', NULL),
+(17, 1, 'Đơn xin thôi học', '1679383829719.doc', 0, '2023-03-21 07:30:29', NULL),
+(18, 1, 'Đơn xin chuyển nước, chuyển trường, chuyển ngành đào tạo', '1679383842981.doc', 0, '2023-03-21 07:30:42', NULL),
+(19, 1, 'Báo cáo kết quả học tập đến thời điểm: tạm dừng học/ xin thôi học/ chuyển nước, chuyển trường, chuyển ngành đào tạo', '1679383856611.doc', 0, '2023-03-21 07:30:56', NULL),
+(20, 1, 'Đơn xin được học tiếp bậc học cao hơn', '1679383870778.doc', 0, '2023-03-21 07:31:10', NULL),
+(21, 1, 'Báo cáo kết quả học tập đến thời điểm học tiếp bậc học cao hơn', '1679383887766.doc', 0, '2023-03-21 07:31:27', NULL),
+(22, 1, 'Sơ yếu lý lịch (được cập nhật đến thời điểm viên chức xin học bậc cao hơn)', '1679383901509.doc', 0, '2023-03-21 07:31:41', NULL),
+(23, 1, 'Báo cáo định kỳ (tình hình học tập / nghiên cứu sau Tiến sĩ / trao đổi chuyên gia)', '1679383913714.doc', 0, '2023-03-21 07:31:53', NULL),
+(24, 1, 'Báo cáo kết thúc chương trình học tập ngắn hạn', '1679383929709.doc', 0, '2023-03-21 07:32:09', NULL),
+(25, 1, 'Báo cáo tổng hợp của đơn vị', '1679383997727.xlsx', 0, '2023-03-21 07:33:17', NULL),
+(26, 1, 'Phiếu đăng ký đi nghiên cứu sau tiến sĩ, đi trao đổi chuyên gia', '1679384021843.doc', 0, '2023-03-21 07:33:41', NULL),
+(27, 1, 'Cam kết thực hiện trách nhiệm của người được cử đi nghiên cứu sau tiến sĩ, đi trao đổi chuyên gia', '1679384033666.doc', 0, '2023-03-21 07:33:53', NULL),
+(28, 1, 'Báo cáo kết thúc nghiên cứu sau tiến sĩ, đi trao đổi chuyên gia', '1679384047520.doc', 0, '2023-03-21 07:34:07', NULL);
 
 -- --------------------------------------------------------
 
@@ -12881,7 +12900,7 @@ ALTER TABLE `dunghoc`
 -- AUTO_INCREMENT cho bảng `file`
 --
 ALTER TABLE `file`
-  MODIFY `ma_f` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ma_f` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT cho bảng `giadinh`

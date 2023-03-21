@@ -183,48 +183,40 @@ class FileController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function delete_file($ma_f){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $file = file::find($ma_f);
-  //     if($file->file_f != ' '){
-  //       unlink('public/uploads/file/'.$file->file_f);
-  //     }
-  //     $file->delete();
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function delete_all_file($ma_l, $ma_vc){
-  //   $this->check_login();
-  //   $ma_vc_login = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $list = file::where('ma_l', $ma_l)
-  //       ->where('ma_vc', $ma_vc)
-  //       ->get();
-  //     foreach($list as $key => $file){
-  //       if($file->file_f != ' '){
-  //         unlink('public/uploads/file/'.$file->file_f);
-  //       }
-  //       $file->delete();
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function delete_file($ma_f){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      $file = file::find($ma_f);
+      if($file->file_f != NULL){
+        unlink('public/uploads/file/'.$file->file_f);
+      }
+      $file->delete();
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function delete_all_file(){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      $list = File::get();
+      foreach($list as $key => $file){
+        if($file->file_f != ' '){
+          unlink('public/uploads/file/'.$file->file_f);
+        }
+        $file->delete();
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }

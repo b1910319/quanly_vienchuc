@@ -8,6 +8,7 @@ use App\Models\ChucVu;
 use App\Models\Chuyen;
 use App\Models\DanToc;
 use App\Models\DungHoc;
+use App\Models\File;
 use App\Models\GiaDinh;
 use App\Models\GiaHan;
 use App\Models\HeDaoTao;
@@ -117,6 +118,9 @@ class HomeController extends Controller
     $list_lop = Lop::orderBy('ma_l', 'desc')
       ->where('ngaybatdau_l', '>=', $date)
       ->get();
+    $list_file = File::where('status_f', '<>', '1')
+      ->orderBy('ma_f', 'desc')
+      ->get();
     return view('home.home')
       ->with('title', $title)
 
@@ -131,6 +135,7 @@ class HomeController extends Controller
       ->with('count_vienchuc_khenthuong_khoa', $count_vienchuc_khenthuong_khoa)
 
       ->with('list_lop', $list_lop)
+      ->with('list_file', $list_file)
 
       ->with('phanquyen_qlk', $phanquyen_qlk)
       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)

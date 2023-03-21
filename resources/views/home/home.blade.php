@@ -161,13 +161,13 @@
 
 <div class="row">
   {{-- thời tiết --}}
-  <div class="col-xl-4">
+  {{-- <div class="col-xl-4">
     <div class="card-box">
       <!-- weather widget start --><a target="_blank" href="https://hotelmix.vn/weather/can-tho-33807"><img src="https://w.bookcdn.com/weather/picture/3_33807_1_33_137AE9_430_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=38699&domid=1180&anc_id=20094"  alt="booked.net"/></a><!-- weather widget end -->
     </div> <!-- end card-box -->
-  </div> <!-- end col -->
+  </div> <!-- end col --> --}}
 
-  <div class="col-xl-4">
+  {{-- <div class="col-xl-4">
     <div class="card-box">
       <div class="dropdown float-right">
         <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
@@ -261,72 +261,16 @@
 
       </div>
     </div> <!-- end card-box -->
-  </div> <!-- end col -->
+  </div> <!-- end col --> --}}
+  
 
 </div>
 <!-- end row -->
 
 <div class="row">
-  <div class="col-xl-4">
+  <div class="col-xl-12">
     <div class="card-box">
-      <div class="dropdown float-right">
-        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-          <i class="mdi mdi-dots-horizontal"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right">
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Settings</a>
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Download</a>
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Upload</a>
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Action</a>
-        </div>
-      </div>
-      <h4 class="header-title">Earning Reports</h4>
-      <p class="text-muted">1 Mar - 31 Mar Showing Data</p>
-      <h2 class="mb-4"><i class="mdi mdi-currency-usd text-primary"></i>25,632.78</h2>
-
-      <div class="row mb-4">
-        <div class="col-6">
-          <p class="text-muted mb-1">This Month</p>
-          <h3 class="mt-0 font-20">$120,254 <small class="badge badge-light-success font-13">+15%</small></h3>
-        </div>
-
-        <div class="col-6">
-          <p class="text-muted mb-1">Last Month</p>
-          <h3 class="mt-0 font-20">$98,741 <small class="badge badge-light-danger font-13">-5%</small></h3>
-        </div>
-      </div>
-
-      <h5 class="font-16"><i class="mdi mdi-chart-donut text-primary"></i> Weekly Earning
-        Report</h5>
-
-      <div class="mt-5">
-        <span data-plugin="peity-bar" data-colors="#1abc9c,#ebeff2" data-width="100%" data-height="92">5,3,9,6,5,9,7,3,5,2,9,7,2,1,3,5,2,9,7,2,5,3,9,6,5,9,7</span>
-      </div>
-
-    </div> <!-- end card-box -->
-  </div> <!-- end col -->
-  <div class="col-xl-8">
-    <div class="card-box">
-      {{-- <div class="dropdown float-right">
-        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-          <i class="mdi mdi-dots-horizontal"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right">
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Settings</a>
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Download</a>
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Upload</a>
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Action</a>
-        </div>
-      </div> --}}
-      <h4 class="header-title mb-3">Danh sách các lớp học hiện có</h4>
+      <h4 class="header-title mb-3 fw-bold">Danh sách các lớp học hiện có</h4>
 
       <div class="table-responsive">
         <table class="table table-borderless table-hover table-centered m-0" id="mytable1">
@@ -527,9 +471,93 @@
 
           </tbody>
         </table>
-      </div> <!-- end .table-responsive-->
+      </div>
     </div> <!-- end card-box-->
-  </div> <!-- end col -->
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-4">
+    <div class="card-box">
+      <div class="dropdown float-right">
+        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+          <i class="mdi mdi-dots-horizontal"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <!-- item-->
+          <a href="javascript:void(0);" class="dropdown-item">Settings</a>
+          <!-- item-->
+          <a href="javascript:void(0);" class="dropdown-item">Download</a>
+          <!-- item-->
+          <a href="javascript:void(0);" class="dropdown-item">Upload</a>
+          <!-- item-->
+          <a href="javascript:void(0);" class="dropdown-item">Action</a>
+        </div>
+      </div>
+      <h4 class="header-title">Earning Reports</h4>
+      <p class="text-muted">1 Mar - 31 Mar Showing Data</p>
+      <h2 class="mb-4"><i class="mdi mdi-currency-usd text-primary"></i>25,632.78</h2>
+
+      <div class="row mb-4">
+        <div class="col-6">
+          <p class="text-muted mb-1">This Month</p>
+          <h3 class="mt-0 font-20">$120,254 <small class="badge badge-light-success font-13">+15%</small></h3>
+        </div>
+
+        <div class="col-6">
+          <p class="text-muted mb-1">Last Month</p>
+          <h3 class="mt-0 font-20">$98,741 <small class="badge badge-light-danger font-13">-5%</small></h3>
+        </div>
+      </div>
+
+      <h5 class="font-16"><i class="mdi mdi-chart-donut text-primary"></i> Weekly Earning
+        Report</h5>
+
+      <div class="mt-5">
+        <span data-plugin="peity-bar" data-colors="#1abc9c,#ebeff2" data-width="100%" data-height="92">5,3,9,6,5,9,7,3,5,2,9,7,2,1,3,5,2,9,7,2,5,3,9,6,5,9,7</span>
+      </div>
+
+    </div> <!-- end card-box -->
+  </div>
+  <div class="col-xl-8">
+    <div class="card-box">
+      <h4 class="header-title fw-bold">Biểu mẩu</h4>
+      <div class="table-responsive">
+        <table class="table table-borderless table-hover table-centered m-0" id="mytable">
+          <thead class="thead-light">
+            <tr>
+              <th>STT</th>
+              <th>Tên file</th>
+              <th>File</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($list_file as $key => $file )
+              <tr>
+                <td>
+                  {{ $key+1 }}
+                </td>
+                <td>
+                  <h5 class="m-0 font-weight-normal">
+                    {{ $file->ten_f }}
+                  </h5>
+                </td>
+                <td>
+                  <a href="{{ asset('public/uploads/file/'.$file->file_f) }}">
+                    <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none;">
+                      <i class="fa-solid fa-download"></i>
+                      &ensp;
+                      Tải về
+                    </button>
+                  </a>
+                </td>
+              </tr>
+            @endforeach
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- end row -->
 @endsection
