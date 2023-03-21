@@ -23,6 +23,7 @@ class Lop extends Model
     'noidunghoc_l',
     'emailcoso_l',
     'sdtcoso_l',
+    'luotxem_l',
     'status_l',
     'updated_l'
   ];

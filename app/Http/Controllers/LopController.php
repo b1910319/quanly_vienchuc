@@ -244,6 +244,17 @@ class LopController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function lop_luotxem(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $id =$request->id;
+      if($id != null){
+        $lop = Lop::find($id);
+        $lop->luotxem_l = $lop->luotxem_l + 1;
+        $lop->save();
+      }
+    }
+  }
 
   public function lop_danhmuclop($ma_dml){
     $this->check_login();

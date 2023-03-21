@@ -282,11 +282,12 @@
               <th>Ngày kết thúc</th>
               <th>Cơ sở đào tạo</th>
               <th>Quốc gia</th>
+              <th>Luợt xem</th>
               <th>Chi tiết</th>
             </tr>
           </thead>
           <tbody>
-            @foreach ($list_lop as $lop )
+            @foreach ($list_lop as $key => $lop )
               <tr>
                 <td>
                   <h5 class="m-0 font-weight-normal">
@@ -310,10 +311,15 @@
                     {{ $lop->quocgiaodaotao_l }}
                   </span>
                 </td>
-
+                <td>
+                  <i class="fa-solid fa-eye" style="color: #0b44a8;"></i>
+                  &ensp;
+                  {{ $lop->luotxem_l }}
+                </td>
                 <td>
                   <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $lop->ma_l }}">
+                  <button type="button" class="btn btn-primary luotxem_l{{ $key+1 }}" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $lop->ma_l }}">
+                    <input type="hidden" class="ma_l{{ $key+1 }}" value="{{ $lop->ma_l }}">
                     <i class="fa-solid fa-circle-info"></i>
                   </button>
 
@@ -576,6 +582,17 @@
         var id= $('.ma_f{{ $key+1 }}').val();
         $.ajax({
           url:"{{ url("/file_luottai") }}",
+          type:"GET",
+          data:{id:id},
+        });
+      });
+    @endforeach
+    @foreach ($list_lop as $key => $lop )
+      $('.luotxem_l{{ $key+1 }}').click(function(){
+        var id= $('.ma_l{{ $key+1 }}').val();
+        // alert(id)
+        $.ajax({
+          url:"{{ url("/lop_luotxem") }}",
           type:"GET",
           data:{id:id},
         });
