@@ -3,7 +3,7 @@
 <div class="row">
   <div class="card-box">
     <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
-      THÔNG TIN CÁC QUYỀN HIỆN CÓ CỦA HỆ THỐNG
+      ________THÔNG TIN CÁC QUYỀN HIỆN CÓ CỦA HỆ THỐNG________
     </div>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
@@ -26,12 +26,16 @@
   
           <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Thống kê</h5>
+              <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
+                <i class="fa-solid fa-chart-simple"></i>
+                &ensp;
+                Thống kê
+              </h5>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
               <table class="table">
-                <thead>
+                <thead class="table-dark text-light" >
                   <tr>
                     <th scope="col">Tên</th>
                     <th scope="col">Số lượng</th>
@@ -139,7 +143,7 @@
       }
     ?>
     <table class="table" id="mytable">
-      <thead class="table-dark">
+      <thead class="table-secondary" >
         <tr>
           <th scope="col">STT</th>
           <th scope="col">Quyền </th>

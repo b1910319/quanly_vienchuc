@@ -939,7 +939,7 @@
           $('#mytable').DataTable({
             language: {
               search: "Tìm kiếm",
-              lengthMenu: "Số lượng bản ghi trên 1 trang _MENU_ ",
+              lengthMenu: "Số bản ghi trên 1 trang _MENU_ ",
               info: "Bản ghi từ _START_ đến _END_ Tổng cộng _TOTAL_ bản ghi",
               infoEmpty: "Khi không có dữ liệu, Hiển thị 0 bản ghi trong 0 tổng cộng 0 ",
               infoFiltered: "(_MAX_)",
@@ -957,7 +957,7 @@
           $('#mytable1').DataTable({
             language: {
               search: "Tìm kiếm",
-              lengthMenu: "Số lượng bản ghi trên 1 trang _MENU_ ",
+              lengthMenu: "Số bản ghi trên 1 trang _MENU_ ",
               info: "Bản ghi từ _START_ đến _END_ Tổng cộng _TOTAL_ bản ghi",
               infoEmpty: "Khi không có dữ liệu, Hiển thị 0 bản ghi trong 0 tổng cộng 0 ",
               infoFiltered: "(_MAX_)",
@@ -975,7 +975,7 @@
           $('#mytable2').DataTable({
             language: {
               search: "Tìm kiếm",
-              lengthMenu: "Số lượng bản ghi trên 1 trang _MENU_ ",
+              lengthMenu: "Số bản ghi trên 1 trang _MENU_ ",
               info: "Bản ghi từ _START_ đến _END_ Tổng cộng _TOTAL_ bản ghi",
               infoEmpty: "Khi không có dữ liệu, Hiển thị 0 bản ghi trong 0 tổng cộng 0 ",
               infoFiltered: "(_MAX_)",
