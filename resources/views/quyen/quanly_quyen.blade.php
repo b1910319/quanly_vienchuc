@@ -120,17 +120,6 @@
       </div>
     </div>
     <div class="mt-3"></div>
-    <?php
-      $message=session()->get('message_update');
-      if($message){
-        ?>
-          <p style="color: #379237" class="fw-bold text-center">
-            <?php echo $message ?>
-          </p>
-        <?php
-        session()->put('message_update',null);
-      }
-    ?>
     <table class="table" id="mytable">
       <thead class="table-secondary" >
         <tr>
@@ -175,9 +164,6 @@
                   &ensp; Cập nhật
                 </button>
               </a>
-              {{-- <a href="{{ URL::to('/delete_quyen/'.$quyen->ma_q)}}">
-                <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              </a> --}}
               <input class="ma_q" type="hidden" value="{{ $quyen->ma_q }}">
               <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               <?php
