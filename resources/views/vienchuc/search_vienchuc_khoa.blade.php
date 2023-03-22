@@ -3,31 +3,28 @@
 <div class="row">
   <div class="card-box">
     <div class="mt-3"></div>
-    <div class="alert alert-success" role="alert">
-      <div class="row">
-        <h4 class="text-center" style="font-weight: bold">
-          DANH SÁCH 
-          <span style="color: #379237;">( {{ $khoa_ma->ten_k }} )</span>
-        </h4>
-      </div>
+    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px; text-transform: uppercase">
+      ________THÔNG TIN VIÊN CHỨC THUỘC " <span style="color: #FFFF00">{{ $khoa_ma->ten_k }}</span> "________
     </div>
     <div class="row">
-      <div class="col-2">
-        @foreach ($count as $key => $count)
-          <p class="fw-bold" style="color: #379237; ">Tổng có: {{ $count->sum }}</p>
-        @endforeach
-      </div>
-      <div class="col-2 mb-3">
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="width: 100%">Thống kê</button>
+      <div class="col-1 mb-3">
+        <button class="btn btn-primary fw-bold" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="background-color: #00AF91; border: none;">
+          <i class="fa-solid fa-chart-simple"></i> &ensp;
+          Thống kê
+        </button>
   
         <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Thống kê</h5>
+            <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
+              <i class="fa-solid fa-chart-simple"></i>
+              &ensp;
+              Thống kê
+            </h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
             <table class="table">
-              <thead>
+              <thead class="table-dark text-light">
                 <tr>
                   <th scope="col">Tên</th>
                   <th scope="col">Số lượng</th>
@@ -37,14 +34,24 @@
                 @foreach ($count_status as $key => $count_stt)
                   @if ($count_stt->status_vc == 0)
                     <tr>
-                      <td>Danh mục hiển thị</td>
+                      <td>Tài khoản được kích hoạt</td>
                       <td>{{ $count_stt->sum }}</td>
                     </tr>
                   @else
-                    <tr>
-                      <td>Danh mục ẩn</td>
-                      <td>{{ $count_stt->sum }}</td>
-                    </tr>
+                    @if ($count_stt->status_vc == 1)
+                      <tr>
+                        <td>Tài khoản bị vô hiệu hoá</td>
+                        <td>{{ $count_stt->sum }}</td>
+                      </tr>
+                    @else
+                      @if ($count_stt->status_vc == 2)
+                        <tr>
+                          <td>Nghĩ hưu</td>
+                          <td>{{ $count_stt->sum }}</td>
+                        </tr>
+                      @else
+                      @endif
+                    @endif
                   @endif
                 @endforeach
               </tbody>
@@ -52,14 +59,22 @@
           </div>
         </div>
       </div>
-      {{-- <div class="col-2">
-        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_khoa') }}">
-          <button type="button" class="btn btn-danger">Xoá tất cả</button>
+      <div class="col-1">
+        <a href="{{ URL::to('/quanly_vienchuc_khoa') }}">
+          <button type="button" class="btn btn-light fw-bold" style="width: 100%; ">
+            <i class="fa-solid fa-rotate"></i>
+            &ensp;
+            Làm mới
+          </button>
         </a>
-      </div> --}}
-      <div class="col-2">
+      </div>
+      <div class="col-1">
         <div class="dropdown" >
-          <button class="dropbtn">Sắp xếp</button>
+          <button class="dropbtn fw-bold" style="width: 100%; border-radius: 5px; background-color: #a4aa13; ">
+            <i class="fa-solid fa-filter"></i>
+            &ensp;
+            Lọc
+          </button>
           <div class="dropdown-content">
             @foreach ($list_khoa as $khoa )
               <a href="{{ URL::to('/search_vienchuc_khoa/'.$khoa->ma_k) }}">{{ $khoa->ten_k }}</a>
@@ -75,6 +90,7 @@
           <th scope="col">STT</th>
           <th scope="col">Thông tin viên chức</th>
           <th scope="col">Khoa</th>
+          <th scope="col">Trạng thái</th>
           <th scope="col">Quản lý</th>
           <th scope="col"></th>
         </tr>
@@ -91,6 +107,29 @@
             <td>
               {{ $vienchuc->ten_k }}
             </td>
+            <td>
+              <?php
+                if($vienchuc->status_vc == 0){
+                  ?>
+                    <span class="badge badge-light-success">
+                      <i class="fa-solid fa-unlock-keyhole"></i>&ensp;  Kích hoạt
+                    </span>
+                  <?php
+                }else if($vienchuc->status_vc == 1) {
+                  ?>
+                    <span class="badge badge-light-danger">
+                      <i class="fa-solid fa-lock"></i>
+                      &ensp; Vô hiệu hoá</span>
+                  <?php
+                }elseif ($vienchuc->status_vc == 2) {
+                  ?>
+                    <span class="badge badge-light-warning">
+                      <i class="fa-solid fa-toggle-off"></i>
+                      &ensp; Nghĩ hưu</span>
+                  <?php
+                }
+              ?>
+            </td>
             <td class="was-validated" style="width: 25%">
               <form action="{{ URL::to('update_khoa_vc') }}" method="post">
                 {{ csrf_field() }}
@@ -105,38 +144,40 @@
                     </select>
                   </div>
                   <div class="col-4">
-                    <button type="submit" class="btn btn-outline-success font-weight-bold">
+                    <button type="submit" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
                       <i class="fa-solid fa-pen-to-square"></i>
-                      Cập nhật
                     </button>
                   </div>
                 </div>
               </form>
               
             </td>
-            <td style="width: 21%;">
-              <a href="{{ URL::to('/edit_vienchuc/'.$vienchuc->ma_vc)}}">
-                <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
+            <td style="width: 25%;">
+              <a href="{{ URL::to('/admin_edit_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc)}}">
+                <button type="button" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  &ensp; Cập nhật
+                </button>
               </a>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/admin_delete_vienchuc/'.$vienchuc->ma_vc)}}">
-                <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              </a>
+              <input class="ma_vc" type="hidden" value="{{ $vienchuc->ma_vc }}">
+              <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               <?php
                 if($vienchuc->status_vc == 0){
                   ?>
                     <a href="{{ URL::to('/admin_select_vienchuc/'.$vienchuc->ma_vc) }}">
-                      <button type="button" class="btn btn-secondary">
-                        <i class="fa-solid fa-eye-slash"></i> 
-                        &ensp; Ẩn
+                      <button type="button" class="btn btn-secondary fw-bold">
+                        <i class="fa-solid fa-lock"></i> 
+                        &ensp; Vô hiệu hoá
                       </button>
                     </a>
                   <?php
                 }else if($vienchuc->status_vc == 1) {
                   ?>
                     <a href="{{ URL::to('/admin_select_vienchuc/'.$vienchuc->ma_vc) }}">
-                      <button type="button" class="btn btn-success">
-                        <i class="fa-solid fa-eye"></i>
-                        &ensp; Hiển thị
+                      <button type="button" class="btn btn-success fw-bold">
+                        <i class="fa-solid fa-unlock-keyhole"></i>
+                        &ensp;
+                        Kích hoạt
                       </button>
                     </a>
                   <?php
@@ -149,4 +190,52 @@
     </table>
   </div>
 </div>
+{{-- ajax --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+{{--  --}}
+<script>
+  document.querySelector('.xoa').addEventListener('click', (event)=>{
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire({
+      title: 'Bạn có chắc muốn xoá không?',
+      text: "Bạn không thể khôi phục dữ liệu đã xoá",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
+      cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var ma_vc= $('.ma_vc').val();
+        $.ajax({
+          url:"{{ url("/admin_delete_vienchuc") }}", 
+          type: "GET", 
+          data: {ma_vc:ma_vc},
+        });
+        swalWithBootstrapButtons.fire(
+          'Xoá thành công',
+          'Dữ liệu của bạn đã được xoá.',
+          'success'
+        )
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Đã huỷ',
+          'Dữ liệu được an toàn',
+          'error'
+        )
+      }
+      location.reload();
+    })
+  });
+</script>
 @endsection
