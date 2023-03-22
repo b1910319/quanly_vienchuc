@@ -189,7 +189,6 @@ class DanTocController extends Controller
         }
       }
     }
-    
   }
   public function delete_all_dantoc(){
     $this->check_login();

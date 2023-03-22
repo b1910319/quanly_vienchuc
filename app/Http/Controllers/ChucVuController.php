@@ -169,7 +169,7 @@ class ChucVuController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_chucvu($ma_cv){
+  public function delete_chucvu(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -179,10 +179,12 @@ class ChucVuController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
-      ChucVu::find($ma_cv)->delete();
-      return Redirect::to('chucvu');
-    }else{
-      return Redirect::to('/home');
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          ChucVu::find($id)->delete();
+        }
+      }
     }
   }
   public function delete_all_chucvu(){
