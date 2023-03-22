@@ -156,7 +156,7 @@
     </div>
     <div class="mt-3"></div>
     <table class="table" id="mytable">
-      <thead class="table-dark text-light" >
+      <thead class="table-secondary" >
         <tr>
           <th scope="col">STT</th>
           <th scope="col">Họ tên viên chức </th>
@@ -209,9 +209,6 @@
                   &ensp; Cập nhật
                 </button>
               </a>
-              {{-- <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/admin_delete_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc)}}">
-                <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              </a> --}}
               <input class="ma_k" type="hidden" value="{{ $vienchuc->ma_k }}">
               <input class="ma_vc" type="hidden" value="{{ $vienchuc->ma_vc }}">
               <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
