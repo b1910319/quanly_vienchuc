@@ -123,7 +123,7 @@
       <div class="row ">
         <div class="mt-3"></div>
         <table class="table" id="mytable">
-          <thead class="table-dark">
+          <thead class="table-secondary" >
             <tr>
               <th scope="col">STT</th>
               <th scope="col">Mối quan hệ</th>
