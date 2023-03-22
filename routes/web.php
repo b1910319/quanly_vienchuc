@@ -70,7 +70,8 @@ Route::get('/admin_deleteall_vienchuc_khoa/{ma_k}',[VienChucController::class, '
 Route::get('/quanly_vienchuc_khoa',[VienChucController::class, 'quanly_vienchuc_khoa']);
 Route::post('/update_khoa_vc',[VienChucController::class, 'update_khoa_vc']);
 Route::get('/admin_select_vienchuc/{ma_vc}',[VienChucController::class, 'admin_select_vienchuc']);
-Route::get('/admin_delete_vienchuc/{ma_vc}',[VienChucController::class, 'admin_delete_vienchuc']);
+// Route::get('/admin_delete_vienchuc/{ma_vc}',[VienChucController::class, 'admin_delete_vienchuc']);
+Route::get('/admin_delete_vienchuc',[VienChucController::class, 'admin_delete_vienchuc']);
 Route::get('/search_vienchuc_khoa/{ma_k}',[VienChucController::class, 'search_vienchuc_khoa']);
 Route::get('/thongtin_vienchuc_add',[VienChucController::class, 'thongtin_vienchuc_add']);
 Route::get('/thongtin_vienchuc_edit/{ma_vc}',[VienChucController::class, 'thongtin_vienchuc_edit']);

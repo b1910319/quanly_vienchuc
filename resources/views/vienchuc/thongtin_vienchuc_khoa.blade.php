@@ -601,9 +601,8 @@
               <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc)}}">
                 <button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> &ensp; Cập nhật</button>
               </a>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/admin_delete_vienchuc/'.$vienchuc->ma_vc)}}">
-                <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              </a>
+              <input class="ma_vc" type="hidden" value="{{ $vienchuc->ma_vc }}">
+              <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               <?php
                 if($vienchuc->status_vc == 0){
                   ?>
@@ -653,6 +652,51 @@
         }
       });
     });
+  });
+</script>
+<script>
+  document.querySelector('.xoa').addEventListener('click', (event)=>{
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire({
+      title: 'Bạn có chắc muốn xoá không?',
+      text: "Bạn không thể khôi phục dữ liệu đã xoá",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
+      cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var ma_vc= $('.ma_vc').val();
+        $.ajax({
+          url:"{{ url("/admin_delete_vienchuc") }}", 
+          type: "GET", 
+          data: {ma_vc:ma_vc},
+        });
+        swalWithBootstrapButtons.fire(
+          'Xoá thành công',
+          'Dữ liệu của bạn đã được xoá.',
+          'success'
+        )
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Đã huỷ',
+          'Dữ liệu được an toàn',
+          'error'
+        )
+      }
+      location.reload();
+    })
+    
   });
 </script>
 @endsection
