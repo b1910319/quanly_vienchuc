@@ -33,7 +33,7 @@
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $vienchuc->hoten_vc }}
+              {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }})
             </td>
             <td>{{ $vienchuc->user_vc }}</td>
             <td>
@@ -63,7 +63,7 @@
               
             </td>
             <td>
-              {{ $vienchuc->ten_k }}
+              {{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})
             </td>
             <td class="was-validated" style="width: 25%">
               <form action="{{ URL::to('phanquyen_vc') }}" method="post">

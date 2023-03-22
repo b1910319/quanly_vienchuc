@@ -139,7 +139,7 @@
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $file->ten_f }}
+              {{ $file->ten_f }} ({{ $file->ma_f }})
             </td>
             <td>
               <i class="fa-solid fa-download" style="color: #FF5B00;"></i>

@@ -126,7 +126,7 @@
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $dantoc->ten_dt }}
+              {{ $dantoc->ten_dt }} ({{ $dantoc->ma_dt }})
             </td>
             <td>
               <?php
@@ -150,9 +150,6 @@
                   &ensp; Cập nhật
                 </button>
               </a>
-              {{-- <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_dantoc/'.$dantoc->ma_dt)}}">
-                <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              </a> --}}
               <input class="ma_dt" type="hidden" value="{{ $dantoc->ma_dt }}">
               <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               <?php

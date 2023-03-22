@@ -126,7 +126,7 @@
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $chucvu->ten_cv }}
+              {{ $chucvu->ten_cv }} ({{ $chucvu->ma_cv }})
             </td>
             <td>
               <?php

@@ -135,7 +135,7 @@
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $khoa->ten_k }}
+              {{ $khoa->ten_k }} ({{ $khoa->ma_k }})
             </td>
             <td style="width: 12%">
               <?php
