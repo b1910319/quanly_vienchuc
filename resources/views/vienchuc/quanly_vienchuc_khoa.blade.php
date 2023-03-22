@@ -144,7 +144,7 @@
                     </select>
                   </div>
                   <div class="col-4">
-                    <button type="button" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
+                    <button type="submit" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
                       <i class="fa-solid fa-pen-to-square"></i>
                     </button>
                   </div>
