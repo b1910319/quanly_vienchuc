@@ -25,7 +25,7 @@
     </div>
     <div class="col-10 card-box">
       <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
-        THÔNG TIN VIÊN CHỨC
+        ________THÔNG TIN VIÊN CHỨC________
       </div>
       <div class="row ">
         <div class="col-md-12">

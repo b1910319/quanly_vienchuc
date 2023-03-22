@@ -25,7 +25,7 @@
     </div>
     <div class="col-10 card-box">
       <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
-        THÔNG TIN GIA ĐÌNH VIÊN CHỨC
+        ________THÔNG TIN GIA ĐÌNH VIÊN CHỨC________
       </div>
       <div class="row">
         <div class="faqs-page block ">
@@ -104,7 +104,7 @@
                       <div class="row mb-2">
                         <div class="col-5"></div>
                         <div class="col-2">
-                          <button type="submit"  class="btn btn-primary font-weight-bold" style="background-color: #379237; border: none; width: 100%;">
+                          <button type="submit"  class="btn btn-primary font-weight-bold them" style="background-color: #379237; border: none; width: 100%;">
                             <i class="fas fa-plus-square"></i>
                             &ensp;
                             Thêm
@@ -122,19 +122,6 @@
       </div>
       <div class="row ">
         <div class="mt-3"></div>
-        <?php
-          $message=session()->get('message_update');
-          if($message){
-            ?>
-              <p style="color: #379237" class="fw-bold text-center">
-                <?php echo $message ?>
-              </p>
-            <?php
-            session()->put('message_update',null);
-          }
-        ?>
-        <div class="row">
-        </div>
         <table class="table" id="mytable">
           <thead class="table-dark">
             <tr>
@@ -173,9 +160,11 @@
                       &ensp; Cập nhật
                     </button>
                   </a>
-                  <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_thongtin_giadinh/'.$giadinh->ma_gd)}}">
+                  {{-- <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_thongtin_giadinh/'.$giadinh->ma_gd)}}">
                     <button type="button" class="btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-                  </a>
+                  </a> --}}
+                  <input class="ma_gd" type="hidden" value="{{ $giadinh->ma_gd }}">
+              <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
                 </td>
               </tr>
             @endforeach
@@ -184,4 +173,73 @@
       </div>
     </div>
   </div>
+  {{-- ajax --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+{{--  --}}
+<script>
+  document.querySelector('.them').addEventListener('click', (event)=>{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Thêm thành công'
+    })
+    
+  });
+  document.querySelector('.xoa').addEventListener('click', (event)=>{
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire({
+      title: 'Bạn có chắc muốn xoá không?',
+      text: "Bạn không thể khôi phục dữ liệu đã xoá",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
+      cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var id= $('.ma_gd').val();
+        $.ajax({
+          url:"{{ url("/delete_thongtin_giadinh") }}", 
+          type: "GET", 
+          data: {id:id},
+        });
+        swalWithBootstrapButtons.fire(
+          'Xoá thành công',
+          'Dữ liệu của bạn đã được xoá.',
+          'success'
+        )
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Đã huỷ',
+          'Dữ liệu được an toàn',
+          'error'
+        )
+      }
+      location.reload();
+    })
+    
+  });
+</script>
+<!--  -->
 @endsection

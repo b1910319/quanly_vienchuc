@@ -457,15 +457,17 @@ class HomeController extends Controller
     $giadinh->save();
     return Redirect::to('/thongtin_giadinh');
   }
-  public function delete_thongtin_giadinh($ma_gd){
+  public function delete_thongtin_giadinh(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
-    $giadinh = GiaDinh::find($ma_gd);
-    if($giadinh->ma_vc == $ma_vc){
-      GiaDinh::find($ma_gd)->delete();
-      return Redirect::to('thongtin_giadinh');
-    }else{
-      return Redirect::to('/home');
+    if($request->ajax()){
+      $id =$request->id;
+      if($id != null){
+        $giadinh = GiaDinh::find($id);
+        if($giadinh->ma_vc == $ma_vc){
+          GiaDinh::find($id)->delete();
+        }
+      }
     }
   }
   public function delete_all_thongtin_giadinh(){

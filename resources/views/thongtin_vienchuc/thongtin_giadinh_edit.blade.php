@@ -30,21 +30,10 @@
             <i class="fa-solid fa-angle-left fw-bold" style="font-size: 18px;"></i>
           </button>
         </a>
-        <h4 class="text-center col-10 mt-1" style=" color: white; text-align: center; font-weight: bold; font-size: 20px">CẬP NHẬT THÔNG TIN GIA ĐÌNH VIÊN CHỨC</h4>
+        <h4 class="text-center col-10 mt-1" style=" color: white; text-align: center; font-weight: bold; font-size: 20px">________CẬP NHẬT THÔNG TIN GIA ĐÌNH VIÊN CHỨC________</h4>
       </div>
       <form action="{{ URL::to('/update_thongtin_giadinh/'.$edit->ma_gd) }}" method="POST" autocomplete="off" enctype="multipart/form-data">
         {{ csrf_field() }}
-        <?php
-          $message=session()->get('message');
-          if($message){
-            ?>
-              <p style="color: #379237" class="fw-bold text-center">
-                <?php echo $message ?>
-              </p>
-            <?php
-            session()->put('message',null);
-          }
-        ?>
         <div class="row">
           <div class="col-6">
             <table class="table">

@@ -45,7 +45,7 @@ Route::get('/thongtin_giadinh',[HomeController::class, 'thongtin_giadinh']);
 Route::post('/add_thongtin_giadinh',[HomeController::class, 'add_thongtin_giadinh']);
 Route::get('/thongtin_giadinh_edit/{ma_gd}',[HomeController::class, 'thongtin_giadinh_edit']);
 Route::post('/update_thongtin_giadinh/{ma_gd}',[HomeController::class, 'update_thongtin_giadinh']);
-Route::get('/delete_thongtin_giadinh/{ma_gd}',[HomeController::class, 'delete_thongtin_giadinh']);
+Route::get('/delete_thongtin_giadinh',[HomeController::class, 'delete_thongtin_giadinh']);
 Route::get('/delete_all_thongtin_giadinh',[HomeController::class, 'delete_all_thongtin_giadinh']);
 
 Route::get('/thongtin_bangcap',[HomeController::class, 'thongtin_bangcap']);
