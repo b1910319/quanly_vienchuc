@@ -225,7 +225,7 @@ Route::post('/add_loaibangcap',[LoaiBangCapController::class, 'add_loaibangcap']
 Route::get('/select_loaibangcap/{ma_lbc}',[LoaiBangCapController::class, 'select_loaibangcap']);
 Route::get('/edit_loaibangcap/{ma_lbc}',[LoaiBangCapController::class, 'edit_loaibangcap']);
 Route::post('/update_loaibangcap/{ma_lbc}',[LoaiBangCapController::class, 'update_loaibangcap']);
-Route::get('/delete_loaibangcap/{ma_lbc}',[LoaiBangCapController::class, 'delete_loaibangcap']);
+Route::get('/delete_loaibangcap',[LoaiBangCapController::class, 'delete_loaibangcap']);
 Route::get('/delete_all_loaibangcap',[LoaiBangCapController::class, 'delete_all_loaibangcap']);
 
 
