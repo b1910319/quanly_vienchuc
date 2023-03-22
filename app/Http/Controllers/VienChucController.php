@@ -90,6 +90,7 @@ class VienChucController extends Controller
         ->where('ma_k', $ma_k)
         ->get();
       $count_status = VienChuc::select(DB::raw('count(ma_vc) as sum, status_vc'))
+        ->where('ma_k', $ma_k)
         ->groupBy('status_vc')
         ->get();
       $list = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
@@ -241,7 +242,35 @@ class VienChucController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function admin_delete_vienchuc_khoa($ma_k, $ma_vc){
+  // public function admin_delete_vienchuc_khoa($ma_k, $ma_vc){
+  //   $this->check_login();
+  //   $ma_vc_login = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+  //     ->where('ma_q', '=', '9')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qlk){
+  //     VienChuc::find($ma_vc)->delete();
+  //     $list_noisinh = NoiSinh::where('ma_vc', $ma_vc)
+  //       ->get();
+  //     foreach($list_noisinh as $noisinh){
+  //       $noisinh->delete();
+  //     }
+  //     $list_quequan = QueQuan::where('ma_vc', $ma_vc)
+  //       ->get();
+  //     foreach($list_quequan as $quequan){
+  //       $quequan->delete();
+  //     }
+  //     return Redirect::to('/vienchuc_khoa/'.$ma_k);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+    
+  // }
+  public function admin_delete_vienchuc_khoa(Request $request){
+    $this->check_login();
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
@@ -251,22 +280,24 @@ class VienChucController extends Controller
       ->where('ma_q', '=', '9')
       ->first();
     if($phanquyen_admin || $phanquyen_qlk){
-      VienChuc::find($ma_vc)->delete();
-      $list_noisinh = NoiSinh::where('ma_vc', $ma_vc)
-        ->get();
-      foreach($list_noisinh as $noisinh){
-        $noisinh->delete();
+      if($request->ajax()){
+        $ma_k =$request->ma_k;
+        $ma_vc =$request->ma_vc;
+        if($ma_k != null && $ma_vc != null){
+          VienChuc::find($ma_vc)->delete();
+          $list_noisinh = NoiSinh::where('ma_vc', $ma_vc)
+            ->get();
+          foreach($list_noisinh as $noisinh){
+            $noisinh->delete();
+          }
+          $list_quequan = QueQuan::where('ma_vc', $ma_vc)
+            ->get();
+          foreach($list_quequan as $quequan){
+            $quequan->delete();
+          }
+        }
       }
-      $list_quequan = QueQuan::where('ma_vc', $ma_vc)
-        ->get();
-      foreach($list_quequan as $quequan){
-        $quequan->delete();
-      }
-      return Redirect::to('/vienchuc_khoa/'.$ma_k);
-    }else{
-      return Redirect::to('/home');
     }
-    
   }
   public function admin_deleteall_vienchuc_khoa($ma_k){
     $this->check_login();
