@@ -188,20 +188,38 @@ class BacController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_bac_ngach($ma_n, $ma_b){
+  // public function delete_bac_ngach($ma_n, $ma_b){
+  //   $this->check_login();
+  //   $ma_vc_login = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qltt){
+  //     Bac::find($ma_b)->delete();
+  //     return Redirect::to('/bac_ngach/'.$ma_n);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  public function delete_bac_ngach(Request $request){
     $this->check_login();
-    $ma_vc_login = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
-      Bac::find($ma_b)->delete();
-      return Redirect::to('/bac_ngach/'.$ma_n);
-    }else{
-      return Redirect::to('/home');
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          Bac::find($id)->delete();
+        }
+      }
     }
   }
   public function delete_all_bac_ngach($ma_n){
