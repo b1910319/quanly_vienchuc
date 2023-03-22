@@ -2,9 +2,6 @@
 @section('content')
 <div class="row">
   <div class="card-box">
-    {{-- <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px; text-transform: uppercase">
-      ________THÔNG TIN CÁC VIÊN CHỨC THUỘC " <span style="color: #FFFF00">{{ $khoa->ten_k }}</span> "________
-    </div> --}}
     <div class="alert alert-success row" role="alert" style="background-color: #3F979B; text-align: center; text-transform: uppercase">
       <div class="col-1">
         @if ($phanquyen_qlk)

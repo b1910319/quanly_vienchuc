@@ -84,7 +84,7 @@ class FileController extends Controller
       $file->ma_vc = $ma_vc;
       $get_file = $request->file('file_f');
       if($get_file){
-        $new_file = time().rand(0,999).'.'.$get_file->getClientOriginalExtension();
+        $new_file = $file->ten_f.rand(0,99).'.'.$get_file->getClientOriginalExtension();
         $get_file->move('public/uploads/file', $new_file);
         $file->file_f = $new_file;
       }
@@ -183,21 +183,23 @@ class FileController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_file($ma_f){
+  public function delete_file(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     if($phanquyen_admin){
-      $file = file::find($ma_f);
-      if($file->file_f != NULL){
-        unlink('public/uploads/file/'.$file->file_f);
+      if($request->ajax()){
+        $ma_f =$request->ma_f;
+        if($ma_f != null){
+          $file = file::find($ma_f);
+          if($file->file_f != NULL){
+            unlink('public/uploads/file/'.$file->file_f);
+          }
+          $file->delete();
+        }
       }
-      $file->delete();
-      return redirect()->back();
-    }else{
-      return Redirect::to('/home');
     }
   }
   public function delete_all_file(){

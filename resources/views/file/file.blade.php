@@ -3,7 +3,7 @@
 <div class="row">
   <div class="card-box">
     <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
-      THÔNG TIN FILE
+      ________THÔNG TIN FILE________
     </div>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
@@ -26,12 +26,16 @@
     
           <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Thống kê</h5>
+              <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
+                <i class="fa-solid fa-chart-simple"></i>
+                &ensp;
+                Thống kê
+              </h5>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
               <table class="table">
-                <thead>
+                <thead class="table-dark text-light">
                   <tr>
                     <th scope="col">Tên</th>
                     <th scope="col">Số lượng</th>
@@ -60,17 +64,6 @@
               <form action="{{ URL::to('/add_file') }}" method="POST"
                 autocomplete="off" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                <?php
-                  $message=session()->get('message');
-                  if($message){
-                    ?>
-                      <p style="color: #379237" class="fw-bold text-center">
-                        <?php echo $message ?>
-                      </p>
-                    <?php
-                    session()->put('message',null);
-                  }
-                ?>
                 <div class="row">
                   <div class="col-6">
                     <table class="table">
@@ -109,7 +102,7 @@
                   <div class="row mb-2">
                     <div class="col-5"></div>
                     <div class="col-2">
-                      <button type="submit"  class="btn btn-primary font-weight-bold" style="background-color: #379237; border: none; width: 100%;">
+                      <button type="submit"  class="them btn btn-primary font-weight-bold" style="background-color: #379237; border: none; width: 100%;">
                         <i class="fas fa-plus-square"></i>
                         &ensp;
                         Thêm
@@ -125,17 +118,6 @@
       </div>
     </div>
     <div class="mt-3"></div>
-    <?php
-      $message=session()->get('message_update');
-      if($message){
-        ?>
-          <p style="color: #379237" class="fw-bold text-center">
-            <?php echo $message ?>
-          </p>
-        <?php
-        session()->put('message_update',null);
-      }
-    ?>
     <div class="row">
       <div class="col-1 mb-3">
         
@@ -146,6 +128,7 @@
         <tr>
           <th scope="col">STT</th>
           <th scope="col">Tên file </th>
+          <th scope="col">Lượt tải về </th>
           <th scope="col">Trạng thái</th>
           <th scope="col">File</th>
           <th scope="col"></th>
@@ -157,6 +140,11 @@
             <th scope="row">{{ $key+1 }}</th>
             <td>
               {{ $file->ten_f }}
+            </td>
+            <td>
+              <i class="fa-solid fa-download" style="color: #FF5B00;"></i>
+              &ensp;
+              {{ $file->luottai_f }}
             </td>
             <td>
               <?php
@@ -193,9 +181,8 @@
                   &ensp; Cập nhật
                 </button>
               </a>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_file/'.$file->ma_f)}}">
-                <button type="button" class="btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              </a>
+              <input class="ma_f" type="hidden" value="{{ $file->ma_f }}">
+              <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               <?php
                 if($file->status_f == 0){
                   ?>
@@ -224,4 +211,72 @@
     </table>
   </div>
 </div>
+{{-- ajax --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+{{--  --}}
+<script>
+  document.querySelector('.them').addEventListener('click', (event)=>{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Thêm thành công'
+    })
+    
+  });
+  document.querySelector('.xoa').addEventListener('click', (event)=>{
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire({
+      title: 'Bạn có chắc muốn xoá không?',
+      text: "Bạn không thể khôi phục dữ liệu đã xoá",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
+      cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var ma_f= $('.ma_f').val();
+        $.ajax({
+          url:"{{ url("/delete_file") }}", 
+          type: "GET", 
+          data: {ma_f:ma_f},
+        });
+        swalWithBootstrapButtons.fire(
+          'Xoá thành công',
+          'Dữ liệu của bạn đã được xoá.',
+          'success'
+        )
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Đã huỷ',
+          'Dữ liệu được an toàn',
+          'error'
+        )
+      }
+      location.reload();
+    })
+    
+  });
+</script>
 @endsection

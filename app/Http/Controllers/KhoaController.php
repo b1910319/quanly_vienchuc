@@ -167,19 +167,6 @@ class KhoaController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function delete_khoa($ma_k){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   if($phanquyen_admin){
-  //     Khoa::find($ma_k)->delete();
-  //     return Redirect::to('quanly_khoa');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
   public function delete_khoa(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
