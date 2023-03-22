@@ -190,7 +190,7 @@ Route::post('/add_tongiao',[TonGiaoController::class, 'add_tongiao']);
 Route::get('/select_tongiao/{ma_tg}',[TonGiaoController::class, 'select_tongiao']);
 Route::get('/edit_tongiao/{ma_tg}',[TonGiaoController::class, 'edit_tongiao']);
 Route::post('/update_tongiao/{ma_tg}',[TonGiaoController::class, 'update_tongiao']);
-Route::get('/delete_tongiao/{ma_tg}',[TonGiaoController::class, 'delete_tongiao']);
+Route::get('/delete_tongiao',[TonGiaoController::class, 'delete_tongiao']);
 Route::get('/delete_all_tongiao',[TonGiaoController::class, 'delete_all_tongiao']);
 
 

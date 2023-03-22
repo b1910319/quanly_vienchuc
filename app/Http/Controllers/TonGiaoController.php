@@ -169,7 +169,7 @@ class TonGiaoController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_tongiao($ma_tg){
+  public function delete_tongiao(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -179,10 +179,12 @@ class TonGiaoController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
-      TonGiao::find($ma_tg)->delete();
-      return Redirect::to('tongiao');
-    }else{
-      return Redirect::to('/home');
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          TonGiao::find($id)->delete();
+        }
+      }
     }
   }
   public function delete_all_tongiao(){
