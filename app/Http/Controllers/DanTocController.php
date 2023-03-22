@@ -172,7 +172,7 @@ class DanTocController extends Controller
     }
     
   }
-  public function delete_dantoc($ma_dt){
+  public function delete_dantoc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -182,10 +182,12 @@ class DanTocController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
-      DanToc::find($ma_dt)->delete();
-      return Redirect::to('dantoc');
-    }else{
-      return Redirect::to('/home');
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          DanToc::find($id)->delete();
+        }
+      }
     }
     
   }

@@ -170,7 +170,7 @@
                 if($quyen->status_q == 0){
                   ?>
                     <a href="{{ URL::to('/select_quyen/'.$quyen->ma_q) }}">
-                      <button type="button" class="btn btn-secondary">
+                      <button type="button" class="btn btn-secondary fw-bold">
                         <i class="fa-solid fa-eye-slash"></i> 
                         &ensp; Ẩn
                       </button>
@@ -179,7 +179,7 @@
                 }else if($quyen->status_q == 1) {
                   ?>
                     <a href="{{ URL::to('/select_quyen/'.$quyen->ma_q) }}">
-                      <button type="button" class="btn btn-success">
+                      <button type="button" class="btn btn-success fw-bold">
                         <i class="fa-solid fa-eye"></i>
                         &ensp;
                         Hiển thị
