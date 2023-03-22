@@ -201,7 +201,7 @@ Route::post('/add_thuongbinh',[ThuongBinhController::class, 'add_thuongbinh']);
 Route::get('/select_thuongbinh/{ma_tb}',[ThuongBinhController::class, 'select_thuongbinh']);
 Route::get('/edit_thuongbinh/{ma_tb}',[ThuongBinhController::class, 'edit_thuongbinh']);
 Route::post('/update_thuongbinh/{ma_tb}',[ThuongBinhController::class, 'update_thuongbinh']);
-Route::get('/delete_thuongbinh/{ma_tb}',[ThuongBinhController::class, 'delete_thuongbinh']);
+Route::get('/delete_thuongbinh',[ThuongBinhController::class, 'delete_thuongbinh']);
 Route::get('/delete_all_thuongbinh',[ThuongBinhController::class, 'delete_all_thuongbinh']);
 
 
