@@ -219,7 +219,7 @@
                 if($vienchuc->status_vc == 0){
                   ?>
                     <a href="{{ URL::to('/admin_select_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc) }}">
-                      <button type="button" class="btn btn-secondary">
+                      <button type="button" class="btn btn-secondary fw-bold">
                         <i class="fa-solid fa-lock"></i> 
                         &ensp; Vô hiệu hoá
                       </button>
@@ -228,7 +228,7 @@
                 }else if($vienchuc->status_vc == 1) {
                   ?>
                     <a href="{{ URL::to('/admin_select_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc) }}">
-                      <button type="button" class="btn btn-success">
+                      <button type="button" class="btn btn-success fw-bold">
                         <i class="fa-solid fa-unlock-keyhole"></i>
                         &ensp;
                         Kích hoạt
