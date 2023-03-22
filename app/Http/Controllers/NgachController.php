@@ -178,7 +178,23 @@ class NgachController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_ngach($ma_n){
+  // public function delete_ngach($ma_n){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qltt){
+  //     Ngach::find($ma_n)->delete();
+  //     return Redirect::to('ngach');
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  public function delete_ngach(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -188,10 +204,12 @@ class NgachController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
-      Ngach::find($ma_n)->delete();
-      return Redirect::to('ngach');
-    }else{
-      return Redirect::to('/home');
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          Ngach::find($id)->delete();
+        }
+      }
     }
   }
   public function delete_all_ngach(){
