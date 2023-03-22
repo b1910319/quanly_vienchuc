@@ -169,7 +169,7 @@ class HeDaoTaoController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_hedaotao($ma_hdt){
+  public function delete_hedaotao(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -179,12 +179,15 @@ class HeDaoTaoController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
-      HeDaoTao::find($ma_hdt)->delete();
-      return Redirect::to('hedaotao');
-    }else{
-      return Redirect::to('/home');
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          HeDaoTao::find($id)->delete();
+        }
+      }
     }
   }
+
   public function delete_all_hedaotao(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
