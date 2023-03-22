@@ -64,17 +64,6 @@
               <form action="{{ URL::to('/add_quyen') }}" method="POST"
                 autocomplete="off" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                <?php
-                  $message=session()->get('message');
-                  if($message){
-                    ?>
-                      <p style="color: #379237" class="fw-bold text-center">
-                        <?php echo $message ?>
-                      </p>
-                    <?php
-                    session()->put('message',null);
-                  }
-                ?>
                 <div class="row">
                   <div class="col-6">
                     <table class="table">
@@ -115,7 +104,7 @@
                   <div class="row mb-2">
                     <div class="col-5"></div>
                     <div class="col-2">
-                      <button type="submit"  class="btn btn-primary font-weight-bold" style="background-color: #379237; border: none; width: 100%;">
+                      <button type="submit"  class="btn btn-primary font-weight-bold them" style="background-color: #379237; border: none; width: 100%;">
                         <i class="fas fa-plus-square"></i>
                         &ensp;
                         Thêm
@@ -181,15 +170,16 @@
             </td>
             <td style="width: 21%;">
               <a href="{{ URL::to('/edit_quyen/'.$quyen->ma_q)}}">
-                <button type="button" class="btn btn-warning fw-bold" style="background-color: #FC7300">
+                <button type="button" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
                   <i class="fa-solid fa-pen-to-square"></i>
                   &ensp; Cập nhật
                 </button>
               </a>
-              <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_quyen/'.$quyen->ma_q)}}">
-                <button type="button" class="btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              </a>
-              
+              {{-- <a href="{{ URL::to('/delete_quyen/'.$quyen->ma_q)}}">
+                <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
+              </a> --}}
+              <input class="ma_q" type="hidden" value="{{ $quyen->ma_q }}">
+              <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
               <?php
                 if($quyen->status_q == 0){
                   ?>
@@ -224,6 +214,74 @@
 <script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
 <script>
   // CKEDITOR.replace('mota_q');
+</script>
+{{-- ajax --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+{{--  --}}
+<script>
+  document.querySelector('.them').addEventListener('click', (event)=>{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Thêm thành công'
+    })
+    
+  });
+  document.querySelector('.xoa').addEventListener('click', (event)=>{
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire({
+      title: 'Bạn có chắc muốn xoá không?',
+      text: "Bạn không thể khôi phục dữ liệu đã xoá",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
+      cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var id= $('.ma_q').val();
+        $.ajax({
+          url:"{{ url("/delete_quyen") }}", 
+          type: "GET", 
+          data: {id:id},
+        });
+        swalWithBootstrapButtons.fire(
+          'Xoá thành công',
+          'Dữ liệu của bạn đã được xoá.',
+          'success'
+        )
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Đã huỷ',
+          'Dữ liệu được an toàn',
+          'error'
+        )
+      }
+      location.reload();
+    })
+    
+  });
 </script>
 <!--  -->
 <!-- end row -->

@@ -39,6 +39,11 @@
   {{-- css biểu đồ --}}
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
   {{--  --}}
+  {{-- sweetalert 2 --}}
+  <link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
+" rel="stylesheet">
+  {{--  --}}
 </head>
 <body>
   <!-- Begin page -->
@@ -997,6 +1002,11 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"> 
   </script>
+  {{--  --}}
+  {{-- sweetalert 2 --}}
+  <script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
+"></script>
   {{--  --}}
 </body>
 
