@@ -16,17 +16,6 @@
     <form action="{{ URL::to('/update_giadinh/'.$edit->ma_gd.'/'.$edit->ma_vc) }}" method="POST"
       autocomplete="off" enctype="multipart/form-data">
       {{ csrf_field() }}
-      <?php
-        $message=session()->get('message');
-        if($message){
-          ?>
-            <p style="color: #379237" class="font-weight-bold text-center">
-              <?php echo $message ?>
-            </p>
-          <?php
-          session()->put('message',null);
-        }
-      ?>
       <div class="row">
         <div class="col-6">
           <table class="table">
