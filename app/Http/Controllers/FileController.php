@@ -232,4 +232,23 @@ class FileController extends Controller
       }
     }
   }
+  public function delete_file_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      $ma_f = $request->ma_f;
+      $list = File::whereIn('ma_f', $ma_f)
+        ->get();
+      foreach($list as $key => $file){
+        if($file->file_f != ' '){
+          unlink('public/uploads/file/'.$file->file_f);
+        }
+        $file->delete();
+      }
+      return redirect()->back();
+    }
+  }
 }

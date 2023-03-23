@@ -71,7 +71,6 @@ Route::get('/quanly_vienchuc_khoa',[VienChucController::class, 'quanly_vienchuc_
 Route::post('/update_khoa_vc',[VienChucController::class, 'update_khoa_vc']);
 Route::get('/admin_select_vienchuc/{ma_vc}',[VienChucController::class, 'admin_select_vienchuc']);
 Route::post('/admin_delete_vienchuc_khoa_check',[VienChucController::class, 'admin_delete_vienchuc_khoa_check']);
-// Route::get('/admin_delete_vienchuc/{ma_vc}',[VienChucController::class, 'admin_delete_vienchuc']);
 Route::get('/admin_delete_vienchuc',[VienChucController::class, 'admin_delete_vienchuc']);
 Route::get('/search_vienchuc_khoa/{ma_k}',[VienChucController::class, 'search_vienchuc_khoa']);
 Route::get('/thongtin_vienchuc_add',[VienChucController::class, 'thongtin_vienchuc_add']);
@@ -608,6 +607,7 @@ Route::post('/update_file/{ma_f}',[FileController::class, 'update_file']);
 Route::get('/delete_file',[FileController::class, 'delete_file']);
 Route::get('/delete_all_file',[FileController::class, 'delete_all_file']);
 Route::get('/file_luottai',[FileController::class, 'file_luottai']);
+Route::post('/delete_file_check',[FileController::class, 'delete_file_check']);
 
 
 

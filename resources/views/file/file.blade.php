@@ -118,97 +118,106 @@
       </div>
     </div>
     <div class="mt-3"></div>
-    <div class="row">
-      <div class="col-1 mb-3">
-        
-      </div>
-    </div>
-    <table class="table" id="mytable">
-      <thead class="table-dark">
-        <tr>
-          <th scope="col">STT</th>
-          <th scope="col">Tên file </th>
-          <th scope="col">Lượt tải về </th>
-          <th scope="col">Trạng thái</th>
-          <th scope="col">File</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody  >
-        @foreach ($list as $key => $file)
-          <tr >
-            <th scope="row">{{ $key+1 }}</th>
-            <td>
-              {{ $file->ten_f }} ({{ $file->ma_f }})
-            </td>
-            <td>
-              <i class="fa-solid fa-download" style="color: #FF5B00;"></i>
-              &ensp;
-              {{ $file->luottai_f }}
-            </td>
-            <td>
-              <?php
-                if($file->status_f == 0){
-                  ?>
-                    <span class="badge badge-light-success">
-                      <i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị
-                    </span>
-                  <?php
-                }else if($file->status_f == 1) {
-                  ?>
-                    <span class="badge badge-light-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
-                  <?php
-                }
-              ?>
-            </td>
-            <td>
-              @if ($file->file_f != NULL)
-                <a href="{{ asset('public/uploads/file/'.$file->file_f) }}">
-                  <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none;">
-                    <i class="fa-solid fa-file"></i>
-                    &ensp;
-                    File
+    <form action="{{ URL::to('/delete_file_check') }}" method="post" enctype="multipart/form-data">
+      {{ csrf_field() }}
+      <table class="table" id="mytable">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">STT</th>
+            <th scope="col">Tên file </th>
+            <th scope="col">Lượt tải về </th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">File</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody  >
+          @foreach ($list as $key => $file)
+            <tr >
+              <td style="width: 5%">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox"  name="ma_f[{{ $file->ma_f }}]" value="{{ $file->ma_f }}">
+                </div>
+              </td>
+              <th scope="row">{{ $key+1 }}</th>
+              <td>
+                {{ $file->ten_f }} ({{ $file->ma_f }})
+              </td>
+              <td>
+                <i class="fa-solid fa-download" style="color: #FF5B00;"></i>
+                &ensp;
+                {{ $file->luottai_f }}
+              </td>
+              <td>
+                <?php
+                  if($file->status_f == 0){
+                    ?>
+                      <span class="badge badge-light-success">
+                        <i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị
+                      </span>
+                    <?php
+                  }else if($file->status_f == 1) {
+                    ?>
+                      <span class="badge badge-light-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
+                    <?php
+                  }
+                ?>
+              </td>
+              <td>
+                @if ($file->file_f != NULL)
+                  <a href="{{ asset('public/uploads/file/'.$file->file_f) }}">
+                    <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none;">
+                      <i class="fa-solid fa-file"></i>
+                      &ensp;
+                      File
+                    </button>
+                  </a>
+                @else
+                  Không có file
+                @endif
+              </td>
+              <td style="width: 21%;">
+                <a href="{{ URL::to('/edit_file/'.$file->ma_f)}}">
+                  <button type="submit" class="btn btn-warning fw-bold" style=" background-color: #FC7300">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    &ensp; Cập nhật
                   </button>
                 </a>
-              @else
-                Không có file
-              @endif
-            </td>
-            <td style="width: 21%;">
-              <a href="{{ URL::to('/edit_file/'.$file->ma_f)}}">
-                <button type="submit" class="btn btn-warning fw-bold" style=" background-color: #FC7300">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  &ensp; Cập nhật
-                </button>
-              </a>
-              <input class="ma_f" type="hidden" value="{{ $file->ma_f }}">
-              <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              <?php
-                if($file->status_f == 0){
-                  ?>
-                    <a href="{{ URL::to('/select_file/'.$file->ma_f) }}">
-                      <button type="button" class="btn btn-secondary fw-bold">
-                        <i class="fa-solid fa-eye-slash"></i> 
-                        &ensp; Ẩn
-                      </button>
-                    </a>
-                  <?php
-                }else if($file->status_f == 1) {
-                  ?>
-                    <a href="{{ URL::to('/select_file/'.$file->ma_f) }}">
-                      <button type="button" class="btn btn-success fw-bold">
-                        <i class="fa-solid fa-eye"></i>
-                        &ensp; Hiển thị
-                      </button>
-                    </a>
-                  <?php
-                }
-              ?>
-            </td>
-          </tr>
-        @endforeach
-      </tbody>
-    </table>
+                <input class="ma_f" type="hidden" value="{{ $file->ma_f }}">
+                <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
+                <?php
+                  if($file->status_f == 0){
+                    ?>
+                      <a href="{{ URL::to('/select_file/'.$file->ma_f) }}">
+                        <button type="button" class="btn btn-secondary fw-bold">
+                          <i class="fa-solid fa-eye-slash"></i> 
+                          &ensp; Ẩn
+                        </button>
+                      </a>
+                    <?php
+                  }else if($file->status_f == 1) {
+                    ?>
+                      <a href="{{ URL::to('/select_file/'.$file->ma_f) }}">
+                        <button type="button" class="btn btn-success fw-bold">
+                          <i class="fa-solid fa-eye"></i>
+                          &ensp; Hiển thị
+                        </button>
+                      </a>
+                    <?php
+                  }
+                ?>
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <button  type="submit" class="btn btn-danger fw-bold xoa_check" style="background-color: #FF1E1E">
+        <i class="fa-solid fa-trash"></i>
+        &ensp;
+        Xoá
+      </button>
+    </form>
   </div>
 </div>
 {{-- ajax --}}
