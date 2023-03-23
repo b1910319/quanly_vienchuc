@@ -1,22 +1,25 @@
 @extends('layout')
 @section('content')
   <div class="card-box">
-    <div class="alert alert-success row" role="alert">
-      @if ($phanquyen_qlk)
-        <a href="{{ URL::to('/thongtin_vienchuc_khoa') }}" class="col-1">
-          <button type="button" class="btn btn-warning">
-            <i class="fas fa-solid fa-caret-left"></i>&ensp;
-          </button> &ensp;
-        </a>
-      @else
-        <a href="{{ URL::to('/thongtin_vienchuc_add') }}" class="col-1">
-          <button type="button" class="btn btn-warning">
-            <i class="fas fa-solid fa-caret-left"></i>&ensp;
-          </button> &ensp;
-        </a>
-      @endif
-      
-      <h4 class="text-center col-10 mt-1" style="font-weight: bold">CẬP NHẬT THÔNG TIN</h4>
+    <div class="alert alert-success row" role="alert" style="background-color: #3F979B; text-align: center;">
+      <div class="col-1">
+        @if ($phanquyen_qlk)
+          <a href="{{ URL::to('/thongtin_vienchuc_khoa') }}" class="col-1">
+            <button type="button" class="btn btn-warning" style="background-color: #E83A14; border-radius: 50%; border: none;">
+              <i class="fa-solid fa-angle-left fw-bold" style="font-size: 18px;"></i>
+            </button>
+          </a>
+        @else
+          <a href="{{ URL::to('/thongtin_vienchuc_add') }}" class="col-1">
+            <button type="button" class="btn btn-warning" style="background-color: #E83A14; border-radius: 50%; border: none;">
+              <i class="fa-solid fa-angle-left fw-bold" style="font-size: 18px;"></i>
+            </button>
+          </a>
+        @endif
+      </div>
+      <h4 class="text-center col-11 mt-1" style="font-weight: bold; color: white; font-size: 20px;">
+        ________CẬP NHẬT THÔNG TIN________
+      </h4>
     </div>
     <form action="{{ URL::to('/update_thongtin_vienchuc/'.$edit->ma_vc) }}" method="POST"
       autocomplete="off" enctype="multipart/form-data">
@@ -556,13 +559,14 @@
           </table>
         </div>
         <div class="row mb-2">
-          <div class="col-6"></div>
-          <div class="col-6">
-            <button type="submit" class="btn btn-outline-success font-weight-bold">
+          <div class="col-5"></div>
+          <div class="col-2">
+            <button type="submit" class="btn btn-warning fw-bold" style="background-color: #FC7300; width: 100%">
               <i class="fa-solid fa-pen-to-square"></i>
-              Cập nhật
+              &ensp; Cập nhật
             </button>
           </div>
+          <div class="col-5"></div>
         </div>
       </div>
     </form>
