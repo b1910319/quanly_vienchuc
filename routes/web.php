@@ -124,7 +124,7 @@ Route::get('/edit_khoa/{ma_k}',[KhoaController::class, 'edit_khoa']);
 Route::post('/update_khoa/{ma_k}',[KhoaController::class, 'update_khoa']);
 Route::get('/delete_khoa',[KhoaController::class, 'delete_khoa']);
 Route::get('/delete_all_khoa',[KhoaController::class, 'delete_all_khoa']);
-
+Route::post('/delete_khoa_check',[KhoaController::class, 'delete_khoa_check']);
 
 
 

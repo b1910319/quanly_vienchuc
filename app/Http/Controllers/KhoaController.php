@@ -182,6 +182,18 @@ class KhoaController extends Controller
       }
     }
   }
+  public function delete_khoa_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      $ma_k = $request->ma_k;
+      Khoa::whereIn('ma_k', $ma_k)->delete();
+      return Redirect::to('quanly_khoa');
+    }
+  }
   public function delete_all_khoa(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

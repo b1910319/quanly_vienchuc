@@ -120,107 +120,122 @@
       </div>
     </div>
     <div class="mt-3"></div>
-    <table class="table" id="mytable">
-      <thead class="table-secondary">
-        <tr>
-          <th scope="col">STT</th>
-          <th scope="col">Khoa </th>
-          <th scope="col">Viên chức</th>
-          <th scope="col">Trạng thái</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody  >
-        @foreach ($list as $key => $khoa)
-          <tr >
-            <th scope="row">{{ $key+1 }}</th>
-            <td>
-              {{ $khoa->ten_k }} ({{ $khoa->ma_k }})
-            </td>
-            <td style="width: 12%">
-              <?php
-                foreach ($count_vienchuc_khoa as $key => $count) {
-                  if($count->ma_k == $khoa->ma_k && $count->sum > 0){
-                    ?>
-                      <a href="{{ URL::to('/vienchuc_khoa/'.$khoa->ma_k) }}">
-                        <button type="button" class="btn btn-primary position-relative fw-bold" style="background-color: #379237; border: none; width: 100%;">
-                          <i class="fas fa-plus-square"></i>
-                          &ensp;
-                          Thêm viên chức
-                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            <?php echo $count->sum ?>
-                            <span class="visually-hidden">
+    <form action="{{ URL::to('/delete_khoa_check') }}" method="post" enctype="multipart/form-data">
+      {{ csrf_field() }}
+      <table class="table" id="mytable">
+        <thead class="table-secondary">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">STT</th>
+            <th scope="col">Khoa </th>
+            <th scope="col">Viên chức</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody  >
+          @foreach ($list as $key => $khoa)
+            <tr >
+              <td style="width: 5%">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox"  name="ma_k[{{ $khoa->ma_k }}]" value="{{ $khoa->ma_k }}">
+                </div>
+              </td>
+              <th scope="row">{{ $key+1 }}</th>
+              <td>
+                {{ $khoa->ten_k }} ({{ $khoa->ma_k }})
+              </td>
+              <td style="width: 12%">
+                <?php
+                  foreach ($count_vienchuc_khoa as $key => $count) {
+                    if($count->ma_k == $khoa->ma_k && $count->sum > 0){
+                      ?>
+                        <a href="{{ URL::to('/vienchuc_khoa/'.$khoa->ma_k) }}">
+                          <button type="button" class="btn btn-primary position-relative fw-bold" style="background-color: #379237; border: none; width: 100%;">
+                            <i class="fas fa-plus-square"></i>
+                            &ensp;
+                            Thêm viên chức
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                              <?php echo $count->sum ?>
+                              <span class="visually-hidden">
 
+                              </span>
                             </span>
-                          </span>
+                          </button>
+                        </a>
+                      <?php
+                    }elseif ($count->ma_k == $khoa->ma_k && $count->sum == 0) {
+                      ?>
+                        <a href="{{ URL::to('/vienchuc_khoa/'.$khoa->ma_k) }}">
+                          <button type="button" class="btn btn-primary position-relative fw-bold" style="background-color: #379237; border: none; width: 100%;">
+                            <i class="fas fa-plus-square"></i>
+                            &ensp;
+                            Thêm viên chức
+                          </button>
+                        </a>
+                      <?php
+                    }
+                  }
+                ?>
+              </td>
+              
+              <td>
+                <?php
+                  if($khoa->status_k == 0){
+                    ?>
+                      <span class="badge badge-light-success">
+                        <i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị
+                      </span>
+                    <?php
+                  }else if($khoa->status_k == 1) {
+                    ?>
+                      <span class="badge badge-light-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
+                    <?php
+                  }
+                ?>
+              </td>
+              <td style="width: 22%;">
+                <a href="{{ URL::to('/edit_khoa/'.$khoa->ma_k)}}">
+                  <button type="button" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    &ensp; Cập nhật
+                  </button>
+                </a>
+                <input class="ma_k" type="hidden" value="{{ $khoa->ma_k}}">
+                <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
+                <?php
+                  if($khoa->status_k == 0){
+                    ?>
+                      <a href="{{ URL::to('/select_khoa/'.$khoa->ma_k) }}">
+                        <button type="button" class="btn btn-secondary fw-bold">
+                          <i class="fa-solid fa-eye-slash"></i> 
+                          &ensp; Ẩn
                         </button>
                       </a>
                     <?php
-                  }elseif ($count->ma_k == $khoa->ma_k && $count->sum == 0) {
+                  }else if($khoa->status_k == 1) {
                     ?>
-                      <a href="{{ URL::to('/vienchuc_khoa/'.$khoa->ma_k) }}">
-                        <button type="button" class="btn btn-primary position-relative fw-bold" style="background-color: #379237; border: none; width: 100%;">
-                          <i class="fas fa-plus-square"></i>
-                          &ensp;
-                          Thêm viên chức
+                      <a href="{{ URL::to('/select_khoa/'.$khoa->ma_k) }}">
+                        <button type="button" class="btn btn-success fw-bold">
+                          <i class="fa-solid fa-eye"></i>
+                          &ensp; Hiển thị
                         </button>
                       </a>
                     <?php
                   }
-                }
-              ?>
-            </td>
-            
-            <td>
-              <?php
-                if($khoa->status_k == 0){
-                  ?>
-                    <span class="badge badge-light-success">
-                      <i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị
-                    </span>
-                  <?php
-                }else if($khoa->status_k == 1) {
-                  ?>
-                    <span class="badge badge-light-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
-                  <?php
-                }
-              ?>
-            </td>
-            <td style="width: 22%;">
-              <a href="{{ URL::to('/edit_khoa/'.$khoa->ma_k)}}">
-                <button type="button" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  &ensp; Cập nhật
-                </button>
-              </a>
-              <input class="ma_k" type="hidden" value="{{ $khoa->ma_k}}">
-              <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              <?php
-                if($khoa->status_k == 0){
-                  ?>
-                    <a href="{{ URL::to('/select_khoa/'.$khoa->ma_k) }}">
-                      <button type="button" class="btn btn-secondary fw-bold">
-                        <i class="fa-solid fa-eye-slash"></i> 
-                        &ensp; Ẩn
-                      </button>
-                    </a>
-                  <?php
-                }else if($khoa->status_k == 1) {
-                  ?>
-                    <a href="{{ URL::to('/select_khoa/'.$khoa->ma_k) }}">
-                      <button type="button" class="btn btn-success fw-bold">
-                        <i class="fa-solid fa-eye"></i>
-                        &ensp; Hiển thị
-                      </button>
-                    </a>
-                  <?php
-                }
-              ?>
-            </td>
-          </tr>
-        @endforeach
-      </tbody>
-    </table>
+                ?>
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <button  type="submit" class="btn btn-danger fw-bold xoa_check" style="background-color: #FF1E1E">
+        <i class="fa-solid fa-trash"></i>
+        &ensp;
+        Xoá
+      </button>
+    </form>
+    
   </div>
 </div>
 <!-- trình soạn thảo  -->
