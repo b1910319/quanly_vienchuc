@@ -6,17 +6,6 @@
     <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
       ________PHÂN QUYỀN CHO VIÊN CHỨC________
     </div>
-    <?php
-      $message=session()->get('message');
-      if($message){
-        ?>
-          <p style="color: #379237" class="fw-bold text-center">
-            <?php echo $message ?>
-          </p>
-        <?php
-        session()->put('message',null);
-      }
-    ?>
     <table class="table" id="mytable">
       <thead class="table-secondary">
         <tr>

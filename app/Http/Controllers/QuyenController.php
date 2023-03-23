@@ -198,5 +198,16 @@ class QuyenController extends Controller
       return Redirect::to('/home');
     }
   }
-
+  public function delete_quyen_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      $ma_q = $request->ma_q;
+      Quyen::whereIn('ma_q', $ma_q)->delete();
+      return Redirect::to('quanly_quyen');
+    }
+  }
 }

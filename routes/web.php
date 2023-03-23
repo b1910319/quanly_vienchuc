@@ -105,6 +105,7 @@ Route::post('/update_quyen/{ma_q}',[QuyenController::class, 'update_quyen']);
 // Route::get('/delete_quyen/{ma_q}',[QuyenController::class, 'delete_quyen']);
 Route::get('/delete_quyen',[QuyenController::class, 'delete_quyen']);
 Route::get('/delete_all_quyen',[QuyenController::class, 'delete_all_quyen']);
+Route::post('/delete_quyen_check',[QuyenController::class, 'delete_quyen_check']);
 
 
 
