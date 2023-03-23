@@ -182,6 +182,7 @@ Route::post('/update_bac/{ma_b}',[BacController::class, 'update_bac']);
 Route::get('/delete_bac',[BacController::class, 'delete_bac']);
 Route::get('/delete_all_bac',[BacController::class, 'delete_all_bac']);
 Route::get('/change_ngach',[BacController::class, 'change_ngach']);
+Route::post('/delete_bac_check',[BacController::class, 'delete_bac_check']);
 
 Route::get('/nangbac',[BacController::class, 'nangbac']);
 Route::post('/updated_nangbac',[BacController::class, 'updated_nangbac']);
