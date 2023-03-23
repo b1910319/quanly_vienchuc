@@ -187,6 +187,21 @@ class HeDaoTaoController extends Controller
       }
     }
   }
+  public function delete_hedaotao_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $ma_hdt = $request->ma_hdt;
+      HeDaoTao::whereIn('ma_hdt', $ma_hdt)->delete();
+      return redirect()->back();
+    }
+  }
 
   public function delete_all_hedaotao(){
     $this->check_login();

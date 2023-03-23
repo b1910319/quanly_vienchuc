@@ -247,6 +247,7 @@ Route::get('/edit_hedaotao/{ma_hdt}',[HeDaoTaoController::class, 'edit_hedaotao'
 Route::post('/update_hedaotao/{ma_hdt}',[HeDaoTaoController::class, 'update_hedaotao']);
 Route::get('/delete_hedaotao',[HeDaoTaoController::class, 'delete_hedaotao']);
 Route::get('/delete_all_hedaotao',[HeDaoTaoController::class, 'delete_all_hedaotao']);
+Route::post('/delete_hedaotao_check',[HeDaoTaoController::class, 'delete_hedaotao_check']);
 
 
 
