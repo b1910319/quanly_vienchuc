@@ -186,22 +186,6 @@ class GiaDinhController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function delete_giadinh($ma_gd, $ma_vc){
-  //   $this->check_login();
-  //   $ma_vc_login = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     GiaDinh::find($ma_gd)->delete();
-  //     return Redirect::to('/giadinh/'.$ma_vc);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
   public function delete_giadinh(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

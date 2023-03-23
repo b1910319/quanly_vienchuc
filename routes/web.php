@@ -259,7 +259,8 @@ Route::post('/add_bangcap/{ma_vc}',[BangCapController::class, 'add_bangcap']);
 Route::get('/select_bangcap/{ma_bc}',[BangCapController::class, 'select_bangcap']);
 Route::get('/edit_bangcap/{ma_bc}/{ma_vc}',[BangCapController::class, 'edit_bangcap']);
 Route::post('/update_bangcap/{ma_bc}/{ma_vc}',[BangCapController::class, 'update_bangcap']);
-Route::get('/delete_bangcap/{ma_bc}/{ma_vc}',[BangCapController::class, 'delete_bangcap']);
+Route::get('/delete_bangcap',[BangCapController::class, 'delete_bangcap']);
+Route::post('/delete_bangcap_check',[BangCapController::class, 'delete_bangcap_check']);
 Route::get('/delete_all_bangcap/{ma_vc}',[BangCapController::class, 'delete_all_bangcap']);
 
 

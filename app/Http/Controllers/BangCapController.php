@@ -224,23 +224,37 @@ class BangCapController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_bangcap($ma_bc, $ma_vc){
+  public function delete_bangcap(Request $request){
     $this->check_login();
-    $ma_vc_login = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
-      ->where('ma_q', '=', '9')
+    if($phanquyen_admin || $phanquyen_qltt){
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          BangCap::find($id)->delete();
+        }
+      }
+    }
+  }
+  public function delete_bangcap_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
       ->first();
-    if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
-      BangCap::find($ma_bc)->delete();
-      return Redirect::to('/bangcap/'.$ma_vc);
-    }else{
-      return Redirect::to('/home');
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $ma_bc = $request->ma_bc;
+      BangCap::whereIn('ma_bc', $ma_bc)->delete();
+      return redirect()->back();
     }
   }
   public function delete_all_bangcap($ma_vc){
