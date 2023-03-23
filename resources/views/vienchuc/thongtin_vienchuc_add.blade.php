@@ -3,77 +3,17 @@
 <div class="row">
   <div class="card-box">
     <div class="mt-3"></div>
-    <div class="alert alert-success" role="alert">
-      <div class="row">
-        <h4 class="text-center" style="font-weight: bold">DANH SÁCH</h4>
-      </div>
+    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      ________THÔNG TIN VỀ VIÊN CHỨC________
     </div>
-    <?php
-      $message=session()->get('message');
-      if($message){
-        ?>
-          <p style="color: #379237" class="fw-bold text-center">
-            <?php echo $message ?>
-          </p>
-        <?php
-        session()->put('message',null);
-      }
-    ?>
-    {{-- <div class="row">
-      <div class="col-2">
-        @foreach ($count as $key => $count)
-          <p class="fw-bold" style="color: #379237; ">Tổng có: {{ $count->sum }}</p>
-        @endforeach
-      </div>
-      <div class="col-2 mb-3">
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="width: 100%">Thống kê</button>
-  
-        <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Thống kê</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Tên</th>
-                  <th scope="col">Số lượng</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($count_status as $key => $count_stt)
-                  @if ($count_stt->status_q == 0)
-                    <tr>
-                      <td>Danh mục hiển thị</td>
-                      <td>{{ $count_stt->sum }}</td>
-                    </tr>
-                  @else
-                    <tr>
-                      <td>Danh mục ẩn</td>
-                      <td>{{ $count_stt->sum }}</td>
-                    </tr>
-                  @endif
-                @endforeach
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div class="col-2">
-        <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_quyen') }}">
-          <button type="button" class="btn btn-danger">Xoá tất cả</button>
-        </a>
-      </div>
-    </div> --}}
     <table class="table" id="mytable">
-      <thead class="table-dark">
+      <thead class="table-secondary">
         <tr>
           <th scope="col">STT</th>
           <th scope="col">Tên </th>
-          <th scope="col">UserName</th>
-          <th scope="col">Trạng thái</th>
+          <th scope="col">Email</th>
           <th scope="col">Khoa</th>
+          <th scope="col">Trạng thái</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -82,39 +22,65 @@
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $vienchuc->hoten_vc }}
+              {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }})
             </td>
             <td>{{ $vienchuc->user_vc }}</td>
             <td>
+              {{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})
+            </td>
+            <td>
               <?php
-                if($vienchuc->status_vc == 2){
+                if($vienchuc->status_vc == 0){
                   ?>
-                    <span class="badge rounded-pill text-bg-danger" style="background-color: #850000; border: none;">
-                      Nghĩ hưu
+                    <span class="badge badge-light-success">
+                      <i class="fa-solid fa-unlock-keyhole"></i>&ensp;  Kích hoạt
                     </span>
+                  <?php
+                }else if($vienchuc->status_vc == 1) {
+                  ?>
+                    <span class="badge badge-light-danger">
+                      <i class="fa-solid fa-lock"></i>
+                      &ensp; Vô hiệu hoá</span>
+                  <?php
+                }elseif ($vienchuc->status_vc == 2) {
+                  ?>
+                    <span class="badge badge-light-warning">
+                      <i class="fa-solid fa-toggle-off"></i>
+                      &ensp; Nghĩ hưu</span>
                   <?php
                 }
               ?>
             </td>
             <td>
-              {{ $vienchuc->ten_k }}
-            </td>
-            <td>
               <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc) }}">
-                <button type="button" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i> &ensp; Thêm thông tin</button>
+                <button type="submit"  class="btn btn-primary font-weight-bold" style="background-color: #379237; border: none;">
+                  <i class="fas fa-plus-square"></i>
+                  &ensp;
+                  Thêm thông tin
+                </button>
               </a>
               <?php
                 foreach ($count_quanhe_giadinh as $key => $count) {
                   if($count->ma_vc == $vienchuc->ma_vc && $count->sum > 0){
                     ?>
                       <a href="{{ URL::to('/giadinh/'.$vienchuc->ma_vc) }}">
-                        <button type="button" class="btn btn-success"><i class="fa-solid fa-people-roof"></i> &ensp; Quan hệ gia đình (<?php echo $count->sum ?>) </button>
+                        <button type="button" class="btn btn-primary position-relative fw-bold" style="background-color: #379237; border: none;">
+                          <i class="fa-solid fa-people-roof"></i> &ensp;
+                          Thêm thành viên gia đình
+                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <?php echo $count->sum ?>
+                            <span class="visually-hidden">unread messages</span>
+                          </span>
+                        </button>
                       </a>
                     <?php
                   }elseif ($count->ma_vc == $vienchuc->ma_vc && $count->sum == 0) {
                     ?>
                       <a href="{{ URL::to('/giadinh/'.$vienchuc->ma_vc) }}">
-                        <button type="button" class="btn btn-success"><i class="fa-solid fa-people-roof"></i> &ensp; Quan hệ gia đình (0)</button>
+                        <button type="button" class="btn btn-primary position-relative fw-bold" style="background-color: #379237; border: none;">
+                          <i class="fa-solid fa-people-roof"></i> &ensp;
+                          Thêm thành viên gia đình
+                        </button>
                       </a>
                     <?php
                   }
@@ -125,13 +91,23 @@
                   if($count->ma_vc == $vienchuc->ma_vc && $count->sum > 0){
                     ?>
                       <a href="{{ URL::to('/bangcap/'.$vienchuc->ma_vc) }}">
-                        <button type="button" class="btn btn-danger"><i class="fa-solid fa-layer-group"></i> &ensp; Bằng cấp (<?php echo $count->sum ?>)</button>
+                        <button type="button" class="btn btn-primary position-relative fw-bold" style="background-color: #379237; border: none;">
+                          <i class="fa-solid fa-layer-group"></i> &ensp;
+                          Thêm bằng cấp
+                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <?php echo $count->sum ?>
+                            <span class="visually-hidden">unread messages</span>
+                          </span>
+                        </button>
                       </a>
                     <?php
                   }elseif ($count->ma_vc == $vienchuc->ma_vc && $count->sum == 0) {
                     ?>
                       <a href="{{ URL::to('/bangcap/'.$vienchuc->ma_vc) }}">
-                        <button type="button" class="btn btn-danger"><i class="fa-solid fa-layer-group"></i> &ensp; Bằng cấp (0)</button>
+                        <button type="button" class="btn btn-primary position-relative fw-bold" style="background-color: #379237; border: none;">
+                          <i class="fa-solid fa-layer-group"></i> &ensp;
+                          Thêm bằng cấp
+                        </button>
                       </a>
                     <?php
                   }
