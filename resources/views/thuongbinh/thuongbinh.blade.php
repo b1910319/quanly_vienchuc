@@ -120,78 +120,92 @@
       </div>
     </div>
     <div class="mt-3"></div>
-    <table class="table" id="mytable">
-      <thead class="table-secondary" >
-        <tr>
-          <th scope="col">STT</th>
-          <th scope="col">Thương binh </th>
-          <th scope="col">Mô tả </th>
-          <th scope="col">Trạng thái</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody  >
-        @foreach ($list as $key => $thuongbinh)
-          <tr >
-            <th scope="row">{{ $key+1 }}</th>
-            <td>
-              {{ $thuongbinh->ten_tb }} ({{ $thuongbinh->ma_tb }})
-            </td>
-            <td>
-              <?php 
-                echo $thuongbinh->mota_tb;
-              ?>
-            </td>
-            <td>
-              <?php
-                if($thuongbinh->status_tb == 0){
-                  ?>
-                    <span class="badge badge-light-success">
-                      <i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị
-                    </span>
-                  <?php
-                }else if($thuongbinh->status_tb == 1) {
-                  ?>
-                    <span class="badge badge-light-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
-                  <?php
-                }
-              ?>
-            </td>
-            <td style="width: 21%;">
-              <a href="{{ URL::to('/edit_thuongbinh/'.$thuongbinh->ma_tb)}}">
-                <button type="button" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  &ensp; Cập nhật
-                </button>
-              </a>
-              <input class="ma_tb" type="hidden" value="{{ $thuongbinh->ma_tb }}">
-              <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              <?php
-                if($thuongbinh->status_tb == 0){
-                  ?>
-                    <a href="{{ URL::to('/select_thuongbinh/'.$thuongbinh->ma_tb) }}">
-                      <button type="button" class="btn btn-secondary fw-bold">
-                        <i class="fa-solid fa-eye-slash"></i> 
-                        &ensp; Ẩn
-                      </button>
-                    </a>
-                  <?php
-                }else if($thuongbinh->status_tb == 1) {
-                  ?>
-                    <a href="{{ URL::to('/select_thuongbinh/'.$thuongbinh->ma_tb) }}">
-                      <button type="button" class="btn btn-success fw-bold">
-                        <i class="fa-solid fa-eye"></i>
-                        &ensp; Hiển thị
-                      </button>
-                    </a>
-                  <?php
-                }
-              ?>
-            </td>
+    <form action="{{ URL::to('/delete_thuongbinh_check') }}" method="post" enctype="multipart/form-data">
+      {{ csrf_field() }}
+      <table class="table" id="mytable">
+        <thead class="table-secondary" >
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">STT</th>
+            <th scope="col">Thương binh </th>
+            <th scope="col">Mô tả </th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col"></th>
           </tr>
-        @endforeach
-      </tbody>
-    </table>
+        </thead>
+        <tbody  >
+          @foreach ($list as $key => $thuongbinh)
+            <tr >
+              <td style="width: 5%">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox"  name="ma_tb[{{ $thuongbinh->ma_tb }}]" value="{{ $thuongbinh->ma_tb }}">
+                </div>
+              </td>
+              <th scope="row">{{ $key+1 }}</th>
+              <td>
+                {{ $thuongbinh->ten_tb }} ({{ $thuongbinh->ma_tb }})
+              </td>
+              <td>
+                <?php 
+                  echo $thuongbinh->mota_tb;
+                ?>
+              </td>
+              <td>
+                <?php
+                  if($thuongbinh->status_tb == 0){
+                    ?>
+                      <span class="badge badge-light-success">
+                        <i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị
+                      </span>
+                    <?php
+                  }else if($thuongbinh->status_tb == 1) {
+                    ?>
+                      <span class="badge badge-light-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
+                    <?php
+                  }
+                ?>
+              </td>
+              <td style="width: 21%;">
+                <a href="{{ URL::to('/edit_thuongbinh/'.$thuongbinh->ma_tb)}}">
+                  <button type="button" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    &ensp; Cập nhật
+                  </button>
+                </a>
+                <input class="ma_tb" type="hidden" value="{{ $thuongbinh->ma_tb }}">
+                <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
+                <?php
+                  if($thuongbinh->status_tb == 0){
+                    ?>
+                      <a href="{{ URL::to('/select_thuongbinh/'.$thuongbinh->ma_tb) }}">
+                        <button type="button" class="btn btn-secondary fw-bold">
+                          <i class="fa-solid fa-eye-slash"></i> 
+                          &ensp; Ẩn
+                        </button>
+                      </a>
+                    <?php
+                  }else if($thuongbinh->status_tb == 1) {
+                    ?>
+                      <a href="{{ URL::to('/select_thuongbinh/'.$thuongbinh->ma_tb) }}">
+                        <button type="button" class="btn btn-success fw-bold">
+                          <i class="fa-solid fa-eye"></i>
+                          &ensp; Hiển thị
+                        </button>
+                      </a>
+                    <?php
+                  }
+                ?>
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <button  type="submit" class="btn btn-danger fw-bold xoa_check" style="background-color: #FF1E1E">
+        <i class="fa-solid fa-trash"></i>
+        &ensp;
+        Xoá
+      </button>
+    </form>
   </div>
 </div>
 <!-- trình soạn thảo  -->
