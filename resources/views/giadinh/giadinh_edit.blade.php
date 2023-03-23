@@ -1,13 +1,17 @@
 @extends('layout')
 @section('content')
   <div class="card-box">
-    <div class="alert alert-success row" role="alert">
-      <a href="{{ URL::to('/giadinh/'.$edit->ma_vc) }}" class="col-1">
-        <button type="button" class="btn btn-warning">
-          <i class="fas fa-solid fa-caret-left"></i>&ensp;
-        </button> &ensp;
-      </a>
-      <h4 class="text-center col-10 mt-1" style="font-weight: bold">CẬP NHẬT THÔNG TIN</h4>
+    <div class="alert alert-success row" role="alert" style="background-color: #3F979B; text-align: center;">
+      <div class="col-1">
+        <a href="{{ URL::to('/giadinh/'.$edit->ma_vc) }}">
+          <button type="button" class="btn btn-warning" style="background-color: #E83A14; border-radius: 50%; border: none;">
+            <i class="fa-solid fa-angle-left fw-bold" style="font-size: 18px;"></i>
+          </button>
+        </a>
+      </div>
+      <h4 class="text-center col-11 mt-1" style="font-weight: bold; color: white; font-size: 20px;">
+        ________CẬP NHẬT THÔNG TIN________
+      </h4>
     </div>
     <form action="{{ URL::to('/update_giadinh/'.$edit->ma_gd.'/'.$edit->ma_vc) }}" method="POST"
       autocomplete="off" enctype="multipart/form-data">
@@ -97,13 +101,14 @@
           </table>
         </div>
         <div class="row mb-2">
-          <div class="col-6"></div>
-          <div class="col-6">
-            <button type="submit" class="btn btn-outline-success font-weight-bold">
+          <div class="col-5"></div>
+          <div class="col-2">
+            <button type="submit" class="btn btn-warning fw-bold" style="background-color: #FC7300; width: 100%">
               <i class="fa-solid fa-pen-to-square"></i>
-              Cập nhật
+              &ensp; Cập nhật
             </button>
           </div>
+          <div class="col-5"></div>
         </div>
       </div>
     </form>
