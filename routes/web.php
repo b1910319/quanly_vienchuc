@@ -159,6 +159,7 @@ Route::get('/edit_ngach/{ma_n}',[NgachController::class, 'edit_ngach']);
 Route::post('/update_ngach/{ma_n}',[NgachController::class, 'update_ngach']);
 Route::get('/delete_ngach',[NgachController::class, 'delete_ngach']);
 Route::get('/delete_all_ngach',[NgachController::class, 'delete_all_ngach']);
+Route::post('/delete_ngach_check',[NgachController::class, 'delete_ngach_check']);
 
 
 
