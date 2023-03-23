@@ -152,90 +152,104 @@
       </div>
     </div>
     <div class="mt-3"></div>
-    <table class="table" id="mytable">
-      <thead class="table-secondary" >
-        <tr>
-          <th scope="col">STT</th>
-          <th scope="col">Họ tên viên chức </th>
-          <th scope="col">Username</th>
-          <th scope="col">Khoa</th>
-          <th scope="col">Trạng thái</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody  >
-        @foreach ($list as $key => $vienchuc)
-          <tr >
-            <th scope="row">{{ $key+1 }}</th>
-            <td>
-              {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }})
-            </td>
-            <td>
-              {{ $vienchuc->user_vc }}
-            </td>
-            <td>
-              {{ $vienchuc->ten_k }}
-            </td>
-            <td>
-              <?php
-                if($vienchuc->status_vc == 0){
-                  ?>
-                    <span class="badge badge-light-success">
-                      <i class="fa-solid fa-unlock-keyhole"></i>&ensp;  Kích hoạt
-                    </span>
-                  <?php
-                }else if($vienchuc->status_vc == 1) {
-                  ?>
-                    <span class="badge badge-light-danger">
-                      <i class="fa-solid fa-lock"></i>
-                      &ensp; Vô hiệu hoá</span>
-                  <?php
-                }elseif ($vienchuc->status_vc == 2) {
-                  ?>
-                    <span class="badge badge-light-warning">
-                      <i class="fa-solid fa-toggle-off"></i>
-                      &ensp; Nghĩ hưu</span>
-                  <?php
-                }
-              ?>
-            </td>
-            <td style="width: 23%;">
-              <a href="{{ URL::to('/admin_edit_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc)}}">
-                <button type="button" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  &ensp; Cập nhật
-                </button>
-              </a>
-              <input class="ma_k" type="hidden" value="{{ $vienchuc->ma_k }}">
-              <input class="ma_vc" type="hidden" value="{{ $vienchuc->ma_vc }}">
-              <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              <?php
-                if($vienchuc->status_vc == 0){
-                  ?>
-                    <a href="{{ URL::to('/admin_select_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc) }}">
-                      <button type="button" class="btn btn-secondary fw-bold">
-                        <i class="fa-solid fa-lock"></i> 
-                        &ensp; Vô hiệu hoá
-                      </button>
-                    </a>
-                  <?php
-                }else if($vienchuc->status_vc == 1) {
-                  ?>
-                    <a href="{{ URL::to('/admin_select_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc) }}">
-                      <button type="button" class="btn btn-success fw-bold">
-                        <i class="fa-solid fa-unlock-keyhole"></i>
-                        &ensp;
-                        Kích hoạt
-                      </button>
-                    </a>
-                  <?php
-                }
-              ?>
-            </td>
+    <form action="{{ URL::to('/admin_delete_vienchuc_khoa_check') }}" method="post" enctype="multipart/form-data">
+      {{ csrf_field() }}
+      <table class="table" id="mytable">
+        <thead class="table-secondary" >
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">STT</th>
+            <th scope="col">Họ tên viên chức </th>
+            <th scope="col">Username</th>
+            <th scope="col">Khoa</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col"></th>
           </tr>
-        @endforeach
-      </tbody>
-    </table>
+        </thead>
+        <tbody  >
+          @foreach ($list as $key => $vienchuc)
+            <tr >
+              <td style="width: 5%">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox"  name="ma_vc[{{ $vienchuc->ma_vc }}]" value="{{ $vienchuc->ma_vc }}">
+                </div>
+              </td>
+              <th scope="row">{{ $key+1 }}</th>
+              <td>
+                {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }})
+              </td>
+              <td>
+                {{ $vienchuc->user_vc }}
+              </td>
+              <td>
+                {{ $vienchuc->ten_k }}
+              </td>
+              <td>
+                <?php
+                  if($vienchuc->status_vc == 0){
+                    ?>
+                      <span class="badge badge-light-success">
+                        <i class="fa-solid fa-unlock-keyhole"></i>&ensp;  Kích hoạt
+                      </span>
+                    <?php
+                  }else if($vienchuc->status_vc == 1) {
+                    ?>
+                      <span class="badge badge-light-danger">
+                        <i class="fa-solid fa-lock"></i>
+                        &ensp; Vô hiệu hoá</span>
+                    <?php
+                  }elseif ($vienchuc->status_vc == 2) {
+                    ?>
+                      <span class="badge badge-light-warning">
+                        <i class="fa-solid fa-toggle-off"></i>
+                        &ensp; Nghĩ hưu</span>
+                    <?php
+                  }
+                ?>
+              </td>
+              <td style="width: 23%;">
+                <a href="{{ URL::to('/admin_edit_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc)}}">
+                  <button type="button" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    &ensp; Cập nhật
+                  </button>
+                </a>
+                <input class="ma_k" type="hidden" value="{{ $vienchuc->ma_k }}">
+                <input class="ma_vc" type="hidden" value="{{ $vienchuc->ma_vc }}">
+                <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
+                <?php
+                  if($vienchuc->status_vc == 0){
+                    ?>
+                      <a href="{{ URL::to('/admin_select_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc) }}">
+                        <button type="button" class="btn btn-secondary fw-bold">
+                          <i class="fa-solid fa-lock"></i> 
+                          &ensp; Vô hiệu hoá
+                        </button>
+                      </a>
+                    <?php
+                  }else if($vienchuc->status_vc == 1) {
+                    ?>
+                      <a href="{{ URL::to('/admin_select_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc) }}">
+                        <button type="button" class="btn btn-success fw-bold">
+                          <i class="fa-solid fa-unlock-keyhole"></i>
+                          &ensp;
+                          Kích hoạt
+                        </button>
+                      </a>
+                    <?php
+                  }
+                ?>
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <button  type="submit" class="btn btn-danger fw-bold xoa_check" style="background-color: #FF1E1E">
+        <i class="fa-solid fa-trash"></i>
+        &ensp;
+        Xoá
+      </button>
+    </form>
   </div>
 </div>
 {{-- ajax --}}

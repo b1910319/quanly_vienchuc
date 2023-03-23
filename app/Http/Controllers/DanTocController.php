@@ -221,7 +221,7 @@ class DanTocController extends Controller
     if($phanquyen_admin || $phanquyen_qltt){
       $ma_dt = $request->ma_dt;
       DanToc::whereIn('ma_dt', $ma_dt)->delete();
-      return Redirect::to('dantoc');
+      return redirect()->back();
     }
   }
 }

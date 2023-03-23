@@ -2218,4 +2218,19 @@ class VienChucController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function admin_delete_vienchuc_khoa_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlk){
+      $ma_vc = $request->ma_vc;
+      VienChuc::whereIn('ma_vc', $ma_vc)->delete();
+      return redirect()->back();
+    }
+  }
 }
