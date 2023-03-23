@@ -134,6 +134,7 @@ Route::get('/edit_dantoc/{ma_dt}',[DanTocController::class, 'edit_dantoc']);
 Route::post('/update_dantoc/{ma_dt}',[DanTocController::class, 'update_dantoc']);
 Route::get('/delete_dantoc',[DanTocController::class, 'delete_dantoc']);
 Route::get('/delete_all_dantoc',[DanTocController::class, 'delete_all_dantoc']);
+Route::post('/delete_dantoc_check',[DanTocController::class, 'delete_dantoc_check']);
 
 
 

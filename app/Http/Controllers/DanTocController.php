@@ -209,4 +209,19 @@ class DanTocController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function delete_dantoc_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $ma_dt = $request->ma_dt;
+      DanToc::whereIn('ma_dt', $ma_dt)->delete();
+      return Redirect::to('dantoc');
+    }
+  }
 }
