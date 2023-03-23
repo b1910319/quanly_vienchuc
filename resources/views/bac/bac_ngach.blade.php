@@ -128,80 +128,92 @@
       </div>
     </div>
     <div class="mt-3"></div>
-    <table class="table" id="mytable">
-      <thead class="table-secondary">
-        <tr>
-          <th scope="col">STT</th>
-          <th scope="col">Tên bậc </th>
-          <th scope="col">Hệ số lương</th>
-          <th scope="col">Trạng thái</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody  >
-        @foreach ($list as $key => $bac)
-          <tr >
-            <th scope="row">{{ $key+1 }}</th>
-            <td>
-              {{ $bac->ten_b }} ({{ $bac->ma_b }})
-            </td>
-            <td>
-              {{ $bac->hesoluong_b }}
-            </td>
-            <td>
-              <?php
-                if($bac->status_b == 0){
-                  ?>
-                    <span class="badge badge-light-success">
-                      <i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị
-                    </span>
-                  <?php
-                }else if($bac->status_b == 1) {
-                  ?>
-                    <span class="badge badge-light-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
-                  <?php
-                }
-              ?>
-            </td>
-            <td style="width: 23%;">
-              <a href="{{ URL::to('/edit_bac_ngach/'.$bac->ma_n.'/'.$bac->ma_b)}}">
-                <button type="button" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  &ensp; Cập nhật
-                </button>
-              </a>
-              {{-- <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_bac_ngach/'.$bac->ma_n.'/'.$bac->ma_b)}}">
-                <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button> --}}
-              </a>
-              <input class="ma_b" type="hidden" value="{{ $bac->ma_b }}">
-              <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              <?php
-                if($bac->status_b == 0){
-                  ?>
-                    <a href="{{ URL::to('/select_bac_ngach/'.$bac->ma_n.'/'.$bac->ma_b) }}">
-                      <button type="button" class="btn btn-secondary fw-bold">
-                        <i class="fa-solid fa-eye-slash"></i> 
-                        &ensp; Ẩn
-                      </button>
-                    </a>
-                  <?php
-                }else if($bac->status_b == 1) {
-                  ?>
-                    <a href="{{ URL::to('/select_bac_ngach/'.$bac->ma_n.'/'.$bac->ma_b) }}">
-                      <button type="button" class="btn btn-success fw-bold">
-                        <i class="fa-solid fa-eye"></i>
-                        &ensp;
-                        Hiển thị
-                      </button>
-                    </a>
-                  <?php
-                }
-              ?>
-            </td>
+    <form action="{{ URL::to('/delete_bac_ngach_check') }}" method="post" enctype="multipart/form-data">
+      {{ csrf_field() }}
+      <table class="table" id="mytable">
+        <thead class="table-secondary">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">STT</th>
+            <th scope="col">Tên bậc </th>
+            <th scope="col">Hệ số lương</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col"></th>
           </tr>
-        @endforeach
-      </tbody>
-    </table>
+        </thead>
+        <tbody  >
+          @foreach ($list as $key => $bac)
+            <tr >
+              <td style="width: 5%">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox"  name="ma_b[{{ $bac->ma_b }}]" value="{{ $bac->ma_b }}">
+                </div>
+              </td>
+              <th scope="row">{{ $key+1 }}</th>
+              <td>
+                {{ $bac->ten_b }} ({{ $bac->ma_b }})
+              </td>
+              <td>
+                {{ $bac->hesoluong_b }}
+              </td>
+              <td>
+                <?php
+                  if($bac->status_b == 0){
+                    ?>
+                      <span class="badge badge-light-success">
+                        <i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị
+                      </span>
+                    <?php
+                  }else if($bac->status_b == 1) {
+                    ?>
+                      <span class="badge badge-light-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
+                    <?php
+                  }
+                ?>
+              </td>
+              <td style="width: 23%;">
+                <a href="{{ URL::to('/edit_bac_ngach/'.$bac->ma_n.'/'.$bac->ma_b)}}">
+                  <button type="button" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    &ensp; Cập nhật
+                  </button>
+                </a>
+                <input class="ma_b" type="hidden" value="{{ $bac->ma_b }}">
+                <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
+                <?php
+                  if($bac->status_b == 0){
+                    ?>
+                      <a href="{{ URL::to('/select_bac_ngach/'.$bac->ma_n.'/'.$bac->ma_b) }}">
+                        <button type="button" class="btn btn-secondary fw-bold">
+                          <i class="fa-solid fa-eye-slash"></i> 
+                          &ensp; Ẩn
+                        </button>
+                      </a>
+                    <?php
+                  }else if($bac->status_b == 1) {
+                    ?>
+                      <a href="{{ URL::to('/select_bac_ngach/'.$bac->ma_n.'/'.$bac->ma_b) }}">
+                        <button type="button" class="btn btn-success fw-bold">
+                          <i class="fa-solid fa-eye"></i>
+                          &ensp;
+                          Hiển thị
+                        </button>
+                      </a>
+                    <?php
+                  }
+                ?>
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <button  type="submit" class="btn btn-danger fw-bold xoa_check" style="background-color: #FF1E1E">
+        <i class="fa-solid fa-trash"></i>
+        &ensp;
+        Xoá
+      </button>
+    </form>
+    
   </div>
 </div>
 {{-- ajax --}}
