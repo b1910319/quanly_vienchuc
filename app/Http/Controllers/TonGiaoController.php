@@ -206,4 +206,19 @@ class TonGiaoController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function delete_tongiao_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $ma_tg = $request->ma_tg;
+      TonGiao::whereIn('ma_tg', $ma_tg)->delete();
+      return redirect()->back();
+    }
+  }
 }

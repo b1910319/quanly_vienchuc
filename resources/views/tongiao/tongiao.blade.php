@@ -111,75 +111,86 @@
       </div>
     </div>
     <div class="mt-3"></div>
-    <table class="table" id="mytable">
-      <thead class="table-secondary">
-        <tr>
-          <th scope="col">STT</th>
-          <th scope="col">Tôn giáo </th>
-          <th scope="col">Trạng thái</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody  >
-        @foreach ($list as $key => $tongiao)
-          <tr >
-            <th scope="row">{{ $key+1 }}</th>
-            <td>
-              {{ $tongiao->ten_tg }} ({{ $tongiao->ma_tg }})
-            </td>
-            <td>
-              <?php
-                if($tongiao->status_tg == 0){
-                  ?>
-                    <span class="badge badge-light-success">
-                      <i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị
-                    </span>
-                  <?php
-                }else if($tongiao->status_tg == 1) {
-                  ?>
-                    <span class="badge badge-light-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
-                  <?php
-                }
-              ?>
-            </td>
-            <td style="width: 21%;">
-              <a href="{{ URL::to('/edit_tongiao/'.$tongiao->ma_tg)}}">
-                <button type="button" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  &ensp; Cập nhật
-                </button>
-              </a>
-              {{-- <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_tongiao/'.$tongiao->ma_tg)}}">
-                <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              </a> --}}
-              <input class="ma_tg" type="hidden" value="{{ $tongiao->ma_tg }}">
-              <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              <?php
-                if($tongiao->status_tg == 0){
-                  ?>
-                    <a href="{{ URL::to('/select_tongiao/'.$tongiao->ma_tg) }}">
-                      <button type="button" class="btn btn-secondary fw-bold">
-                        <i class="fa-solid fa-eye-slash"></i> 
-                        &ensp; Ẩn
-                      </button>
-                    </a>
-                  <?php
-                }else if($tongiao->status_tg == 1) {
-                  ?>
-                    <a href="{{ URL::to('/select_tongiao/'.$tongiao->ma_tg) }}">
-                      <button type="button" class="btn btn-success fw-bold">
-                        <i class="fa-solid fa-eye"></i>
-                        &ensp; Hiển thị
-                      </button>
-                    </a>
-                  <?php
-                }
-              ?>
-            </td>
+    <form action="{{ URL::to('/delete_tongiao_check') }}" method="post" enctype="multipart/form-data">
+      {{ csrf_field() }}
+      <table class="table" id="mytable">
+        <thead class="table-secondary">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">STT</th>
+            <th scope="col">Tôn giáo </th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col"></th>
           </tr>
-        @endforeach
-      </tbody>
-    </table>
+        </thead>
+        <tbody  >
+          @foreach ($list as $key => $tongiao)
+            <tr >
+              <td style="width: 5%">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox"  name="ma_tg[{{ $tongiao->ma_tg }}]" value="{{ $tongiao->ma_tg }}">
+                </div>
+              </td>
+              <th scope="row">{{ $key+1 }}</th>
+              <td>
+                {{ $tongiao->ten_tg }} ({{ $tongiao->ma_tg }})
+              </td>
+              <td>
+                <?php
+                  if($tongiao->status_tg == 0){
+                    ?>
+                      <span class="badge badge-light-success">
+                        <i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị
+                      </span>
+                    <?php
+                  }else if($tongiao->status_tg == 1) {
+                    ?>
+                      <span class="badge badge-light-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
+                    <?php
+                  }
+                ?>
+              </td>
+              <td style="width: 21%;">
+                <a href="{{ URL::to('/edit_tongiao/'.$tongiao->ma_tg)}}">
+                  <button type="button" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    &ensp; Cập nhật
+                  </button>
+                </a>
+                <input class="ma_tg" type="hidden" value="{{ $tongiao->ma_tg }}">
+                <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
+                <?php
+                  if($tongiao->status_tg == 0){
+                    ?>
+                      <a href="{{ URL::to('/select_tongiao/'.$tongiao->ma_tg) }}">
+                        <button type="button" class="btn btn-secondary fw-bold">
+                          <i class="fa-solid fa-eye-slash"></i> 
+                          &ensp; Ẩn
+                        </button>
+                      </a>
+                    <?php
+                  }else if($tongiao->status_tg == 1) {
+                    ?>
+                      <a href="{{ URL::to('/select_tongiao/'.$tongiao->ma_tg) }}">
+                        <button type="button" class="btn btn-success fw-bold">
+                          <i class="fa-solid fa-eye"></i>
+                          &ensp; Hiển thị
+                        </button>
+                      </a>
+                    <?php
+                  }
+                ?>
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <button  type="submit" class="btn btn-danger fw-bold xoa_check" style="background-color: #FF1E1E">
+        <i class="fa-solid fa-trash"></i>
+        &ensp;
+        Xoá
+      </button>
+    </form>
   </div>
 </div>
 {{-- ajax --}}
