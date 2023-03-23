@@ -206,4 +206,19 @@ class ChucVuController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function delete_chucvu_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $ma_cv = $request->ma_cv;
+      ChucVu::whereIn('ma_cv', $ma_cv)->delete();
+      return redirect()->back();
+    }
+  }
 }

@@ -147,6 +147,7 @@ Route::get('/edit_chucvu/{ma_cv}',[ChucVuController::class, 'edit_chucvu']);
 Route::post('/update_chucvu/{ma_cv}',[ChucVuController::class, 'update_chucvu']);
 Route::get('/delete_chucvu',[ChucVuController::class, 'delete_chucvu']);
 Route::get('/delete_all_chucvu',[ChucVuController::class, 'delete_all_chucvu']);
+Route::post('/delete_chucvu_check',[ChucVuController::class, 'delete_chucvu_check']);
 
 
 
