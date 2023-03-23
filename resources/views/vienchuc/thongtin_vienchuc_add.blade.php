@@ -53,10 +53,9 @@
             </td>
             <td>
               <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc) }}">
-                <button type="submit"  class="btn btn-primary font-weight-bold" style="background-color: #379237; border: none;">
-                  <i class="fas fa-plus-square"></i>
-                  &ensp;
-                  Thêm thông tin
+                <button type="submit" class="btn btn-warning fw-bold" style="background-color: #FC7300;">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  &ensp; Cập nhật thông tin
                 </button>
               </a>
               <?php

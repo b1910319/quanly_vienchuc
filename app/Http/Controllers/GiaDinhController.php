@@ -43,8 +43,11 @@ class GiaDinhController extends Controller
       $list = GiaDinh::where('ma_vc', $ma_vc)
         ->orderBy('ma_gd', 'desc')
         ->get();
-      $count = GiaDinh::select(DB::raw('count(ma_gd) as sum'))->get();
+      $count = GiaDinh::select(DB::raw('count(ma_gd) as sum'))
+        ->where('ma_vc', $ma_vc)
+        ->get();
       $count_status = GiaDinh::select(DB::raw('count(ma_gd) as sum, status_gd'))
+        ->where('ma_vc', $ma_vc)
         ->groupBy('status_gd')
         ->get();
       $vienchuc = VienChuc::find($ma_vc);
@@ -183,20 +186,53 @@ class GiaDinhController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_giadinh($ma_gd, $ma_vc){
+  // public function delete_giadinh($ma_gd, $ma_vc){
+  //   $this->check_login();
+  //   $ma_vc_login = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qltt){
+  //     GiaDinh::find($ma_gd)->delete();
+  //     return Redirect::to('/giadinh/'.$ma_vc);
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
+  public function delete_giadinh(Request $request){
     $this->check_login();
-    $ma_vc_login = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
-      GiaDinh::find($ma_gd)->delete();
-      return Redirect::to('/giadinh/'.$ma_vc);
-    }else{
-      return Redirect::to('/home');
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          GiaDinh::find($id)->delete();
+        }
+      }
+    }
+  }
+  public function delete_giadinh_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $ma_gd = $request->ma_gd;
+      GiaDinh::whereIn('ma_gd', $ma_gd)->delete();
+      return redirect()->back();
     }
   }
   public function delete_all_giadinh($ma_vc){
