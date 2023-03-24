@@ -143,7 +143,7 @@
       </div>
 
       <div class="col-3">
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-color: #00425A; border: none; width: 100%" >Lọc theo ngày sinh của viên chức</button>
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="background-image: linear-gradient(to bottom left, #5B4C97, #BD6267); border: none; width: 100%" >Lọc theo ngày sinh của viên chức</button>
         <div id="demo" class="collapse mt-3">
           <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_ngaysinh') }}" method="post">
             {{ csrf_field() }}

@@ -317,13 +317,10 @@
                   {{ $lop->luotxem_l }}
                 </td>
                 <td>
-                  <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-primary luotxem_l{{ $key+1 }}" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $lop->ma_l }}">
+                  <button type="button" class="btn btn-primary luotxem_l{{ $key+1 }} btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $lop->ma_l }}">
                     <input type="hidden" class="ma_l{{ $key+1 }}" value="{{ $lop->ma_l }}">
                     <i class="fa-solid fa-circle-info"></i>
                   </button>
-
-                  <!-- Modal -->
                   <div class="modal fade" id="exampleModal{{ $lop->ma_l }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-scrollable modal-lg">
                       <div class="modal-content">

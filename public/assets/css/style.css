@@ -92,3 +92,8 @@
   color: black;
 }
 /*  */
+
+.btn_chitiet{
+  background-image: linear-gradient(to bottom left, #5B4C97, #BD6267);
+  border: none;
+}
