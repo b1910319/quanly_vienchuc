@@ -506,20 +506,24 @@ class BacController extends Controller
       $list_thuongbinh = ThuongBinh::get();
       $title = "Nâng bậc";
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      $batdau = Carbon::parse(Carbon::now()->subMonths(2))->format('Y-m-d');
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $batdau = Carbon::parse(Carbon::now())->format('Y-m-d');
+      $ketthuc = Carbon::parse(Carbon::now())->addMonths(1)->format('Y-m-d'); 
+      // echo $batdau.'bat dau';
+      // echo '<br>';
+      // echo $ketthuc.'ketthuc';
+      // echo '<br>';
       if ($phanquyen_qlk) {
         $list_vienchuc = VienChuc::whereBetween('ngaynangbac_vc', [$batdau, $ketthuc])
           ->where('status_vc', '<>', '2')
           ->where('vienchuc.ma_k', $ma_k)
           ->orderBy('vienchuc.ma_vc', 'desc')
           ->get();
-        $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $batdau)
           ->where('status_vc', '<>', '2')
           ->where('vienchuc.ma_k', $ma_k)
           ->select(DB::raw('count(ma_vc) as sum'))
           ->get();
-        $list_nangbac_homnay = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        $list_nangbac_homnay = VienChuc::where('ngaynangbac_vc','LIKE', $batdau)
           ->where('status_vc', '<>', '2')
           ->where('vienchuc.ma_k', $ma_k)
           ->get();
@@ -528,11 +532,11 @@ class BacController extends Controller
           ->where('status_vc', '<>', '2')
           ->orderBy('vienchuc.ma_vc', 'desc')
           ->get();
-        $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $batdau)
           ->where('status_vc', '<>', '2')
           ->select(DB::raw('count(ma_vc) as sum'))
           ->get();
-        $list_nangbac_homnay = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        $list_nangbac_homnay = VienChuc::where('ngaynangbac_vc','LIKE', $batdau)
           ->where('status_vc', '<>', '2')
           ->get();
       }

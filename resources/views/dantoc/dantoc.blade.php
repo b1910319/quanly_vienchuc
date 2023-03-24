@@ -264,3 +264,19 @@
 </script>
 <!--  -->
 @endsection
+
+<div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+  ________DANH SÁCH VIÊN CHỨC________
+</div>
+
+class="table-secondary"
+
+<td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+<td>{{ $vc->ten_n }}({{ $vc->ma_n }})</td>
+
+<button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+  <i class="fa-solid fa-file"></i>
+  &ensp;
+  Xuất file
+</button>
+

@@ -69,7 +69,7 @@
         </a>
       </div>
       <div class="col-1">
-        <div class="dropdown" >
+        <div class="dropdown" style="width: 100%;">
           <button class="dropbtn fw-bold" style="width: 100%; border-radius: 5px; background-color: #a4aa13; ">
             <i class="fa-solid fa-filter"></i>
             &ensp;

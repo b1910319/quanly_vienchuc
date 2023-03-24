@@ -3,22 +3,26 @@
 <div class="row">
   <div class="card-box col-12">
     <div class="row">
-      <div class="col-6">
-        <p class="fw-bold" style="font-size: 18px;">Thống kê viên chức </p>
+      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+        ________THỐNG KÊ VIÊN CHỨC________
       </div>
     </div>
     <div class="row">
       <div class="col-2">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #379237; border: none; width: 100%">
+        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%; border-radius: 5px; background-color: #a4aa13; border: none; ">
           <i class="fa-solid fa-filter"></i>
           &ensp;
-          Bộ lọc
+          Lọc viên chức
         </button>
         <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 100%;">
           <div class="modal-dialog modal-dialog-scrollabl modal-xl">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Bộ lọc</h1>
+                <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel" style="color: #a4aa13;">
+                  <i class="fa-solid fa-filter"></i>
+                  &ensp;
+                  Bộ lọc
+                </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <form action="{{ URL::to('thongke_qltt_loc') }}" method="post">
@@ -121,8 +125,11 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                  <button type="submit" class="btn btn-primary">
+                  <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-square-xmark"></i>
+                    &ensp; Đóng
+                  </button>
+                  <button type="submit" class="btn btn-primary fw-bold" style="background-color: #a4aa13; border: none;">
                     <i class="fa-solid fa-filter"></i>
                     &ensp;
                     Lọc
@@ -134,16 +141,20 @@
         </div>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="background-color: #D36B00; border: none; width: 100%">
+        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="width: 100%; border-radius: 5px; background-color: #a4aa13; border: none; ">
           <i class="fa-solid fa-filter"></i>
           &ensp;
-          Nghĩ hưu
+          Lọc viên chức nghĩ hưu
         </button>
         <div class="modal fade " id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" style="height: 100%;">
           <div class="modal-dialog modal-dialog-scrollabl modal-xl">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel1">Bộ lọc</h1>
+                <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel" style="color: #a4aa13;">
+                  <i class="fa-solid fa-filter"></i>
+                  &ensp;
+                  Bộ lọc
+                </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <form action="{{ URL::to('thongke_qltt_nghihuu_loc') }}" method="post">
@@ -169,8 +180,11 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                  <button type="submit" class="btn btn-primary">
+                  <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-square-xmark"></i>
+                    &ensp; Đóng
+                  </button>
+                  <button type="submit" class="btn btn-primary fw-bold" style="background-color: #a4aa13; border: none;">
                     <i class="fa-solid fa-filter"></i>
                     &ensp;
                     Lọc
@@ -183,22 +197,23 @@
       </div>
       <div class="col-1">
         <a href="{{ URL::to('thongke_qltt') }}">
-          <button type="button" class="btn btn-warning">
-            <i class="fa-solid fa-arrows-rotate"></i>
+          <button type="button" class="btn btn-light fw-bold" style="width: 100%; ">
+            <i class="fa-solid fa-rotate"></i>
+            &ensp;
+            Làm mới
           </button>
         </a>
       </div>
     </div>
     
-    <div id="myfirstchart_qltt_1" style="height: 250px;"></div>
+    <div id="myfirstchart_qltt_1" style="height: 250px;"> 
+    </div>
     @if (isset($list))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC
-        </h3>
-      </div>
+    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      ________DANH SÁCH VIÊN CHỨC________
+    </div>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -243,8 +258,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
-              <td>{{ $vc->ten_n }}</td>
+              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_n }}({{ $vc->ma_n }})</td>
             </tr>
           @endforeach
         </tbody>
@@ -252,20 +267,22 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file"></i>
+              &ensp;
+              Xuất file
+            </button>
           </a>
         </div>
       </div>
     @endif
 
     @if (isset($list_all))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC
-        </h3>
+      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+        ________DANH SÁCH VIÊN CHỨC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
-        Danh sách được lọc theo: 
+        Viên chức được lọc theo: 
         @foreach ($list_khoa as $khoa )
           @if ($khoa->ma_k == $ma_k)
           <span class="badge text-bg-primary">{{ $khoa->ten_k }}</span>
@@ -321,7 +338,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -366,8 +383,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
-              <td>{{ $vc->ten_n }}</td>
+              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_n }}({{ $vc->ma_n }})</td>
             </tr>
           @endforeach
         </tbody>
@@ -375,17 +392,19 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_all_pdf/'.$ma_k.'/'.$ma_cv.'/'.$ma_hdt.'/'.$ma_lbc.'/'.$ma_n.'/'.$ma_t.'/'.$ma_dt.'/'.$ma_tg.'/'.$ma_tb.'/') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file"></i>
+              &ensp;
+              Xuất file
+            </button>
           </a>
         </div>
       </div>
     @endif
     @if ( isset($list_pdf_khoa))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC THEO KHOA
-        </h3>
-      </div>
+    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      ________DANH SÁCH VIÊN CHỨC ĐƯỢC LỌC THEO KHOA________
+    </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_khoa as $khoa )
@@ -395,7 +414,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -440,8 +459,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
-              <td>{{ $vc->ten_n }}</td>
+              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_n }}({{ $vc->ma_n }})</td>
             </tr>
           @endforeach
         </tbody>
@@ -449,17 +468,19 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_khoa_pdf/'.$ma_k) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file"></i>
+              &ensp;
+              Xuất file
+            </button>
           </a>
         </div>
       </div>
     @endif
     @if (isset($list_pdf_chucvu))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC THEO CHỨC VỤ
-        </h3>
-      </div>
+    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      ________DANH SÁCH VIÊN CHỨC THEO CHỨC VỤ________
+    </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_chucvu as $chucvu )
@@ -469,7 +490,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -511,8 +532,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
-              <td>{{ $vc->ten_cv }}</td>
+              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_cv}}({{ $vc->ma_cv}})</td>
             </tr>
           @endforeach
         </tbody>
@@ -520,17 +541,19 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_chucvu_pdf/'.$ma_cv) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file"></i>
+              &ensp;
+              Xuất file
+            </button>
           </a>
         </div>
       </div>
     @endif
     @if (isset($list_pdf_hdt) )
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC THEO HỆ ĐÀO TẠO
-        </h3>
-      </div>
+    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      ________DANH SÁCH VIÊN CHỨC THEO HỆ ĐÀO TẠO________
+    </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_hedaotao as $hedaotao )
@@ -540,7 +563,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -582,8 +605,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
-              <td>{{ $vc->ten_hdt }}</td>
+              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_hdt }}({{ $vc->ma_hdt }})</td>
             </tr>
           @endforeach
         </tbody>
@@ -591,17 +614,19 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_hdt_pdf/'.$ma_hdt) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file"></i>
+              &ensp;
+              Xuất file
+            </button>
           </a>
         </div>
       </div>
     @endif
     @if (isset($list_pdf_lbc))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC THEO LOẠI BẰNG CẤP
-        </h3>
-      </div>
+    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      ________DANH SÁCH VIÊN CHỨC THEO LOẠI BẰNG CẤP________
+    </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_loaibangcap as $loaibangcap )
@@ -611,7 +636,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -653,8 +678,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
-              <td>{{ $vc->ten_lbc }}</td>
+              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_lbc }} ({{ $VC->ma_lbc }})</td>
             </tr>
           @endforeach
         </tbody>
@@ -662,17 +687,19 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_lbc_pdf/'.$ma_lbc) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file"></i>
+              &ensp;
+              Xuất file
+            </button>
           </a>
         </div>
       </div>
     @endif
     @if (isset($list_pdf_ngach))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC THEO NGẠCH
-        </h3>
-      </div>
+    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      ________DANH SÁCH VIÊN CHỨC THEO NGẠCH________
+    </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_ngach as $ngach )
@@ -682,7 +709,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -724,8 +751,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
-              <td>{{ $vc->ten_n }}</td>
+              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_n }}({{ $vc->ma_n }})</td>
             </tr>
           @endforeach
         </tbody>
@@ -733,17 +760,19 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_ngach_pdf/'.$ma_n) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file"></i>
+              &ensp;
+              Xuất file
+            </button>
           </a>
         </div>
       </div>
     @endif
     @if (isset($list_pdf_tinh))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC THEO TỈNH
-        </h3>
-      </div>
+    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      ________DANH SÁCH VIÊN CHỨC THEO TỈNH/THÀNH PHỐ________
+    </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_tinh as $tinh )
@@ -753,7 +782,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -795,8 +824,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
-              <td>{{ $vc->ten_t }}</td>
+              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_t }}({{ $vc->ma_t }})</td>
             </tr>
           @endforeach
         </tbody>
@@ -804,17 +833,19 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_tinh_pdf/'.$ma_t) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file"></i>
+              &ensp;
+              Xuất file
+            </button>
           </a>
         </div>
       </div>
     @endif
     @if (isset($list_pdf_dantoc))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC THEO DÂN TỘC
-        </h3>
-      </div>
+    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      ________DANH SÁCH VIÊN CHỨC THEO DÂN TỘC________
+    </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_dantoc as $dantoc )
@@ -824,7 +855,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -866,8 +897,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
-              <td>{{ $vc->ten_dt }}</td>
+              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_dt }}({{ $VC->ma_dt }})</td>
             </tr>
           @endforeach
         </tbody>
@@ -875,17 +906,19 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_dantoc_pdf/'.$ma_dt) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file"></i>
+              &ensp;
+              Xuất file
+            </button>
           </a>
         </div>
       </div>
     @endif
     @if (isset($list_pdf_tongiao) )
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC THEO TÔN GIÁO
-        </h3>
-      </div>
+    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      ________DANH SÁCH VIÊN CHỨC THEO TÔN GIÁO________
+    </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_tongiao as $tongiao )
@@ -895,7 +928,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -937,8 +970,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
-              <td>{{ $vc->ten_tg }}</td>
+              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_tg }}({{ $vc->ma_tg }})</td>
             </tr>
           @endforeach
         </tbody>
@@ -946,17 +979,19 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_tongiao_pdf/'.$ma_tg) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file"></i>
+              &ensp;
+              Xuất file
+            </button>
           </a>
         </div>
       </div>
     @endif
     @if (isset($list_pdf_thuongbinh) )
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC THEO HẠNG THƯƠNG BINH
-        </h3>
-      </div>
+    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      ________DANH SÁCH VIÊN CHỨC THEO HẠNG CỦA THƯƠNG BINH________
+    </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_thuongbinh as $thuongbinh )
@@ -966,7 +1001,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -1008,8 +1043,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
-              <td>{{ $vc->ten_tb }}</td>
+              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_tb }}({{ $vc->ma_tb }})</td>
             </tr>
           @endforeach
         </tbody>
@@ -1017,16 +1052,18 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_thuongbinh_pdf/'.$ma_tb) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file"></i>
+              &ensp;
+              Xuất file
+            </button>
           </a>
         </div>
       </div>
     @endif
     @if (isset($list_nghihuu_all) )
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC NGHĨ HƯU
-        </h3>
+      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+        ________DANH SÁCH VIÊN CHỨC NGHĨ HƯU________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -1041,7 +1078,7 @@
         <span class="badge text-bg-success">{{ $ketthuc }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -1083,7 +1120,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
               <td>{{ $vc->thoigiannghi_vc }}</td>
             </tr>
           @endforeach
@@ -1092,16 +1129,18 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_all_pdf/'.$ma_k.'/'.$batdau.'/'.$ketthuc) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file"></i>
+              &ensp;
+              Xuất file
+            </button>
           </a>
         </div>
       </div>
     @endif
     @if (isset($list_nghihuu_khoa)  || isset($list_nghihuu_time) )
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC NGHĨ HƯU
-        </h3>
+      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+        ________DANH SÁCH VIÊN CHỨC NGHĨ HƯU________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -1119,7 +1158,7 @@
         @endif
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -1162,7 +1201,7 @@
                     </div>
                   </div>
                 </td>
-                <td>{{ $vc->ten_k }}</td>
+                <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
                 <td>{{ $vc->thoigiannghi_vc }}</td>
               </tr>
             @endforeach
@@ -1200,23 +1239,30 @@
                     </div>
                   </div>
                 </td>
-                <td>{{ $vc->ten_k }}</td>
+                <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
                 <td>{{ $vc->thoigiannghi_vc }}</td>
               </tr>
             @endforeach
           @endif
-          
         </tbody>
       </table>
       <div class="row">
         <div class="col-2">
           @if ($list_nghihuu_khoa != '')
             <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_khoa_pdf/'.$ma_k) }}">
-              <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+              <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file"></i>
+              &ensp;
+              Xuất file
+            </button>
             </a>
           @else
             <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_time_pdf/'.$batdau.'/'.$ketthuc) }}">
-              <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+              <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file"></i>
+              &ensp;
+              Xuất file
+            </button>
             </a>
           @endif
         </div>
@@ -1224,10 +1270,8 @@
     @endif
 
     @if (isset($list_2 ))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC THEO KHOA & CHỨC VỤ
-        </h3>
+      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+        ________DANH SÁCH VIÊN CHỨC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -1243,7 +1287,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -1285,8 +1329,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
-              <td>{{ $vc->ten_cv }}</td>
+              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_cv }}({{ $vc->ma_cv }})</td>
             </tr>
           @endforeach
         </tbody>
@@ -1294,7 +1338,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_2_pdf/'.$ma_k.'/'.$ma_cv) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file"></i>
+              &ensp;
+              Xuất file
+            </button>
           </a>
         </div>
       </div>
@@ -1305,10 +1353,9 @@
   $(document).ready(function(){
     new Morris.Bar({
       element: 'myfirstchart_qltt_1',
-      pointFillColors: ['#F94A29'],
       parseTime: false,
       hideHover:true,
-      barColors: ['#FF6363'],
+      barColors: ['#F88F01'],
       data: [
         <?php
           if(isset($count)){
