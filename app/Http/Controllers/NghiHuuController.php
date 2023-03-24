@@ -60,10 +60,10 @@ class NghiHuuController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qltt ||$phanquyen_qlk){
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      $batdau_nam = Carbon::parse(Carbon::now()->subMonths(745))->format('Y-m-d');
-      $ketthuc_nam = Carbon::parse(Carbon::now()->subMonths(744))->format('Y-m-d');
-      $batdau_nu = Carbon::parse(Carbon::now()->subMonths(721))->format('Y-m-d');
-      $ketthuc_nu = Carbon::parse(Carbon::now()->subMonths(720))->format('Y-m-d');
+      $batdau_nam = Carbon::parse(Carbon::now()->subMonths(744))->format('Y-m-d');
+      $ketthuc_nam = Carbon::parse(Carbon::now()->subMonths(743))->format('Y-m-d');
+      $batdau_nu = Carbon::parse(Carbon::now()->subMonths(720))->format('Y-m-d');
+      $ketthuc_nu = Carbon::parse(Carbon::now()->subMonths(719))->format('Y-m-d');
 
       // echo $batdau_nam.'bat dau nam';
       // echo '<br>';
@@ -72,6 +72,7 @@ class NghiHuuController extends Controller
       // echo $batdau_nu.'bat dau nu';
       // echo '<br>';
       // echo $ketthuc_nu.'ketthuc nu';
+
       $list_khoa = Khoa::get();
       $list_chucvu = ChucVu::get();
       $list_ngach = Ngach::get();
@@ -125,22 +126,22 @@ class NghiHuuController extends Controller
         ->where('gioitinh_vc', '0')
         ->where('status_vc', '<>', '2')
         ->get();
-      $list_vienchuc_nu_ganhuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->whereBetween('ngaysinh_vc', [$batdau_nu, $ketthuc_nu])
-        ->where('gioitinh_vc', '1')
-        ->where('status_vc', '<>', '2')
-        ->get();
-      $list_nghihuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('status_vc', '2')
-        ->get();
-      $list_nu_nghihuu_homnay = VienChuc::where('ngaysinh_vc','LIKE', $ketthuc_nu)
-        ->where('gioitinh_vc', '1')
-        ->where('status_vc','<>','2')
-        ->get();
-      $list_nam_nghihuu_homnay = VienChuc::where('ngaysinh_vc','LIKE', $ketthuc_nam)
-        ->where('gioitinh_vc', '0')
-        ->where('status_vc','<>','2')
-        ->get();
+        $list_vienchuc_nu_ganhuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->whereBetween('ngaysinh_vc', [$batdau_nu, $ketthuc_nu])
+          ->where('gioitinh_vc', '1')
+          ->where('status_vc', '<>', '2')
+          ->get();
+        $list_nghihuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('status_vc', '2')
+          ->get();
+        $list_nu_nghihuu_homnay = VienChuc::where('ngaysinh_vc','LIKE', $ketthuc_nu)
+          ->where('gioitinh_vc', '1')
+          ->where('status_vc','<>','2')
+          ->get();
+        $list_nam_nghihuu_homnay = VienChuc::where('ngaysinh_vc','LIKE', $ketthuc_nam)
+          ->where('gioitinh_vc', '0')
+          ->where('status_vc','<>','2')
+          ->get();
       }
       return view('nghihuu.nghihuu')
         ->with('phanquyen_admin', $phanquyen_admin)
