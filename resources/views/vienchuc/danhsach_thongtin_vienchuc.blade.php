@@ -259,7 +259,7 @@
       </div>
     </div>
     <table class="table mt-2" id="mytable">
-      <thead class="table-dark">
+      <thead class="table-secondary">
         <tr>
           <th scope="col">STT</th>
           <th scope="col">Tên viên chức</th>
