@@ -129,6 +129,7 @@
             <th scope="col">STT</th>
             <th scope="col">Khu vực</th>
             <th scope="col">Mô tả</th>
+            <th scope="col">Châu lục</th>
             <th scope="col">Trạng thái</th>
             <th scope="col"></th>
           </tr>
@@ -145,8 +146,15 @@
               <td>
                 {{ $khuvuc->ten_kv }} ({{ $khuvuc->ma_kv }})
               </td>
-              <td>
+              <td style="width: 40%">
                 {{ $khuvuc->mota_kv }}
+              </td>
+              <td>
+                <button type="submit"  class="btn btn-primary font-weight-bold" style="background-color: #379237; border: none;">
+                  <i class="fas fa-plus-square"></i>
+                  &ensp;
+                  Thêm châu lục
+                </button>
               </td>
               <td>
                 <?php
