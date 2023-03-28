@@ -86,24 +86,27 @@ class QuocGiaController extends Controller
     }
   }
 
-  // public function select_quocgia($ma_qg){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   if($phanquyen_admin){
-  //     $quocgia = QuocGia::find($ma_qg);
-  //     if($quocgia->status_qg == 1){
-  //       $quocgia->status_qg = QuocGia::find($ma_qg)->update(['status_qg' => 0]);
-  //     }elseif($quocgia->status_qg == 0){
-  //       $quocgia->status_qg = QuocGia::find($ma_qg)->update(['status_qg' => 1]);
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function select_quocgia($ma_qg){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $quocgia = QuocGia::find($ma_qg);
+      if($quocgia->status_qg == 1){
+        $quocgia->status_qg = QuocGia::find($ma_qg)->update(['status_qg' => 0]);
+      }elseif($quocgia->status_qg == 0){
+        $quocgia->status_qg = QuocGia::find($ma_qg)->update(['status_qg' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function edit_quocgia($ma_qg){
   //   $this->check_login();
   //   $title = "Cập nhật thông tin quocgia";

@@ -626,9 +626,9 @@ Route::post('/delete_file_check',[FileController::class, 'delete_file_check']);
 
 Route::get('/quocgia',[QuocGiaController::class, 'quocgia']);
 Route::post('/add_quocgia',[QuocGiaController::class, 'add_quocgia']);
-// Route::get('/select_quocgia/{ma_cv}',[QuocGiaController::class, 'select_quocgia']);
-// Route::get('/edit_quocgia/{ma_cv}',[QuocGiaController::class, 'edit_quocgia']);
-// Route::post('/update_quocgia/{ma_cv}',[QuocGiaController::class, 'update_quocgia']);
+Route::get('/select_quocgia/{ma_qg}',[QuocGiaController::class, 'select_quocgia']);
+// Route::get('/edit_quocgia/{ma_qg}',[QuocGiaController::class, 'edit_quocgia']);
+// Route::post('/update_quocgia/{ma_qg}',[QuocGiaController::class, 'update_quocgia']);
 // Route::get('/delete_quocgia',[QuocGiaController::class, 'delete_quocgia']);
 // Route::get('/delete_all_quocgia',[QuocGiaController::class, 'delete_all_quocgia']);
 // Route::post('/delete_quocgia_check',[QuocGiaController::class, 'delete_quocgia_check']);
