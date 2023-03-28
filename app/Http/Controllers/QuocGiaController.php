@@ -52,14 +52,17 @@ class QuocGiaController extends Controller
       return view('quocgia.quocgia')
         ->with('count', $count)
         ->with('title', $title)
-        ->with('phanquyen_admin', $phanquyen_admin)
+
         ->with('count_status', $count_status)
+        ->with('count_nangbac', $count_nangbac)
+
+        ->with('list', $list)
+
+        ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('list', $list);
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }
@@ -107,66 +110,70 @@ class QuocGiaController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function edit_quocgia($ma_qg){
-  //   $this->check_login();
-  //   $title = "Cập nhật thông tin quocgia";
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-  //   ->where('ma_q', '=', '9')
-  //   ->first();
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin){
-  //     $edit = QuocGia::find($ma_qg);
-  //     $ma_vc = session()->get('ma_vc');
-  //     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //       ->where('ma_q', '=', '8')
-  //       ->first();
-  //     Carbon::now('Asia/Ho_Chi_Minh'); 
-  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-  //       ->select(DB::raw('count(ma_vc) as sum'))
-  //       ->get();
-  //     return view('quocgia.quanly_quocgia_edit')
-  //       ->with('phanquyen_admin', $phanquyen_admin)
-  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-  //       ->with('phanquyen_qltt', $phanquyen_qltt)
-  //       ->with('phanquyen_qlk', $phanquyen_qlk)
-  //       ->with('title', $title)
-  //       ->with('count_nangbac', $count_nangbac)
-  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-  //       ->with('edit', $edit);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function update_quocgia(Request $request, $ma_qg){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   if($phanquyen_admin){
-  //     $data = $request->all();
-  //     Carbon::now('Asia/Ho_Chi_Minh');
-  //     $quocgia = QuocGia::find($ma_qg);
-  //     $quocgia->ten_qg = $data['ten_qg'];
-  //     $quocgia->mota_qg = $data['mota_qg'];
-  //     $quocgia->status_qg = $data['status_qg'];
-  //     $quocgia->updated_qg = Carbon::now();
-  //     $quocgia->save();
-  //     return Redirect::to('quanly_quocgia');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function edit_quocgia($ma_qg){
+    $this->check_login();
+    $title = "Cập nhật thông tin quocgia";
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $edit = QuocGia::find($ma_qg);
+      $ma_vc = session()->get('ma_vc');
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      return view('quocgia.quocgia_edit')
+        ->with('title', $title)
+        ->with('edit', $edit)
+
+        ->with('count_nangbac', $count_nangbac)
+
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_quocgia(Request $request, $ma_qg){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $quocgia = QuocGia::find($ma_qg);
+      $quocgia->ten_qg = $data['ten_qg'];
+      $quocgia->status_qg = $data['status_qg'];
+      $quocgia->updated_qg = Carbon::now();
+      $quocgia->save();
+      return Redirect::to('quocgia');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function delete_quocgia(Request $request){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
