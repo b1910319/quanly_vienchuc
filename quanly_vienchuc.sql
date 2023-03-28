@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 28, 2023 lúc 07:00 AM
+-- Thời gian đã tạo: Th3 28, 2023 lúc 08:15 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -1269,6 +1269,31 @@ INSERT INTO `khoa` (`ma_k`, `ten_k`, `mota_k`, `status_k`, `created_k`, `updated
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `khuvuc`
+--
+
+CREATE TABLE `khuvuc` (
+  `ma_kv` int(11) NOT NULL,
+  `ten_kv` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mota_kv` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status_kv` int(11) NOT NULL DEFAULT 0,
+  `created_kv` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_kv` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `khuvuc`
+--
+
+INSERT INTO `khuvuc` (`ma_kv`, `ten_kv`, `mota_kv`, `status_kv`, `created_kv`, `updated_kv`) VALUES
+(1, 'dcffd', 'fgfgg', 0, '2023-03-28 06:13:56', NULL),
+(2, 'bnvbh', NULL, 0, '2023-03-28 06:14:32', NULL),
+(3, 'trinh', NULL, 0, '2023-03-28 06:14:36', NULL),
+(4, 'dfdgfg', 'gftyrty', 0, '2023-03-28 06:14:40', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `kyluat`
 --
 
@@ -1738,18 +1763,12 @@ INSERT INTO `quequan` (`ma_qq`, `ma_t`, `ma_h`, `ma_x`, `ma_vc`, `diachi_qq`, `s
 
 CREATE TABLE `quocgia` (
   `ma_qg` int(11) NOT NULL,
+  `ma_cl` int(11) NOT NULL,
   `ten_qg` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_qg` int(11) NOT NULL DEFAULT 0,
   `created_qg` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_qg` int(11) DEFAULT NULL
+  `updated_qg` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `quocgia`
---
-
-INSERT INTO `quocgia` (`ma_qg`, `ten_qg`, `status_qg`, `created_qg`, `updated_qg`) VALUES
-(1, 'juuuio', 0, '2023-03-28 04:58:28', NULL);
 
 -- --------------------------------------------------------
 
@@ -12806,6 +12825,12 @@ ALTER TABLE `khoa`
   ADD PRIMARY KEY (`ma_k`);
 
 --
+-- Chỉ mục cho bảng `khuvuc`
+--
+ALTER TABLE `khuvuc`
+  ADD PRIMARY KEY (`ma_kv`);
+
+--
 -- Chỉ mục cho bảng `kyluat`
 --
 ALTER TABLE `kyluat`
@@ -13005,7 +13030,13 @@ ALTER TABLE `khenthuong`
 -- AUTO_INCREMENT cho bảng `khoa`
 --
 ALTER TABLE `khoa`
-  MODIFY `ma_k` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ma_k` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT cho bảng `khuvuc`
+--
+ALTER TABLE `khuvuc`
+  MODIFY `ma_kv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `kyluat`
@@ -13059,7 +13090,7 @@ ALTER TABLE `quequan`
 -- AUTO_INCREMENT cho bảng `quocgia`
 --
 ALTER TABLE `quocgia`
-  MODIFY `ma_qg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ma_qg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `quyen`

@@ -320,28 +320,28 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                     <a href="{{ URL::to('/danhmuclop') }}">Danh mục đào tạo</a>
                   </li>
                   <li>
-                    <a href="{{ URL::to('/quocgia') }}">Quốc gia</a>
+                    <a href="{{ URL::to('/khuvuc') }}">Khu vực</a>
                   </li>
                   <li>
                     <a href="{{ URL::to('/lop') }}">Quản lý lớp học và quá trình học của viên chức</a>
                   </li>
                   <li>
-                    <a href="{{ URL::to('/quyetdinh_all') }}">Tất cả quyết định cử đi học</a>
+                    <a href="{{ URL::to('/quyetdinh_all') }}">Quyết định cử đi học</a>
                   </li>
                   <li>
-                    <a href="{{ URL::to('/ketqua_all') }}">Tất cả kết quả quá trình học của viên chức</a>
+                    <a href="{{ URL::to('/ketqua_all') }}">Kết quả quá trình học của viên chức</a>
                   </li>
                   <li>
-                    <a href="{{ URL::to('/dunghoc_all') }}">Tất cả thông tin tạm dừng học của viên chức</a>
+                    <a href="{{ URL::to('/dunghoc_all') }}">Thông tin tạm dừng học của viên chức</a>
                   </li>
                   <li>
-                    <a href="{{ URL::to('/giahan_all') }}">Tất cả thông tin gia hạn thời gian học của viên chức</a>
+                    <a href="{{ URL::to('/giahan_all') }}">Thông tin gia hạn thời gian học của viên chức</a>
                   </li>
                   <li>
-                    <a href="{{ URL::to('/chuyen_all') }}">Tất cả thông tin xin chuyển trường / nước / ngành học của viên chức</a>
+                    <a href="{{ URL::to('/chuyen_all') }}">Thông tin xin chuyển trường / nước / ngành học của viên chức</a>
                   </li>
                   <li>
-                    <a href="{{ URL::to('/thoihoc_all') }}">Tất cả thông tin xin thôi học của viên chức</a>
+                    <a href="{{ URL::to('/thoihoc_all') }}">Thông tin xin thôi học của viên chức</a>
                   </li>
                   <li>
                     <a href="{{ URL::to('/thongke_qlcttc') }}">Thống kê</a>

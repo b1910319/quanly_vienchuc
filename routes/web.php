@@ -33,6 +33,7 @@ use App\Http\Controllers\LopController;
 use App\Http\Controllers\QuyetDinhController;
 use App\Http\Controllers\ThoiHocController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\KhuVucController;
 use App\Http\Controllers\QuocGiaController;
 
 Route::get('/login',[HomeController::class, 'index']);
@@ -621,6 +622,15 @@ Route::get('/file_luottai',[FileController::class, 'file_luottai']);
 Route::post('/delete_file_check',[FileController::class, 'delete_file_check']);
 
 
+
+Route::get('/khuvuc',[KhuVucController::class, 'khuvuc']);
+Route::post('/add_khuvuc',[KhuVucController::class, 'add_khuvuc']);
+// Route::get('/select_khuvuc/{ma_kv}',[KhuVucController::class, 'select_khuvuc']);
+// Route::get('/edit_khuvuc/{ma_kv}',[KhuVucController::class, 'edit_khuvuc']);
+// Route::post('/update_khuvuc/{ma_kv}',[KhuVucController::class, 'update_khuvuc']);
+// Route::get('/delete_khuvuc',[KhuVucController::class, 'delete_khuvuc']);
+// Route::get('/delete_all_khuvuc',[KhuVucController::class, 'delete_all_khuvuc']);
+// Route::post('/delete_khuvuc_check',[KhuVucController::class, 'delete_khuvuc_check']);
 
 
 

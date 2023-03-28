@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class QuocGia extends Model
+class KhuVuc extends Model
 {
   use HasFactory;
   protected $fillable = [
-    'ma_cl',
-    'ten_qg',
-    'status_qg',
-    'updated_qg'
+    'ten_kv',
+    'mota_kv',
+    'status_kv',
+    'updated_kv'
 
   ];
   public $timestamps = false; 
-  protected $primaryKey = 'ma_qg';
-  protected $table = 'quocgia';
+  protected $primaryKey = 'ma_kv';
+  protected $table = 'khuvuc';
 }
