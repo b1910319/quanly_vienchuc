@@ -90,27 +90,27 @@ class KhuVucController extends Controller
     }
   }
 
-  // public function select_khuvuc($ma_kv){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $khuvuc = KhuVuc::find($ma_kv);
-  //     if($khuvuc->status_kv == 1){
-  //       $khuvuc->status_kv = KhuVuc::find($ma_kv)->update(['status_kv' => 0]);
-  //     }elseif($khuvuc->status_kv == 0){
-  //       $khuvuc->status_kv = KhuVuc::find($ma_kv)->update(['status_kv' => 1]);
-  //     }
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function select_khuvuc($ma_kv){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $khuvuc = KhuVuc::find($ma_kv);
+      if($khuvuc->status_kv == 1){
+        $khuvuc->status_kv = KhuVuc::find($ma_kv)->update(['status_kv' => 0]);
+      }elseif($khuvuc->status_kv == 0){
+        $khuvuc->status_kv = KhuVuc::find($ma_kv)->update(['status_kv' => 1]);
+      }
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function edit_khuvuc($ma_kv){
   //   $this->check_login();
   //   $title = "Cập nhật thông tin khuvuc";

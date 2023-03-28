@@ -625,7 +625,7 @@ Route::post('/delete_file_check',[FileController::class, 'delete_file_check']);
 
 Route::get('/khuvuc',[KhuVucController::class, 'khuvuc']);
 Route::post('/add_khuvuc',[KhuVucController::class, 'add_khuvuc']);
-// Route::get('/select_khuvuc/{ma_kv}',[KhuVucController::class, 'select_khuvuc']);
+Route::get('/select_khuvuc/{ma_kv}',[KhuVucController::class, 'select_khuvuc']);
 // Route::get('/edit_khuvuc/{ma_kv}',[KhuVucController::class, 'edit_khuvuc']);
 // Route::post('/update_khuvuc/{ma_kv}',[KhuVucController::class, 'update_khuvuc']);
 // Route::get('/delete_khuvuc',[KhuVucController::class, 'delete_khuvuc']);
