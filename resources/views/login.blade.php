@@ -46,7 +46,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" style="padding-top: 200px">
         <div class="col-6">
           <section id="content">
             <form action="{{ URL::to('/login') }}" method="POST">

@@ -460,7 +460,13 @@
                 </div>
               </td>
               <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
-              <td>{{ $vc->ten_n }}({{ $vc->ma_n }})</td>
+              <td>
+                @foreach ($list_ngach as $ngach )
+                  @if ($ngach->ma_n == $vc->ma_n)
+                    {{ $vc->ten_n }}({{ $vc->ma_n }})
+                  @endif
+                @endforeach
+              </td>
             </tr>
           @endforeach
         </tbody>

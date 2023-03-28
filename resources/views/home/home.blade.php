@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-<div class="row">
+<div class="row"  >
   @if ($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlktkl || $phanquyen_qlcttc  )
     <div class="col-xl-3 col-md-6">
       <div class="card-box">

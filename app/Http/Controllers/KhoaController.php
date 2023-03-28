@@ -89,6 +89,7 @@ class KhoaController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function select_khoa($ma_k){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
