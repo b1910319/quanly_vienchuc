@@ -630,8 +630,8 @@ Route::get('/select_quocgia/{ma_qg}',[QuocGiaController::class, 'select_quocgia'
 Route::get('/edit_quocgia/{ma_qg}',[QuocGiaController::class, 'edit_quocgia']);
 Route::post('/update_quocgia/{ma_qg}',[QuocGiaController::class, 'update_quocgia']);
 Route::get('/delete_quocgia',[QuocGiaController::class, 'delete_quocgia']);
-// Route::get('/delete_all_quocgia',[QuocGiaController::class, 'delete_all_quocgia']);
-// Route::post('/delete_quocgia_check',[QuocGiaController::class, 'delete_quocgia_check']);
+Route::get('/delete_all_quocgia',[QuocGiaController::class, 'delete_all_quocgia']);
+Route::post('/delete_quocgia_check',[QuocGiaController::class, 'delete_quocgia_check']);
 
 
 
