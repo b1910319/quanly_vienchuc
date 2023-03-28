@@ -207,20 +207,23 @@ class QuocGiaController extends Controller
       return Redirect::to('quocgia');
     }
   }
-  // public function delete_all_quocgia(){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   if($phanquyen_admin){
-  //     $list = QuocGia::get();
-  //     foreach($list as $key => $quyen){
-  //       $quyen->delete();
-  //     }
-  //     return Redirect::to('quanly_quocgia');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+  public function delete_all_quocgia(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list = QuocGia::get();
+      foreach($list as $key => $quyen){
+        $quyen->delete();
+      }
+      return Redirect::to('quocgia');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }
