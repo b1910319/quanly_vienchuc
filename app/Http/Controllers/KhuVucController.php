@@ -111,70 +111,71 @@ class KhuVucController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function edit_khuvuc($ma_kv){
-  //   $this->check_login();
-  //   $title = "Cập nhật thông tin khuvuc";
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-  //   ->where('ma_q', '=', '9')
-  //   ->first();
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '7')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $edit = KhuVuc::find($ma_kv);
-  //     $ma_vc = session()->get('ma_vc');
-  //     Carbon::now('Asia/Ho_Chi_Minh'); 
-  //     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-  //     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-  //       ->select(DB::raw('count(ma_vc) as sum'))
-  //       ->get();
-  //     return view('khuvuc.khuvuc_edit')
-  //       ->with('title', $title)
-  //       ->with('edit', $edit)
+  public function edit_khuvuc($ma_kv){
+    $this->check_login();
+    $title = "Cập nhật thông tin khuvuc";
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $edit = KhuVuc::find($ma_kv);
+      $ma_vc = session()->get('ma_vc');
+      Carbon::now('Asia/Ho_Chi_Minh'); 
+      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+      return view('khuvuc.khuvuc_edit')
+        ->with('title', $title)
+        ->with('edit', $edit)
 
-  //       ->with('count_nangbac', $count_nangbac)
+        ->with('count_nangbac', $count_nangbac)
 
-  //       ->with('phanquyen_admin', $phanquyen_admin)
-  //       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-  //       ->with('phanquyen_qltt', $phanquyen_qltt)
-  //       ->with('phanquyen_qlk', $phanquyen_qlk)
-  //       ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
-  // public function update_khuvuc(Request $request, $ma_kv){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $data = $request->all();
-  //     Carbon::now('Asia/Ho_Chi_Minh');
-  //     $khuvuc = KhuVuc::find($ma_kv);
-  //     $khuvuc->ten_kv = $data['ten_kv'];
-  //     $khuvuc->status_kv = $data['status_kv'];
-  //     $khuvuc->updated_kv = Carbon::now();
-  //     $khuvuc->save();
-  //     return Redirect::to('khuvuc');
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_khuvuc(Request $request, $ma_kv){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $khuvuc = KhuVuc::find($ma_kv);
+      $khuvuc->ten_kv = $data['ten_kv'];
+      $khuvuc->mota_kv = $data['mota_kv'];
+      $khuvuc->status_kv = $data['status_kv'];
+      $khuvuc->updated_kv = Carbon::now();
+      $khuvuc->save();
+      return Redirect::to('khuvuc');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   // public function delete_khuvuc(Request $request){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');
