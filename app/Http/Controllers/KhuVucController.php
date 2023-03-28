@@ -194,21 +194,21 @@ class KhuVucController extends Controller
       }
     }
   }
-  // public function delete_khuvuc_check(Request $request){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlcttc){
-  //     $ma_kv = $request->ma_kv;
-  //     KhuVuc::whereIn('ma_kv', $ma_kv)->delete();
-  //     return Redirect::to('khuvuc');
-  //   }
-  // }
+  public function delete_khuvuc_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $ma_kv = $request->ma_kv;
+      KhuVuc::whereIn('ma_kv', $ma_kv)->delete();
+      return Redirect::to('khuvuc');
+    }
+  }
   // public function delete_all_khuvuc(){
   //   $this->check_login();
   //   $ma_vc = session()->get('ma_vc');

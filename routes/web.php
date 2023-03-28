@@ -630,7 +630,7 @@ Route::get('/edit_khuvuc/{ma_kv}',[KhuVucController::class, 'edit_khuvuc']);
 Route::post('/update_khuvuc/{ma_kv}',[KhuVucController::class, 'update_khuvuc']);
 Route::get('/delete_khuvuc',[KhuVucController::class, 'delete_khuvuc']);
 // Route::get('/delete_all_khuvuc',[KhuVucController::class, 'delete_all_khuvuc']);
-// Route::post('/delete_khuvuc_check',[KhuVucController::class, 'delete_khuvuc_check']);
+Route::post('/delete_khuvuc_check',[KhuVucController::class, 'delete_khuvuc_check']);
 
 
 
