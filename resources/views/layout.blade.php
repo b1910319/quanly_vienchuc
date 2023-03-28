@@ -317,7 +317,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
                   <li>
-                    <a href="{{ URL::to('/danhmuclop') }}">Danh mục lớp học</a>
+                    <a href="{{ URL::to('/danhmuclop') }}">Danh mục đào tạo</a>
+                  </li>
+                  <li>
+                    <a href="{{ URL::to('/quocgia') }}">Quốc gia</a>
                   </li>
                   <li>
                     <a href="{{ URL::to('/lop') }}">Quản lý lớp học và quá trình học của viên chức</a>

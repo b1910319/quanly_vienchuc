@@ -685,7 +685,7 @@
                 </div>
               </td>
               <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
-              <td>{{ $vc->ten_lbc }} ({{ $VC->ma_lbc }})</td>
+              <td>{{ $vc->ten_lbc }} ({{ $vc->ma_lbc }})</td>
             </tr>
           @endforeach
         </tbody>
