@@ -121,7 +121,7 @@
     <form action="{{ URL::to('/delete_file_check') }}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col"></th>
             <th scope="col">STT</th>
@@ -184,8 +184,8 @@
                     &ensp; Cập nhật
                   </button>
                 </a>
-                <input class="ma_f" type="hidden" value="{{ $file->ma_f }}">
-                <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
+                <input class="ma_f{{ $file->ma_f }}" type="hidden" value="{{ $file->ma_f }}">
+                <button type="button" class=" xoa{{ $file->ma_f }} btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
                 <?php
                   if($file->status_f == 0){
                     ?>
@@ -244,48 +244,51 @@
     })
     
   });
-  document.querySelector('.xoa').addEventListener('click', (event)=>{
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-      },
-      buttonsStyling: false
-    })
+  @foreach ($list as $file )
+    document.querySelector('.xoa{{ $file->ma_f }}').addEventListener('click', (event)=>{
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
 
-    swalWithBootstrapButtons.fire({
-      title: 'Bạn có chắc muốn xoá không?',
-      text: "Bạn không thể khôi phục dữ liệu đã xoá",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
-      cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        var ma_f= $('.ma_f').val();
-        $.ajax({
-          url:"{{ url("/delete_file") }}", 
-          type: "GET", 
-          data: {ma_f:ma_f},
-        });
-        swalWithBootstrapButtons.fire(
-          'Xoá thành công',
-          'Dữ liệu của bạn đã được xoá.',
-          'success'
-        )
-      } else if (
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Đã huỷ',
-          'Dữ liệu được an toàn',
-          'error'
-        )
-      }
-      location.reload();
-    })
-    
-  });
+      swalWithBootstrapButtons.fire({
+        title: 'Bạn có chắc muốn xoá không?',
+        text: "Bạn không thể khôi phục dữ liệu đã xoá",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
+        cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          var ma_f= $('.ma_f{{ $file->ma_f }}').val();
+          $.ajax({
+            url:"{{ url("/delete_file") }}", 
+            type: "GET", 
+            data: {ma_f:ma_f},
+          });
+          swalWithBootstrapButtons.fire(
+            'Xoá thành công',
+            'Dữ liệu của bạn đã được xoá.',
+            'success'
+          )
+        } else if (
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Đã huỷ',
+            'Dữ liệu được an toàn',
+            'error'
+          )
+        }
+        location.reload();
+      })
+      
+    });
+  @endforeach
+  
 </script>
 @endsection
