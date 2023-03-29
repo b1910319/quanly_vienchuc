@@ -217,7 +217,7 @@
       title: 'Thêm thành công'
     })
     
-  });
+  }); 
   @foreach ($list as $dantoc )
     document.querySelector('.xoa{{ $dantoc->ma_dt }}').addEventListener('click', (event)=>{
       const swalWithBootstrapButtons = Swal.mixin({

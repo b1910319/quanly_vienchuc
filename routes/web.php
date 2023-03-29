@@ -417,8 +417,9 @@ Route::post('/add_loaikhenthuong',[LoaiKhenThuongController::class, 'add_loaikhe
 Route::get('/select_loaikhenthuong/{ma_lkt}',[LoaiKhenThuongController::class, 'select_loaikhenthuong']);
 Route::get('/edit_loaikhenthuong/{ma_lkt}',[LoaiKhenThuongController::class, 'edit_loaikhenthuong']);
 Route::post('/update_loaikhenthuong/{ma_lkt}',[LoaiKhenThuongController::class, 'update_loaikhenthuong']);
-Route::get('/delete_loaikhenthuong/{ma_lkt}',[LoaiKhenThuongController::class, 'delete_loaikhenthuong']);
+Route::get('/delete_loaikhenthuong',[LoaiKhenThuongController::class, 'delete_loaikhenthuong']);
 Route::get('/delete_all_loaikhenthuong',[LoaiKhenThuongController::class, 'delete_all_loaikhenthuong']);
+Route::post('/delete_loaikhenthuong_check',[LoaiKhenThuongController::class, 'delete_loaikhenthuong_check']);
 
 
 // -------------------------------------------------------

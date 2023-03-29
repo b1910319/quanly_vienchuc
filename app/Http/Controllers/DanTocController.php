@@ -224,4 +224,5 @@ class DanTocController extends Controller
       return redirect()->back();
     }
   }
+  
 }

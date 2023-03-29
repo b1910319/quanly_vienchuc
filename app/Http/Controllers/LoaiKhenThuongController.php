@@ -169,7 +169,7 @@ class LoaiKhenThuongController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_loaikhenthuong($ma_lkt){
+  public function delete_loaikhenthuong(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -179,10 +179,27 @@ class LoaiKhenThuongController extends Controller
       ->where('ma_q', '=', '7')
       ->first();
     if($phanquyen_admin || $phanquyen_qlktkl){
-      LoaiKhenThuong::find($ma_lkt)->delete();
-      return Redirect::to('loaikhenthuong');
-    }else{
-      return Redirect::to('/home');
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          LoaiKhenThuong::find($id)->delete();
+        }
+      }
+    }
+  }
+  public function delete_loaikhenthuong_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $ma_lkt = $request->ma_lkt;
+      LoaiKhenThuong::whereIn('ma_lkt', $ma_lkt)->delete();
+      return redirect()->back();
     }
   }
   public function delete_all_loaikhenthuong(){
