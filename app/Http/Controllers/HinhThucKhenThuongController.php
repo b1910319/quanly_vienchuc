@@ -169,7 +169,7 @@ class HinhThucKhenThuongController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_hinhthuckhenthuong($ma_htkt){
+  public function delete_hinhthuckhenthuong(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -179,10 +179,27 @@ class HinhThucKhenThuongController extends Controller
       ->where('ma_q', '=', '7')
       ->first();
     if($phanquyen_admin || $phanquyen_qlktkl){
-      HinhThucKhenThuong::find($ma_htkt)->delete();
-      return Redirect::to('hinhthuckhenthuong');
-    }else{
-      return Redirect::to('/home');
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          HinhThucKhenThuong::find($id)->delete();
+        }
+      }
+    }
+  }
+  public function delete_hinhthuckhenthuong_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $ma_htkt = $request->ma_htkt;
+      HinhThucKhenThuong::whereIn('ma_htkt', $ma_htkt)->delete();
+      return redirect()->back();
     }
   }
   public function delete_all_hinhthuckhenthuong(){

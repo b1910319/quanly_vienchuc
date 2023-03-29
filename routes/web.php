@@ -426,10 +426,11 @@ Route::post('/delete_loaikhenthuong_check',[LoaiKhenThuongController::class, 'de
 
 Route::get('/hinhthuckhenthuong',[HinhThucKhenThuongController::class, 'hinhthuckhenthuong']);
 Route::post('/add_hinhthuckhenthuong',[HinhThucKhenThuongController::class, 'add_hinhthuckhenthuong']);
-Route::get('/select_hinhthuckhenthuong/{ma_lkt}',[HinhThucKhenThuongController::class, 'select_hinhthuckhenthuong']);
-Route::get('/edit_hinhthuckhenthuong/{ma_lkt}',[HinhThucKhenThuongController::class, 'edit_hinhthuckhenthuong']);
-Route::post('/update_hinhthuckhenthuong/{ma_lkt}',[HinhThucKhenThuongController::class, 'update_hinhthuckhenthuong']);
-Route::get('/delete_hinhthuckhenthuong/{ma_lkt}',[HinhThucKhenThuongController::class, 'delete_hinhthuckhenthuong']);
+Route::get('/select_hinhthuckhenthuong/{ma_htkt}',[HinhThucKhenThuongController::class, 'select_hinhthuckhenthuong']);
+Route::get('/edit_hinhthuckhenthuong/{ma_htkt}',[HinhThucKhenThuongController::class, 'edit_hinhthuckhenthuong']);
+Route::post('/update_hinhthuckhenthuong/{ma_htkt}',[HinhThucKhenThuongController::class, 'update_hinhthuckhenthuong']);
+Route::get('/delete_hinhthuckhenthuong',[HinhThucKhenThuongController::class, 'delete_hinhthuckhenthuong']);
+Route::post('/delete_hinhthuckhenthuong_check',[HinhThucKhenThuongController::class, 'delete_hinhthuckhenthuong_check']);
 Route::get('/delete_all_hinhthuckhenthuong',[HinhThucKhenThuongController::class, 'delete_all_hinhthuckhenthuong']);
 
 
