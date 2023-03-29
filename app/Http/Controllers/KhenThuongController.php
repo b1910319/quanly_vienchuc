@@ -304,23 +304,43 @@ class KhenThuongController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_khenthuong($ma_kt, $ma_vc){
+  public function delete_khenthuong(Request $request){
     $this->check_login();
-    $ma_vc_login = session()->get('ma_vc');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '9')
       ->first();
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
-    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
-      KhenThuong::find($ma_kt)->delete();
-      return Redirect::to('/khenthuong_add/'.$ma_vc);
-    }else{
-      return Redirect::to('/home');
+    if($phanquyen_admin || $phanquyen_qlk || $phanquyen_qlktkl){
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          KhenThuong::find($id)->delete();
+        }
+      }
+    }
+  }
+  public function delete_khenthuong_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlk || $phanquyen_qlktkl){
+      $ma_kt = $request->ma_kt;
+      KhenThuong::whereIn('ma_kt', $ma_kt)->delete();
+      return redirect()->back();
     }
   }
   public function delete_all_khenthuong($ma_vc){

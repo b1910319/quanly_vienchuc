@@ -1,5 +1,5 @@
 @extends('layout')
-@section('content')
+@section('content') 
 <div class="row">
   <div class="card-box">
     <div class="alert alert-success row" role="alert" style="background-color: #3F979B; text-align: center;">
@@ -207,8 +207,8 @@
                     &ensp; Cập nhật
                   </button>
                 </a>
-                <input class="ma_gd" type="hidden" value="{{ $giadinh->ma_gd }}">
-                <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
+                <input class="ma_gd{{ $giadinh->ma_gd }}" type="hidden" value="{{ $giadinh->ma_gd }}">
+                <button type="button" class=" xoa{{ $giadinh->ma_gd }} btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
                 <?php
                   if($giadinh->status_gd == 0){
                     ?>
@@ -268,50 +268,53 @@
     })
     
   });
-  document.querySelector('.xoa').addEventListener('click', (event)=>{
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-      },
-      buttonsStyling: false
-    })
+  @foreach ($list as $giadinh )
+    document.querySelector('.xoa{{ $giadinh->ma_gd }}').addEventListener('click', (event)=>{
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
 
-    swalWithBootstrapButtons.fire({
-      title: 'Bạn có chắc muốn xoá không?',
-      text: "Bạn không thể khôi phục dữ liệu đã xoá",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
-      cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        var id= $('.ma_gd').val();
-        $.ajax({
-          url:"{{ url("/delete_giadinh") }}", 
-          type: "GET", 
-          data: {id:id},
-        });
-        swalWithBootstrapButtons.fire(
-          'Xoá thành công',
-          'Dữ liệu của bạn đã được xoá.',
-          'success'
-        )
-        location.reload();
-      } else if (
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Đã huỷ',
-          'Dữ liệu được an toàn',
-          'error'
-        )
-        location.reload();
-      }
-    })
-    
-  });
+      swalWithBootstrapButtons.fire({
+        title: 'Bạn có chắc muốn xoá không?',
+        text: "Bạn không thể khôi phục dữ liệu đã xoá",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
+        cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          var id= $('.ma_gd{{ $giadinh->ma_gd }}').val();
+          $.ajax({
+            url:"{{ url("/delete_giadinh") }}", 
+            type: "GET", 
+            data: {id:id},
+          });
+          swalWithBootstrapButtons.fire(
+            'Xoá thành công',
+            'Dữ liệu của bạn đã được xoá.',
+            'success'
+          )
+          location.reload();
+        } else if (
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Đã huỷ',
+            'Dữ liệu được an toàn',
+            'error'
+          )
+          location.reload();
+        }
+      })
+      
+    });
+  @endforeach
+  
 </script>
 <!--  -->
 @endsection
