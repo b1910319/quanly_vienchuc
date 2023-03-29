@@ -460,7 +460,8 @@ Route::post('/add_loaikyluat',[LoaiKyLuatController::class, 'add_loaikyluat']);
 Route::get('/select_loaikyluat/{ma_lkl}',[LoaiKyLuatController::class, 'select_loaikyluat']);
 Route::get('/edit_loaikyluat/{ma_lkl}',[LoaiKyLuatController::class, 'edit_loaikyluat']);
 Route::post('/update_loaikyluat/{ma_lkl}',[LoaiKyLuatController::class, 'update_loaikyluat']);
-Route::get('/delete_loaikyluat/{ma_lkl}',[LoaiKyLuatController::class, 'delete_loaikyluat']);
+Route::get('/delete_loaikyluat',[LoaiKyLuatController::class, 'delete_loaikyluat']);
+Route::post('/delete_loaikyluat_check',[LoaiKyLuatController::class, 'delete_loaikyluat_check']);
 Route::get('/delete_all_loaikyluat',[LoaiKyLuatController::class, 'delete_all_loaikyluat']);
 
 

@@ -169,7 +169,7 @@ class LoaiKyLuatController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_loaikyluat($ma_lkl){
+  public function delete_loaikyluat(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -179,10 +179,27 @@ class LoaiKyLuatController extends Controller
       ->where('ma_q', '=', '7')
       ->first();
     if($phanquyen_admin || $phanquyen_qlktkl){
-      LoaiKyLuat::find($ma_lkl)->delete();
-      return Redirect::to('loaikyluat');
-    }else{
-      return Redirect::to('/home');
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          LoaiKyLuat::find($id)->delete();
+        }
+      }
+    }
+  }
+  public function delete_loaikyluat_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      $ma_lkl = $request->ma_lkl;
+      LoaiKyLuat::whereIn('ma_lkl', $ma_lkl)->delete();
+      return redirect()->back();
     }
   }
   public function delete_all_loaikyluat(){
