@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 28, 2023 lúc 08:15 AM
+-- Thời gian đã tạo: Th3 29, 2023 lúc 10:26 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -335,7 +335,7 @@ INSERT INTO `file` (`ma_f`, `ma_vc`, `ten_f`, `file_f`, `luottai_f`, `status_f`,
 (25, 1, 'Báo cáo tổng hợp của đơn vị', '1679383997727.xlsx', 2, 0, '2023-03-21 07:33:17', NULL),
 (26, 1, 'Phiếu đăng ký đi nghiên cứu sau tiến sĩ, đi trao đổi chuyên gia', '1679384021843.doc', 1, 0, '2023-03-21 07:33:41', NULL),
 (27, 1, 'Cam kết thực hiện trách nhiệm của người được cử đi nghiên cứu sau tiến sĩ, đi trao đổi chuyên gia', '1679384033666.doc', 1, 0, '2023-03-21 07:33:53', NULL),
-(28, 1, 'Báo cáo kết thúc nghiên cứu sau tiến sĩ, đi trao đổi chuyên gia', '1679384047520.doc', 1, 0, '2023-03-21 07:34:07', NULL),
+(28, 1, 'Báo cáo kết thúc nghiên cứu sau tiến sĩ, đi trao đổi chuyên gia', '1679384047520.doc', 2, 0, '2023-03-21 07:34:07', NULL),
 (29, 1, 'Mẫu sơ yếu lý lịch của cán bộ, công chức (Mẫu 2C/BNV/2008)', '1679384719346.doc', 11, 0, '2023-03-21 07:45:19', NULL);
 
 -- --------------------------------------------------------
@@ -363,8 +363,8 @@ CREATE TABLE `giadinh` (
 
 INSERT INTO `giadinh` (`ma_gd`, `ma_vc`, `moiquanhe_gd`, `hoten_gd`, `sdt_gd`, `ngaysinh_gd`, `nghenghiep_gd`, `status_gd`, `created_gd`, `updated_gd`) VALUES
 (9, 1, 'fgthyt', 'juíuọi', '0845125468', '2023-02-28', 'ètôt̀', 0, '2023-03-22 09:44:29', ' '),
-(14, 61, 'frgt65r', 'frgy6r', 'fhry5r', '2023-03-02', 'fgr', 0, '2023-03-23 09:19:00', ' '),
-(15, 61, 'cbgtyh', 'cdgewds', 'agedf', '2023-03-07', 'gtrf', 0, '2023-03-23 09:19:10', ' ');
+(16, 59, 'fht', 'hyụt', 'yiuyi', '2023-03-01', 'uyut̃', 0, '2023-03-29 03:42:56', ' '),
+(17, 61, 'fgfdh', 'ghy', '0845124512', '2023-03-08', 'gthtgh', 0, '2023-03-29 07:06:47', ' ');
 
 -- --------------------------------------------------------
 
@@ -1233,9 +1233,11 @@ INSERT INTO `khenthuong` (`ma_kt`, `ma_vc`, `ma_lkt`, `ma_htkt`, `ngay_kt`, `noi
 (8, 55, 4, 6, '2023-02-22', 'u7u67u7', 0, '2023-02-25 07:18:55', '2023-03-13 03:03:11'),
 (9, 54, 5, 7, '2023-02-13', 'cfewr35refd', 0, '2023-02-25 07:19:37', ' '),
 (10, 1, 4, 8, '2023-02-21', 'dewt452', 2, '2023-02-25 07:56:05', ' '),
-(14, 61, 4, 6, '2023-03-06', 'ádsể', 0, '2023-03-09 07:25:27', ' '),
-(15, 61, 5, 7, '2023-01-23', 'ăewrử', 0, '2023-03-09 07:25:38', ' '),
-(16, 23, 5, 6, '2023-02-28', 'wrwr54e5', 0, '2023-03-09 07:26:26', ' ');
+(16, 23, 5, 6, '2023-02-28', 'wrwr54e5', 0, '2023-03-09 07:26:26', ' '),
+(18, 61, 5, 6, '2023-02-26', 'sdrewtre', 0, '2023-03-29 07:10:27', ' '),
+(19, 61, 4, 8, '2023-03-09', 'fgtry', 0, '2023-03-29 07:16:13', ' '),
+(21, 61, 4, 6, '2023-02-27', 'dfrtg', 0, '2023-03-29 07:19:16', ' '),
+(22, 61, 5, 5, '2023-03-07', 'sfdsf', 0, '2023-03-29 07:19:24', ' ');
 
 -- --------------------------------------------------------
 
@@ -1286,10 +1288,12 @@ CREATE TABLE `khuvuc` (
 --
 
 INSERT INTO `khuvuc` (`ma_kv`, `ten_kv`, `mota_kv`, `status_kv`, `created_kv`, `updated_kv`) VALUES
-(1, 'dcffd', 'fgfgg', 0, '2023-03-28 06:13:56', NULL),
-(2, 'bnvbh', NULL, 0, '2023-03-28 06:14:32', NULL),
-(3, 'trinh', NULL, 0, '2023-03-28 06:14:36', NULL),
-(4, 'dfdgfg', 'gftyrty', 0, '2023-03-28 06:14:40', NULL);
+(6, 'Châu Á', '(43.820.000 km2) bao gồm 50 quốc gia, và nó là lục địa lớn nhất và đông dân nhất, 60% trong tổng số dân của Trái đất sống ở đây.', 0, '2023-03-28 09:32:16', NULL),
+(7, 'Châu Phi', '(30.370.000 km2) bao gồm 54 quốc gia. Đây là châu lục nóng nhất và nhà của sa mạc lớn nhất thế giới, Sahara, chiếm 25% tổng diện tích của châu Phi', 0, '2023-03-28 09:32:40', NULL),
+(8, 'Châu Mỹ', 'BẮC MỸ (24.490.000 km2) bao gồm 23 quốc gia dẫn đầu bởi Mỹ là nền kinh tế lớn nhất thế giới.\r\nNAM MỸ (17.840.000 km2) bao gồm 12 quốc gia. Được bao phủ bởi những khu rừng lớn, rừng nhiệt đới Amazon chiếm đến 30% tổng diện Nam Mỹ', 0, '2023-03-28 09:42:39', NULL),
+(9, 'Nam Cực', '(13.720.000 km2) là lục địa lạnh nhất trên thế giới, hoàn toàn bao phủ trong băng. Không có dân cư trú ở đây, ngoại trừ các nhà khoa học sinh sống trong các trạm nghiên cứu ở Nam Cực.', 0, '2023-03-28 09:43:10', NULL),
+(10, 'Châu Âu', '(10.180.000 km2) bao gồm 51 quốc gia. Là lục địa phát triển nhất về kinh tế với Liên minh châu Âu là liên minh kinh tế và chính trị lớn nhất trên thế giới', 0, '2023-03-28 09:43:28', NULL),
+(11, 'Châu Úc', '(9.008.500 km2) bao gồm 14 quốc gia. Đây là châu lục ít dân cư nhất trừ Nam Cực, chỉ có 0,3% trong tổng dân số Trái đất sống ở đây', 0, '2023-03-28 09:43:51', NULL);
 
 -- --------------------------------------------------------
 
@@ -1313,14 +1317,10 @@ CREATE TABLE `kyluat` (
 --
 
 INSERT INTO `kyluat` (`ma_kl`, `ma_vc`, `ma_lkl`, `lydo_kl`, `ngay_kl`, `status_kl`, `created_kl`, `updated_kl`) VALUES
-(4, 54, 4, 'Chưa hoàn thành nhiệm vụ được giao', '2023-02-13', 0, '2023-02-25 03:31:01', ' '),
-(5, 56, 5, 'Làm sai quy định', '2023-02-14', 0, '2023-02-25 03:39:47', ' '),
-(6, 56, 5, 'bbbbbbbbbbbbbbbb', '2023-02-22', 0, '2023-02-25 06:13:45', ' '),
-(7, 37, 6, 'dsvgetw', '2023-02-26', 2, '2023-02-27 01:30:13', '2023-03-14 01:02:08'),
-(8, 1, 5, 'tgv', '2023-02-16', 0, '2023-02-27 02:22:48', ' '),
-(9, 30, 5, 'ujyujuy', '2023-03-06', 0, '2023-03-09 07:57:23', ' '),
-(10, 30, 4, 'lediemtrinh', '2023-02-26', 0, '2023-03-09 07:57:45', '2023-03-09 08:22:49'),
-(11, 30, 6, 'sdfsdf', '2023-03-14', 0, '2023-03-09 08:23:49', ' ');
+(14, 55, 10, 'xcdfd', '2023-03-14', 0, '2023-03-29 08:04:06', ' '),
+(16, 54, 4, 'eded', '2023-02-28', 0, '2023-03-29 08:12:15', ' '),
+(17, 54, 7, 'dsd', '2023-03-02', 0, '2023-03-29 08:12:24', ' '),
+(20, 55, 4, 'kipkip', '2023-03-09', 0, '2023-03-29 08:25:44', ' ');
 
 -- --------------------------------------------------------
 
@@ -1391,9 +1391,9 @@ CREATE TABLE `loaikyluat` (
 
 INSERT INTO `loaikyluat` (`ma_lkl`, `ten_lkl`, `status_lkl`, `created_lkl`, `updated_lkl`) VALUES
 (4, 'Khiển trách', 0, '2023-02-25 02:17:47', ' '),
-(5, 'Cảnh cáo', 0, '2023-02-25 02:17:54', ' '),
 (6, 'Buộc thôi việc', 0, '2023-02-25 02:18:02', ' '),
-(7, 'Cách chức.', 0, '2023-02-25 02:18:15', ' ');
+(7, 'Cách chức.', 0, '2023-02-25 02:18:15', ' '),
+(10, 'Cánh cáo', 0, '2023-03-29 07:49:53', ' ');
 
 -- --------------------------------------------------------
 
@@ -1428,7 +1428,7 @@ CREATE TABLE `lop` (
 --
 
 INSERT INTO `lop` (`ma_l`, `ma_dml`, `ten_l`, `ngaybatdau_l`, `ngayketthuc_l`, `yeucau_l`, `tencosodaotao_l`, `quocgiaodaotao_l`, `nganhhoc_l`, `trinhdodaotao_l`, `nguonkinhphi_l`, `noidunghoc_l`, `diachidaotao_l`, `emailcoso_l`, `sdtcoso_l`, `luotxem_l`, `status_l`, `created_l`, `updated_l`) VALUES
-(3, 8, 'Associate of Arts Degree', '2023-10-15', '2026-10-15', 'Ứng viên phải từ 18 tuổi trở lên trong năm dương lịch mà họ đăng ký học. Việc xem xét có thể được đưa ra cho những học sinh nhỏ tuổi đã hoàn thành bậc trung học. Để đáp ứng yêu cầu về tiếng Anh cho các chương trình học thuật, học sinh phải hoàn thành: BC English 12 hoặc BC English First Peoples 12 với điểm tối thiểu là C; hoặc Đầu vào thông qua chương trình Anh ngữ của NIC – đạt điểm C+ trong ESL 092 và ESL 095 Hoặc một trong những điều sau: Điểm tổng thể IELTS Học thuật là 6.0 (không có kỹ năng nào thấp hơn 5.5). Những học sinh không có điểm IELTS 6.0 trở lên ở môn Đọc và Viết sẽ phải thi tiếng Anh 104. TOEFL ibt 80 tổng thể không có tiểu mục nào dưới 19; TOEFL 550; CAEL 60 và viết 60 và PTE Academic 54 tổng thể không có thành phần nào dưới 46.', 'North Island College', 'Canada', 'Công nghệ thông tin', 'Tiến sĩ', 'CAD$16,015.00 (266,916,667 đ) một năm', 'Bắt đầu chương trình học của bạn tại NIC và nhận tín chỉ chuyển tiếp hai năm (60 tín chỉ) vào bất kỳ trường đại học BC nào. Học các kỹ năng nghiên cứu và tư duy phản biện mạnh mẽ mà các nhà tuyển dụng tìm kiếm khi bạn học nhân chủng học, tội phạm học, nghiên cứu về các quốc gia đầu tiên, tiếng Anh, địa lý, lịch sử, nghiên cứu tự do, ngôn ngữ hiện đại (tiếng Trung, tiếng Pháp và tiếng Tây Ban Nha), triết học, khoa học chính trị, tâm lý học, xã hội học và nghiên cứu của phụ nữ.\r\nĐiểm nổi bật của chương trình:\r\nKhám phá nhân chủng học, tội phạm học, tiếng Anh, các quốc gia đầu tiên, lịch sử, ngôn ngữ hiện đại (tiếng Trung, tiếng Pháp và tiếng Tây Ban Nha), nghiên cứu về Bắc Mỹ, triết học, khoa học chính trị, tâm lý học, xã hội học và nghiên cứu về phụ nữ, cũng như các môn tự chọn về toán và khoa học.\r\nBằng liên kết được cung cấp tại nhiều trường cao đẳng và đại học trên khắp BC. Họ công nhận việc hoàn thành thành công 60 tín chỉ học tập, tức là khoảng 20 khóa học. Với chương trình học toàn thời gian, bạn có thể hoàn thành bằng cao đẳng trong vòng hai năm học. Lựa chọn nghiên cứu bán thời gian cũng có sẵn.\r\nBằng liên kết cung cấp rất nhiều tính linh hoạt. Bạn có thể chọn các khóa học ưa thích của mình từ một danh sách cụ thể các khóa học đủ điều kiện, giúp bạn có thể tập trung học tập vào một lĩnh vực cụ thể hoặc khám phá nhiều môn học khác nhau.', '2300 Ryan Rd, Courtenay, BC V9N 8N6, Canada', 'questions@nic.bc.ca', '+1 800-715-0914', 9, 0, '2023-02-28 18:16:47', '2023-03-21 03:03:10'),
+(3, 8, 'Associate of Arts Degree', '2023-10-15', '2026-10-15', 'Ứng viên phải từ 18 tuổi trở lên trong năm dương lịch mà họ đăng ký học. Việc xem xét có thể được đưa ra cho những học sinh nhỏ tuổi đã hoàn thành bậc trung học. Để đáp ứng yêu cầu về tiếng Anh cho các chương trình học thuật, học sinh phải hoàn thành: BC English 12 hoặc BC English First Peoples 12 với điểm tối thiểu là C; hoặc Đầu vào thông qua chương trình Anh ngữ của NIC – đạt điểm C+ trong ESL 092 và ESL 095 Hoặc một trong những điều sau: Điểm tổng thể IELTS Học thuật là 6.0 (không có kỹ năng nào thấp hơn 5.5). Những học sinh không có điểm IELTS 6.0 trở lên ở môn Đọc và Viết sẽ phải thi tiếng Anh 104. TOEFL ibt 80 tổng thể không có tiểu mục nào dưới 19; TOEFL 550; CAEL 60 và viết 60 và PTE Academic 54 tổng thể không có thành phần nào dưới 46.', 'North Island College', 'Canada', 'Công nghệ thông tin', 'Tiến sĩ', 'CAD$16,015.00 (266,916,667 đ) một năm', 'Bắt đầu chương trình học của bạn tại NIC và nhận tín chỉ chuyển tiếp hai năm (60 tín chỉ) vào bất kỳ trường đại học BC nào. Học các kỹ năng nghiên cứu và tư duy phản biện mạnh mẽ mà các nhà tuyển dụng tìm kiếm khi bạn học nhân chủng học, tội phạm học, nghiên cứu về các quốc gia đầu tiên, tiếng Anh, địa lý, lịch sử, nghiên cứu tự do, ngôn ngữ hiện đại (tiếng Trung, tiếng Pháp và tiếng Tây Ban Nha), triết học, khoa học chính trị, tâm lý học, xã hội học và nghiên cứu của phụ nữ.\r\nĐiểm nổi bật của chương trình:\r\nKhám phá nhân chủng học, tội phạm học, tiếng Anh, các quốc gia đầu tiên, lịch sử, ngôn ngữ hiện đại (tiếng Trung, tiếng Pháp và tiếng Tây Ban Nha), nghiên cứu về Bắc Mỹ, triết học, khoa học chính trị, tâm lý học, xã hội học và nghiên cứu về phụ nữ, cũng như các môn tự chọn về toán và khoa học.\r\nBằng liên kết được cung cấp tại nhiều trường cao đẳng và đại học trên khắp BC. Họ công nhận việc hoàn thành thành công 60 tín chỉ học tập, tức là khoảng 20 khóa học. Với chương trình học toàn thời gian, bạn có thể hoàn thành bằng cao đẳng trong vòng hai năm học. Lựa chọn nghiên cứu bán thời gian cũng có sẵn.\r\nBằng liên kết cung cấp rất nhiều tính linh hoạt. Bạn có thể chọn các khóa học ưa thích của mình từ một danh sách cụ thể các khóa học đủ điều kiện, giúp bạn có thể tập trung học tập vào một lĩnh vực cụ thể hoặc khám phá nhiều môn học khác nhau.', '2300 Ryan Rd, Courtenay, BC V9N 8N6, Canada', 'questions@nic.bc.ca', '+1 800-715-0914', 11, 0, '2023-02-28 18:16:47', '2023-03-21 03:03:10'),
 (4, 7, 'Cử nhân Báo chí Phát thanh và Đa phương tiện', '2023-04-20', '2026-04-20', 'Những người có Tốt Nghiệp Phổ Thông Trung Học (Chứng nhận Tốt nghiệp Trung học Phổ thông) sẽ được xem xét để vào Tổ chức Quốc tế INTO UEA, lý tưởng nhất là với điểm trung bình từ 7.0 trở lên. Sinh viên hoàn thành năm thứ nhất chương trình cử nhân tại một trường đại học Việt Nam với điểm trung bình từ 7,5 trở lên sẽ được xét tuyển vào năm thứ nhất chương trình đại học tại UEA. Học sinh cần có điểm IELTS tổng thể là 6.0 với tối thiểu 5.5 trong mỗi thành phần.', 'Đại học East Anglia UEA', 'Anh', 'Phát thanh và Đa phương tiện', 'Cử nhân', '£19,250.00 (481,250,000 đ) một năm', 'Những người tìm kiếm sự thật và những người kể chuyện áp dụng ở đây. Nếu muốn tạo ra sự khác biệt trên thế giới, nắm giữ quyền lực để giải thích và tìm hiểu điều gì đang thực sự xảy ra, thì đây là khóa học dành cho bạn. Với bằng báo chí truyền hình và đa phương tiện này, bạn sẽ học các kỹ năng cần thiết để trở thành một nhà báo chuyên nghiệp có thể làm việc trên TV, đài phát thanh, báo in, phương tiện truyền thông xã hội và các nền tảng trực tuyến ở Vương quốc Anh và hơn thế nữa. Bạn sẽ học các kỹ năng nghiên cứu, kể chuyện và sản xuất cho thời đại kỹ thuật số. Bạn sẽ được dạy các kỹ năng điều tra và cách sử dụng dữ liệu trong báo chí của mình. Bạn sẽ hiểu các cấu trúc chính trị cung cấp các dịch vụ công cộng mà tất cả chúng ta đều dựa vào và bạn sẽ thực hành báo chí toàn diện, làm việc với các cộng đồng đa dạng để giúp họ kể câu chuyện của mình. Chúng tôi có trụ sở tại Bộ Chính trị tại UEA,', 'Norwich Research Park, Norwich NR4 7TJ, Vương quốc Anh', 'University.secretary@uea.ac.uk', '+44 1603 456161', 0, 0, '2023-02-28 18:46:58', ' '),
 (7, 7, 'Bachelor of Arts / Bachelor of Business', '2023-09-26', '2027-09-26', 'Hoàn thành thỏa đáng một trong những điều sau đây: hoàn thành thành công Chứng chỉ Giáo dục Victoria (VCE) hoặc tương đương, chẳng hạn như bằng cấp Lớp 12 liên bang hoặc quốc tế; hoàn thành hoặc hoàn thành một phần bằng cấp đại học đã được phê duyệt (bao gồm Chứng chỉ IV (đã hoàn thành), văn bằng, văn bằng nâng cao, bằng cao đẳng và bằng cấp).', 'Swinburne University of Technology', 'Úc', 'Công nghệ quảng cáo kỹ thuật số', 'Cử nhân', 'A$34,040.00 (567,333,333 đ) một năm', 'Với bằng kép về Cử nhân Nghệ thuật/Cử nhân Kinh doanh, bạn sẽ sẵn sàng trở thành một doanh nhân toàn diện, người hiểu được điều gì là tốt cho thế giới.\r\n\r\nXây dựng kiến ​​thức kinh doanh, quản lý và vận hành của bạn để bạn sẵn sàng tạo dấu ấn trong thế giới kinh doanh. Sau đó, đi sâu hơn, trau dồi tư duy phản biện và kỹ năng giao tiếp khi bạn khám phá các vấn đề xã hội, kinh tế và văn hóa toàn cầu quan trọng ảnh hưởng đến hoạt động của xã hội đương đại.\r\n\r\nVới sự kết hợp của các bằng cấp này - bạn sẽ có nhiều kỹ năng chuyển đổi cần thiết cho lực lượng lao động trong tương lai. Bạn sẽ học cách trở thành một nhà tư tưởng kinh doanh và nhà đổi mới, đồng thời tìm thấy vô số cơ hội nghề nghiệp đa dạng trong các tập đoàn, chính phủ và tổ chức phi lợi nhuận, doanh nghiệp nhỏ và công ty mới thành lập.\r\n\r\nXây dựng sơ yếu lý lịch của bạn với kinh nghiệm thực tế trong ngành với các chương trình Học tập Tích hợp Công việc của chúng tôi, được đảm bảo trên tất cả các bằng cử nhân của chúng tôi bao gồm các vị trí, thực tập hoặc các dự án liên kết với ngành.', 'John St, Hawthorn VIC 3122, Australia', 'jane.doe@swinburne.edu.au', '+61 1300 794 628', 8, 0, '2023-02-28 20:27:43', '2023-03-21 03:01:19');
 
@@ -1672,7 +1672,8 @@ INSERT INTO `phanquyen` (`ma_q`, `ma_vc`, `status_pq`, `created_pq`, `updated_pq
 (10, 79, 0, '2023-03-23 03:21:58', ' '),
 (10, 80, 0, '2023-03-23 03:22:33', ' '),
 (10, 81, 0, '2023-03-23 03:22:37', ' '),
-(10, 82, 0, '2023-03-23 03:25:04', ' ');
+(10, 82, 0, '2023-03-23 03:25:04', ' '),
+(9, 56, 0, '2023-03-29 04:05:47', ' ');
 
 -- --------------------------------------------------------
 
@@ -1992,7 +1993,6 @@ INSERT INTO `tongiao` (`ma_tg`, `ten_tg`, `status_tg`, `created_tg`, `updated_tg
 (11, 'Cao Đài', 0, '2023-02-17 02:30:41', ' '),
 (12, 'Bửu Sơn Kỳ Hương', 0, '2023-02-17 02:30:47', ' '),
 (13, 'Tịnh Độ Cư Sĩ Phật Hội', 0, '2023-02-17 02:30:57', ' '),
-(14, 'Tứ Ân Hiếu Nghĩa', 0, '2023-02-17 02:31:05', ' '),
 (15, 'Phật Đường Nam Tông Minh Sư Đạo', 0, '2023-02-17 02:31:11', ' '),
 (17, 'Minh Lý Đạo Tam Tông Miếu', 0, '2023-02-17 02:31:29', ' '),
 (18, 'Bà la môn Khơ me', 0, '2023-02-17 02:31:42', ' '),
@@ -2102,7 +2102,7 @@ INSERT INTO `vienchuc` (`ma_vc`, `ma_k`, `ma_cv`, `ma_n`, `ma_b`, `ma_dt`, `ma_t
 (53, 7, 8, 9, 42, 16, 12, 5, 'thanhdien@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Thanh Điện', 'cder34', ' ', 'fer34', '2023-02-05', 0, 'csde3', 'sdwe', 'sw', '2023-02-07', 'wr3', 'ewfr3', '12/12', 'dfr', 'de', 'dew', 'wsr', '2023-02-08', '2023-02-02', '2023-01-30', '2023-02-17', 'er3ewd', 'derd', 'der3wd', 'sdwr', '45', 'fer33', 'sder', 'sewr3', '2023-02-08', 'der3', 'sdwr3', 'dw3', 'dwe3', '2023-02-08', ' ', '2023-02-22', '2026-02-22', 0, '2023-02-15 07:16:05', ' '),
 (54, 7, 8, 10, 0, 16, 10, 0, 'ptxloc@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Thị Xuân Lộc', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:16:16', ' '),
 (55, 7, 8, 8, 0, 17, 17, 0, 'vmhien@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Võ Minh Hiển', ' ', ' ', ' ', '1961-04-14', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:16:27', ' '),
-(56, 7, 8, 7, 28, 16, 12, 0, 'pttai@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phan Tấn Tài', 'rgt5', ' ', 'sdwe', '1961-10-20', 0, 'sdwr', 'dwe', 'swde', '2023-02-02', 'cdfer', 'd', '12/12', 'dere2e', 'dwe2', 'sdwe', 'sawe2', '2023-02-02', '2023-02-05', '2023-02-02', '2023-02-16', 'der34', 'dvfe4r2', 'dcfer', 'csd', '50', 'cfer32', 'csde34', 'csdew3', '2023-01-29', 'csd', 'xas', 'adq', 'asq', '2023-02-08', ' ', '2020-02-22', '2023-02-22', 0, '2023-02-15 07:16:36', ' '),
+(56, 7, 6, 7, 28, 16, 12, 0, 'pttai@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phan Tấn Tài', 'rgt5', ' ', 'sdwe', '1961-10-20', 0, 'sdwr', 'dwe', 'swde', '2023-02-02', 'cdfer', 'd', '12/12', 'dere2e', 'dwe2', 'sdwe', 'sawe2', '2023-02-02', '2023-02-05', '2023-02-02', '2023-02-16', 'der34', 'dvfe4r2', 'dcfer', 'csd', '50', 'cfer32', 'csde34', 'csdew3', '2023-01-29', 'csd', 'xas', 'adq', 'asq', '2023-02-08', ' ', '2020-02-22', '2026-03-29', 0, '2023-02-15 07:16:36', ' '),
 (59, 7, 8, 9, 46, 4, 15, 4, 'mtcnhung@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Mai Thị Cẩm Nhung', '7412554665', ' ', 'dfcddfsdá', '1963-07-16', 1, 'csfsae', 'sdưe', 'fcewé', '2023-02-15', 'dcddf', 'dfcsdf', '12/12', 'vssfe', 'đếw', 'dsđ', 'sdd', '2023-02-15', '2023-02-20', '2023-02-14', '2023-02-06', 'cssft̀ô', 'dcdè', 'đewed', 'edeede', 'deeqưe', 'ưeqưeq', 'eweqe', '147258369', '2023-02-08', '123654789', 'ddfed', 'đw', 'wew', '2023-02-16', ' ', '2023-02-08', '2026-03-08', 0, '2023-02-15 07:17:08', ' '),
 (61, 5, 6, 9, 42, 4, 6, 5, 'ntthien@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Thanh Hiền', '08145132156', '1676704466395.jpg', 'gt45', '1963-01-30', 1, 'Ninh Kiều, Cần Thơ', 'wdwe', 'efwef', '2023-02-01', 'dfre', 'dewdwe', '12/12', 'wdeqweqw', 'dwed', 'wdeqwe', 'weqweq', '2023-02-08', '2023-02-14', '2023-02-14', '2023-02-02', 'wsdwqdeqw', 'sdqwed', 'weqwe', 'weqwe', 'weqwe', 'wqeqwe', 'weqwe', '123456789', '2023-02-08', 'sqws', 'wqeqw', 'qwq', 'qeqwe', '2023-02-07', ' ', '2023-02-06', '2026-03-20', 0, '2023-02-15 07:17:30', ' '),
 (62, 7, 8, 6, 0, 20, 18, 0, 'ldthang@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Đức Thắng', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:17:41', ' ');
@@ -12940,7 +12940,7 @@ ALTER TABLE `xa`
 -- AUTO_INCREMENT cho bảng `bac`
 --
 ALTER TABLE `bac`
-  MODIFY `ma_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `ma_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT cho bảng `bangcap`
@@ -12970,7 +12970,7 @@ ALTER TABLE `danhmuclop`
 -- AUTO_INCREMENT cho bảng `dantoc`
 --
 ALTER TABLE `dantoc`
-  MODIFY `ma_dt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `ma_dt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT cho bảng `dunghoc`
@@ -12988,7 +12988,7 @@ ALTER TABLE `file`
 -- AUTO_INCREMENT cho bảng `giadinh`
 --
 ALTER TABLE `giadinh`
-  MODIFY `ma_gd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ma_gd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `giahan`
@@ -13006,7 +13006,7 @@ ALTER TABLE `hedaotao`
 -- AUTO_INCREMENT cho bảng `hinhthuckhenthuong`
 --
 ALTER TABLE `hinhthuckhenthuong`
-  MODIFY `ma_htkt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ma_htkt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `huyen`
@@ -13024,7 +13024,7 @@ ALTER TABLE `ketqua`
 -- AUTO_INCREMENT cho bảng `khenthuong`
 --
 ALTER TABLE `khenthuong`
-  MODIFY `ma_kt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ma_kt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT cho bảng `khoa`
@@ -13036,13 +13036,13 @@ ALTER TABLE `khoa`
 -- AUTO_INCREMENT cho bảng `khuvuc`
 --
 ALTER TABLE `khuvuc`
-  MODIFY `ma_kv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ma_kv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `kyluat`
 --
 ALTER TABLE `kyluat`
-  MODIFY `ma_kl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ma_kl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT cho bảng `loaibangcap`
@@ -13054,13 +13054,13 @@ ALTER TABLE `loaibangcap`
 -- AUTO_INCREMENT cho bảng `loaikhenthuong`
 --
 ALTER TABLE `loaikhenthuong`
-  MODIFY `ma_lkt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ma_lkt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `loaikyluat`
 --
 ALTER TABLE `loaikyluat`
-  MODIFY `ma_lkl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ma_lkl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `lop`
@@ -13072,7 +13072,7 @@ ALTER TABLE `lop`
 -- AUTO_INCREMENT cho bảng `ngach`
 --
 ALTER TABLE `ngach`
-  MODIFY `ma_n` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `ma_n` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT cho bảng `noisinh`
@@ -13096,7 +13096,7 @@ ALTER TABLE `quocgia`
 -- AUTO_INCREMENT cho bảng `quyen`
 --
 ALTER TABLE `quyen`
-  MODIFY `ma_q` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `ma_q` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT cho bảng `quyetdinh`

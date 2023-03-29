@@ -206,9 +206,6 @@
                     &ensp; Cập nhật
                   </button>
                 </a>
-                {{-- <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_khenthuong/'.$khenthuong->ma_kt.'/'.$ma_vc)}}">
-                  <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-                </a> --}}
                 <input class="ma_kt{{ $khenthuong->ma_kt }}" type="hidden" value="{{ $khenthuong->ma_kt }}">
                 <button type="button" class=" xoa{{ $khenthuong->ma_kt }} btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
                 <?php

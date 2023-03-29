@@ -474,9 +474,10 @@ Route::post('/add_kyluat/{ma_vc}',[KyLuatController::class, 'add_kyluat']);
 Route::get('/select_kyluat/{ma_kl}',[KyLuatController::class, 'select_kyluat']);
 Route::get('/edit_kyluat/{ma_kl}/{ma_vc}',[KyLuatController::class, 'edit_kyluat']);
 Route::post('/update_kyluat/{ma_kl}/{ma_vc}',[KyLuatController::class, 'update_kyluat']);
-Route::get('/delete_kyluat/{ma_kl}/{ma_vc}',[KyLuatController::class, 'delete_kyluat']);
+Route::get('/delete_kyluat',[KyLuatController::class, 'delete_kyluat']);
 Route::get('/delete_all_kyluat/{ma_vc}',[KyLuatController::class, 'delete_all_kyluat']);
 Route::get('/kyluat_pdf/{ma_kl}',[KyLuatController::class, 'kyluat_pdf']);
+Route::post('/delete_kyluat_check',[KyLuatController::class, 'delete_kyluat_check']);
 
 
 
