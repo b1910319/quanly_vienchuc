@@ -1,5 +1,275 @@
 @extends('layout')
 @section('content')
+<div class="row">
+  <div class="col-6">
+    <div class="card-box">
+      <p class="fw-bold text-center text-black" style="font-size: 21px">THÔNG TIN VIÊN CHỨC</p>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row" style="width: 20%; background-color: #1077E2; font-weight: bold; font-size: 16px; color: white">
+              Họ tên
+            </th>
+            <td class="fw-bold">{{ $vienchuc->hoten_vc }}</td>
+          </tr>
+          <tr>
+            <th scope="row" style="width: 20%; background-color: #1077E2; font-weight: bold; font-size: 16px; color: white">Mã số</th>
+            <td class="fw-bold">VC{{ $vienchuc->ma_vc }}</td>
+          </tr>
+          <tr>
+            <th scope="row" style="width: 20%; background-color: #1077E2; font-weight: bold; font-size: 16px; color: white">Email</th>
+            <td class="fw-bold">{{ $vienchuc->user_vc }}</td>
+          </tr>
+          <tr>
+            <th scope="row" style="width: 20%; background-color: #1077E2; font-weight: bold; font-size: 16px; color: white">Số điện thoại</th>
+            <td class="fw-bold">{{ $vienchuc->sdt_vc }}</td>
+          </tr>
+          @if (!$phanquyen_admin)
+            <tr>
+              <th scope="row" style="width: 20%; background-color: #1077E2; font-weight: bold; font-size: 16px; color: white">Ngày sinh</th>
+              <td class="fw-bold">{{ $vienchuc->ngaysinh_vc }}</td>
+            </tr>
+            <tr>
+              <th scope="row" style="width: 20%; background-color: #1077E2; font-weight: bold; font-size: 16px; color: white">Ngạch viên chức</th>
+              <td class="fw-bold">
+                @foreach ($list_ngach as $ngach )
+                  @if ($ngach->ma_n == $vienchuc->ma_n)
+                    {{ $ngach->ten_n }}
+                  @endif
+                @endforeach
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" style="width: 20%; background-color: #1077E2; font-weight: bold; font-size: 16px; color: white">Dân tộc</th>
+              <td class="fw-bold">
+                @foreach ($list_dantoc as $dantoc )
+                  @if ($dantoc->ma_dt == $vienchuc->ma_dt)
+                    {{ $dantoc->ten_dt }}
+                  @endif
+                @endforeach
+              </td>
+            </tr>
+          @endif
+          <tr>
+            <th scope="row" style="width: 20%; background-color: #1077E2; font-weight: bold; font-size: 16px; color: white">Khoa</th>
+            @foreach ($list_khoa as $khoa )
+              @if ($khoa->ma_k == $vienchuc->ma_k)
+                <td class="fw-bold">
+                  {{ $khoa->ten_k }}
+                </td>
+              @endif
+            @endforeach
+          </tr>
+          <tr>
+            <th scope="row" style="width: 20%; background-color: #1077E2; font-weight: bold; font-size: 16px; color: white">Chức vụ</th>
+            @foreach ($list_chucvu as $chucvu )
+              @if ($chucvu->ma_cv == $vienchuc->ma_cv)
+                <td class="fw-bold">
+                  {{ $chucvu->ten_cv }}
+                </td>
+              @endif
+            @endforeach
+          </tr>
+        </tbody>
+      </table>
+      @if (!$phanquyen_admin)
+        <div class="mt-2">&ensp;</div>
+      @endif
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+          <a href="{{ URL::to('thongtin_canhan') }}">
+            <button type="submit"  class="btn btn-primary font-weight-bold" style="background-color: #FF5B00; border: none; width: 100%;">
+              <i class="fas fa-plus-square"></i>
+              &ensp;
+              Xem thêm
+            </button>
+          </a>
+        </div>
+        <div class="col-4"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="card-box">
+      <div class="row">
+        @if ($phanquyen_admin)
+          <div class="col-3 mt-1">
+            <a href="{{ URL::to('phanquyen') }}">
+              <p class="text-center">
+                <i class="fa-solid fa-drum-steelpan" style="font-size: 60px;color: #FC7300"></i>
+                <br>
+                <span style="font-weight: bold; font-size: 20px; color: black">
+                  Phân quyền
+                </span>
+              </p>
+            </a>
+          </div>
+          <div class="col-3 mt-1">
+            <a href="{{ URL::to('file') }}">
+              <p class="text-center">
+                <i class="fa-solid fa-file" style="font-size: 60px;color: #0b44a8"></i>
+                <br>
+                <span style="font-weight: bold; font-size: 20px; color: black">
+                  Quản lý File
+                </span>
+              </p>
+            </a>
+          </div>
+        @endif
+        @if ($phanquyen_admin || $phanquyen_qltt)
+          <div class="col-3 mt-1">
+            <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">
+              <p class="text-center">
+                <i class="fa-solid fa-circle-info" style="font-size: 60px;color: #00541A"></i>
+                <br>
+                <span style="font-weight: bold; font-size: 20px; color: black">
+                  Quản lý thông tin
+                </span>
+              </p>
+            </a>
+          </div>
+        @endif
+        @if ($phanquyen_admin || $phanquyen_qlktkl)
+          <div class="col-3 mt-1">
+            <a href="{{ URL::to('khenthuong') }}">
+              <p class="text-center">
+                <i class="fa-solid fa-award" style="font-size: 60px;color: #FFD31D"></i>
+                <br>
+                <span style="font-weight: bold; font-size: 20px; color: black">
+                  Quản lý khen thưởng
+                </span>
+              </p>
+            </a>
+          </div>
+          <div class="col-3 mt-1">
+            <a href="{{ URL::to('kyluat') }}">
+              <p class="text-center">
+                <i class="fa-solid fa-circle-xmark" style="font-size: 60px;color: #AC0D0D"></i>
+                <br>
+                <span style="font-weight: bold; font-size: 20px; color: black">
+                  Quản lý kỹ luật
+                </span>
+              </p>
+            </a>
+          </div>
+        @endif
+        @if ($phanquyen_admin || $phanquyen_qlcttc)
+          <div class="col-3 mt-1">
+            <a href="{{ URL::to('lop') }}">
+              <p class="text-center">
+                <i class="fa-solid fa-sitemap" style="font-size: 60px;color: #2A1A5E"></i>
+                <br>
+                <span style="font-weight: bold; font-size: 20px; color: black">
+                  Quản lý công tác tổ chức
+                </span>
+              </p>
+            </a>
+          </div>
+        @endif
+        <div class="col-3 mt-1">
+          <a href="{{ URL::to('thongtin_canhan') }}">
+            <p class="text-center">
+              <i class="fa-solid fa-circle-user" style="font-size: 60px;color: #155263"></i>
+              <br>
+              <span style="font-weight: bold; font-size: 20px; color: black">
+                Thông tin cá nhân
+              </span>
+            </p>
+          </a>
+        </div>
+        <div class="col-3 mt-1">
+          <a href="{{ URL::to('thongtin_bangcap') }}">
+            <p class="text-center">
+              <i class="fa-solid fa-pager" style="font-size: 60px;color: #ADA2FF"></i>
+              <br>
+              <span style="font-weight: bold; font-size: 20px; color: black">
+                Bằng cấp
+              </span>
+            </p>
+          </a>
+        </div>
+        <div class="col-3 mt-1">
+          <a href="{{ URL::to('thongtin_khenthuong') }}">
+            <p class="text-center">
+              <i class="fa-solid fa-award" style="font-size: 60px;color: #FFD31D"></i>
+              <br>
+              <span style="font-weight: bold; font-size: 20px; color: black">
+                Khen thưởng
+              </span>
+            </p>
+          </a>
+        </div>
+        <div class="col-3 mt-1">
+          <a href="{{ URL::to('thongtin_kyluat') }}">
+            <p class="text-center">
+              <i class="fa-solid fa-circle-xmark" style="font-size: 60px;color: #AC0D0D"></i>
+              <br>
+              <span style="font-weight: bold; font-size: 20px; color: black">
+                Kỹ luật
+              </span>
+            </p>
+          </a>
+        </div>
+        <div class="col-3 mt-1">
+          <a href="{{ URL::to('thongtin_lophoc') }}">
+            <p class="text-center">
+              <i class="fa-solid fa-person-shelter" style="font-size: 60px;color: #38E54D"></i>
+              <br>
+              <span style="font-weight: bold; font-size: 20px; color: black">
+                Lớp viên chức tham gia
+              </span>
+            </p>
+          </a>
+        </div>
+        @if ($phanquyen_qlk)
+          <div class="col-3 mt-1">
+            <a href="{{ URL::to('thongtin_vienchuc_khoa') }}">
+              <p class="text-center">
+                <i class="fa-solid fa-building" style="font-size: 60px;color: #CDC733"></i>
+                <br>
+                <span style="font-weight: bold; font-size: 20px; color: black">
+                  Quản lý viên chức của khoa
+                </span>
+              </p>
+            </a>
+          </div>
+        @endif
+        <div class="col-3 mt-1"></div>
+      </div>
+    </div>
+    @if (!$phanquyen_admin)
+      <div class="card-box">
+        <div class="row">
+          <p class="fw-bold text-center text-black" style="font-size: 18px">THÔNG TIN TRƯỞNG KHOA</p>
+          <table class="table">
+            <tbody>
+              @foreach ($truongkhoa as $tk )
+                <tr>
+                  <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Mã số viên chức </th>
+                  <td class="fw-bold">VC{{ $tk->ma_vc }}</td>
+                </tr>
+                <tr>
+                  <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Họ tên </th>
+                  <td class="fw-bold">{{ $tk->hoten_vc }}</td>
+                </tr>
+                <tr>
+                  <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Email </th>
+                  <td class="fw-bold">{{ $tk->user_vc }}</td>
+                </tr>
+                <tr>
+                  <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Số điện thoại </th>
+                  <td class="fw-bold">{{ $tk->sdt_vc }}</td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    @endif
+  </div>
+</div>
 <div class="row"  >
   @if ($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlktkl || $phanquyen_qlcttc  )
     <div class="col-xl-3 col-md-6">
@@ -16,7 +286,6 @@
       </div>
     </div>
   @endif
-
   @if ($phanquyen_qlk)
     <div class="col-xl-3 col-md-6">
       <div class="card-box">
@@ -159,113 +428,6 @@
 </div>
 <!-- end row -->
 
-<div class="row">
-  {{-- thời tiết --}}
-  {{-- <div class="col-xl-4">
-    <div class="card-box">
-      <!-- weather widget start --><a target="_blank" href="https://hotelmix.vn/weather/can-tho-33807"><img src="https://w.bookcdn.com/weather/picture/3_33807_1_33_137AE9_430_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=38699&domid=1180&anc_id=20094"  alt="booked.net"/></a><!-- weather widget end -->
-    </div> <!-- end card-box -->
-  </div> <!-- end col --> --}}
-
-  {{-- <div class="col-xl-4">
-    <div class="card-box">
-      <div class="dropdown float-right">
-        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-          <i class="mdi mdi-dots-horizontal"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right">
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Settings</a>
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Download</a>
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Upload</a>
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Action</a>
-        </div>
-      </div>
-
-      <h4 class="header-title">Total Revenue</h4>
-
-      <div class="mt-3 text-center">
-        <p class="text-muted font-15 font-family-secondary mb-0">
-          <span class="mx-2"><i class="mdi mdi-checkbox-blank-circle text-success"></i> Desktop</span>
-          <span class="mx-2"><i class="mdi mdi-checkbox-blank-circle text-primary"></i> Laptop</span>
-        </p>
-
-        <div id="sparkline1" class="mt-3"></div>
-
-        <div class="row mt-3">
-          <div class="col-4">
-            <p class="text-muted font-15 mb-1 text-truncate">Target</p>
-            <h4> $56,214</h4>
-          </div>
-          <div class="col-4">
-            <p class="text-muted font-15 mb-1 text-truncate">Last week</p>
-            <h4><i class="fe-arrow-up text-success"></i> $840</h4>
-          </div>
-          <div class="col-4">
-            <p class="text-muted font-15 mb-1 text-truncate">Last Month</p>
-            <h4><i class="fe-arrow-down text-danger"></i> $7,845</h4>
-          </div>
-        </div>
-      </div>
-    </div> <!-- end card-box -->
-  </div> <!-- end col -->
-
-  <div class="col-xl-4">
-    <div class="card-box">
-      <div class="dropdown float-right">
-        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-          <i class="mdi mdi-dots-horizontal"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right">
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Settings</a>
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Download</a>
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Upload</a>
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item">Action</a>
-        </div>
-      </div>
-
-      <h4 class="header-title">Weekly Sales Report</h4>
-
-      <div class="mt-3 text-center">
-        <p class="text-muted font-15 font-family-secondary mb-0">
-          <span class="mx-2"><i class="mdi mdi-checkbox-blank-circle text-secondary"></i> Direct</span>
-          <span class="mx-2"><i class="mdi mdi-checkbox-blank-circle text-primary"></i>
-            Affilliate</span>
-          <span class="mx-2"><i class="mdi mdi-checkbox-blank-circle text-light"></i>
-            Sponsored</span>
-        </p>
-
-        <div id="sparkline3" class="text-center mt-3"></div>
-
-        <div class="row mt-3">
-          <div class="col-4">
-            <p class="text-muted font-15 mb-1 text-truncate">Target</p>
-            <h4> $12,365</h4>
-          </div>
-          <div class="col-4">
-            <p class="text-muted font-15 mb-1 text-truncate">Last week</p>
-            <h4><i class="fe-arrow-down text-danger"></i> $365</h4>
-          </div>
-          <div class="col-4">
-            <p class="text-muted font-15 mb-1 text-truncate">Last Month</p>
-            <h4><i class="fe-arrow-up text-success"></i> $8,501</h4>
-          </div>
-        </div>
-
-      </div>
-    </div> <!-- end card-box -->
-  </div> <!-- end col --> --}}
-  
-
-</div>
-<!-- end row -->
 
 <div class="row">
   <div class="col-xl-12">

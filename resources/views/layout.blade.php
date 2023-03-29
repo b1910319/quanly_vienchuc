@@ -117,8 +117,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
               <span>Đổi mật khẩu</span>
             </a>
             <a href="{{ URL::to('/logout') }}" class="dropdown-item notify-item">
-              <i class="remixicon-logout-box-line"></i>
-              <span>Đăng xuất</span>
+              <i class="fa-solid fa-power-off"></i>
+              <span>Thoát</span>
             </a>
 
           </div>
@@ -703,15 +703,31 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
           <div class="row" style="padding-top: 200px">
             <div class="col-12">
               <div class="page-title-box">
-                <h4 class="page-title">
-                  Welcome ! 
-                  <span style="text-transform: uppercase; font-weight: bold; color: #0000BD">
-                    <?php
-                      $hoten_vc = session()->get('hoten_vc');
-                      echo $hoten_vc;
-                    ?>
-                  </span>
-                </h4>
+                <div class="row">
+                  <div class="col-11">
+                    <h4 class="page-title">
+                      <a href="{{ URL::to('home') }}">
+                        <span style="text-transform: uppercase; font-weight: bold; color: #379237; font-size: 20px;">
+                          <?php
+                            $hoten_vc = session()->get('hoten_vc');
+                            echo $hoten_vc;
+                          ?>
+                        </span>
+                      </a>
+                      
+                    </h4>
+                  </div>
+                  <div class="col-1 mt-2">
+                    <a href="{{ URL::to('logout') }}">
+                      <button type="button" class="btn btn-light fw-bold" style="width: 100%; color: #AC0D0D">
+                        <i class="fa-solid fa-power-off"></i>
+                        &ensp;
+                        Thoát
+                      </button>
+                    </a>
+                  </div>
+                </div>
+                
               </div>
             </div>
           </div>

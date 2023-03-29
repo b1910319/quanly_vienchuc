@@ -121,7 +121,21 @@ class HomeController extends Controller
     $list_file = File::where('status_f', '<>', '1')
       ->orderBy('ma_f', 'desc')
       ->get();
+    $vienchuc = VienChuc::find($ma_vc);
+    $list_khoa = Khoa::orderBy('ten_k', 'asc')
+      ->get();
+    $list_chucvu = ChucVu::orderBy('ten_cv', 'asc')
+      ->get();
+    $list_ngach = Ngach::orderBy('ten_n', 'asc')
+      ->get();
+    $list_dantoc = DanToc::orderBy('ten_dt', 'asc')
+      ->get();
+    $truongkhoa = VienChuc::where('ma_k', $ma_k)
+      ->where('ma_cv', '6')
+      ->get();
     return view('home.home')
+      ->with('vienchuc', $vienchuc)
+      ->with('truongkhoa', $truongkhoa)
       ->with('title', $title)
 
       ->with('count_vienchuc', $count_vienchuc)
@@ -136,6 +150,10 @@ class HomeController extends Controller
 
       ->with('list_lop', $list_lop)
       ->with('list_file', $list_file)
+      ->with('list_khoa', $list_khoa)
+      ->with('list_chucvu', $list_chucvu)
+      ->with('list_ngach', $list_ngach)
+      ->with('list_dantoc', $list_dantoc)
 
       ->with('phanquyen_qlk', $phanquyen_qlk)
       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
