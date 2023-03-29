@@ -183,8 +183,8 @@
                     &ensp; Cập nhật
                   </button>
                 </a>
-                <input class="ma_b" type="hidden" value="{{ $bac->ma_b }}">
-                <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
+                <input class="ma_b{{ $bac->ma_b }}" type="hidden" value="{{ $bac->ma_b }}">
+                <button type="button" class=" xoa{{ $bac->ma_b }} btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
                 <?php
                   if($bac->status_b == 0){
                     ?>
@@ -244,49 +244,52 @@
     })
     
   });
-  document.querySelector('.xoa').addEventListener('click', (event)=>{
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-      },
-      buttonsStyling: false
-    })
+  @foreach ($list as $bac )
+    document.querySelector('.xoa{{ $bac->ma_b }}').addEventListener('click', (event)=>{
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
 
-    swalWithBootstrapButtons.fire({
-      title: 'Bạn có chắc muốn xoá không?',
-      text: "Bạn không thể khôi phục dữ liệu đã xoá",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
-      cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        var id= $('.ma_b').val();
-        $.ajax({
-          url:"{{ url("/delete_bac") }}", 
-          type: "GET", 
-          data: {id:id},
-        });
-        swalWithBootstrapButtons.fire(
-          'Xoá thành công',
-          'Dữ liệu của bạn đã được xoá.',
-          'success'
-        )
-      } else if (
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Đã huỷ',
-          'Dữ liệu được an toàn',
-          'error'
-        )
-      }
-      location.reload();
-    })
-    
-  });
+      swalWithBootstrapButtons.fire({
+        title: 'Bạn có chắc muốn xoá không?',
+        text: "Bạn không thể khôi phục dữ liệu đã xoá",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
+        cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          var id= $('.ma_b{{ $bac->ma_b }}').val();
+          $.ajax({
+            url:"{{ url("/delete_bac") }}", 
+            type: "GET", 
+            data: {id:id},
+          });
+          swalWithBootstrapButtons.fire(
+            'Xoá thành công',
+            'Dữ liệu của bạn đã được xoá.',
+            'success'
+          )
+        } else if (
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Đã huỷ',
+            'Dữ liệu được an toàn',
+            'error'
+          )
+        }
+        location.reload();
+      })
+      
+    });
+  @endforeach
+  
 </script>
 <!--  -->
 @endsection
