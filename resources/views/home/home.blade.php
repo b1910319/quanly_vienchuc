@@ -7,30 +7,30 @@
       <table class="table">
         <tbody>
           <tr>
-            <th scope="row" style="width: 20%; background-color: #1077E2; font-weight: bold; font-size: 16px; color: white">
+            <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">
               Họ tên
             </th>
             <td class="fw-bold">{{ $vienchuc->hoten_vc }}</td>
           </tr>
           <tr>
-            <th scope="row" style="width: 20%; background-color: #1077E2; font-weight: bold; font-size: 16px; color: white">Mã số</th>
+            <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Mã số</th>
             <td class="fw-bold">VC{{ $vienchuc->ma_vc }}</td>
           </tr>
           <tr>
-            <th scope="row" style="width: 20%; background-color: #1077E2; font-weight: bold; font-size: 16px; color: white">Email</th>
+            <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Email</th>
             <td class="fw-bold">{{ $vienchuc->user_vc }}</td>
           </tr>
           <tr>
-            <th scope="row" style="width: 20%; background-color: #1077E2; font-weight: bold; font-size: 16px; color: white">Số điện thoại</th>
+            <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Số điện thoại</th>
             <td class="fw-bold">{{ $vienchuc->sdt_vc }}</td>
           </tr>
           @if (!$phanquyen_admin)
             <tr>
-              <th scope="row" style="width: 20%; background-color: #1077E2; font-weight: bold; font-size: 16px; color: white">Ngày sinh</th>
+              <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Ngày sinh</th>
               <td class="fw-bold">{{ $vienchuc->ngaysinh_vc }}</td>
             </tr>
             <tr>
-              <th scope="row" style="width: 20%; background-color: #1077E2; font-weight: bold; font-size: 16px; color: white">Ngạch viên chức</th>
+              <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Ngạch viên chức</th>
               <td class="fw-bold">
                 @foreach ($list_ngach as $ngach )
                   @if ($ngach->ma_n == $vienchuc->ma_n)
@@ -40,7 +40,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row" style="width: 20%; background-color: #1077E2; font-weight: bold; font-size: 16px; color: white">Dân tộc</th>
+              <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Dân tộc</th>
               <td class="fw-bold">
                 @foreach ($list_dantoc as $dantoc )
                   @if ($dantoc->ma_dt == $vienchuc->ma_dt)
@@ -51,7 +51,7 @@
             </tr>
           @endif
           <tr>
-            <th scope="row" style="width: 20%; background-color: #1077E2; font-weight: bold; font-size: 16px; color: white">Khoa</th>
+            <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Khoa</th>
             @foreach ($list_khoa as $khoa )
               @if ($khoa->ma_k == $vienchuc->ma_k)
                 <td class="fw-bold">
@@ -61,7 +61,7 @@
             @endforeach
           </tr>
           <tr>
-            <th scope="row" style="width: 20%; background-color: #1077E2; font-weight: bold; font-size: 16px; color: white">Chức vụ</th>
+            <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Chức vụ</th>
             @foreach ($list_chucvu as $chucvu )
               @if ($chucvu->ma_cv == $vienchuc->ma_cv)
                 <td class="fw-bold">
@@ -148,7 +148,7 @@
                 <i class="fa-solid fa-circle-xmark" style="font-size: 60px;color: #AC0D0D"></i>
                 <br>
                 <span style="font-weight: bold; font-size: 20px; color: black">
-                  Quản lý kỹ luật
+                  Quản lý kỷ luật
                 </span>
               </p>
             </a>
@@ -246,19 +246,19 @@
             <tbody>
               @foreach ($truongkhoa as $tk )
                 <tr>
-                  <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Mã số viên chức </th>
+                  <th scope="row" style="width: 20%; background-color: #0b44a8; font-weight: bold; font-size: 16px; color: white">Mã số viên chức </th>
                   <td class="fw-bold">VC{{ $tk->ma_vc }}</td>
                 </tr>
                 <tr>
-                  <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Họ tên </th>
+                  <th scope="row" style="width: 20%; background-color: #0b44a8; font-weight: bold; font-size: 16px; color: white">Họ tên </th>
                   <td class="fw-bold">{{ $tk->hoten_vc }}</td>
                 </tr>
                 <tr>
-                  <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Email </th>
+                  <th scope="row" style="width: 20%; background-color: #0b44a8; font-weight: bold; font-size: 16px; color: white">Email </th>
                   <td class="fw-bold">{{ $tk->user_vc }}</td>
                 </tr>
                 <tr>
-                  <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Số điện thoại </th>
+                  <th scope="row" style="width: 20%; background-color: #0b44a8; font-weight: bold; font-size: 16px; color: white">Số điện thoại </th>
                   <td class="fw-bold">{{ $tk->sdt_vc }}</td>
                 </tr>
               @endforeach

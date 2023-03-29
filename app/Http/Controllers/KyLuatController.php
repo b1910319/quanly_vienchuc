@@ -319,6 +319,7 @@ class KyLuatController extends Controller
       return Redirect::to('/home');
     }
   }
+  
   public function delete_all_kyluat($ma_vc){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
