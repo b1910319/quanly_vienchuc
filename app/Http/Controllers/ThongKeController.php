@@ -2,6 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ThongKeQLKTKL_kt_14Export;
+use App\Exports\ThongKeQLKTKL_kt_13Export;
+use App\Exports\ThongKeQLKTKL_kt_12Export;
+use App\Exports\ThongKeQLKTKL_kt_11Export;
+use App\Exports\ThongKeQLKTKL_kt_10Export;
+use App\Exports\ThongKeQLKTKL_kt_9Export;
+use App\Exports\ThongKeQLKTKL_kt_8Export;
+use App\Exports\ThongKeQLKTKL_kt_7Export;
+use App\Exports\ThongKeQLKTKL_kt_6Export;
+use App\Exports\ThongKeQLKTKL_kt_5Export;
+use App\Exports\ThongKeQLKTKL_kt_4Export;
 use App\Exports\ThongKeQLKTKL_kt_2Export;
 use App\Exports\ThongKeQLKTKL_kt_3Export;
 use App\Exports\ThongKeQLKTKL_kt_allExport;
@@ -1687,6 +1698,7 @@ class ThongKeController extends Controller
           ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
           ->where('khenthuong.ma_lkt', $data['ma_lkt'])
           ->where('vienchuc.ma_k', $data['ma_k'])
+          ->where('khenthuong.ma_htkt', $data['ma_htkt'])
           ->where('status_vc', '<>', '2')
           ->where('status_kt', '<>', '2')
           ->get();
@@ -2258,6 +2270,21 @@ class ThongKeController extends Controller
         'khenthuong' => $khenthuong,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlktkl_kt_loc_4_excel($ma_lkt, $ma_k, $ma_htkt){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      return Excel::download(new ThongKeQLKTKL_kt_4Export($ma_lkt, $ma_k, $ma_htkt), 'Khen-thuong-vien-chuc.xlsx');
     }else{
       return Redirect::to('/home');
     }
