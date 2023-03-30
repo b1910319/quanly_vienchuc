@@ -1832,10 +1832,8 @@
     @endif
 
     @if (isset($list_kl_all))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          THÔNG TIN KỶ LUẬT CỦA VIÊN CHỨC
-        </h3>
+      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+        ________THỐNG KÊ KHEN THƯỞNG CỦA VIÊN CHỨC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -1927,6 +1925,15 @@
               <i class="fa-solid fa-file-pdf"></i>
               &ensp;
               Xuất file PDF
+            </button>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlktkl_kl_loc_all_excel/'.$ma_lkl.'/'.$ma_k.'/'.$batdau_kl.'/'.$ketthuc_kl) }}">
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file-excel"></i>
+              &ensp;
+              Xuất file Excel
             </button>
           </a>
         </div>

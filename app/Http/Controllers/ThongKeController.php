@@ -2,6 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ThongKeQLKTKL_kl_7Export;
+use App\Exports\ThongKeQLKTKL_kl_6Export;
+use App\Exports\ThongKeQLKTKL_kl_5Export;
+use App\Exports\ThongKeQLKTKL_kl_4Export;
+use App\Exports\ThongKeQLKTKL_kl_3Export;
+use App\Exports\ThongKeQLKTKL_kl_2Export;
+use App\Exports\ThongKeQLKTKL_kl_allExport;
 use App\Exports\ThongKeQLKTKL_kt_15Export;
 use App\Exports\ThongKeQLKTKL_kt_14Export;
 use App\Exports\ThongKeQLKTKL_kt_13Export;
@@ -3165,6 +3172,21 @@ class ThongKeController extends Controller
         'kyluat' => $kyluat,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlktkl_kl_loc_all_excel($ma_lkl, $ma_k, $batdau_kl, $ketthuc_kl){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      return Excel::download(new ThongKeQLKTKL_kl_allExport($ma_lkl, $ma_k, $batdau_kl, $ketthuc_kl), 'Ky-luat-vien-chuc.xlsx');
     }else{
       return Redirect::to('/home');
     }
