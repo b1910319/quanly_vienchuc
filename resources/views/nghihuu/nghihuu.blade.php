@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+<?php use Illuminate\Support\Carbon; ?>
 <div class="row">
   <div class="card-box">
     <div class="mt-3"></div>
@@ -11,8 +12,9 @@
         <tr>
           <th scope="col">STT</th>
           <th scope="col">Tên </th>
-          <th scope="col">UserName</th>
+          <th scope="col">Email</th>
           <th scope="col">Ngày sinh</th>
+          <th scope="col">Ngày nghĩ hưu</th>
           <th scope="col">Trạng thái</th>
           <th scope="col"></th>
         </tr>
@@ -26,6 +28,21 @@
             </td>
             <td>{{ $vienchuc->user_vc }}</td>
             <td>{{ $vienchuc->ngaysinh_vc }}</td>
+            <td>
+              @if ($vienchuc->gioitinh == 0)
+                <?php 
+                  $ngay_nghihuu = strtotime ( '+744 month' , strtotime ( $vienchuc->ngaysinh_vc ) ) ;
+                  $ngay_nghihuu = date ( 'Y-m-j' , $ngay_nghihuu );
+                  echo $ngay_nghihuu;
+                ?>
+              @else
+                <?php 
+                  $ngay_nghihuu = strtotime ( '+720 month' , strtotime ( $vienchuc->ngaysinh_vc ) ) ;
+                  $ngay_nghihuu = date ( 'Y-m-j' , $ngay_nghihuu );
+                  echo $ngay_nghihuu;
+                ?>
+              @endif
+            </td>
             <td>
               @if ($vienchuc->status_vc == 0)
                 <span class="badge rounded-pill text-bg-success">Kích hoạt</span>
@@ -384,8 +401,9 @@
       <thead class="thead-light">
         <tr>
           <th scope="col">Tên </th>
-          <th scope="col">UserName</th>
+          <th scope="col">Email</th>
           <th scope="col">Ngày sinh</th>
+          <th scope="col">Ngày nghĩ hưu</th>
           <th scope="col">Trạng thái</th>
           <th scope="col"></th>
         </tr>
@@ -401,6 +419,15 @@
             </td>
             <td>
               {{ $vienchuc->ngaysinh_vc }}
+            </td>
+            <td>
+              <td>
+                <?php 
+                  $ngay_nghihuu = strtotime ( '+720 month' , strtotime ( $vienchuc->ngaysinh_vc ) ) ;
+                  $ngay_nghihuu = date ( 'Y-m-j' , $ngay_nghihuu );
+                  echo $ngay_nghihuu;
+                ?>
+              </td>
             </td>
             <td>
               <?php
@@ -787,6 +814,15 @@
               {{ $vienchuc->ngaysinh_vc }}
             </td>
             <td>
+              <td>
+                <?php 
+                  $ngay_nghihuu = strtotime ( '+744 month' , strtotime ( $vienchuc->ngaysinh_vc ) ) ;
+                  $ngay_nghihuu = date ( 'Y-m-j' , $ngay_nghihuu );
+                  echo $ngay_nghihuu;
+                ?>
+              </td>
+            </td>
+            <td>
               <?php
                 if($vienchuc->status_vc == 0){
                   ?>
@@ -1168,8 +1204,9 @@
       <thead class="thead-light">
         <tr>
           <th scope="col">Tên </th>
-          <th scope="col">UserName</th>
+          <th scope="col">Email</th>
           <th scope="col">Ngày sinh</th>
+          <th scope="col">Ngày nghĩ hưu</th>
           <th scope="col">Trạng thái</th>
           <th scope="col"></th>
         </tr>
@@ -1185,6 +1222,15 @@
             </td>
             <td>
               {{ $vienchuc->ngaysinh_vc }}
+            </td>
+            <td>
+              <td>
+                <?php 
+                  $ngay_nghihuu = strtotime ( '+720 month' , strtotime ( $vienchuc->ngaysinh_vc ) ) ;
+                  $ngay_nghihuu = date ( 'Y-m-j' , $ngay_nghihuu );
+                  echo $ngay_nghihuu;
+                ?>
+              </td>
             </td>
             <td>
               <?php
@@ -1565,6 +1611,13 @@
             </td>
             <td>{{ $vienchuc->user_vc }}</td>
             <td>{{ $vienchuc->ngaysinh_vc }}</td>
+            <td>
+              <?php 
+                $ngay_nghihuu = strtotime ( '+744 month' , strtotime ( $vienchuc->ngaysinh_vc ) ) ;
+                $ngay_nghihuu = date ( 'Y-m-j' , $ngay_nghihuu );
+                echo $ngay_nghihuu;
+              ?>
+            </td>
             <td>
               <?php
                 if($vienchuc->status_vc == 0){
