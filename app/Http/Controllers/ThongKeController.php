@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\ThongKeQLTT_2Export;
 use App\Exports\ThongKeQLTT_allExport;
+use App\Exports\ThongKeQLTT_chucvuExport;
 use App\Exports\ThongKeQLTT_khoaExport;
 use App\Exports\ThongKeQLTTExport;
 use App\Models\ChucVu;
@@ -640,6 +641,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qltt_loc_all_pdf($ma_k, $ma_cv, $ma_hdt, $ma_lbc, $ma_n, $ma_t, $ma_dt, $ma_tg, $ma_tb){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -697,6 +699,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qltt_loc_2_pdf($ma_k, $ma_cv){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -738,6 +741,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qltt_loc_khoa_pdf($ma_k){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -778,6 +782,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qltt_loc_chucvu_pdf($ma_cv){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -803,6 +808,22 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function thongke_qltt_loc_chucvu_excel($ma_cv){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      return (new ThongKeQLTT_chucvuExport($ma_cv))->download('Danh-sach-vien-chuc.xlsx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+
   public function thongke_qltt_loc_hdt_pdf($ma_hdt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
