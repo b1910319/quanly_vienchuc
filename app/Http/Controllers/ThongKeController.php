@@ -2462,6 +2462,21 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function thongke_qlktkl_kt_loc_8_excel($ma_lkt, $batdau_kt, $ketthuc_kt){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      return Excel::download(new ThongKeQLKTKL_kt_8Export($ma_lkt, $batdau_kt, $ketthuc_kt), 'Khen-thuong-vien-chuc.xlsx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 
   public function thongke_qlktkl_kt_loc_9_pdf($ma_lkt, $ma_htkt){
     $this->check_login();
