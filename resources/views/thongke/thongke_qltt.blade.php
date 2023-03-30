@@ -209,9 +209,9 @@
     <div id="myfirstchart_qltt_1" style="height: 250px;"> 
     </div>
     @if (isset($list))
-    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
-      ________DANH SÁCH VIÊN CHỨC________
-    </div>
+      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+        ________DANH SÁCH VIÊN CHỨC________
+      </div>
       <table class="table" id="mytable">
         <thead class="table-secondary">
           <tr>
@@ -401,19 +401,28 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_all_pdf/'.$ma_k.'/'.$ma_cv.'/'.$ma_hdt.'/'.$ma_lbc.'/'.$ma_n.'/'.$ma_t.'/'.$ma_dt.'/'.$ma_tg.'/'.$ma_tb.'/') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file"></i>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
               &ensp;
               Xuất file PDF
+            </button>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qltt_loc_all_excel/'.$ma_k.'/'.$ma_cv.'/'.$ma_hdt.'/'.$ma_lbc.'/'.$ma_n.'/'.$ma_t.'/'.$ma_dt.'/'.$ma_tg.'/'.$ma_tb.'/') }}">
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file-excel"></i>
+              &ensp;
+              Xuất file Excel
             </button>
           </a>
         </div>
       </div>
     @endif
     @if ( isset($list_pdf_khoa))
-    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
-      ________DANH SÁCH VIÊN CHỨC ĐƯỢC LỌC THEO KHOA________
-    </div>
+      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+        ________DANH SÁCH VIÊN CHỨC ĐƯỢC LỌC THEO KHOA________
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_khoa as $khoa )
@@ -483,19 +492,19 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_khoa_pdf/'.$ma_k) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file"></i>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
               &ensp;
-              Xuất file
+              Xuất file PDF
             </button>
           </a>
         </div>
       </div>
     @endif
     @if (isset($list_pdf_chucvu))
-    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
-      ________DANH SÁCH VIÊN CHỨC THEO CHỨC VỤ________
-    </div>
+      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+        ________DANH SÁCH VIÊN CHỨC THEO CHỨC VỤ________
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_chucvu as $chucvu )
@@ -556,19 +565,19 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_chucvu_pdf/'.$ma_cv) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file"></i>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
               &ensp;
-              Xuất file
+              Xuất file PDF
             </button>
           </a>
         </div>
       </div>
     @endif
     @if (isset($list_pdf_hdt) )
-    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
-      ________DANH SÁCH VIÊN CHỨC THEO HỆ ĐÀO TẠO________
-    </div>
+      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+        ________DANH SÁCH VIÊN CHỨC THEO HỆ ĐÀO TẠO________
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_hedaotao as $hedaotao )
@@ -629,19 +638,19 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_hdt_pdf/'.$ma_hdt) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file"></i>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
               &ensp;
-              Xuất file
+              Xuất file PDF
             </button>
           </a>
         </div>
       </div>
     @endif
     @if (isset($list_pdf_lbc))
-    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
-      ________DANH SÁCH VIÊN CHỨC THEO LOẠI BẰNG CẤP________
-    </div>
+      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+        ________DANH SÁCH VIÊN CHỨC THEO LOẠI BẰNG CẤP________
+      </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_loaibangcap as $loaibangcap )
@@ -702,10 +711,10 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_lbc_pdf/'.$ma_lbc) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file"></i>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
               &ensp;
-              Xuất file
+              Xuất file PDF
             </button>
           </a>
         </div>
@@ -775,10 +784,10 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_ngach_pdf/'.$ma_n) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file"></i>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
               &ensp;
-              Xuất file
+              Xuất file PDF
             </button>
           </a>
         </div>
@@ -848,10 +857,10 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_tinh_pdf/'.$ma_t) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file"></i>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
               &ensp;
-              Xuất file
+              Xuất file PDF
             </button>
           </a>
         </div>
@@ -921,10 +930,10 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_dantoc_pdf/'.$ma_dt) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file"></i>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
               &ensp;
-              Xuất file
+              Xuất file PDF
             </button>
           </a>
         </div>
@@ -994,10 +1003,10 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_tongiao_pdf/'.$ma_tg) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file"></i>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
               &ensp;
-              Xuất file
+              Xuất file PDF
             </button>
           </a>
         </div>
@@ -1067,10 +1076,10 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_thuongbinh_pdf/'.$ma_tb) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file"></i>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
               &ensp;
-              Xuất file
+              Xuất file PDF
             </button>
           </a>
         </div>
@@ -1144,10 +1153,10 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_all_pdf/'.$ma_k.'/'.$batdau.'/'.$ketthuc) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file"></i>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
               &ensp;
-              Xuất file
+              Xuất file PDF
             </button>
           </a>
         </div>
@@ -1265,18 +1274,18 @@
         <div class="col-2">
           @if ($list_nghihuu_khoa != '')
             <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_khoa_pdf/'.$ma_k) }}">
-              <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file"></i>
+              <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
               &ensp;
-              Xuất file
+              Xuất file PDF
             </button>
             </a>
           @else
             <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_time_pdf/'.$batdau.'/'.$ketthuc) }}">
-              <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file"></i>
+              <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
               &ensp;
-              Xuất file
+              Xuất file PDF
             </button>
             </a>
           @endif
@@ -1353,10 +1362,10 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_2_pdf/'.$ma_k.'/'.$ma_cv) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file"></i>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
               &ensp;
-              Xuất file
+              Xuất file PDF
             </button>
           </a>
         </div>
