@@ -1063,7 +1063,7 @@
                 </div>
               </td>
               <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
-              <td>{{ $vc->ten_dt }}({{ $VC->ma_dt }})</td>
+              <td>{{ $vc->ten_dt }}({{ $vc->ma_dt }})</td>
             </tr>
           @endforeach
         </tbody>
@@ -1075,6 +1075,15 @@
               <i class="fa-solid fa-file-pdf"></i>
               &ensp;
               Xuất file PDF
+            </button>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qltt_loc_dantoc_excel/'.$ma_dt) }}">
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file-excel"></i>
+              &ensp;
+              Xuất file Excel
             </button>
           </a>
         </div>
