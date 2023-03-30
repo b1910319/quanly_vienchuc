@@ -832,6 +832,15 @@
             </button>
           </a>
         </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qltt_loc_lbc_excel/'.$ma_lbc) }}">
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file-excel"></i>
+              &ensp;
+              Xuất file Excel
+            </button>
+          </a>
+        </div>
       </div>
     @endif
     @if (isset($list_pdf_ngach))
