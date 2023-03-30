@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ThongKeQLKTKL_kt_allExport;
 use App\Exports\ThongKeQLKTKLExport;
 use App\Exports\ThongKeQLTT_2Export;
 use App\Exports\ThongKeQLTT_allExport;
@@ -2111,6 +2112,21 @@ class ThongKeController extends Controller
         'khenthuong' => $khenthuong,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlktkl_kt_loc_all_excel($ma_lkt, $ma_k, $ma_htkt, $batdau_kt, $ketthuc_kt){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      return Excel::download(new ThongKeQLKTKL_kt_allExport($ma_lkt, $ma_k, $ma_htkt, $batdau_kt, $ketthuc_kt), 'Khen-thuong-vien-chuc.xlsx');
     }else{
       return Redirect::to('/home');
     }
