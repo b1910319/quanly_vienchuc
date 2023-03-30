@@ -11,6 +11,7 @@ use App\Exports\ThongKeQLTT_khoaExport;
 use App\Exports\ThongKeQLTT_lbcExport;
 use App\Exports\ThongKeQLTT_ngachExport;
 use App\Exports\ThongKeQLTT_tinhExport;
+use App\Exports\ThongKeQLTT_tongiaoExport;
 use App\Exports\ThongKeQLTTExport;
 use App\Models\ChucVu;
 use App\Models\Chuyen;
@@ -1058,6 +1059,21 @@ class ThongKeController extends Controller
         'title' => $title,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qltt_loc_tongiao_excel($ma_tg){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      return (new ThongKeQLTT_tongiaoExport($ma_tg))->download('Danh-sach-vien-chuc.xlsx');
     }else{
       return Redirect::to('/home');
     }

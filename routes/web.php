@@ -310,6 +310,7 @@ Route::get('/thongke_qltt_loc_dantoc_pdf/{ma_dt}',[ThongKeController::class, 'th
 Route::get('/thongke_qltt_loc_dantoc_excel/{ma_dt}',[ThongKeController::class, 'thongke_qltt_loc_dantoc_excel']);
 
 Route::get('/thongke_qltt_loc_tongiao_pdf/{ma_tg}',[ThongKeController::class, 'thongke_qltt_loc_tongiao_pdf']);
+Route::get('/thongke_qltt_loc_tongiao_excel/{ma_tg}',[ThongKeController::class, 'thongke_qltt_loc_tongiao_excel']);
 
 Route::get('/thongke_qltt_loc_thuongbinh_pdf/{ma_tb}',[ThongKeController::class, 'thongke_qltt_loc_thuongbinh_pdf']);
 
