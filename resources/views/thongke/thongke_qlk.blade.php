@@ -292,7 +292,7 @@
         </h3>
       </div>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -409,7 +409,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -483,7 +483,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -554,7 +554,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -625,7 +625,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -696,7 +696,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -767,7 +767,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -838,7 +838,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -909,7 +909,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -980,7 +980,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -1050,7 +1050,7 @@
         <span class="badge text-bg-secondary">{{ $ketthuc }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -1132,7 +1132,7 @@
         <span class="badge text-bg-warning">{{ $ketthuc_kt }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -1224,7 +1224,7 @@
         <span class="badge text-bg-warning">{{ $ketthuc_kt }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -1316,7 +1316,7 @@
         <span class="badge text-bg-warning">{{ $ketthuc_kt }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -1410,7 +1410,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -1498,7 +1498,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -1586,7 +1586,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -1672,7 +1672,7 @@
         <span class="badge text-bg-warning">{{ $ketthuc_kt }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -1765,7 +1765,7 @@
         <span class="badge text-bg-warning">{{ $ketthuc_kl }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -1852,7 +1852,7 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>
@@ -1937,7 +1937,7 @@
         <span class="badge text-bg-warning">{{ $ketthuc_kl }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Thông tin viên chức </th>

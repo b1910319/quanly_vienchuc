@@ -175,7 +175,7 @@ class DanhMucLopController extends Controller
     }
     
   }
-  public function delete_danhmuclop($ma_dml){
+  public function delete_danhmuclop(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -185,12 +185,28 @@ class DanhMucLopController extends Controller
       ->where('ma_q', '=', '6')
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
-      DanhMucLop::find($ma_dml)->delete();
-      return Redirect::to('danhmuclop');
-    }else{
-      return Redirect::to('/home');
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          DanhMucLop::find($id)->delete();
+        }
+      }
     }
-    
+  }
+  public function delete_danhmuclop_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $ma_dml = $request->ma_dml;
+      DanhMucLop::whereIn('ma_dml', $ma_dml)->delete();
+      return Redirect::to('danhmuclop');
+    }
   }
   public function delete_all_danhmuclop(){
     $this->check_login();

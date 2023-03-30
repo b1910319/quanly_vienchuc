@@ -571,7 +571,8 @@ Route::post('/add_danhmuclop',[DanhMucLopController::class, 'add_danhmuclop']);
 Route::get('/select_danhmuclop/{ma_dml}',[DanhMucLopController::class, 'select_danhmuclop']);
 Route::get('/edit_danhmuclop/{ma_dml}',[DanhMucLopController::class, 'edit_danhmuclop']);
 Route::post('/update_danhmuclop/{ma_dml}',[DanhMucLopController::class, 'update_danhmuclop']);
-Route::get('/delete_danhmuclop/{ma_dml}',[DanhMucLopController::class, 'delete_danhmuclop']);
+Route::get('/delete_danhmuclop',[DanhMucLopController::class, 'delete_danhmuclop']);
+Route::post('/delete_danhmuclop_check',[DanhMucLopController::class, 'delete_danhmuclop_check']);
 Route::get('/delete_all_danhmuclop',[DanhMucLopController::class, 'delete_all_danhmuclop']);
 
 

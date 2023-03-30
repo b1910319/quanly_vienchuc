@@ -89,7 +89,7 @@ body {
 
 .left-side-menu {
   width: 240px;
-  background: #fff;
+  background: #FDFDF6;
   margin-top: 200px;
   bottom: 0;
   padding: 20px 0;
@@ -220,7 +220,7 @@ body {
 .enlarged .left-side-menu .slimScrollDiv,
 .enlarged .left-side-menu .slimscroll-menu {
   overflow: inherit !important;
-  height: auto !important
+  height: auto !important;
 }
 
 .enlarged .left-side-menu .slimScrollBar {
@@ -787,7 +787,7 @@ body.enlarged {
 }
 
 .page-title-box {
-  background-color: #fff;
+  background-color: #FDFDF6;
   margin: 0 -27px 30px;
   padding: 0 27px;
   -webkit-box-shadow: 0 1px 1px rgba(50, 58, 70, .1);
@@ -1262,7 +1262,7 @@ body.boxed-layout.enlarged .footer {
 .conversation-list .ctext-wrap {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
-  background: #f7f7f7;
+  background: #FDFDF6;
   border-radius: 3px;
   display: inline-block;
   padding: 12px;
@@ -1291,10 +1291,10 @@ body.boxed-layout.enlarged .footer {
   width: 0;
   position: absolute;
   pointer-events: none;
-  border-top-color: #f7f7f7;
+  border-top-color: #FDFDF6;
   border-width: 8px;
   margin-left: -1px;
-  border-right-color: #f7f7f7
+  border-right-color: #FDFDF6
 }
 
 .conversation-list .conversation-text {
@@ -2953,7 +2953,7 @@ body.boxed-layout.enlarged .footer {
 .datepicker table tr td span:hover,
 .datepicker table tr td.day.focused,
 .datepicker table tr td.day:hover {
-  background: #f7f7f7
+  background: #FDFDF6
 }
 
 .datepicker table tr td span.new,
@@ -2968,7 +2968,7 @@ body.boxed-layout.enlarged .footer {
 .datepicker .next:hover,
 .datepicker .prev:hover,
 .datepicker tfoot tr th:hover {
-  background: #f7f7f7
+  background: #FDFDF6
 }
 
 .datepicker .datepicker-switch:hover {
@@ -3051,7 +3051,7 @@ body.boxed-layout.enlarged .footer {
 
 .note-editor.note-frame .note-statusbar {
   background-color: #fcfcfc;
-  border-top: 1px solid #f7f7f7
+  border-top: 1px solid #FDFDF6
 }
 
 .note-editor.note-frame .note-editable {
@@ -5000,7 +5000,7 @@ div.hopscotch-bubble .hopscotch-content {
 
 .gal-box .gall-info {
   padding: 15px;
-  border-top: 1px solid #f7f7f7;
+  border-top: 1px solid #FDFDF6;
   position: relative
 }
 
