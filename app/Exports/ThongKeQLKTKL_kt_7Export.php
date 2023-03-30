@@ -8,19 +8,16 @@ use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ThongKeQLKTKL_kt_allExport implements FromQuery,WithHeadings, ShouldAutoSize
+class ThongKeQLKTKL_kt_7Export implements FromQuery,WithHeadings, ShouldAutoSize
 {
   /**
    * @return \Illuminate\Support\Collection
    */
   use Exportable;
-  public function __construct(int $ma_lkt, int $ma_k, int $ma_htkt, string $batdau_kt, string $ketthuc_kt)
+  public function __construct(int $ma_k, int $ma_htkt)
   {
-    $this->ma_lkt = $ma_lkt;
     $this->ma_k = $ma_k;
     $this->ma_htkt = $ma_htkt;
-    $this->batdau_kt = $batdau_kt;
-    $this->ketthuc_kt = $ketthuc_kt;
     return $this;
   }
   public function headings(): array {
@@ -45,10 +42,8 @@ class ThongKeQLKTKL_kt_allExport implements FromQuery,WithHeadings, ShouldAutoSi
     ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
     ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
     ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
-    ->where('khenthuong.ma_lkt', $this->ma_lkt)
     ->where('vienchuc.ma_k', $this->ma_k)
     ->where('khenthuong.ma_htkt', $this->ma_htkt)
-    ->whereBetween('khenthuong.ngay_kt', [$this->batdau_kt, $this->ketthuc_kt])
     ->where('status_vc', '<>', '2')
     ->where('status_kt', '<>', '2')
     ->select('vienchuc.ma_vc', 'vienchuc.hoten_vc', 'vienchuc.user_vc', 'vienchuc.sdt_vc', 'vienchuc.ngaysinh_vc', 'khoa.ten_k', 'chucvu.ten_cv','loaikhenthuong.ten_lkt', 'hinhthuckhenthuong.ten_htkt', 'khenthuong.ngay_kt', 'khenthuong.noidung_kt');
