@@ -279,11 +279,17 @@ Route::get('/thongke_qltt_pdf',[ThongKeController::class, 'thongke_qltt_pdf']);
 Route::get('/thongke_qltt_excel',[ThongKeController::class, 'thongke_qltt_excel']);
 
 Route::post('/thongke_qltt_loc',[ThongKeController::class, 'thongke_qltt_loc']);
+
 Route::get('/thongke_qltt_loc_all_pdf/{ma_k}/{ma_cv}/{ma_hdt}/{ma_lbc}/{ma_n}/{ma_t}/{ma_dt}/{ma_tg}/{ma_tb}',
 [ThongKeController::class, 'thongke_qltt_loc_all_pdf']);
 Route::get('/thongke_qltt_loc_all_excel/{ma_k}/{ma_cv}/{ma_hdt}/{ma_lbc}/{ma_n}/{ma_t}/{ma_dt}/{ma_tg}/{ma_tb}',
 [ThongKeController::class, 'thongke_qltt_loc_all_excel']);
+
+Route::get('/thongke_qltt_loc_2_pdf/{ma_k}/{ma_cv}',[ThongKeController::class, 'thongke_qltt_loc_2_pdf']);
+Route::get('/thongke_qltt_loc_2_excel/{ma_k}/{ma_cv}',[ThongKeController::class, 'thongke_qltt_loc_2_excel']);
+
 Route::get('/thongke_qltt_loc_khoa_pdf/{ma_k}',[ThongKeController::class, 'thongke_qltt_loc_khoa_pdf']);
+
 Route::get('/thongke_qltt_loc_chucvu_pdf/{ma_cv}',[ThongKeController::class, 'thongke_qltt_loc_chucvu_pdf']);
 Route::get('/thongke_qltt_loc_hdt_pdf/{ma_hdt}',[ThongKeController::class, 'thongke_qltt_loc_hdt_pdf']);
 Route::get('/thongke_qltt_loc_lbc_pdf/{ma_lbc}',[ThongKeController::class, 'thongke_qltt_loc_lbc_pdf']);
@@ -292,7 +298,7 @@ Route::get('/thongke_qltt_loc_tinh_pdf/{ma_t}',[ThongKeController::class, 'thong
 Route::get('/thongke_qltt_loc_dantoc_pdf/{ma_dt}',[ThongKeController::class, 'thongke_qltt_loc_dantoc_pdf']);
 Route::get('/thongke_qltt_loc_tongiao_pdf/{ma_tg}',[ThongKeController::class, 'thongke_qltt_loc_tongiao_pdf']);
 Route::get('/thongke_qltt_loc_thuongbinh_pdf/{ma_tb}',[ThongKeController::class, 'thongke_qltt_loc_thuongbinh_pdf']);
-Route::get('/thongke_qltt_loc_2_pdf/{ma_k}/{ma_cv}',[ThongKeController::class, 'thongke_qltt_loc_2_pdf']);
+
 
 Route::post('/thongke_qltt_nghihuu_loc',[ThongKeController::class, 'thongke_qltt_nghihuu_loc']);
 Route::get('/thongke_qltt_loc_nghihuu_all_pdf/{ma_k}/{batdau}/{ketthuc}',[ThongKeController::class, 'thongke_qltt_loc_nghihuu_all_pdf']);
