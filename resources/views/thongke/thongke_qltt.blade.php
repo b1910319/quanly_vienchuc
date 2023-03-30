@@ -267,10 +267,19 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_pdf') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file"></i>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
               &ensp;
-              Xuất file
+              Xuất file PDF
+            </button>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qltt_excel') }}">
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file-excel"></i>
+              &ensp;
+              Xuất file Excel
             </button>
           </a>
         </div>
@@ -395,7 +404,7 @@
             <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
               <i class="fa-solid fa-file"></i>
               &ensp;
-              Xuất file
+              Xuất file PDF
             </button>
           </a>
         </div>

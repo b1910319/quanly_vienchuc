@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ThongKeQLTTExport;
 use App\Models\ChucVu;
 use App\Models\Chuyen;
 use App\Models\DanToc;
@@ -29,6 +30,7 @@ use App\Models\TonGiao;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 use PDF;
+use Excel;
 
 class ThongKeController extends Controller
 {
@@ -147,6 +149,21 @@ class ThongKeController extends Controller
         'title' => $title,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qltt_excel(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      return Excel::download(new ThongKeQLTTExport, 'Danh-sach-vien-chuc.xlsx');
     }else{
       return Redirect::to('/home');
     }
@@ -1401,10 +1418,10 @@ class ThongKeController extends Controller
           ->with('phanquyen_qltt', $phanquyen_qltt);
       }else if(isset($data['ma_lkt'])  && isset($data['ma_k'])  && isset($data['ma_htkt'])){
         $count_loaikhenthuong = KhenThuong::join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
-        ->where('status_kt', '<>', '2')
-        ->select(DB::raw('count(khenthuong.ma_kt) as sum, loaikhenthuong.ma_lkt'))
-        ->groupBy('loaikhenthuong.ma_lkt')
-        ->get();
+          ->where('status_kt', '<>', '2')
+          ->select(DB::raw('count(khenthuong.ma_kt) as sum, loaikhenthuong.ma_lkt'))
+          ->groupBy('loaikhenthuong.ma_lkt')
+          ->get();
         $list_4 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
@@ -1436,7 +1453,6 @@ class ThongKeController extends Controller
           ->with('phanquyen_qlk', $phanquyen_qlk)
           ->with('phanquyen_qltt', $phanquyen_qltt);
       }else if( isset($data['ma_htkt'])  && isset($data['batdau_kt'])  && isset($data['ketthuc_kt'])){
-        $count_loaikhenthuong = '';
         $count_5 = KhenThuong::join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
           ->where('status_kt', '<>', '2')
           ->select(DB::raw('count(khenthuong.ma_kt) as sum, hinhthuckhenthuong.ma_htkt, ngay_kt'))
@@ -1455,7 +1471,6 @@ class ThongKeController extends Controller
           ->with('title', $title)
 
           ->with('count_nangbac', $count_nangbac)
-          ->with('count_loaikhenthuong', $count_loaikhenthuong)
           ->with('count_5', $count_5)
 
           ->with('list_khoa', $list_khoa)
