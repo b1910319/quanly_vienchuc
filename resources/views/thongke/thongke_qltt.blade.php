@@ -1346,7 +1346,7 @@
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
-        @if ($list_nghihuu_khoa != '')
+        @if (isset($list_nghihuu_khoa))
           @foreach ($list_khoa as $khoa )
             @if ($khoa->ma_k == $ma_k)
             <span class="badge text-bg-primary">{{ $khoa->ten_k }}</span>
@@ -1369,7 +1369,7 @@
           </tr>
         </thead>
         <tbody  >
-          @if ($list_nghihuu_khoa)
+          @if (isset($list_nghihuu_khoa))
             @foreach($list_nghihuu_khoa as $key => $vc)
               <tr>
                 <td>{{ $key+1 }}</td>
@@ -1450,7 +1450,7 @@
       </table>
       <div class="row">
         <div class="col-2">
-          @if ($list_nghihuu_khoa != '')
+          @if (isset($list_nghihuu_khoa))
             <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_khoa_pdf/'.$ma_k) }}">
               <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
               <i class="fa-solid fa-file-pdf"></i>
@@ -1469,7 +1469,7 @@
           @endif
         </div>
         <div class="col-2">
-          @if ($list_nghihuu_khoa != '')
+          @if (isset($list_nghihuu_khoa))
             <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_khoa_excel/'.$ma_k) }}">
               <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
                 <i class="fa-solid fa-file-excel"></i>
