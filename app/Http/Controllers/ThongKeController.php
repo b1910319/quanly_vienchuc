@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\ThongKeQLTT_2Export;
 use App\Exports\ThongKeQLTT_allExport;
 use App\Exports\ThongKeQLTT_chucvuExport;
+use App\Exports\ThongKeQLTT_hdtExport;
 use App\Exports\ThongKeQLTT_khoaExport;
 use App\Exports\ThongKeQLTTExport;
 use App\Models\ChucVu;
@@ -850,6 +851,22 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function thongke_qltt_loc_hdt_excel($ma_hdt){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      return (new ThongKeQLTT_hdtExport($ma_hdt))->download('Danh-sach-vien-chuc.xlsx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+
   public function thongke_qltt_loc_lbc_pdf($ma_lbc){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
