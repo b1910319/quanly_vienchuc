@@ -1329,6 +1329,15 @@
             </button>
           </a>
         </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_all_excel/'.$ma_k.'/'.$batdau.'/'.$ketthuc) }}">
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file-excel"></i>
+              &ensp;
+              Xuất file Excel
+            </button>
+          </a>
+        </div>
       </div>
     @endif
     @if (isset($list_nghihuu_khoa)  || isset($list_nghihuu_time) )
@@ -1451,6 +1460,25 @@
             </a>
           @else
             <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_time_pdf/'.$batdau.'/'.$ketthuc) }}">
+              <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
+            </a>
+          @endif
+        </div>
+        <div class="col-2">
+          @if ($list_nghihuu_khoa != '')
+            <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_khoa_excel/'.$ma_k) }}">
+              <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
+            </a>
+          @else
+            <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_time_excel/'.$batdau.'/'.$ketthuc) }}">
               <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
               <i class="fa-solid fa-file-pdf"></i>
               &ensp;
