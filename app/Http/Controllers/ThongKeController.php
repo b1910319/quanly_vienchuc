@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ThongKeQLKTKLExport;
 use App\Exports\ThongKeQLTT_2Export;
 use App\Exports\ThongKeQLTT_allExport;
 use App\Exports\ThongKeQLTT_chucvuExport;
@@ -108,8 +109,8 @@ class ThongKeController extends Controller
       $list = VienChuc::join('ngach', 'ngach.ma_n', '=', 'vienchuc.ma_n')
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
-        ->join('dantoc', 'dantoc.ma_dt', '=', 'vienchuc.ma_dt')
-        ->join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
+        // ->join('dantoc', 'dantoc.ma_dt', '=', 'vienchuc.ma_dt')
+        // ->join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
         ->where('status_vc', '<>', '2')
         ->orderBy('ten_n', 'asc')
         ->get();
@@ -1502,6 +1503,21 @@ class ThongKeController extends Controller
         'khenthuong' => $khenthuong,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlklkt_kt_excel(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      return Excel::download(new ThongKeQLKTKLExport, 'Khen-thuong-vien-chuc.xlsx');
     }else{
       return Redirect::to('/home');
     }

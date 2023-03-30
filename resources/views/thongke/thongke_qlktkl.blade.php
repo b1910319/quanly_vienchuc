@@ -4,21 +4,25 @@
   <div class="card-box col-12">
     <div class="row">
       <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
-        ________THỐNG KÊ KHEN THƯỞNG KỶ LUẬT________
+        ________THỐNG KÊ KHEN THƯỞNG KỶ LUẬT CỦA VIÊN CHỨC________
       </div>
     </div>
     <div class="row">
       <div class="col-2">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #379237; border: none; width: 100%">
+        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%; border-radius: 5px; background-color: #a4aa13; border: none; ">
           <i class="fa-solid fa-filter"></i>
           &ensp;
-          Bộ lọc khen thưởng
+          Lọc khen thưởng
         </button>
         <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 100%;">
           <div class="modal-dialog modal-dialog-scrollabl modal-xl">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Bộ lọc</h1>
+                <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel" style="color: #a4aa13;">
+                  <i class="fa-solid fa-filter"></i>
+                  &ensp;
+                  Bộ lọc
+                </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <form action="{{ URL::to('thongke_qltktkl_kt_loc') }}" method="post">
@@ -63,8 +67,11 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                  <button type="submit" class="btn btn-primary">
+                  <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-square-xmark"></i>
+                    &ensp; Đóng
+                  </button>
+                  <button type="submit" class="btn btn-primary fw-bold" style="background-color: #a4aa13; border: none;">
                     <i class="fa-solid fa-filter"></i>
                     &ensp;
                     Lọc
@@ -76,16 +83,20 @@
         </div>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="background-color: #D36B00; border: none; width: 100%">
+        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="width: 100%; border-radius: 5px; background-color: #a4aa13; border: none; ">
           <i class="fa-solid fa-filter"></i>
           &ensp;
-          Bộ lọc kỷ luật
+          Lọc kỷ luật
         </button>
         <div class="modal fade " id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 100%;">
           <div class="modal-dialog modal-dialog-scrollabl modal-xl">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Bộ lọc</h1>
+                <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel" style="color: #a4aa13;">
+                  <i class="fa-solid fa-filter"></i>
+                  &ensp;
+                  Bộ lọc
+                </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <form action="{{ URL::to('thongke_qltktkl_kl_loc') }}" method="post">
@@ -121,8 +132,11 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                  <button type="submit" class="btn btn-primary">
+                  <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-square-xmark"></i>
+                    &ensp; Đóng
+                  </button>
+                  <button type="submit" class="btn btn-primary fw-bold" style="background-color: #a4aa13; border: none;">
                     <i class="fa-solid fa-filter"></i>
                     &ensp;
                     Lọc
@@ -135,8 +149,10 @@
       </div>
       <div class="col-1">
         <a href="{{ URL::to('thongke_qlktkl') }}">
-          <button type="button" class="btn btn-warning">
-            <i class="fa-solid fa-arrows-rotate"></i>
+          <button type="button" class="btn btn-light fw-bold" style="width: 100%; ">
+            <i class="fa-solid fa-rotate"></i>
+            &ensp;
+            Làm mới
           </button>
         </a>
       </div>
@@ -144,10 +160,8 @@
     <div id="myfirstchart_qlktkl" style="height: 250px;">
     </div>
     @if (isset($list_pdf_lkt))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          THÔNG TIN KHEN THƯỞNG CỦA VIÊN CHỨC
-        </h3>
+      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+        ________THÔNG TIN KHEN THƯỞNG VIÊN CHỨC________
       </div>
       <table class="table" id="mytable">
         <thead class="table-dark">
@@ -226,7 +240,20 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlklkt_kt_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlklkt_kt_excel') }}">
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file-excel"></i>
+              &ensp;
+              Xuất file Excel
+            </button>
           </a>
         </div>
       </div>
@@ -331,7 +358,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kt_loc_all_pdf/'.$ma_lkt.'/'.$ma_k.'/'.$ma_htkt.'/'.$batdau_kt.'/'.$ketthuc_kt) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -429,7 +460,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kt_loc_2_pdf/'.$ma_lkt.'/'.$ma_htkt.'/'.$batdau_kt.'/'.$ketthuc_kt) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -527,7 +562,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kt_loc_3_pdf/'.$ma_lkt.'/'.$ma_k.'/'.$batdau_kt.'/'.$ketthuc_kt) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -627,7 +666,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kt_loc_4_pdf/'.$ma_lkt.'/'.$ma_k.'/'.$ma_htkt) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -719,7 +762,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kt_loc_5_pdf/'.$ma_htkt.'/'.$batdau_kt.'/'.$ketthuc_kt) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -811,7 +858,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kt_loc_6_pdf/'.$ma_k.'/'.$batdau_kt.'/'.$ketthuc_kt) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -905,7 +956,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kt_loc_7_pdf/'.$ma_k.'/'.$ma_htkt) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -997,7 +1052,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kt_loc_8_pdf/'.$ma_lkt.'/'.$batdau_kt.'/'.$ketthuc_kt) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -1091,7 +1150,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kt_loc_9_pdf/'.$ma_lkt.'/'.$ma_htkt) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -1185,7 +1248,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kt_loc_10_pdf/'.$ma_lkt.'/'.$ma_k) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -1273,7 +1340,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kt_loc_11_pdf/'.$ma_lkt) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -1361,7 +1432,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kt_loc_12_pdf/'.$ma_k) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -1449,7 +1524,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kt_loc_13_pdf/'.$ma_htkt) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -1535,7 +1614,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kt_loc_14_pdf/'.$batdau_kt.'/'.$ketthuc_kt) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -1633,7 +1716,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kl_loc_all_pdf/'.$ma_lkl.'/'.$ma_k.'/'.$batdau_kl.'/'.$ketthuc_kl) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -1724,7 +1811,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kl_loc_2_pdf/'.$ma_k.'/'.$batdau_kl.'/'.$ketthuc_kl) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -1815,7 +1906,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kl_loc_3_pdf/'.$ma_lkl.'/'.$batdau_kl.'/'.$ketthuc_kl) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -1908,7 +2003,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kl_loc_4_pdf/'.$ma_lkl.'/'.$ma_k) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -1995,7 +2094,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kl_loc_5_pdf/'.$ma_k) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -2082,7 +2185,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kl_loc_6_pdf/'.$ma_lkl) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -2167,7 +2274,11 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_kl_loc_7_pdf/'.$batdau_kl.'/'.$ketthuc_kl) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
         </div>
       </div>
@@ -2178,10 +2289,9 @@
   $(document).ready(function(){
     new Morris.Bar({
       element: 'myfirstchart_qlktkl',
-      pointFillColors: ['#F94A29'],
       parseTime: false,
       hideHover:true,
-      barColors: ['#FF6363'],
+      barColors: ['#F88F01'],
       data: [
         <?php
           if(isset($count_loaikhenthuong) ){

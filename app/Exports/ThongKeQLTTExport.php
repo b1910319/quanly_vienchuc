@@ -5,9 +5,7 @@ namespace App\Exports;
 use App\Models\VienChuc;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithStyles;
 
 class ThongKeQLTTExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
