@@ -3,7 +3,7 @@
   <div class="card-box">
     <div class="alert alert-success row" role="alert" style="background-color: #3F979B; text-align: center;">
       <div class="col-1">
-        <a href="{{ URL::to('khuvuc') }}">
+        <a href="{{ URL::to('khuvuc/'.$edit->ma_cl) }}">
           <button type="button" class="btn btn-warning" style="background-color: #E83A14; border-radius: 50%; border: none;">
             <i class="fa-solid fa-angle-left fw-bold" style="font-size: 18px;"></i>
           </button>
@@ -21,11 +21,33 @@
           <table class="table">
             <tbody>
               <tr>
+                <th scope="row">Tên châu lục: </th>
+                <td class="was-validated">
+                  <select class="custom-select input_table" aria-label="Default select example" name="ma_cl">
+                    @foreach ($list_chauluc as $chauluc )
+                      <option  
+                        @if ($chauluc->ma_cl == $edit->ma_cl)
+                          selected
+                        @endif
+                        value="{{ $chauluc->ma_cl }}">
+                        {{ $chauluc->ten_cl }}
+                      </option>
+                    @endforeach
+                  </select>
+                </td>
+              </tr>
+              <tr>
                 <th scope="row">Tên quốc gia: </th>
                 <td class="was-validated">
                   <input type='text' class='form-control input_table' autofocus required name="ten_kv" value="{{ $edit->ten_kv }}">
                 </td>
               </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-6">
+          <table class="table">
+            <tbody>
               <tr>
                 <th scope="row">Trạng thái: </th>
                 <td class="was-validated">
@@ -39,20 +61,6 @@
                       <option value="1" >Ẩn</option>
                     @endif
                   </select>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-6">
-          <table class="table">
-            <tbody>
-              <tr>
-                <th scope="row" style="width: 20%">Mô tả: </th>
-                <td class="was-validated">
-                  <textarea class="form-control" rows="4" required name="mota_kv">
-                    <?php echo $edit->mota_kv ?>
-                  </textarea>
                 </td>
               </tr>
             </tbody>

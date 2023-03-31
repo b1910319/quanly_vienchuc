@@ -147,11 +147,15 @@ class KhuVucController extends Controller
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
+      $list_chauluc = ChauLuc::orderBy('ten_cl', 'asc')
+        ->get();
       return view('khuvuc.khuvuc_edit')
         ->with('title', $title)
         ->with('edit', $edit)
 
         ->with('count_nangbac', $count_nangbac)
+
+        ->with('list_chauluc', $list_chauluc)
 
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -176,11 +180,11 @@ class KhuVucController extends Controller
       Carbon::now('Asia/Ho_Chi_Minh');
       $khuvuc = KhuVuc::find($ma_kv);
       $khuvuc->ten_kv = $data['ten_kv'];
-      $khuvuc->mota_kv = $data['mota_kv'];
+      $khuvuc->ma_cl = $data['ma_cl'];
       $khuvuc->status_kv = $data['status_kv'];
       $khuvuc->updated_kv = Carbon::now();
       $khuvuc->save();
-      return Redirect::to('khuvuc');
+      return Redirect::to('khuvuc/'.$data['ma_cl']);
     }else{
       return Redirect::to('/home');
     }
