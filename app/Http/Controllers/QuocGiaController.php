@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KhuVuc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -20,7 +21,7 @@ class QuocGiaController extends Controller
       return Redirect::to('/login')->send();
     }
   }
-  public function quocgia(){
+  public function quocgia($ma_kv){
     $this->check_login();
     $title = "Quản lý";
     $ma_vc = session()->get('ma_vc');
@@ -37,9 +38,15 @@ class QuocGiaController extends Controller
       ->where('ma_q', '=', '6')
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
-      $count = QuocGia::select(DB::raw('count(ma_qg) as sum'))->get();
-      $count_status = QuocGia::select(DB::raw('count(ma_qg) as sum, status_qg'))->groupBy('status_qg')->get();
+      $count = QuocGia::select(DB::raw('count(ma_qg) as sum'))
+        ->where('ma_kv', $ma_kv)
+        ->get();
+      $count_status = QuocGia::select(DB::raw('count(ma_qg) as sum, status_qg'))
+        ->where('ma_kv', $ma_kv)
+        ->groupBy('status_qg')
+        ->get();
       $list = QuocGia::orderBy('ma_qg', 'desc')
+        ->where('ma_kv', $ma_kv)
         ->get();
       $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
         ->where('ma_q', '=', '8')
@@ -49,9 +56,11 @@ class QuocGiaController extends Controller
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
+      $khuvuc = KhuVuc::find($ma_kv);
       return view('quocgia.quocgia')
         ->with('count', $count)
         ->with('title', $title)
+        ->with('khuvuc', $khuvuc)
 
         ->with('count_status', $count_status)
         ->with('count_nangbac', $count_nangbac)
@@ -79,11 +88,12 @@ class QuocGiaController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
       $data = $request->all();
-      $quocgia = new quocgia();
+      $quocgia = new QuocGia();
+      $quocgia->ma_kv = $data['ma_kv'];
       $quocgia->ten_qg = $data['ten_qg'];
       $quocgia->status_qg = $data['status_qg'];
       $quocgia->save();
-      return Redirect::to('/quocgia');
+      return Redirect::to('/quocgia/'.$data['ma_kv']);
     }else{
       return Redirect::to('/home');
     }

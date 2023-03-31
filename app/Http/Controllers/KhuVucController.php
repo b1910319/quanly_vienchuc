@@ -57,6 +57,10 @@ class KhuVucController extends Controller
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
       $chauluc = ChauLuc::find($ma_cl);
+      $count_quocgia_khuvuc = KhuVuc::leftJoin('quocgia', 'khuvuc.ma_kv', '=', 'quocgia.ma_kv')
+        ->select(DB::raw('count(quocgia.ma_qg) as sum, khuvuc.ma_kv'))
+        ->groupBy('khuvuc.ma_kv')
+        ->get();
       return view('khuvuc.khuvuc')
         ->with('count', $count)
         ->with('title', $title)
@@ -64,6 +68,7 @@ class KhuVucController extends Controller
 
         ->with('count_status', $count_status)
         ->with('count_nangbac', $count_nangbac)
+        ->with('count_quocgia_khuvuc', $count_quocgia_khuvuc)
 
         ->with('list', $list)
 

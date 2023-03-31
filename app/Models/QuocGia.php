@@ -9,7 +9,7 @@ class QuocGia extends Model
 {
   use HasFactory;
   protected $fillable = [
-    'ma_cl',
+    'ma_kv',
     'ten_qg',
     'status_qg',
     'updated_qg'

@@ -148,14 +148,37 @@
                 {{ $khuvuc->ten_kv }} ({{ $khuvuc->ma_kv }})
               </td>
               <td>
-                <a href="">
-                  <button type="submit"  class="btn btn-primary font-weight-bold" style="background-color: #379237; border: none;">
-                    <i class="fas fa-plus-square"></i>
-                    &ensp;
-                    Thêm quốc gia
-                  </button>
-                </a>
-                
+                <?php
+                  foreach ($count_quocgia_khuvuc as $key => $count) {
+                    if($count->ma_kv == $khuvuc->ma_kv && $count->sum > 0){
+                      ?>
+                        <a href="{{ URL::to('quocgia/'.$khuvuc->ma_kv) }}">
+                          <button type="button" class="btn btn-primary position-relative fw-bold" style="background-color: #379237; border: none; ">
+                            <i class="fas fa-plus-square"></i>
+                            &ensp;
+                            Thêm quốc gia
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                              <?php echo $count->sum ?>
+                              <span class="visually-hidden">
+
+                              </span>
+                            </span>
+                          </button>
+                        </a>
+                      <?php
+                    }elseif ($count->ma_kv == $khuvuc->ma_kv && $count->sum == 0) {
+                      ?>
+                        <a href="{{ URL::to('quocgia/'.$khuvuc->ma_kv) }}">
+                          <button type="button" class="btn btn-primary position-relative fw-bold" style="background-color: #379237; border: none; ">
+                            <i class="fas fa-plus-square"></i>
+                            &ensp;
+                            Thêm quốc gia
+                          </button>
+                        </a>
+                      <?php
+                    }
+                  }
+                ?>
               </td>
               <td>
                 <?php

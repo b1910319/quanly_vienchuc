@@ -2,8 +2,17 @@
 @section('content') 
 <div class="row">
   <div class="card-box">
-    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
-      ________THÔNG TIN CÁC QUỐC GIA VIÊN CHỨC THAM GIA ĐI HỌC________
+    <div class="alert alert-success row" role="alert" style="background-color: #3F979B; text-align: center; text-transform: uppercase">
+      <div class="col-1">
+        <a href="{{ URL::to('/khuvuc/'.$khuvuc->ma_cl) }}" class="col-1">
+          <button type="button" class="btn btn-warning" style="background-color: #E83A14; border-radius: 50%; border: none;">
+            <i class="fa-solid fa-angle-left fw-bold" style="font-size: 18px;"></i>
+          </button>
+        </a>
+      </div>
+      <h4 class="text-center col-11 mt-1" style="font-weight: bold; color: white; font-size: 20px;">
+        ________THÔNG TIN CÁC QUỐC GIA THUỘC KHU VỰC " <span style="color: #FFFF00;">{{ $khuvuc->ten_kv }}</span> "________
+      </h4>
     </div>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
@@ -71,6 +80,7 @@
                         <tr>
                           <th scope="row">Tên quốc gia: </th>
                           <td class="was-validated">
+                            <input type="hidden" name="ma_kv" value="{{ $khuvuc->ma_kv }}">
                             <input type='text' class='form-control input_table' autofocus required name="ten_qg">
                           </td>
                         </tr>
