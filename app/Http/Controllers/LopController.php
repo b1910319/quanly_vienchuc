@@ -445,7 +445,7 @@ class LopController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_lop_danhmuclop($ma_l, $ma_dml){
+  public function delete_lop_danhmuclop(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -455,10 +455,27 @@ class LopController extends Controller
       ->where('ma_q', '=', '6')
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
-      Lop::find($ma_l)->delete();
-      return Redirect::to('/lop_danhmuclop/'.$ma_dml);
-    }else{
-      return Redirect::to('/home');
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          Lop::find($id)->delete();
+        }
+      }
+    }
+  }
+  public function delete_lop_danhmuclop_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $ma_l = $request->ma_l;
+      Lop::whereIn('ma_l', $ma_l)->delete();
+      return redirect()->back();
     }
   }
   public function delete_all_lop_danhmuclop($ma_dml){
