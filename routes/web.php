@@ -585,8 +585,9 @@ Route::post('/add_lop',[LopController::class, 'add_lop']);
 Route::get('/select_lop/{ma_l}',[LopController::class, 'select_lop']);
 Route::get('/edit_lop/{ma_l}',[LopController::class, 'edit_lop']);
 Route::post('/update_lop/{ma_l}',[LopController::class, 'update_lop']);
-Route::get('/delete_lop/{ma_l}',[LopController::class, 'delete_lop']);
+Route::get('/delete_lop',[LopController::class, 'delete_lop']);
 Route::get('/delete_all_lop',[LopController::class, 'delete_all_lop']);
+Route::post('/delete_lop_check',[LopController::class, 'delete_lop_check']);
 Route::get('/lop_luotxem',[LopController::class, 'lop_luotxem']);
 
 Route::get('/lop_danhmuclop/{ma_dml}',[LopController::class, 'lop_danhmuclop']);

@@ -10,12 +10,12 @@ class Lop extends Model
   use HasFactory;
   protected $fillable = [
     'ma_dml',
+    'ma_qg',
     'ten_l',
     'ngaybatdau_l',
     'ngayketthuc_l',
     'yeucau_l',
     'tencosodaotao_l',
-    'quocgiaodaotao_l',
     'nganhhoc_l',
     'trinhdodaotao_l',
     'nguonkinhphi_l',

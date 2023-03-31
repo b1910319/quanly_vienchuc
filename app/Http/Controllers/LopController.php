@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
+use App\Models\QuocGia;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 
@@ -59,19 +60,26 @@ class LopController extends Controller
       $list_danhmuclop = DanhMucLop::where('status_dml', '<>', '1')
         ->orderBy('ten_dml', 'asc')
         ->get();
+      $list_quocgia = QuocGia::where('status_qg', '<>', '1')
+        ->orderBy('ten_qg', 'asc')
+        ->get();
       return view('lop.lop')
+        ->with('count', $count)
+        ->with('count_nangbac', $count_nangbac)
+        ->with('count_vienchuc_lop', $count_vienchuc_lop)
+        ->with('count_status', $count_status)
+
+        ->with('title', $title)
+
+        ->with('list', $list)
+        ->with('list_danhmuclop', $list_danhmuclop)
+        ->with('list_quocgia', $list_quocgia)
+
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
-        ->with('count', $count)
-        ->with('title', $title)
-        ->with('count_vienchuc_lop', $count_vienchuc_lop)
-        ->with('list_danhmuclop', $list_danhmuclop)
-        ->with('count_status', $count_status)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('list', $list);
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }
@@ -94,7 +102,7 @@ class LopController extends Controller
       $lop->ngayketthuc_l = $data['ngayketthuc_l'];
       $lop->yeucau_l = $data['yeucau_l'];
       $lop->tencosodaotao_l = $data['tencosodaotao_l'];
-      $lop->quocgiaodaotao_l = $data['quocgiaodaotao_l'];
+      $lop->ma_qg = $data['ma_qg'];
       $lop->nganhhoc_l = $data['nganhhoc_l'];
       $lop->trinhdodaotao_l = $data['trinhdodaotao_l'];
       $lop->nguonkinhphi_l = $data['nguonkinhphi_l'];
@@ -160,11 +168,18 @@ class LopController extends Controller
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
+      $list_quocgia = QuocGia::where('status_qg', '<>', '1')
+        ->orderBy('ten_qg', 'asc')
+        ->get();
       return view('lop.lop_edit')
         ->with('edit', $edit)
         ->with('title', $title)
+
         ->with('list_danhmuclop', $list_danhmuclop)
+        ->with('list_quocgia', $list_quocgia)
+
         ->with('count_nangbac', $count_nangbac)
+
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlk', $phanquyen_qlk)
@@ -193,7 +208,7 @@ class LopController extends Controller
       $lop->ngayketthuc_l = $data['ngayketthuc_l'];
       $lop->yeucau_l = $data['yeucau_l'];
       $lop->tencosodaotao_l = $data['tencosodaotao_l'];
-      $lop->quocgiaodaotao_l = $data['quocgiaodaotao_l'];
+      $lop->ma_qg = $data['ma_qg'];
       $lop->nganhhoc_l = $data['nganhhoc_l'];
       $lop->trinhdodaotao_l = $data['trinhdodaotao_l'];
       $lop->nguonkinhphi_l = $data['nguonkinhphi_l'];
@@ -209,7 +224,7 @@ class LopController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_lop($ma_l){
+  public function delete_lop(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -219,10 +234,27 @@ class LopController extends Controller
       ->where('ma_q', '=', '6')
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
-      Lop::find($ma_l)->delete();
-      return Redirect::to('lop');
-    }else{
-      return Redirect::to('/home');
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          Lop::find($id)->delete();
+        }
+      }
+    }
+  }
+  public function delete_lop_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $ma_l = $request->ma_l;
+      Lop::whereIn('ma_l', $ma_l)->delete();
+      return redirect()->back();
     }
   }
   public function delete_all_lop(){
