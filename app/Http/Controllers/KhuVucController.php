@@ -153,6 +153,7 @@ class KhuVucController extends Controller
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
       $list_chauluc = ChauLuc::orderBy('ten_cl', 'asc')
+        ->where('status_cl', '<>', '1')
         ->get();
       return view('khuvuc.khuvuc_edit')
         ->with('title', $title)

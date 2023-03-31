@@ -148,6 +148,7 @@ class QuocGiaController extends Controller
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
       $list_khuvuc = KhuVuc::orderBy('ten_kv', 'asc')
+        ->where('status_kv', '<>', '1')
         ->get();
       return view('quocgia.quocgia_edit')
         ->with('title', $title)
@@ -219,10 +220,10 @@ class QuocGiaController extends Controller
     if($phanquyen_admin || $phanquyen_qlcttc){
       $ma_qg = $request->ma_qg;
       QuocGia::whereIn('ma_qg', $ma_qg)->delete();
-      return Redirect::to('quocgia');
+      return redirect()->back();
     }
   }
-  public function delete_all_quocgia(){
+  public function delete_all_quocgia($ma_kv){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
@@ -232,11 +233,12 @@ class QuocGiaController extends Controller
       ->where('ma_q', '=', '5')
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
-      $list = QuocGia::get();
+      $list = QuocGia::where('ma_kv', $ma_kv)
+        ->get();
       foreach($list as $key => $quyen){
         $quyen->delete();
       }
-      return Redirect::to('quocgia');
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 31, 2023 lúc 06:51 AM
+-- Thời gian đã tạo: Th3 31, 2023 lúc 08:40 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -1313,6 +1313,36 @@ CREATE TABLE `khuvuc` (
   `updated_kv` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `khuvuc`
+--
+
+INSERT INTO `khuvuc` (`ma_kv`, `ma_cl`, `ten_kv`, `status_kv`, `created_kv`, `updated_kv`) VALUES
+(27, 11, 'Melanesia', 0, '2023-03-31 05:33:49', NULL),
+(28, 11, 'Micronesia', 0, '2023-03-31 05:34:03', NULL),
+(29, 11, 'Polynesia', 0, '2023-03-31 05:34:14', NULL),
+(30, 11, 'Úc/New Zealand', 0, '2023-03-31 05:34:24', NULL),
+(31, 10, 'Các nước Bắc Âu', 0, '2023-03-31 05:34:47', NULL),
+(32, 10, 'Các nước Đông Âu', 0, '2023-03-31 05:34:56', NULL),
+(33, 10, 'Các nước Nam Âu', 0, '2023-03-31 05:35:06', NULL),
+(34, 10, 'Các nước Tây Âu', 0, '2023-03-31 05:35:14', NULL),
+(35, 8, 'Các nước Bắc Mỹ', 0, '2023-03-31 05:35:53', NULL),
+(36, 8, 'Mỹ Latinh và Caribê', 0, '2023-03-31 05:36:01', NULL),
+(37, 8, 'Các nước Nam Mỹ', 0, '2023-03-31 05:36:11', NULL),
+(38, 8, 'Các nước Trung Mỹ', 0, '2023-03-31 05:36:23', NULL),
+(39, 8, 'Các nước vùng biển Caribe', 0, '2023-03-31 05:36:33', '2023-03-31 05:36:40'),
+(40, 7, 'Các nước Bắc Phi', 0, '2023-03-31 05:37:23', NULL),
+(41, 7, 'Châu Phi hạ Sahara', 0, '2023-03-31 05:37:34', NULL),
+(42, 7, 'Các nước Đông Phi', 0, '2023-03-31 05:37:45', NULL),
+(43, 7, 'Các nước Nam Phi', 0, '2023-03-31 05:37:57', NULL),
+(44, 7, 'Các nước Tây Phi', 0, '2023-03-31 05:38:07', NULL),
+(45, 7, 'Các nước Trung Phi', 0, '2023-03-31 05:38:17', NULL),
+(46, 6, 'Các nước Đông Á', 0, '2023-03-31 05:38:38', NULL),
+(47, 6, 'Các nước Đông Nam Á', 0, '2023-03-31 05:38:46', NULL),
+(48, 6, 'Các nước Nam Á', 0, '2023-03-31 05:38:55', NULL),
+(49, 6, 'Các nước Tây Á', 0, '2023-03-31 05:39:03', NULL),
+(50, 6, 'Các nước Trung Á', 0, '2023-03-31 05:39:11', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -1784,12 +1814,87 @@ INSERT INTO `quequan` (`ma_qq`, `ma_t`, `ma_h`, `ma_x`, `ma_vc`, `diachi_qq`, `s
 
 CREATE TABLE `quocgia` (
   `ma_qg` int(11) NOT NULL,
-  `ma_cl` int(11) NOT NULL,
+  `ma_kv` int(11) NOT NULL,
   `ten_qg` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_qg` int(11) NOT NULL DEFAULT 0,
   `created_qg` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_qg` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `quocgia`
+--
+
+INSERT INTO `quocgia` (`ma_qg`, `ma_kv`, `ten_qg`, `status_qg`, `created_qg`, `updated_qg`) VALUES
+(16, 30, 'New Zealand', 0, '2023-03-31 06:27:39', NULL),
+(17, 30, 'Úc', 0, '2023-03-31 06:27:47', NULL),
+(18, 29, 'Tuvalu', 0, '2023-03-31 06:28:53', NULL),
+(19, 29, 'Samoa thuộc Mỹ', 0, '2023-03-31 06:29:08', NULL),
+(20, 29, 'Polynesia thuộc Pháp', 0, '2023-03-31 06:29:16', NULL),
+(21, 29, 'Tonga', 0, '2023-03-31 06:29:25', NULL),
+(22, 29, 'Samoa', 0, '2023-03-31 06:29:32', NULL),
+(23, 29, 'Pitcairn', 0, '2023-03-31 06:29:39', NULL),
+(24, 28, 'Quần đảo Bắc Mariana', 0, '2023-03-31 06:30:02', NULL),
+(25, 28, 'Nauru', 0, '2023-03-31 06:30:09', NULL),
+(26, 28, 'Kiribati', 0, '2023-03-31 06:30:17', NULL),
+(27, 28, 'Palau', 0, '2023-03-31 06:30:27', NULL),
+(28, 28, 'Liên bang Micronesia', 0, '2023-03-31 06:30:35', NULL),
+(29, 28, 'Guam', 0, '2023-03-31 06:30:48', NULL),
+(30, 27, 'Vanuatu', 0, '2023-03-31 06:31:04', NULL),
+(31, 27, 'Quần đảo Marshall', 0, '2023-03-31 06:31:11', NULL),
+(32, 27, 'New Caledonia', 0, '2023-03-31 06:31:20', NULL),
+(33, 27, 'Quần đảo Solomon', 0, '2023-03-31 06:31:28', NULL),
+(34, 27, 'Papua New Guinea', 0, '2023-03-31 06:31:35', NULL),
+(35, 27, 'Fiji', 0, '2023-03-31 06:31:44', NULL),
+(36, 50, 'Turkmenistan', 0, '2023-03-31 06:32:19', NULL),
+(37, 50, 'Kyrgyzstan', 0, '2023-03-31 06:32:26', NULL),
+(38, 50, 'Uzbekistan', 0, '2023-03-31 06:32:36', NULL),
+(39, 50, 'Tajikistan', 0, '2023-03-31 06:32:42', NULL),
+(40, 50, 'Kazakhstan', 0, '2023-03-31 06:32:53', NULL),
+(41, 49, 'Yemen', 0, '2023-03-31 06:34:35', NULL),
+(42, 49, 'Thổ Nhĩ Kỳ', 0, '2023-03-31 06:34:43', NULL),
+(43, 49, 'Syria', 0, '2023-03-31 06:34:53', NULL),
+(44, 49, 'Síp', 0, '2023-03-31 06:34:58', NULL),
+(45, 49, 'Qatar', 0, '2023-03-31 06:35:02', NULL),
+(46, 49, 'Palestine', 0, '2023-03-31 06:35:21', NULL),
+(47, 49, 'Oman', 0, '2023-03-31 06:35:31', NULL),
+(48, 49, 'Liban', 0, '2023-03-31 06:35:36', NULL),
+(49, 49, 'Kuwait', 0, '2023-03-31 06:35:53', NULL),
+(50, 49, 'Jordan', 0, '2023-03-31 06:36:01', NULL),
+(51, 49, 'Israel', 0, '2023-03-31 06:36:09', NULL),
+(52, 49, 'Iraq', 0, '2023-03-31 06:36:14', NULL),
+(53, 49, 'Georgia', 0, '2023-03-31 06:36:21', NULL),
+(54, 49, 'Các tiểu vương quốc Ả Rập Thống nhất', 0, '2023-03-31 06:36:31', NULL),
+(55, 49, 'Bahrain', 0, '2023-03-31 06:36:36', NULL),
+(56, 49, 'Azerbaijan', 0, '2023-03-31 06:36:40', NULL),
+(57, 49, 'Armenia', 0, '2023-03-31 06:36:46', NULL),
+(58, 49, 'Ả Rập Xê Út', 0, '2023-03-31 06:36:53', NULL),
+(59, 48, 'Afghanistan', 0, '2023-03-31 06:37:57', NULL),
+(60, 48, 'Ấn Độ', 0, '2023-03-31 06:38:03', NULL),
+(61, 48, 'Bangladesh', 0, '2023-03-31 06:38:07', NULL),
+(62, 48, 'Bhutan', 0, '2023-03-31 06:38:12', NULL),
+(63, 48, 'Iran', 0, '2023-03-31 06:38:16', NULL),
+(64, 48, 'Maldives', 0, '2023-03-31 06:38:20', NULL),
+(65, 48, 'Nepal', 0, '2023-03-31 06:38:24', NULL),
+(66, 48, 'Pakistan', 0, '2023-03-31 06:38:28', NULL),
+(67, 48, 'Sri Lanka', 0, '2023-03-31 06:38:33', NULL),
+(68, 47, 'Brunei', 0, '2023-03-31 06:38:58', NULL),
+(69, 47, 'Campuchia', 0, '2023-03-31 06:39:02', NULL),
+(70, 47, 'Đông Timor', 0, '2023-03-31 06:39:08', NULL),
+(71, 47, 'Indonesia', 0, '2023-03-31 06:39:13', NULL),
+(72, 47, 'Lào', 0, '2023-03-31 06:39:19', NULL),
+(73, 47, 'Malaysia', 0, '2023-03-31 06:39:23', NULL),
+(74, 47, 'Myanmar', 0, '2023-03-31 06:39:27', NULL),
+(75, 47, 'Philippines', 0, '2023-03-31 06:39:32', NULL),
+(76, 47, 'Singapore', 0, '2023-03-31 06:39:35', NULL),
+(77, 47, 'Thái Lan', 0, '2023-03-31 06:39:41', NULL),
+(78, 47, 'Việt Nam', 0, '2023-03-31 06:39:47', NULL),
+(79, 46, 'Đài Loan', 0, '2023-03-31 06:40:08', NULL),
+(80, 46, 'Hàn Quốc', 0, '2023-03-31 06:40:13', NULL),
+(81, 46, 'Mông Cổ', 0, '2023-03-31 06:40:18', NULL),
+(82, 46, 'Nhật Bản', 0, '2023-03-31 06:40:23', NULL),
+(83, 46, 'Triều Tiên', 0, '2023-03-31 06:40:29', NULL),
+(84, 46, 'Trung Quốc', 0, '2023-03-31 06:40:34', NULL);
 
 -- --------------------------------------------------------
 
@@ -13068,7 +13173,7 @@ ALTER TABLE `khoa`
 -- AUTO_INCREMENT cho bảng `khuvuc`
 --
 ALTER TABLE `khuvuc`
-  MODIFY `ma_kv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ma_kv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT cho bảng `kyluat`
@@ -13122,7 +13227,7 @@ ALTER TABLE `quequan`
 -- AUTO_INCREMENT cho bảng `quocgia`
 --
 ALTER TABLE `quocgia`
-  MODIFY `ma_qg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ma_qg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT cho bảng `quyen`
