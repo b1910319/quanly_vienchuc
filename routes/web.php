@@ -16,6 +16,7 @@ use App\Http\Controllers\GiaDinhController;
 use App\Http\Controllers\LoaiBangCapController;
 use App\Http\Controllers\HeDaoTaoController;
 use App\Http\Controllers\BangCapController;
+use App\Http\Controllers\ChauLucController;
 use App\Http\Controllers\ChuyenController;
 use App\Http\Controllers\DanhMucLopController;
 use App\Http\Controllers\DanhSachController;
@@ -710,7 +711,14 @@ Route::get('/delete_all_file',[FileController::class, 'delete_all_file']);
 Route::get('/file_luottai',[FileController::class, 'file_luottai']);
 Route::post('/delete_file_check',[FileController::class, 'delete_file_check']);
 
-
+Route::get('/chauluc',[ChauLucController::class, 'chauluc']);
+Route::post('/add_chauluc',[ChauLucController::class, 'add_chauluc']);
+Route::get('/select_chauluc/{ma_kv}',[ChauLucController::class, 'select_chauluc']);
+Route::get('/edit_chauluc/{ma_kv}',[ChauLucController::class, 'edit_chauluc']);
+Route::post('/update_chauluc/{ma_kv}',[ChauLucController::class, 'update_chauluc']);
+Route::get('/delete_chauluc',[ChauLucController::class, 'delete_chauluc']);
+Route::get('/delete_all_chauluc',[ChauLucController::class, 'delete_all_chauluc']);
+Route::post('/delete_chauluc_check',[ChauLucController::class, 'delete_chauluc_check']);
 
 Route::get('/khuvuc',[KhuVucController::class, 'khuvuc']);
 Route::post('/add_khuvuc',[KhuVucController::class, 'add_khuvuc']);

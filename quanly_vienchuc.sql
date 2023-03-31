@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 29, 2023 lúc 10:26 AM
+-- Thời gian đã tạo: Th3 31, 2023 lúc 06:51 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -122,7 +122,35 @@ INSERT INTO `bangcap` (`ma_bc`, `ma_vc`, `ma_hdt`, `ma_lbc`, `trinhdochuyenmon_b
 (15, 30, 5, 9, 'sfr', 'frdt', 'rte', 'grt5', '2023-03-07', 'rt564', 't564', 0, '2023-03-09 03:07:51', ' '),
 (16, 1, 4, 5, 'defr', 'rte', 'rte5', 'ggre', '2023-03-01', 'sdefwt', 'efw', 0, '2023-03-09 03:08:22', ' '),
 (17, 23, 4, 8, 'fgre', 'frt', 'rgte5', 'gre5', '2023-03-06', 'ty', 'gtr5', 0, '2023-03-09 03:08:55', ' '),
-(20, 61, 6, 7, 'sfẻê', 'dfre', 'dfe', 'de', '2023-03-02', 'fẻ', 'dxfe', 0, '2023-03-23 09:38:00', ' ');
+(20, 61, 6, 7, 'sfẻê', 'dfre', 'dfe', 'de', '2023-03-02', 'fẻ', 'dxfe', 0, '2023-03-23 09:38:00', ' '),
+(21, 36, 4, 8, 'gfthy', 'ht', 'ỷfryy', 'jyh', '2023-03-15', 'gutyu', 'gutyú', 0, '2023-03-30 04:23:32', ' ');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chauluc`
+--
+
+CREATE TABLE `chauluc` (
+  `ma_cl` int(11) NOT NULL,
+  `ten_cl` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mota_cl` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status_cl` int(11) NOT NULL DEFAULT 0,
+  `created_cl` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_cl` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chauluc`
+--
+
+INSERT INTO `chauluc` (`ma_cl`, `ten_cl`, `mota_cl`, `status_cl`, `created_cl`, `updated_cl`) VALUES
+(6, 'Châu Á', '(43.820.000 km2) bao gồm 50 quốc gia, và nó là lục địa lớn nhất và đông dân nhất, 60% trong tổng số dân của Trái đất sống ở đây.', 0, '2023-03-28 09:32:16', NULL),
+(7, 'Châu Phi', '(30.370.000 km2) bao gồm 54 quốc gia. Đây là châu lục nóng nhất và nhà của sa mạc lớn nhất thế giới, Sahara, chiếm 25% tổng diện tích của châu Phi', 0, '2023-03-28 09:32:40', NULL),
+(8, 'Châu Mỹ', 'BẮC MỸ (24.490.000 km2) bao gồm 23 quốc gia dẫn đầu bởi Mỹ là nền kinh tế lớn nhất thế giới.\r\nNAM MỸ (17.840.000 km2) bao gồm 12 quốc gia. Được bao phủ bởi những khu rừng lớn, rừng nhiệt đới Amazon chiếm đến 30% tổng diện Nam Mỹ', 0, '2023-03-28 09:42:39', NULL),
+(9, 'Nam Cực', '(13.720.000 km2) là lục địa lạnh nhất trên thế giới, hoàn toàn bao phủ trong băng. Không có dân cư trú ở đây, ngoại trừ các nhà khoa học sinh sống trong các trạm nghiên cứu ở Nam Cực.', 0, '2023-03-28 09:43:10', NULL),
+(10, 'Châu Âu', '(10.180.000 km2) bao gồm 51 quốc gia. Là lục địa phát triển nhất về kinh tế với Liên minh châu Âu là liên minh kinh tế và chính trị lớn nhất trên thế giới', 0, '2023-03-28 09:43:28', NULL),
+(11, 'Châu Úc', '(9.008.500 km2) bao gồm 14 quốc gia. Đây là châu lục ít dân cư nhất trừ Nam Cực, chỉ có 0,3% trong tổng dân số Trái đất sống ở đây', 0, '2023-03-28 09:43:51', NULL);
 
 -- --------------------------------------------------------
 
@@ -364,7 +392,8 @@ CREATE TABLE `giadinh` (
 INSERT INTO `giadinh` (`ma_gd`, `ma_vc`, `moiquanhe_gd`, `hoten_gd`, `sdt_gd`, `ngaysinh_gd`, `nghenghiep_gd`, `status_gd`, `created_gd`, `updated_gd`) VALUES
 (9, 1, 'fgthyt', 'juíuọi', '0845125468', '2023-02-28', 'ètôt̀', 0, '2023-03-22 09:44:29', ' '),
 (16, 59, 'fht', 'hyụt', 'yiuyi', '2023-03-01', 'uyut̃', 0, '2023-03-29 03:42:56', ' '),
-(17, 61, 'fgfdh', 'ghy', '0845124512', '2023-03-08', 'gthtgh', 0, '2023-03-29 07:06:47', ' ');
+(17, 61, 'fgfdh', 'ghy', '0845124512', '2023-03-08', 'gthtgh', 0, '2023-03-29 07:06:47', ' '),
+(18, 1, 'ghh', 'hỵhjụ', '0987451245', '2023-02-28', 'trt', 0, '2023-03-29 08:52:39', ' ');
 
 -- --------------------------------------------------------
 
@@ -1232,12 +1261,13 @@ INSERT INTO `khenthuong` (`ma_kt`, `ma_vc`, `ma_lkt`, `ma_htkt`, `ngay_kt`, `noi
 (7, 1, 4, 6, '2023-02-13', 'scfêqềr', 0, '2023-02-25 06:30:50', ' '),
 (8, 55, 4, 6, '2023-02-22', 'u7u67u7', 0, '2023-02-25 07:18:55', '2023-03-13 03:03:11'),
 (9, 54, 5, 7, '2023-02-13', 'cfewr35refd', 0, '2023-02-25 07:19:37', ' '),
-(10, 1, 4, 8, '2023-02-21', 'dewt452', 2, '2023-02-25 07:56:05', ' '),
+(10, 1, 4, 8, '2023-02-21', 'dewt452', 0, '2023-02-25 07:56:05', ' '),
 (16, 23, 5, 6, '2023-02-28', 'wrwr54e5', 0, '2023-03-09 07:26:26', ' '),
 (18, 61, 5, 6, '2023-02-26', 'sdrewtre', 0, '2023-03-29 07:10:27', ' '),
 (19, 61, 4, 8, '2023-03-09', 'fgtry', 0, '2023-03-29 07:16:13', ' '),
 (21, 61, 4, 6, '2023-02-27', 'dfrtg', 0, '2023-03-29 07:19:16', ' '),
-(22, 61, 5, 5, '2023-03-07', 'sfdsf', 0, '2023-03-29 07:19:24', ' ');
+(22, 61, 5, 5, '2023-03-07', 'sfdsf', 0, '2023-03-29 07:19:24', ' '),
+(23, 1, 4, 5, '2023-03-07', 'rgtr', 0, '2023-03-30 07:40:01', '2023-03-30 07:40:13');
 
 -- --------------------------------------------------------
 
@@ -1276,24 +1306,12 @@ INSERT INTO `khoa` (`ma_k`, `ten_k`, `mota_k`, `status_k`, `created_k`, `updated
 
 CREATE TABLE `khuvuc` (
   `ma_kv` int(11) NOT NULL,
+  `ma_cl` int(11) NOT NULL,
   `ten_kv` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mota_kv` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status_kv` int(11) NOT NULL DEFAULT 0,
   `created_kv` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_kv` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `khuvuc`
---
-
-INSERT INTO `khuvuc` (`ma_kv`, `ten_kv`, `mota_kv`, `status_kv`, `created_kv`, `updated_kv`) VALUES
-(6, 'Châu Á', '(43.820.000 km2) bao gồm 50 quốc gia, và nó là lục địa lớn nhất và đông dân nhất, 60% trong tổng số dân của Trái đất sống ở đây.', 0, '2023-03-28 09:32:16', NULL),
-(7, 'Châu Phi', '(30.370.000 km2) bao gồm 54 quốc gia. Đây là châu lục nóng nhất và nhà của sa mạc lớn nhất thế giới, Sahara, chiếm 25% tổng diện tích của châu Phi', 0, '2023-03-28 09:32:40', NULL),
-(8, 'Châu Mỹ', 'BẮC MỸ (24.490.000 km2) bao gồm 23 quốc gia dẫn đầu bởi Mỹ là nền kinh tế lớn nhất thế giới.\r\nNAM MỸ (17.840.000 km2) bao gồm 12 quốc gia. Được bao phủ bởi những khu rừng lớn, rừng nhiệt đới Amazon chiếm đến 30% tổng diện Nam Mỹ', 0, '2023-03-28 09:42:39', NULL),
-(9, 'Nam Cực', '(13.720.000 km2) là lục địa lạnh nhất trên thế giới, hoàn toàn bao phủ trong băng. Không có dân cư trú ở đây, ngoại trừ các nhà khoa học sinh sống trong các trạm nghiên cứu ở Nam Cực.', 0, '2023-03-28 09:43:10', NULL),
-(10, 'Châu Âu', '(10.180.000 km2) bao gồm 51 quốc gia. Là lục địa phát triển nhất về kinh tế với Liên minh châu Âu là liên minh kinh tế và chính trị lớn nhất trên thế giới', 0, '2023-03-28 09:43:28', NULL),
-(11, 'Châu Úc', '(9.008.500 km2) bao gồm 14 quốc gia. Đây là châu lục ít dân cư nhất trừ Nam Cực, chỉ có 0,3% trong tổng dân số Trái đất sống ở đây', 0, '2023-03-28 09:43:51', NULL);
 
 -- --------------------------------------------------------
 
@@ -1320,7 +1338,9 @@ INSERT INTO `kyluat` (`ma_kl`, `ma_vc`, `ma_lkl`, `lydo_kl`, `ngay_kl`, `status_
 (14, 55, 10, 'xcdfd', '2023-03-14', 0, '2023-03-29 08:04:06', ' '),
 (16, 54, 4, 'eded', '2023-02-28', 0, '2023-03-29 08:12:15', ' '),
 (17, 54, 7, 'dsd', '2023-03-02', 0, '2023-03-29 08:12:24', ' '),
-(20, 55, 4, 'kipkip', '2023-03-09', 0, '2023-03-29 08:25:44', ' ');
+(20, 55, 4, 'kipkip', '2023-03-09', 0, '2023-03-29 08:25:44', ' '),
+(21, 33, 10, 'fgfhfgt', '2023-03-08', 0, '2023-03-30 12:16:25', ' '),
+(22, 41, 4, 'dfdgf', '2023-03-20', 0, '2023-03-30 12:16:44', ' ');
 
 -- --------------------------------------------------------
 
@@ -2080,10 +2100,10 @@ INSERT INTO `vienchuc` (`ma_vc`, `ma_k`, `ma_cv`, `ma_n`, `ma_b`, `ma_dt`, `ma_t
 (29, 5, 8, 9, 0, 14, 13, 0, 'lhqbao@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Huỳnh Quốc Bảo', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:08:29', ' '),
 (30, 5, 8, 10, 0, 14, 14, 0, 'tmkhoi@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Minh Khôi', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:08:38', ' '),
 (31, 6, 8, 8, 0, 16, 15, 0, 'vhtram@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Võ Huỳnh Trâm', ' ', ' ', ' ', '1963-03-25', 1, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:09:19', ' '),
-(33, 6, 8, 7, 0, 17, 17, 0, 'hxhiep@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Huỳnh Xuân Hiệp', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '2023-02-12', ' ', ' ', 2, '2023-02-15 07:09:55', ' '),
+(33, 6, 8, 7, 0, 17, 17, 0, 'hxhiep@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Huỳnh Xuân Hiệp', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:09:55', ' '),
 (34, 6, 8, 9, 0, 20, 17, 0, 'ttttuyen@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trương Thị Thanh Tuyền', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:10:12', ' '),
 (35, 6, 8, 6, 0, 21, 18, 0, 'lhbao@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Lâm Hoài Bảo', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:10:39', ' '),
-(36, 6, 6, 9, 39, 21, 12, 0, 'phcuong@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phan Huy Cường', '0124512451', ' ', 'dsvgtơ', '1977-02-02', 0, 'csa', 'dưư', 'ằdqưdfs', '2023-02-01', 'sèwtô', 'fbhreỳ', '12/12', 'dvgetôẩ', 'dvgưôtô', 'dgetwô', 'vdget', '2019-02-08', '2019-02-08', '2023-02-01', '2023-02-23', 'vdgetted', 'zvdagetq', 'vdagetq', 'getôed', '54', 'feêqê', 'dvè', 'dfe', '2021-02-03', 'vdgewt', 'csrgưư', 'vde', 'dfetê', '2023-02-02', ' ', '2023-02-27', '2023-04-01', 0, '2023-02-15 07:10:54', ' '),
+(36, 6, 6, 9, 39, 21, 12, 4, 'phcuong@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phan Huy Cường', '0124512451', ' ', 'dsvgtơ', '1977-02-02', 0, 'csa', 'dưư', 'ằdqưdfs', '2023-02-01', 'sèwtô', 'fbhreỳ', '12/12', 'dvgetôẩ', 'dvgưôtô', 'dgetwô', 'vdget', '2019-02-08', '2019-02-08', '2023-02-01', '2023-02-23', 'vdgetted', 'zvdagetq', 'vdagetq', 'getôed', '54', 'feêqê', 'dvè', 'dfe', '2021-02-03', 'vdgewt', 'csrgưư', 'vde', 'dfetê', '2023-02-02', ' ', '2023-02-27', '2026-03-30', 0, '2023-02-15 07:10:54', ' '),
 (37, 6, 8, 7, 0, 23, 19, 0, 'hqnghi@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Huỳnh Quang Nghi', ' ', ' ', ' ', '1963-04-02', 1, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '2023-03-24', ' ', ' ', 2, '2023-02-15 07:11:07', ' '),
 (38, 6, 8, 9, 0, 24, 4, 0, 'chgiang@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Cao Hoàng Giang', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:11:26', ' '),
 (39, 6, 8, 10, 0, 4, 5, 0, 'pplan@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phan Phương Lan', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:11:37', ' '),
@@ -12741,6 +12761,12 @@ ALTER TABLE `bangcap`
   ADD PRIMARY KEY (`ma_bc`);
 
 --
+-- Chỉ mục cho bảng `chauluc`
+--
+ALTER TABLE `chauluc`
+  ADD PRIMARY KEY (`ma_cl`);
+
+--
 -- Chỉ mục cho bảng `chucvu`
 --
 ALTER TABLE `chucvu`
@@ -12946,7 +12972,13 @@ ALTER TABLE `bac`
 -- AUTO_INCREMENT cho bảng `bangcap`
 --
 ALTER TABLE `bangcap`
-  MODIFY `ma_bc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ma_bc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT cho bảng `chauluc`
+--
+ALTER TABLE `chauluc`
+  MODIFY `ma_cl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT cho bảng `chucvu`
@@ -12964,7 +12996,7 @@ ALTER TABLE `chuyen`
 -- AUTO_INCREMENT cho bảng `danhmuclop`
 --
 ALTER TABLE `danhmuclop`
-  MODIFY `ma_dml` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ma_dml` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `dantoc`
@@ -12988,7 +13020,7 @@ ALTER TABLE `file`
 -- AUTO_INCREMENT cho bảng `giadinh`
 --
 ALTER TABLE `giadinh`
-  MODIFY `ma_gd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ma_gd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT cho bảng `giahan`
@@ -13024,7 +13056,7 @@ ALTER TABLE `ketqua`
 -- AUTO_INCREMENT cho bảng `khenthuong`
 --
 ALTER TABLE `khenthuong`
-  MODIFY `ma_kt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ma_kt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT cho bảng `khoa`
@@ -13036,13 +13068,13 @@ ALTER TABLE `khoa`
 -- AUTO_INCREMENT cho bảng `khuvuc`
 --
 ALTER TABLE `khuvuc`
-  MODIFY `ma_kv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ma_kv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `kyluat`
 --
 ALTER TABLE `kyluat`
-  MODIFY `ma_kl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ma_kl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT cho bảng `loaibangcap`
@@ -13066,7 +13098,7 @@ ALTER TABLE `loaikyluat`
 -- AUTO_INCREMENT cho bảng `lop`
 --
 ALTER TABLE `lop`
-  MODIFY `ma_l` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ma_l` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `ngach`
