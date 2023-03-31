@@ -77,6 +77,17 @@
                     <table class="table">
                       <tbody>
                         <tr>
+                          <th scope="row">Quốc gia đào tạo: </th>
+                          <td class="was-validated">
+                            <select class="custom-select input_table" id="gender2" name="ma_qg">
+                              <option value="0" >Chọn quốc gia</option>
+                              @foreach ($list_quocgia as $quocgia )
+                                <option value="{{ $quocgia->ma_qg }}" >{{ $quocgia->ten_qg }}</option>
+                              @endforeach
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
                           <th scope="row">Tên lớp học: </th>
                           <td class="was-validated">
                             <input type='text' class='form-control input_table' autofocus required name="ten_l">
@@ -104,12 +115,6 @@
                           <th scope="row">Cơ sở đào tạo: </th>
                           <td class="was-validated">
                             <input type='text' class='form-control input_table' autofocus required name="tencosodaotao_l">
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Quốc gia đào tạo: </th>
-                          <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="quocgiaodaotao_l">
                           </td>
                         </tr>
                         <tr>
@@ -201,6 +206,7 @@
             <th scope="col">STT</th>
             <th scope="col">Thông tin lớp học</th>
             <th scope="col">Danh mục lớp</th>
+            <th scope="col">Quốc gia đào tạo</th>
             <th scope="col">Trạng thái</th>
             <th scope="col"></th>
           </tr>
@@ -238,6 +244,13 @@
               </td>
               <td>
                 {{ $danhmuclop->ten_dml }} ({{ $danhmuclop->ma_dml }})
+              </td>
+              <td>
+                @foreach ($list_quocgia as $key => $quocgia)
+                  @if ($quocgia->ma_qg == $lop->ma_qg)
+                    {{ $quocgia->ten_qg }}
+                  @endif
+                @endforeach
               </td>
               <td>
                 <?php

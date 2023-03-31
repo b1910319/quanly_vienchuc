@@ -36,6 +36,21 @@
                 </td>
               </tr>
               <tr>
+                <th scope="row">Quốc gia đào tạo: </th>
+                <td class="was-validated">
+                  <select class="custom-select input_table" id="gender2" name="ma_qg">
+                    <option value="0" >Chọn quốc gia đào tạo</option>
+                    @foreach ($list_quocgia as $quocgia )
+                      <option
+                        @if ($quocgia->ma_qg == $edit->ma_qg)
+                          selected
+                        @endif
+                        value="{{ $quocgia->ma_qg }}" >{{ $quocgia->ten_qg }}</option>
+                    @endforeach
+                  </select>
+                </td>
+              </tr>
+              <tr>
                 <th scope="row">Tên lớp học: </th>
                 <td class="was-validated">
                   <input type='text' class='form-control input_table' autofocus required name="ten_l" value="{{ $edit->ten_l }}">
@@ -65,12 +80,6 @@
                   <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" name="yeucau_l">
                     {{ $edit->yeucau_l }}
                   </textarea>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Quốc gia đào tạo: </th>
-                <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="quocgiaodaotao_l" value="{{ $edit->quocgiaodaotao_l }}">
                 </td>
               </tr>
             </tbody>

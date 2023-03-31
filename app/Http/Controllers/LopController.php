@@ -323,23 +323,26 @@ class LopController extends Controller
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
-      // $list_danhmuclop = DanhMucLop::where('status_dml', '<>', '1')
-      //   ->orderBy('ten_dml', 'asc')
-      //   ->get();
       $danhmuclop = DanhMucLop::find($ma_dml);
+      $list_quocgia = QuocGia::orderBy('ten_qg', 'asc')
+        ->get();
       return view('lop.lop_danhmuclop')
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('phanquyen_qltt', $phanquyen_qltt)
-        ->with('count', $count)
         ->with('title', $title)
         ->with('ma_dml', $ma_dml)
         ->with('danhmuclop', $danhmuclop)
+
         ->with('count_status', $count_status)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('count', $count)
         ->with('count_nangbac', $count_nangbac)
-        ->with('list', $list);
+
+        ->with('list', $list)
+        ->with('list_quocgia', $list_quocgia)
+
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }
@@ -362,7 +365,7 @@ class LopController extends Controller
       $lop->ngayketthuc_l = $data['ngayketthuc_l'];
       $lop->yeucau_l = $data['yeucau_l'];
       $lop->tencosodaotao_l = $data['tencosodaotao_l'];
-      $lop->quocgiaodaotao_l = $data['quocgiaodaotao_l'];
+      $lop->ma_qg = $data['ma_qg'];
       $lop->nganhhoc_l = $data['nganhhoc_l'];
       $lop->trinhdodaotao_l = $data['trinhdodaotao_l'];
       $lop->nguonkinhphi_l = $data['nguonkinhphi_l'];
@@ -428,11 +431,17 @@ class LopController extends Controller
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
+      $list_quocgia = QuocGia::orderBy('ten_qg', 'asc')
+        ->get();
       return view('lop.lop_danhmuclop_edit')
         ->with('edit', $edit)
         ->with('title', $title)
+
         ->with('list_danhmuclop', $list_danhmuclop)
+        ->with('list_quocgia', $list_quocgia)
+
         ->with('count_nangbac', $count_nangbac)
+
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -461,7 +470,7 @@ class LopController extends Controller
       $lop->ngayketthuc_l = $data['ngayketthuc_l'];
       $lop->yeucau_l = $data['yeucau_l'];
       $lop->tencosodaotao_l = $data['tencosodaotao_l'];
-      $lop->quocgiaodaotao_l = $data['quocgiaodaotao_l'];
+      $lop->ma_qg = $data['ma_qg'];
       $lop->nganhhoc_l = $data['nganhhoc_l'];
       $lop->trinhdodaotao_l = $data['trinhdodaotao_l'];
       $lop->nguonkinhphi_l = $data['nguonkinhphi_l'];
