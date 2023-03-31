@@ -2,8 +2,17 @@
 @section('content') 
 <div class="row">
   <div class="card-box">
-    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
-      ________THÔNG TIN CÁC KHU VỰC VIÊN CHỨC THAM GIA ĐI HỌC________
+    <div class="alert alert-success row" role="alert" style="background-color: #3F979B; text-align: center; text-transform: uppercase">
+      <div class="col-1">
+        <a href="{{ URL::to('/chauluc') }}" class="col-1">
+          <button type="button" class="btn btn-warning" style="background-color: #E83A14; border-radius: 50%; border: none;">
+            <i class="fa-solid fa-angle-left fw-bold" style="font-size: 18px;"></i>
+          </button>
+        </a>
+      </div>
+      <h4 class="text-center col-11 mt-1" style="font-weight: bold; color: white; font-size: 20px;">
+        ________THÔNG TIN CÁC KHU VỰC THUỘC CHÂU LỤC " <span style="color: #FFFF00;">{{ $chauluc->ten_cl }}</span> "________
+      </h4>
     </div>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
@@ -71,17 +80,8 @@
                         <tr>
                           <th scope="row">Tên khu vực: </th>
                           <td class="was-validated">
+                            <input type="hidden" name="ma_cl" value="{{ $chauluc->ma_cl }}">
                             <input type='text' class='form-control input_table' autofocus required name="ten_kv">
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Trạng thái: </th>
-                          <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="status_kv">
-                              <option value="0" >Chọn trạng thái</option>
-                              <option value="1" >Ẩn</option>
-                              <option selected value="0" >Hiển thị</option>
-                            </select>
                           </td>
                         </tr>
                       </tbody>
@@ -91,11 +91,13 @@
                     <table class="table">
                       <tbody>
                         <tr>
-                          <th scope="row" style="width: 20%">Mô tả: </th>
+                          <th scope="row">Trạng thái: </th>
                           <td class="was-validated">
-                            <textarea class="form-control" rows="4" required name="mota_kv">
-
-                            </textarea>
+                            <select class="custom-select input_table" id="gender2" name="status_kv">
+                              <option value="0" >Chọn trạng thái</option>
+                              <option value="1" >Ẩn</option>
+                              <option selected value="0" >Hiển thị</option>
+                            </select>
                           </td>
                         </tr>
                       </tbody>
@@ -128,8 +130,7 @@
             <th scope="col"></th>
             <th scope="col">STT</th>
             <th scope="col">Khu vực</th>
-            <th scope="col">Mô tả</th>
-            <th scope="col">Châu lục</th>
+            <th scope="col">Quốc gia</th>
             <th scope="col">Trạng thái</th>
             <th scope="col"></th>
           </tr>
@@ -146,15 +147,15 @@
               <td>
                 {{ $khuvuc->ten_kv }} ({{ $khuvuc->ma_kv }})
               </td>
-              <td style="width: 40%">
-                {{ $khuvuc->mota_kv }}
-              </td>
               <td>
-                <button type="submit"  class="btn btn-primary font-weight-bold" style="background-color: #379237; border: none;">
-                  <i class="fas fa-plus-square"></i>
-                  &ensp;
-                  Thêm châu lục
-                </button>
+                <a href="">
+                  <button type="submit"  class="btn btn-primary font-weight-bold" style="background-color: #379237; border: none;">
+                    <i class="fas fa-plus-square"></i>
+                    &ensp;
+                    Thêm quốc gia
+                  </button>
+                </a>
+                
               </td>
               <td>
                 <?php

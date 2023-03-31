@@ -150,11 +150,37 @@
                 {{ $chauluc->mota_cl }}
               </td>
               <td>
-                <button type="submit"  class="btn btn-primary font-weight-bold" style="background-color: #379237; border: none;">
-                  <i class="fas fa-plus-square"></i>
-                  &ensp;
-                  Thêm châu lục
-                </button>
+                <?php
+                  foreach ($count_khuvuc_chauluc as $key => $count) {
+                    if($count->ma_cl == $chauluc->ma_cl && $count->sum > 0){
+                      ?>
+                        <a href="{{ URL::to('khuvuc/'.$chauluc->ma_cl) }}">
+                          <button type="button" class="btn btn-primary position-relative fw-bold" style="background-color: #379237; border: none; width: 100%;">
+                            <i class="fas fa-plus-square"></i>
+                            &ensp;
+                            Thêm khu vực
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                              <?php echo $count->sum ?>
+                              <span class="visually-hidden">
+
+                              </span>
+                            </span>
+                          </button>
+                        </a>
+                      <?php
+                    }elseif ($count->ma_cl == $chauluc->ma_cl && $count->sum == 0) {
+                      ?>
+                        <a href="{{ URL::to('khuvuc/'.$chauluc->ma_cl) }}">
+                          <button type="button" class="btn btn-primary position-relative fw-bold" style="background-color: #379237; border: none; width: 100%;">
+                            <i class="fas fa-plus-square"></i>
+                            &ensp;
+                            Thêm khu vực
+                          </button>
+                        </a>
+                      <?php
+                    }
+                  }
+                ?>
               </td>
               <td>
                 <?php

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChauLuc;
 use App\Models\KhuVuc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,7 @@ class KhuVucController extends Controller
       return Redirect::to('/login')->send();
     }
   }
-  public function khuvuc(){
+  public function khuvuc($ma_cl){
     $this->check_login();
     $title = "Quản lý khu vực";
     $ma_vc = session()->get('ma_vc');
@@ -37,9 +38,15 @@ class KhuVucController extends Controller
       ->where('ma_q', '=', '6')
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
-      $count = KhuVuc::select(DB::raw('count(ma_kv) as sum'))->get();
-      $count_status = KhuVuc::select(DB::raw('count(ma_kv) as sum, status_kv'))->groupBy('status_kv')->get();
+      $count = KhuVuc::select(DB::raw('count(ma_kv) as sum'))
+        ->where('ma_cl', $ma_cl)
+        ->get();
+      $count_status = KhuVuc::select(DB::raw('count(ma_kv) as sum, status_kv'))
+        ->where('ma_cl', $ma_cl)
+        ->groupBy('status_kv')
+        ->get();
       $list = KhuVuc::orderBy('ma_kv', 'desc')
+        ->where('ma_cl', $ma_cl)
         ->get();
       $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
         ->where('ma_q', '=', '8')
@@ -49,9 +56,11 @@ class KhuVucController extends Controller
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
+      $chauluc = ChauLuc::find($ma_cl);
       return view('khuvuc.khuvuc')
         ->with('count', $count)
         ->with('title', $title)
+        ->with('chauluc', $chauluc)
 
         ->with('count_status', $count_status)
         ->with('count_nangbac', $count_nangbac)
@@ -80,11 +89,11 @@ class KhuVucController extends Controller
     if($phanquyen_admin || $phanquyen_qlcttc){
       $data = $request->all();
       $khuvuc = new khuvuc();
+      $khuvuc->ma_cl = $data['ma_cl'];
       $khuvuc->ten_kv = $data['ten_kv'];
-      $khuvuc->mota_kv = $data['mota_kv'];
       $khuvuc->status_kv = $data['status_kv'];
       $khuvuc->save();
-      return Redirect::to('/khuvuc');
+      return Redirect::to('/khuvuc/'.$data['ma_cl']);
     }else{
       return Redirect::to('/home');
     }

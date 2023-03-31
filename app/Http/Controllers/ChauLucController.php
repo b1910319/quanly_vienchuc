@@ -22,7 +22,7 @@ class ChauLucController extends Controller
   }
   public function chauluc(){
     $this->check_login();
-    $title = "Quản lý khu vực";
+    $title = "Quản lý châu lục";
     $ma_vc = session()->get('ma_vc');
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
     ->where('ma_q', '=', '9')
@@ -49,12 +49,18 @@ class ChauLucController extends Controller
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
+
+      $count_khuvuc_chauluc = ChauLuc::leftJoin('khuvuc', 'chauluc.ma_cl', '=', 'khuvuc.ma_cl')
+        ->select(DB::raw('count(ma_kv) as sum, chauluc.ma_cl'))
+        ->groupBy('chauluc.ma_cl')
+        ->get();
       return view('chauluc.chauluc')
         ->with('count', $count)
         ->with('title', $title)
 
         ->with('count_status', $count_status)
         ->with('count_nangbac', $count_nangbac)
+        ->with('count_khuvuc_chauluc', $count_khuvuc_chauluc)
 
         ->with('list', $list)
 
