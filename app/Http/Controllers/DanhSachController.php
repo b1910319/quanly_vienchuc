@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\DanhSach_VienChuc_LopExport;
 use App\Models\Bac;
 use App\Models\ChucVu;
 use App\Models\Chuyen;
@@ -253,6 +254,21 @@ class DanhSachController extends Controller
         'lop' => $lop,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function danhsach_vienchuc_lop_excel($ma_l){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      return (new DanhSach_VienChuc_LopExport($ma_l))->download('Danh-sach-vien-chuc-lop.xlsx');
     }else{
       return Redirect::to('/home');
     }

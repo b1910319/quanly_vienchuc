@@ -609,6 +609,7 @@ Route::get('/delete_danhsach/{ma_l}/{ma_vc}',[DanhSachController::class, 'delete
 Route::get('/delete_all_danhsach/{ma_l}',[DanhSachController::class, 'delete_all_danhsach']);
 Route::get('/quyetdinh_dihoc_pdf/{ma_l}/{ma_vc}',[DanhSachController::class, 'quyetdinh_dihoc_pdf']);
 Route::get('/danhsach_vienchuc_lop_pdf/{ma_l}',[DanhSachController::class, 'danhsach_vienchuc_lop_pdf']);
+Route::get('/danhsach_vienchuc_lop_excel/{ma_l}',[DanhSachController::class, 'danhsach_vienchuc_lop_excel']);
 
 
 
