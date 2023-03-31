@@ -219,10 +219,10 @@ class KhuVucController extends Controller
     if($phanquyen_admin || $phanquyen_qlcttc){
       $ma_kv = $request->ma_kv;
       KhuVuc::whereIn('ma_kv', $ma_kv)->delete();
-      return Redirect::to('khuvuc');
+      return redirect()->back();
     }
   }
-  public function delete_all_khuvuc(){
+  public function delete_all_khuvuc($ma_cl){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
@@ -232,11 +232,12 @@ class KhuVucController extends Controller
       ->where('ma_q', '=', '5')
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
-      $list = KhuVuc::get();
+      $list = KhuVuc::where('ma_cl', $ma_cl)
+        ->get();
       foreach($list as $key => $khuvuc){
         $khuvuc->delete();
       }
-      return Redirect::to('khuvuc');
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }

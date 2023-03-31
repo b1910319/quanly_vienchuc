@@ -21,7 +21,7 @@
             <i class="fas fa-plus-square"></i>
             &ensp; Thêm
           </button>
-          <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_khuvuc') }}">
+          <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_khuvuc/'.$chauluc->ma_cl) }}">
             <button type="button" class="btn btn-danger fw-bold" style="background-color: #FF1E1E">
               <i class="fa-solid fa-trash"></i>
               &ensp;
