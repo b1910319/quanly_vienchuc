@@ -423,7 +423,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                           ?>
                         </span>
                       </a>
-                      
                     </h4>
                   </div>
                   <div class="col-1 mt-2">

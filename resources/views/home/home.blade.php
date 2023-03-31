@@ -432,7 +432,18 @@
 <div class="row">
   <div class="col-xl-12">
     <div class="card-box">
-      <h4 class="header-title mb-3 fw-bold">Danh sách các lớp học hiện có</h4>
+      <h4 class="header-title mb-3 fw-bold">
+        Danh sách các lớp học hiện có
+        <div class="music-waves-2">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </h4>
 
       <div class="table-responsive">
         <table class="table table-borderless table-hover table-centered m-0" id="mytable1">

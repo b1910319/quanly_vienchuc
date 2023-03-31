@@ -381,9 +381,14 @@
           </button>
         </a>
       </div>
-      
     </div>
-    
+    <div class="music-waves mt-3">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     <div id="myfirstchart_qlcttc" style="height: 250px;">
     </div>
     @if (isset($list_1))

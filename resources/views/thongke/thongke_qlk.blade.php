@@ -278,7 +278,13 @@
         </a>
       </div>
     </div>
-    
+    <div class="music-waves mt-3">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     <div id="myfirstchart_qltt_1" style="height: 250px;"></div>
     @if (isset($list))
       <div class="alert alert-dark" role="alert">
