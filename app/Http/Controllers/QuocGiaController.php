@@ -147,11 +147,15 @@ class QuocGiaController extends Controller
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
+      $list_khuvuc = KhuVuc::orderBy('ten_kv', 'asc')
+        ->get();
       return view('quocgia.quocgia_edit')
         ->with('title', $title)
         ->with('edit', $edit)
 
         ->with('count_nangbac', $count_nangbac)
+
+        ->with('list_khuvuc', $list_khuvuc)
 
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -175,11 +179,12 @@ class QuocGiaController extends Controller
       $data = $request->all();
       Carbon::now('Asia/Ho_Chi_Minh');
       $quocgia = QuocGia::find($ma_qg);
+      $quocgia->ma_kv = $data['ma_kv'];
       $quocgia->ten_qg = $data['ten_qg'];
       $quocgia->status_qg = $data['status_qg'];
       $quocgia->updated_qg = Carbon::now();
       $quocgia->save();
-      return Redirect::to('quocgia');
+      return Redirect::to('/quocgia/'.$data['ma_kv']);
     }else{
       return Redirect::to('/home');
     }

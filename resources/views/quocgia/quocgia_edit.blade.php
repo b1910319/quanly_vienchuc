@@ -3,7 +3,7 @@
   <div class="card-box">
     <div class="alert alert-success row" role="alert" style="background-color: #3F979B; text-align: center;">
       <div class="col-1">
-        <a href="{{ URL::to('quocgia') }}">
+        <a href="{{ URL::to('quocgia/'.$edit->ma_kv) }}">
           <button type="button" class="btn btn-warning" style="background-color: #E83A14; border-radius: 50%; border: none;">
             <i class="fa-solid fa-angle-left fw-bold" style="font-size: 18px;"></i>
           </button>
@@ -20,6 +20,22 @@
         <div class="col-6">
           <table class="table">
             <tbody>
+              <tr>
+                <th scope="row">Tên khu vực: </th>
+                <td class="was-validated">
+                  <select class="custom-select input_table" aria-label="Default select example" name="ma_kv">
+                    @foreach ($list_khuvuc as $khuvuc )
+                      <option  
+                        @if ($khuvuc->ma_kv == $edit->ma_kv)
+                          selected
+                        @endif
+                        value="{{ $khuvuc->ma_kv }}">
+                        {{ $khuvuc->ten_kv }}
+                      </option>
+                    @endforeach
+                  </select>
+                </td>
+              </tr>
               <tr>
                 <th scope="row">Tên quốc gia: </th>
                 <td class="was-validated">
