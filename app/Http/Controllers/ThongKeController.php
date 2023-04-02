@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ThongKeQLCTTC_loc_allExport;
 use App\Exports\ThongKeQLCTTC_loc_1Export;
 use App\Exports\ThongKeQLKTKL_kl_7Export;
 use App\Exports\ThongKeQLKTKL_kl_6Export;
@@ -3815,6 +3816,21 @@ class ThongKeController extends Controller
         'title' => $title,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlktkl_loc_all_excel(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      return Excel::download(new ThongKeQLCTTC_loc_allExport(), 'Vien-chuc.xlsx');
     }else{
       return Redirect::to('/home');
     }

@@ -631,7 +631,20 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_loc_all_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlktkl_loc_all_excel') }}">
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file-excel"></i>
+              &ensp;
+              Xuất file Excel
+            </button>
           </a>
         </div>
       </div>
