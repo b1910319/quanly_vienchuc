@@ -64,18 +64,21 @@ class QuyetDinhController extends Controller
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
       return view('quyetdinh.quyetdinh')
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('phanquyen_qltt', $phanquyen_qltt)
-        ->with('count', $count)
-        ->with('title', $title)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('count_status', $count_status)
-        ->with('list', $list)
+        ->with('title', $title) 
         ->with('lop', $lop)
         ->with('vienchuc', $vienchuc)
+
+        ->with('count_nangbac', $count_nangbac)
+        ->with('count', $count)
+        ->with('count_status', $count_status)
+
+        ->with('list', $list)
+
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('count_nangbac', $count_nangbac);
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
     }
@@ -204,7 +207,7 @@ class QuyetDinhController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_quyetdinh($ma_qd){
+  public function delete_quyetdinh(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -214,14 +217,37 @@ class QuyetDinhController extends Controller
       ->where('ma_q', '=', '6')
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
-      $quyetdinh = QuyetDinh::find($ma_qd);
-      if($quyetdinh->file_qd != ' '){
-        unlink('public/uploads/quyetdinh/'.$quyetdinh->file_qd);
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          $quyetdinh = QuyetDinh::find($id);
+          if($quyetdinh->file_qd != ' '){
+            unlink('public/uploads/quyetdinh/'.$quyetdinh->file_qd);
+          }
+          $quyetdinh->delete();
+        }
       }
-      $quyetdinh->delete();
+    }
+  }
+  public function delete_quyetdinh_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $ma_qd = $request->ma_qd;
+      $list_quyetdinh = QuyetDinh::whereIn('ma_qd', $ma_qd)->get();
+      foreach ($list_quyetdinh as $key => $quyetdinh) {
+        if($quyetdinh->file_qd != ' '){
+          unlink('public/uploads/quyetdinh/'.$quyetdinh->file_qd);
+        }
+        $quyetdinh->delete();
+      }
       return redirect()->back();
-    }else{
-      return Redirect::to('/home');
     }
   }
   public function delete_all_quyetdinh($ma_l, $ma_vc){
