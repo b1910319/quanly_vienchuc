@@ -209,7 +209,7 @@ class ThoiHocController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_thoihoc($ma_th){
+  public function delete_thoihoc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -219,19 +219,47 @@ class ThoiHocController extends Controller
       ->where('ma_q', '=', '6')
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
-      $thoihoc = ThoiHoc::find($ma_th);
-      if($thoihoc->file_th != ' '){
-        unlink('public/uploads/thoihoc/'.$thoihoc->file_th);
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          $thoihoc = ThoiHoc::find($id);
+          if($thoihoc->file_th != ' '){
+            unlink('public/uploads/thoihoc/'.$thoihoc->file_th);
+          }
+          $thoihoc->delete();
+          $danhsach = DanhSach::where('ma_vc', $thoihoc->ma_vc)
+            ->where('ma_l', $thoihoc->ma_l)
+            ->first();
+          $danhsach->status_ds = '0';
+          $danhsach->save();
+        }
       }
-      $thoihoc->delete();
-      $danhsach = DanhSach::where('ma_vc', $thoihoc->ma_vc)
-        ->where('ma_l', $thoihoc->ma_l)
-        ->first();
-      $danhsach->status_ds = '0';
-      $danhsach->save();
+    }
+  }
+  public function delete_thoihoc_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $ma_th = $request->ma_th;
+      $list_thoihoc = ThoiHoc::whereIn('ma_th', $ma_th)->get();
+      foreach ($list_thoihoc as $key => $thoihoc) {
+        if($thoihoc->file_th != ' '){
+          unlink('public/uploads/thoihoc/'.$thoihoc->file_th);
+        }
+        $thoihoc->delete();
+        $danhsach = DanhSach::where('ma_vc', $thoihoc->ma_vc)
+          ->where('ma_l', $thoihoc->ma_l)
+          ->first();
+        $danhsach->status_ds = '0';
+        $danhsach->save();
+      }
       return redirect()->back();
-    }else{
-      return Redirect::to('/home');
     }
   }
   public function delete_all_thoihoc($ma_l, $ma_vc){
