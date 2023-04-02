@@ -292,7 +292,70 @@ class DanhSachController extends Controller
       $list = DanhSach::where('ma_l', $ma_l)
         ->get();
       foreach($list as $key => $danhsach){
-        $danhsach->delete();
+        $quyetdinh = QuyetDinh::where('ma_vc', $danhsach->ma_vc)
+            ->where('ma_l', $ma_l)
+            ->get();
+          if(isset($quyetdinh)){
+            foreach($quyetdinh as $qd){
+              if($qd->file_qd != ' '){
+                unlink('public/uploads/quyetdinh/'.$qd->file_qd);
+              }
+              $qd->delete();
+            }
+          }
+          $ketqua = KetQua::where('ma_vc', $danhsach->ma_vc)
+            ->where('ma_l', $ma_l)
+            ->get();
+          if(isset($ketqua)){
+            foreach ($ketqua as $key => $kq) {
+              $kq->delete();
+            }
+          }
+          $giahan = GiaHan::where('ma_vc', $danhsach->ma_vc)
+            ->where('ma_l', $ma_l)
+            ->get();
+          if(isset($giahan)){
+            foreach ($giahan as $key => $gh) {
+              if($gh->file_gh != ' '){
+                unlink('public/uploads/giahan/'.$gh->file_gh);
+              }
+              $gh->delete();
+            }
+          }
+          $dunghoc = DungHoc::where('ma_vc', $danhsach->ma_vc)
+            ->where('ma_l', $ma_l)
+            ->get();
+          if(isset($dunghoc)){
+            foreach ($dunghoc as $key => $dh) {
+              if($dh->file_dh != ' '){
+                unlink('public/uploads/dunghoc/'.$dh->file_dh);
+              }
+              $dh->delete();
+            }
+          }
+          $thoihoc = ThoiHoc::where('ma_vc', $danhsach->ma_vc)
+            ->where('ma_l', $ma_l)
+            ->get();
+          if(isset($thoihoc)){
+            foreach ($thoihoc as $key => $th) {
+              if($th->file_th != ' '){
+                unlink('public/uploads/thoihoc/'.$th->file_th);
+              }
+              $th->delete();
+            }
+          }
+          $chuyen = Chuyen::where('ma_vc', $danhsach->ma_vc)
+            ->where('ma_l', $ma_l)
+            ->get();
+          if(isset($chuyen)){
+            foreach ($chuyen as $key => $c) {
+              if($c->file_c != ' '){
+                unlink('public/uploads/chuyen/'.$c->file_c);
+              }
+              $c->delete();
+            }
+          }
+          $danhsach->delete();
       }
       return Redirect::to('/danhsach/'.$ma_l);
     }else{
