@@ -61,8 +61,6 @@
                       @endif
                     </div>
                   </div>
-                  
-                  
                 </td>
               </tr>
               <tr>
