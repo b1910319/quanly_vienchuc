@@ -115,19 +115,23 @@ class DanhSachController extends Controller
       $list_loiabangcap = LoaiBangCap::get();
       $list_tinh = Tinh::orderBy('ten_t', 'asc')
         ->get();
+      $lop = Lop::find($ma_l);
       return view('danhsach.danhsach')
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('phanquyen_qltt', $phanquyen_qltt)
-        ->with('count', $count)
         ->with('title', $title)
         ->with('ma_l', $ma_l)
-        ->with('list',$list)
+        ->with('lop', $lop)
+
+        ->with('count', $count)
+        ->with('count_nangbac', $count_nangbac)
         ->with('count_thoihoc_vienchuc', $count_thoihoc_vienchuc)
         ->with('count_chuyen_vienchuc', $count_chuyen_vienchuc)
         ->with('count_giahan_vienchuc', $count_giahan_vienchuc)
         ->with('count_ketqua_vienchuc', $count_ketqua_vienchuc)
         ->with('count_quyetdinh_vienchuc', $count_quyetdinh_vienchuc)
+        ->with('count_dunghoc_vienchuc', $count_dunghoc_vienchuc)
+
         ->with('list_vienchuc', $list_vienchuc)
+        ->with('list',$list)
         ->with('list_khoa', $list_khoa)
         ->with('list_chucvu', $list_chucvu)
         ->with('list_ngach', $list_ngach)
@@ -138,11 +142,12 @@ class DanhSachController extends Controller
         ->with('list_hedaotao', $list_hedaotao)
         ->with('list_loiabangcap', $list_loiabangcap)
         ->with('list_tinh',$list_tinh)
-        ->with('count_dunghoc_vienchuc', $count_dunghoc_vienchuc)
+
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('count_nangbac', $count_nangbac);
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qltt', $phanquyen_qltt);
     }else{
       return Redirect::to('/home');
     }
@@ -166,26 +171,113 @@ class DanhSachController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_danhsach($ma_l, $ma_vc){
+  // public function delete_danhsach($ma_l, $ma_vc){
+  //   $this->check_login();
+  //   $ma_vc_login = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+  //     ->where('ma_q', '=', '6')
+  //     ->first();
+  //     if($phanquyen_admin || $phanquyen_qlcttc){
+  //       $list = DanhSach::where('ma_vc', $ma_vc)
+  //         ->where('ma_l', $ma_l)
+  //         ->get();
+  //       foreach($list as $key => $danhsach){
+  //         $danhsach->delete();
+  //       }
+  //       return Redirect::to('/danhsach/'.$ma_l);
+  //     }else{
+  //       return Redirect::to('/home');
+  //     }
+  // }
+  public function delete_danhsach(Request $request){
     $this->check_login();
-    $ma_vc_login = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
-      if($phanquyen_admin || $phanquyen_qlcttc){
-        $list = DanhSach::where('ma_vc', $ma_vc)
-          ->where('ma_l', $ma_l)
-          ->get();
-        foreach($list as $key => $danhsach){
-          $danhsach->delete();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      if($request->ajax()){
+        $ma_l =$request->ma_l;
+        $ma_vc =$request->ma_vc;
+        if($ma_l != null && $ma_vc != null){
+          $list_danhsach = DanhSach::where('ma_vc', $ma_vc)
+            ->where('ma_l', $ma_l)
+            ->get();
+          foreach ($list_danhsach as $key => $danhsach) {
+            $danhsach->delete();
+          }
+          $quyetdinh = QuyetDinh::where('ma_vc', $ma_vc)
+            ->where('ma_l', $ma_l)
+            ->get();
+          if(isset($quyetdinh)){
+            foreach($quyetdinh as $qd){
+              if($qd->file_qd != ' '){
+                unlink('public/uploads/quyetdinh/'.$qd->file_qd);
+              }
+              $qd->delete();
+            }
+          }
+          $ketqua = KetQua::where('ma_vc', $ma_vc)
+            ->where('ma_l', $ma_l)
+            ->get();
+          if(isset($ketqua)){
+            foreach ($ketqua as $key => $kq) {
+              $kq->delete();
+            }
+          }
+          $giahan = GiaHan::where('ma_vc', $ma_vc)
+            ->where('ma_l', $ma_l)
+            ->get();
+          if(isset($giahan)){
+            foreach ($giahan as $key => $gh) {
+              if($gh->file_gh != ' '){
+                unlink('public/uploads/giahan/'.$gh->file_gh);
+              }
+              $gh->delete();
+            }
+          }
+          $dunghoc = DungHoc::where('ma_vc', $ma_vc)
+            ->where('ma_l', $ma_l)
+            ->get();
+          if(isset($dunghoc)){
+            foreach ($dunghoc as $key => $dh) {
+              if($dh->file_dh != ' '){
+                unlink('public/uploads/dunghoc/'.$dh->file_dh);
+              }
+              $dh->delete();
+            }
+          }
+          $thoihoc = ThoiHoc::where('ma_vc', $ma_vc)
+            ->where('ma_l', $ma_l)
+            ->get();
+          if(isset($thoihoc)){
+            foreach ($thoihoc as $key => $th) {
+              if($th->file_th != ' '){
+                unlink('public/uploads/thoihoc/'.$th->file_th);
+              }
+              $th->delete();
+            }
+          }
+          $chuyen = Chuyen::where('ma_vc', $ma_vc)
+            ->where('ma_l', $ma_l)
+            ->get();
+          if(isset($chuyen)){
+            foreach ($chuyen as $key => $c) {
+              if($c->file_c != ' '){
+                unlink('public/uploads/chuyen/'.$c->file_c);
+              }
+              $c->delete();
+            }
+          }
         }
-        return Redirect::to('/danhsach/'.$ma_l);
-      }else{
-        return Redirect::to('/home');
       }
+    }
   }
   public function delete_all_danhsach($ma_l){
     $this->check_login();

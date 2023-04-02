@@ -451,6 +451,7 @@
           <thead class="thead-light">
             <tr>
               <th>Tên lớp</th>
+              <th>Hạn đăng ký nộp hồ sơ</th>
               <th>Ngày bắt đầu học</th>
               <th>Ngày kết thúc</th>
               <th>Cơ sở đào tạo</th>
@@ -468,6 +469,19 @@
                   </h5>
                 </td>
                 <td>
+                  <?php 
+                  $han_dangky = strtotime ( '-2 month' , strtotime ( $lop->ngaybatdau_l ) ) ;
+                  $han_dangky = date ( 'Y-m-j' , $han_dangky );
+                  ?>
+                    <span class="badge badge-light-danger" style="font-size: 18px">
+                      <?php 
+                        echo $han_dangky;
+                      ?>
+                    </span>
+                  <?php
+                ?>
+                </td>
+                <td>
                   {{ $lop->ngaybatdau_l }}
                 </td>
 
@@ -481,7 +495,7 @@
 
                 <td>
                   <span class="badge badge-light-danger">
-                    {{ $lop->quocgiaodaotao_l }}
+                    {{ $lop->ten_qg }}
                   </span>
                 </td>
                 <td>
@@ -490,9 +504,11 @@
                   {{ $lop->luotxem_l }}
                 </td>
                 <td>
-                  <button type="button" class="btn btn-primary luotxem_l{{ $key+1 }} btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $lop->ma_l }}">
+                  <button type="button" class="btn btn-primary luotxem_l{{ $key+1 }} btn_chitiet fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $lop->ma_l }}">
                     <input type="hidden" class="ma_l{{ $key+1 }}" value="{{ $lop->ma_l }}">
                     <i class="fa-solid fa-circle-info"></i>
+                    &ensp;
+                    Chi tiết
                   </button>
                   <div class="modal fade" id="exampleModal{{ $lop->ma_l }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-scrollable modal-lg">

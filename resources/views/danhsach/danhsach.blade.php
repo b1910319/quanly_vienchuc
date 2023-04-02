@@ -3,15 +3,19 @@
 <div class="row">
   <div class="card-box">
     <div class="row ">
+      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+        ________DANH SÁCH VIÊN CHỨC________
+      </div>
       <div class="col-md-12">
         <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
           style="height: 400px; overflow: auto;">
           <p>
             <table class="table" id="mytable">
-              <thead class="table-dark">
+              <thead class="table-secondary">
                 <tr>
                   <th scope="col">STT</th>
                   <th scope="col">Tên viên chức</th>
+                  <th scope="col">Thông tin liên hệ</th>
                   <th scope="col">Khoa</th>
                   <th scope="col">Thông tin viên chức </th>
                   <th scope="col">Trạng thái</th>
@@ -23,19 +27,24 @@
                   <tr >
                     <th scope="row">{{ $key+1 }}</th>
                     <td>
-                      {{ $vienchuc->hoten_vc }}
+                      {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }})
+                    </td>
+                    <td>
+                      <b>Email: </b>{{ $vienchuc->user_vc }}
+                      <br>
+                      <b>Số điện thoại: </b>{{ $vienchuc->sdt_vc }}
                     </td>
                     <td>
                       @foreach ($list_khoa as $khoa)
                         @if ($khoa->ma_k == $vienchuc->ma_k)
-                          {{ $khoa->ten_k }}
+                          {{ $khoa->ten_k }} ({{ $khoa->ma_k }})
                         @endif
                       @endforeach
                     </td>
                     <td>
                       <!-- Button trigger modal -->
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}" style="background-color: #04009A; border: none;">
-                        Xem thông tin
+                      <button type="button" class="btn btn-primary luotxem_l{{ $key+1 }} btn_chitiet fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}">
+                        <i class="fa-solid fa-circle-info"></i> &ensp; Chi tiết
                       </button>
         
                       <!-- Modal -->
@@ -346,7 +355,10 @@
                               </table>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="fa-solid fa-square-xmark"></i>
+                                &ensp; Đóng
+                              </button>
                             </div>
                           </div>
                         </div>
@@ -361,8 +373,8 @@
                     </td>
                     <td>
                       <a href="{{ URL::to('/add_danhsach/'.$ma_l.'/'.$vienchuc->ma_vc) }}">
-                        <button type="button" class="btn btn-primary">
-                          <i class="fa-solid fa-circle-plus"></i>
+                        <button type="button"  class="btn btn-primary font-weight-bold them" style="background-color: #379237; border: none;">
+                          <i class="fas fa-plus-square"></i>
                           &ensp;
                           Thêm
                         </button>
@@ -377,37 +389,37 @@
       </div>
     </div>
     <div class="mt-3"></div>
-    <div class="alert alert-success" role="alert">
-      <div class="row">
-        <a href="{{ URL::to('/lop') }}" class="col-1">
-          <button type="button" class="btn btn-warning">
-            <i class="fas fa-solid fa-caret-left"></i>&ensp;
-          </button> &ensp;
+    <div class="alert alert-success row" role="alert" style="background-color: #3F979B; text-align: center;">
+      <div class="col-1">
+        <a href="{{ URL::to('lop') }}">
+          <button type="button" class="btn btn-warning" style="background-color: #E83A14; border-radius: 50%; border: none;">
+            <i class="fa-solid fa-angle-left fw-bold" style="font-size: 18px;"></i>
+          </button>
         </a>
-        <h4 class="text-center col-10 mt-1" style="font-weight: bold">
-          DANH SÁCH 
-        </h4>
       </div>
+      <h4 class="text-center col-11 mt-1" style="font-weight: bold; color: white; font-size: 20px; text-transform: uppercase">
+        ________THÔNG TIN HỌC VIÊN CỦA LỚP " <span style="color: #FFFF00"> {{ $lop->ten_l }}</span> "________
+      </h4>
     </div>
     <div class="row">
       <div class="col-2">
-        @foreach ($count as $key => $count)
-          <p class="fw-bold" style="color: #379237; ">Tổng có: {{ $count->sum }}</p>
-        @endforeach
-      </div>
-      <div class="col-2">
         <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_danhsach/'.$ma_l) }}">
-          <button type="button" class="btn btn-danger">Xoá tất cả</button>
+          <button type="button" class="btn btn-danger fw-bold" style="background-color: #FF1E1E">
+            <i class="fa-solid fa-trash"></i>
+            &ensp;
+            Xoá tất cả
+          </button>
         </a>
       </div>
     </div>
     <table class="table" id="mytable1">
-      <thead class="table-dark">
+      <thead class="table-secondary">
         <tr>
           <th scope="col">STT</th>
           <th scope="col">Viên chức </th>
           <th scope="col">Trạng thái</th>
           <th scope="col">Thông tin viên chức</th>
+          <th scope="col">Qúa trình học</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -416,26 +428,32 @@
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              <b>Tên: </b> {{ $danhsach->hoten_vc }} <br>
+              <b>Tên: </b> {{ $danhsach->hoten_vc }} ({{ $danhsach->ma_vc }}) <br>
               <b>Khoa: </b>
               @foreach ($list_khoa as $khoa)
                 @if ($khoa->ma_k == $danhsach->ma_k)
-                  {{ $khoa->ten_k }}
+                  {{ $khoa->ten_k }} ({{ $danhsach->ma_k }})
                 @endif
               @endforeach
             </td>
             <td>
               @if ($danhsach->status_ds == 0)
-                <span class="badge rounded-pill text-bg-info">Hiển thị</span>
+              <span class="badge badge-light-success">
+                <i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị
+              </span>
               @else
                 @if ($danhsach->status_ds == 1)
-                  <span class="badge rounded-pill text-bg-info">Ẩn</span>
+                <span class="badge badge-light-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
                 @else
                   @if ($danhsach->status_ds == 2)
-                    <span class="badge rounded-pill text-bg-info">Xin chuyển</span>
+                    <span class="badge badge-light-primary">
+                      Xin chuyển
+                    </span>
                   @else
                     @if ($danhsach->status_ds == 3)
-                      <span class="badge rounded-pill text-bg-info">Thôi học</span>
+                    <span class="badge badge-light-warning">
+                      Thôi học
+                    </span>
                     @else
                       
                     @endif
@@ -444,9 +462,8 @@
               @endif
             </td>
             <td>
-              <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}" style="background-color: #04009A; border: none;">
-                Xem thông tin
+              <button type="button" class="btn btn-primary luotxem_l{{ $key+1 }} btn_chitiet fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}">
+                <i class="fa-solid fa-circle-info"></i> &ensp; Chi tiết
               </button>
 
               <!-- Modal -->
@@ -756,130 +773,154 @@
                         </tbody>
                       </table>
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    </div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                      <i class="fa-solid fa-square-xmark"></i>
+                      &ensp; Đóng
+                    </button>
                   </div>
                 </div>
               </div>
             </td>
-            <td> 
-              <a href="{{ URL::to('/quyetdinh_dihoc_pdf/'.$danhsach->ma_l.'/'.$danhsach->ma_vc) }}">
-                <button type="button" class="btn btn-primary" style="background-color: #379237; border: none;"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
-              </a>
-              <a href="{{ URL::to('/quyetdinh/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
-                <button type="button" class="btn btn-danger position-relative me-2" style="background-color: #CF0000; border: none;">
-                  Cập nhật quyết định 
-                  <?php
+            <td style="width: 36%">
+              <div class="row">
+                <div class="col-4">
+                  <a href="{{ URL::to('/quyetdinh/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
+                    <button type="button" class="btn btn-danger position-relative me-2 fw-bold" style="background-color: #CF0000; border: none; width: 100%">
+                      Cập nhật quyết định 
+                      <?php
+                        foreach ($count_quyetdinh_vienchuc as $key => $count) {
+                          if($count->ma_vc == $danhsach->ma_vc){
+                            ?>
+                              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: #CF0000 !important; font-size: 16px">
+                                <?php echo $count->sum ?>
+                                <span class="visually-hidden">unread messages</span>
+                              </span>
+                            <?php
+                          }
+                        }
+                      ?>
+                    </button>
+                  </a>
+                </div>
+                <?php
                     foreach ($count_quyetdinh_vienchuc as $key => $count) {
                       if($count->ma_vc == $danhsach->ma_vc){
                         ?>
-                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: #CF0000 !important; font-size: 16px">
-                            <?php echo $count->sum ?>
-                            <span class="visually-hidden">unread messages</span>
-                          </span>
-                        <?php
-                      }
-                    }
-                  ?>
-                </button>
-              </a>
-              <?php
-                foreach ($count_quyetdinh_vienchuc as $key => $count) {
-                  if($count->ma_vc == $danhsach->ma_vc){
-                    ?>
-                      <a href="{{ URL::to('/ketqua/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
-                        <button type="button" class="btn btn-danger position-relative me-2" style="background-color: #FF5200">
-                          Kết quả học
-                          <?php
-                            foreach ($count_ketqua_vienchuc as $key => $count) {
-                              if($count->ma_vc == $danhsach->ma_vc){
-                                ?>
-                                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: #FF5200 !important; font-size: 16px">
-                                    <?php echo $count->sum ?>
-                                    <span class="visually-hidden">unread messages</span>
-                                  </span>
+                          <div class="col-4">
+                            <a href="{{ URL::to('/ketqua/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
+                              <button type="button" class="btn btn-danger position-relative me-2 fw-bold" style="background-color: #FF5200; width: 100%">
+                                Kết quả học
                                 <?php
-                              }
-                            }
-                          ?>
-                        </button>
-                      </a>
-                    <?php
-                  }
-                }
-              ?>
-              <a href="{{ URL::to('/dunghoc/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
-                <button type="button" class="btn btn-danger position-relative me-2" style="background-color: #B3005E">
-                  Tạm dừng học
-                  <?php
-                    foreach ($count_dunghoc_vienchuc as $key => $count) {
-                      if($count->ma_vc == $danhsach->ma_vc){
-                        ?>
-                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: #B3005E !important; font-size: 16px">
-                            <?php echo $count->sum ?>
-                            <span class="visually-hidden">unread messages</span>
-                          </span>
+                                  foreach ($count_ketqua_vienchuc as $key => $count) {
+                                    if($count->ma_vc == $danhsach->ma_vc){
+                                      ?>
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: #FF5200 !important; font-size: 16px">
+                                          <?php echo $count->sum ?>
+                                          <span class="visually-hidden">unread messages</span>
+                                        </span>
+                                      <?php
+                                    }
+                                  }
+                                ?>
+                              </button>
+                            </a>
+                          </div>
+                          <div class="col-4">
+                            <a href="{{ URL::to('/dunghoc/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
+                              <button type="button" class="btn btn-danger position-relative me-2 fw-bold" style="background-color: #B3005E; width: 100%">
+                                Tạm dừng học
+                                <?php
+                                  foreach ($count_dunghoc_vienchuc as $key => $count) {
+                                    if($count->ma_vc == $danhsach->ma_vc){
+                                      ?>
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: #B3005E !important; font-size: 16px">
+                                          <?php echo $count->sum ?>
+                                          <span class="visually-hidden">unread messages</span>
+                                        </span>
+                                      <?php
+                                    }
+                                  }
+                                ?>
+                              </button>
+                            </a>
+                          </div>
+                          <div class="col-4 mt-2">
+                            <a href="{{ URL::to('/giahan/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
+                              <button type="button" class="btn btn-danger position-relative me-2 fw-bold" style="background-color: #FF9D76; border: none; width: 100%">
+                                Gia hạn
+                                <?php
+                                  foreach ($count_giahan_vienchuc as $key => $count) {
+                                    if($count->ma_vc == $danhsach->ma_vc){
+                                      ?>
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: #FF9D76 !important; font-size: 16px">
+                                          <?php echo $count->sum ?>
+                                          <span class="visually-hidden">unread messages</span>
+                                        </span>
+                                      <?php
+                                    }
+                                  } 
+                                ?>
+                              </button>
+                            </a>
+                          </div>
+                          <div class="col-4 mt-2">
+                            <a href="{{ URL::to('/chuyen/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
+                              <button type="button" class="btn btn-danger position-relative me-2 fw-bold" style="background-color: #04009A; border: none; width: 100%">
+                                Chuyển nước,trường...
+                                <?php
+                                  foreach ($count_chuyen_vienchuc as $key => $count) {
+                                    if($count->ma_vc == $danhsach->ma_vc){
+                                      ?>
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: #04009A !important; font-size: 16px;">
+                                          <?php echo $count->sum ?>
+                                          <span class="visually-hidden">unread messages</span>
+                                        </span>
+                                      <?php
+                                    }
+                                  } 
+                                ?>
+                              </button>
+                            </a>
+                          </div>
+                          <div class="col-4 mt-2">
+                            <a href="{{ URL::to('/thoihoc/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
+                              <button type="button" class="btn btn-danger position-relative me-2 fw-bold" style="background-color: #E5890A; border: none; width: 100%">
+                                Thôi học
+                                <?php
+                                  foreach ($count_thoihoc_vienchuc as $key => $count) {
+                                    if($count->ma_vc == $danhsach->ma_vc){
+                                      ?>
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: #E5890A !important; font-size: 16px;">
+                                          <?php echo $count->sum ?>
+                                          <span class="visually-hidden">unread messages</span>
+                                        </span>
+                                      <?php
+                                    }
+                                  } 
+                                ?>
+                              </button>
+                            </a>
+                          </div>
                         <?php
                       }
                     }
                   ?>
+              </div>
+            </td>
+            <td style="width: 15%"> 
+              <a href="{{ URL::to('/quyetdinh_dihoc_pdf/'.$danhsach->ma_l.'/'.$danhsach->ma_vc) }}">
+                <button type="button" class="btn btn-warning fw-bold" style="background-color: #379237; border: none;">
+                  <i class="fa-solid fa-file-pdf"></i>
+                  &ensp;
+                  Xuất file
                 </button>
               </a>
-              <a href="{{ URL::to('/giahan/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
-                <button type="button" class="btn btn-danger position-relative me-2" style="background-color: #FF9D76; border: none">
-                  Gia hạn
-                  <?php
-                    foreach ($count_giahan_vienchuc as $key => $count) {
-                      if($count->ma_vc == $danhsach->ma_vc){
-                        ?>
-                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: #FF9D76 !important; font-size: 16px">
-                            <?php echo $count->sum ?>
-                            <span class="visually-hidden">unread messages</span>
-                          </span>
-                        <?php
-                      }
-                    } 
-                  ?>
-                </button>
-              </a>
-              <a href="{{ URL::to('/chuyen/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
-                <button type="button" class="btn btn-danger position-relative me-2" style="background-color: #04009A; border: none;">
-                  Chuyển nước,trường...
-                  <?php
-                    foreach ($count_chuyen_vienchuc as $key => $count) {
-                      if($count->ma_vc == $danhsach->ma_vc){
-                        ?>
-                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: #04009A !important; font-size: 16px;">
-                            <?php echo $count->sum ?>
-                            <span class="visually-hidden">unread messages</span>
-                          </span>
-                        <?php
-                      }
-                    } 
-                  ?>
-                </button>
-              </a>
-              <a href="{{ URL::to('/thoihoc/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
-                <button type="button" class="btn btn-danger position-relative me-2" style="background-color: #E5890A; border: none;">
-                  Thôi học
-                  <?php
-                    foreach ($count_thoihoc_vienchuc as $key => $count) {
-                      if($count->ma_vc == $danhsach->ma_vc){
-                        ?>
-                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: #E5890A !important; font-size: 16px;">
-                            <?php echo $count->sum ?>
-                            <span class="visually-hidden">unread messages</span>
-                          </span>
-                        <?php
-                      }
-                    } 
-                  ?>
-                </button>
-              </a>
-              <a onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_danhsach/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
+              {{-- <a onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_danhsach/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
                 <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              </a>
+              </a> --}}
+              <input class="ma_vc{{ $danhsach->ma_vc }}" type="hidden" value="{{ $danhsach->ma_vc }}">
+              <input class="ma_l{{ $danhsach->ma_l }}" type="hidden" value="{{ $danhsach->ma_l }}">
+              <button type="button" class=" xoa{{ $danhsach->ma_l }}{{ $danhsach->ma_vc }} btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
             </td>
           </tr>
         @endforeach
@@ -887,4 +928,58 @@
     </table>
   </div>
 </div>
+{{-- ajax --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+{{--  --}}
+<script>
+  @foreach ($list as $danhsach )
+    document.querySelector('.xoa{{ $danhsach->ma_l }}{{ $danhsach->ma_vc }}').addEventListener('click', (event)=>{
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+
+      swalWithBootstrapButtons.fire({
+        title: 'Bạn có chắc muốn xoá không?',
+        text: "Bạn không thể khôi phục dữ liệu đã xoá",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
+        cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          var ma_l= $('.ma_l{{ $danhsach->ma_l }}').val();
+          var ma_vc= $('.ma_vc{{ $danhsach->ma_vc }}').val();
+          $.ajax({
+            url:"{{ url("/delete_danhsach") }}", 
+            type: "GET", 
+            data: {ma_l:ma_l, ma_vc:ma_vc},
+          });
+          swalWithBootstrapButtons.fire(
+            'Xoá thành công',
+            'Dữ liệu của bạn đã được xoá.',
+            'success'
+          )
+        } else if (
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Đã huỷ',
+            'Dữ liệu được an toàn',
+            'error'
+          )
+        }
+        location.reload();
+      })
+      
+    });
+  @endforeach
+  
+</script>
+<!--  -->
 @endsection

@@ -115,7 +115,8 @@ class HomeController extends Controller
 
     $date = Carbon::parse(Carbon::now()->addMonths(2))->format('Y-m-d');
     // echo $date;
-    $list_lop = Lop::orderBy('ma_l', 'desc')
+    $list_lop = Lop::join('quocgia', 'lop.ma_qg', '=', 'quocgia.ma_qg')
+      ->orderBy('ma_l', 'desc')
       ->where('ngaybatdau_l', '>=', $date)
       ->get();
     $list_file = File::where('status_f', '<>', '1')
