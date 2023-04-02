@@ -771,10 +771,8 @@
       </div>
     @endif
     @if (isset($list_giahan))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC  XIN GIA HẠN KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+        ________DANH SÁCH VIÊN CHỨC XIN GIA HẠN________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -872,7 +870,20 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_loc_giahan_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlcttc_loc_giahan_excel') }}">
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file-excel"></i>
+              &ensp;
+              Xuất file Excel
+            </button>
           </a>
         </div>
       </div>
