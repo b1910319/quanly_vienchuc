@@ -26,10 +26,10 @@
           @if ($vienchuc != '' && $lop != '')
             <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_quyetdinh/'.$lop->ma_l.'/'.$vienchuc->ma_vc) }}">
               <button type="button" class="btn btn-danger fw-bold" style="background-color: #FF1E1E">
-              <i class="fa-solid fa-trash"></i>
-              &ensp;
-              Xoá tất cả
-            </button>
+                <i class="fa-solid fa-trash"></i>
+                &ensp;
+                Xoá tất cả
+              </button>
             </a>
           @else
             <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_quyetdinh_all') }}">

@@ -105,7 +105,6 @@ class DungHocController extends Controller
         $dunghoc->file_dh = $new_file;
       }
       $dunghoc->save();
-      // return Redirect::to('/dunghoc/'.$data['ma_l'].'/'.$data['ma_vc'],302);
       return redirect()->back();
     }else{
       return Redirect::to('/home');
@@ -207,7 +206,7 @@ class DungHocController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_dunghoc($ma_dh){
+  public function delete_dunghoc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -217,14 +216,37 @@ class DungHocController extends Controller
       ->where('ma_q', '=', '6')
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
-      $dunghoc = DungHoc::find($ma_dh);
-      if($dunghoc->file_dh != ' '){
-        unlink('public/uploads/dunghoc/'.$dunghoc->file_dh);
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          $dunghoc = DungHoc::find($id);
+          if($dunghoc->file_dh != ' '){
+            unlink('public/uploads/dunghoc/'.$dunghoc->file_dh);
+          }
+          $dunghoc->delete();
+        }
       }
-      $dunghoc->delete();
+    }
+  }
+  public function delete_dunghoc_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $ma_dh = $request->ma_dh;
+      $list_dunghoc = DungHoc::whereIn('ma_dh', $ma_dh)->get();
+      foreach ($list_dunghoc as $key => $dunghoc) {
+        if($dunghoc->file_dh != ' '){
+          unlink('public/uploads/dunghoc/'.$dunghoc->file_dh);
+        }
+        $dunghoc->delete();
+      }
       return redirect()->back();
-    }else{
-      return Redirect::to('/home');
     }
   }
   public function delete_all_dunghoc($ma_l, $ma_vc){

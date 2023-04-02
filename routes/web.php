@@ -650,9 +650,10 @@ Route::post('/add_dunghoc',[DungHocController::class, 'add_dunghoc']);
 Route::get('/select_dunghoc/{ma_dh}',[DungHocController::class, 'select_dunghoc']);
 Route::get('/edit_dunghoc/{ma_dh}',[DungHocController::class, 'edit_dunghoc']);
 Route::post('/update_dunghoc/{ma_dh}',[DungHocController::class, 'update_dunghoc']);
-Route::get('/delete_dunghoc/{ma_dh}',[DungHocController::class, 'delete_dunghoc']);
+Route::get('/delete_dunghoc',[DungHocController::class, 'delete_dunghoc']);
 Route::get('/delete_all_dunghoc/{ma_l}/{ma_vc}',[DungHocController::class, 'delete_all_dunghoc']);
 Route::get('/dunghoc_all',[DungHocController::class, 'dunghoc_all']);
+Route::post('/delete_dunghoc_check',[DungHocController::class, 'delete_dunghoc_check']);
 Route::get('/delete_dunghoc_all',[DungHocController::class, 'delete_dunghoc_all']);
 
 
