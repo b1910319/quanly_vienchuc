@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ThongKeQLCTTC_loc_1Export;
 use App\Exports\ThongKeQLKTKL_kl_7Export;
 use App\Exports\ThongKeQLKTKL_kl_6Export;
 use App\Exports\ThongKeQLKTKL_kl_5Export;
@@ -3557,6 +3558,21 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function thongke_qlcttc_loc_1_excel(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      return Excel::download(new ThongKeQLCTTC_loc_1Export(), 'Vien-chuc-hoan-thanh-khoa-hoc.xlsx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   public function thongke_qlcttc_loc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -3646,7 +3662,7 @@ class ThongKeController extends Controller
           ->with('list_khoa', $list_khoa)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
-          ->with('list_hoanthanh'. $list_hoanthanh)
+          ->with('list_hoanthanh', $list_hoanthanh)
 
           ->with('phanquyen_admin', $phanquyen_admin)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)

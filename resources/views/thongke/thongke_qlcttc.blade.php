@@ -3,22 +3,24 @@
 <div class="row">
   <div class="card-box col-12">
     <div class="row">
-      <div class="col-12">
-        <p class="fw-bold" style="font-size: 18px;">Thống kê quản lý công tác tổ chức </p>
-      </div>
+      <p class="fw-bold" style="font-size: 18px;">Thống kê quản lý công tác tổ chức </p>
     </div>
     <div class="row">
       <div class="col-1">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #379237; border: none; width: 100%">
+        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%; border-radius: 5px; background-color: #a4aa13; border: none; ">
           <i class="fa-solid fa-filter"></i>
           &ensp;
-          Bộ lọc
+          Lọc
         </button>
         <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 100%;">
           <div class="modal-dialog modal-dialog-scrollabl ">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Bộ lọc</h1>
+                <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel" style="color: #a4aa13;">
+                  <i class="fa-solid fa-filter"></i>
+                  &ensp;
+                  Bộ lọc
+                </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <form action="{{ URL::to('thongke_qlcttc_loc') }}" method="post">
@@ -58,8 +60,11 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                  <button type="submit" class="btn btn-primary">
+                  <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-square-xmark"></i>
+                    &ensp; Đóng
+                  </button>
+                  <button type="submit" class="btn btn-primary fw-bold" style="background-color: #a4aa13; border: none;">
                     <i class="fa-solid fa-filter"></i>
                     &ensp;
                     Lọc
@@ -71,16 +76,20 @@
         </div>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="background-color: #D36B00; border: none; width: 100%">
+        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="width: 100%; border-radius: 5px; background-color: #a4aa13; border: none; ">
           <i class="fa-solid fa-filter"></i>
           &ensp;
-          Bộ lọc hoàn thành khoá học
+          Hoàn thành khoá học
         </button>
         <div class="modal fade " id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 100%;">
           <div class="modal-dialog modal-dialog-scrollabl modal-xl">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Bộ lọc</h1>
+                <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel" style="color: #a4aa13;">
+                  <i class="fa-solid fa-filter"></i>
+                  &ensp;
+                  Bộ lọc
+                </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <form action="{{ URL::to('thongke_qlcttc_hoanthanh_loc') }}" method="post">
@@ -121,8 +130,11 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                  <button type="submit" class="btn btn-primary">
+                  <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-square-xmark"></i>
+                    &ensp; Đóng
+                  </button>
+                  <button type="submit" class="btn btn-primary fw-bold" style="background-color: #a4aa13; border: none;">
                     <i class="fa-solid fa-filter"></i>
                     &ensp;
                     Lọc
@@ -134,16 +146,20 @@
         </div>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2" style="background-color: #F96666; border: none; width: 100%">
+        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal2" style="width: 100%; border-radius: 5px; background-color: #a4aa13; border: none; ">
           <i class="fa-solid fa-filter"></i>
           &ensp;
-          Bộ lọc xin gia hạn
+          Xin gia hạn
         </button>
         <div class="modal fade " id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 100%;">
           <div class="modal-dialog modal-dialog-scrollabl modal-xl">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Bộ lọc</h1>
+                <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel" style="color: #a4aa13;">
+                  <i class="fa-solid fa-filter"></i>
+                  &ensp;
+                  Bộ lọc
+                </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <form action="{{ URL::to('thongke_qlcttc_giahan_loc') }}" method="post">
@@ -184,8 +200,11 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                  <button type="submit" class="btn btn-primary">
+                  <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-square-xmark"></i>
+                    &ensp; Đóng
+                  </button>
+                  <button type="submit" class="btn btn-primary fw-bold" style="background-color: #a4aa13; border: none;">
                     <i class="fa-solid fa-filter"></i>
                     &ensp;
                     Lọc
@@ -197,16 +216,20 @@
         </div>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="background-color: #066163; border: none; width: 100%">
+        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="width: 100%; border-radius: 5px; background-color: #a4aa13; border: none; ">
           <i class="fa-solid fa-filter"></i>
           &ensp;
-          Bộ lọc xin tạm dừng học
+          Xin tạm dừng khoá học
         </button>
         <div class="modal fade " id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 100%;">
           <div class="modal-dialog modal-dialog-scrollabl modal-xl">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Bộ lọc</h1>
+                <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel" style="color: #a4aa13;">
+                  <i class="fa-solid fa-filter"></i>
+                  &ensp;
+                  Bộ lọc
+                </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <form action="{{ URL::to('thongke_qlcttc_dunghoc_loc') }}" method="post">
@@ -247,8 +270,11 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                  <button type="submit" class="btn btn-primary">
+                  <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-square-xmark"></i>
+                    &ensp; Đóng
+                  </button>
+                  <button type="submit" class="btn btn-primary fw-bold" style="background-color: #a4aa13; border: none;">
                     <i class="fa-solid fa-filter"></i>
                     &ensp;
                     Lọc
@@ -260,16 +286,20 @@
         </div>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal4" style="background-color: #86340A; border: none; width: 100%">
+        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal4" style="width: 100%; border-radius: 5px; background-color: #a4aa13; border: none; ">
           <i class="fa-solid fa-filter"></i>
           &ensp;
-          Bộ lọc xin chuyển
+          Xin chuyển
         </button>
         <div class="modal fade " id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 100%;">
           <div class="modal-dialog modal-dialog-scrollabl modal-xl">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Bộ lọc</h1>
+                <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel" style="color: #a4aa13;">
+                  <i class="fa-solid fa-filter"></i>
+                  &ensp;
+                  Bộ lọc
+                </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <form action="{{ URL::to('thongke_qlcttc_xinchuyen_loc') }}" method="post">
@@ -299,8 +329,11 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                  <button type="submit" class="btn btn-primary">
+                  <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-square-xmark"></i>
+                    &ensp; Đóng
+                  </button>
+                  <button type="submit" class="btn btn-primary fw-bold" style="background-color: #a4aa13; border: none;">
                     <i class="fa-solid fa-filter"></i>
                     &ensp;
                     Lọc
@@ -312,16 +345,20 @@
         </div>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal5" style="background-color: #E40017; border: none; width: 100%">
+        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal5" style="width: 100%; border-radius: 5px; background-color: #a4aa13; border: none; ">
           <i class="fa-solid fa-filter"></i>
           &ensp;
-          Bộ lọc xin thôi học
+          Xin thôi học
         </button>
         <div class="modal fade " id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 100%;">
           <div class="modal-dialog modal-dialog-scrollabl modal-xl">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Bộ lọc</h1>
+                <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel" style="color: #a4aa13;">
+                  <i class="fa-solid fa-filter"></i>
+                  &ensp;
+                  Bộ lọc
+                </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <form action="{{ URL::to('thongke_qlcttc_thoihoc_loc') }}" method="post">
@@ -362,8 +399,11 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                  <button type="submit" class="btn btn-primary">
+                  <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-square-xmark"></i>
+                    &ensp; Đóng
+                  </button>
+                  <button type="submit" class="btn btn-primary fw-bold" style="background-color: #a4aa13; border: none;">
                     <i class="fa-solid fa-filter"></i>
                     &ensp;
                     Lọc
@@ -376,8 +416,10 @@
       </div>
       <div class="col-1">
         <a href="{{ URL::to('thongke_qlcttc') }}">
-          <button type="button" class="btn btn-warning">
-            <i class="fa-solid fa-arrows-rotate"></i>
+          <button type="button" class="btn btn-light fw-bold" style="width: 100%; ">
+            <i class="fa-solid fa-rotate"></i>
+            &ensp;
+            Làm mới
           </button>
         </a>
       </div>
@@ -392,10 +434,8 @@
     <div id="myfirstchart_qlcttc" style="height: 250px;">
     </div>
     @if (isset($list_1))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+        ________DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC________
       </div>
       <table class="table" id="mytable">
         <thead class="table-secondary">
@@ -448,9 +488,9 @@
                   </div>
                 </div>
               </td>
-              @foreach ($list_vienchuc as $vienchuc  )
-                @if ($vienchuc->ma_vc == $vc->ma_vc)
-                  <td>{{ $vienchuc->ten_k }}</td>
+              @foreach ($list_khoa as $khoa  )
+                @if ($khoa->ma_k == $vc->ma_k)
+                  <td>{{ $khoa->ten_k }}</td>
                 @endif
               @endforeach
               <td>
@@ -498,7 +538,20 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_loc_1_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
+              <i class="fa-solid fa-file-pdf"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlcttc_loc_1_excel') }}">
+            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
+              <i class="fa-solid fa-file-excel"></i>
+              &ensp;
+              Xuất file Excel
+            </button>
           </a>
         </div>
       </div>
@@ -4687,10 +4740,9 @@
   $(document).ready(function(){
     new Morris.Bar({
       element: 'myfirstchart_qlcttc',
-      pointFillColors: ['#F94A29'],
       parseTime: false,
       hideHover:true,
-      barColors: ['#FF6363'],
+      barColors: ['#F88F01'],
       data: [
         <?php
           if(isset($count_1) ){

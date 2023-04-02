@@ -3,9 +3,7 @@
 <div class="row">
   <div class="card-box col-12">
     <div class="row">
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
-        ________THỐNG KÊ KHEN THƯỞNG KỶ LUẬT CỦA VIÊN CHỨC________
-      </div>
+      <p class="fw-bold" style="font-size: 18px;">Thống kê khen thưởng kỷ luật của viên chức </p>
     </div>
     <div class="row">
       <div class="col-2">

@@ -3,9 +3,7 @@
 <div class="row">
   <div class="card-box col-12">
     <div class="row">
-      <div class="col-6">
-        <p class="fw-bold" style="font-size: 18px;">Thống kê viên chức </p>
-      </div>
+      <p class="fw-bold" style="font-size: 18px;">Thống kê viên chức </p>
     </div>
     <div class="row">
       <div class="col-2">
