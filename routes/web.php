@@ -681,8 +681,9 @@ Route::post('/add_chuyen',[ChuyenController::class, 'add_chuyen']);
 Route::get('/select_chuyen/{ma_c}',[ChuyenController::class, 'select_chuyen']);
 Route::get('/edit_chuyen/{ma_c}',[ChuyenController::class, 'edit_chuyen']);
 Route::post('/update_chuyen/{ma_c}',[ChuyenController::class, 'update_chuyen']);
-Route::get('/delete_chuyen/{ma_c}',[ChuyenController::class, 'delete_chuyen']);
+Route::get('/delete_chuyen',[ChuyenController::class, 'delete_chuyen']);
 Route::get('/delete_all_chuyen/{ma_l}/{ma_vc}',[ChuyenController::class, 'delete_all_chuyen']);
+Route::post('/delete_chuyen_check',[ChuyenController::class, 'delete_chuyen_check']);
 Route::get('/chuyen_all',[ChuyenController::class, 'chuyen_all']);
 Route::get('/delete_chuyen_all',[ChuyenController::class, 'delete_chuyen_all']);
 

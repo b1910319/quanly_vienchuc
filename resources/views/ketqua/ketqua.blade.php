@@ -13,7 +13,7 @@
         @endif
       </div>
       <h4 class="text-center col-11 mt-1" style="font-weight: bold; color: white; font-size: 20px;">
-        ________THÔNG TIN KẾT QUẢ CỦA VIÊN CHỨC THAM GIA LỚP " <span style="color: #FFFF00">{{ $lop->ten_l }}</span> "________
+        ________THÔNG TIN KẾT QUẢ CỦA VIÊN CHỨC THAM GIA LỚP HỌC________
       </h4>
     </div>
     <div class="faqs-page block ">

@@ -209,7 +209,7 @@ class ChuyenController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function delete_chuyen($ma_c){
+  public function delete_chuyen(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -219,19 +219,34 @@ class ChuyenController extends Controller
       ->where('ma_q', '=', '6')
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
-      $chuyen = Chuyen::find($ma_c);
-      if($chuyen->file_c != ' '){
-        unlink('public/uploads/chuyen/'.$chuyen->file_c);
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          $chuyen = Chuyen::find($id);
+          $chuyen->delete();
+        }
       }
-      $chuyen->delete();
-      $danhsach = DanhSach::where('ma_vc', $chuyen->ma_vc)
-        ->where('ma_l', $chuyen->ma_l)
-        ->first();
-      $danhsach->status_ds = '0';
-      $danhsach->save();
+    }
+  }
+  public function delete_chuyen_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $ma_c = $request->ma_c;
+      $list_chuyen = Chuyen::whereIn('ma_c', $ma_c)->get();
+      foreach ($list_chuyen as $key => $chuyen) {
+        if($chuyen->file_c != ' '){
+          unlink('public/uploads/chuyen/'.$chuyen->file_c);
+        }
+        $chuyen->delete();
+      }
       return redirect()->back();
-    }else{
-      return Redirect::to('/home');
     }
   }
   public function delete_all_chuyen($ma_l, $ma_vc){
