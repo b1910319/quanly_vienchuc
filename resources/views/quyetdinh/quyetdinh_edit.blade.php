@@ -50,8 +50,9 @@
                     <div class="col-6">
                       @if ($edit->file_qd != ' ')
                         <a href="{{ asset('public/uploads/quyetdinh/'.$edit->file_qd) }}">
-                          <button type="button" class="btn btn-warning" style="background-color: #77D970; border: none;">
+                          <button type="button" class="btn btn-warning fw-bold" style="background-color: #379237; border: none;">
                             <i class="fa-solid fa-file"></i>
+                            &ensp;
                             File
                           </button>
                         </a>

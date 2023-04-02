@@ -665,8 +665,9 @@ Route::post('/add_giahan',[GiaHanController::class, 'add_giahan']);
 Route::get('/select_giahan/{ma_gh}',[GiaHanController::class, 'select_giahan']);
 Route::get('/edit_giahan/{ma_gh}',[GiaHanController::class, 'edit_giahan']);
 Route::post('/update_giahan/{ma_gh}',[GiaHanController::class, 'update_giahan']);
-Route::get('/delete_giahan/{ma_gh}',[GiaHanController::class, 'delete_giahan']);
+Route::get('/delete_giahan',[GiaHanController::class, 'delete_giahan']);
 Route::get('/delete_all_giahan/{ma_l}/{ma_vc}',[GiaHanController::class, 'delete_all_giahan']);
+Route::post('/delete_giahan_check',[GiaHanController::class, 'delete_giahan_check']);
 Route::get('/giahan_all',[GiaHanController::class, 'giahan_all']);
 Route::get('/delete_giahan_all',[GiaHanController::class, 'delete_giahan_all']);
 

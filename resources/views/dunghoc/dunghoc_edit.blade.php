@@ -56,8 +56,9 @@
                     <div class="col-6">
                       @if ($edit->file_dh != ' ')
                         <a href="{{ asset('public/uploads/dunghoc/'.$edit->file_dh) }}">
-                          <button type="button" class="btn btn-warning" style="background-color: #77D970; border: none;">
+                          <button type="button" class="btn btn-warning fw-bold" style="background-color: #379237; border: none;">
                             <i class="fa-solid fa-file"></i>
+                            &ensp;
                             File
                           </button>
                         </a>
