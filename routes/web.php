@@ -458,6 +458,7 @@ Route::get('/thongke_qlcttc_loc_giahan_pdf',[ThongKeController::class, 'thongke_
 Route::get('/thongke_qlcttc_loc_giahan_excel',[ThongKeController::class, 'thongke_qlcttc_loc_giahan_excel']);
 
 Route::get('/thongke_qlcttc_loc_dunghoc_pdf',[ThongKeController::class, 'thongke_qlcttc_loc_dunghoc_pdf']);
+Route::get('/thongke_qlcttc_loc_dunghoc_excel',[ThongKeController::class, 'thongke_qlcttc_loc_dunghoc_excel']);
 
 Route::get('/thongke_qlcttc_loc_chuyen_pdf',[ThongKeController::class, 'thongke_qlcttc_loc_chuyen_pdf']);
 

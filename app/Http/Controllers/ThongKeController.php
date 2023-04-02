@@ -3924,6 +3924,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlcttc_loc_dunghoc_pdf(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -3950,6 +3951,22 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function thongke_qlcttc_loc_dunghoc_excel(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      return Excel::download(new ThongKeQLCTTC_loc_dunghocExport(), 'Vien-chuc-xin-tam-dung-khoa-hoc.xlsx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+
   public function thongke_qlcttc_loc_chuyen_pdf(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
