@@ -204,12 +204,11 @@ class KetQuaController extends Controller
       $ketqua->updated_kq = Carbon::now();
       $ketqua->save();
       return Redirect::to('/ketqua/'.$data['ma_l'].'/'.$data['ma_vc'],302);
-      // return redirect()->back();
     }else{
       return Redirect::to('/home');
     }
   }
-  public function delete_ketqua($ma_kq){
+  public function delete_ketqua(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -219,11 +218,27 @@ class KetQuaController extends Controller
       ->where('ma_q', '=', '6')
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
-      $ketqua = KetQua::find($ma_kq);
-      $ketqua->delete();
+      if($request->ajax()){
+        $id =$request->id;
+        if($id != null){
+          KetQua::find($id)->delete();
+        }
+      }
+    }
+  }
+  public function delete_ketqua_check(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $ma_kq = $request->ma_kq;
+      KetQua::whereIn('ma_kq', $ma_kq)->delete();
       return redirect()->back();
-    }else{
-      return Redirect::to('/home');
     }
   }
   public function delete_all_ketqua($ma_l, $ma_vc){

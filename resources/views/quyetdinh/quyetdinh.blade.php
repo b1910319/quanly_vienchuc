@@ -175,7 +175,7 @@
     <form action="{{ URL::to('/delete_quyetdinh_check') }}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col"></th>
             <th scope="col">STT</th>
@@ -252,9 +252,6 @@
                     &ensp; Cập nhật
                   </button>
                 </a>
-                {{-- <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_quyetdinh/'.$quyetdinh->ma_qd)}}">
-                  <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-                </a> --}}
                 <input class="ma_qd{{ $quyetdinh->ma_qd }}" type="hidden" value="{{ $quyetdinh->ma_qd }}">
                 <button type="button" class=" xoa{{ $quyetdinh->ma_qd }} btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
                 <?php
