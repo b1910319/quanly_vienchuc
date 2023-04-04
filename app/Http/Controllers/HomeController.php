@@ -48,8 +48,10 @@ class HomeController extends Controller
     }
   }
   public function index(){
-    $list_lop = Lop::orderBy('ma_l', 'desc')
-      ->limit(12)
+    $date = Carbon::parse(Carbon::now()->addMonths(2))->format('Y-m-d');
+    $list_lop = Lop::join('quocgia', 'lop.ma_qg', '=', 'quocgia.ma_qg')
+      ->orderBy('ma_l', 'desc')
+      ->where('ngaybatdau_l', '>=', $date)
       ->get();
     return view('login')
       ->with('list_lop', $list_lop);

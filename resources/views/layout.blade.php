@@ -632,6 +632,35 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
 
     </div> <!-- end slimscroll-menu-->
   </div>
+  <footer>
+    <ul class="icons">
+      <li>
+        <a href="{{ URL::to('home') }}">
+          <i class="fa-solid fa-house"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/CICT.CTU">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.cit.ctu.edu.vn/">
+          <i class="fa-brands fa-google"></i>
+        </a>
+      </li>
+    </ul>
+    <ul class="menu">
+      <li><a href="{{ URL::to('home') }}">Home</a></li>
+      <li><a href="https://www.facebook.com/CICT.CTU">Facebook</a></li>
+      <li><a href="https://www.cit.ctu.edu.vn/">Google</a></li>
+    </ul>
+    <div class="footer-copyright">
+      <p class="text-light">Trường Công nghệ Thông tin & Truyền thông - Trường Đại học Cần Thơ.</p>
+      <p class="text-light">Khu 2, đường 3/2, Phường Xuân Khánh, Q. Ninh Kiều, TP. Cần Thơ, Việt Nam.</p>
+      <p class="text-light">Điện thoại: 84 0292 3 734713 - 0292 3 831301; Fax: 84 0292 3830841; Email: office@cit.ctu.edu.vn.</p>
+    </div>
+  </footer>
   <!-- /Right-bar -->
 
   <!-- Right bar overlay-->
