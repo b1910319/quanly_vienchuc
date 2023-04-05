@@ -97,7 +97,6 @@ class KhoaController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    $data = $request->all();
     if($phanquyen_admin){
       Excel::import(new KhoaImport, $request->file('import_excel'));
       return redirect()->back();
