@@ -396,6 +396,26 @@
         @endforeach
       </tbody>
     </table>
+    <div class="row">
+      <div class="col-2">
+        <a href="{{ URL::to('/nghihuu_pdf') }}">
+          <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+            <i class="fa-solid fa-file-pdf text-light"></i>
+            &ensp;
+            Xuất file PDF
+          </button>
+        </a>
+      </div>
+      <div class="col-2">
+        <a href="{{ URL::to('/nghihuu_excel') }}">
+          <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+            <i class="fa-solid fa-file-excel text-light"></i>
+            &ensp;
+            Xuất file Excel
+          </button>
+        </a>
+      </div>
+    </div>
     <div class="alert alert-light mt-2 color_alert" role="alert">
       ________THÔNG TIN VIÊN CHỨC NGHĨ HƯU VÀO HÔM NAY________
     </div>
@@ -423,13 +443,11 @@
               {{ $vienchuc->ngaysinh_vc }}
             </td>
             <td>
-              <td>
-                <?php 
-                  $ngay_nghihuu = strtotime ( '+720 month' , strtotime ( $vienchuc->ngaysinh_vc ) ) ;
-                  $ngay_nghihuu = date ( 'Y-m-j' , $ngay_nghihuu );
-                  echo $ngay_nghihuu;
-                ?>
-              </td>
+              <?php 
+                $ngay_nghihuu = strtotime ( '+720 month' , strtotime ( $vienchuc->ngaysinh_vc ) ) ;
+                $ngay_nghihuu = date ( 'Y-m-j' , $ngay_nghihuu );
+                echo $ngay_nghihuu;
+              ?>
             </td>
             <td>
               <?php
@@ -788,11 +806,11 @@
               <form action="{{ URL::to('updated_nghihuu') }}" method="post">
                 {{ csrf_field() }}
                 <div class="row mt-2">
-                  <div class="col-8">
+                  <div class="col-7">
                     <input type="hidden" name="ma_vc" value="{{ $vienchuc->ma_vc }}">
                     <input type='date' class='form-control input_table' autofocus required name="thoigiannghi_vc" required>
                   </div>
-                  <div class="col-4">
+                  <div class="col-5">
                     <button type="submit" class="btn btn-warning button_cam" style="width: 100%;">
                       <i class="fa-solid fa-pen-to-square text-light"></i>
                       &ensp; Cập nhật
@@ -816,13 +834,11 @@
               {{ $vienchuc->ngaysinh_vc }}
             </td>
             <td>
-              <td>
-                <?php 
-                  $ngay_nghihuu = strtotime ( '+744 month' , strtotime ( $vienchuc->ngaysinh_vc ) ) ;
-                  $ngay_nghihuu = date ( 'Y-m-j' , $ngay_nghihuu );
-                  echo $ngay_nghihuu;
-                ?>
-              </td>
+              <?php 
+                $ngay_nghihuu = strtotime ( '+744 month' , strtotime ( $vienchuc->ngaysinh_vc ) ) ;
+                $ngay_nghihuu = date ( 'Y-m-j' , $ngay_nghihuu );
+                echo $ngay_nghihuu;
+              ?>
             </td>
             <td>
               <?php
@@ -1226,13 +1242,11 @@
               {{ $vienchuc->ngaysinh_vc }}
             </td>
             <td>
-              <td>
-                <?php 
-                  $ngay_nghihuu = strtotime ( '+720 month' , strtotime ( $vienchuc->ngaysinh_vc ) ) ;
-                  $ngay_nghihuu = date ( 'Y-m-j' , $ngay_nghihuu );
-                  echo $ngay_nghihuu;
-                ?>
-              </td>
+              <?php 
+                $ngay_nghihuu = strtotime ( '+720 month' , strtotime ( $vienchuc->ngaysinh_vc ) ) ;
+                $ngay_nghihuu = date ( 'Y-m-j' , $ngay_nghihuu );
+                echo $ngay_nghihuu;
+              ?>
             </td>
             <td>
               <?php
@@ -1590,13 +1604,13 @@
               <form action="{{ URL::to('updated_nghihuu') }}" method="post">
                 {{ csrf_field() }}
                 <div class="row mt-2">
-                  <div class="col-8">
+                  <div class="col-7">
                     <input type="hidden" name="ma_vc" value="{{ $vienchuc->ma_vc }}">
                     <input type='date' class='form-control input_table' autofocus required name="thoigiannghi_vc" required>
                   </div>
-                  <div class="col-4">
+                  <div class="col-5">
                     <button type="submit" class="btn btn-warning button_cam" style="width: 100%;">
-                      <i class="fa-solid fa-pen-to-square"></i>
+                      <i class="fa-solid fa-pen-to-square text-light"></i>
                       &ensp; Cập nhật
                     </button>
                   </div>
@@ -1976,11 +1990,11 @@
               <form action="{{ URL::to('updated_nghihuu') }}" method="post">
                 {{ csrf_field() }}
                 <div class="row mt-2">
-                  <div class="col-8">
+                  <div class="col-7">
                     <input type="hidden" name="ma_vc" value="{{ $vienchuc->ma_vc }}">
                     <input type='date' class='form-control input_table' autofocus required name="thoigiannghi_vc" required>
                   </div>
-                  <div class="col-4">
+                  <div class="col-5">
                     <button type="submit" class="btn btn-warning button_cam" style="width: 100%;">
                       <i class="fa-solid fa-pen-to-square text-light"></i>
                       &ensp; Cập nhật

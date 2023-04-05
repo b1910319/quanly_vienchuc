@@ -283,7 +283,8 @@ Route::get('/delete_all_bangcap/{ma_vc}',[BangCapController::class, 'delete_all_
 
 Route::get('/nghihuu',[NghiHuuController::class, 'nghihuu']);
 Route::post('/updated_nghihuu',[NghiHuuController::class, 'updated_nghihuu']);
-
+Route::get('/nghihuu_pdf',[NghiHuuController::class, 'nghihuu_pdf']);
+Route::get('/nghihuu_excel',[NghiHuuController::class, 'nghihuu_excel']);
 
 // --------------------------------------------------------
 

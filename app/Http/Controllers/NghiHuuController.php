@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\NghiHuuExport;
 use App\Models\Bac;
 use App\Models\BangCap;
 use App\Models\ChucVu;
@@ -27,6 +28,8 @@ use App\Models\ThuongBinh;
 use App\Models\TonGiao;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class NghiHuuController extends Controller
 {
@@ -134,11 +137,11 @@ class NghiHuuController extends Controller
         $list_nghihuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '2')
           ->get();
-        $list_nu_nghihuu_homnay = VienChuc::where('ngaysinh_vc','LIKE', $ketthuc_nu)
+        $list_nu_nghihuu_homnay = VienChuc::where('ngaysinh_vc','LIKE', $batdau_nu)
           ->where('gioitinh_vc', '1')
           ->where('status_vc','<>','2')
           ->get();
-        $list_nam_nghihuu_homnay = VienChuc::where('ngaysinh_vc','LIKE', $ketthuc_nam)
+        $list_nam_nghihuu_homnay = VienChuc::where('ngaysinh_vc','LIKE', $batdau_nam)
           ->where('gioitinh_vc', '0')
           ->where('status_vc','<>','2')
           ->get();
@@ -259,6 +262,46 @@ class NghiHuuController extends Controller
         $qq->save();
       }
       return Redirect::to('/nghihuu');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function nghihuu_pdf(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $title = '';
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+        ->where('status_vc', '=', '2')
+        ->orderBy('khoa.ten_k', 'asc')
+        ->get();
+      $pdf = PDF::loadView('pdf.nghihuu_pdf', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function nghihuu_excel(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      return Excel::download(new NghiHuuExport, 'Danh-sach-vien-chuc-nghi-huu.xlsx');
     }else{
       return Redirect::to('/home');
     }

@@ -64,7 +64,6 @@ body {
 .nav-thrid-level li a:focus,
 .nav-thrid-level li a:hover {
   color: #3f33a6;
-  font-weight: bold;
 }
 
 .nav-second-level li>a.active,
