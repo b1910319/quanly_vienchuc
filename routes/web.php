@@ -148,6 +148,7 @@ Route::post('/delete_dantoc_check',[DanTocController::class, 'delete_dantoc_chec
 
 Route::get('/chucvu',[ChucVuController::class, 'chucvu']);
 Route::post('/add_chucvu',[ChucVuController::class, 'add_chucvu']);
+Route::post('/add_chucvu_excel',[ChucVuController::class, 'add_chucvu_excel']);
 Route::get('/select_chucvu/{ma_cv}',[ChucVuController::class, 'select_chucvu']);
 Route::get('/edit_chucvu/{ma_cv}',[ChucVuController::class, 'edit_chucvu']);
 Route::post('/update_chucvu/{ma_cv}',[ChucVuController::class, 'update_chucvu']);
