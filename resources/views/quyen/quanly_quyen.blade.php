@@ -33,7 +33,7 @@
                       <div class="col-9">
                         <div class="mb-3">
                           <label for="formFile" class="form-label">Chọn file cần nhập</label>
-                          <input class="form-control" type="file" id="formFile" name="import_excel" accept=".xlsx">
+                          <input class="form-control" type="file" id="formFile" name="import_excel" accept=".xlsx" required>
                         </div>
                       </div>
                       <div class="col-3" style="margin-top: 37px">
@@ -43,8 +43,6 @@
                         </button>
                       </div>
                     </div>
-                    
-                    
                   </form>
                 </div>
                 <div class="modal-footer">
