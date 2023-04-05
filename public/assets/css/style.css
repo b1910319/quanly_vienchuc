@@ -91,12 +91,10 @@
   background-color: #01ff2f;
   color: black;
 }
+
 /*  */
 
-.btn_chitiet{
-  background-image: linear-gradient(to bottom left, #5B4C97, #BD6267);
-  border: none;
-}
+
 /* chuyển động ở Danh sách các lớp học hiện có */
 .music-waves-2 {
   height: 50px;
@@ -105,7 +103,7 @@
   align-items: center;
 }
 
-.music-waves-2 > span {
+.music-waves-2>span {
   display: block;
   position: relative;
   background: #000;
@@ -116,37 +114,37 @@
   animation: waves-2 1.2s linear infinite;
 }
 
-.music-waves-2 > span:nth-child(1) {
+.music-waves-2>span:nth-child(1) {
   animation-delay: 0s;
   background: #ff8c00;
 }
 
-.music-waves-2 > span:nth-child(2) {
+.music-waves-2>span:nth-child(2) {
   animation-delay: 0.3s;
   background: #ffff00;
 }
 
-.music-waves-2 > span:nth-child(3) {
+.music-waves-2>span:nth-child(3) {
   animation-delay: 0.6s;
   background: #26d53a;
 }
 
-.music-waves-2 > span:nth-child(4) {
+.music-waves-2>span:nth-child(4) {
   animation-delay: 0.9s;
   background: #26e6a3;
 }
 
-.music-waves-2 > span:nth-child(5) {
+.music-waves-2>span:nth-child(5) {
   animation-delay: 0.6s;
   background: #1da8e2;
 }
 
-.music-waves-2 > span:nth-child(6) {
+.music-waves-2>span:nth-child(6) {
   animation-delay: 0.3s;
   background: #5916ba;
 }
 
-.music-waves-2 > span:nth-child(7) {
+.music-waves-2>span:nth-child(7) {
   animation-delay: 0s;
   background: #d418d9;
 }
@@ -160,6 +158,7 @@
     height: 100%;
   }
 }
+
 /*  */
 /* chuyển động ở trên cái biểu đồ ở phần thống kê */
 .music-waves {
@@ -225,9 +224,10 @@
     height: 5px;
   }
 }
+
 /*  */
 /* nút quay về đầu trang */
-.back_top{
+.back_top {
   width: 50px;
   height: 50px;
   background-color: #1858DD;
@@ -240,10 +240,57 @@
   right: 20px;
   cursor: pointer;
 }
+
 /*  */
 
+.color_table {
+  background-color: #000D6B;
+}
+
+.title_table {
+  color: #155263;
+  font-weight: bold;
+  font-size: 22px;
+  text-transform: uppercase;
+}
+
+.button_xanhla {
+  background-color: #00541A;
+  border: none;
+  font-weight: bold;
+}
+
+.btn_chitiet {
+  background-image: linear-gradient(to bottom left, #5B4C97, #BD6267);
+  border: none;
+}
+
+.button_cam {
+  background-color: #FF5B00;
+  border: none;
+  font-weight: bold;
+}
+.button_do{
+  background-color: #FF1E1E;
+  border: none;
+  font-weight: bold;
+}
+.button_thongke{
+  background-color: #00AF91;
+  border: none;
+  font-weight: bold;
+}
+
+.color_alert {
+  background-color: #885000;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
 /* footer */
-footer{
+footer {
   background-color: #272727;
   text-align: center;
   text-transform: uppercase;
@@ -251,50 +298,46 @@ footer{
   margin-top: auto;
 }
 
-footer li{
+footer li {
   list-style: none;
   margin: 10px;
   display: inline-block;
 }
 
-.icons a{
+.icons a {
   background: #52527a;
   color: #272727;
   padding: 14px;
   font-size: 20px;
-  border-radius: 100% ;
+  border-radius: 100%;
   display: flex;
 }
-.icons a:hover{
+
+.icons a:hover {
   color: #ffffff;
   transition: 0.5s;
 }
 
-.menu a{
+.menu a {
   color: #ffffff;
   text-transform: capitalize;
 }
-.menu a:hover{
+
+.menu a:hover {
   color: #52527a;
   transition: 0.5s;
 }
 
-.footer-copyright{
-  background-color:#52527a;
+.footer-copyright {
+  background-color: #52527a;
   color: #ffffff;
   padding: 15px;
   margin-top: 30px;
   text-transform: capitalize;
 }
 
-.footer-copyright p{
+.footer-copyright p {
   margin-bottom: 0px;
 }
+
 /*  */
-
-
-
-
-
-
-

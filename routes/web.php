@@ -102,6 +102,7 @@ Route::get('/thongtin_vienchuc_khoa',[VienChucController::class, 'thongtin_vienc
 
 Route::get('/quanly_quyen',[QuyenController::class, 'quanly_quyen']);
 Route::post('/add_quyen',[QuyenController::class, 'add_quyen']);
+Route::post('/add_quyen_excel',[QuyenController::class, 'add_quyen_excel']);
 Route::get('/select_quyen/{ma_q}',[QuyenController::class, 'select_quyen']);
 Route::get('/edit_quyen/{ma_q}',[QuyenController::class, 'edit_quyen']);
 Route::post('/update_quyen/{ma_q}',[QuyenController::class, 'update_quyen']);

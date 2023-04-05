@@ -2,25 +2,69 @@
 @section('content')
 <div class="row">
   <div class="card-box">
-    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+    <div class="alert alert-light color_alert" role="alert">
       ________THÔNG TIN CÁC QUYỀN HIỆN CÓ CỦA HỆ THỐNG________
     </div>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
-          <button role="button" class="item-question collapsed btn btn-primary fw-bold" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a" style="background-color: #379237; border: none">
-            <i class="fas fa-plus-square"></i>
+          <button role="button" class="item-question collapsed btn btn-primary fw-bold button_xanhla" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a">
+            <i class="fas fa-plus-square text-light"></i>
             &ensp; Thêm
           </button>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary button_xanhla" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="fa-solid fa-upload text-light"></i> &ensp;
+            Nhập file
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Nhập file</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form class="form-container" action="{{ URL::to('add_quyen_excel') }}" method="POST" enctype='multipart/form-data'>
+                    @csrf
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="mb-3">
+                          <label for="formFile" class="form-label">Chọn file cần nhập</label>
+                          <input class="form-control" type="file" id="formFile" name="import_excel" accept=".xlsx">
+                        </div>
+                      </div>
+                      <div class="col-3" style="margin-top: 37px">
+                        <button type="submit" class="btn btn-primary button_xanhla">
+                          <i class="fa-solid fa-upload text-light"></i> &ensp;
+                          Upload
+                        </button>
+                      </div>
+                    </div>
+                    
+                    
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-square-xmark text-light"></i>
+                    &ensp; Đóng
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
           <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_quyen') }}">
-            <button type="button" class="btn btn-danger fw-bold" style="background-color: #FF1E1E">
-              <i class="fa-solid fa-trash"></i>
+            <button type="button" class="btn btn-danger button_do" >
+              <i class="fa-solid fa-trash text-light"></i>
               &ensp;
               Xoá tất cả
             </button>
           </a>
-          <button class="btn btn-primary fw-bold" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="background-color: #00AF91; border: none;">
-            <i class="fa-solid fa-chart-simple"></i> &ensp;
+          <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+            <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
             Thống kê
           </button>
   
@@ -35,7 +79,7 @@
             </div>
             <div class="offcanvas-body">
               <table class="table">
-                <thead class="table-dark text-light" >
+                <thead>
                   <tr>
                     <th scope="col">Tên</th>
                     <th scope="col">Số lượng</th>
@@ -104,8 +148,8 @@
                   <div class="row mb-2">
                     <div class="col-5"></div>
                     <div class="col-2">
-                      <button type="submit"  class="btn btn-primary font-weight-bold them" style="background-color: #379237; border: none; width: 100%;">
-                        <i class="fas fa-plus-square"></i>
+                      <button type="submit"  class="btn btn-primary button_xanhla them" style="width: 100%">
+                        <i class="fas fa-plus-square text-light"></i>
                         &ensp;
                         Thêm
                       </button>
@@ -123,14 +167,14 @@
     <form action="{{ URL::to('/delete_quyen_check') }}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
       <table class="table" id="mytable">
-        <thead class="table-secondary" >
+        <thead class="color_table" >
           <tr>
-            <th scope="col"></th>
-            <th scope="col">STT</th>
-            <th scope="col">Quyền </th>
-            <th scope="col">Mô tả</th>
-            <th scope="col">Trạng thái</th>
-            <th scope="col"></th>
+            <th class="text-light" scope="col"></th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Quyền </th>
+            <th class="text-light" scope="col">Mô tả</th>
+            <th class="text-light" scope="col">Trạng thái</th>
+            <th class="text-light" scope="col"></th>
           </tr>
         </thead>
         <tbody  >
@@ -155,31 +199,31 @@
                   if($quyen->status_q == 0){
                     ?>
                       <span class="badge badge-light-success">
-                        <i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị
+                        <i class="fas fa-solid fa-eye text-light"></i>&ensp;  Hiển thị
                       </span>
                     <?php
                   }else if($quyen->status_q == 1) {
                     ?>
-                      <span class="badge badge-light-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
+                      <span class="badge badge-light-danger text-light"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
                     <?php
                   }
                 ?>
               </td>
-              <td style="width: 21%;">
+              <td style="width: 26%;">
                 <a href="{{ URL::to('/edit_quyen/'.$quyen->ma_q)}}">
-                  <button type="button" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
-                    <i class="fa-solid fa-pen-to-square"></i>
+                  <button type="button" class=" btn btn-warning button_cam">
+                    <i class="fa-solid fa-pen-to-square text-light"></i>
                     &ensp; Cập nhật
                   </button>
                 </a>
                 <input class="ma_q{{ $quyen->ma_q }}" type="hidden" value="{{ $quyen->ma_q }}">
-                <button type="button" class=" xoa{{ $quyen->ma_q }} btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
+                <button type="button" class=" xoa{{ $quyen->ma_q }} btn btn-danger button_do" ><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
                 <?php
                   if($quyen->status_q == 0){
                     ?>
                       <a href="{{ URL::to('/select_quyen/'.$quyen->ma_q) }}">
                         <button type="button" class="btn btn-secondary fw-bold">
-                          <i class="fa-solid fa-eye-slash"></i> 
+                          <i class="fa-solid fa-eye-slash text-light"></i> 
                           &ensp; Ẩn
                         </button>
                       </a>
@@ -188,7 +232,7 @@
                     ?>
                       <a href="{{ URL::to('/select_quyen/'.$quyen->ma_q) }}">
                         <button type="button" class="btn btn-success fw-bold">
-                          <i class="fa-solid fa-eye"></i>
+                          <i class="fa-solid fa-eye text-light"></i>
                           &ensp;
                           Hiển thị
                         </button>
@@ -201,8 +245,8 @@
           @endforeach
         </tbody>
       </table>
-      <button  type="submit" class="btn btn-danger fw-bold xoa_check" style="background-color: #FF1E1E">
-        <i class="fa-solid fa-trash"></i>
+      <button  type="submit" class="btn btn-danger button_do xoa_check">
+        <i class="fa-solid fa-trash text-light"></i>
         &ensp;
         Xoá
       </button>
@@ -284,7 +328,6 @@
       
     });
   @endforeach
-  
 </script>
 <!--  -->
 <!-- end row -->

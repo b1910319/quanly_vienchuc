@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\QuyenImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -9,6 +10,8 @@ use App\Models\PhanQuyen;
 use App\Models\Quyen;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
+use Maatwebsite\Excel\Excel as ExcelExcel;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class QuyenController extends Controller
@@ -84,6 +87,20 @@ class QuyenController extends Controller
       return Redirect::to('/home');
     }
     
+  }
+  public function add_quyen_excel(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $data = $request->all();
+    if($phanquyen_admin){
+      Excel::import(new QuyenImport, $request->file('import_excel'));
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
   }
   public function select_quyen($ma_q){
     $this->check_login();

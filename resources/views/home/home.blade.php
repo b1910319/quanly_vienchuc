@@ -79,7 +79,7 @@
         <div class="col-4"></div>
         <div class="col-4">
           <a href="{{ URL::to('thongtin_canhan') }}">
-            <button type="submit"  class="btn btn-primary font-weight-bold" style="background-color: #FF5B00; border: none; width: 100%;">
+            <button type="submit"  class="btn btn-primary button_cam" style="width: 100%;">
               <i class="fas fa-plus-square text-light"></i>
               &ensp;
               Xem thêm
@@ -432,7 +432,7 @@
 <div class="row">
   <div class="col-xl-12">
     <div class="card-box">
-      <h4 class="header-title mb-3 fw-bold" style="color: #155263; font-weight: bold; font-size: 22px; text-transform: uppercase; ">
+      <h4 class="header-title mb-3 fw-bold title_table">
         Các lớp học hiện đang được mở
         <div class="music-waves-2">
           <span></span>
@@ -447,8 +447,7 @@
 
       <div class="table-responsive">
         <table class="table table-borderless table-hover table-centered m-0" id="mytable1">
-
-          <thead style="background-color: #000D6B">
+          <thead class="color_table">
             <tr>
               <th class="text-light">Tên lớp</th>
               <th class="text-light">Hạn đăng ký nộp hồ sơ</th>
@@ -695,12 +694,12 @@
   </div>
   <div class="col-xl-8">
     <div class="card-box">
-      <h4 class="header-title fw-bold text-center" style="color: #155263; font-weight: bold; font-size: 22px; text-transform: uppercase; ">
+      <h4 class="header-title fw-bold text-center title_table">
         Biểu mẩu
       </h4>
       <div class="table-responsive">
         <table class="table table-borderless table-hover table-centered m-0" id="mytable">
-          <thead style="background-color: #000D6B">
+          <thead class="color_table">
             <tr>
               <th class="text-light">STT</th>
               <th class="text-light">Tên file</th>
@@ -727,7 +726,7 @@
                 <td style="width: 15%;">
                   <a href="{{ asset('public/uploads/file/'.$file->file_f) }}" class="taive{{ $key+1 }}">
                     <input class="ma_f{{ $key+1 }}" type="hidden" value="{{ $file->ma_f }}">
-                    <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none;">
+                    <button type="button" class="btn btn-warning button_xanhla">
                       <i class="fa-solid fa-download text-light"></i>
                       &ensp;
                       Tải về
