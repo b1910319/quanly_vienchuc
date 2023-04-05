@@ -61,7 +61,7 @@
                 <h1 style="text-align: center; font-weight: bold; text-transform: uppercase; color: white">
                   Đăng nhập
                 </h1>
-                <div class="music-waves-2" style="margin-left: 350px">
+                <div class="music-waves-2" style="margin-left: 325px">
                   <span></span>
                   <span></span>
                   <span></span>
@@ -81,7 +81,7 @@
                     session()->put('message',null);
                   }
                 ?>
-                <div class="row mt-3">
+                <div class="row mt-1">
                   <div class="col-2"></div>
                   <div class="col-8">
                     <div class="mb-3">
@@ -113,7 +113,7 @@
                   </div>
                   <div class="col-2"></div>
                 </div>
-                <div class="pb-3 pt-3 text-center">
+                <div class="pb-2 pt-2 text-center">
                   <button class="button fw-bold" type="submit" style="font-size: 20px;">
                     Đăng nhập
                   </button>
@@ -127,10 +127,9 @@
             <h4 class="header-title mb-3 text-center" style="color: #155263; font-weight: bold; font-size: 22px; text-transform: uppercase; ">
               Các lớp học hiện đang được mở
             </h4>
-      
             <div class="table-responsive">
               <table class="table  table-hover" id="mytable">
-                <thead style="background-color: #000D6B">
+                <thead class="color_table">
                   <tr >
                     <th class="text-light">Tên lớp</th>
                     <th class="text-light">Hạn nộp hồ sơ</th>

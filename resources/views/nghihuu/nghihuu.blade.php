@@ -1203,7 +1203,7 @@
       ________THÔNG TIN VIÊN CHỨC NGHĨ HƯU GẦN ĐÂY________
     </div>
     <table class="table" id="mytable">
-      <thead class="thead-light">
+      <thead class="color_table">
         <tr>
           <th class="text-light" scope="col">Tên </th>
           <th class="text-light" scope="col">Email</th>
