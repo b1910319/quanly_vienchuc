@@ -3,18 +3,18 @@
 <div class="row">
   <div class="card-box">
     <div class="mt-3"></div>
-    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+    <div class="alert alert-light color_alert" role="alert" >
       ________PHÂN QUYỀN CHO VIÊN CHỨC________
     </div>
     <table class="table" id="mytable">
-      <thead class="table-secondary">
+      <thead class="color_table">
         <tr>
-          <th scope="col">STT</th>
-          <th scope="col">Tên </th>
-          <th scope="col">UserName</th>
-          <th scope="col">Quyền</th>
-          <th scope="col">Khoa</th>
-          <th scope="col"></th>
+          <th class="text-light" scope="col">STT</th>
+          <th class="text-light" scope="col">Tên </th>
+          <th class="text-light" scope="col">UserName</th>
+          <th class="text-light" scope="col">Quyền</th>
+          <th class="text-light" scope="col">Khoa</th>
+          <th class="text-light" scope="col"></th>
         </tr>
       </thead>
       <tbody  >
@@ -41,8 +41,9 @@
                 </div>
                 <div class="col-6">
                   <a href="{{ URL::to('lammoi_quyen/'.$vienchuc->ma_vc) }}">
-                    <button type="button"  class="btn btn-outline-danger font-weight-bold">
+                    <button type="button" class="btn btn-light fw-bold">
                       <i class="fa-solid fa-rotate"></i>
+                      &ensp;
                       Làm mới
                     </button>
                   </a>
@@ -58,7 +59,7 @@
               <form action="{{ URL::to('phanquyen_vc') }}" method="post">
                 {{ csrf_field() }}
                 <div class="row">
-                  <div class="col-8">
+                  <div class="col-7">
                     <input type="hidden" name="ma_vc" value="{{ $vienchuc->ma_vc }}">
                     <select class="custom-select input_table" id="gender2" name="ma_q">
                       <option value="0" >Phân quyền</option>
@@ -67,9 +68,9 @@
                       @endforeach
                     </select>
                   </div>
-                  <div class="col-4">
-                    <button type="submit"  class="btn btn-primary font-weight-bold" style="background-color: #379237; border: none;">
-                      <i class="fas fa-plus-square"></i>
+                  <div class="col-5">
+                    <button type="submit"  class="btn btn-primary button_xanhla">
+                      <i class="fas fa-plus-square text-light"></i>
                       &ensp;
                       Thêm
                     </button>
