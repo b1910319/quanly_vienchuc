@@ -135,6 +135,7 @@ Route::post('/delete_khoa_check',[KhoaController::class, 'delete_khoa_check']);
 
 Route::get('/dantoc',[DanTocController::class, 'dantoc']);
 Route::post('/add_dantoc',[DanTocController::class, 'add_dantoc']);
+Route::post('/add_dantoc_excel',[DanTocController::class, 'add_dantoc_excel']);
 Route::get('/select_dantoc/{ma_dt}',[DanTocController::class, 'select_dantoc']);
 Route::get('/edit_dantoc/{ma_dt}',[DanTocController::class, 'edit_dantoc']);
 Route::post('/update_dantoc/{ma_dt}',[DanTocController::class, 'update_dantoc']);

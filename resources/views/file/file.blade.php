@@ -19,7 +19,7 @@
               Xoá tất cả
             </button>
           </a>
-          <button class="btn btn-primary button-thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+          <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
             <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
             Thống kê
           </button>
@@ -148,7 +148,7 @@
                 &ensp;
                 {{ $file->luottai_f }}
               </td>
-              <td>
+              <td style="width: 9%">
                 <?php
                   if($file->status_f == 0){
                     ?>
