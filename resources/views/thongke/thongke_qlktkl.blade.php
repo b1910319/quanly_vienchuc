@@ -2552,7 +2552,7 @@
       element: 'myfirstchart_qlktkl',
       parseTime: false,
       hideHover:true,
-      barColors: ['#F88F01'],
+      barColors: ['#379237'],
       data: [
         <?php
           if(isset($count_loaikhenthuong) ){

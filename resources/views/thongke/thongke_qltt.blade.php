@@ -7,10 +7,10 @@
     </div>
     <div class="row">
       <div class="col-2">
-        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%; border-radius: 5px; background-color: #a4aa13; border: none; ">
-          <i class="fa-solid fa-filter"></i>
+        <button type="button" class="btn btn-primary button_loc" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%; ">
+          <i class="fa-solid fa-filter text-light"></i>
           &ensp;
-          Lọc viên chức
+          Lọc
         </button>
         <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 100%;">
           <div class="modal-dialog modal-dialog-scrollabl modal-xl">
@@ -124,11 +124,11 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
-                    <i class="fa-solid fa-square-xmark"></i>
+                    <i class="fa-solid fa-square-xmark text-light"></i>
                     &ensp; Đóng
                   </button>
-                  <button type="submit" class="btn btn-primary fw-bold" style="background-color: #a4aa13; border: none;">
-                    <i class="fa-solid fa-filter"></i>
+                  <button type="submit" class="btn btn-primary button_loc">
+                    <i class="fa-solid fa-filter text-light"></i>
                     &ensp;
                     Lọc
                   </button>
@@ -139,10 +139,10 @@
         </div>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="width: 100%; border-radius: 5px; background-color: #a4aa13; border: none; ">
-          <i class="fa-solid fa-filter"></i>
+        <button type="button" class="btn btn-primary button_loc" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="width: 100%;">
+          <i class="fa-solid fa-filter text-light"></i>
           &ensp;
-          Lọc viên chức nghĩ hưu
+          Viên chức nghĩ hưu
         </button>
         <div class="modal fade " id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" style="height: 100%;">
           <div class="modal-dialog modal-dialog-scrollabl modal-xl">
@@ -179,11 +179,11 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
-                    <i class="fa-solid fa-square-xmark"></i>
+                    <i class="fa-solid fa-square-xmark text-light"></i>
                     &ensp; Đóng
                   </button>
-                  <button type="submit" class="btn btn-primary fw-bold" style="background-color: #a4aa13; border: none;">
-                    <i class="fa-solid fa-filter"></i>
+                  <button type="submit" class="btn btn-primary button_loc;">
+                    <i class="fa-solid fa-filter text-light"></i>
                     &ensp;
                     Lọc
                   </button>
@@ -193,7 +193,7 @@
           </div>
         </div>
       </div>
-      <div class="col-1">
+      <div class="col-2">
         <a href="{{ URL::to('thongke_qltt') }}">
           <button type="button" class="btn btn-light fw-bold" style="width: 100%; ">
             <i class="fa-solid fa-rotate"></i>
@@ -213,16 +213,16 @@
     <div id="myfirstchart_qltt_1" style="height: 250px;"> 
     </div>
     @if (isset($list))
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert" >
         ________DANH SÁCH VIÊN CHỨC________
       </div>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Ngạch</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Ngạch</th>
           </tr>
         </thead>
         <tbody  >
@@ -271,8 +271,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_pdf') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -280,8 +280,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_excel') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -291,14 +291,14 @@
     @endif
 
     @if (isset($list_all))
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert" >
         ________DANH SÁCH VIÊN CHỨC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Viên chức được lọc theo: 
         @foreach ($list_khoa as $khoa )
           @if ($khoa->ma_k == $ma_k)
-          <span class="badge text-bg-primary">{{ $khoa->ten_k }}</span>
+          <span class="badge badge rounded-pill text-bg-warning">{{ $khoa->ten_k }}</span>
           @endif
         @endforeach
         ,
@@ -346,17 +346,17 @@
         ,
         @foreach ($list_thuongbinh as $thuongbinh )
           @if ($thuongbinh->ma_tb == $ma_tb)
-          <span class="badge text-bg-primary">{{ $thuongbinh->ten_tb }}</span>
+          <span class="badge badge rounded-pill text-bg-warning">{{ $thuongbinh->ten_tb }}</span>
           @endif
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Ngạch</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Ngạch</th>
           </tr>
         </thead>
         <tbody  >
@@ -405,8 +405,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_all_pdf/'.$ma_k.'/'.$ma_cv.'/'.$ma_hdt.'/'.$ma_lbc.'/'.$ma_n.'/'.$ma_t.'/'.$ma_dt.'/'.$ma_tg.'/'.$ma_tb.'/') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -414,8 +414,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_all_excel/'.$ma_k.'/'.$ma_cv.'/'.$ma_hdt.'/'.$ma_lbc.'/'.$ma_n.'/'.$ma_t.'/'.$ma_dt.'/'.$ma_tg.'/'.$ma_tb.'/') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -424,14 +424,14 @@
       </div>
     @endif
     @if (isset($list_2 ))
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert" >
         ________DANH SÁCH VIÊN CHỨC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_khoa as $khoa )
           @if ($khoa->ma_k == $ma_k)
-          <span class="badge text-bg-primary">{{ $khoa->ten_k }}</span>
+          <span class="badge badge rounded-pill text-bg-warning">{{ $khoa->ten_k }}</span>
           @endif
         @endforeach
         @foreach ($list_chucvu as $chucvu )
@@ -441,12 +441,12 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Chức vụ</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Chức vụ</th>
           </tr>
         </thead>
         <tbody  >
@@ -492,8 +492,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_2_pdf/'.$ma_k.'/'.$ma_cv) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -501,8 +501,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_2_excel/'.$ma_k.'/'.$ma_cv) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -511,24 +511,24 @@
       </div>
     @endif
     @if ( isset($list_pdf_khoa))
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert" >
         ________DANH SÁCH VIÊN CHỨC ĐƯỢC LỌC THEO KHOA________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_khoa as $khoa )
           @if ($khoa->ma_k == $ma_k)
-          <span class="badge text-bg-primary">{{ $khoa->ten_k }}</span>
+          <span class="badge rounded-pill text-bg-warning">{{ $khoa->ten_k }}</span>
           @endif
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Ngạch</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Ngạch</th>
           </tr>
         </thead>
         <tbody  >
@@ -572,7 +572,7 @@
               <td>
                 @foreach ($list_ngach as $ngach )
                   @if ($ngach->ma_n == $vc->ma_n)
-                    {{ $vc->ten_n }}({{ $vc->ma_n }})
+                    {{ $ngach->ten_n }}({{ $vc->ma_n }})
                   @endif
                 @endforeach
               </td>
@@ -583,8 +583,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_khoa_pdf/'.$ma_k) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -592,8 +592,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_khoa_excel/'.$ma_k) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -602,24 +602,24 @@
       </div>
     @endif
     @if (isset($list_pdf_chucvu))
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert" >
         ________DANH SÁCH VIÊN CHỨC THEO CHỨC VỤ________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_chucvu as $chucvu )
           @if ($chucvu->ma_cv == $ma_cv)
-          <span class="badge text-bg-primary">{{ $chucvu->ten_cv }}</span>
+          <span class="badge badge rounded-pill text-bg-warning">{{ $chucvu->ten_cv }}</span>
           @endif
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Chức vụ</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Chức vụ</th>
           </tr>
         </thead>
         <tbody  >
@@ -665,8 +665,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_chucvu_pdf/'.$ma_cv) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -674,8 +674,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_chucvu_excel/'.$ma_cv) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -684,24 +684,24 @@
       </div>
     @endif
     @if (isset($list_pdf_hdt) )
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert" >
         ________DANH SÁCH VIÊN CHỨC THEO HỆ ĐÀO TẠO________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_hedaotao as $hedaotao )
           @if ($hedaotao->ma_hdt == $ma_hdt)
-          <span class="badge text-bg-primary">{{ $hedaotao->ten_hdt }}</span>
+          <span class="badge badge rounded-pill text-bg-warning">{{ $hedaotao->ten_hdt }}</span>
           @endif
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Hệ đào tạo</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Hệ đào tạo</th>
           </tr>
         </thead>
         <tbody  >
@@ -747,8 +747,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_hdt_pdf/'.$ma_hdt) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -756,8 +756,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_hdt_excel/'.$ma_hdt) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -766,24 +766,24 @@
       </div>
     @endif
     @if (isset($list_pdf_lbc))
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert" >
         ________DANH SÁCH VIÊN CHỨC THEO LOẠI BẰNG CẤP________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_loaibangcap as $loaibangcap )
           @if ($loaibangcap->ma_lbc == $ma_lbc)
-          <span class="badge text-bg-primary">{{ $loaibangcap->ten_lbc }}</span>
+          <span class="badge badge rounded-pill text-bg-warning">{{ $loaibangcap->ten_lbc }}</span>
           @endif
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Loại bằng cấp</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Loại bằng cấp</th>
           </tr>
         </thead>
         <tbody  >
@@ -829,8 +829,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_lbc_pdf/'.$ma_lbc) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -838,8 +838,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_lbc_excel/'.$ma_lbc) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -848,24 +848,24 @@
       </div>
     @endif
     @if (isset($list_pdf_ngach))
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert" >
         ________DANH SÁCH VIÊN CHỨC THEO NGẠCH________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_ngach as $ngach )
           @if ($ngach->ma_n == $ma_n)
-          <span class="badge text-bg-primary">{{ $ngach->ten_n }}</span>
+          <span class="badge badge rounded-pill text-bg-warning">{{ $ngach->ten_n }}</span>
           @endif
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Ngạch</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Ngạch</th>
           </tr>
         </thead>
         <tbody  >
@@ -911,8 +911,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_ngach_pdf/'.$ma_n) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -920,8 +920,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_ngach_excel/'.$ma_n) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -930,24 +930,24 @@
       </div>
     @endif
     @if (isset($list_pdf_tinh))
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert" >
         ________DANH SÁCH VIÊN CHỨC THEO TỈNH/THÀNH PHỐ________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_tinh as $tinh )
           @if ($tinh->ma_t == $ma_t)
-          <span class="badge text-bg-primary">{{ $tinh->ten_t }}</span>
+          <span class="badge badge rounded-pill text-bg-warning">{{ $tinh->ten_t }}</span>
           @endif
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Quê quán</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Quê quán</th>
           </tr>
         </thead>
         <tbody  >
@@ -993,8 +993,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_tinh_pdf/'.$ma_t) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -1002,8 +1002,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_tinh_excel/'.$ma_t) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -1012,24 +1012,24 @@
       </div>
     @endif
     @if (isset($list_pdf_dantoc))
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert" >
         ________DANH SÁCH VIÊN CHỨC THEO DÂN TỘC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_dantoc as $dantoc )
           @if ($dantoc->ma_dt == $ma_dt)
-          <span class="badge text-bg-primary">{{ $dantoc->ten_dt }}</span>
+          <span class="badge badge rounded-pill text-bg-warning">{{ $dantoc->ten_dt }}</span>
           @endif
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Dân tộc</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Dân tộc</th>
           </tr>
         </thead>
         <tbody  >
@@ -1075,8 +1075,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_dantoc_pdf/'.$ma_dt) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -1084,8 +1084,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_dantoc_excel/'.$ma_dt) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -1094,24 +1094,24 @@
       </div>
     @endif
     @if (isset($list_pdf_tongiao) )
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert" >
         ________DANH SÁCH VIÊN CHỨC THEO TÔN GIÁO________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_tongiao as $tongiao )
           @if ($tongiao->ma_tg == $ma_tg)
-          <span class="badge text-bg-primary">{{ $tongiao->ten_tg }}</span>
+          <span class="badge badge rounded-pill text-bg-warning">{{ $tongiao->ten_tg }}</span>
           @endif
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Tôn giáo</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Tôn giáo</th>
           </tr>
         </thead>
         <tbody  >
@@ -1157,8 +1157,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_tongiao_pdf/'.$ma_tg) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -1166,8 +1166,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_tongiao_excel/'.$ma_tg) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -1176,24 +1176,24 @@
       </div>
     @endif
     @if (isset($list_pdf_thuongbinh) )
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert" >
         ________DANH SÁCH VIÊN CHỨC THEO HẠNG CỦA THƯƠNG BINH________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_thuongbinh as $thuongbinh )
           @if ($thuongbinh->ma_tb == $ma_tb)
-          <span class="badge text-bg-primary">{{ $thuongbinh->ten_tb }}</span>
+          <span class="badge badge rounded-pill text-bg-warning">{{ $thuongbinh->ten_tb }}</span>
           @endif
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thương binh</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thương binh</th>
           </tr>
         </thead>
         <tbody  >
@@ -1239,8 +1239,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_thuongbinh_pdf/'.$ma_tb) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -1248,8 +1248,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_thuongbinh_excel/'.$ma_tb) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -1259,14 +1259,14 @@
     @endif
 
     @if (isset($list_nghihuu_all) )
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert" >
         ________DANH SÁCH VIÊN CHỨC NGHĨ HƯU________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
         @foreach ($list_khoa as $khoa )
           @if ($khoa->ma_k == $ma_k)
-          <span class="badge text-bg-primary">{{ $khoa->ten_k }}</span>
+          <span class="badge badge rounded-pill text-bg-warning">{{ $khoa->ten_k }}</span>
           @endif
         @endforeach
         Bắt đầu 
@@ -1275,12 +1275,12 @@
         <span class="badge text-bg-success">{{ $ketthuc }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thời gian nghĩ</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thời gian nghĩ</th>
           </tr>
         </thead>
         <tbody  >
@@ -1326,8 +1326,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_all_pdf/'.$ma_k.'/'.$batdau.'/'.$ketthuc) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -1335,8 +1335,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_all_excel/'.$ma_k.'/'.$batdau.'/'.$ketthuc) }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -1345,7 +1345,7 @@
       </div>
     @endif
     @if (isset($list_nghihuu_khoa)  || isset($list_nghihuu_time) )
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert" >
         ________DANH SÁCH VIÊN CHỨC NGHĨ HƯU________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
@@ -1353,23 +1353,23 @@
         @if (isset($list_nghihuu_khoa))
           @foreach ($list_khoa as $khoa )
             @if ($khoa->ma_k == $ma_k)
-            <span class="badge text-bg-primary">{{ $khoa->ten_k }}</span>
+            <span class="badge badge rounded-pill text-bg-warning">{{ $khoa->ten_k }}</span>
             @endif
           @endforeach
         @else
           Bắt đầu 
-          <span class="badge text-bg-primary">{{ $batdau }}</span>
+          <span class="badge badge rounded-pill text-bg-warning">{{ $batdau }}</span>
           Kết thúc
           <span class="badge text-bg-secondary">{{ $ketthuc }}</span>
         @endif
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thời gian nghĩ</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thời gian nghĩ</th>
           </tr>
         </thead>
         <tbody  >
@@ -1456,16 +1456,16 @@
         <div class="col-2">
           @if (isset($list_nghihuu_khoa))
             <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_khoa_pdf/'.$ma_k) }}">
-              <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+              <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
             </a>
           @else
             <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_time_pdf/'.$batdau.'/'.$ketthuc) }}">
-              <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+              <button type="button" class="btn btn-warning button_do " style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -1475,16 +1475,16 @@
         <div class="col-2">
           @if (isset($list_nghihuu_khoa))
             <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_khoa_excel/'.$ma_k) }}">
-              <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-                <i class="fa-solid fa-file-excel"></i>
+              <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+                <i class="fa-solid fa-file-excel text-light"></i>
                 &ensp;
                 Xuất file Excel
               </button>
             </a>
           @else
             <a href="{{ URL::to('/thongke_qltt_loc_nghihuu_time_excel/'.$batdau.'/'.$ketthuc) }}">
-              <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-                <i class="fa-solid fa-file-excel"></i>
+              <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+                <i class="fa-solid fa-file-excel text-light"></i>
                 &ensp;
                 Xuất file Excel
               </button>
@@ -1502,7 +1502,7 @@
       element: 'myfirstchart_qltt_1',
       parseTime: false,
       hideHover:true,
-      barColors: ['#F88F01'],
+      barColors: ['#379237'],
       data: [
         <?php
           if(isset($count)){

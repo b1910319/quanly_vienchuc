@@ -2022,7 +2022,7 @@
       pointFillColors: ['#F94A29'],
       parseTime: false,
       hideHover:true,
-      barColors: ['#FF6363'],
+      barColors: ['#379237'],
       data: [
         <?php
           if(isset($count)){

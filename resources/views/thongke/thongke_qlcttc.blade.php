@@ -4808,7 +4808,7 @@
       element: 'myfirstchart_qlcttc',
       parseTime: false,
       hideHover:true,
-      barColors: ['#F88F01'],
+      barColors: ['#379237'],
       data: [
         <?php
           if(isset($count_1) ){
