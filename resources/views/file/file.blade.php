@@ -2,28 +2,27 @@
 @section('content')
 <div class="row">
   <div class="card-box">
-    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+    <div class="alert alert-light color_alert" role="alert">
       ________THÔNG TIN FILE________
     </div>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
-          <button role="button" class="item-question collapsed btn btn-primary fw-bold" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a" style="background-color: #379237; border: none">
-            <i class="fas fa-plus-square"></i>
+          <button role="button" class="item-question collapsed btn btn-primary button_xanhla" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a">
+            <i class="fas fa-plus-square text-light"></i>
             &ensp; Thêm
           </button>
           <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_file') }}">
-            <button type="button" class="btn btn-danger fw-bold" style="background-color: #FF1E1E">
-              <i class="fa-solid fa-trash"></i>
+            <button type="button" class="btn btn-danger button_do" >
+              <i class="fa-solid fa-trash text-light"></i>
               &ensp;
               Xoá tất cả
             </button>
           </a>
-          <button class="btn btn-primary fw-bold" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="background-color: #00AF91; border: none;">
-            <i class="fa-solid fa-chart-simple"></i> &ensp;
+          <button class="btn btn-primary button-thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+            <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
             Thống kê
           </button>
-    
           <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
               <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
@@ -35,7 +34,7 @@
             </div>
             <div class="offcanvas-body">
               <table class="table">
-                <thead class="table-dark text-light">
+                <thead>
                   <tr>
                     <th scope="col">Tên</th>
                     <th scope="col">Số lượng</th>
@@ -102,7 +101,7 @@
                   <div class="row mb-2">
                     <div class="col-5"></div>
                     <div class="col-2">
-                      <button type="submit"  class="them btn btn-primary font-weight-bold" style="background-color: #379237; border: none; width: 100%;">
+                      <button type="submit"  class="them btn btn-primary button_xanhla" style="width: 100%;">
                         <i class="fas fa-plus-square"></i>
                         &ensp;
                         Thêm
@@ -121,15 +120,15 @@
     <form action="{{ URL::to('/delete_file_check') }}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col"></th>
-            <th scope="col">STT</th>
-            <th scope="col">Tên file </th>
-            <th scope="col">Lượt tải về </th>
-            <th scope="col">Trạng thái</th>
-            <th scope="col">File</th>
-            <th scope="col"></th>
+            <th class="text-light" scope="col"></th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Tên file </th>
+            <th class="text-light" scope="col">Lượt tải về </th>
+            <th class="text-light" scope="col">Trạng thái</th>
+            <th class="text-light" scope="col">File</th>
+            <th class="text-light" scope="col"></th>
           </tr>
         </thead>
         <tbody  >
@@ -144,7 +143,7 @@
               <td>
                 {{ $file->ten_f }} ({{ $file->ma_f }})
               </td>
-              <td>
+              <td style="width: 9%">
                 <i class="fa-solid fa-download" style="color: #FF5B00;"></i>
                 &ensp;
                 {{ $file->luottai_f }}
@@ -164,11 +163,11 @@
                   }
                 ?>
               </td>
-              <td>
+              <td style="width: 10%">
                 @if ($file->file_f != NULL)
                   <a href="{{ asset('public/uploads/file/'.$file->file_f) }}">
-                    <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none;">
-                      <i class="fa-solid fa-file"></i>
+                    <button type="button" class="btn btn-warning button_xanhla">
+                      <i class="fa-solid fa-file text-light"></i>
                       &ensp;
                       File
                     </button>
@@ -177,21 +176,21 @@
                   Không có file
                 @endif
               </td>
-              <td style="width: 21%;">
+              <td style="width: 27%;">
                 <a href="{{ URL::to('/edit_file/'.$file->ma_f)}}">
-                  <button type="submit" class="btn btn-warning fw-bold" style=" background-color: #FC7300">
-                    <i class="fa-solid fa-pen-to-square"></i>
+                  <button type="button" class="btn btn-warning button_cam">
+                    <i class="fa-solid fa-pen-to-square text-light"></i>
                     &ensp; Cập nhật
                   </button>
                 </a>
                 <input class="ma_f{{ $file->ma_f }}" type="hidden" value="{{ $file->ma_f }}">
-                <button type="button" class=" xoa{{ $file->ma_f }} btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
+                <button type="button" class=" xoa{{ $file->ma_f }} btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
                 <?php
                   if($file->status_f == 0){
                     ?>
                       <a href="{{ URL::to('/select_file/'.$file->ma_f) }}">
                         <button type="button" class="btn btn-secondary fw-bold">
-                          <i class="fa-solid fa-eye-slash"></i> 
+                          <i class="fa-solid fa-eye-slash text-light"></i> 
                           &ensp; Ẩn
                         </button>
                       </a>
@@ -200,7 +199,7 @@
                     ?>
                       <a href="{{ URL::to('/select_file/'.$file->ma_f) }}">
                         <button type="button" class="btn btn-success fw-bold">
-                          <i class="fa-solid fa-eye"></i>
+                          <i class="fa-solid fa-eye text-light"></i>
                           &ensp; Hiển thị
                         </button>
                       </a>
@@ -212,8 +211,8 @@
           @endforeach
         </tbody>
       </table>
-      <button  type="submit" class="btn btn-danger fw-bold xoa_check" style="background-color: #FF1E1E">
-        <i class="fa-solid fa-trash"></i>
+      <button  type="submit" class="btn btn-danger fw-bold xoa_check button_do" >
+        <i class="fa-solid fa-trash text-light"></i>
         &ensp;
         Xoá
       </button>

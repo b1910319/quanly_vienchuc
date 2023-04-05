@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
   <div class="card-box">
-    <div class="alert alert-success row" role="alert" style="background-color: #3F979B; text-align: center;">
+    <div class="alert alert-success row color_alert" role="alert" >
       <div class="col-1">
         <a href="{{ URL::to('file') }}">
           <button type="button" class="btn btn-warning" style="background-color: #E83A14; border-radius: 50%; border: none;">
@@ -16,17 +16,6 @@
     <form action="{{ URL::to('/update_file/'.$edit->ma_f) }}" method="POST"
       autocomplete="off" enctype="multipart/form-data">
       {{ csrf_field() }}
-      <?php
-        $message=session()->get('message');
-        if($message){
-          ?>
-            <p style="color: #379237" class="font-weight-bold text-center">
-              <?php echo $message ?>
-            </p>
-          <?php
-          session()->put('message',null);
-        }
-      ?>
       <div class="row">
         <div class="col-6">
           <table class="table">
@@ -47,8 +36,8 @@
                     <div class="col-6">
                       @if ($edit->file_f != NULL)
                         <a href="{{ asset('public/uploads/file/'.$edit->file_f) }}">
-                          <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; ">
-                            <i class="fa-solid fa-file"></i>
+                          <button type="button" class="btn btn-warning button_xanhla">
+                            <i class="fa-solid fa-file text-light"></i>
                             File
                           </button>
                         </a>
@@ -87,8 +76,8 @@
         <div class="row mb-2">
           <div class="col-5"></div>
           <div class="col-2">
-            <button type="submit" class="btn btn-warning fw-bold" style="background-color: #FC7300; width: 100%">
-              <i class="fa-solid fa-pen-to-square"></i>
+            <button type="submit" class="btn btn-warning button_cam" style="width: 100%">
+              <i class="fa-solid fa-pen-to-square text-light"></i>
               &ensp; Cập nhật
             </button>
           </div>
