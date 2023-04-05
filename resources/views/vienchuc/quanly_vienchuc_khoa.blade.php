@@ -3,16 +3,15 @@
 <div class="row">
   <div class="card-box">
     <div class="mt-3"></div>
-    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+    <div class="alert alert-light color_alert" role="alert" >
       ________THÔNG TIN VIÊN CHỨC________
     </div>
     <div class="row">
-      <div class="col-1 mb-3">
-        <button class="btn btn-primary fw-bold" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="background-color: #00AF91; border: none;">
-          <i class="fa-solid fa-chart-simple"></i> &ensp;
+      <div class="col-2 mb-3">
+        <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="width: 100%">
+          <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
           Thống kê
         </button>
-  
         <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
           <div class="offcanvas-header">
             <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
@@ -24,7 +23,7 @@
           </div>
           <div class="offcanvas-body">
             <table class="table">
-              <thead class="table-dark text-light">
+              <thead >
                 <tr>
                   <th scope="col">Tên</th>
                   <th scope="col">Số lượng</th>
@@ -59,19 +58,10 @@
           </div>
         </div>
       </div>
-      <div class="col-1">
-        <a href="{{ URL::to('/quanly_vienchuc_khoa') }}">
-          <button type="button" class="btn btn-light fw-bold" style="width: 100%; ">
-            <i class="fa-solid fa-rotate"></i>
-            &ensp;
-            Làm mới
-          </button>
-        </a>
-      </div>
-      <div class="col-1">
+      <div class="col-2">
         <div class="dropdown" style="width: 100%;">
-          <button class="dropbtn fw-bold" style="width: 100%; border-radius: 5px; background-color: #a4aa13; ">
-            <i class="fa-solid fa-filter"></i>
+          <button class="dropbtn button_loc" >
+            <i class="fa-solid fa-filter text-light"></i>
             &ensp;
             Lọc
           </button>
@@ -83,16 +73,25 @@
           </div>
         </div>
       </div>
+      <div class="col-2">
+        <a href="{{ URL::to('/quanly_vienchuc_khoa') }}">
+          <button type="button" class="btn btn-light fw-bold" style="width: 100%; ">
+            <i class="fa-solid fa-rotate"></i>
+            &ensp;
+            Làm mới
+          </button>
+        </a>
+      </div>
     </div>
     <table class="table" id="mytable">
-      <thead class="table-dark">
+      <thead class="color_table">
         <tr>
-          <th scope="col">STT</th>
-          <th scope="col">Thông tin viên chức</th>
-          <th scope="col">Khoa</th>
-          <th scope="col">Trạng thái</th>
-          <th scope="col">Quản lý</th>
-          <th scope="col"></th>
+          <th class="text-light" scope="col">STT</th>
+          <th class="text-light" scope="col">Thông tin viên chức</th>
+          <th class="text-light" scope="col">Khoa</th>
+          <th class="text-light" scope="col">Trạng thái</th>
+          <th class="text-light" scope="col">Quản lý</th>
+          <th class="text-light" scope="col"></th>
         </tr>
       </thead>
       <tbody  >
@@ -144,29 +143,29 @@
                     </select>
                   </div>
                   <div class="col-4">
-                    <button type="submit" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
-                      <i class="fa-solid fa-pen-to-square"></i>
+                    <button type="submit" class=" btn btn-warning button_cam" >
+                      <i class="fa-solid fa-pen-to-square text-light"></i>
                     </button>
                   </div>
                 </div>
               </form>
               
             </td>
-            <td style="width: 25%;">
+            <td style="width: 28%;">
               <a href="{{ URL::to('/admin_edit_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc)}}">
-                <button type="button" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
-                  <i class="fa-solid fa-pen-to-square"></i>
+                <button type="button" class=" btn btn-warning button_cam">
+                  <i class="fa-solid fa-pen-to-square text-light"></i>
                   &ensp; Cập nhật
                 </button>
               </a>
               <input class="ma_vc" type="hidden" value="{{ $vienchuc->ma_vc }}">
-              <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
+              <button type="button" class=" xoa btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
               <?php
                 if($vienchuc->status_vc == 0){
                   ?>
                     <a href="{{ URL::to('/admin_select_vienchuc/'.$vienchuc->ma_vc) }}">
                       <button type="button" class="btn btn-secondary fw-bold">
-                        <i class="fa-solid fa-lock"></i> 
+                        <i class="fa-solid fa-lock text-light"></i> 
                         &ensp; Vô hiệu hoá
                       </button>
                     </a>
@@ -175,7 +174,7 @@
                   ?>
                     <a href="{{ URL::to('/admin_select_vienchuc/'.$vienchuc->ma_vc) }}">
                       <button type="button" class="btn btn-success fw-bold">
-                        <i class="fa-solid fa-unlock-keyhole"></i>
+                        <i class="fa-solid fa-unlock-keyhole text-light"></i>
                         &ensp;
                         Kích hoạt
                       </button>

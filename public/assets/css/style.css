@@ -270,14 +270,22 @@
   border: none;
   font-weight: bold;
 }
-.button_do{
+
+.button_do {
   background-color: #FF1E1E;
   border: none;
   font-weight: bold;
 }
-.button_thongke{
+
+.button_thongke {
   background-color: #00AF91;
   border: none;
+  font-weight: bold;
+}
+
+.button_loc {
+  border-radius: 3px;
+  background-color: #a4aa13;
   font-weight: bold;
 }
 
