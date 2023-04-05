@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\BangCapImport;
 use App\Models\BangCap;
 use App\Models\HeDaoTao;
 use App\Models\LoaiBangCap;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BangCapController extends Controller
 {
@@ -114,6 +116,25 @@ class BangCapController extends Controller
       $bangcap->save();
       $request->session()->put('message','Thêm thành công');
       return Redirect::to('/bangcap/'.$ma_vc);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function add_bangcap_excel(Request $request){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
+      Excel::import(new BangCapImport, $request->file('import_excel'));
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }

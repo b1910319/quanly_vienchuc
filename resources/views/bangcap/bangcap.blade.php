@@ -2,7 +2,7 @@
 @section('content')
 <div class="row">
   <div class="card-box">
-    <div class="alert alert-success row" role="alert" style="background-color: #3F979B; text-align: center;">
+    <div class="alert alert-success row color_alert" role="alert">
       <div class="col-1">
         @if ($phanquyen_qlk)
           <a href="{{ URL::to('/thongtin_vienchuc_khoa') }}" class="col-1">
@@ -25,19 +25,60 @@
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
-          <button role="button" class="item-question collapsed btn btn-primary fw-bold" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a" style="background-color: #379237; border: none">
-            <i class="fas fa-plus-square"></i>
+          <button role="button" class="item-question collapsed btn btn-primary button_xanhla" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a">
+            <i class="fas fa-plus-square text-light"></i>
             &ensp; Thêm
           </button>
+          <button type="button" class="btn btn-primary button_xanhla" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="fa-solid fa-upload text-light"></i> &ensp;
+            Nhập file
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Nhập file</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form class="form-container" action="{{ URL::to('add_bangcap_excel') }}" method="POST" enctype='multipart/form-data'>
+                    @csrf
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="mb-3">
+                          <label for="formFile" class="form-label">Chọn file cần nhập</label>
+                          <input class="form-control" type="file" id="formFile" name="import_excel" accept=".xlsx" required>
+                        </div>
+                      </div>
+                      <div class="col-3" style="margin-top: 37px">
+                        <button type="submit" class="btn btn-primary button_xanhla">
+                          <i class="fa-solid fa-upload text-light"></i> &ensp;
+                          Upload
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-square-xmark text-light"></i>
+                    &ensp; Đóng
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
           <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_bangcap/'.$ma_vc) }}">
-            <button type="button" class="btn btn-danger fw-bold" style="background-color: #FF1E1E">
-              <i class="fa-solid fa-trash"></i>
+            <button type="button" class="btn btn-danger button_do">
+              <i class="fa-solid fa-trash text-light"></i>
               &ensp;
               Xoá tất cả
             </button>
           </a>
-          <button class="btn btn-primary fw-bold" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="background-color: #00AF91; border: none;">
-            <i class="fa-solid fa-chart-simple"></i> &ensp;
+          <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+            <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
             Thống kê
           </button>
           <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -51,7 +92,7 @@
             </div>
             <div class="offcanvas-body">
               <table class="table">
-                <thead class="table-dark text-light">
+                <thead>
                   <tr>
                     <th scope="col">Tên</th>
                     <th scope="col">Số lượng</th>
@@ -170,8 +211,8 @@
                   <div class="row mb-2">
                     <div class="col-5"></div>
                     <div class="col-2">
-                      <button type="submit"  class="btn btn-primary font-weight-bold them" style="background-color: #379237; border: none; width: 100%;">
-                        <i class="fas fa-plus-square"></i>
+                      <button type="submit"  class="btn btn-primary button_xanhla them" style="width: 100%;">
+                        <i class="fas fa-plus-square text-light"></i>
                         &ensp;
                         Thêm
                       </button>
@@ -189,21 +230,21 @@
     <form action="{{ URL::to('/delete_bangcap_check') }}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
       <table class="table" id="mytable">
-        <thead class="table-dark">
+        <thead class="color_table">
           <tr>
-            <th scope="col"></th>
-            <th scope="col">STT</th>
-            <th scope="col">Loại bằng cấp</th>
-            <th scope="col">Hệ đào tạo</th>
-            <th scope="col">Trình độ chuyên môn</th>
-            <th scope="col">Trường học</th>
-            <th scope="col">Niên khoá</th>
-            <th scope="col">Số bằng</th>
-            <th scope="col">Ngày cấp</th>
-            <th scope="col">Nơi cấp</th>
-            <th scope="col">Xếp hạng</th>
-            <th scope="col">Trạng thái</th>
-            <th scope="col"></th>
+            <th class="text-light" scope="col"></th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Loại bằng cấp</th>
+            <th class="text-light" scope="col">Hệ đào tạo</th>
+            <th class="text-light" scope="col">Trình độ chuyên môn</th>
+            <th class="text-light" scope="col">Trường học</th>
+            <th class="text-light" scope="col">Niên khoá</th>
+            <th class="text-light" scope="col">Số bằng</th>
+            <th class="text-light" scope="col">Ngày cấp</th>
+            <th class="text-light" scope="col">Nơi cấp</th>
+            <th class="text-light" scope="col">Xếp hạng</th>
+            <th class="text-light" scope="col">Trạng thái</th>
+            <th class="text-light" scope="col"></th>
           </tr>
         </thead>
         <tbody  >
@@ -255,24 +296,21 @@
                   }
                 ?>
               </td>
-              <td style="width: 21%;">
+              <td style="width: 27%;">
                 <a href="{{ URL::to('/edit_bangcap/'.$bangcap->ma_bc.'/'.$ma_vc)}}">
-                  <button type="button" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
-                    <i class="fa-solid fa-pen-to-square"></i>
+                  <button type="button" class=" btn btn-warning button_cam">
+                    <i class="fa-solid fa-pen-to-square text-light"></i>
                     &ensp; Cập nhật
                   </button>
                 </a>
-                {{-- <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_bangcap/'.$bangcap->ma_bc.'/'.$ma_vc)}}">
-                  <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-                </a> --}}
                 <input class="ma_bc" type="hidden" value="{{ $bangcap->ma_bc }}">
-                <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
+                <button type="button" class=" xoa btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
                 <?php
                   if($bangcap->status_bc == 0){
                     ?>
                       <a href="{{ URL::to('/select_bangcap/'.$bangcap->ma_bc) }}">
                         <button type="button" class="btn btn-secondary fw-bold">
-                          <i class="fa-solid fa-eye-slash"></i> 
+                          <i class="fa-solid fa-eye-slash text-light"></i> 
                           &ensp; Ẩn
                         </button>
                       </a>
@@ -281,7 +319,7 @@
                     ?>
                       <a href="{{ URL::to('/select_bangcap/'.$bangcap->ma_bc) }}">
                         <button type="button" class="btn btn-success fw-bold">
-                          <i class="fa-solid fa-eye"></i>
+                          <i class="fa-solid fa-eye text-light"></i>
                           &ensp; Hiển thị
                         </button>
                       </a>
@@ -293,8 +331,8 @@
           @endforeach
         </tbody>
       </table>
-      <button  type="submit" class="btn btn-danger fw-bold xoa_check" style="background-color: #FF1E1E">
-        <i class="fa-solid fa-trash"></i>
+      <button  type="submit" class="btn btn-danger button_do xoa_check">
+        <i class="fa-solid fa-trash text-light"></i>
         &ensp;
         Xoá
       </button>
