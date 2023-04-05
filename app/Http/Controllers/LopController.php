@@ -277,7 +277,6 @@ class LopController extends Controller
     }
   }
   public function lop_luotxem(Request $request){
-    $this->check_login();
     if($request->ajax()){
       $id =$request->id;
       if($id != null){

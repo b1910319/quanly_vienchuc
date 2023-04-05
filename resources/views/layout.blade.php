@@ -73,7 +73,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
           </a>
           <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
             <!-- item-->
-            <div class="dropdown-header noti-title">
+            <div class="dropdown-header noti-title bg-light">
               <h6 class="text-overflow m-0">Welcome !</h6>
             </div>
 
@@ -118,7 +118,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
             </a>
             <a href="{{ URL::to('/logout') }}" class="dropdown-item notify-item">
               <i class="fa-solid fa-power-off"></i>
-              <span>Thoát</span>
+              <span>Đăng xuất</span>
             </a>
 
           </div>
@@ -271,7 +271,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
               <li>
                 <a href="javascript: void(0);" class="waves-effect">
                   <i class="fa-solid fa-award"></i>
-                  <span> Quản Lý Khen Thưởng , <br>Kỉ Luật </span>
+                  <span> Quản Lý Khen Thưởng, Kỹ Luật </span>
                   <span class="menu-arrow"></span>
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
@@ -413,10 +413,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
             <div class="col-12">
               <div class="page-title-box">
                 <div class="row">
-                  <div class="col-11">
+                  <div class="col-10">
                     <h4 class="page-title">
                       <a href="{{ URL::to('home') }}">
-                        <span style="text-transform: uppercase; font-weight: bold; color: black; font-size: 20px;">
+                        <span style="text-transform: uppercase; font-weight: bold; color: #155263; font-size: 20px;">
                           <?php
                             $hoten_vc = session()->get('hoten_vc');
                             echo $hoten_vc;
@@ -425,12 +425,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                       </a>
                     </h4>
                   </div>
-                  <div class="col-1 mt-2">
+                  <div class="col-2" style="padding-top: 10px">
                     <a href="{{ URL::to('logout') }}">
                       <button type="button" class="btn btn-light fw-bold" style="width: 100%; color: #AC0D0D">
-                        <i class="fa-solid fa-power-off"></i>
+                        <i class="fa-solid fa-power-off" style="color: #AC0D0D"></i>
                         &ensp;
-                        Thoát
+                        ĐĂNG XUẤT
                       </button>
                     </a>
                   </div>
@@ -632,6 +632,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
 
     </div> <!-- end slimscroll-menu-->
   </div>
+  <div class="back_top">
+    <i class="fa-solid fa-angle-up text-light fw-bold"></i>
+  </div>
   <footer>
     <ul class="icons">
       <li>
@@ -751,6 +754,23 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
 https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
 "></script>
   {{--  --}}
+  {{-- nút về đầu trang --}}
+  <script>
+    $(document).ready(function(){
+      $(window).scroll(function(){
+        if($(this).scrollTop()){
+          $('.back_top').fadeIn();
+        }else{
+          $('.back_top').fadeOut();
+        }
+      });
+      $('.back_top').click(function(){
+        $('html, body').animate({
+          scrollTop: 0
+        }, 500);
+      });
+    });
+  </script>
 </body>
 
 </html>

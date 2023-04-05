@@ -125,7 +125,7 @@
         <div class="col-6">
           <div class="card-box">
             <h4 class="header-title mb-3 text-center" style="color: #155263; font-weight: bold; font-size: 22px; text-transform: uppercase; ">
-              Danh sách các lớp học hiện đang được mở
+              Các lớp học hiện đang được mở
             </h4>
       
             <div class="table-responsive">
@@ -372,6 +372,21 @@
             },
           });
       });
+  </script>
+  <script>
+    $(document).ready(function(){
+      @foreach ($list_lop as $key => $lop )
+        $('.luotxem_l{{ $key+1 }}').click(function(){
+          var id= $('.ma_l{{ $key+1 }}').val();
+          // alert(id)
+          $.ajax({
+            url:"{{ url("/lop_luotxem") }}",
+            type:"GET",
+            data:{id:id},
+          });
+        });
+      @endforeach
+    });
   </script>
   {{--  --}}
 </body>

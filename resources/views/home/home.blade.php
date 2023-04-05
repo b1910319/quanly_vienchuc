@@ -3,35 +3,35 @@
 <div class="row">
   <div class="col-6">
     <div class="card-box">
-      <p class="fw-bold text-center text-black" style="font-size: 21px">THÔNG TIN VIÊN CHỨC</p>
+      <p class="fw-bold text-center" style="font-size: 22px; color: #155263">THÔNG TIN VIÊN CHỨC</p>
       <table class="table">
         <tbody>
           <tr>
             <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">
               Họ tên
             </th>
-            <td class="fw-bold">{{ $vienchuc->hoten_vc }}</td>
+            <td >{{ $vienchuc->hoten_vc }}</td>
           </tr>
           <tr>
             <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Mã số</th>
-            <td class="fw-bold">VC{{ $vienchuc->ma_vc }}</td>
+            <td >VC{{ $vienchuc->ma_vc }}</td>
           </tr>
           <tr>
             <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Email</th>
-            <td class="fw-bold">{{ $vienchuc->user_vc }}</td>
+            <td >{{ $vienchuc->user_vc }}</td>
           </tr>
           <tr>
             <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Số điện thoại</th>
-            <td class="fw-bold">{{ $vienchuc->sdt_vc }}</td>
+            <td >{{ $vienchuc->sdt_vc }}</td>
           </tr>
           @if (!$phanquyen_admin)
             <tr>
               <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Ngày sinh</th>
-              <td class="fw-bold">{{ $vienchuc->ngaysinh_vc }}</td>
+              <td >{{ $vienchuc->ngaysinh_vc }}</td>
             </tr>
             <tr>
               <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Ngạch viên chức</th>
-              <td class="fw-bold">
+              <td >
                 @foreach ($list_ngach as $ngach )
                   @if ($ngach->ma_n == $vienchuc->ma_n)
                     {{ $ngach->ten_n }}
@@ -41,7 +41,7 @@
             </tr>
             <tr>
               <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Dân tộc</th>
-              <td class="fw-bold">
+              <td >
                 @foreach ($list_dantoc as $dantoc )
                   @if ($dantoc->ma_dt == $vienchuc->ma_dt)
                     {{ $dantoc->ten_dt }}
@@ -54,7 +54,7 @@
             <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Khoa</th>
             @foreach ($list_khoa as $khoa )
               @if ($khoa->ma_k == $vienchuc->ma_k)
-                <td class="fw-bold">
+                <td >
                   {{ $khoa->ten_k }}
                 </td>
               @endif
@@ -64,7 +64,7 @@
             <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Chức vụ</th>
             @foreach ($list_chucvu as $chucvu )
               @if ($chucvu->ma_cv == $vienchuc->ma_cv)
-                <td class="fw-bold">
+                <td >
                   {{ $chucvu->ten_cv }}
                 </td>
               @endif
@@ -80,7 +80,7 @@
         <div class="col-4">
           <a href="{{ URL::to('thongtin_canhan') }}">
             <button type="submit"  class="btn btn-primary font-weight-bold" style="background-color: #FF5B00; border: none; width: 100%;">
-              <i class="fas fa-plus-square"></i>
+              <i class="fas fa-plus-square text-light"></i>
               &ensp;
               Xem thêm
             </button>
@@ -432,8 +432,8 @@
 <div class="row">
   <div class="col-xl-12">
     <div class="card-box">
-      <h4 class="header-title mb-3 fw-bold">
-        Danh sách các lớp học hiện có
+      <h4 class="header-title mb-3 fw-bold" style="color: #155263; font-weight: bold; font-size: 22px; text-transform: uppercase; ">
+        Các lớp học hiện đang được mở
         <div class="music-waves-2">
           <span></span>
           <span></span>
@@ -448,16 +448,13 @@
       <div class="table-responsive">
         <table class="table table-borderless table-hover table-centered m-0" id="mytable1">
 
-          <thead class="thead-light">
+          <thead style="background-color: #000D6B">
             <tr>
-              <th>Tên lớp</th>
-              <th>Hạn đăng ký nộp hồ sơ</th>
-              <th>Ngày bắt đầu học</th>
-              <th>Ngày kết thúc</th>
-              <th>Cơ sở đào tạo</th>
-              <th>Quốc gia</th>
-              <th>Luợt xem</th>
-              <th>Chi tiết</th>
+              <th class="text-light">Tên lớp</th>
+              <th class="text-light">Hạn đăng ký nộp hồ sơ</th>
+              <th class="text-light">Cơ sở đào tạo</th>
+              <th class="text-light">Luợt xem</th>
+              <th class="text-light">Chi tiết</th>
             </tr>
           </thead>
           <tbody>
@@ -473,7 +470,7 @@
                   $han_dangky = strtotime ( '-2 month' , strtotime ( $lop->ngaybatdau_l ) ) ;
                   $han_dangky = date ( 'Y-m-j' , $han_dangky );
                   ?>
-                    <span class="badge badge-light-danger" style="font-size: 18px">
+                    <span class="badge badge-light-danger" style="font-size: 16px">
                       <?php 
                         echo $han_dangky;
                       ?>
@@ -482,31 +479,17 @@
                 ?>
                 </td>
                 <td>
-                  {{ $lop->ngaybatdau_l }}
-                </td>
-
-                <td>
-                  {{ $lop->ngayketthuc_l }}
-                </td>
-
-                <td>
                   {{ $lop->tencosodaotao_l }}
-                </td>
-
-                <td>
-                  <span class="badge badge-light-danger">
-                    {{ $lop->ten_qg }}
-                  </span>
                 </td>
                 <td>
                   <i class="fa-solid fa-eye" style="color: #0b44a8;"></i>
                   &ensp;
                   {{ $lop->luotxem_l }}
                 </td>
-                <td>
+                <td style="width: 10%">
                   <button type="button" class="btn btn-primary luotxem_l{{ $key+1 }} btn_chitiet fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $lop->ma_l }}">
                     <input type="hidden" class="ma_l{{ $key+1 }}" value="{{ $lop->ma_l }}">
-                    <i class="fa-solid fa-circle-info"></i>
+                    <i class="fa-solid fa-circle-info text-light"></i>
                     &ensp;
                     Chi tiết
                   </button>
@@ -642,13 +625,13 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            <i class="fa-solid fa-square-xmark"></i>
+                            <i class="fa-solid fa-square-xmark text-light"></i>
                             &ensp; Đóng
                           </button>
                           @if ($phanquyen_admin || $phanquyen_qlcttc)
                           <a href="{{ URL::to('/edit_lop_danhmuclop/'.$lop->ma_l) }}">
                             <button type="submit" class="btn btn-warning fw-bold" style="background-color: #FC7300">
-                              <i class="fa-solid fa-pen-to-square"></i>
+                              <i class="fa-solid fa-pen-to-square text-light"></i>
                               &ensp; Cập nhật
                             </button>
                           </a>
@@ -712,15 +695,17 @@
   </div>
   <div class="col-xl-8">
     <div class="card-box">
-      <h4 class="header-title fw-bold">Biểu mẩu</h4>
+      <h4 class="header-title fw-bold text-center" style="color: #155263; font-weight: bold; font-size: 22px; text-transform: uppercase; ">
+        Biểu mẩu
+      </h4>
       <div class="table-responsive">
         <table class="table table-borderless table-hover table-centered m-0" id="mytable">
-          <thead class="thead-light">
+          <thead style="background-color: #000D6B">
             <tr>
-              <th>STT</th>
-              <th>Tên file</th>
-              <th>Lượt tải</th>
-              <th>File</th>
+              <th class="text-light">STT</th>
+              <th class="text-light">Tên file</th>
+              <th class="text-light">Lượt tải</th>
+              <th class="text-light">File</th>
             </tr>
           </thead>
           <tbody>
@@ -734,16 +719,16 @@
                     {{ $file->ten_f }}
                   </h5>
                 </td>
-                <td>
+                <td style="width: 15%;">
                   <i class="fa-solid fa-download" style="color: #FF5B00;"></i>
                   &ensp;
                   {{ $file->luottai_f }}
                 </td>
-                <td>
+                <td style="width: 15%;">
                   <a href="{{ asset('public/uploads/file/'.$file->file_f) }}" class="taive{{ $key+1 }}">
                     <input class="ma_f{{ $key+1 }}" type="hidden" value="{{ $file->ma_f }}">
                     <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none;">
-                      <i class="fa-solid fa-download"></i>
+                      <i class="fa-solid fa-download text-light"></i>
                       &ensp;
                       Tải về
                     </button>
