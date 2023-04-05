@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\GiaDinhImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -9,6 +10,7 @@ use App\Models\GiaDinh;
 use App\Models\PhanQuyen;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class GiaDinhController extends Controller
 {
@@ -92,6 +94,22 @@ class GiaDinhController extends Controller
       $giadinh->ma_vc = $ma_vc;
       $giadinh->save();
       return Redirect::to('/giadinh/'.$ma_vc);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function add_giadinh_excel(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      Excel::import(new GiaDinhImport, $request->file('import_excel'));
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }

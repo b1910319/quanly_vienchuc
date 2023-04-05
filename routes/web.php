@@ -229,6 +229,7 @@ Route::post('/delete_thuongbinh_check',[ThuongBinhController::class, 'delete_thu
 
 Route::get('/giadinh/{ma_vc}',[GiaDinhController::class, 'giadinh']);
 Route::post('/add_giadinh/{ma_vc}',[GiaDinhController::class, 'add_giadinh']);
+Route::post('/add_giadinh_excel',[GiaDinhController::class, 'add_giadinh_excel']);
 Route::get('/select_giadinh/{ma_gd}',[GiaDinhController::class, 'select_giadinh']);
 Route::get('/edit_giadinh/{ma_gd}',[GiaDinhController::class, 'edit_giadinh']);
 Route::post('/update_giadinh/{ma_gd}/{ma_vc}',[GiaDinhController::class, 'update_giadinh']);
