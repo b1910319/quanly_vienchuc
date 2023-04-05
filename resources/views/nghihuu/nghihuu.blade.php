@@ -4,19 +4,20 @@
 <div class="row">
   <div class="card-box">
     <div class="mt-3"></div>
-    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+    <div class="alert alert-light color_alert" role="alert">
       ________THÔNG TIN VIÊN CHỨC ĐÃ NGHĨ HƯU________
     </div>
     <table class="table" id="mytable1">
-      <thead class="thead-light">
+      <thead class="color_table">
         <tr>
-          <th scope="col">STT</th>
-          <th scope="col">Tên </th>
-          <th scope="col">Email</th>
-          <th scope="col">Ngày sinh</th>
-          <th scope="col">Ngày nghĩ hưu</th>
-          <th scope="col">Trạng thái</th>
-          <th scope="col"></th>
+          <th class="text-light" scope="col">STT</th>
+          <th class="text-light" scope="col">Tên </th>
+          <th class="text-light" scope="col">Email</th>
+          <th class="text-light" scope="col">Ngày sinh</th>
+          <th class="text-light" scope="col">Khoa</th>
+          <th class="text-light" scope="col">Ngày nghĩ hưu</th>
+          <th class="text-light" scope="col">Trạng thái</th>
+          <th class="text-light" scope="col"></th>
         </tr>
       </thead>
       <tbody  >
@@ -28,6 +29,7 @@
             </td>
             <td>{{ $vienchuc->user_vc }}</td>
             <td>{{ $vienchuc->ngaysinh_vc }}</td>
+            <td>{{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})</td>
             <td>
               @if ($vienchuc->gioitinh == 0)
                 <?php 
@@ -62,7 +64,7 @@
             </td>
             <td>
               <button type="button" class="btn btn-primary fw-bold btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}" >
-                <i class="fa-solid fa-circle-info"></i>
+                <i class="fa-solid fa-circle-info text-light"></i>
                 &ensp;
                 Chi tiết
               </button>
@@ -374,13 +376,13 @@
                       </table>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-square-xmark"></i>
+                      <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-square-xmark text-light"></i>
                         &ensp; Đóng
                       </button>
                       <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc) }}">
-                        <button type="button" class="btn btn-warning fw-bold" style="width: 100%; background-color: #FC7300">
-                          <i class="fa-solid fa-pen-to-square"></i>
+                        <button type="button" class="btn btn-warning button_cam" style="width: 100%;">
+                          <i class="fa-solid fa-pen-to-square text-light"></i>
                           &ensp; Cập nhật
                         </button>
                       </a>
@@ -394,18 +396,18 @@
         @endforeach
       </tbody>
     </table>
-    <div class="alert alert-light mt-2" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+    <div class="alert alert-light mt-2 color_alert" role="alert">
       ________THÔNG TIN VIÊN CHỨC NGHĨ HƯU VÀO HÔM NAY________
     </div>
     <table class="table" id="mytable2">
-      <thead class="thead-light">
+      <thead class="color_table">
         <tr>
-          <th scope="col">Tên </th>
-          <th scope="col">Email</th>
-          <th scope="col">Ngày sinh</th>
-          <th scope="col">Ngày nghĩ hưu</th>
-          <th scope="col">Trạng thái</th>
-          <th scope="col"></th>
+          <th class="text-light" scope="col">Tên </th>
+          <th class="text-light" scope="col">Email</th>
+          <th class="text-light" scope="col">Ngày sinh</th>
+          <th class="text-light" scope="col">Ngày nghĩ hưu</th>
+          <th class="text-light" scope="col">Trạng thái</th>
+          <th class="text-light" scope="col"></th>
         </tr>
       </thead>
       <tbody  >
@@ -455,7 +457,7 @@
             <td>
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary fw-bold btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+500 }}">
-                <i class="fa-solid fa-circle-info"></i>
+                <i class="fa-solid fa-circle-info text-light"></i>
                 &ensp;
                 Chi tiết
               </button>
@@ -769,11 +771,11 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-square-xmark"></i>
+                        <i class="fa-solid fa-square-xmark text-light"></i>
                         &ensp; Đóng
                       </button>
                       <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc) }}">
-                        <button type="submit" class="btn btn-warning fw-bold" style="width: 100%; background-color: #FC7300">
+                        <button type="submit" class="btn btn-warning button_cam" style="width: 100%;">
                           <i class="fa-solid fa-pen-to-square"></i>
                           &ensp; Cập nhật
                         </button>
@@ -791,9 +793,9 @@
                     <input type='date' class='form-control input_table' autofocus required name="thoigiannghi_vc" required>
                   </div>
                   <div class="col-4">
-                    <button type="submit" class="btn btn-warning fw-bold" style="width: 100%; background-color: #FC7300">
-                      <i class="fa-solid fa-pen-to-square"></i>
-                      &ensp; Cập nhật nghĩ hưu
+                    <button type="submit" class="btn btn-warning button_cam" style="width: 100%;">
+                      <i class="fa-solid fa-pen-to-square text-light"></i>
+                      &ensp; Cập nhật
                     </button>
                   </div>
                 </div>
@@ -848,7 +850,7 @@
             <td>
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary fw-bold btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+100 }}" >
-                <i class="fa-solid fa-circle-info"></i>
+                <i class="fa-solid fa-circle-info text-light"></i>
                 &ensp;
                 Chi tiết
               </button>
@@ -1163,11 +1165,11 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-square-xmark"></i>
+                        <i class="fa-solid fa-square-xmark text-light"></i>
                         &ensp; Đóng
                       </button>
                       <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc) }}">
-                        <button type="submit" class="btn btn-warning fw-bold" style="width: 100%; background-color: #FC7300">
+                        <button type="submit" class="btn btn-warning button_cam" style="width: 100%;">
                           <i class="fa-solid fa-pen-to-square"></i>
                           &ensp; Cập nhật
                         </button>
@@ -1185,9 +1187,9 @@
                     <input type='date' class='form-control input_table' autofocus required name="thoigiannghi_vc" required>
                   </div>
                   <div class="col-4">
-                    <button type="submit" class="btn btn-warning fw-bold" style="width: 100%; background-color: #FC7300">
+                    <button type="submit" class="btn btn-warning button_cam" style="width: 100%;">
                       <i class="fa-solid fa-pen-to-square"></i>
-                      &ensp; Cập nhật nghĩ hưu
+                      &ensp; Cập nhật
                     </button>
                   </div>
                 </div>
@@ -1197,18 +1199,18 @@
         @endforeach
       </tbody>
     </table>
-    <div class="alert alert-light mt-2" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+    <div class="alert alert-light mt-2 color_alert" role="alert">
       ________THÔNG TIN VIÊN CHỨC NGHĨ HƯU GẦN ĐÂY________
     </div>
     <table class="table" id="mytable">
       <thead class="thead-light">
         <tr>
-          <th scope="col">Tên </th>
-          <th scope="col">Email</th>
-          <th scope="col">Ngày sinh</th>
-          <th scope="col">Ngày nghĩ hưu</th>
-          <th scope="col">Trạng thái</th>
-          <th scope="col"></th>
+          <th class="text-light" scope="col">Tên </th>
+          <th class="text-light" scope="col">Email</th>
+          <th class="text-light" scope="col">Ngày sinh</th>
+          <th class="text-light" scope="col">Ngày nghĩ hưu</th>
+          <th class="text-light" scope="col">Trạng thái</th>
+          <th class="text-light" scope="col"></th>
         </tr>
       </thead>
       <tbody  >
@@ -1258,7 +1260,7 @@
             <td>
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary fw-bold btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+100 }}">
-                <i class="fa-solid fa-circle-info"></i>
+                <i class="fa-solid fa-circle-info text-light"></i>
                 &ensp;
                 Chi tiết
               </button>
@@ -1572,16 +1574,15 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-square-xmark"></i>
+                        <i class="fa-solid fa-square-xmark text-light"></i>
                         &ensp; Đóng
                       </button>
                       <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc) }}">
-                        <button type="submit" class="btn btn-warning fw-bold" style="width: 100%; background-color: #FC7300">
+                        <button type="submit" class="btn btn-warning button_cam" style="width: 100%;">
                           <i class="fa-solid fa-pen-to-square"></i>
                           &ensp; Cập nhật
                         </button>
                       </a>
-                      
                     </div>
                   </div>
                 </div>
@@ -1594,9 +1595,9 @@
                     <input type='date' class='form-control input_table' autofocus required name="thoigiannghi_vc" required>
                   </div>
                   <div class="col-4">
-                    <button type="submit" class="btn btn-warning fw-bold" style="width: 100%; background-color: #FC7300">
+                    <button type="submit" class="btn btn-warning button_cam" style="width: 100%;">
                       <i class="fa-solid fa-pen-to-square"></i>
-                      &ensp; Cập nhật nghĩ hưu
+                      &ensp; Cập nhật
                     </button>
                   </div>
                 </div>
@@ -1644,7 +1645,7 @@
             <td>
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary fw-bold btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+200 }}">
-                <i class="fa-solid fa-circle-info"></i>
+                <i class="fa-solid fa-circle-info text-light"></i>
                 &ensp;
                 Chi tiết
               </button>
@@ -1957,13 +1958,13 @@
                       </table>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-square-xmark"></i>
+                      <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-square-xmark text-light"></i>
                         &ensp; Đóng
                       </button>
                       <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc) }}">
-                        <button type="submit" class="btn btn-warning fw-bold" style="width: 100%; background-color: #FC7300">
-                          <i class="fa-solid fa-pen-to-square"></i>
+                        <button type="submit" class="btn btn-warning button_cam" style="width: 100%;">
+                          <i class="fa-solid fa-pen-to-square text-light"></i>
                           &ensp; Cập nhật
                         </button>
                       </a>
@@ -1980,9 +1981,9 @@
                     <input type='date' class='form-control input_table' autofocus required name="thoigiannghi_vc" required>
                   </div>
                   <div class="col-4">
-                    <button type="submit" class="btn btn-warning fw-bold" style="width: 100%; background-color: #FC7300">
-                      <i class="fa-solid fa-pen-to-square"></i>
-                      &ensp; Cập nhật nghĩ hưu
+                    <button type="submit" class="btn btn-warning button_cam" style="width: 100%;">
+                      <i class="fa-solid fa-pen-to-square text-light"></i>
+                      &ensp; Cập nhật
                     </button>
                   </div>
                 </div>
