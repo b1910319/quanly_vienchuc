@@ -287,6 +287,13 @@
   border-radius: 3px;
   background-color: #a4aa13;
   font-weight: bold;
+  border: none;
+}
+
+.button_loc_left {
+  background-color: #a4aa13 !important;
+  border: #a4aa13 !important;
+  font-weight: bold;
 }
 
 .color_alert {

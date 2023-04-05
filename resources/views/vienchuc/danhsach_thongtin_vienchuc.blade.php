@@ -4,8 +4,8 @@
   <div class="card-box col-2">
     <div class="row">
       <div class="mb-2">
-        <button class="btn btn-primary fw-bold" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="background-color: #00AF91; border: none ;width: 100%">
-          <i class="fa-solid fa-chart-simple"></i> &ensp;
+        <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="width: 100%">
+          <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
           Thống kê
         </button>
         <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -24,7 +24,7 @@
               @endforeach
             </div>
             <table class="table">
-              <thead class="table-dark text-light">
+              <thead >
                 <tr>
                   <th scope="col">Tên</th>
                   <th scope="col">Số lượng</th>
@@ -68,7 +68,7 @@
         </button>
       </a>
       <div class="dropdown mt-2" >
-        <button class="dropbtn" style="background-color: #81B214; border: #81B214;width: 100%; font-weight: bold">Khoa</button>
+        <button class="dropbtn button_loc_left " style="width: 100%;">Khoa</button>
         <div class="dropdown-content">
           @foreach ($list_khoa_show as  $khoa)
             <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_khoa/'.$khoa->ma_k) }}">{{ $khoa->ten_k }}</a>
@@ -77,7 +77,7 @@
         </div>
       </div>
       <div class="dropdown mt-2" >
-        <button class="dropbtn" style="background-color: #81B214; border: #81B214;width: 100%; font-weight: bold">Dân tộc</button>
+        <button class="dropbtn button_loc_left" style="width: 100%;">Dân tộc</button>
         <div class="dropdown-content">
           @foreach ($list_dantoc as  $dantoc)
             <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_dantoc/'.$dantoc->ma_dt) }}">{{ $dantoc->ten_dt }}</a>
@@ -86,7 +86,7 @@
         </div>
       </div>
       <div class="dropdown mt-2" >
-        <button class="dropbtn" style="background-color: #81B214; border: #81B214;width: 100%; font-weight: bold">Tôn giáo</button>
+        <button class="dropbtn button_loc_left" style="width: 100%;">Tôn giáo</button>
         <div class="dropdown-content">
           @foreach ($list_tongiao as  $tongiao)
             <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_tongiao/'.$tongiao->ma_tg) }}">{{ $tongiao->ten_tg }}</a>
@@ -95,7 +95,7 @@
         </div>
       </div>
       <div class="dropdown mt-2" >
-        <button class="dropbtn" style="background-color: #81B214; border: #81B214;width: 100%; font-weight: bold">Giới tính</button>
+        <button class="dropbtn button_loc_left" style="width: 100%;">Giới tính</button>
         <div class="dropdown-content">
           <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_gioitinh/0') }}">
             Nam
@@ -106,7 +106,7 @@
         </div>
       </div>
       <div class="dropdown mt-2" >
-        <button class="dropbtn" style="background-color: #81B214; border: #81B214;width: 100%; font-weight: bold">Thương binh</button>
+        <button class="dropbtn button_loc_left" style="width: 100%;">Thương binh</button>
         <div class="dropdown-content">
           @foreach ($list_thuongbinh as  $thuongbinh)
             <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_thuongbinh/'.$thuongbinh->ma_tb) }}">{{ $thuongbinh->ten_tb }}</a>
@@ -114,7 +114,7 @@
         </div>
       </div>
       <div class="dropdown mt-2" >
-        <button class="dropbtn" style="background-color: #81B214; border: #81B214;width: 100%; font-weight: bold">Hệ đào tạo</button>
+        <button class="dropbtn button_loc_left" style="width: 100%;">Hệ đào tạo</button>
         <div class="dropdown-content">
           @foreach ($list_hedaotao as  $hedaotao)
             <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_hedaotao/'.$hedaotao->ma_hdt) }}">{{ $hedaotao->ten_hdt }}</a>
@@ -122,7 +122,7 @@
         </div>
       </div>
       <div class="dropdown mt-2" >
-        <button class="dropbtn" style="background-color: #81B214; border: #81B214;width: 100%; font-weight: bold">Loại bằng cấp</button>
+        <button class="dropbtn button_loc_left" style="width: 100%;">Loại bằng cấp</button>
         <div class="dropdown-content">
           @foreach ($list_loiabangcap as  $loiabangcap)
             <a href="{{ URL::to('/search_danhsach_thongtin_vienchuc_loiabangcap/'.$loiabangcap->ma_lbc) }}">{{ $loiabangcap->ten_lbc }}</a>
@@ -133,15 +133,15 @@
   </div>
   <div class="card-box col-10">
     <div class="mt-3"></div>
-    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+    <div class="alert alert-light color_alert" role="alert">
       ________DANH SÁCH VIÊN CHỨC________
     </div>
     <div class="row">
       <div class="col-3">
-        <button type="button" class="btn btn-info fw-bold" data-toggle="collapse" data-target="#demo1" style="background-image: linear-gradient(to bottom left, #00AFB9, #E99331); border: none; width: 100%">
-          <i class="fa-solid fa-filter"></i>
+        <button type="button" class="btn btn-info button_loc" data-toggle="collapse" data-target="#demo1" style="width: 100%">
+          <i class="fa-solid fa-filter text-light"></i>
           &ensp;
-          Lọc theo quê quán
+          Tìm theo tỉnh/thành phố
         </button>
         <div id="demo1" class="collapse mt-3">
           <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_quequan') }}" method="post">
@@ -158,8 +158,8 @@
                 
               </div>
               <div class="col-3">
-                <button type="submit"  class="btn btn-primary font-weight-bold" style="width: 100%; background-color: #379237; border: none;">
-                  <i class="fa-solid fa-magnifying-glass-plus"></i>
+                <button type="submit"  class="btn btn-primary button_xanhla" style="width: 100%;">
+                  <i class="fa-solid fa-magnifying-glass-plus text-light"></i>
                 </button>
               </div>
             </div>
@@ -168,10 +168,10 @@
       </div>
 
       <div class="col-3">
-        <button type="button" class="btn btn-info fw-bold" data-toggle="collapse" data-target="#demo" style="background-image: linear-gradient(to bottom left, #00AFB9, #E99331); border: none; width: 100%">
-          <i class="fa-solid fa-filter"></i>
+        <button type="button" class="btn btn-info button_loc" data-toggle="collapse" data-target="#demo" style="width: 100%">
+          <i class="fa-solid fa-filter text-light"></i>
           &ensp;
-          Lọc theo ngày sinh của viên chức
+          Tìm theo ngày sinh
         </button>
         <div id="demo" class="collapse mt-3">
           <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_ngaysinh') }}" method="post">
@@ -187,8 +187,8 @@
             <div class="row mt-2">
               <div class="col-9"></div>
               <div class="col-3">
-                <button type="submit"  class="btn btn-primary font-weight-bold" style="width: 100%; background-color: #379237; border: none;">
-                  <i class="fa-solid fa-magnifying-glass-plus"></i>
+                <button type="submit"  class="btn btn-primary button_xanhla" style="width: 100%;">
+                  <i class="fa-solid fa-magnifying-glass-plus text-light"></i>
                 </button>
               </div>
             </div>
@@ -196,10 +196,10 @@
         </div>
       </div>
       <div class="col-3">
-        <button type="button" class="btn btn-info fw-bold" data-toggle="collapse" data-target="#demo2" style="background-image: linear-gradient(to bottom left, #00AFB9, #E99331); border: none; width: 100%" >
-          <i class="fa-solid fa-filter"></i>
+        <button type="button" class="btn btn-info button_loc" data-toggle="collapse" data-target="#demo2" style="width: 100%" >
+          <i class="fa-solid fa-filter text-light"></i>
           &ensp;
-          Lọc theo ngạch
+          Tìm theo ngạch
         </button>
         <div id="demo2" class="collapse mt-3 mb-3">
           <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_ngach') }}" method="post">
@@ -221,8 +221,8 @@
             <div class="row mt-2">
               <div class="col-9"></div>
               <div class="col-3">
-                <button type="submit"  class="btn btn-primary font-weight-bold" style="width: 100%; background-color: #379237; border: none;">
-                  <i class="fa-solid fa-magnifying-glass-plus"></i>
+                <button type="submit"  class="btn btn-primary button_xanhla" style="width: 100%;">
+                  <i class="fa-solid fa-magnifying-glass-plus text-light"></i>
                 </button>
               </div>
             </div>
@@ -230,10 +230,10 @@
         </div>
       </div>
       <div class="col-3 mb-2">
-        <button type="button" class="btn btn-info fw-bold" data-toggle="collapse" data-target="#demo3" style="background-image: linear-gradient(to bottom left, #00AFB9, #E99331); border: none; width: 100%">
-          <i class="fa-solid fa-filter"></i>
+        <button type="button" class="btn btn-info button_loc" data-toggle="collapse" data-target="#demo3" style="width: 100%">
+          <i class="fa-solid fa-filter text-light"></i>
           &ensp;
-          Lọc ngày viên chức bắt đầu làm việc
+          Tìm theo ngày bắt đầu việc
         </button>
         <div id="demo3" class="collapse mt-3">
           <form action="{{ URL::to('search_danhsach_thongtin_vienchuc_ngaybatdaulamviec') }}" method="post">
@@ -249,8 +249,8 @@
             <div class="row mt-2">
               <div class="col-9"></div>
               <div class="col-3">
-                <button type="submit"  class="btn btn-primary font-weight-bold" style="width: 100%; background-color: #379237; border: none;">
-                  <i class="fa-solid fa-magnifying-glass-plus"></i>
+                <button type="submit"  class="btn btn-primary button_xanhla" style="width: 100%;">
+                  <i class="fa-solid fa-magnifying-glass-plus text-light"></i>
                 </button>
               </div>
             </div>
@@ -259,14 +259,14 @@
       </div>
     </div>
     <table class="table mt-2" id="mytable">
-      <thead class="table-secondary">
+      <thead class="color_table">
         <tr>
-          <th scope="col">STT</th>
-          <th scope="col">Tên viên chức</th>
-          <th scope="col">Thông tin viên chức</th>
-          <th scope="col">Thông tin cơ bản</th>
-          <th scope="col">Quản lý</th>
-          <th scope="col"></th>
+          <th class="text-light" scope="col">STT</th>
+          <th class="text-light" scope="col">Tên viên chức</th>
+          <th class="text-light" scope="col">Thông tin viên chức</th>
+          <th class="text-light" scope="col">Thông tin cơ bản</th>
+          <th class="text-light" scope="col">Quản lý</th>
+          <th class="text-light" scope="col"></th>
         </tr>
       </thead>
       <tbody  >
@@ -278,9 +278,9 @@
               <br>
               {{ $vienchuc->user_vc }}
             </td>
-            <td>
-              <button type="button" class="btn btn-primary fw-bold btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}" style="background-color: #379237; border: none;">
-                <i class="fa-solid fa-circle-info"></i>
+            <td style="width: 15%">
+              <button type="button" class="btn btn-primary fw-bold btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}">
+                <i class="fa-solid fa-circle-info text-light"></i>
                 &ensp;
                 Chi tiết
               </button>
@@ -591,13 +591,13 @@
                       </table>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-square-xmark"></i>
+                      <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-square-xmark text-light"></i>
                         &ensp; Đóng
                       </button>
                       <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc) }}">
-                        <button type="button" class="btn btn-warning fw-bold" style="background-color: #FC7300">
-                          <i class="fa-solid fa-pen-to-square"></i>
+                        <button type="button" class="btn btn-warning button_cam">
+                          <i class="fa-solid fa-pen-to-square text-light"></i>
                           &ensp; Cập nhật
                         </button>
                       </a>
@@ -610,14 +610,14 @@
             <td>
               <b>Số CCCD: </b> {{ $vienchuc->cccd_vc }}
             </td>
-            <td>
+            <td style="width: 18%">
               <?php
                 foreach ($count_bangcap as $key => $count) {
                   if($count->ma_vc == $vienchuc->ma_vc && $count->sum > 0){
                     ?>
                       <a href="{{ URL::to('/bangcap/'.$vienchuc->ma_vc) }}">
-                        <button type="button" class="btn btn-primary position-relative fw-bold" style="background-color: #379237; border: none;">
-                          <i class="fa-solid fa-layer-group"></i> &ensp;
+                        <button type="button" class="btn btn-primary position-relative button_xanhla">
+                          <i class="fa-solid fa-layer-group text-light"></i> &ensp;
                           Thêm bằng cấp
                           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             <?php echo $count->sum ?>
@@ -629,8 +629,8 @@
                   }elseif ($count->ma_vc == $vienchuc->ma_vc && $count->sum == 0) {
                     ?>
                       <a href="{{ URL::to('/bangcap/'.$vienchuc->ma_vc) }}">
-                        <button type="button" class="btn btn-primary position-relative fw-bold" style="background-color: #379237; border: none;">
-                          <i class="fa-solid fa-layer-group"></i> &ensp;
+                        <button type="button" class="btn btn-primary position-relative button_xanhla">
+                          <i class="fa-solid fa-layer-group text-light"></i> &ensp;
                           Thêm bằng cấp
                         </button>
                       </a>
@@ -639,22 +639,22 @@
                 }
               ?>
             </td>
-            <td style="width: 25%;">
+            <td style="width: 32%;">
               <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc)}}">
-                <button type="submit" class="btn btn-warning fw-bold" style=" background-color: #FC7300">
-                  <i class="fa-solid fa-pen-to-square"></i>
+                <button type="submit" class="btn btn-warning button_cam">
+                  <i class="fa-solid fa-pen-to-square text-light"></i>
                   &ensp; Cập nhật
                 </button>
               </a>
               <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/admin_delete_vienchuc/'.$vienchuc->ma_vc)}}">
-                <button type="button" class="btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
+                <button type="button" class="btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
               </a>
               <?php
                 if($vienchuc->status_vc == 0){
                   ?>
                     <a href="{{ URL::to('/admin_select_vienchuc/'.$vienchuc->ma_vc) }}">
                       <button type="button" class="btn btn-secondary fw-bold">
-                        <i class="fa-solid fa-eye-slash"></i> 
+                        <i class="fa-solid fa-eye-slash text-light"></i> 
                         &ensp; Ẩn
                       </button>
                     </a>
@@ -663,7 +663,7 @@
                   ?>
                     <a href="{{ URL::to('/admin_select_vienchuc/'.$vienchuc->ma_vc) }}">
                       <button type="button" class="btn btn-success fw-bold">
-                        <i class="fa-solid fa-eye"></i>
+                        <i class="fa-solid fa-eye text-light"></i>
                         &ensp; Hiển thị
                       </button>
                     </a>
