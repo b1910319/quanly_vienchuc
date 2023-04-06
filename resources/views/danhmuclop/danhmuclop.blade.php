@@ -175,7 +175,7 @@
               </td>
               <th scope="row">{{ $key+1 }}</th>
               <td>
-                {{ $danhmuclop->ten_dml }}
+                {{ $danhmuclop->ten_dml }} ({{ $danhmuclop->ma_dml }})
               </td>
               <td style="width: 15%">
                 <?php

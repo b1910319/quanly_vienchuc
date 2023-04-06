@@ -617,6 +617,7 @@ Route::get('/delete_all_danhmuclop',[DanhMucLopController::class, 'delete_all_da
 
 Route::get('/lop',[LopController::class, 'lop']);
 Route::post('/add_lop',[LopController::class, 'add_lop']);
+Route::post('/add_lop_excel',[LopController::class, 'add_lop_excel']);
 Route::get('/select_lop/{ma_l}',[LopController::class, 'select_lop']);
 Route::get('/edit_lop/{ma_l}',[LopController::class, 'edit_lop']);
 Route::post('/update_lop/{ma_l}',[LopController::class, 'update_lop']);

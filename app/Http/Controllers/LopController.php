@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\LopImport;
 use App\Models\DanhMucLop;
 use App\Models\Lop;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use App\Models\PhanQuyen;
 use App\Models\QuocGia;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LopController extends Controller
 {
@@ -114,6 +116,22 @@ class LopController extends Controller
       $lop->save();
       $request->session()->put('message','Thêm thành công');
       return Redirect::to('/lop');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function add_lop_excel(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      Excel::import(new LopImport, $request->file('import_excel'));
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }
