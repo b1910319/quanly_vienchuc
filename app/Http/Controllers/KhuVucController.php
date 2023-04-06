@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\KhuVucImport;
 use App\Models\ChauLuc;
 use App\Models\KhuVuc;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KhuVucController extends Controller
 {
@@ -99,6 +101,22 @@ class KhuVucController extends Controller
       $khuvuc->status_kv = $data['status_kv'];
       $khuvuc->save();
       return Redirect::to('/khuvuc/'.$data['ma_cl']);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function add_khuvuc_excel(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      Excel::import(new KhuVucImport, $request->file('import_excel'));
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }
