@@ -2,17 +2,17 @@
 @section('content')
 <div class="row">
   <div class="card-box">
-    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+    <div class="alert alert-light color_alert" role="alert">
       ________THÔNG TIN KHEN THƯỞNG________
     </div>
     <table class="table mt-2" id="mytable">
-      <thead class="table-secondary">
+      <thead class="color_table">
         <tr>
-          <th scope="col">STT</th>
-          <th scope="col">Tên viên chức</th>
-          <th scope="col">Thông tin viên chức</th>
-          <th scope="col">Trạng thái</th>
-          <th scope="col">Quản lý</th>
+          <th class="text-light" scope="col">STT</th>
+          <th class="text-light" scope="col">Tên viên chức</th>
+          <th class="text-light" scope="col">Thông tin viên chức</th>
+          <th class="text-light" scope="col">Trạng thái</th>
+          <th class="text-light" scope="col">Quản lý</th>
         </tr>
       </thead>
       <tbody  >
@@ -25,8 +25,8 @@
               {{ $vienchuc->user_vc }}
             </td>
             <td>
-              <button type="button" class="btn btn-primary fw-bold btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}" style="background-color: #379237; border: none;">
-                <i class="fa-solid fa-circle-info"></i>
+              <button type="button" class="btn btn-primary fw-bold btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}">
+                <i class="fa-solid fa-circle-info text-light"></i>
                 &ensp;
                 Chi tiết
               </button>
@@ -338,15 +338,15 @@
                         </tbody>
                       </table>
                     </div>
-                    @if ($phanquyen_qlk)
+                    @if ($phanquyen_qlk || $phanquyen_admin)
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                          <i class="fa-solid fa-square-xmark"></i>
+                          <i class="fa-solid fa-square-xmark text-light"></i>
                           &ensp; Đóng
                         </button>
                         <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc) }}">
-                          <button type="submit" class="btn btn-warning fw-bold" style="width: 100%; background-color: #FC7300">
-                            <i class="fa-solid fa-pen-to-square"></i>
+                          <button type="submit" class="btn btn-warning button_cam" style="width: 100%;">
+                            <i class="fa-solid fa-pen-to-square text-light"></i>
                             &ensp; Cập nhật
                           </button>
                         </a>
@@ -354,7 +354,7 @@
                     @else
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                          <i class="fa-solid fa-square-xmark"></i>
+                          <i class="fa-solid fa-square-xmark text-light"></i>
                           &ensp; Đóng
                         </button>
                       </div>
@@ -384,7 +384,7 @@
                 }
               ?>
             </td>
-            <td style="width: 20%">
+            <td style="width: 21%">
               <?php
                 foreach ($count_khenthuong_vienchuc as $key => $count) {
                   if($count->ma_vc == $vienchuc->ma_vc && $count->sum > 0){

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\KhenThuongImport;
 use App\Models\Bac;
 use App\Models\ChucVu;
 use App\Models\DanToc;
@@ -20,6 +21,7 @@ use App\Models\Tinh;
 use App\Models\TonGiao;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 class KhenThuongController extends Controller
@@ -199,6 +201,25 @@ class KhenThuongController extends Controller
       $khenthuong->save();
       $request->session()->put('message','Thêm thành công');
       return Redirect::to('/khenthuong_add/'.$ma_vc);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function add_khenthuong_excel(Request $request){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
+      Excel::import(new KhenThuongImport, $request->file('import_excel'));
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }

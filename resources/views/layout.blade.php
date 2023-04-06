@@ -416,6 +416,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                   <div class="col-10">
                     <h4 class="page-title">
                       <a href="{{ URL::to('home') }}">
+                        Xin chào !!!
                         <span style="text-transform: uppercase; font-weight: bold; color: #155263; font-size: 20px;">
                           <?php
                             $hoten_vc = session()->get('hoten_vc');
@@ -434,6 +435,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                       </button>
                     </a>
                   </div>
+                  <div class="line-loading"></div>
                 </div>
                 
               </div>
