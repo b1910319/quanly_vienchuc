@@ -3,23 +3,32 @@
 <div class="row">
   <div class="card-box">
     <div class="row ">
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
-        ________DANH SÁCH VIÊN CHỨC________
+      <div class="alert alert-success row color_alert" role="alert">
+        <div class="col-1">
+          <a href="{{ URL::to('lop') }}">
+            <button type="button" class="btn btn-warning" style="background-color: #E83A14; border-radius: 50%; border: none;">
+              <i class="fa-solid fa-angle-left fw-bold" style="font-size: 18px;"></i>
+            </button>
+          </a>
+        </div>
+        <h4 class="text-center col-11 mt-1" style="font-weight: bold; color: white; font-size: 20px; text-transform: uppercase">
+          ________DANH SÁCH VIÊN CHỨC________
+        </h4>
       </div>
       <div class="col-md-12">
         <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
           style="height: 400px; overflow: auto;">
           <p>
             <table class="table" id="mytable">
-              <thead class="table-secondary">
+              <thead class="color_table">
                 <tr>
-                  <th scope="col">STT</th>
-                  <th scope="col">Tên viên chức</th>
-                  <th scope="col">Thông tin liên hệ</th>
-                  <th scope="col">Khoa</th>
-                  <th scope="col">Thông tin viên chức </th>
-                  <th scope="col">Trạng thái</th>
-                  <th scope="col"></th>
+                  <th class="text-light" scope="col">STT</th>
+                  <th class="text-light" scope="col">Tên viên chức</th>
+                  <th class="text-light" scope="col">Thông tin liên hệ</th>
+                  <th class="text-light" scope="col">Khoa</th>
+                  <th class="text-light" scope="col">Thông tin viên chức </th>
+                  <th class="text-light" scope="col">Trạng thái</th>
+                  <th class="text-light" scope="col"></th>
                 </tr>
               </thead>
               <tbody  >
@@ -44,7 +53,7 @@
                     <td>
                       <!-- Button trigger modal -->
                       <button type="button" class="btn btn-primary luotxem_l{{ $key+1 }} btn_chitiet fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}">
-                        <i class="fa-solid fa-circle-info"></i> &ensp; Chi tiết
+                        <i class="fa-solid fa-circle-info text-light"></i> &ensp; Chi tiết
                       </button>
         
                       <!-- Modal -->
@@ -355,8 +364,8 @@
                               </table>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                <i class="fa-solid fa-square-xmark"></i>
+                              <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                                <i class="fa-solid fa-square-xmark text-light"></i>
                                 &ensp; Đóng
                               </button>
                             </div>
@@ -373,8 +382,8 @@
                     </td>
                     <td>
                       <a href="{{ URL::to('/add_danhsach/'.$ma_l.'/'.$vienchuc->ma_vc) }}">
-                        <button type="button"  class="btn btn-primary font-weight-bold them" style="background-color: #379237; border: none;">
-                          <i class="fas fa-plus-square"></i>
+                        <button type="button"  class="btn btn-primary button_xanhla them">
+                          <i class="fas fa-plus-square text-light"></i>
                           &ensp;
                           Thêm
                         </button>
@@ -389,7 +398,7 @@
       </div>
     </div>
     <div class="mt-3"></div>
-    <div class="alert alert-success row" role="alert" style="background-color: #3F979B; text-align: center;">
+    <div class="alert alert-success row color_alert" role="alert">
       <div class="col-1">
         <a href="{{ URL::to('lop') }}">
           <button type="button" class="btn btn-warning" style="background-color: #E83A14; border-radius: 50%; border: none;">
@@ -404,8 +413,8 @@
     <div class="row">
       <div class="col-2">
         <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_danhsach/'.$ma_l) }}">
-          <button type="button" class="btn btn-danger fw-bold" style="background-color: #FF1E1E">
-            <i class="fa-solid fa-trash"></i>
+          <button type="button" class="btn btn-danger button_do">
+            <i class="fa-solid fa-trash text-light"></i>
             &ensp;
             Xoá tất cả
           </button>
@@ -413,14 +422,14 @@
       </div>
     </div>
     <table class="table" id="mytable1">
-      <thead class="table-secondary">
+      <thead class="color_table">
         <tr>
-          <th scope="col">STT</th>
-          <th scope="col">Viên chức </th>
-          <th scope="col">Trạng thái</th>
-          <th scope="col">Thông tin viên chức</th>
-          <th scope="col">Qúa trình học</th>
-          <th scope="col"></th>
+          <th class="text-light" scope="col">STT</th>
+          <th class="text-light" scope="col">Viên chức </th>
+          <th class="text-light" scope="col">Trạng thái</th>
+          <th class="text-light" scope="col">Thông tin viên chức</th>
+          <th class="text-light" scope="col">Qúa trình học</th>
+          <th class="text-light" scope="col"></th>
         </tr>
       </thead>
       <tbody  >
@@ -463,7 +472,7 @@
             </td>
             <td>
               <button type="button" class="btn btn-primary luotxem_l{{ $key+1 }} btn_chitiet fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}">
-                <i class="fa-solid fa-circle-info"></i> &ensp; Chi tiết
+                <i class="fa-solid fa-circle-info text-light"></i> &ensp; Chi tiết
               </button>
 
               <!-- Modal -->
@@ -773,20 +782,20 @@
                         </tbody>
                       </table>
                     </div>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                      <i class="fa-solid fa-square-xmark"></i>
+                    <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                      <i class="fa-solid fa-square-xmark text-light"></i>
                       &ensp; Đóng
                     </button>
                   </div>
                 </div>
               </div>
             </td>
-            <td style="width: 36%">
+            <td style="width: 38%">
               <div class="row">
                 <div class="col-4">
                   <a href="{{ URL::to('/quyetdinh/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
-                    <button type="button" class="btn btn-danger position-relative me-2 fw-bold" style="background-color: #CF0000; border: none; width: 100%">
-                      Cập nhật quyết định 
+                    <button type="button" class="btn btn-danger position-relative me-2 button_xanhla" style=" width: 100%">
+                      Thêm quyết định 
                       <?php
                         foreach ($count_quyetdinh_vienchuc as $key => $count) {
                           if($count->ma_vc == $danhsach->ma_vc){
@@ -808,7 +817,7 @@
                         ?>
                           <div class="col-4">
                             <a href="{{ URL::to('/ketqua/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
-                              <button type="button" class="btn btn-danger position-relative me-2 fw-bold" style="background-color: #FF5200; width: 100%">
+                              <button type="button" class="btn btn-danger position-relative me-2 button_cam" style=" width: 100%">
                                 Kết quả học
                                 <?php
                                   foreach ($count_ketqua_vienchuc as $key => $count) {
@@ -866,7 +875,7 @@
                           <div class="col-4 mt-2">
                             <a href="{{ URL::to('/chuyen/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
                               <button type="button" class="btn btn-danger position-relative me-2 fw-bold" style="background-color: #04009A; border: none; width: 100%">
-                                Chuyển nước,trường...
+                                Chuyển ngành...
                                 <?php
                                   foreach ($count_chuyen_vienchuc as $key => $count) {
                                     if($count->ma_vc == $danhsach->ma_vc){
@@ -907,20 +916,17 @@
                   ?>
               </div>
             </td>
-            <td style="width: 15%"> 
+            <td style="width: 17%"> 
               <a href="{{ URL::to('/quyetdinh_dihoc_pdf/'.$danhsach->ma_l.'/'.$danhsach->ma_vc) }}">
-                <button type="button" class="btn btn-warning fw-bold" style="background-color: #379237; border: none;">
-                  <i class="fa-solid fa-file-pdf"></i>
+                <button type="button" class="btn btn-warning button_xanhla">
+                  <i class="fa-solid fa-file-pdf text-light"></i>
                   &ensp;
                   Xuất file
                 </button>
               </a>
-              {{-- <a onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_danhsach/'.$danhsach->ma_l.'/'.$danhsach->ma_vc)}}">
-                <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-              </a> --}}
               <input class="ma_vc{{ $danhsach->ma_vc }}" type="hidden" value="{{ $danhsach->ma_vc }}">
               <input class="ma_l{{ $danhsach->ma_l }}" type="hidden" value="{{ $danhsach->ma_l }}">
-              <button type="button" class=" xoa{{ $danhsach->ma_l }}{{ $danhsach->ma_vc }} btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
+              <button type="button" class=" xoa{{ $danhsach->ma_l }}{{ $danhsach->ma_vc }} btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
             </td>
           </tr>
         @endforeach
