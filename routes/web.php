@@ -667,6 +667,7 @@ Route::get('/delete_quyetdinh_all',[QuyetDinhController::class, 'delete_quyetdin
 
 Route::get('/ketqua/{ma_l}/{ma_vc}',[KetQuaController::class, 'ketqua']);
 Route::post('/add_ketqua',[KetQuaController::class, 'add_ketqua']);
+Route::post('/add_ketqua_excel',[KetQuaController::class, 'add_ketqua_excel']);
 Route::get('/select_ketqua/{ma_kq}',[KetQuaController::class, 'select_ketqua']);
 Route::get('/edit_ketqua/{ma_kq}',[KetQuaController::class, 'edit_ketqua']);
 Route::post('/update_ketqua/{ma_kq}',[KetQuaController::class, 'update_ketqua']);
