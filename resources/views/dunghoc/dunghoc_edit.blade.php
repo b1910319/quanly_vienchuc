@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
   <div class="card-box">
-    <div class="alert alert-success row" role="alert" style="background-color: #3F979B; text-align: center;">
+    <div class="alert alert-success row color_alert" role="alert">
       <div class="col-1">
         @if (isset($vienchuc))
           <a href="{{ URL::to('/dunghoc/'.$edit->ma_l.'/'.$edit->ma_vc) }}">
@@ -64,8 +64,8 @@
                     <div class="col-6">
                       @if ($edit->file_dh != ' ')
                         <a href="{{ asset('public/uploads/dunghoc/'.$edit->file_dh) }}">
-                          <button type="button" class="btn btn-warning fw-bold" style="background-color: #379237; border: none;">
-                            <i class="fa-solid fa-file"></i>
+                          <button type="button" class="btn btn-warning button_xanhla">
+                            <i class="fa-solid fa-file text-light"></i>
                             &ensp;
                             File
                           </button>
@@ -98,8 +98,8 @@
         <div class="row mb-2">
           <div class="col-5"></div>
           <div class="col-2">
-            <button type="submit" class="btn btn-warning fw-bold" style="background-color: #FC7300; width: 100%">
-              <i class="fa-solid fa-pen-to-square"></i>
+            <button type="submit" class="btn btn-warning button_cam" style=" width: 100%">
+              <i class="fa-solid fa-pen-to-square text-light"></i>
               &ensp; Cập nhật
             </button>
           </div>
