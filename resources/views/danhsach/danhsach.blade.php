@@ -919,7 +919,7 @@
             <td style="width: 17%"> 
               <a href="{{ URL::to('/quyetdinh_dihoc_pdf/'.$danhsach->ma_l.'/'.$danhsach->ma_vc) }}">
                 <button type="button" class="btn btn-warning button_xanhla">
-                  <i class="fa-solid fa-file-pdf text-light"></i>
+                  <i class="fa-solid fa-file text-light"></i>
                   &ensp;
                   Xuất file
                 </button>
