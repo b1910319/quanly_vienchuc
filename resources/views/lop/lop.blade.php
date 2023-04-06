@@ -314,7 +314,7 @@
                   }
                 ?>
               </td>
-              <td style="width: 13%">
+              <td style="width: 14%">
                 <?php
                   foreach ($count_vienchuc_lop as $key => $count) {
                     if($count->ma_l == $lop->ma_l && $count->sum > 0){
