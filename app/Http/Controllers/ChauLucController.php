@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\ChauLucImport;
 use App\Models\ChauLuc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ChauLucController extends Controller
 {
@@ -91,6 +93,22 @@ class ChauLucController extends Controller
       $chauluc->status_cl = $data['status_cl'];
       $chauluc->save();
       return Redirect::to('/chauluc');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function add_chauluc_excel(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      Excel::import(new ChauLucImport, $request->file('import_excel'));
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }

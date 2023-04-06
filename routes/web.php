@@ -757,6 +757,7 @@ Route::post('/delete_file_check',[FileController::class, 'delete_file_check']);
 
 Route::get('/chauluc',[ChauLucController::class, 'chauluc']);
 Route::post('/add_chauluc',[ChauLucController::class, 'add_chauluc']);
+Route::post('/add_chauluc_excel',[ChauLucController::class, 'add_chauluc_excel']);
 Route::get('/select_chauluc/{ma_kv}',[ChauLucController::class, 'select_chauluc']);
 Route::get('/edit_chauluc/{ma_kv}',[ChauLucController::class, 'edit_chauluc']);
 Route::post('/update_chauluc/{ma_kv}',[ChauLucController::class, 'update_chauluc']);
