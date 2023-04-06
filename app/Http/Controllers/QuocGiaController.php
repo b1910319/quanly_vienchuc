@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\QuocGiaImport;
 use App\Models\KhuVuc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -10,6 +11,7 @@ use App\Models\PhanQuyen;
 use App\Models\QuocGia;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class QuocGiaController extends Controller
 {
@@ -94,6 +96,22 @@ class QuocGiaController extends Controller
       $quocgia->status_qg = $data['status_qg'];
       $quocgia->save();
       return Redirect::to('/quocgia/'.$data['ma_kv']);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function add_quocgia_excel(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      Excel::import(new QuocGiaImport, $request->file('import_excel'));
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }
