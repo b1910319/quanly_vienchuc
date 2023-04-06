@@ -2,7 +2,7 @@
 @section('content')
 <div class="row">
   <div class="card-box">
-    <div class="alert alert-success row" role="alert" style="background-color: #3F979B; text-align: center; text-transform: uppercase">
+    <div class="alert alert-success row color_alert" role="alert" >
       <div class="col-1">
         @if ($vienchuc != '' && $lop != '')
           <a href="{{ URL::to('/danhsach/'.$lop->ma_l) }}" class="col-1">
@@ -19,29 +19,29 @@
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
-          <button role="button" class="item-question collapsed btn btn-primary fw-bold" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a" style="background-color: #379237; border: none">
-            <i class="fas fa-plus-square"></i>
+          <button role="button" class="item-question collapsed btn btn-primary button_xanhla" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a">
+            <i class="fas fa-plus-square text-light"></i>
             &ensp; Thêm
           </button>
           @if ($vienchuc != '' && $lop != '')
             <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_quyetdinh/'.$lop->ma_l.'/'.$vienchuc->ma_vc) }}">
-              <button type="button" class="btn btn-danger fw-bold" style="background-color: #FF1E1E">
-                <i class="fa-solid fa-trash"></i>
+              <button type="button" class="btn btn-danger button_do">
+                <i class="fa-solid fa-trash text-light"></i>
                 &ensp;
                 Xoá tất cả
               </button>
             </a>
           @else
             <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_quyetdinh_all') }}">
-              <button type="button" class="btn btn-danger fw-bold" style="background-color: #FF1E1E">
-              <i class="fa-solid fa-trash"></i>
+              <button type="button" class="btn btn-danger button_do">
+              <i class="fa-solid fa-trash text-light"></i>
               &ensp;
               Xoá tất cả
             </button>
             </a>
           @endif
-          <button class="btn btn-primary fw-bold" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="background-color: #00AF91; border: none;">
-            <i class="fa-solid fa-chart-simple"></i> &ensp;
+          <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+            <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
             Thống kê
           </button>
           <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -156,8 +156,8 @@
                   <div class="row mb-2">
                     <div class="col-5"></div>
                     <div class="col-2">
-                      <button type="submit"  class="btn btn-primary font-weight-bold them" style="background-color: #379237; border: none; width: 100%;">
-                        <i class="fas fa-plus-square"></i>
+                      <button type="submit"  class="btn btn-primary button_xanhla them" style="width: 100%;">
+                        <i class="fas fa-plus-square text-light"></i>
                         &ensp;
                         Thêm
                       </button>
@@ -175,17 +175,17 @@
     <form action="{{ URL::to('/delete_quyetdinh_check') }}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col"></th>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức</th>
-            <th scope="col">Thông tin lớp học</th>
-            <th scope="col">Mã số quyết định</th>
-            <th scope="col">Trạng thái</th>
-            <th scope="col">Ngày ký quyết định</th>
-            <th scope="col">File quyết định</th>
-            <th scope="col"></th>
+            <th class="text-light" scope="col"></th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức</th>
+            <th class="text-light" scope="col">Thông tin lớp học</th>
+            <th class="text-light" scope="col">Mã số quyết định</th>
+            <th class="text-light" scope="col">Trạng thái</th>
+            <th class="text-light" scope="col">Ngày ký quyết định</th>
+            <th class="text-light" scope="col">File quyết định</th>
+            <th class="text-light" scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -232,11 +232,11 @@
               <td>
                 {{ $quyetdinh->ngayky_qd }}
               </td>
-              <td>
+              <td style="width: 10%">
                 @if ($quyetdinh->file_qd !=' ')
                   <a href="{{ asset('public/uploads/quyetdinh/'.$quyetdinh->file_qd) }}">
-                    <button type="button" class="btn btn-warning fw-bold" style="background-color: #379237; border: none;">
-                      <i class="fa-solid fa-file"></i>
+                    <button type="button" class="btn btn-warning button_xanhla">
+                      <i class="fa-solid fa-file text-light"></i>
                       &ensp;
                       File
                     </button>
@@ -245,21 +245,21 @@
                   Không có file
                 @endif
               </td>
-              <td style="width: 21%;">
+              <td style="width: 27%;">
                 <a href="{{ URL::to('/edit_quyetdinh/'.$quyetdinh->ma_qd)}}">
-                  <button type="button" class=" btn btn-warning fw-bold" style="background-color: #FC7300">
-                    <i class="fa-solid fa-pen-to-square"></i>
+                  <button type="button" class=" btn btn-warning button_cam">
+                    <i class="fa-solid fa-pen-to-square text-light"></i>
                     &ensp; Cập nhật
                   </button>
                 </a>
                 <input class="ma_qd{{ $quyetdinh->ma_qd }}" type="hidden" value="{{ $quyetdinh->ma_qd }}">
-                <button type="button" class=" xoa{{ $quyetdinh->ma_qd }} btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
+                <button type="button" class=" xoa{{ $quyetdinh->ma_qd }} btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
                 <?php
                   if($quyetdinh->status_qd == 0){
                     ?>
                       <a href="{{ URL::to('/select_quyetdinh/'.$quyetdinh->ma_qd) }}">
                         <button type="button" class="btn btn-secondary fw-bold">
-                          <i class="fa-solid fa-eye-slash"></i> 
+                          <i class="fa-solid fa-eye-slash text-light"></i> 
                           &ensp; Ẩn
                         </button>
                       </a>
@@ -268,7 +268,7 @@
                     ?>
                       <a href="{{ URL::to('/select_quyetdinh/'.$quyetdinh->ma_qd) }}">
                         <button type="button" class="btn btn-success fw-bold">
-                          <i class="fa-solid fa-eye"></i>
+                          <i class="fa-solid fa-eye text-light"></i>
                           &ensp; Hiển thị
                         </button>
                       </a>
@@ -280,8 +280,8 @@
           @endforeach
         </tbody>
       </table>
-      <button  type="submit" class="btn btn-danger fw-bold xoa_check" style="background-color: #FF1E1E">
-        <i class="fa-solid fa-trash"></i>
+      <button  type="submit" class="btn btn-danger button_do xoa_check">
+        <i class="fa-solid fa-trash text-light"></i>
         &ensp;
         Xoá
       </button>
