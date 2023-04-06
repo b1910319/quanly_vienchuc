@@ -572,6 +572,7 @@ Route::get('/khenthuong_pdf/{ma_kt}',[KhenThuongController::class, 'khenthuong_p
 
 Route::get('/loaikyluat',[LoaiKyLuatController::class, 'loaikyluat']);
 Route::post('/add_loaikyluat',[LoaiKyLuatController::class, 'add_loaikyluat']);
+Route::post('/add_loaikyluat_excel',[LoaiKyLuatController::class, 'add_loaikyluat_excel']);
 Route::get('/select_loaikyluat/{ma_lkl}',[LoaiKyLuatController::class, 'select_loaikyluat']);
 Route::get('/edit_loaikyluat/{ma_lkl}',[LoaiKyLuatController::class, 'edit_loaikyluat']);
 Route::post('/update_loaikyluat/{ma_lkl}',[LoaiKyLuatController::class, 'update_loaikyluat']);

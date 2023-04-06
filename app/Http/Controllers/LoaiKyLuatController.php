@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\LoaiKyLuatImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -9,6 +10,7 @@ use App\Models\LoaiKyLuat;
 use App\Models\PhanQuyen;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LoaiKyLuatController extends Controller
 {
@@ -83,6 +85,22 @@ class LoaiKyLuatController extends Controller
       $loaikyluat->save();
       $request->session()->put('message','Thêm thành công');
       return Redirect::to('/loaikyluat');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function add_loaikyluat_excel(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl){
+      Excel::import(new LoaiKyLuatImport, $request->file('import_excel'));
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }
