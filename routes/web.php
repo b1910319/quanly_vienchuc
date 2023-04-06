@@ -587,6 +587,7 @@ Route::get('/delete_all_loaikyluat',[LoaiKyLuatController::class, 'delete_all_lo
 Route::get('/kyluat',[KyLuatController::class, 'kyluat']);
 Route::get('/kyluat_add/{ma_vc}',[KyLuatController::class, 'kyluat_add']);
 Route::post('/add_kyluat/{ma_vc}',[KyLuatController::class, 'add_kyluat']);
+Route::post('/add_kyluat_excel',[KyLuatController::class, 'add_kyluat_excel']);
 Route::get('/select_kyluat/{ma_kl}',[KyLuatController::class, 'select_kyluat']);
 Route::get('/edit_kyluat/{ma_kl}/{ma_vc}',[KyLuatController::class, 'edit_kyluat']);
 Route::post('/update_kyluat/{ma_kl}/{ma_vc}',[KyLuatController::class, 'update_kyluat']);

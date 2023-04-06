@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\KyLuatImport;
 use App\Models\Bac;
 use App\Models\ChucVu;
 use App\Models\DanToc;
@@ -19,6 +20,7 @@ use App\Models\Tinh;
 use App\Models\TonGiao;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 class KyLuatController extends Controller
@@ -200,6 +202,25 @@ class KyLuatController extends Controller
       $kyluat->save();
       $request->session()->put('message','Thêm thành công');
       return Redirect::to('/kyluat_add/'.$ma_vc);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function add_kyluat_excel(Request $request){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
+      Excel::import(new KyLuatImport, $request->file('import_excel'));
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }

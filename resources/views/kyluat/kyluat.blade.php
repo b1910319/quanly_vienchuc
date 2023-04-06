@@ -2,17 +2,17 @@
 @section('content')
 <div class="row">
   <div class="card-box">
-    <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+    <div class="alert alert-light color_alert" role="alert" >
       ________THÔNG TIN KỶ LUẬT________
     </div>
     <table class="table mt-2" id="mytable">
-      <thead class="table-secondary">
+      <thead class="color_table">
         <tr>
-          <th scope="col">STT</th>
-          <th scope="col">Tên viên chức</th>
-          <th scope="col">Thông tin viên chức</th>
-          <th scope="col">Trạng thái</th>
-          <th scope="col">Quản lý</th>
+          <th class="text-light" scope="col">STT</th>
+          <th class="text-light" scope="col">Tên viên chức</th>
+          <th class="text-light" scope="col">Thông tin viên chức</th>
+          <th class="text-light" scope="col">Trạng thái</th>
+          <th class="text-light" scope="col">Quản lý</th>
         </tr>
       </thead>
       <tbody  >
@@ -26,8 +26,8 @@
             </td>
             <td>
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary fw-bold btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}" style="background-color: #379237; border: none;">
-                <i class="fa-solid fa-circle-info"></i>
+              <button type="button" class="btn btn-primary btn_chitiet fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}">
+                <i class="fa-solid fa-circle-info text-light"></i>
                 &ensp;
                 Chi tiết
               </button>
@@ -338,15 +338,15 @@
                         </tbody>
                       </table>
                     </div>
-                    @if ($phanquyen_qlk)
+                    @if ($phanquyen_qlk || $phanquyen_admin)
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                          <i class="fa-solid fa-square-xmark"></i>
+                          <i class="fa-solid fa-square-xmark text-light"></i>
                           &ensp; Đóng
                         </button>
                         <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc) }}">
-                          <button type="submit" class="btn btn-warning fw-bold" style="width: 100%; background-color: #FC7300">
-                            <i class="fa-solid fa-pen-to-square"></i>
+                          <button type="submit" class="btn btn-warning button_cam" style="width: 100%;">
+                            <i class="fa-solid fa-pen-to-square text-light"></i>
                             &ensp; Cập nhật
                           </button>
                         </a>
@@ -354,7 +354,7 @@
                     @else
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                          <i class="fa-solid fa-square-xmark"></i>
+                          <i class="fa-solid fa-square-xmark text-light"></i>
                           &ensp; Đóng
                         </button>
                       </div>
@@ -384,15 +384,15 @@
                 }
               ?>
             </td>
-            <td style="width: 15%">
+            <td style="width: 18%">
               <?php
                 foreach ($count_kyluat_vienchuc as $key => $count) {
                   if($count->ma_vc == $vienchuc->ma_vc && $count->sum > 0){
                     ?>
                       <a href="{{ URL::to('/kyluat_add/'.$vienchuc->ma_vc) }}">
 
-                        <button type="button" class="btn btn-primary position-relative fw-bold" style="background-color: #AC0D0D; border: none;">
-                          <i class="fa-solid fa-circle-xmark" ></i> &ensp;
+                        <button type="button" class="btn btn-primary position-relative button_do">
+                          <i class="fa-solid fa-circle-xmark text-light" ></i> &ensp;
                           Thêm thông tin kỷ luật
                           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
                             <?php echo $count->sum ?>
@@ -404,8 +404,8 @@
                   }elseif ($count->ma_vc == $vienchuc->ma_vc && $count->sum == 0) {
                     ?>
                       <a href="{{ URL::to('/kyluat_add/'.$vienchuc->ma_vc) }}">
-                        <button type="button" class="btn btn-primary position-relative fw-bold" style="background-color: #AC0D0D; border: none;">
-                          <i class="fa-solid fa-circle-xmark" ></i> &ensp;
+                        <button type="button" class="btn btn-primary position-relative button_do">
+                          <i class="fa-solid fa-circle-xmark text-light" ></i> &ensp;
                           Thêm thông tin kỷ luật
                         </button>
                       </a>
