@@ -526,6 +526,7 @@ Route::get('/thongke_qlcttc_thoihoc_loc_7_pdf/{batdau_thoihoc}/{ketthuc_thoihoc}
 
 Route::get('/loaikhenthuong',[LoaiKhenThuongController::class, 'loaikhenthuong']);
 Route::post('/add_loaikhenthuong',[LoaiKhenThuongController::class, 'add_loaikhenthuong']);
+Route::post('/add_loaikhenthuong_excel',[LoaiKhenThuongController::class, 'add_loaikhenthuong_excel']);
 Route::get('/select_loaikhenthuong/{ma_lkt}',[LoaiKhenThuongController::class, 'select_loaikhenthuong']);
 Route::get('/edit_loaikhenthuong/{ma_lkt}',[LoaiKhenThuongController::class, 'edit_loaikhenthuong']);
 Route::post('/update_loaikhenthuong/{ma_lkt}',[LoaiKhenThuongController::class, 'update_loaikhenthuong']);
