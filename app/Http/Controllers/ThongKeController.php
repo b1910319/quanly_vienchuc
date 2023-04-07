@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ThongKeQLK_KyLuat_Loc_AllExport;
+use App\Exports\ThongKeQLK_KyLuat_Loc_2Export;
+use App\Exports\ThongKeQLK_KyLuat_Loc_3Export;
 use App\Exports\ThongKeQLK_KhenThuong_Loc_AllExport;
 use App\Exports\ThongKeQLK_KhenThuong_Loc_2Export;
 use App\Exports\ThongKeQLK_KhenThuong_Loc_3Export;
@@ -8785,6 +8788,19 @@ class ThongKeController extends Controller
         'kyluat' => $kyluat,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlk_kl_loc_all_excel($ma_lkl, $batdau_kl, $ketthuc_kl){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_qlk){
+      return Excel::download(new ThongKeQLK_KyLuat_Loc_AllExport($ma_k, $ma_lkl, $batdau_kl, $ketthuc_kl), 'Quan-ly-khoa.xlsx');
     }else{
       return Redirect::to('/home');
     }
