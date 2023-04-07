@@ -1,0 +1,53 @@
+<?php
+
+namespace App\Exports;
+
+use App\Models\VienChuc;
+use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+
+class ThongKeQLK_KhenThuong_Loc_2Export implements FromQuery, WithHeadings, ShouldAutoSize
+{
+  /**
+   * @return \Illuminate\Support\Collection
+   */
+  public function __construct(int $ma_k, int $ma_htkt, string $batdau_kt, string $ketthuc_kt)
+  {
+    $this->ma_k = $ma_k;
+    $this->ma_htkt = $ma_htkt;
+    $this->batdau_kt = $batdau_kt;
+    $this->ketthuc_kt = $ketthuc_kt;
+    return $this;
+  }
+  public function headings(): array
+  {
+    return [
+      'Mã số viên chức',
+      'Họ tên viên chức',
+      'Email',
+      'Số điện thoại',
+      'Ngày sinh',
+      'Khoa',
+      'Chức vụ',
+      'Ngày khen thưởng',
+      'Nội dung khen thưởng', 
+      'Loại khen thưởng',
+      'Hình thức khen thưởng'
+    ];
+  }
+  public function query()
+  {
+    return VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+    ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
+    ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
+    ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
+    ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
+    ->where('vienchuc.ma_k', $this->ma_k)
+    ->where('khenthuong.ma_htkt', $this->ma_htkt)
+    ->whereBetween('khenthuong.ngay_kt', [$this->batdau_kt, $this->ketthuc_kt])
+    ->where('status_vc', '<>', '2')
+    ->where('status_kt', '<>', '2')
+      ->select('vienchuc.ma_vc', 'vienchuc.hoten_vc', 'vienchuc.user_vc', 'vienchuc.sdt_vc', 'vienchuc.ngaysinh_vc', 'khoa.ten_k', 'chucvu.ten_cv', 'khenthuong.ngay_kt', 'khenthuong.noidung_kt', 'loaikhenthuong.ten_lkt', 'hinhthuckhenthuong.ten_htkt');
+  }
+}
