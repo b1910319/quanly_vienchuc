@@ -1243,10 +1243,8 @@
     @endif
 
     @if (isset($list_hoanthanh_all))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -1378,10 +1376,8 @@
       </div>
     @endif
     @if (isset($list_hoanthanh_2))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -1508,10 +1504,8 @@
       </div>
     @endif
     @if (isset($list_hoanthanh_3))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -1639,10 +1633,8 @@
       </div>
     @endif
     @if (isset($list_hoanthanh_4))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -1770,10 +1762,8 @@
       </div>
     @endif
     @if (isset($list_hoanthanh_5))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -1898,10 +1888,8 @@
       </div>
     @endif
     @if (isset($list_hoanthanh_6))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -2024,10 +2012,8 @@
       </div>
     @endif
     @if (isset($list_hoanthanh_7))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -2151,10 +2137,8 @@
     @endif
 
     @if (isset($list_giahan_all))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC XIN GIA HẠN KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC XIN GIA HẠN KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -2284,10 +2268,8 @@
       </div>
     @endif
     @if (isset($list_giahan_2))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC XIN GIA HẠN KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC XIN GIA HẠN KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -2412,10 +2394,8 @@
       </div>
     @endif
     @if (isset($list_giahan_3))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC XIN GIA HẠN KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC XIN GIA HẠN KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -2539,10 +2519,8 @@
       </div>
     @endif
     @if (isset($list_giahan_4))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC XIN GIA HẠN KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC XIN GIA HẠN KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -2669,10 +2647,8 @@
       </div>
     @endif
     @if (isset($list_giahan_5))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC XIN GIA HẠN KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC XIN GIA HẠN KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -2793,10 +2769,8 @@
       </div>
     @endif
     @if (isset($list_giahan_6))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC XIN GIA HẠN KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC XIN GIA HẠN KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -2917,10 +2891,8 @@
       </div>
     @endif
     @if (isset($list_giahan_7))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC XIN GIA HẠN KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC XIN GIA HẠN KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -3040,10 +3012,8 @@
     @endif
 
     @if (isset($list_dunghoc_all))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC XIN TẠM DỪNG KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC XIN TẠM DỪNG KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -3174,10 +3144,8 @@
       </div>
     @endif
     @if (isset($list_dunghoc_2))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC XIN TẠM DỪNG KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC XIN TẠM DỪNG KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -3284,16 +3252,27 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_dunghoc_loc_2_pdf/'.$ma_l.'/'.$batdau_dunghoc.'/'.$ketthuc_dunghoc) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlcttc_dunghoc_loc_2_excel/'.$ma_l.'/'.$batdau_dunghoc.'/'.$ketthuc_dunghoc) }}">
+            <button type="button" class="btn btn-warning button_xanhla" style="width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
+              &ensp;
+              Xuất file Excel
+            </button>
           </a>
         </div>
       </div>
     @endif
     @if (isset($list_dunghoc_3))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC XIN TẠM DỪNG KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC XIN TẠM DỪNG KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -3405,10 +3384,8 @@
       </div>
     @endif
     @if (isset($list_dunghoc_4))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC XIN TẠM DỪNG KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC XIN TẠM DỪNG KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -3523,10 +3500,8 @@
       </div>
     @endif
     @if (isset($list_dunghoc_5))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC XIN TẠM DỪNG KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC XIN TẠM DỪNG KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -3635,10 +3610,8 @@
       </div>
     @endif
     @if (isset($list_dunghoc_6))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC XIN TẠM DỪNG KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC XIN TẠM DỪNG KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -3747,10 +3720,8 @@
       </div>
     @endif
     @if (isset($list_dunghoc_7))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC XIN TẠM DỪNG KHOÁ HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC XIN TẠM DỪNG KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -3858,8 +3829,8 @@
     @endif
 
     @if (isset($list_chuyen_all))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
+      <div class="alert alert-dark color_alert" role="alert">
+        <h3 class="text-center fw-bold"  >
           DANH SÁCH VIÊN CHỨC XIN CHUYỂN NƯỚC, TRƯỜNG, NGÀNH HỌC
         </h3>
       </div>
@@ -3974,8 +3945,8 @@
       </div>
     @endif
     @if (isset($list_chuyen_2))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
+      <div class="alert alert-dark color_alert" role="alert">
+        <h3 class="text-center fw-bold"  >
           DANH SÁCH VIÊN CHỨC XIN CHUYỂN NƯỚC, TRƯỜNG, NGÀNH HỌC
         </h3>
       </div>
@@ -4085,8 +4056,8 @@
       </div>
     @endif
     @if (isset($list_chuyen_3))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
+      <div class="alert alert-dark color_alert" role="alert">
+        <h3 class="text-center fw-bold"  >
           DANH SÁCH VIÊN CHỨC XIN CHUYỂN NƯỚC, TRƯỜNG, NGÀNH HỌC
         </h3>
       </div>
@@ -4197,8 +4168,8 @@
     @endif
 
     @if (isset($list_thoihoc_all))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
+      <div class="alert alert-dark color_alert" role="alert">
+        <h3 class="text-center fw-bold"  >
           DANH SÁCH VIÊN CHỨC XIN THÔI HỌC
         </h3>
       </div>
@@ -4317,8 +4288,8 @@
       </div>
     @endif
     @if (isset($list_thoihoc_2))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
+      <div class="alert alert-dark color_alert" role="alert">
+        <h3 class="text-center fw-bold"  >
           DANH SÁCH VIÊN CHỨC XIN THÔI HỌC
         </h3>
       </div>
@@ -4432,8 +4403,8 @@
       </div>
     @endif
     @if (isset($list_thoihoc_3))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
+      <div class="alert alert-dark color_alert" role="alert">
+        <h3 class="text-center fw-bold"  >
           DANH SÁCH VIÊN CHỨC XIN THÔI HỌC
         </h3>
       </div>
@@ -4546,8 +4517,8 @@
       </div>
     @endif
     @if (isset($list_thoihoc_4))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
+      <div class="alert alert-dark color_alert" role="alert">
+        <h3 class="text-center fw-bold"  >
           DANH SÁCH VIÊN CHỨC XIN THÔI HỌC
         </h3>
       </div>
@@ -4663,8 +4634,8 @@
       </div>
     @endif
     @if (isset($list_thoihoc_5))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
+      <div class="alert alert-dark color_alert" role="alert">
+        <h3 class="text-center fw-bold"  >
           DANH SÁCH VIÊN CHỨC XIN THÔI HỌC
         </h3>
       </div>
@@ -4774,8 +4745,8 @@
       </div>
     @endif
     @if (isset($list_thoihoc_6))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
+      <div class="alert alert-dark color_alert" role="alert">
+        <h3 class="text-center fw-bold"  >
           DANH SÁCH VIÊN CHỨC XIN THÔI HỌC
         </h3>
       </div>
@@ -4885,8 +4856,8 @@
       </div>
     @endif
     @if (isset($list_thoihoc_7))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
+      <div class="alert alert-dark color_alert" role="alert">
+        <h3 class="text-center fw-bold"  >
           DANH SÁCH VIÊN CHỨC XIN THÔI HỌC
         </h3>
       </div>
