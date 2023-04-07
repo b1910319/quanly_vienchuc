@@ -493,6 +493,7 @@ Route::get('/thongke_qlcttc_hoanthanh_loc_3_pdf/{ma_l}/{batdau_venuoc}/{ketthuc_
 Route::get('/thongke_qlcttc_hoanthanh_loc_3_excel/{ma_l}/{batdau_venuoc}/{ketthuc_venuoc}',[ThongKeController::class, 'thongke_qlcttc_hoanthanh_loc_3_excel']);
 
 Route::get('/thongke_qlcttc_hoanthanh_loc_4_pdf/{ma_l}/{batdau_capbang}/{ketthuc_capbang}',[ThongKeController::class, 'thongke_qlcttc_hoanthanh_loc_4_pdf']);
+Route::get('/thongke_qlcttc_hoanthanh_loc_4_excel/{ma_l}/{batdau_capbang}/{ketthuc_capbang}',[ThongKeController::class, 'thongke_qlcttc_hoanthanh_loc_4_excel']);
 
 Route::get('/thongke_qlcttc_hoanthanh_loc_5_pdf/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_hoanthanh_loc_5_pdf']);
 
