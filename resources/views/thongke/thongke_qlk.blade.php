@@ -7,10 +7,10 @@
     </div>
     <div class="row">
       <div class="col-2">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #379237; border: none; width: 100%">
-          <i class="fa-solid fa-filter"></i>
+        <button type="button" class="btn btn-primary button_loc" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%">
+          <i class="fa-solid fa-filter text-light"></i>
           &ensp;
-          Bộ lọc
+          Lọc
         </button>
         <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 100%;">
           <div class="modal-dialog modal-dialog-scrollabl modal-xl">
@@ -110,9 +110,12 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                  <button type="submit" class="btn btn-primary">
-                    <i class="fa-solid fa-filter"></i>
+                  <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-square-xmark text-light"></i>
+                    &ensp; Đóng
+                  </button>
+                  <button type="submit" class="btn btn-primary button_loc">
+                    <i class="fa-solid fa-filter text-light"></i>
                     &ensp;
                     Lọc
                   </button>
@@ -123,8 +126,8 @@
         </div>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="background-color: #D36B00; border: none; width: 100%">
-          <i class="fa-solid fa-filter"></i>
+        <button type="button" class="btn btn-primary button_loc" data-bs-toggle="modal" data-bs-target="#exampleModal1" style=" width: 100%">
+          <i class="fa-solid fa-filter text-light"></i>
           &ensp;
           Nghĩ hưu
         </button>
@@ -149,9 +152,12 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                  <button type="submit" class="btn btn-primary">
-                    <i class="fa-solid fa-filter"></i>
+                  <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-square-xmark text-light"></i>
+                    &ensp; Đóng
+                  </button>
+                  <button type="submit" class="btn btn-primary button_loc">
+                    <i class="fa-solid fa-filter text-light"></i>
                     &ensp;
                     Lọc
                   </button>
@@ -162,8 +168,8 @@
         </div>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2" style="background-color: #F96666; border: none; width: 100%">
-          <i class="fa-solid fa-filter"></i>
+        <button type="button" class="btn btn-primary button_loc" data-bs-toggle="modal" data-bs-target="#exampleModal2" style="width: 100%">
+          <i class="fa-solid fa-filter text-light"></i>
           &ensp;
           Khen thưởng
         </button>
@@ -207,9 +213,12 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                  <button type="submit" class="btn btn-primary">
-                    <i class="fa-solid fa-filter"></i>
+                  <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-square-xmark text-light"></i>
+                    &ensp; Đóng
+                  </button>
+                  <button type="submit" class="btn btn-primary button_loc">
+                    <i class="fa-solid fa-filter text-light"></i>
                     &ensp;
                     Lọc
                   </button>
@@ -220,8 +229,8 @@
         </div>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="background-color: #066163; border: none; width: 100%">
-          <i class="fa-solid fa-filter"></i>
+        <button type="button" class="btn btn-primary button_loc" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="width: 100%">
+          <i class="fa-solid fa-filter text-light"></i>
           &ensp;
           Kỷ luật
         </button>
@@ -256,9 +265,12 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                  <button type="submit" class="btn btn-primary">
-                    <i class="fa-solid fa-filter"></i>
+                  <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-square-xmark text-light"></i>
+                    &ensp; Đóng
+                  </button>
+                  <button type="submit" class="btn btn-primary button_loc">
+                    <i class="fa-solid fa-filter text-light"></i>
                     &ensp;
                     Lọc
                   </button>
@@ -268,10 +280,12 @@
           </div>
         </div>
       </div>
-      <div class="col-1">
+      <div class="col-2">
         <a href="{{ URL::to('thongke_qlk') }}">
-          <button type="button" class="btn btn-warning">
-            <i class="fa-solid fa-arrows-rotate"></i>
+          <button type="button" class="btn btn-light fw-bold" style="width: 100%; ">
+            <i class="fa-solid fa-rotate"></i>
+            &ensp;
+            Làm mới
           </button>
         </a>
       </div>
@@ -285,23 +299,31 @@
     </div>
     <div id="myfirstchart_qltt_1" style="height: 250px;"></div>
     @if (isset($list))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC THUỘC KHOA
+      <div class="alert alert-success row color_alert" role="alert">
+        <div class="col-1">
+          <a href="{{ URL::to('thongtin_vienchuc_add') }}">
+            <button type="button" class="btn btn-warning" style="background-color: #E83A14; border-radius: 50%; border: none;">
+              <i class="fa-solid fa-angle-left fw-bold" style="font-size: 18px;"></i>
+            </button>
+          </a>
+        </div>
+        <h4 class="text-center col-11 mt-1" style="font-weight: bold; color: white; font-size: 20px; text-transform: uppercase">
+          ________DANH SÁCH VIÊN CHỨC THUỘC " 
           @foreach ($list_khoa as $khoa )
             @if ($khoa->ma_k == $ma_k)
-            <span style="color: #C84B31; text-transform: uppercase">{{ $khoa->ten_k }}</span>
+            <span style="color: #FFFF00">{{ $khoa->ten_k }}</span> "
             @endif
           @endforeach
-        </h3>
+          ________
+        </h4>
       </div>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Ngạch</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Ngạch</th>
           </tr>
         </thead>
         <tbody  >
@@ -341,8 +363,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
-              <td>{{ $vc->ten_n }}</td>
+              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_n }} ({{ $vc->ma_n }})</td>
             </tr>
           @endforeach
         </tbody>
@@ -350,8 +372,26 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlk_pdf') }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
           </a>
+        </div>
+        <div class="col-2">
+          <?php 
+            $ma_k = session()->get('ma_k');
+            ?>
+              <a href="{{ URL::to('/thongke_qlk_excel/'.$ma_k) }}">
+                <button type="button" class="btn btn-warning button_xanhla" style="width: 100%;">
+                  <i class="fa-solid fa-file-excel text-light"></i>
+                  &ensp;
+                  Xuất file Excel
+                </button>
+              </a>
+            <?php
+          ?>
         </div>
       </div>
     @endif
@@ -413,12 +453,12 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Ngạch</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Ngạch</th>
           </tr>
         </thead>
         <tbody  >
@@ -487,12 +527,12 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Chức vụ</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Chức vụ</th>
           </tr>
         </thead>
         <tbody  >
@@ -558,12 +598,12 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Hệ đào tạo</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Hệ đào tạo</th>
           </tr>
         </thead>
         <tbody  >
@@ -629,12 +669,12 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Loại bằng cấp</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Loại bằng cấp</th>
           </tr>
         </thead>
         <tbody  >
@@ -700,12 +740,12 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Ngạch</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Ngạch</th>
           </tr>
         </thead>
         <tbody  >
@@ -771,12 +811,12 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Quê quán</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Quê quán</th>
           </tr>
         </thead>
         <tbody  >
@@ -842,12 +882,12 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Dân tộc</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Dân tộc</th>
           </tr>
         </thead>
         <tbody  >
@@ -913,12 +953,12 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Tôn giáo</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Tôn giáo</th>
           </tr>
         </thead>
         <tbody  >
@@ -984,12 +1024,12 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thương binh</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thương binh</th>
           </tr>
         </thead>
         <tbody  >
@@ -1054,12 +1094,12 @@
         <span class="badge text-bg-secondary">{{ $ketthuc }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thời gian nghĩ</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thời gian nghĩ</th>
           </tr>
         </thead>
         <tbody  >
@@ -1136,12 +1176,12 @@
         <span class="badge text-bg-warning">{{ $ketthuc_kt }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin khen thưởng</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin khen thưởng</th>
           </tr>
         </thead>
         <tbody  >
@@ -1228,12 +1268,12 @@
         <span class="badge text-bg-warning">{{ $ketthuc_kt }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin khen thưởng</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin khen thưởng</th>
           </tr>
         </thead>
         <tbody  >
@@ -1320,12 +1360,12 @@
         <span class="badge text-bg-warning">{{ $ketthuc_kt }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin khen thưởng</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin khen thưởng</th>
           </tr>
         </thead>
         <tbody  >
@@ -1414,12 +1454,12 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin khen thưởng</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin khen thưởng</th>
           </tr>
         </thead>
         <tbody  >
@@ -1502,12 +1542,12 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin khen thưởng</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin khen thưởng</th>
           </tr>
         </thead>
         <tbody  >
@@ -1590,12 +1630,12 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin khen thưởng</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin khen thưởng</th>
           </tr>
         </thead>
         <tbody  >
@@ -1676,12 +1716,12 @@
         <span class="badge text-bg-warning">{{ $ketthuc_kt }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin khen thưởng</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin khen thưởng</th>
           </tr>
         </thead>
         <tbody  >
@@ -1769,12 +1809,12 @@
         <span class="badge text-bg-warning">{{ $ketthuc_kl }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin kỷ luật</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin kỷ luật</th>
           </tr>
         </thead>
         <tbody  >
@@ -1856,12 +1896,12 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin kỷ luật</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin kỷ luật</th>
           </tr>
         </thead>
         <tbody  >
@@ -1941,12 +1981,12 @@
         <span class="badge text-bg-warning">{{ $ketthuc_kl }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin kỷ luật</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin kỷ luật</th>
           </tr>
         </thead>
         <tbody  >

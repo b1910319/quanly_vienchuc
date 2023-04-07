@@ -422,6 +422,7 @@ Route::get('/thongke_qlktkl_kl_loc_7_excel/{batdau_kl}/{ketthuc_kl}',[ThongKeCon
 
 Route::get('/thongke_qlk',[ThongKeController::class, 'thongke_qlk']);
 Route::get('/thongke_qlk_pdf',[ThongKeController::class, 'thongke_qlk_pdf']);
+Route::get('/thongke_qlk_excel/{ma_k}',[ThongKeController::class, 'thongke_qlk_excel']);
 
 Route::post('/thongke_qlk_loc',[ThongKeController::class, 'thongke_qlk_loc']);
 Route::get('/thongke_qlk_loc_all_pdf/{ma_cv}/{ma_hdt}/{ma_lbc}/{ma_n}/{ma_t}/{ma_dt}/{ma_tg}/{ma_tb}',[ThongKeController::class, 'thongke_qlk_loc_all_pdf']);

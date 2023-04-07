@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ThongKeQLK_Export;
 use App\Exports\ThongKeQLCTTC_ThoiHoc_Loc_AllExport;
 use App\Exports\ThongKeQLCTTC_ThoiHoc_Loc_2Export;
 use App\Exports\ThongKeQLCTTC_ThoiHoc_Loc_3Export;
@@ -6847,6 +6848,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_pdf(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -6873,6 +6875,19 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function thongke_qlk_excel($ma_k){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_qlk){
+      return Excel::download(new ThongKeQLK_Export($ma_k), 'Vien-chuc-thoi-hoc.xlsx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+
   public function thongke_qlk_loc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -7329,6 +7344,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_loc_all_pdf($ma_cv, $ma_hdt, $ma_lbc, $ma_n, $ma_t, $ma_dt, $ma_tg, $ma_tb){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -7369,6 +7385,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_loc_chucvu_pdf($ma_cv){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -7393,6 +7410,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_loc_hdt_pdf($ma_hdt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -7418,6 +7436,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_loc_lbc_pdf($ma_lbc){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -7443,6 +7462,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_loc_ngach_pdf($ma_n){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -7467,6 +7487,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_loc_tinh_pdf($ma_t){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -7492,6 +7513,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_loc_dantoc_pdf($ma_dt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -7516,6 +7538,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_loc_tongiao_pdf($ma_tg){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -7540,6 +7563,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_loc_thuongbinh_pdf($ma_tb){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -7564,6 +7588,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   
   public function thongke_qlk_nghihuu_loc(Request $request){
     $this->check_login();
@@ -7661,6 +7686,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_loc_nghihuu_time_pdf($batdau, $ketthuc){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -7684,6 +7710,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
 
   public function thongke_qlk_kt_loc(Request $request){
     $this->check_login();
@@ -8079,6 +8106,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_kt_loc_all_pdf($ma_lkt, $ma_htkt, $batdau_kt, $ketthuc_kt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -8110,6 +8138,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_kt_loc_2_pdf($ma_htkt, $batdau_kt, $ketthuc_kt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -8140,6 +8169,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_kt_loc_3_pdf($ma_lkt, $batdau_kt, $ketthuc_kt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -8170,6 +8200,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_kt_loc_4_pdf($ma_lkt, $ma_htkt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -8200,6 +8231,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_kt_loc_5_pdf($ma_lkt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -8229,6 +8261,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_kt_loc_6_pdf($ma_htkt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -8258,6 +8291,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_kt_loc_7_pdf($batdau_kt, $ketthuc_kt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -8287,6 +8321,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
 
   public function thongke_qlk_kl_loc(Request $request){
     $this->check_login();
@@ -8486,6 +8521,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_kl_loc_all_pdf($ma_lkl, $batdau_kl, $ketthuc_kl){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -8515,6 +8551,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_kl_loc_2_pdf($ma_lkl){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -8543,6 +8580,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlk_kl_loc_3_pdf($batdau_kl, $ketthuc_kl){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -8571,6 +8609,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
 
 
 }
