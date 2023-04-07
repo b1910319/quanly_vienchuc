@@ -3,6 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ThongKeQLK_Export;
+use App\Exports\ThongKeQLK_Loc_AllExport;
+use App\Exports\ThongKeQLK_Loc_ChucVuExport;
+use App\Exports\ThongKeQLK_Loc_HdtExport;
+use App\Exports\ThongKeQLK_Loc_LbcExport;
+use App\Exports\ThongKeQLK_Loc_NgachExport;
+use App\Exports\ThongKeQLK_Loc_TinhExport;
+use App\Exports\ThongKeQLK_Loc_DanTocExport;
+use App\Exports\ThongKeQLK_Loc_TonGiaoExport;
+use App\Exports\ThongKeQLK_Loc_ThuongBinhExport;
 use App\Exports\ThongKeQLCTTC_ThoiHoc_Loc_AllExport;
 use App\Exports\ThongKeQLCTTC_ThoiHoc_Loc_2Export;
 use App\Exports\ThongKeQLCTTC_ThoiHoc_Loc_3Export;
@@ -7382,6 +7391,19 @@ class ThongKeController extends Controller
         'title' => $title,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlk_loc_all_excel($ma_cv, $ma_hdt, $ma_lbc, $ma_n, $ma_t, $ma_dt, $ma_tg, $ma_tb){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_qlk){
+      return Excel::download(new ThongKeQLK_Loc_AllExport($ma_k, $ma_cv, $ma_hdt, $ma_lbc, $ma_n, $ma_t, $ma_dt, $ma_tg, $ma_tb), 'Quan-ly-khoa.xlsx');
     }else{
       return Redirect::to('/home');
     }
