@@ -19,26 +19,26 @@
           <button type="button" class="btn btn-light fw-bold" style="width: 100%">Kỷ luật</button>
         </a>
         <a href="{{ URL::to('thongtin_lophoc') }}" class="mt-2">
-          <button type="button" class="btn btn-success fw-bold" style="background-color: #81B214; border: #81B214;width: 100%">Lớp học tham gia</button>
+          <button type="button" class="btn btn-success button_loc" style="width: 100%">Lớp học tham gia</button>
         </a>
       </div>
     </div>
     <div class="col-10 card-box">
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert">
         ________THÔNG TIN LỚP HỌC VIÊN CHỨC THAM GIA________
       </div>
       <div class="row ">
         <div class="mt-3"></div>
         <table class="table" id="mytable">
-          <thead class="table-secondary" >
+          <thead class="color_table" >
             <tr>
-              <th scope="col">STT</th>
-              <th scope="col">Thông tin lớp học</th>
-              <th scope="col">Thông tin kết quả</th>
-              <th scope="col">Thông tin gia hạn</th>
-              <th scope="col">Thông tin tạm dừng</th>
-              <th scope="col">Thông tin xin chuyển</th>
-              <th scope="col">Thông tin thôi học</th>
+              <th class="text-light" scope="col">STT</th>
+              <th class="text-light" scope="col">Thông tin lớp học</th>
+              <th class="text-light" scope="col">Thông tin kết quả</th>
+              <th class="text-light" scope="col">Thông tin gia hạn</th>
+              <th class="text-light" scope="col">Thông tin tạm dừng</th>
+              <th class="text-light" scope="col">Thông tin xin chuyển</th>
+              <th class="text-light" scope="col">Thông tin thôi học</th>
             </tr>
           </thead>
           <tbody  >
@@ -69,9 +69,9 @@
                     </div>
                   </div>
                 </td>
-                <td style="width: 10%;">
+                <td style="width: 13%;">
                   <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #FFBE0F; border: none; color: black; width: 100%;">
-                    <i class="fa-solid fa-square-poll-vertical"></i>
+                    <i class="fa-solid fa-square-poll-vertical "></i>
                     &ensp;
                     Kết quả
                   </button>
@@ -133,7 +133,10 @@
                           @endforeach
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                            <i class="fa-solid fa-square-xmark text-light"></i>
+                            &ensp; Đóng
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -148,8 +151,8 @@
                       </div>
                       @if ($gh->file_gh !=' ')
                         <a href="{{ asset('public/uploads/giahan/'.$gh->file_gh) }}">
-                          <button type="button" class="btn btn-warning mt-2 fw-bold" style="background-color: #379237; border: none;">
-                            <i class="fa-solid fa-file"></i>
+                          <button type="button" class="btn btn-warning mt-2 button_xanhla">
+                            <i class="fa-solid fa-file text-light"></i>
                             &ensp;
                             File
                           </button>
@@ -170,8 +173,8 @@
                       </div>
                       @if ($dh->file_dh !=' ')
                         <a href="{{ asset('public/uploads/dunghoc/'.$dh->file_dh) }}">
-                          <button type="button" class="btn btn-warning mt-2 fw-bold" style="background-color: #379237; border: none;">
-                            <i class="fa-solid fa-file"></i>
+                          <button type="button" class="btn btn-warning mt-2 button_xanhla">
+                            <i class="fa-solid fa-file text-light"></i>
                             &ensp;
                             File
                           </button>
@@ -191,8 +194,8 @@
                       </div>
                       @if ($c->file_c !=' ')
                         <a href="{{ asset('public/uploads/chuyen/'.$c->file_c) }}">
-                          <button type="button" class="btn btn-warning mt-2 fw-bold" style="background-color: #379237; border: none;">
-                            <i class="fa-solid fa-file"></i>
+                          <button type="button" class="btn btn-warning mt-2 button_xanhla">
+                            <i class="fa-solid fa-file text-light"></i>
                             &ensp;
                             File
                           </button>
@@ -212,8 +215,8 @@
                       </div>
                       @if ($th->file_th !=' ')
                         <a href="{{ asset('public/uploads/thoihoc/'.$th->file_th) }}">
-                          <button type="button" class="btn btn-warning mt-2 fw-bold" style="background-color: #379237; border: none;">
-                            <i class="fa-solid fa-file"></i>
+                          <button type="button" class="btn btn-warning mt-2 button_xanhla">
+                            <i class="fa-solid fa-file text-light"></i>
                             &ensp;
                             File
                           </button>
