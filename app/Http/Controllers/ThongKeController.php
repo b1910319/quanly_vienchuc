@@ -5664,6 +5664,21 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function thongke_qlcttc_dunghoc_loc_3_excel($ma_k, $batdau_dunghoc, $ketthuc_dunghoc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      return Excel::download(new ThongKeQLCTTC_DungHoc_Loc_3Export($ma_k, $batdau_dunghoc, $ketthuc_dunghoc), 'Vien-chuc-dung-hoc.xlsx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 
   public function thongke_qlcttc_dunghoc_loc_4_pdf($ma_k, $ma_l){
     $this->check_login();
