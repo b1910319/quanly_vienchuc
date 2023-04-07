@@ -3894,10 +3894,8 @@
     @endif
 
     @if (isset($list_chuyen_all))
-      <div class="alert alert-dark color_alert" role="alert">
-        <h3 class="text-center fw-bold"  >
-          DANH SÁCH VIÊN CHỨC XIN CHUYỂN NƯỚC, TRƯỜNG, NGÀNH HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC XIN CHUYỂN NƯỚC, NGÀNH HỌC, TRƯỜNG.....________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -3906,6 +3904,7 @@
           <span class="badge text-bg-primary">{{ $lop->ten_l }}</span>
           @endif
         @endforeach
+        ,
         @foreach ($list_khoa as $khoa )
           @if ($khoa->ma_k == $ma_k)
           <span class="badge text-bg-secondary">{{ $khoa->ten_k }}</span>
@@ -4004,16 +4003,27 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_chuyen_loc_all_pdf/'.$ma_k.'/'.$ma_l) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlcttc_chuyen_loc_all_excel/'.$ma_k.'/'.$ma_l) }}">
+            <button type="button" class="btn btn-warning button_xanhla" style="width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
+              &ensp;
+              Xuất file Excel
+            </button>
           </a>
         </div>
       </div>
     @endif
     @if (isset($list_chuyen_2))
-      <div class="alert alert-dark color_alert" role="alert">
-        <h3 class="text-center fw-bold"  >
-          DANH SÁCH VIÊN CHỨC XIN CHUYỂN NƯỚC, TRƯỜNG, NGÀNH HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC XIN CHUYỂN NƯỚC, NGÀNH HỌC, TRƯỜNG.....________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -4121,10 +4131,8 @@
       </div>
     @endif
     @if (isset($list_chuyen_3))
-      <div class="alert alert-dark color_alert" role="alert">
-        <h3 class="text-center fw-bold"  >
-          DANH SÁCH VIÊN CHỨC XIN CHUYỂN NƯỚC, TRƯỜNG, NGÀNH HỌC
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC XIN CHUYỂN NƯỚC, NGÀNH HỌC, TRƯỜNG.....________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
