@@ -6824,7 +6824,6 @@ class ThongKeController extends Controller
         ->join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
-        ->orderBy('ten_n', 'asc')
         ->get();
       return view('thongke.thongke_qlk')
         ->with('title', $title)
@@ -7429,6 +7428,19 @@ class ThongKeController extends Controller
         'title' => $title,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlk_loc_chucvu_excel($ma_cv){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_qlk){
+      return Excel::download(new ThongKeQLK_Loc_ChucVuExport($ma_k, $ma_cv), 'Quan-ly-khoa.xlsx');
     }else{
       return Redirect::to('/home');
     }

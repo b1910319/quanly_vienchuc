@@ -430,20 +430,28 @@ Route::get('/thongke_qlk_loc_all_pdf/{ma_cv}/{ma_hdt}/{ma_lbc}/{ma_n}/{ma_t}/{ma
 Route::get('/thongke_qlk_loc_all_excel/{ma_cv}/{ma_hdt}/{ma_lbc}/{ma_n}/{ma_t}/{ma_dt}/{ma_tg}/{ma_tb}',[ThongKeController::class, 'thongke_qlk_loc_all_excel']);
 
 Route::get('/thongke_qlk_loc_chucvu_pdf/{ma_cv}',[ThongKeController::class, 'thongke_qlk_loc_chucvu_pdf']);
+Route::get('/thongke_qlk_loc_chucvu_excel/{ma_cv}',[ThongKeController::class, 'thongke_qlk_loc_chucvu_excel']);
 
 Route::get('/thongke_qlk_loc_hdt_pdf/{ma_hdt}',[ThongKeController::class, 'thongke_qlk_loc_hdt_pdf']);
+Route::get('/thongke_qlk_loc_hdt_excel/{ma_hdt}',[ThongKeController::class, 'thongke_qlk_loc_hdt_excel']);
 
 Route::get('/thongke_qlk_loc_lbc_pdf/{ma_lbc}',[ThongKeController::class, 'thongke_qlk_loc_lbc_pdf']);
+Route::get('/thongke_qlk_loc_lbc_excel/{ma_lbc}',[ThongKeController::class, 'thongke_qlk_loc_lbc_excel']);
 
 Route::get('/thongke_qlk_loc_ngach_pdf/{ma_n}',[ThongKeController::class, 'thongke_qlk_loc_ngach_pdf']);
+Route::get('/thongke_qlk_loc_ngach_excel/{ma_n}',[ThongKeController::class, 'thongke_qlk_loc_ngach_excel']);
 
 Route::get('/thongke_qlk_loc_tinh_pdf/{ma_t}',[ThongKeController::class, 'thongke_qlk_loc_tinh_pdf']);
+Route::get('/thongke_qlk_loc_tinh_excel/{ma_t}',[ThongKeController::class, 'thongke_qlk_loc_tinh_excel']);
 
 Route::get('/thongke_qlk_loc_dantoc_pdf/{ma_dt}',[ThongKeController::class, 'thongke_qlk_loc_dantoc_pdf']);
+Route::get('/thongke_qlk_loc_dantoc_excel/{ma_dt}',[ThongKeController::class, 'thongke_qlk_loc_dantoc_excel']);
 
 Route::get('/thongke_qlk_loc_tongiao_pdf/{ma_tg}',[ThongKeController::class, 'thongke_qlk_loc_tongiao_pdf']);
+Route::get('/thongke_qlk_loc_tongiao_excel/{ma_tg}',[ThongKeController::class, 'thongke_qlk_loc_tongiao_excel']);
 
 Route::get('/thongke_qlk_loc_thuongbinh_pdf/{ma_tb}',[ThongKeController::class, 'thongke_qlk_loc_thuongbinh_pdf']);
+Route::get('/thongke_qlk_loc_thuongbinh_excel/{ma_tb}',[ThongKeController::class, 'thongke_qlk_loc_thuongbinh_excel']);
 
 
 Route::post('/thongke_qlk_nghihuu_loc',[ThongKeController::class, 'thongke_qlk_nghihuu_loc']);
