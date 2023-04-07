@@ -4975,7 +4975,7 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '6')
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
-      return Excel::download(new ThongKeQLCTTC_GiaHan_Loc_AllExport( $ma_k, $ma_l, $batdau_giahan, $ketthuc_giahan), 'Vien-chuc-hoan-thanh-khoa-hoc.xlsx');
+      return Excel::download(new ThongKeQLCTTC_GiaHan_Loc_AllExport( $ma_k, $ma_l, $batdau_giahan, $ketthuc_giahan), 'Vien-chuc-gia-han.xlsx');
     }else{
       return Redirect::to('/home');
     }
@@ -5010,6 +5010,22 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function thongke_qlcttc_giahan_loc_2_excel($ma_l, $batdau_giahan, $ketthuc_giahan){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      return Excel::download(new ThongKeQLCTTC_GiaHan_Loc_2Export($ma_l, $batdau_giahan, $ketthuc_giahan), 'Vien-chuc-gia-han.xlsx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+
   public function thongke_qlcttc_giahan_loc_3_pdf($ma_k, $batdau_giahan, $ketthuc_giahan){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -5039,6 +5055,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlcttc_giahan_loc_4_pdf($ma_k, $ma_l){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -5068,6 +5085,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlcttc_giahan_loc_5_pdf($ma_k){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -5096,6 +5114,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlcttc_giahan_loc_6_pdf($ma_l){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -5124,6 +5143,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlcttc_giahan_loc_7_pdf($batdau_giahan, $ketthuc_giahan){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -5152,6 +5172,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
 
   public function thongke_qlcttc_dunghoc_loc(Request $request){
     $this->check_login();
