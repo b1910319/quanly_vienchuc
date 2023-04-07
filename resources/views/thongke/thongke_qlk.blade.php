@@ -847,10 +847,8 @@
       </div>
     @endif
     @if (isset($list_pdf_tinh))
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC THEO TỈNH
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC THEO TỈNH/THÀNH PHỐ________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -903,8 +901,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
-              <td>{{ $vc->ten_t }}</td>
+              <td>{{ $vc->ten_k }}({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_t }}({{ $vc->ma_t }})</td>
             </tr>
           @endforeach
         </tbody>
@@ -912,7 +910,20 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlk_loc_tinh_pdf/'.$ma_t) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlk_loc_tinh_excel/'.$ma_t) }}">
+            <button type="button" class="btn btn-warning button_xanhla" style="width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
+              &ensp;
+              Xuất file Excel
+            </button>
           </a>
         </div>
       </div>
