@@ -182,7 +182,7 @@
             <th class="text-light" scope="col">Thông tin lớp học</th>
             <th class="text-light" scope="col">Thông tin gia hạn thời gian học</th>
             <th class="text-light" scope="col">Trạng thái</th>
-            <th class="text-light" scope="col">file gia hạn </th>
+            <th class="text-light" scope="col">File gia hạn </th>
             <th class="text-light" scope="col"></th>
           </tr>
         </thead>
@@ -229,7 +229,7 @@
                   }
                 ?>
               </td>
-              <td>
+              <td style="width: 8%">
                 @if ($giahan->file_gh !=' ')
                   <a href="{{ asset('public/uploads/giahan/'.$giahan->file_gh) }}">
                     <button type="button" class="btn btn-warning button_xanhla">

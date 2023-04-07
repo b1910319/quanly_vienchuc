@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ThongKeQLCTTC_HoanThanh_Loc_AllExport;
 use App\Exports\ThongKeQLCTTC_loc_thoihocExport;
 use App\Exports\ThongKeQLCTTC_loc_chuyenExport;
 use App\Exports\ThongKeQLCTTC_loc_dunghocExport;
@@ -1551,6 +1552,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qltktkl_kt_loc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -4045,7 +4047,7 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '6')
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
-      return Excel::download(new ThongKeQLCTTC_loc_thoihocExport(), 'Vien-chuc-xin-thoi-hoc.xlsx');
+      return Excel::download(new ThongKeQLCTTC_loc_thoihocExport(), 'Vien-chuc-hoan-thanh-khoa-hoc.xlsx');
     }else{
       return Redirect::to('/home');
     }
@@ -4354,6 +4356,22 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function thongke_qlcttc_hoanthanh_loc_all_excel($ma_l, $batdau_capbang, $ketthuc_capbang, $batdau_venuoc, $ketthuc_venuoc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      return Excel::download(new ThongKeQLCTTC_HoanThanh_Loc_AllExport($ma_l, $batdau_capbang, $ketthuc_capbang, $batdau_venuoc, $ketthuc_venuoc), 'Vien-chuc-xin-thoi-hoc.xlsx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+
   public function thongke_qlcttc_hoanthanh_loc_2_pdf($batdau_capbang, $ketthuc_capbang, $batdau_venuoc, $ketthuc_venuoc){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -4382,6 +4400,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlcttc_hoanthanh_loc_3_pdf($ma_l,  $batdau_venuoc, $ketthuc_venuoc){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

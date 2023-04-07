@@ -7,8 +7,8 @@
     </div>
     <div class="row">
       <div class="col-1">
-        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%; border-radius: 5px; background-color: #a4aa13; border: none; ">
-          <i class="fa-solid fa-filter"></i>
+        <button type="button" class="btn btn-primary fw-bold button_loc" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%;">
+          <i class="fa-solid fa-filter text-light"></i>
           &ensp;
           Lọc
         </button>
@@ -17,7 +17,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel" style="color: #a4aa13;">
-                  <i class="fa-solid fa-filter"></i>
+                  <i class="fa-solid fa-filter text-light"></i>
                   &ensp;
                   Bộ lọc
                 </h1>
@@ -61,11 +61,11 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
-                    <i class="fa-solid fa-square-xmark"></i>
+                    <i class="fa-solid fa-square-xmark text-light"></i>
                     &ensp; Đóng
                   </button>
-                  <button type="submit" class="btn btn-primary fw-bold" style="background-color: #a4aa13; border: none;">
-                    <i class="fa-solid fa-filter"></i>
+                  <button type="submit" class="btn btn-primary fw-bold button_loc" >
+                    <i class="fa-solid fa-filter text-light"></i>
                     &ensp;
                     Lọc
                   </button>
@@ -76,8 +76,8 @@
         </div>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="width: 100%; border-radius: 5px; background-color: #a4aa13; border: none; ">
-          <i class="fa-solid fa-filter"></i>
+        <button type="button" class="btn btn-primary fw-bold button_loc" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="width: 100%;">
+          <i class="fa-solid fa-filter text-light"></i>
           &ensp;
           Hoàn thành khoá học
         </button>
@@ -86,7 +86,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel" style="color: #a4aa13;">
-                  <i class="fa-solid fa-filter"></i>
+                  <i class="fa-solid fa-filter text-light"></i>
                   &ensp;
                   Bộ lọc
                 </h1>
@@ -131,11 +131,11 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
-                    <i class="fa-solid fa-square-xmark"></i>
+                    <i class="fa-solid fa-square-xmark text-light"></i>
                     &ensp; Đóng
                   </button>
-                  <button type="submit" class="btn btn-primary fw-bold" style="background-color: #a4aa13; border: none;">
-                    <i class="fa-solid fa-filter"></i>
+                  <button type="submit" class="btn btn-primary fw-bold button_loc" >
+                    <i class="fa-solid fa-filter text-light"></i>
                     &ensp;
                     Lọc
                   </button>
@@ -146,8 +146,8 @@
         </div>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal2" style="width: 100%; border-radius: 5px; background-color: #a4aa13; border: none; ">
-          <i class="fa-solid fa-filter"></i>
+        <button type="button" class="btn btn-primary fw-bold button_loc" data-bs-toggle="modal" data-bs-target="#exampleModal2" style="width: 100%;">
+          <i class="fa-solid fa-filter text-light"></i>
           &ensp;
           Xin gia hạn
         </button>
@@ -156,7 +156,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel" style="color: #a4aa13;">
-                  <i class="fa-solid fa-filter"></i>
+                  <i class="fa-solid fa-filter text-light"></i>
                   &ensp;
                   Bộ lọc
                 </h1>
@@ -201,11 +201,11 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
-                    <i class="fa-solid fa-square-xmark"></i>
+                    <i class="fa-solid fa-square-xmark text-light"></i>
                     &ensp; Đóng
                   </button>
-                  <button type="submit" class="btn btn-primary fw-bold" style="background-color: #a4aa13; border: none;">
-                    <i class="fa-solid fa-filter"></i>
+                  <button type="submit" class="btn btn-primary fw-bold button_loc" >
+                    <i class="fa-solid fa-filter text-light"></i>
                     &ensp;
                     Lọc
                   </button>
@@ -216,17 +216,17 @@
         </div>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="width: 100%; border-radius: 5px; background-color: #a4aa13; border: none; ">
-          <i class="fa-solid fa-filter"></i>
+        <button type="button" class="btn btn-primary fw-bold button_loc" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="width: 100%;">
+          <i class="fa-solid fa-filter text-light"></i>
           &ensp;
-          Xin tạm dừng khoá học
+          Xin tạm dừng
         </button>
         <div class="modal fade " id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 100%;">
           <div class="modal-dialog modal-dialog-scrollabl modal-xl">
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel" style="color: #a4aa13;">
-                  <i class="fa-solid fa-filter"></i>
+                  <i class="fa-solid fa-filter text-light"></i>
                   &ensp;
                   Bộ lọc
                 </h1>
@@ -271,11 +271,11 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
-                    <i class="fa-solid fa-square-xmark"></i>
+                    <i class="fa-solid fa-square-xmark text-light"></i>
                     &ensp; Đóng
                   </button>
-                  <button type="submit" class="btn btn-primary fw-bold" style="background-color: #a4aa13; border: none;">
-                    <i class="fa-solid fa-filter"></i>
+                  <button type="submit" class="btn btn-primary fw-bold button_loc" >
+                    <i class="fa-solid fa-filter text-light"></i>
                     &ensp;
                     Lọc
                   </button>
@@ -286,8 +286,8 @@
         </div>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal4" style="width: 100%; border-radius: 5px; background-color: #a4aa13; border: none; ">
-          <i class="fa-solid fa-filter"></i>
+        <button type="button" class="btn btn-primary fw-bold button_loc" data-bs-toggle="modal" data-bs-target="#exampleModal4" style="width: 100%;">
+          <i class="fa-solid fa-filter text-light"></i>
           &ensp;
           Xin chuyển
         </button>
@@ -296,7 +296,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel" style="color: #a4aa13;">
-                  <i class="fa-solid fa-filter"></i>
+                  <i class="fa-solid fa-filter text-light"></i>
                   &ensp;
                   Bộ lọc
                 </h1>
@@ -330,11 +330,11 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
-                    <i class="fa-solid fa-square-xmark"></i>
+                    <i class="fa-solid fa-square-xmark text-light"></i>
                     &ensp; Đóng
                   </button>
-                  <button type="submit" class="btn btn-primary fw-bold" style="background-color: #a4aa13; border: none;">
-                    <i class="fa-solid fa-filter"></i>
+                  <button type="submit" class="btn btn-primary fw-bold button_loc" >
+                    <i class="fa-solid fa-filter text-light"></i>
                     &ensp;
                     Lọc
                   </button>
@@ -345,8 +345,8 @@
         </div>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal5" style="width: 100%; border-radius: 5px; background-color: #a4aa13; border: none; ">
-          <i class="fa-solid fa-filter"></i>
+        <button type="button" class="btn btn-primary fw-bold button_loc" data-bs-toggle="modal" data-bs-target="#exampleModal5" style="width: 100%;">
+          <i class="fa-solid fa-filter text-light"></i>
           &ensp;
           Xin thôi học
         </button>
@@ -355,7 +355,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel" style="color: #a4aa13;">
-                  <i class="fa-solid fa-filter"></i>
+                  <i class="fa-solid fa-filter text-light"></i>
                   &ensp;
                   Bộ lọc
                 </h1>
@@ -400,11 +400,11 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
-                    <i class="fa-solid fa-square-xmark"></i>
+                    <i class="fa-solid fa-square-xmark text-light"></i>
                     &ensp; Đóng
                   </button>
-                  <button type="submit" class="btn btn-primary fw-bold" style="background-color: #a4aa13; border: none;">
-                    <i class="fa-solid fa-filter"></i>
+                  <button type="submit" class="btn btn-primary fw-bold button_loc" >
+                    <i class="fa-solid fa-filter text-light"></i>
                     &ensp;
                     Lọc
                   </button>
@@ -418,8 +418,6 @@
         <a href="{{ URL::to('thongke_qlcttc') }}">
           <button type="button" class="btn btn-light fw-bold" style="width: 100%; ">
             <i class="fa-solid fa-rotate"></i>
-            &ensp;
-            Làm mới
           </button>
         </a>
       </div>
@@ -434,17 +432,17 @@
     <div id="myfirstchart_qlcttc" style="height: 250px;">
     </div>
     @if (isset($list_1))
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert">
         ________DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC________
       </div>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Kết quả</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Kết quả</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
           </tr>
         </thead>
         <tbody  >
@@ -538,8 +536,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_loc_1_pdf') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -547,8 +545,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_loc_1_excel') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style="width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -557,7 +555,7 @@
       </div>
     @endif
     @if (isset($list_all))
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert">
         ________DANH SÁCH VIÊN CHỨC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
@@ -573,11 +571,11 @@
         <span class="badge text-bg-warning">Xin thôi học</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
           </tr>
         </thead>
         <tbody  >
@@ -629,8 +627,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_loc_all_pdf') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -638,8 +636,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlktkl_loc_all_excel') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style="width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -648,7 +646,7 @@
       </div>
     @endif
     @if (isset($list_hoanthanh))
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert">
         ________DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
@@ -656,13 +654,13 @@
         <span class="badge text-bg-primary">Hoàn thành khoá học</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Kết quả</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Kết quả</th>
           </tr>
         </thead>
         <tbody  >
@@ -752,8 +750,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_loc_hoanthanh_pdf') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -761,8 +759,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_loc_hoanthanh_excel') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style="width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -771,7 +769,7 @@
       </div>
     @endif
     @if (isset($list_giahan))
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert">
         ________DANH SÁCH VIÊN CHỨC XIN GIA HẠN________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
@@ -779,13 +777,13 @@
         <span class="badge text-bg-primary">Xin gia hạn</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Gia hạn</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Gia hạn</th>
           </tr>
         </thead>
         <tbody  >
@@ -870,8 +868,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_loc_giahan_pdf') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -879,8 +877,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_loc_giahan_excel') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style="width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -889,7 +887,7 @@
       </div>
     @endif
     @if (isset($list_dunghoc))
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert">
         ________DANH SÁCH VIÊN CHỨC XIN TẠM DỪNG KHOÁ HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
@@ -897,13 +895,13 @@
         <span class="badge text-bg-primary">Xin tạm dừng</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin dừng học</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin dừng học</th>
           </tr>
         </thead>
         <tbody  >
@@ -989,8 +987,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_loc_dunghoc_pdf') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -998,8 +996,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_loc_dunghoc_excel') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style="width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -1008,7 +1006,7 @@
       </div>
     @endif
     @if (isset($list_chuyen))
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert">
         ________DANH SÁCH VIÊN CHỨC XIN CHUYỂN NƯỚC, NGÀNH HỌC, TRƯỜNG....________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
@@ -1016,13 +1014,13 @@
         <span class="badge text-bg-primary">Xin chuyển</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin chuyển</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin chuyển</th>
           </tr>
         </thead>
         <tbody  >
@@ -1107,8 +1105,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_loc_chuyen_pdf') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -1116,8 +1114,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_loc_chuyen_excel') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style="width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -1126,7 +1124,7 @@
       </div>
     @endif
     @if (isset($list_thoihoc))
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert">
         ________DANH SÁCH VIÊN CHỨC XIN THÔI HỌC________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
@@ -1134,13 +1132,13 @@
         <span class="badge text-bg-primary">Xin thôi học</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin thôi học</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin thôi học</th>
           </tr>
         </thead>
         <tbody  >
@@ -1225,8 +1223,8 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_loc_thoihoc_pdf') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #FF1E1E; border: none; width: 100%;">
-              <i class="fa-solid fa-file-pdf"></i>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
               Xuất file PDF
             </button>
@@ -1234,8 +1232,8 @@
         </div>
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_loc_thoihoc_excel') }}">
-            <button type="button" class="btn btn-warning fw-bold" style="background-color: #00541A; border: none; width: 100%;">
-              <i class="fa-solid fa-file-excel"></i>
+            <button type="button" class="btn btn-warning button_xanhla" style="width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
               &ensp;
               Xuất file Excel
             </button>
@@ -1266,13 +1264,13 @@
         <span class="badge text-bg-warning">{{ $ketthuc_venuoc }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin kết quả</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin kết quả</th>
           </tr>
         </thead>
         <tbody  >
@@ -1361,7 +1359,20 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlcttc_hoanthanh_loc_all_pdf/'.$ma_l.'/'.$batdau_capbang.'/'.$ketthuc_capbang.'/'.$batdau_venuoc.'/'.$ketthuc_venuoc) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlcttc_hoanthanh_loc_all_excel/'.$ma_l.'/'.$batdau_capbang.'/'.$ketthuc_capbang.'/'.$batdau_venuoc.'/'.$ketthuc_venuoc) }}">
+            <button type="button" class="btn btn-warning button_xanhla" style="width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
+              &ensp;
+              Xuất file Excel
+            </button>
           </a>
         </div>
       </div>
@@ -1383,13 +1394,13 @@
         <span class="badge text-bg-danger">{{ $ketthuc_venuoc }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin kết quả</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin kết quả</th>
           </tr>
         </thead>
         <tbody  >
@@ -1501,13 +1512,13 @@
         <span class="badge text-bg-warning">{{ $ketthuc_venuoc }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin kết quả</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin kết quả</th>
           </tr>
         </thead>
         <tbody  >
@@ -1619,13 +1630,13 @@
         <span class="badge text-bg-warning">{{ $ketthuc_capbang }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin kết quả</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin kết quả</th>
           </tr>
         </thead>
         <tbody  >
@@ -1734,13 +1745,13 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin kết quả</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin kết quả</th>
           </tr>
         </thead>
         <tbody  >
@@ -1847,13 +1858,13 @@
         <span class="badge text-bg-warning">{{ $ketthuc_capbang }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin kết quả</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin kết quả</th>
           </tr>
         </thead>
         <tbody  >
@@ -1960,13 +1971,13 @@
         <span class="badge text-bg-warning">{{ $ketthuc_venuoc }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin kết quả</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin kết quả</th>
           </tr>
         </thead>
         <tbody  >
@@ -2085,13 +2096,13 @@
         ,
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin gia hạn</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin gia hạn</th>
           </tr>
         </thead>
         <tbody  >
@@ -2200,13 +2211,13 @@
         ,
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin gia hạn</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin gia hạn</th>
           </tr>
         </thead>
         <tbody  >
@@ -2314,13 +2325,13 @@
         <span class="badge text-bg-danger">{{ $ketthuc_giahan }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin gia hạn</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin gia hạn</th>
           </tr>
         </thead>
         <tbody  >
@@ -2431,13 +2442,13 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin gia hạn</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin gia hạn</th>
           </tr>
         </thead>
         <tbody  >
@@ -2542,13 +2553,13 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin gia hạn</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin gia hạn</th>
           </tr>
         </thead>
         <tbody  >
@@ -2653,13 +2664,13 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin gia hạn</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin gia hạn</th>
           </tr>
         </thead>
         <tbody  >
@@ -2762,13 +2773,13 @@
         <span class="badge text-bg-danger">{{ $ketthuc_giahan }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin gia hạn</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin gia hạn</th>
           </tr>
         </thead>
         <tbody  >
@@ -2883,13 +2894,13 @@
         ,
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin tạm dừng học</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin tạm dừng học</th>
           </tr>
         </thead>
         <tbody  >
@@ -2999,13 +3010,13 @@
         ,
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin tạm dừng</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin tạm dừng</th>
           </tr>
         </thead>
         <tbody  >
@@ -3114,13 +3125,13 @@
         <span class="badge text-bg-danger">{{ $ketthuc_dunghoc }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin tạm dừng</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin tạm dừng</th>
           </tr>
         </thead>
         <tbody  >
@@ -3232,13 +3243,13 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin tạm dừng</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin tạm dừng</th>
           </tr>
         </thead>
         <tbody  >
@@ -3344,13 +3355,13 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin tạm dừng</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin tạm dừng</th>
           </tr>
         </thead>
         <tbody  >
@@ -3456,13 +3467,13 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin tạm dừng</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin tạm dừng</th>
           </tr>
         </thead>
         <tbody  >
@@ -3566,13 +3577,13 @@
         <span class="badge text-bg-danger">{{ $ketthuc_dunghoc }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin tạm dừng</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin tạm dừng</th>
           </tr>
         </thead>
         <tbody  >
@@ -3684,13 +3695,13 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin chuyển nước, ngành học ...</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin chuyển nước, ngành học ...</th>
           </tr>
         </thead>
         <tbody  >
@@ -3795,13 +3806,13 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin chuyển nước, ngành học ...</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin chuyển nước, ngành học ...</th>
           </tr>
         </thead>
         <tbody  >
@@ -3906,13 +3917,13 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin chuyển nước, ngành học ...</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin chuyển nước, ngành học ...</th>
           </tr>
         </thead>
         <tbody  >
@@ -4027,13 +4038,13 @@
         ,
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin thôi học</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin thôi học</th>
           </tr>
         </thead>
         <tbody  >
@@ -4142,13 +4153,13 @@
         ,
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin thôi học</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin thôi học</th>
           </tr>
         </thead>
         <tbody  >
@@ -4256,13 +4267,13 @@
         <span class="badge text-bg-danger">{{ $ketthuc_thoihoc }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin thôi học</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin thôi học</th>
           </tr>
         </thead>
         <tbody  >
@@ -4373,13 +4384,13 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin thôi học</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin thôi học</th>
           </tr>
         </thead>
         <tbody  >
@@ -4484,13 +4495,13 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin thôi học</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin thôi học</th>
           </tr>
         </thead>
         <tbody  >
@@ -4595,13 +4606,13 @@
         @endforeach
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin thôi học</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin thôi học</th>
           </tr>
         </thead>
         <tbody  >
@@ -4704,13 +4715,13 @@
         <span class="badge text-bg-danger">{{ $ketthuc_thoihoc }}</span>
       </p>
       <table class="table" id="mytable">
-        <thead class="table-secondary">
+        <thead class="color_table">
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Thông tin viên chức </th>
-            <th scope="col">Khoa</th>
-            <th scope="col">Thông tin lớp</th>
-            <th scope="col">Thông tin xin thôi học</th>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin xin thôi học</th>
           </tr>
         </thead>
         <tbody  >

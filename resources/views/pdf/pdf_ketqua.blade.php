@@ -38,7 +38,7 @@
     </p>
     @foreach ($vienchuc as $vc )
       <p style="margin-left: 30px;">
-        1. Họ và tên: {{ $vc->hoten_vc }} <span style="margin-left: 180px">MSVC: {{ $vc->ma_vc }}</span> <br>
+        1. Họ và tên: {{ $vc->hoten_vc }} <span style="margin-left: 180px">MSVC: VC{{ $vc->ma_vc }}</span> <br>
         2. Ngày tháng năm sinh: {{ $vc->ngaysinh_vc }} <br>
         3. Số CMND/CCCD: {{ $vc->cccd_vc }} <span style="margin-left: 210px">Ngày cấp: {{ $vc->ngaycapcccd_vc }}</span> <br>
         4. Đơn vị công tác: {{ $vc->ten_k }} (bộ môn, khoa hoặc tương đương) <br>

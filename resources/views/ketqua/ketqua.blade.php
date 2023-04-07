@@ -366,7 +366,7 @@
                   </div>
                   <div class="col-6 mt-1">
                     <a href="{{ URL::to('/ketqua_pdf/'.$ketqua->ma_kq) }}">
-                      <button type="button" class="btn btn-warning button_do; border: none;" style="width: 100%">
+                      <button type="button" class="btn btn-warning button_do" style="width: 100%">
                         <i class="fa-solid fa-file-pdf text-light"></i>
                         &ensp;
                         Xuất file PDF
