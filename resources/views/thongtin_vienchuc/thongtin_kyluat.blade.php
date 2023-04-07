@@ -16,7 +16,7 @@
           <button type="button" class="btn btn-light fw-bold" style="width: 100%">Khen thưởng</button>
         </a>
         <a href="{{ URL::to('thongtin_kyluat') }}" class="mt-2">
-          <button type="button" class="btn btn-success fw-bold" style="background-color: #81B214; border: #81B214;width: 100%">Kỷ luật</button>
+          <button type="button" class="btn btn-success button_loc" style="width: 100%">Kỷ luật</button>
         </a>
         <a href="{{ URL::to('thongtin_lophoc') }}" class="mt-2">
           <button type="button" class="btn btn-light fw-bold" style="width: 100%">Lớp học tham gia</button>
@@ -24,17 +24,17 @@
       </div>
     </div>
     <div class="col-10 card-box">
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert">
         ________THÔNG TIN KỶ LUẬT CỦA VIÊN CHỨC________
       </div>
       <div class="row ">
         <div class="mt-3"></div>
         <table class="table" id="mytable">
-          <thead class="table-secondary" >
+          <thead class="color_table" >
             <tr>
-              <th scope="col">STT</th>
-              <th scope="col">Thông tin kỷ luật</th>
-              <th scope="col">Loại kỷ luật</th>
+              <th class="text-light" scope="col">STT</th>
+              <th class="text-light" scope="col">Thông tin kỷ luật</th>
+              <th class="text-light" scope="col">Loại kỷ luật</th>
             </tr>
           </thead>
           <tbody  >
