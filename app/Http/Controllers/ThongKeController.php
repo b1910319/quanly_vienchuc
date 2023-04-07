@@ -7701,6 +7701,19 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function thongke_qlk_loc_thuongbinh_excel($ma_tb){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_qlk){
+      return Excel::download(new ThongKeQLK_Loc_ThuongBinhExport($ma_k, $ma_tb), 'Quan-ly-khoa.xlsx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 
   
   public function thongke_qlk_nghihuu_loc(Request $request){

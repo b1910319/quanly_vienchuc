@@ -1093,10 +1093,8 @@
       </div>
     @endif
     @if (isset($list_pdf_thuongbinh) )
-      <div class="alert alert-dark" role="alert">
-        <h3 class="text-center fw-bold" style="color: black" >
-          DANH SÁCH VIÊN CHỨC THEO HẠNG THƯƠNG BINH
-        </h3>
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC THEO HẠNG CỦA THƯƠNG BINH________
       </div>
       <p style="font-weight: bold; color: #D36B00; font-size: 18px">
         Danh sách được lọc theo: 
@@ -1158,7 +1156,20 @@
       <div class="row">
         <div class="col-2">
           <a href="{{ URL::to('/thongke_qlk_loc_thuongbinh_pdf/'.$ma_tb) }}">
-            <button type="button" class="btn btn-primary" style="background-color: #379237; border: none; width: 100%"><i class="fa-solid fa-file-arrow-down"></i> &ensp;Xuất file</button>
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlk_loc_thuongbinh_excel/'.$ma_tb) }}">
+            <button type="button" class="btn btn-warning button_xanhla" style="width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
+              &ensp;
+              Xuất file Excel
+            </button>
           </a>
         </div>
       </div>
