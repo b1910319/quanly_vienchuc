@@ -422,35 +422,59 @@ Route::get('/thongke_qlktkl_kl_loc_7_excel/{batdau_kl}/{ketthuc_kl}',[ThongKeCon
 
 Route::get('/thongke_qlk',[ThongKeController::class, 'thongke_qlk']);
 Route::get('/thongke_qlk_pdf',[ThongKeController::class, 'thongke_qlk_pdf']);
-Route::get('/thongke_qlk_excel/{ma_k}',[ThongKeController::class, 'thongke_qlk_excel']);
+Route::get('/thongke_qlk_excel',[ThongKeController::class, 'thongke_qlk_excel']);
 
 Route::post('/thongke_qlk_loc',[ThongKeController::class, 'thongke_qlk_loc']);
+
 Route::get('/thongke_qlk_loc_all_pdf/{ma_cv}/{ma_hdt}/{ma_lbc}/{ma_n}/{ma_t}/{ma_dt}/{ma_tg}/{ma_tb}',[ThongKeController::class, 'thongke_qlk_loc_all_pdf']);
+Route::get('/thongke_qlk_loc_all_excel/{ma_cv}/{ma_hdt}/{ma_lbc}/{ma_n}/{ma_t}/{ma_dt}/{ma_tg}/{ma_tb}',[ThongKeController::class, 'thongke_qlk_loc_all_pdf']);
+
 Route::get('/thongke_qlk_loc_chucvu_pdf/{ma_cv}',[ThongKeController::class, 'thongke_qlk_loc_chucvu_pdf']);
+
 Route::get('/thongke_qlk_loc_hdt_pdf/{ma_hdt}',[ThongKeController::class, 'thongke_qlk_loc_hdt_pdf']);
+
 Route::get('/thongke_qlk_loc_lbc_pdf/{ma_lbc}',[ThongKeController::class, 'thongke_qlk_loc_lbc_pdf']);
+
 Route::get('/thongke_qlk_loc_ngach_pdf/{ma_n}',[ThongKeController::class, 'thongke_qlk_loc_ngach_pdf']);
+
 Route::get('/thongke_qlk_loc_tinh_pdf/{ma_t}',[ThongKeController::class, 'thongke_qlk_loc_tinh_pdf']);
+
 Route::get('/thongke_qlk_loc_dantoc_pdf/{ma_dt}',[ThongKeController::class, 'thongke_qlk_loc_dantoc_pdf']);
+
 Route::get('/thongke_qlk_loc_tongiao_pdf/{ma_tg}',[ThongKeController::class, 'thongke_qlk_loc_tongiao_pdf']);
+
 Route::get('/thongke_qlk_loc_thuongbinh_pdf/{ma_tb}',[ThongKeController::class, 'thongke_qlk_loc_thuongbinh_pdf']);
 
+
 Route::post('/thongke_qlk_nghihuu_loc',[ThongKeController::class, 'thongke_qlk_nghihuu_loc']);
+
 Route::get('/thongke_qlk_loc_nghihuu_time_pdf/{batdau}/{ketthuc}',[ThongKeController::class, 'thongke_qlk_loc_nghihuu_time_pdf']);
 
 Route::post('/thongke_qlk_kt_loc',[ThongKeController::class, 'thongke_qlk_kt_loc']);
+
 Route::get('/thongke_qlk_kt_loc_all_pdf/{ma_lkt}/{ma_htkt}/{batdau_kt}/{ketthuc_kt}',[ThongKeController::class, 'thongke_qlk_kt_loc_all_pdf']);
+
 Route::get('/thongke_qlk_kt_loc_2_pdf/{ma_htkt}/{batdau_kt}/{ketthuc_kt}',[ThongKeController::class, 'thongke_qlk_kt_loc_2_pdf']);
+
 Route::get('/thongke_qlk_kt_loc_3_pdf/{ma_lkt}/{batdau_kt}/{ketthuc_kt}',[ThongKeController::class, 'thongke_qlk_kt_loc_3_pdf']);
+
 Route::get('/thongke_qlk_kt_loc_4_pdf/{ma_lkt}/{ma_htkt}',[ThongKeController::class, 'thongke_qlk_kt_loc_4_pdf']);
+
 Route::get('/thongke_qlk_kt_loc_5_pdf/{ma_lkt}',[ThongKeController::class, 'thongke_qlk_kt_loc_5_pdf']);
+
 Route::get('/thongke_qlk_kt_loc_6_pdf/{ma_htkt}',[ThongKeController::class, 'thongke_qlk_kt_loc_6_pdf']);
+
 Route::get('/thongke_qlk_kt_loc_7_pdf/{batdau_kt}/{ketthuc_kt}',[ThongKeController::class, 'thongke_qlk_kt_loc_7_pdf']);
 
+
 Route::post('/thongke_qlk_kl_loc',[ThongKeController::class, 'thongke_qlk_kl_loc']);
+
 Route::get('/thongke_qlk_kl_loc_all_pdf/{ma_lkl}/{batdau_kl}/{ketthuc_kl}',[ThongKeController::class, 'thongke_qlk_kl_loc_all_pdf']);
+
 Route::get('/thongke_qlk_kl_loc_2_pdf/{ma_lkl}',[ThongKeController::class, 'thongke_qlk_kl_loc_2_pdf']);
+
 Route::get('/thongke_qlk_kl_loc_3_pdf/{batdau_kl}/{ketthuc_kl}',[ThongKeController::class, 'thongke_qlk_kl_loc_3_pdf']);
+
 
 // ----------------------------------------------------------
 

@@ -380,18 +380,13 @@
           </a>
         </div>
         <div class="col-2">
-          <?php 
-            $ma_k = session()->get('ma_k');
-            ?>
-              <a href="{{ URL::to('/thongke_qlk_excel/'.$ma_k) }}">
-                <button type="button" class="btn btn-warning button_xanhla" style="width: 100%;">
-                  <i class="fa-solid fa-file-excel text-light"></i>
-                  &ensp;
-                  Xuất file Excel
-                </button>
-              </a>
-            <?php
-          ?>
+          <a href="{{ URL::to('/thongke_qlk_excel') }}">
+            <button type="button" class="btn btn-warning button_xanhla" style="width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
+              &ensp;
+              Xuất file Excel
+            </button>
+          </a>
         </div>
       </div>
     @endif
