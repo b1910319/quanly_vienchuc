@@ -2,6 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ThongKeQLCTTC_GiaHan_Loc_AllExport;
+use App\Exports\ThongKeQLCTTC_GiaHan_Loc_2Export;
+use App\Exports\ThongKeQLCTTC_GiaHan_Loc_3Export;
+use App\Exports\ThongKeQLCTTC_GiaHan_Loc_4Export;
+use App\Exports\ThongKeQLCTTC_GiaHan_Loc_5Export;
+use App\Exports\ThongKeQLCTTC_GiaHan_Loc_6Export;
+use App\Exports\ThongKeQLCTTC_GiaHan_Loc_7Export;
 use App\Exports\ThongKeQLCTTC_HoanThanh_Loc_AllExport;
 use App\Exports\ThongKeQLCTTC_HoanThanh_Loc_2Export;
 use App\Exports\ThongKeQLCTTC_HoanThanh_Loc_3Export;
@@ -4958,6 +4965,22 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function thongke_qlcttc_giahan_loc_all_excel( $ma_k, $ma_l, $batdau_giahan, $ketthuc_giahan){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      return Excel::download(new ThongKeQLCTTC_GiaHan_Loc_AllExport( $ma_k, $ma_l, $batdau_giahan, $ketthuc_giahan), 'Vien-chuc-hoan-thanh-khoa-hoc.xlsx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+
   public function thongke_qlcttc_giahan_loc_2_pdf($ma_l, $batdau_giahan, $ketthuc_giahan){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

@@ -435,7 +435,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                       </button>
                     </a>
                   </div>
-                  <div class="line-loading"></div>
+                  {{-- <div class="line-loading"></div> --}}
                 </div>
                 
               </div>
