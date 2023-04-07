@@ -7,7 +7,7 @@
           <button type="button" class="btn btn-light fw-bold" style="width: 100%">Thông tin viên chức</button>
         </a>
         <a href="{{ URL::to('thongtin_giadinh') }}" class="mt-2">
-          <button type="button" class="btn btn-success fw-bold" style="background-color: #81B214; border: #81B214;width: 100%">Gia đình</button>
+          <button type="button" class="btn btn-success button_loc" style="width: 100%">Gia đình</button>
         </a>
         <a href="{{ URL::to('thongtin_bangcap') }}" class="mt-2">
           <button type="button" class="btn btn-light fw-bold" style="width: 100%">Bằng cấp</button>
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="col-10 card-box">
-      <div class="alert alert-success row" role="alert" style="background-color: #3F979B;">
+      <div class="alert alert-success row color_alert" role="alert">
         <a href="{{ URL::to('/thongtin_giadinh') }}" class="col-1">
           <button type="button" class="btn btn-warning" style="background-color: #E83A14; border-radius: 50%; border: none;">
             <i class="fa-solid fa-angle-left fw-bold" style="font-size: 18px;"></i>
@@ -80,8 +80,8 @@
           <div class="row mb-2">
             <div class="col-5"></div>
             <div class="col-2">
-              <button type="submit" class="btn btn-warning fw-bold" style="width: 100%; background-color: #FC7300">
-                <i class="fa-solid fa-pen-to-square"></i>
+              <button type="submit" class="btn btn-warning button_cam" style="width: 100%;">
+                <i class="fa-solid fa-pen-to-square text-light"></i>
                 &ensp; Cập nhật
               </button>
             </div>
