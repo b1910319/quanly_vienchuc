@@ -7,14 +7,13 @@ use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ThongKeQLCTTC_HoanThanh_Loc_AllExport implements FromQuery,WithHeadings, ShouldAutoSize
+class ThongKeQLCTTC_HoanThanh_Loc_2Export implements FromQuery,WithHeadings, ShouldAutoSize
 {
   /**
    * @return \Illuminate\Support\Collection
    */
-  public function __construct(int $ma_l, string $batdau_capbang, string $ketthuc_capbang, string $batdau_venuoc, string $ketthuc_venuoc  )
+  public function __construct(string $batdau_capbang, string $ketthuc_capbang, string $batdau_venuoc, string $ketthuc_venuoc  )
   {
-    $this->ma_l = $ma_l;
     $this->batdau_capbang = $batdau_capbang;
     $this->ketthuc_capbang = $ketthuc_capbang;
     $this->batdau_venuoc = $batdau_venuoc;
@@ -54,7 +53,6 @@ class ThongKeQLCTTC_HoanThanh_Loc_AllExport implements FromQuery,WithHeadings, S
     ->join('khoa', 'vienchuc.ma_k', '=', 'khoa.ma_k')
     ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
     ->where('status_kq', '<>', '2')
-    ->where('lop.ma_l', $this->ma_l )
     ->whereBetween('ketqua.ngaycapbang_kq', [$this->batdau_capbang, $this->ketthuc_capbang])
     ->whereBetween('ketqua.ngayvenuoc_kq', [$this->batdau_venuoc, $this->ketthuc_venuoc])
     ->where('status_kq', '<>', '2')
