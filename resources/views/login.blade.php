@@ -299,7 +299,7 @@
                                 </table>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
                                   <i class="fa-solid fa-square-xmark text-light"></i>
                                   &ensp; Đóng
                                 </button>

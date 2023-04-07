@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ThongKeQLK_NghiHuu_TimeExport;
 use App\Exports\ThongKeQLK_Export;
 use App\Exports\ThongKeQLK_Loc_AllExport;
 use App\Exports\ThongKeQLK_Loc_ChucVuExport;
@@ -7832,6 +7833,19 @@ class ThongKeController extends Controller
         'title' => $title,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlk_loc_nghihuu_time_excel($batdau, $ketthuc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_qlk){
+      return Excel::download(new ThongKeQLK_NghiHuu_TimeExport($ma_k, $batdau, $ketthuc), 'Quan-ly-khoa.xlsx');
     }else{
       return Redirect::to('/home');
     }

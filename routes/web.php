@@ -457,6 +457,7 @@ Route::get('/thongke_qlk_loc_thuongbinh_excel/{ma_tb}',[ThongKeController::class
 Route::post('/thongke_qlk_nghihuu_loc',[ThongKeController::class, 'thongke_qlk_nghihuu_loc']);
 
 Route::get('/thongke_qlk_loc_nghihuu_time_pdf/{batdau}/{ketthuc}',[ThongKeController::class, 'thongke_qlk_loc_nghihuu_time_pdf']);
+Route::get('/thongke_qlk_loc_nghihuu_time_excel/{batdau}/{ketthuc}',[ThongKeController::class, 'thongke_qlk_loc_nghihuu_time_excel']);
 
 Route::post('/thongke_qlk_kt_loc',[ThongKeController::class, 'thongke_qlk_kt_loc']);
 
