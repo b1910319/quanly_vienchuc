@@ -491,6 +491,12 @@ class HomeController extends Controller
       }
     }
   }
+  public function delete_thongtin_giadinh_check(Request $request){
+    $this->check_login();
+    $ma_gd = $request->ma_gd;
+    GiaDinh::whereIn('ma_gd', $ma_gd)->delete();
+    return redirect()->back();
+  }
   public function delete_all_thongtin_giadinh(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

@@ -7,7 +7,7 @@
           <button type="button" class="btn btn-light fw-bold" style="width: 100%">Thông tin viên chức</button>
         </a>
         <a href="{{ URL::to('thongtin_giadinh') }}" class="mt-2">
-          <button type="button" class="btn btn-success fw-bold" style="background-color: #81B214; border: #81B214;width: 100%">Gia đình</button>
+          <button type="button" class="btn btn-success button_loc" style="width: 100%">Gia đình</button>
         </a>
         <a href="{{ URL::to('thongtin_bangcap') }}" class="mt-2">
           <button type="button" class="btn btn-light fw-bold" style="width: 100%">Bằng cấp</button>
@@ -24,20 +24,20 @@
       </div>
     </div>
     <div class="col-10 card-box">
-      <div class="alert alert-light" role="alert" style="background-color: #3F979B; color: white; text-align: center; font-weight: bold; font-size: 20px">
+      <div class="alert alert-light color_alert" role="alert" >
         ________THÔNG TIN GIA ĐÌNH VIÊN CHỨC________
       </div>
       <div class="row">
         <div class="faqs-page block ">
           <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">
-              <button role="button" class="item-question collapsed btn btn-primary fw-bold" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a" style="background-color: #379237; border: none">
-                <i class="fas fa-plus-square"></i>
+              <button role="button" class="item-question collapsed btn btn-primary button_xanhla" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a">
+                <i class="fas fa-plus-square text-light"></i>
                 &ensp; Thêm
               </button>
               <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_thongtin_giadinh') }}">
-                <button type="button" class="btn btn-danger fw-bold" style="background-color: #FF1E1E">
-                  <i class="fa-solid fa-trash"></i>
+                <button type="button" class="btn btn-danger button_do">
+                  <i class="fa-solid fa-trash text-light"></i>
                   &ensp;
                   Xoá tất cả
                 </button>
@@ -47,17 +47,6 @@
                   <form action="{{ URL::to('/add_thongtin_giadinh') }}" method="POST"
                 autocomplete="off" enctype="multipart/form-data">
                     {{ csrf_field() }}
-                    <?php
-                      $message=session()->get('message');
-                      if($message){
-                        ?>
-                          <p style="color: #379237" class="fw-bold text-center">
-                            <?php echo $message ?>
-                          </p>
-                        <?php
-                        session()->put('message',null);
-                      }
-                    ?>
                     <div class="row">
                       <div class="col-6">
                         <table class="table">
@@ -104,8 +93,8 @@
                       <div class="row mb-2">
                         <div class="col-5"></div>
                         <div class="col-2">
-                          <button type="submit"  class="btn btn-primary font-weight-bold them" style="background-color: #379237; border: none; width: 100%;">
-                            <i class="fas fa-plus-square"></i>
+                          <button type="submit"  class="btn btn-primary button_xanhla them" style=" width: 100%;">
+                            <i class="fas fa-plus-square text-light"></i>
                             &ensp;
                             Thêm
                           </button>
@@ -122,54 +111,65 @@
       </div>
       <div class="row ">
         <div class="mt-3"></div>
-        <table class="table" id="mytable">
-          <thead class="table-secondary" >
-            <tr>
-              <th scope="col">STT</th>
-              <th scope="col">Mối quan hệ</th>
-              <th scope="col">Họ tên</th>
-              <th scope="col">Số điện thoại</th>
-              <th scope="col">Ngày sinh</th>
-              <th scope="col">Nghề nghiệp</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody  >
-            @foreach ($list as $key => $giadinh)
-              <tr >
-                <th scope="row">{{ $key+1 }}</th>
-                <td>
-                  {{ $giadinh->moiquanhe_gd }}
-                </td>
-                <td>
-                  {{ $giadinh->hoten_gd }}
-                </td>
-                <td>
-                  {{ $giadinh->sdt_gd }}
-                </td>
-                <td>
-                  {{ $giadinh->ngaysinh_gd }}
-                </td>
-                <td>
-                  {{ $giadinh->nghenghiep_gd }}
-                </td>
-                <td style="width: 18%;">
-                  <a href="{{ URL::to('/thongtin_giadinh_edit/'.$giadinh->ma_gd)}}">
-                    <button type="button" class="btn btn-warning fw-bold" style="background-color: #FC7300">
-                      <i class="fa-solid fa-pen-to-square"></i>
-                      &ensp; Cập nhật
-                    </button>
-                  </a>
-                  {{-- <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/delete_thongtin_giadinh/'.$giadinh->ma_gd)}}">
-                    <button type="button" class="btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-                  </a> --}}
-                  <input class="ma_gd" type="hidden" value="{{ $giadinh->ma_gd }}">
-              <button type="button" class=" xoa btn btn-danger fw-bold" style="background-color: #FF1E1E"><i class="fa-solid fa-trash"></i> &ensp;Xoá</button>
-                </td>
+        <form action="{{ URL::to('/delete_thongtin_giadinh_check') }}" method="post" enctype="multipart/form-data">
+          {{ csrf_field() }}
+          <table class="table" id="mytable">
+            <thead class="color_table" >
+              <tr>
+                <th class="text-light" scope="col"></th>
+                <th class="text-light" scope="col">STT</th>
+                <th class="text-light" scope="col">Mối quan hệ</th>
+                <th class="text-light" scope="col">Họ tên</th>
+                <th class="text-light" scope="col">Số điện thoại</th>
+                <th class="text-light" scope="col">Ngày sinh</th>
+                <th class="text-light" scope="col">Nghề nghiệp</th>
+                <th class="text-light" scope="col"></th>
               </tr>
-            @endforeach
-          </tbody>
-        </table>
+            </thead>
+            <tbody  >
+              @foreach ($list as $key => $giadinh)
+                <tr >
+                  <td style="width: 5%">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox"  name="ma_gd[{{ $giadinh->ma_gd }}]" value="{{ $giadinh->ma_gd }}">
+                    </div>
+                  </td>
+                  <th scope="row">{{ $key+1 }}</th>
+                  <td>
+                    {{ $giadinh->moiquanhe_gd }}
+                  </td>
+                  <td>
+                    {{ $giadinh->hoten_gd }}
+                  </td>
+                  <td>
+                    {{ $giadinh->sdt_gd }}
+                  </td>
+                  <td>
+                    {{ $giadinh->ngaysinh_gd }}
+                  </td>
+                  <td>
+                    {{ $giadinh->nghenghiep_gd }}
+                  </td>
+                  <td style="width: 19%;">
+                    <a href="{{ URL::to('/thongtin_giadinh_edit/'.$giadinh->ma_gd)}}">
+                      <button type="button" class="btn btn-warning button_cam">
+                        <i class="fa-solid fa-pen-to-square text-light"></i>
+                        &ensp; Cập nhật
+                      </button>
+                    </a>
+                    <input class="ma_gd{{ $giadinh->ma_gd }}" type="hidden" value="{{ $giadinh->ma_gd }}">
+                    <button type="button" class=" xoa{{ $giadinh->ma_gd }} btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
+                  </td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
+          <button  type="submit" class="btn btn-danger button_do xoa_check">
+            <i class="fa-solid fa-trash text-light"></i>
+            &ensp;
+            Xoá
+          </button>
+        </form>
       </div>
     </div>
   </div>
@@ -197,49 +197,52 @@
     })
     
   });
-  document.querySelector('.xoa').addEventListener('click', (event)=>{
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-      },
-      buttonsStyling: false
-    })
+  @foreach ($list as $giadinh )
+    document.querySelector('.xoa{{ $giadinh->ma_gd }}').addEventListener('click', (event)=>{
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
 
-    swalWithBootstrapButtons.fire({
-      title: 'Bạn có chắc muốn xoá không?',
-      text: "Bạn không thể khôi phục dữ liệu đã xoá",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
-      cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        var id= $('.ma_gd').val();
-        $.ajax({
-          url:"{{ url("/delete_thongtin_giadinh") }}", 
-          type: "GET", 
-          data: {id:id},
-        });
-        swalWithBootstrapButtons.fire(
-          'Xoá thành công',
-          'Dữ liệu của bạn đã được xoá.',
-          'success'
-        )
-      } else if (
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Đã huỷ',
-          'Dữ liệu được an toàn',
-          'error'
-        )
-      }
-      location.reload();
-    })
-    
-  });
+      swalWithBootstrapButtons.fire({
+        title: 'Bạn có chắc muốn xoá không?',
+        text: "Bạn không thể khôi phục dữ liệu đã xoá",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
+        cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          var id= $('.ma_gd{{ $giadinh->ma_gd }}').val();
+          $.ajax({
+            url:"{{ url("/delete_thongtin_giadinh") }}", 
+            type: "GET", 
+            data: {id:id},
+          });
+          swalWithBootstrapButtons.fire(
+            'Xoá thành công',
+            'Dữ liệu của bạn đã được xoá.',
+            'success'
+          )
+          location.reload();
+        } else if (
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Đã huỷ',
+            'Dữ liệu được an toàn',
+            'error'
+          )
+          location.reload();
+        }
+      })
+      
+    });
+  @endforeach
 </script>
 <!--  -->
 @endsection

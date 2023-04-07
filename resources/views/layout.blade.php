@@ -769,7 +769,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
       $('.back_top').click(function(){
         $('html, body').animate({
           scrollTop: 0
-        }, 500);
+        }, 100);
       });
     });
   </script>
