@@ -8834,6 +8834,19 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function thongke_qlk_kl_loc_2_excel($ma_lkl){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_qlk){
+      return Excel::download(new ThongKeQLK_KyLuat_Loc_2Export($ma_k, $ma_lkl), 'Quan-ly-khoa.xlsx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 
   public function thongke_qlk_kl_loc_3_pdf($batdau_kl, $ketthuc_kl){
     $this->check_login();
@@ -8859,6 +8872,19 @@ class ThongKeController extends Controller
         'kyluat' => $kyluat,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlk_kl_loc_3_excel($batdau_kl, $ketthuc_kl){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_qlk){
+      return Excel::download(new ThongKeQLK_KyLuat_Loc_3Export($ma_k, $batdau_kl, $ketthuc_kl), 'Quan-ly-khoa.xlsx');
     }else{
       return Redirect::to('/home');
     }
