@@ -2,6 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ThongKeQLCTTC_ThoiHoc_Loc_AllExport;
+use App\Exports\ThongKeQLCTTC_ThoiHoc_Loc_2Export;
+use App\Exports\ThongKeQLCTTC_ThoiHoc_Loc_3Export;
+use App\Exports\ThongKeQLCTTC_ThoiHoc_Loc_4Export;
+use App\Exports\ThongKeQLCTTC_ThoiHoc_Loc_5Export;
+use App\Exports\ThongKeQLCTTC_ThoiHoc_Loc_6Export;
+use App\Exports\ThongKeQLCTTC_ThoiHoc_Loc_7Export;
 use App\Exports\ThongKeQLCTTC_Chuyen_Loc_AllExport;
 use App\Exports\ThongKeQLCTTC_Chuyen_Loc_2Export;
 use App\Exports\ThongKeQLCTTC_Chuyen_Loc_3Export;
@@ -6456,6 +6463,22 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function thongke_qlcttc_thoihoc_loc_all_excel($ma_k, $ma_l, $batdau_thoihoc, $ketthuc_thoihoc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      return Excel::download(new ThongKeQLCTTC_ThoiHoc_Loc_AllExport($ma_k, $ma_l, $batdau_thoihoc, $ketthuc_thoihoc), 'Vien-chuc-thoi-hoc.xlsx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+
   public function thongke_qlcttc_thoihoc_loc_2_pdf($ma_l, $batdau_thoihoc, $ketthuc_thoihoc){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -6485,6 +6508,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlcttc_thoihoc_loc_3_pdf($ma_k, $batdau_thoihoc, $ketthuc_thoihoc){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -6514,6 +6538,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlcttc_thoihoc_loc_4_pdf($ma_k, $ma_l){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -6543,6 +6568,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlcttc_thoihoc_loc_5_pdf($ma_k){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -6571,6 +6597,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlcttc_thoihoc_loc_6_pdf($ma_l){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -6599,6 +6626,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
   public function thongke_qlcttc_thoihoc_loc_7_pdf($batdau_thoihoc, $ketthuc_thoihoc){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -6627,6 +6655,7 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+
 
 
 // --------------------------------------------------------

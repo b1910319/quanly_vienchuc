@@ -568,18 +568,25 @@ Route::get('/thongke_qlcttc_chuyen_loc_3_excel/{ma_l}',[ThongKeController::class
 Route::post('/thongke_qlcttc_thoihoc_loc',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc']);
 
 Route::get('/thongke_qlcttc_thoihoc_loc_all_pdf/{ma_k}/{ma_l}/{batdau_thoihoc}/{ketthuc_thoihoc}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_all_pdf']);
+Route::get('/thongke_qlcttc_thoihoc_loc_all_excel/{ma_k}/{ma_l}/{batdau_thoihoc}/{ketthuc_thoihoc}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_all_excel']);
 
 Route::get('/thongke_qlcttc_thoihoc_loc_2_pdf/{ma_l}/{batdau_thoihoc}/{ketthuc_thoihoc}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_2_pdf']);
+Route::get('/thongke_qlcttc_thoihoc_loc_2_excel/{ma_l}/{batdau_thoihoc}/{ketthuc_thoihoc}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_2_excel']);
 
 Route::get('/thongke_qlcttc_thoihoc_loc_3_pdf/{ma_k}/{batdau_thoihoc}/{ketthuc_thoihoc}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_3_pdf']);
+Route::get('/thongke_qlcttc_thoihoc_loc_3_excel/{ma_k}/{batdau_thoihoc}/{ketthuc_thoihoc}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_3_excel']);
 
 Route::get('/thongke_qlcttc_thoihoc_loc_4_pdf/{ma_k}/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_4_pdf']);
+Route::get('/thongke_qlcttc_thoihoc_loc_4_excel/{ma_k}/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_4_excel']);
 
 Route::get('/thongke_qlcttc_thoihoc_loc_5_pdf/{ma_k}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_5_pdf']);
+Route::get('/thongke_qlcttc_thoihoc_loc_5_excel/{ma_k}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_5_excel']);
 
 Route::get('/thongke_qlcttc_thoihoc_loc_6_pdf/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_6_pdf']);
+Route::get('/thongke_qlcttc_thoihoc_loc_6_excel/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_6_excel']);
 
 Route::get('/thongke_qlcttc_thoihoc_loc_7_pdf/{batdau_thoihoc}/{ketthuc_thoihoc}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_7_pdf']);
+Route::get('/thongke_qlcttc_thoihoc_loc_7_excel/{batdau_thoihoc}/{ketthuc_thoihoc}',[ThongKeController::class, 'thongke_qlcttc_thoihoc_loc_7_excel']);
 
 
 // ----------------------------------------------------------
