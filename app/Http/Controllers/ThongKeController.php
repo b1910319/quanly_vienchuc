@@ -6043,7 +6043,7 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '6')
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
-      return Excel::download(new ThongKeQLCTTC_Chuyen_Loc_AllExport($ma_k, $ma_l), 'Vien-chuc-dung-hoc.xlsx');
+      return Excel::download(new ThongKeQLCTTC_Chuyen_Loc_AllExport($ma_k, $ma_l), 'Vien-chuc-chuyen.xlsx');
     }else{
       return Redirect::to('/home');
     }
@@ -6087,7 +6087,7 @@ class ThongKeController extends Controller
       ->where('ma_q', '=', '6')
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
-      return Excel::download(new ThongKeQLCTTC_Chuyen_Loc_2Export($ma_k), 'Vien-chuc-dung-hoc.xlsx');
+      return Excel::download(new ThongKeQLCTTC_Chuyen_Loc_2Export($ma_k), 'Vien-chuc-chuyen.xlsx');
     }else{
       return Redirect::to('/home');
     }
@@ -6117,6 +6117,21 @@ class ThongKeController extends Controller
         'title' => $title,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlcttc_chuyen_loc_3_excel($ma_l){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      return Excel::download(new ThongKeQLCTTC_Chuyen_Loc_3Export($ma_l), 'Vien-chuc-chuyen.xlsx');
     }else{
       return Redirect::to('/home');
     }
