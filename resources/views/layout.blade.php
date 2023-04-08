@@ -112,7 +112,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
             <div class="dropdown-divider"></div>
 
             <!-- item-->
-            <a href="{{ URL::to('/change_matkhau') }}" class="dropdown-item notify-item">
+            <a href="{{ URL::to('/change_pass') }}" class="dropdown-item notify-item">
               <i class="fa-solid fa-lock"></i>
               <span>Đổi mật khẩu</span>
             </a>

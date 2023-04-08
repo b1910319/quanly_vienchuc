@@ -53,7 +53,7 @@
       </div>
       <div class="row" style="padding-top: 200px">
         <div class="col-6">
-          <div class="card-box" style="background-image: url('https://scontent.fsgn13-3.fna.fbcdn.net/v/t39.30808-6/311382201_438821861685718_5100129695517901539_n.jpg?stp=cp6_dst-jpg&_nc_cat=108&ccb=1-7&_nc_sid=e3f864&_nc_ohc=ioRcPmk_z7MAX9Uxa3h&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfBWaiHHpONbgdEptJp1SqHCmeF5D27yhoITFpBW6KtXtw&oe=6430373D');background-repeat: no-repeat;
+          <div class="card-box" style="background-image: url('public/assets/images/background.jpg');background-repeat: no-repeat;
           background-size:cover;">
             <form action="{{ URL::to('/login') }}" method="POST">
               {{ csrf_field() }}

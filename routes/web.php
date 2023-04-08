@@ -52,6 +52,10 @@ Route::get('/delete_thongtin_giadinh',[HomeController::class, 'delete_thongtin_g
 Route::get('/delete_all_thongtin_giadinh',[HomeController::class, 'delete_all_thongtin_giadinh']);
 Route::post('/delete_thongtin_giadinh_check',[HomeController::class, 'delete_thongtin_giadinh_check']);
 
+Route::get('/change_pass',[HomeController::class, 'change_pass']);
+Route::get('/check_pass_cu',[HomeController::class, 'check_pass_cu']);
+Route::post('/doi_matkhau',[HomeController::class, 'doi_matkhau']);
+
 Route::get('/thongtin_bangcap',[HomeController::class, 'thongtin_bangcap']);
 
 Route::get('/thongtin_khenthuong',[HomeController::class, 'thongtin_khenthuong']);
@@ -69,7 +73,6 @@ Route::post('/admin_add_vienchuc_khoa_excel',[VienChucController::class, 'admin_
 Route::get('/admin_select_vienchuc_khoa/{ma_k}/{ma_vc}',[VienChucController::class, 'admin_select_vienchuc_khoa']);
 Route::get('/admin_edit_vienchuc_khoa/{ma_k}/{ma_vc}',[VienChucController::class, 'admin_edit_vienchuc_khoa']);
 Route::post('/admin_update_vienchuc_khoa/{ma_k}/{ma_vc}',[VienChucController::class, 'admin_update_vienchuc_khoa']);
-// Route::get('/admin_delete_vienchuc_khoa/{ma_k}/{ma_vc}',[VienChucController::class, 'admin_delete_vienchuc_khoa']);
 Route::get('/admin_delete_vienchuc_khoa',[VienChucController::class, 'admin_delete_vienchuc_khoa']);
 Route::get('/admin_deleteall_vienchuc_khoa/{ma_k}',[VienChucController::class, 'admin_deleteall_vienchuc_khoa']);
 Route::get('/quanly_vienchuc_khoa',[VienChucController::class, 'quanly_vienchuc_khoa']);

@@ -698,4 +698,76 @@ class HomeController extends Controller
       ->with('phanquyen_qltt', $phanquyen_qltt)
       ->with('phanquyen_admin', $phanquyen_admin);
   }
+  public function change_pass(){
+    $this->check_login();
+    $title = 'Đổi mật khẩu';
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    Carbon::now('Asia/Ho_Chi_Minh'); 
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+      ->select(DB::raw('count(ma_vc) as sum'))
+      ->get();
+    $vienchuc = VienChuc::find($ma_vc);
+    return view('home.change_pass')
+      ->with('title', $title)
+
+      ->with('ma_vc', $ma_vc)
+      ->with('vienchuc', $vienchuc)
+
+      ->with('count_nangbac', $count_nangbac)
+
+      ->with('phanquyen_qlk', $phanquyen_qlk)
+      ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+      ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+      ->with('phanquyen_qltt', $phanquyen_qltt)
+      ->with('phanquyen_admin', $phanquyen_admin);
+  }
+  public function check_pass_cu(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $pass_cu = md5($request->pass_cu);
+      $user_vc = $request->user_vc;
+      if($pass_cu != null && $user_vc != null){
+        $vienchuc = VienChuc::where('user_vc', $user_vc)
+          ->where('pass_vc', $pass_cu)
+          ->first();
+        if(isset($vienchuc)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
+  public function doi_matkhau(Request $request){
+    $this->check_login();
+    $user_vc = $request->user_vc;
+    $pass_cu = md5($request->pass_cu);
+    $pass_moi = md5($request->pass_moi);
+    $vienchuc = VienChuc::where('user_vc', $user_vc)
+      ->where('pass_vc', $pass_cu)
+      ->first();
+    if(isset($vienchuc)){
+      $vienchuc_update = VienChuc::find($vienchuc->ma_vc);
+      $vienchuc_update->pass_vc = VienChuc::find($vienchuc->ma_vc)->update(['pass_vc' => $pass_moi]);
+      return Redirect::to('/home');
+    }else{
+      return Redirect::to('/change_pass');
+    }
+  }
 }
