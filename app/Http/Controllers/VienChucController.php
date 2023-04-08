@@ -125,6 +125,21 @@ class VienChucController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function check_user (Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $user_vc = $request->user_vc;
+      if($user_vc != null){
+        $vienchuc = VienChuc::where('user_vc', $user_vc)
+          ->first();
+        if(isset($vienchuc)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function admin_add_vienchuc_khoa(Request $request, $ma_k){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

@@ -78,7 +78,14 @@
                             <tr>
                               <th scope="row">Ngày sinh: </th>
                               <td class="was-validated">
-                                <input type='date' class='form-control input_table' autofocus required name="ngaysinh_gd">
+                                <?php 
+                                  use Illuminate\Support\Carbon;
+                                  Carbon::now('Asia/Ho_Chi_Minh'); 
+                                  $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                                  ?>
+                                    <input type='date' class='form-control input_table' autofocus required name="ngaysinh_gd" max="<?php echo $now ?>">
+                                  <?php
+                                ?>
                               </td>
                             </tr>
                             <tr>
@@ -150,7 +157,7 @@
                   <td>
                     {{ $giadinh->nghenghiep_gd }}
                   </td>
-                  <td style="width: 19%;">
+                  <td style="width: 21%;">
                     <a href="{{ URL::to('/thongtin_giadinh_edit/'.$giadinh->ma_gd)}}">
                       <button type="button" class="btn btn-warning button_cam">
                         <i class="fa-solid fa-pen-to-square text-light"></i>

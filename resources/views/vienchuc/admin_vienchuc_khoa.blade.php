@@ -131,6 +131,27 @@
                 autocomplete="off" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="row">
+                  <p class="text-center fw-bold text-danger" id="thongbao"></p>
+                  <div class="col-6">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <th scope="row">Email: </th>
+                          <td class="was-validated">
+                            <div>
+                              <input type="email" class="form-control" id="user" aria-describedby="emailHelp" name="user_vc" required >
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Password: </th>
+                          <td class="was-validated">
+                            <input type='text' class='form-control input_table' autofocus required name="pass_vc" minlength="5" value="123456">
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                   <div class="col-6">
                     <table class="table">
                       <tbody>
@@ -153,31 +174,11 @@
                       </tbody>
                     </table>
                   </div>
-                  <div class="col-6">
-                    <table class="table">
-                      <tbody>
-                        <tr>
-                          <th scope="row">Email: </th>
-                          <td class="was-validated">
-                            <div>
-                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="user_vc" required >
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Password: </th>
-                          <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="pass_vc" minlength="5" value="123456">
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
                   <div class="row mb-2">
                     <div class="col-5"></div>
                     <div class="col-2">
                       <button type="submit"  class="btn btn-primary button_xanhla them" style=" width: 100%;">
-                        <i class="fas fa-plus-square"></i>
+                        <i class="fas fa-plus-square text-light"></i>
                         &ensp;
                         Thêm
                       </button>
@@ -359,6 +360,26 @@
       location.reload();
     })
     
+  });
+</script>
+<script>
+  $(document).ready(function(){
+    $('#user').change(function(){
+      var user_vc= $(this).val();
+      // alert(user_vc);
+      $.ajax({
+        url:"{{ url("/check_user") }}",
+        type:"GET",
+        data:{user_vc:user_vc},
+        success:function(data){
+          if(data == 1){   
+            $('#thongbao').html('Email đã tồn tại vui lòng nhập email khác');  
+          }else{
+            $('#thongbao').html(''); 
+          }
+        }
+      });
+    });
   });
 </script>
 @endsection

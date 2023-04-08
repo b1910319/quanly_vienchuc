@@ -145,8 +145,8 @@
                   <div class="row mb-2">
                     <div class="col-5"></div>
                     <div class="col-2">
-                      <button type="submit"  class="btn btn-primary font-weight-bold them button_xanhla">
-                        <i class="fas fa-plus-square"></i>
+                      <button type="submit"  class="btn btn-primary font-weight-bold them button_xanhla" style="width: 100%">
+                        <i class="fas fa-plus-square text-light"></i>
                         &ensp;
                         Thêm
                       </button>
