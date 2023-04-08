@@ -147,7 +147,7 @@
               <tr>
                 <th scope="row">Số điện thoại: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="sdt_vc"  value="{{ $edit->sdt_vc }}">
+                  <input type='text' class='form-control input_table' autofocus required pattern="^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$" name="sdt_vc"  value="{{ $edit->sdt_vc }}">
                 </td>
               </tr>
               <tr>

@@ -151,7 +151,10 @@
                         <tr>
                           <th scope="row">Yêu cầu lớp học: </th>
                           <td class="was-validated">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" name="yeucau_l"></textarea>
+                            <div class="form-floating">
+                              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" required style="height: 117px; resize: none;" name="yeucau_l"></textarea>
+                              <label for="floatingTextarea2">Yêu cầu</label>
+                            </div>
                           </td>
                         </tr>
                         <tr>
@@ -187,7 +190,10 @@
                         <tr>
                           <th scope="row">Nội dung học: </th>
                           <td class="was-validated">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="noidunghoc_l"></textarea>
+                            <div class="form-floating">
+                              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" required style="height: 117px; resize: none;" name="noidunghoc_l"></textarea>
+                              <label for="floatingTextarea2">Nội dung</label>
+                            </div>
                           </td>
                         </tr>
                         <tr>

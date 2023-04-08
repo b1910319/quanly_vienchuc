@@ -102,7 +102,7 @@
                     <div class="col-5"></div>
                     <div class="col-2">
                       <button type="submit"  class="them btn btn-primary button_xanhla" style="width: 100%;">
-                        <i class="fas fa-plus-square"></i>
+                        <i class="fas fa-plus-square text-light"></i>
                         &ensp;
                         Thêm
                       </button>

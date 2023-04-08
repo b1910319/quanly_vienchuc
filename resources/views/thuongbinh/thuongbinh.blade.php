@@ -134,9 +134,10 @@
                         <tr>
                           <th scope="row" style="width: 20%">Mô tả: </th>
                           <td class="was-validated">
-                            <textarea class="form-control" rows="4" required name="mota_tb">
-
-                            </textarea>
+                            <div class="form-floating">
+                              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" required style="height: 117px; resize: none;" name="mota_tb"></textarea>
+                              <label for="floatingTextarea2">Mô tả</label>
+                            </div>
                           </td>
                         </tr>
                       </tbody>
@@ -146,7 +147,7 @@
                     <div class="col-5"></div>
                     <div class="col-2">
                       <button type="submit"  class="btn btn-primary button_xanhla them" style=" width: 100%;">
-                        <i class="fas fa-plus-square"></i>
+                        <i class="fas fa-plus-square text-light"></i>
                         &ensp;
                         Thêm
                       </button>

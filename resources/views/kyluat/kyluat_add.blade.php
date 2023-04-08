@@ -134,16 +134,6 @@
                             <input type='date' class='form-control input_table' autofocus required name="ngay_kl">
                           </td>
                         </tr>
-                        <tr>
-                          <th scope="row">Trạng thái: </th>
-                          <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="status_kl">
-                              <option value="0" >Chọn trạng thái</option>
-                              <option value="1" >Ẩn</option>
-                              <option selected value="0" >Hiển thị</option>
-                            </select>
-                          </td>
-                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -153,7 +143,20 @@
                         <tr>
                           <th scope="row">Lý do kỷ luật: </th>
                           <td class="was-validated">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="lydo_kl"></textarea>
+                            <div class="form-floating">
+                              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" required style="height: 117px; resize: none;" name="lydo_kl"></textarea>
+                              <label for="floatingTextarea2">Lý do kỷ luật</label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Trạng thái: </th>
+                          <td class="was-validated">
+                            <select class="custom-select input_table" id="gender2" name="status_kl">
+                              <option value="0" >Chọn trạng thái</option>
+                              <option value="1" >Ẩn</option>
+                              <option selected value="0" >Hiển thị</option>
+                            </select>
                           </td>
                         </tr>
                       </tbody>

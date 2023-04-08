@@ -133,7 +133,7 @@
                         <tr>
                           <th scope="row">Số điện thoại: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="sdt_gd">
+                            <input type='text' class='form-control input_table' autofocus required pattern="^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$" name="sdt_gd">
                           </td>
                         </tr>
                       </tbody>
@@ -145,7 +145,15 @@
                         <tr>
                           <th scope="row">Ngày sinh: </th>
                           <td class="was-validated">
-                            <input type='date' class='form-control input_table' autofocus required name="ngaysinh_gd">
+                            <?php 
+                              use Illuminate\Support\Carbon;
+                              Carbon::now('Asia/Ho_Chi_Minh'); 
+                              $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                              ?>
+                                <input type='date' class='form-control input_table' autofocus required name="ngaysinh_gd" max="<?php echo $now ?>">
+                              <?php
+                            ?>
+                            
                           </td>
                         </tr>
                         <tr>

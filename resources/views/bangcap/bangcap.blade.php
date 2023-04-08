@@ -180,7 +180,14 @@
                         <tr>
                           <th scope="row">Ngày cấp bằng: </th>
                           <td class="was-validated">
-                            <input type='date' class='form-control input_table' autofocus required name="ngaycap_bc">
+                            <?php 
+                              use Illuminate\Support\Carbon;
+                              Carbon::now('Asia/Ho_Chi_Minh'); 
+                              $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                              ?>
+                              <input type='date' class='form-control input_table' autofocus required name="ngaycap_bc" max="<?php echo $now ?>">
+                              <?php
+                            ?>
                           </td>
                         </tr>
                         <tr>
