@@ -136,6 +136,41 @@ class HomeController extends Controller
     $truongkhoa = VienChuc::where('ma_k', $ma_k)
       ->where('ma_cv', '6')
       ->get();
+    $ketqua = KetQua::where('status_kq', '1')
+      ->where('ma_vc', $ma_vc)
+      ->first();
+    $dunghoc = DungHoc::where('status_dh', '1')
+      ->where('ma_vc', $ma_vc)
+      ->first();
+    $giahan = GiaHan::where('status_gh', '1')
+      ->where('ma_vc', $ma_vc)
+      ->first();
+    $chuyen = Chuyen::where('status_c', '1')
+      ->where('ma_vc', $ma_vc)
+      ->first();
+    $thoihoc = ThoiHoc::where('status_th', '1')
+      ->where('ma_vc', $ma_vc)
+      ->first();
+    $ketqua_an = KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
+      ->where('status_kq', '1')
+      ->where('ma_vc', $ma_vc)
+      ->get();
+    $dunghoc_an = DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
+      ->where('status_dh', '1')
+      ->where('ma_vc', $ma_vc)
+      ->get();
+    $giahan_an = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+      ->where('status_gh', '1')
+      ->where('ma_vc', $ma_vc)
+      ->get();
+    $chuyen_an = Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
+      ->where('status_c', '1')
+      ->where('ma_vc', $ma_vc)
+      ->get();
+    $thoihoc_an = ThoiHoc::join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
+      ->where('status_th', '1')
+      ->where('ma_vc', $ma_vc)
+      ->get();
     return view('home.home')
       ->with('vienchuc', $vienchuc)
       ->with('truongkhoa', $truongkhoa)
@@ -157,6 +192,17 @@ class HomeController extends Controller
       ->with('list_chucvu', $list_chucvu)
       ->with('list_ngach', $list_ngach)
       ->with('list_dantoc', $list_dantoc)
+
+      ->with('ketqua_an', $ketqua_an)
+      ->with('dunghoc_an', $dunghoc_an)
+      ->with('giahan_an', $giahan_an)
+      ->with('chuyen_an', $chuyen_an)
+      ->with('thoihoc_an', $thoihoc_an)
+      ->with('ketqua', $ketqua)
+      ->with('dunghoc', $dunghoc)
+      ->with('giahan', $giahan)
+      ->with('chuyen', $chuyen)
+      ->with('thoihoc', $thoihoc)
 
       ->with('phanquyen_qlk', $phanquyen_qlk)
       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)

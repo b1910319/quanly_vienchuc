@@ -705,6 +705,198 @@
     </div>
   </div>
 </div>
+<div class="row">
+  @if ($ketqua)
+    <div class="col-6">
+      <div class="card-box">
+        <table class="table" id="mytable">
+          <thead class="color_table">
+            <tr>
+              <th class="text-light" scope="col">STT</th>
+              <th class="text-light" scope="col">Thông tin lớp học</th>
+              <th class="text-light" scope="col">Kết quả</th>
+            </tr>
+          </thead>
+          <tbody  >
+            @foreach ($ketqua_an as $key => $ketqua)
+              <tr >
+                <th scope="row">{{ $key+1 }}</th>
+                <td>
+                  <b>Tên lớp học: </b> {{ $ketqua->ten_l }} <br>
+                  <b>Ngày bắt đầu: </b> {{ $ketqua->ngaybatdau_l }} <br>
+                  <b>Ngày kết thúc: </b> {{ $ketqua->ngayketthuc_l }} <br>
+                  <b>Tên cơ sở đào tạo: </b> {{ $ketqua->tencosodaotao_l }} <br>
+                  <b>Quốc gia đào tạo: </b> {{ $ketqua->quocgiaodaotao_l }} <br>
+                  <b>Email cơ sở đào tạo: </b> {{ $ketqua->emailcoso_l }} <br>
+                  <b>Số điện thoại cơ sở đào tạo: </b> {{ $ketqua->sdtcoso_l }} <br>
+                </td>
+                <td >
+                  <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
+              style="height: 300px; overflow: auto;">
+                    <p>
+                      <b>Tên người hướng dẫn: </b> {{ $ketqua->tennguoihuongdan_kq }} <br>
+                      <b>Email người hướng dẫn: </b> {{ $ketqua->emailnguoihuongdan_kq }} <br>
+                      <b>Nội dung đào tạo: </b> {{ $ketqua->noidungaotao_kq }} <br>
+                      <b>Văn bằng, chứng chỉ được cấp: </b> {{ $ketqua->bangduoccap_kq }} <br>
+                      <b>Ngày cấp bằng: </b> {{ $ketqua->ngaycapbang_kq }} <br>
+                      <b>Kết quả xếp loại: </b> {{ $ketqua->xeploai_kq }} <br>
+                      <b>Đề tài tốt nghiệp: </b> {{ $ketqua->detaitotnghiep_kq }} <br>
+                      <b>Ngày về nước: </b> {{ $ketqua->ngayvenuoc_kq }} <br>
+                      <b>Đánh giá của cơ sở: </b> {{ $ketqua->danhgiacuacoso_kq }} <br>
+                      <b>Kiến nghị, đề xuất: </b> {{ $ketqua->kiennghi_kq }} <br>
+                    </p>
+                  </div>
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+    </div>
+  @endif
+  @if ($dunghoc)
+    <div class="col-6">
+      <div class="card-box">
+        <table class="table" id="mytable">
+          <thead class="color_table">
+            <tr>
+              <th class="text-light" scope="col">STT</th>
+              <th class="text-light" scope="col">Thông tin lớp học</th>
+              <th class="text-light" scope="col">Thông tin tạm dừng học</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($dunghoc_an as $key => $dunghoc)
+              <tr >
+                <th scope="row">{{ $key+1 }}</th>
+                <td>
+                  <b>Tên lớp học: </b> {{ $dunghoc->ten_l }} <br>
+                  <b>Ngày bắt đầu: </b> {{ $dunghoc->ngaybatdau_l }} <br>
+                  <b>Ngày kết thúc: </b> {{ $dunghoc->ngayketthuc_l }} <br>
+                  <b>Tên cơ sở đào tạo: </b> {{ $dunghoc->tencosodaotao_l }} <br>
+                  <b>Quốc gia đào tạo: </b> {{ $dunghoc->quocgiaodaotao_l }} <br>
+                  <b>Email cơ sở đào tạo: </b> {{ $dunghoc->emailcoso_l }} <br>
+                  <b>Số điện thoại cơ sở đào tạo: </b> {{ $dunghoc->sdtcoso_l }} <br>
+                </td>
+                <td>
+                  <b>Ngày bắt đầu tạm dừng: </b> {{ $dunghoc->batdau_dh }} <br>
+                  <b>Ngày kết thúc tạm dừng: </b> {{ $dunghoc->ketthuc_dh }} <br>
+                  <b>Lý do tạm dừng: </b> {{ $dunghoc->lydo_dh }}
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+    </div>
+  @endif
+  @if ($giahan)
+    <div class="col-6">
+      <div class="card-box">
+        <table class="table" id="mytable">
+          <thead class="color_table">
+            <tr>
+              <th class="text-light" scope="col">STT</th>
+              <th class="text-light" scope="col">Thông tin lớp học</th>
+              <th class="text-light" scope="col">Thông tin gia hạn thời gian học</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($giahan_an as $key => $giahan)
+              <tr >
+                <th scope="row">{{ $key+1 }}</th>
+                <td>
+                  <b>Tên lớp học: </b> {{ $giahan->ten_l }} <br>
+                  <b>Ngày bắt đầu: </b> {{ $giahan->ngaybatdau_l }} <br>
+                  <b>Ngày kết thúc: </b> {{ $giahan->ngayketthuc_l }} <br>
+                  <b>Tên cơ sở đào tạo: </b> {{ $giahan->tencosodaotao_l }} <br>
+                  <b>Quốc gia đào tạo: </b> {{ $giahan->quocgiaodaotao_l }} <br>
+                  <b>Email cơ sở đào tạo: </b> {{ $giahan->emailcoso_l }} <br>
+                  <b>Số điện thoại cơ sở đào tạo: </b> {{ $giahan->sdtcoso_l }} <br>
+                </td>
+                <td>
+                  <b>Thời gian gia hạn: </b> {{ $giahan->thoigian_gh }} <br>
+                  <b>Lý do gia hạn: </b> {{ $giahan->lydo_gh }}
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+    </div>
+  @endif
+  @if ($chuyen)
+    <div class="col-6">
+      <div class="card-box">
+        <table class="table" id="mytable">
+          <thead class="color_table">
+            <tr>
+              <th class="text-light" scope="col">STT</th>
+              <th class="text-light" scope="col">Thông tin lớp học</th>
+              <th class="text-light" scope="col">Thông tin chuyển trường, nước ....</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($list as $key => $chuyen)
+              <tr >
+                <th scope="row">{{ $key+1 }}</th>
+                <td>
+                  <b>Tên lớp học: </b> {{ $chuyen->ten_l }} <br>
+                  <b>Ngày bắt đầu: </b> {{ $chuyen->ngaybatdau_l }} <br>
+                  <b>Ngày kết thúc: </b> {{ $chuyen->ngayketthuc_l }} <br>
+                  <b>Tên cơ sở đào tạo: </b> {{ $chuyen->tencosodaotao_l }} <br>
+                  <b>Quốc gia đào tạo: </b> {{ $chuyen->quocgiaodaotao_l }} <br>
+                  <b>Email cơ sở đào tạo: </b> {{ $chuyen->emailcoso_l }} <br>
+                  <b>Số điện thoại cơ sở đào tạo: </b> {{ $chuyen->sdtcoso_l }} <br>
+                </td>
+                <td>
+                  <b>Nội dung chuyển: </b> {{ $chuyen->noidung_c }} <br>
+                  <b>Lý do chuyển: </b> {{ $chuyen->lydo_c }}
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+  @endif
+  @if ($thoihoc)
+    <div class="col-6">
+      <div class="card-box">
+        <table class="table" id="mytable">
+          <thead class="color_table">
+            <tr>
+              <th class="text-light" scope="col">STT</th>
+              <th class="text-light" scope="col">Thông tin lớp học</th>
+              <th class="text-light" scope="col">Thông tin thôi học</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($list as $key => $thoihoc)
+              <tr >
+                <th scope="row">{{ $key+1 }}</th>
+                <td>
+                  <b>Tên lớp học: </b> {{ $thoihoc->ten_l }} <br>
+                  <b>Ngày bắt đầu: </b> {{ $thoihoc->ngaybatdau_l }} <br>
+                  <b>Ngày kết thúc: </b> {{ $thoihoc->ngayketthuc_l }} <br>
+                  <b>Tên cơ sở đào tạo: </b> {{ $thoihoc->tencosodaotao_l }} <br>
+                  <b>Quốc gia đào tạo: </b> {{ $thoihoc->quocgiaodaotao_l }} <br>
+                  <b>Email cơ sở đào tạo: </b> {{ $thoihoc->emailcoso_l }} <br>
+                  <b>Số điện thoại cơ sở đào tạo: </b> {{ $thoihoc->sdtcoso_l }} <br>
+                </td>
+                <td>
+                  <b>Thời gian chính thức thôi học: </b> {{ $thoihoc->ngay_th }} <br>
+                  <b>Lý do thôi học: </b> {{ $thoihoc->lydo_th }}
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+    </div>
+  @endif
+</div>
 <!-- end row -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
