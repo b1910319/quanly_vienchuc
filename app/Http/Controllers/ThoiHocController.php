@@ -373,4 +373,64 @@ class ThoiHocController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function vienchuc_thoihoc_add($ma_l){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Thêm quá trình học";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    Carbon::now('Asia/Ho_Chi_Minh'); 
+    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+    return view('thoihoc.vienchuc_thoihoc_add')
+      ->with('title', $title)
+      ->with('ma_l', $ma_l)
+
+      ->with('count_nangbac', $count_nangbac)
+
+      ->with('phanquyen_admin', $phanquyen_admin)
+      ->with('phanquyen_qltt', $phanquyen_qltt)
+      ->with('phanquyen_qlk', $phanquyen_qlk)
+      ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+      ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+  }
+  public function vienchuc_add_thoihoc(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $data = $request->all();
+    $thoihoc = new thoihoc();
+    $thoihoc->ma_vc = $ma_vc;
+    $thoihoc->ma_l = $data['ma_l'];
+    $thoihoc->ngay_th = $data['ngay_th'];
+    $thoihoc->lydo_th = $data['lydo_th'];
+    $thoihoc->status_th = $data['status_th'];
+    $get_file = $request->file('file_th');
+    if($get_file){
+      $new_file = time().rand(0,999).'.'.$get_file->getClientOriginalExtension();
+      $get_file->move('public/uploads/thoihoc', $new_file);
+      $thoihoc->file_th = $new_file;
+    }
+    $thoihoc->save();
+    $danhsach = DanhSach::where('ma_vc', $ma_vc)
+      ->where('ma_l', $data['ma_l'])
+      ->first();
+    $danhsach->status_ds = '3';
+    $danhsach->save();
+    return Redirect::to('thongtin_lophoc');
+  }
 }

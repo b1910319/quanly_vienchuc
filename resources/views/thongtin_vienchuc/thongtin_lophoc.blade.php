@@ -248,32 +248,43 @@
                   @endforeach
                 </td>
                 <td style="width: 16%;">
+                  @php
+                    $i = 0;
+                  @endphp
                   @foreach ($thoihoc as $th )
                     @if ($th->ma_l == $lop->ma_l && $th->ma_vc == $lop->ma_vc)
-                      <div style="height: 120px">
-                        <b>Ngày xin thôi học: </b> {{ $th->ngay_th }} <br>
-                        <b>Lý do xin thôi học: </b> {{ $th->lydo_th }} <br>
-                      </div>
-                      @if ($th->file_th !=' ')
-                        <a href="{{ asset('public/uploads/thoihoc/'.$th->file_th) }}">
-                          <button type="button" class="btn btn-warning mt-2 button_xanhla">
-                            <i class="fa-solid fa-file text-light"></i>
-                            &ensp;
-                            File
-                          </button>
-                        </a>
-                      @else
-                        Không có file
-                      @endif
+                      <?php $i++ ?>
                     @endif
                   @endforeach
-                  <a href="">
-                    <button type="submit"  class="btn btn-primary button_xanhla">
-                      <i class="fas fa-plus-square text-light"></i>
-                      &ensp;
-                      Thêm
-                    </button>
-                  </a>
+                  @if ($i == 0)
+                    <a href="{{ URL::to('vienchuc_thoihoc_add/'.$lop->ma_l) }}">
+                      <button type="submit"  class="btn btn-primary button_xanhla">
+                        <i class="fas fa-plus-square text-light"></i>
+                        &ensp;
+                        Thêm
+                      </button>
+                    </a>
+                  @else
+                    @foreach ($thoihoc as $th )
+                      @if ($th->ma_l == $lop->ma_l && $th->ma_vc == $lop->ma_vc)
+                        <div style="height: 120px" class="mt-1">
+                          <b>Ngày xin thôi học: </b> {{ $th->ngay_th }} <br>
+                          <b>Lý do xin thôi học: </b> {{ $th->lydo_th }} <br>
+                        </div>
+                        @if ($th->file_th !=' ')
+                          <a href="{{ asset('public/uploads/thoihoc/'.$th->file_th) }}">
+                            <button type="button" class="btn btn-warning mt-2 button_do">
+                              <i class="fa-solid fa-file text-light"></i>
+                              &ensp;
+                              File
+                            </button>
+                          </a>
+                        @else
+                          Không có file
+                        @endif
+                      @endif
+                    @endforeach
+                  @endif
                 </td>
               </tr>
             @endforeach

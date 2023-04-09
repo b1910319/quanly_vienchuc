@@ -870,6 +870,9 @@ Route::get('/delete_all_thoihoc/{ma_l}/{ma_vc}',[ThoiHocController::class, 'dele
 Route::get('/thoihoc_all',[ThoiHocController::class, 'thoihoc_all']);
 Route::get('/delete_thoihoc_all',[ThoiHocController::class, 'delete_thoihoc_all']);
 
+Route::get('/vienchuc_thoihoc_add/{ma_l}',[ThoiHocController::class, 'vienchuc_thoihoc_add']);
+Route::post('/vienchuc_add_thoihoc',[ThoiHocController::class, 'vienchuc_add_thoihoc']);
+
 
 
 
