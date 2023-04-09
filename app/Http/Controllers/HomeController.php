@@ -673,11 +673,16 @@ class HomeController extends Controller
       ->join('lop', 'lop.ma_l', '=', 'danhsach.ma_l')
       ->where('vienchuc.ma_vc', $ma_vc)
       ->get();
-    $ketqua = KetQua::get();
-    $giahan = GiaHan::get();
-    $dunghoc = DungHoc::get();
-    $thoihoc = ThoiHoc::get();
-    $chuyen = Chuyen::get();
+    $ketqua = KetQua::where('status_kq', '<>', '1')
+      ->get();
+    $giahan = GiaHan::where('status_gh', '<>', '1')
+      ->get();
+    $dunghoc = DungHoc::where('status_dh', '<>', '1')
+      ->get();
+    $thoihoc = ThoiHoc::where('status_th', '<>', '1')
+      ->get();
+    $chuyen = Chuyen::where('status_c', '<>', '1')
+      ->get();
     return view('thongtin_vienchuc.thongtin_lophoc')
       ->with('title', $title)
 

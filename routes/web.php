@@ -795,6 +795,9 @@ Route::get('/ketqua_pdf/{ma_kq}',[KetQuaController::class, 'ketqua_pdf']);
 Route::get('/ketqua_all',[KetQuaController::class, 'ketqua_all']);
 Route::get('/delete_ketqua_all',[KetQuaController::class, 'delete_ketqua_all']);
 
+Route::get('/vienchuc_ketqua_add/{ma_l}',[KetQuaController::class, 'vienchuc_ketqua_add']);
+Route::post('/vienchuc_add_ketqua',[KetQuaController::class, 'vienchuc_add_ketqua']);
+
 
 
 

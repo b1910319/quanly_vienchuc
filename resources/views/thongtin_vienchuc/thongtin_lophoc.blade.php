@@ -70,77 +70,97 @@
                   </div>
                 </td>
                 <td style="width: 13%;">
-                  <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #FFBE0F; border: none; color: black; width: 100%;">
-                    <i class="fa-solid fa-square-poll-vertical "></i>
-                    &ensp;
-                    Kết quả
-                  </button>
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">KẾT QUẢ</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          @foreach ($ketqua as $kq )
-                            @if ($ma_vc == $kq->ma_vc && $lop->ma_l == $kq->ma_l )
-                              <table class="table">
-                                <tbody>
-                                  <tr>
-                                    <th scope="row">Tên người hướng dẫn</th>
-                                    <td>{{ $kq->tennguoihuongdan_kq }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Email người hướng dẫn</th>
-                                    <td>{{ $kq->emailnguoihuongdan_kq }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Nội dung đào tạo</th>
-                                    <td>{{ $kq->noidungaotao_kq }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Bằng được cấp</th>
-                                    <td>{{ $kq->bangduoccap_kq }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Ngày cấp bằng</th>
-                                    <td>{{ $kq->ngaycapbang_kq }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Xếp loại</th>
-                                    <td>{{ $kq->xeploai_kq }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Đề tài tốt nghiệp</th>
-                                    <td>{{ $kq->detaitotnghiep_kq }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Ngày về nước</th>
-                                    <td>{{ $kq->ngayvenuoc_kq }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Đánh giá của cơ sở</th>
-                                    <td>{{ $kq->danhgiacuacoso_kq }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Kiến nghị</th>
-                                    <td>{{ $kq->kiennghi_kq }}</td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            @endif
-                          @endforeach
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
-                            <i class="fa-solid fa-square-xmark text-light"></i>
-                            &ensp; Đóng
-                          </button>
+                  @php
+                    $i = 0;
+                  @endphp
+                  @foreach ($ketqua as $kq )
+                    @if ($ma_vc == $kq->ma_vc && $lop->ma_l == $kq->ma_l )
+                      <?php $i++ ?>
+                    @endif
+                  @endforeach
+                  @if ($i == 0)
+                    <a href="{{ URL::to('vienchuc_ketqua_add/'.$lop->ma_l) }}">
+                      <button type="submit"  class="btn btn-primary button_xanhla" style=" width: 100%;">
+                        <i class="fas fa-plus-square text-light"></i>
+                        &ensp;
+                        Thêm
+                      </button>
+                    </a>
+                  @else
+                    <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #FFBE0F; border: none; color: black; width: 100%;">
+                      <i class="fa-solid fa-square-poll-vertical "></i>
+                      &ensp;
+                      Kết quả
+                    </button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">KẾT QUẢ</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            @foreach ($ketqua as $kq )
+                              @if ($ma_vc == $kq->ma_vc && $lop->ma_l == $kq->ma_l )
+                                <table class="table">
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">Tên người hướng dẫn</th>
+                                      <td>{{ $kq->tennguoihuongdan_kq }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Email người hướng dẫn</th>
+                                      <td>{{ $kq->emailnguoihuongdan_kq }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Nội dung đào tạo</th>
+                                      <td>{{ $kq->noidungaotao_kq }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Bằng được cấp</th>
+                                      <td>{{ $kq->bangduoccap_kq }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Ngày cấp bằng</th>
+                                      <td>{{ $kq->ngaycapbang_kq }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Xếp loại</th>
+                                      <td>{{ $kq->xeploai_kq }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Đề tài tốt nghiệp</th>
+                                      <td>{{ $kq->detaitotnghiep_kq }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Ngày về nước</th>
+                                      <td>{{ $kq->ngayvenuoc_kq }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Đánh giá của cơ sở</th>
+                                      <td>{{ $kq->danhgiacuacoso_kq }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Kiến nghị</th>
+                                      <td>{{ $kq->kiennghi_kq }}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              @endif
+                            @endforeach
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
+                              <i class="fa-solid fa-square-xmark text-light"></i>
+                              &ensp; Đóng
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  @endif
+                  
+                  
                 </td>
                 <td style="width: 16%;">
                   @foreach ($giahan as $gh )
@@ -162,6 +182,13 @@
                       @endif
                     @endif
                   @endforeach
+                  <a href="">
+                    <button type="submit"  class="btn btn-primary button_xanhla">
+                      <i class="fas fa-plus-square text-light"></i>
+                      &ensp;
+                      Thêm
+                    </button>
+                  </a>
                 </td>
                 <td style="width: 16%;">
                   @foreach ($dunghoc as $dh )
@@ -184,6 +211,13 @@
                       @endif
                     @endif
                   @endforeach
+                  <a href="">
+                    <button type="submit"  class="btn btn-primary button_xanhla">
+                      <i class="fas fa-plus-square text-light"></i>
+                      &ensp;
+                      Thêm
+                    </button>
+                  </a>
                 </td>
                 <td style="width: 16%;">
                   @foreach ($chuyen as $c )
@@ -205,6 +239,13 @@
                       @endif
                     @endif
                   @endforeach
+                  <a href="">
+                    <button type="submit"  class="btn btn-primary button_xanhla">
+                      <i class="fas fa-plus-square text-light"></i>
+                      &ensp;
+                      Thêm
+                    </button>
+                  </a>
                 </td>
                 <td style="width: 16%;">
                   @foreach ($thoihoc as $th )
@@ -226,6 +267,13 @@
                       @endif
                     @endif
                   @endforeach
+                  <a href="">
+                    <button type="submit"  class="btn btn-primary button_xanhla">
+                      <i class="fas fa-plus-square text-light"></i>
+                      &ensp;
+                      Thêm
+                    </button>
+                  </a>
                 </td>
               </tr>
             @endforeach

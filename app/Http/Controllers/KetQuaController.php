@@ -348,8 +348,6 @@ class KetQuaController extends Controller
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
       return view('ketqua.ketqua')
-        ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
         ->with('title', $title)
         ->with('count_status', $count_status)
@@ -358,6 +356,8 @@ class KetQuaController extends Controller
         ->with('list_lop', $list_lop)
         ->with('list_vienchuc', $list_vienchuc)
         ->with('vienchuc', $vienchuc)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
@@ -384,5 +384,62 @@ class KetQuaController extends Controller
     }else{
       return Redirect::to('/home');
     }
+  }
+  public function vienchuc_ketqua_add($ma_l){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Thêm kết quả quá trình học";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    Carbon::now('Asia/Ho_Chi_Minh'); 
+    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+    return view('ketqua.vienchuc_ketqua_add')
+      ->with('title', $title)
+      ->with('ma_l', $ma_l)
+
+      ->with('count_nangbac', $count_nangbac)
+
+      ->with('phanquyen_admin', $phanquyen_admin)
+      ->with('phanquyen_qltt', $phanquyen_qltt)
+      ->with('phanquyen_qlk', $phanquyen_qlk)
+      ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+      ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+  }
+  public function vienchuc_add_ketqua(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $data = $request->all();
+    $ketqua = new KetQua();
+    $ketqua->ma_vc = $ma_vc;
+    $ketqua->ma_l = $data['ma_l'];
+    $ketqua->tennguoihuongdan_kq = $data['tennguoihuongdan_kq'];
+    $ketqua->emailnguoihuongdan_kq = $data['emailnguoihuongdan_kq'];
+    $ketqua->noidungaotao_kq = $data['noidungaotao_kq'];
+    $ketqua->bangduoccap_kq = $data['bangduoccap_kq'];
+    $ketqua->ngaycapbang_kq = $data['ngaycapbang_kq'];
+    $ketqua->xeploai_kq = $data['xeploai_kq'];
+    $ketqua->detaitotnghiep_kq = $data['detaitotnghiep_kq'];
+    $ketqua->ngayvenuoc_kq = $data['ngayvenuoc_kq'];
+    $ketqua->danhgiacuacoso_kq = $data['danhgiacuacoso_kq'];
+    $ketqua->kiennghi_kq = $data['kiennghi_kq'];
+    $ketqua->status_kq = $data['status_kq'];
+    $ketqua->save();
+    return redirect()->back();
   }
 }
