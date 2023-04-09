@@ -54,6 +54,7 @@ use App\Exports\ThongKeQLCTTC_HoanThanh_Loc_4Export;
 use App\Exports\ThongKeQLCTTC_HoanThanh_Loc_5Export;
 use App\Exports\ThongKeQLCTTC_HoanThanh_Loc_6Export;
 use App\Exports\ThongKeQLCTTC_HoanThanh_Loc_7Export;
+use App\Exports\ThongKeQLCTTC_HoanThanh_Loc_9Export;
 use App\Exports\ThongKeQLCTTC_loc_thoihocExport;
 use App\Exports\ThongKeQLCTTC_loc_chuyenExport;
 use App\Exports\ThongKeQLCTTC_loc_dunghocExport;
@@ -132,6 +133,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
+use App\Models\QuocGia;
 use App\Models\ThoiHoc;
 use App\Models\ThuongBinh;
 use App\Models\Tinh;
@@ -3481,6 +3483,8 @@ class ThongKeController extends Controller
         ->get();
       $list_vienchuc = VienChuc::orderBy('hoten_vc', 'asc')
         ->get();
+      $list_quocgia = QuocGia::where('status_qg', '<>', '1')
+        ->get();
       $list_1 = VienChuc::join('ketqua', 'ketqua.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
@@ -3494,6 +3498,7 @@ class ThongKeController extends Controller
 
         ->with('list_lop', $list_lop)
         ->with('list_khoa', $list_khoa)
+        ->with('list_quocgia', $list_quocgia)
         ->with('list_1', $list_1)
         ->with('list_vienchuc', $list_vienchuc)
 
@@ -3561,6 +3566,8 @@ class ThongKeController extends Controller
         ->get();
       $list_vienchuc = VienChuc::orderBy('hoten_vc', 'asc')
         ->get();
+      $list_quocgia = QuocGia::where('status_qg', '<>', '1')
+        ->get();
       $data = $request->all();
       if(isset($data['hoanthanh'])  && isset($data['giahan'])  && isset($data['tamdung'])  && isset($data['xinchuyen'])  && isset($data['thoihoc'])){
         $count_1 =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
@@ -3589,6 +3596,7 @@ class ThongKeController extends Controller
           ->with('list_all', $list_all)
           ->with('list_khoa', $list_khoa)
           ->with('list_lop', $list_lop)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_vienchuc', $list_vienchuc)
 
           ->with('phanquyen_admin', $phanquyen_admin)
@@ -3612,6 +3620,7 @@ class ThongKeController extends Controller
 
           ->with('list_khoa', $list_khoa)
           ->with('list_lop', $list_lop)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_hoanthanh', $list_hoanthanh)
 
@@ -3635,6 +3644,7 @@ class ThongKeController extends Controller
           ->with('count_giahan', $count_giahan)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_giahan', $list_giahan)
@@ -3659,6 +3669,7 @@ class ThongKeController extends Controller
           ->with('count_dunghoc', $count_dunghoc)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_dunghoc', $list_dunghoc)
@@ -3683,6 +3694,7 @@ class ThongKeController extends Controller
           ->with('count_chuyen', $count_chuyen)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_chuyen', $list_chuyen)
@@ -3707,6 +3719,7 @@ class ThongKeController extends Controller
           ->with('count_thoihoc', $count_thoihoc)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_thoihoc', $list_thoihoc)
@@ -3994,6 +4007,8 @@ class ThongKeController extends Controller
         ->get();
       $list_vienchuc = VienChuc::orderBy('hoten_vc', 'asc')
         ->get();
+      $list_quocgia = QuocGia::where('status_qg', '<>', '1')
+        ->get();
       $data = $request->all();
 
       if(isset($data['ma_l'])  && isset($data['batdau_capbang'])  && isset($data['ketthuc_capbang'])  && isset($data['batdau_venuoc'])  && isset($data['ketthuc_venuoc'])){
@@ -4017,6 +4032,7 @@ class ThongKeController extends Controller
           ->with('count_hoanthanh_all', $count_hoanthanh_all)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_hoanthanh_all', $list_hoanthanh_all)
@@ -4049,6 +4065,7 @@ class ThongKeController extends Controller
           ->with('count_hoanthanh_2', $count_hoanthanh_2)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_hoanthanh_2', $list_hoanthanh_2)
@@ -4080,6 +4097,7 @@ class ThongKeController extends Controller
           ->with('count_hoanthanh_3', $count_hoanthanh_3)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_hoanthanh_3', $list_hoanthanh_3)
@@ -4110,6 +4128,7 @@ class ThongKeController extends Controller
           ->with('count_hoanthanh_4', $count_hoanthanh_4)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_hoanthanh_4', $list_hoanthanh_4)
@@ -4139,6 +4158,7 @@ class ThongKeController extends Controller
           ->with('count_hoanthanh_5', $count_hoanthanh_5)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_hoanthanh_5', $list_hoanthanh_5)
@@ -4166,6 +4186,7 @@ class ThongKeController extends Controller
           ->with('count_hoanthanh_6', $count_hoanthanh_6)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_hoanthanh_6', $list_hoanthanh_6)
@@ -4194,12 +4215,43 @@ class ThongKeController extends Controller
           ->with('count_hoanthanh_7', $count_hoanthanh_7)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_hoanthanh_7', $list_hoanthanh_7)
 
           ->with('batdau_venuoc', $data['batdau_venuoc'])
           ->with('ketthuc_venuoc', $data['ketthuc_venuoc'])
+
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+      }else if(isset($data['ma_qg'])){
+        $count_hoanthanh_9 =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
+          ->join('quocgia', 'quocgia.ma_qg', '=', 'lop.ma_qg')
+          ->where('status_kq', '<>', '2')
+          ->select(DB::raw('count(ketqua.ma_kq) as sum, quocgia.ma_qg'))
+          ->groupBy('quocgia.ma_qg')
+          ->get();
+        $list_hoanthanh_9 = VienChuc::join('ketqua', 'ketqua.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
+          ->join('quocgia', 'quocgia.ma_qg', '=', 'lop.ma_qg')
+          ->where('status_kq', '<>', '2')
+          ->where('lop.ma_qg', $data['ma_qg'] )
+          ->where('status_kq', '<>', '2')
+          ->where('status_vc', '<>', '2')
+          ->get();
+        return view('thongke.thongke_qlcttc')
+          ->with('title', $title)
+
+          ->with('count_hoanthanh_9', $count_hoanthanh_9)
+
+          ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
+          ->with('list_lop', $list_lop)
+          ->with('list_vienchuc', $list_vienchuc)
+          ->with('list_hoanthanh_9', $list_hoanthanh_9)
+
+          ->with('ma_qg', $data['ma_qg'])
 
           ->with('phanquyen_admin', $phanquyen_admin)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
@@ -4514,6 +4566,50 @@ class ThongKeController extends Controller
     }
   }
 
+  public function thongke_qlcttc_hoanthanh_loc_9_pdf($ma_qg){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $title = 'Viên chức hoàn thành khoá học';
+      $vienchuc = VienChuc::join('ketqua', 'ketqua.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
+        ->join('quocgia', 'quocgia.ma_qg', '=', 'lop.ma_qg')
+        ->where('status_kq', '<>', '2')
+        ->where('lop.ma_qg', $ma_qg )
+        ->where('status_kq', '<>', '2')
+        ->where('status_vc', '<>', '2')
+        ->get();
+      $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlcttc_hoanthanh_loc_9_excel( $ma_qg){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      return Excel::download(new ThongKeQLCTTC_HoanThanh_Loc_9Export( $ma_qg), 'Vien-chuc-hoan-thanh-khoa-hoc.xlsx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+
 
   public function thongke_qlcttc_giahan_loc(Request $request){
     $this->check_login();
@@ -4533,6 +4629,8 @@ class ThongKeController extends Controller
       $list_vienchuc = VienChuc::orderBy('hoten_vc', 'asc')
         ->get();
       $data = $request->all();
+      $list_quocgia = QuocGia::where('status_qg', '<>', '1')
+        ->get();
       if(isset($data['ma_k'])  && isset($data['ma_l'])  && isset($data['batdau_giahan'])  && isset($data['ketthuc_giahan'])){
         $count_giahan_all =  GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
         ->where('status_gh', '<>', '2')
@@ -4555,6 +4653,7 @@ class ThongKeController extends Controller
           ->with('count_giahan_all', $count_giahan_all)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_giahan_all', $list_giahan_all)
@@ -4587,6 +4686,7 @@ class ThongKeController extends Controller
           ->with('count_giahan_2', $count_giahan_2)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_giahan_2', $list_giahan_2)
@@ -4621,6 +4721,7 @@ class ThongKeController extends Controller
           ->with('count_giahan_3', $count_giahan_3)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_giahan_3', $list_giahan_3)
@@ -4654,6 +4755,7 @@ class ThongKeController extends Controller
           ->with('count_giahan_4', $count_giahan_4)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_giahan_4', $list_giahan_4)
@@ -4685,6 +4787,7 @@ class ThongKeController extends Controller
           ->with('count_giahan_5', $count_giahan_5)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_giahan_5', $list_giahan_5)
@@ -4715,6 +4818,7 @@ class ThongKeController extends Controller
           ->with('count_giahan_6', $count_giahan_6)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_giahan_6', $list_giahan_6)
@@ -4746,6 +4850,7 @@ class ThongKeController extends Controller
           ->with('count_giahan_7', $count_giahan_7)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_giahan_7', $list_giahan_7)
@@ -5092,6 +5197,8 @@ class ThongKeController extends Controller
       $list_vienchuc = VienChuc::orderBy('hoten_vc', 'asc')
         ->get();
       $data = $request->all();
+      $list_quocgia = QuocGia::where('status_qg', '<>', '1')
+        ->get();
       if(isset($data['ma_k'])  && isset($data['ma_l'])  && isset($data['batdau_dunghoc'])  && isset($data['ketthuc_dunghoc'])){
         $count_dunghoc_all =  DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
         ->where('status_dh', '<>', '2')
@@ -5114,6 +5221,7 @@ class ThongKeController extends Controller
           ->with('count_dunghoc_all', $count_dunghoc_all)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_dunghoc_all', $list_dunghoc_all)
@@ -5146,6 +5254,7 @@ class ThongKeController extends Controller
           ->with('count_dunghoc_2', $count_dunghoc_2)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_dunghoc_2', $list_dunghoc_2)
@@ -5180,6 +5289,7 @@ class ThongKeController extends Controller
           ->with('count_dunghoc_3', $count_dunghoc_3)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_dunghoc_3', $list_dunghoc_3)
@@ -5213,6 +5323,7 @@ class ThongKeController extends Controller
           ->with('count_dunghoc_4', $count_dunghoc_4)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_dunghoc_4', $list_dunghoc_4)
@@ -5244,6 +5355,7 @@ class ThongKeController extends Controller
           ->with('count_dunghoc_5', $count_dunghoc_5)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_dunghoc_5', $list_dunghoc_5)
@@ -5274,6 +5386,7 @@ class ThongKeController extends Controller
           ->with('count_dunghoc_6', $count_dunghoc_6)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_dunghoc_6', $list_dunghoc_6)
@@ -5305,6 +5418,7 @@ class ThongKeController extends Controller
           ->with('count_dunghoc_7', $count_dunghoc_7)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_dunghoc_7', $list_dunghoc_7)
@@ -5651,6 +5765,8 @@ class ThongKeController extends Controller
       $list_vienchuc = VienChuc::orderBy('hoten_vc', 'asc')
         ->get();
       $data = $request->all();
+      $list_quocgia = QuocGia::where('status_qg', '<>', '1')
+        ->get();
       if(isset($data['ma_k'])  && isset($data['ma_l'])){
         $count_chuyen_all =  Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
           ->join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
@@ -5674,6 +5790,7 @@ class ThongKeController extends Controller
           ->with('count_chuyen_all', $count_chuyen_all)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_chuyen_all', $list_chuyen_all)
@@ -5705,6 +5822,7 @@ class ThongKeController extends Controller
           ->with('count_chuyen_2', $count_chuyen_2)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_chuyen_2', $list_chuyen_2)
@@ -5735,6 +5853,7 @@ class ThongKeController extends Controller
           ->with('count_chuyen_3', $count_chuyen_3)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_chuyen_3', $list_chuyen_3)
@@ -5901,6 +6020,8 @@ class ThongKeController extends Controller
       $list_vienchuc = VienChuc::orderBy('hoten_vc', 'asc')
         ->get();
       $data = $request->all();
+      $list_quocgia = QuocGia::where('status_qg', '<>', '1')
+        ->get();
       if(isset($data['ma_k'])  && isset($data['ma_l'])  && isset($data['batdau_thoihoc'])  && isset($data['ketthuc_thoihoc'])){
         $count_thoihoc_all =  ThoiHoc::join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
         ->where('status_th', '<>', '2')
@@ -5923,6 +6044,7 @@ class ThongKeController extends Controller
           ->with('count_thoihoc_all', $count_thoihoc_all)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_thoihoc_all', $list_thoihoc_all)
@@ -5955,6 +6077,7 @@ class ThongKeController extends Controller
           ->with('count_thoihoc_2', $count_thoihoc_2)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_thoihoc_2', $list_thoihoc_2)
@@ -5989,6 +6112,7 @@ class ThongKeController extends Controller
           ->with('count_thoihoc_3', $count_thoihoc_3)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_thoihoc_3', $list_thoihoc_3)
@@ -6022,6 +6146,7 @@ class ThongKeController extends Controller
           ->with('count_thoihoc_4', $count_thoihoc_4)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_thoihoc_4', $list_thoihoc_4)
@@ -6053,6 +6178,7 @@ class ThongKeController extends Controller
           ->with('count_thoihoc_5', $count_thoihoc_5)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_thoihoc_5', $list_thoihoc_5)
@@ -6083,6 +6209,7 @@ class ThongKeController extends Controller
           ->with('count_thoihoc_6', $count_thoihoc_6)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_thoihoc_6', $list_thoihoc_6)
@@ -6114,6 +6241,7 @@ class ThongKeController extends Controller
           ->with('count_thoihoc_7', $count_thoihoc_7)
 
           ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
           ->with('list_lop', $list_lop)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_thoihoc_7', $list_thoihoc_7)
