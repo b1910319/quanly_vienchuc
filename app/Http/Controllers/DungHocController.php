@@ -355,4 +355,70 @@ class DungHocController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function vienchuc_dunghoc_add($ma_l){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Thêm thông tin";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    Carbon::now('Asia/Ho_Chi_Minh'); 
+    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+    return view('dunghoc.vienchuc_dunghoc_add')
+      ->with('title', $title)
+      ->with('ma_l', $ma_l)
+
+      ->with('count_nangbac', $count_nangbac)
+
+      ->with('phanquyen_admin', $phanquyen_admin)
+      ->with('phanquyen_qltt', $phanquyen_qltt)
+      ->with('phanquyen_qlk', $phanquyen_qlk)
+      ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+      ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+  }
+  public function vienchuc_add_dunghoc(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $data = $request->all();
+      $dunghoc = new dunghoc();
+      $dunghoc->ma_vc = $ma_vc;
+      $dunghoc->ma_l = $data['ma_l'];
+      $dunghoc->batdau_dh = $data['batdau_dh'];
+      $dunghoc->ketthuc_dh = $data['ketthuc_dh'];
+      $dunghoc->lydo_dh = $data['lydo_dh'];
+      $dunghoc->status_dh = $data['status_dh'];
+      $get_file = $request->file('file_dh');
+      if($get_file){
+        $new_file = time().rand(0,999).'.'.$get_file->getClientOriginalExtension();
+        $get_file->move('public/uploads/dunghoc', $new_file);
+        $dunghoc->file_dh = $new_file;
+      }
+      $dunghoc->save();
+      return redirect()->back();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }

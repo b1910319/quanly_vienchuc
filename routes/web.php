@@ -813,6 +813,9 @@ Route::get('/dunghoc_all',[DungHocController::class, 'dunghoc_all']);
 Route::post('/delete_dunghoc_check',[DungHocController::class, 'delete_dunghoc_check']);
 Route::get('/delete_dunghoc_all',[DungHocController::class, 'delete_dunghoc_all']);
 
+Route::get('/vienchuc_dunghoc_add/{ma_l}',[DungHocController::class, 'vienchuc_dunghoc_add']);
+Route::post('/vienchuc_add_dunghoc',[DungHocController::class, 'vienchuc_add_dunghoc']);
+
 
 
 

@@ -189,7 +189,7 @@
             <th class="text-light" scope="col">Thông tin lớp học</th>
             <th class="text-light" scope="col">Thông tin tạm dừng học</th>
             <th class="text-light" scope="col">Trạng thái</th>
-            <th class="text-light" scope="col">file tạm dừng học</th>
+            <th class="text-light" scope="col">File</th>
             <th class="text-light" scope="col"></th>
           </tr>
         </thead>
@@ -237,7 +237,7 @@
                   }
                 ?>
               </td>
-              <td>
+              <td style="width: 8%">
                 @if ($dunghoc->file_dh !=' ')
                   <a href="{{ asset('public/uploads/dunghoc/'.$dunghoc->file_dh) }}">
                     <button type="button" class="btn btn-warning button_xanhla">

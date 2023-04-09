@@ -191,16 +191,23 @@
                   @endforeach
                 </td>
                 <td style="width: 16%;">
+                  <a href="{{ URL::to('vienchuc_dunghoc_add/'.$lop->ma_l) }}">
+                    <button type="submit"  class="btn btn-primary button_xanhla">
+                      <i class="fas fa-plus-square text-light"></i>
+                      &ensp;
+                      Thêm
+                    </button>
+                  </a>
                   @foreach ($dunghoc as $dh )
                     @if ($dh->ma_l == $lop->ma_l && $dh->ma_vc == $lop->ma_vc)
-                      <div style="height: 120px">
+                      <div style="height: 120px" class="mt-1">
                         <b>Thời gian bắt đầu: </b> {{ $dh->batdau_dh }} <br>
                         <b>Thời gian kết thúc: </b> {{ $dh->ketthuc_dh }} <br>
                         <b>Lý do dừng học: </b> {{ $dh->lydo_dh }} <br>
                       </div>
                       @if ($dh->file_dh !=' ')
                         <a href="{{ asset('public/uploads/dunghoc/'.$dh->file_dh) }}">
-                          <button type="button" class="btn btn-warning mt-2 button_xanhla">
+                          <button type="button" class="btn btn-warning mt-2 button_do">
                             <i class="fa-solid fa-file text-light"></i>
                             &ensp;
                             File
@@ -211,13 +218,6 @@
                       @endif
                     @endif
                   @endforeach
-                  <a href="">
-                    <button type="submit"  class="btn btn-primary button_xanhla">
-                      <i class="fas fa-plus-square text-light"></i>
-                      &ensp;
-                      Thêm
-                    </button>
-                  </a>
                 </td>
                 <td style="width: 16%;">
                   @foreach ($chuyen as $c )
