@@ -828,6 +828,9 @@ Route::post('/delete_giahan_check',[GiaHanController::class, 'delete_giahan_chec
 Route::get('/giahan_all',[GiaHanController::class, 'giahan_all']);
 Route::get('/delete_giahan_all',[GiaHanController::class, 'delete_giahan_all']);
 
+Route::get('/vienchuc_giahan_add/{ma_l}',[GiaHanController::class, 'vienchuc_giahan_add']);
+Route::post('/vienchuc_add_giahan',[GiaHanController::class, 'vienchuc_add_giahan']);
+
 
 
 
