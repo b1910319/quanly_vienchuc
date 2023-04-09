@@ -386,6 +386,6 @@ class KetQuaController extends Controller
     $ketqua->kiennghi_kq = $data['kiennghi_kq'];
     $ketqua->status_kq = $data['status_kq'];
     $ketqua->save();
-    return redirect()->back();
+    return Redirect::to('thongtin_lophoc');
   }
 }

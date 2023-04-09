@@ -850,6 +850,9 @@ Route::post('/delete_chuyen_check',[ChuyenController::class, 'delete_chuyen_chec
 Route::get('/chuyen_all',[ChuyenController::class, 'chuyen_all']);
 Route::get('/delete_chuyen_all',[ChuyenController::class, 'delete_chuyen_all']);
 
+Route::get('/vienchuc_chuyen_add/{ma_l}',[ChuyenController::class, 'vienchuc_chuyen_add']);
+Route::post('/vienchuc_add_chuyen',[ChuyenController::class, 'vienchuc_add_chuyen']);
+
 
 
 

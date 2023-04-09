@@ -224,6 +224,11 @@ class ChuyenController extends Controller
         if($id != null){
           $chuyen = Chuyen::find($id);
           $chuyen->delete();
+          $danhsach = DanhSach::where('ma_vc', $chuyen->ma_vc)
+            ->where('ma_l', $chuyen->ma_l)
+            ->first();
+          $danhsach->status_ds = '0';
+          $danhsach->save();
         }
       }
     }
@@ -245,6 +250,11 @@ class ChuyenController extends Controller
           unlink('public/uploads/chuyen/'.$chuyen->file_c);
         }
         $chuyen->delete();
+        $danhsach = DanhSach::where('ma_vc', $chuyen->ma_vc)
+          ->where('ma_l', $chuyen->ma_l)
+          ->first();
+        $danhsach->status_ds = '0';
+        $danhsach->save();
       }
       return redirect()->back();
     }
@@ -362,5 +372,65 @@ class ChuyenController extends Controller
     }else{
       return Redirect::to('/home');
     }
+  }
+  public function vienchuc_chuyen_add($ma_l){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Thêm kết quả quá trình học";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    Carbon::now('Asia/Ho_Chi_Minh'); 
+    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
+    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
+        ->select(DB::raw('count(ma_vc) as sum'))
+        ->get();
+    return view('chuyen.vienchuc_chuyen_add')
+      ->with('title', $title)
+      ->with('ma_l', $ma_l)
+
+      ->with('count_nangbac', $count_nangbac)
+
+      ->with('phanquyen_admin', $phanquyen_admin)
+      ->with('phanquyen_qltt', $phanquyen_qltt)
+      ->with('phanquyen_qlk', $phanquyen_qlk)
+      ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+      ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+  }
+  public function vienchuc_add_chuyen(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $data = $request->all();
+    $chuyen = new chuyen();
+    $chuyen->ma_vc = $ma_vc;
+    $chuyen->ma_l = $data['ma_l'];
+    $chuyen->noidung_c = $data['noidung_c'];
+    $chuyen->lydo_c = $data['lydo_c'];
+    $chuyen->status_c = $data['status_c'];
+    $get_file = $request->file('file_c');
+    if($get_file){
+      $new_file = time().rand(0,999).'.'.$get_file->getClientOriginalExtension();
+      $get_file->move('public/uploads/chuyen', $new_file);
+      $chuyen->file_c = $new_file;
+    }
+    $chuyen->save();
+    $danhsach = DanhSach::where('ma_vc', $ma_vc)
+      ->where('ma_l', $data['ma_l'])
+      ->first();
+    $danhsach->status_ds = '2';
+    $danhsach->save();
+    return Redirect::to('thongtin_lophoc');
   }
 }

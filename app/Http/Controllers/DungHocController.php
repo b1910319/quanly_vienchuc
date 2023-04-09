@@ -394,31 +394,21 @@ class DungHocController extends Controller
   public function vienchuc_add_dunghoc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      $data = $request->all();
-      $dunghoc = new dunghoc();
-      $dunghoc->ma_vc = $ma_vc;
-      $dunghoc->ma_l = $data['ma_l'];
-      $dunghoc->batdau_dh = $data['batdau_dh'];
-      $dunghoc->ketthuc_dh = $data['ketthuc_dh'];
-      $dunghoc->lydo_dh = $data['lydo_dh'];
-      $dunghoc->status_dh = $data['status_dh'];
-      $get_file = $request->file('file_dh');
-      if($get_file){
-        $new_file = time().rand(0,999).'.'.$get_file->getClientOriginalExtension();
-        $get_file->move('public/uploads/dunghoc', $new_file);
-        $dunghoc->file_dh = $new_file;
-      }
-      $dunghoc->save();
-      return redirect()->back();
-    }else{
-      return Redirect::to('/home');
+    $data = $request->all();
+    $dunghoc = new dunghoc();
+    $dunghoc->ma_vc = $ma_vc;
+    $dunghoc->ma_l = $data['ma_l'];
+    $dunghoc->batdau_dh = $data['batdau_dh'];
+    $dunghoc->ketthuc_dh = $data['ketthuc_dh'];
+    $dunghoc->lydo_dh = $data['lydo_dh'];
+    $dunghoc->status_dh = $data['status_dh'];
+    $get_file = $request->file('file_dh');
+    if($get_file){
+      $new_file = time().rand(0,999).'.'.$get_file->getClientOriginalExtension();
+      $get_file->move('public/uploads/dunghoc', $new_file);
+      $dunghoc->file_dh = $new_file;
     }
+    $dunghoc->save();
+    return Redirect::to('thongtin_lophoc');
   }
 }

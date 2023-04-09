@@ -405,6 +405,6 @@ class GiaHanController extends Controller
       $giahan->file_gh = $new_file;
     }
     $giahan->save();
-    return redirect()->back();
+    return Redirect::to('thongtin_lophoc');
   }
 }
