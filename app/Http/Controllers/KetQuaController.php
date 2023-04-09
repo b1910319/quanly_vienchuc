@@ -31,16 +31,7 @@ class KetQuaController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
-      ->where('ma_q', '=', '8')
-      ->first();
     $title = "Cập nhật kết quả học tập";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
-      ->where('ma_q', '=', '7')
-      ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '6')
       ->first();
@@ -63,24 +54,15 @@ class KetQuaController extends Controller
         ->get();
       $lop = Lop::find($ma_l);
       $vienchuc = VienChuc::find($ma_vc);
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('ketqua.ketqua')
         ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
         ->with('title', $title)
         ->with('count_status', $count_status)
         ->with('list', $list)
         ->with('lop', $lop)
         ->with('vienchuc', $vienchuc)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('count_nangbac', $count_nangbac);
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
     }else{
       return Redirect::to('/home');
     }
@@ -159,34 +141,16 @@ class KetQuaController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
     $title = "Cập nhật thông tin quyết định";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
-      ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
       $edit = KetQua::find($ma_kq);
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('ketqua.ketqua_edit')
         ->with('edit', $edit)
         ->with('title', $title)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('phanquyen_qltt', $phanquyen_qltt)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');
@@ -309,16 +273,7 @@ class KetQuaController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
-      ->where('ma_q', '=', '8')
-      ->first();
     $title = "Cập nhật kết quả học tập";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
-      ->where('ma_q', '=', '7')
-      ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '6')
       ->first();
@@ -342,11 +297,6 @@ class KetQuaController extends Controller
         ->get();
       $list_lop = Lop::orderBy('ten_l', 'asc')
         ->get();
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('ketqua.ketqua')
         ->with('count', $count)
         ->with('title', $title)
@@ -357,11 +307,7 @@ class KetQuaController extends Controller
         ->with('list_vienchuc', $list_vienchuc)
         ->with('vienchuc', $vienchuc)
         ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('phanquyen_qltt', $phanquyen_qltt)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('count_nangbac', $count_nangbac);
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
     }else{
       return Redirect::to('/home');
     }

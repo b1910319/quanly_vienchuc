@@ -27,41 +27,19 @@ class QuyenController extends Controller
     $this->check_login();
     $title = "Quản lý các quyền";
     $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
       ->first();
     if($phanquyen_admin){
       $count = Quyen::select(DB::raw('count(ma_q) as sum'))->get();
       $count_status = Quyen::select(DB::raw('count(ma_q) as sum, status_q'))->groupBy('status_q')->get();
       $list = Quyen::orderBy('ma_q', 'desc')
         ->get();
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('quyen.quanly_quyen')
         ->with('count', $count)
         ->with('title', $title)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('count_status', $count_status)
-        ->with('phanquyen_qltt', $phanquyen_qltt)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('list', $list);
     }else{
       return Redirect::to('/home');
@@ -123,36 +101,14 @@ class QuyenController extends Controller
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $title = "Cập nhật thông tin quyền";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '7')
-      ->first();
     if($phanquyen_admin){
       $edit = Quyen::find($ma_q);
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('quyen.quanly_quyen_edit')
         ->with('edit', $edit)
         ->with('title', $title)
-        ->with('count_nangbac', $count_nangbac)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');

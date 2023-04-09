@@ -96,7 +96,7 @@
             </div>
             <div class="offcanvas-body">
               <table class="table">
-                <thead class="table-dark text-light">
+                <thead>
                   <tr>
                     <th scope="col">Tên</th>
                     <th scope="col">Số lượng</th>
@@ -366,10 +366,10 @@
                   </div>
                   <div class="col-6 mt-1">
                     <a href="{{ URL::to('/ketqua_pdf/'.$ketqua->ma_kq) }}">
-                      <button type="button" class="btn btn-warning button_do" style="width: 100%">
+                      <button type="button" class="btn btn-warning button_xanhla" style="width: 100%">
                         <i class="fa-solid fa-file-pdf text-light"></i>
                         &ensp;
-                        Xuất file PDF
+                        Xuất file
                       </button>
                     </a>
                   </div>

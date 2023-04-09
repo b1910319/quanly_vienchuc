@@ -329,19 +329,44 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                     <a href="{{ URL::to('/quyetdinh_all') }}">Quyết định cử đi học</a>
                   </li>
                   <li>
-                    <a href="{{ URL::to('/ketqua_all') }}">Kết quả quá trình học của viên chức</a>
+                    <a href="{{ URL::to('/ketqua_all') }}">
+                      @foreach ($count_ketqua_an as $count )
+                        <span class="badge badge badge-pill float-right" style="background-color: #54B435;">{{ $count->sum }}</span>
+                      @endforeach
+                      Kết quả quá trình học của viên chức
+                    </a>
                   </li>
                   <li>
-                    <a href="{{ URL::to('/dunghoc_all') }}">Thông tin tạm dừng học của viên chức</a>
+                    <a href="{{ URL::to('/dunghoc_all') }}">
+                      @foreach ($count_tamdung_an as $count )
+                        <span class="badge badge badge-pill float-right" style="background-color: #AC0D0D;">{{ $count->sum }}</span>
+                      @endforeach
+                      Thông tin tạm dừng học của viên chức
+                    </a>
                   </li>
                   <li>
-                    <a href="{{ URL::to('/giahan_all') }}">Thông tin gia hạn thời gian học của viên chức</a>
+                    <a href="{{ URL::to('/giahan_all') }}">
+                      @foreach ($count_giahan_an as $count )
+                        <span class="badge badge badge-pill float-right" style="background-color: #0C1E7F;">{{ $count->sum }}</span>
+                      @endforeach
+                      Thông tin gia hạn thời gian học của viên chức
+                    </a>
                   </li>
                   <li>
-                    <a href="{{ URL::to('/chuyen_all') }}">Thông tin xin chuyển trường / nước / ngành học của viên chức</a>
+                    <a href="{{ URL::to('/chuyen_all') }}">
+                      @foreach ($count_chuyen_an as $count )
+                        <span class="badge badge badge-pill float-right" style="background-color: #C400FF;">{{ $count->sum }}</span>
+                      @endforeach
+                      Thông tin xin chuyển trường / nước / ngành học của viên chức
+                    </a>
                   </li>
                   <li>
-                    <a href="{{ URL::to('/thoihoc_all') }}">Thông tin xin thôi học của viên chức</a>
+                    <a href="{{ URL::to('/thoihoc_all') }}">
+                      @foreach ($count_thoihoc_an as $count )
+                        <span class="badge badge badge-pill float-right" style="background-color: #480032;">{{ $count->sum }}</span>
+                      @endforeach
+                      Thông tin xin thôi học của viên chức
+                    </a>
                   </li>
                   <li>
                     <a href="{{ URL::to('/thongke_qlcttc') }}">Thống kê</a>
