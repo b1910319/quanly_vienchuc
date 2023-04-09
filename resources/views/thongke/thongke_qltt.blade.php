@@ -598,6 +598,94 @@
         </div>
       </div>
     @endif
+    @if (isset($list_4 ))
+      <div class="alert alert-light color_alert" role="alert" >
+        ________DANH SÁCH VIÊN CHỨC________
+      </div>
+      <p style="font-weight: bold; color: #D36B00; font-size: 18px">
+        Danh sách được lọc theo: 
+        @foreach ($list_khoa as $khoa )
+          @if ($khoa->ma_k == $ma_k)
+          <span class="badge badge rounded-pill text-bg-warning">{{ $khoa->ten_k }}</span>
+          @endif
+        @endforeach
+        ,
+        @foreach ($list_loaibangcap as $loaibangcap )
+          @if ($loaibangcap->ma_lbc == $ma_lbc)
+          <span class="badge text-bg-secondary">{{ $loaibangcap->ten_lbc }}</span>
+          @endif
+        @endforeach
+      </p>
+      <table class="table" id="mytable">
+        <thead class="color_table">
+          <tr>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Loại bằng cấp</th>
+          </tr>
+        </thead>
+        <tbody  >
+          @foreach($list_4 as $key => $vc)
+            <tr>
+              <td>{{ $key+1 }}</td>
+              <td>
+                <div class="row ">
+                  <div class="col-md-12">
+                    <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
+                      style="height: 100px; overflow: auto;">
+                      <p>
+                        <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
+                        <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b> Email: </b> {{ $vc->user_vc }} <br>
+                        <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
+                        <b> Giới tính: </b>
+                        @if ($vc->giotinh_vc == 0)
+                          Nam
+                        @else
+                          Nữ
+                        @endif
+                        <br>
+                        <b> Địa chỉ hiện tại: </b> {{ $vc->hientai_vc }} <br>
+                        <b> Địa chỉ thường trú: </b> {{ $vc->thuongtru_vc }} <br>
+                        <b> Trình độ phổ thông: </b> {{ $vc->trinhdophothong_vc }} <br>
+                        <b> Ngoại ngữ: </b> {{ $vc->ngoaingu_vc }} <br>
+                        <b> Tin học: </b> {{ $vc->tinhoc_vc }} <br>
+                        <b> Ngày vào đảng: </b> {{ $vc->ngayvaodang_vc }} <br>
+                        <b> Ngày chính thức: </b> {{ $vc->ngaychinhthuc_vc }} <br>
+                        <b> Ngày bắt đầu làm việc: </b> {{ $vc->ngaybatdaulamviec_vc }} <br>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_lbc }}({{ $vc->ma_lbc }})</td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qltt_loc_4_pdf/'.$ma_k.'/'.$ma_lbc) }}">
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qltt_loc_4_excel/'.$ma_k.'/'.$ma_lbc) }}">
+            <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
+              &ensp;
+              Xuất file Excel
+            </button>
+          </a>
+        </div>
+      </div>
+    @endif
     @if ( isset($list_pdf_khoa))
       <div class="alert alert-light color_alert" role="alert" >
         ________DANH SÁCH VIÊN CHỨC ĐƯỢC LỌC THEO KHOA________
@@ -1610,6 +1698,16 @@
                   $ten_k = $khoa->ten_k;
                   $tong = $count->sum;
                   echo "{ year: '$ten_k', value: $tong },";
+                }
+              }
+            }
+          }else if(isset($count_4)){
+            foreach ($count_4 as $key => $count){
+              foreach($list_loaibangcap as $key => $loaibangcap){
+                if($count->ma_lbc == $loaibangcap->ma_lbc){
+                  $ten_lbc = $loaibangcap->ten_lbc;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_lbc', value: $tong },";
                 }
               }
             }
