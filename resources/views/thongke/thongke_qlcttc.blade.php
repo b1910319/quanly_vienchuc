@@ -2806,6 +2806,136 @@
         </div>
       </div>
     @endif
+    @if (isset($list_hoanthanh_15))
+      <div class="alert alert-light color_alert" role="alert">
+        ________DANH SÁCH VIÊN CHỨC HOÀN THÀNH KHOÁ HỌC________
+      </div>
+      <p style="font-weight: bold; color: #D36B00; font-size: 18px">
+        Danh sách được lọc theo: 
+        ngày về nước
+        <span class="badge text-bg-danger">{{ $batdau_venuoc }}</span>
+        <span class="badge text-bg-warning">{{ $ketthuc_venuoc }}</span>
+        ,
+        @foreach ($list_khoa as $khoa )
+          @if ($khoa->ma_k == $ma_k)
+          <span class="badge text-bg-primary">{{ $khoa->ten_k }}</span>
+          @endif
+        @endforeach
+      </p>
+      <table class="table" id="mytable">
+        <thead class="color_table">
+          <tr>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin lớp</th>
+            <th class="text-light" scope="col">Thông tin kết quả</th>
+          </tr>
+        </thead>
+        <tbody  >
+          @foreach($list_hoanthanh_15 as $key => $vc)
+            <tr>
+              <td>{{ $key+1 }}</td>
+              <td>
+                <div class="row ">
+                  <div class="col-md-12">
+                    <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
+                      style="height: 100px; overflow: auto;">
+                      @foreach ($list_vienchuc as $vienchuc )
+                        @if ($vienchuc->ma_vc == $vc->ma_vc)
+                          <p>
+                            <b> Tên viên chức:</b> {{ $vienchuc->hoten_vc }} <br>
+                            <b> Số điện thoại:</b> {{ $vienchuc->sdt_vc }} <br>
+                            <b> Email: </b> {{ $vienchuc->user_vc }} <br>
+                            <b> Ngày sinh: </b> {{ $vienchuc->ngaysinh_vc }} <br>
+                            <b> Giới tính: </b>
+                            @if ($vienchuc->giotinh_vc == 0)
+                              Nam
+                            @else
+                              Nữ
+                            @endif
+                            <br>
+                            <b> Địa chỉ hiện tại: </b> {{ $vienchuc->hientai_vc }} <br>
+                            <b> Địa chỉ thường trú: </b> {{ $vienchuc->thuongtru_vc }} <br>
+                            <b> Trình độ phổ thông: </b> {{ $vienchuc->trinhdophothong_vc }} <br>
+                            <b> Ngoại ngữ: </b> {{ $vienchuc->ngoaingu_vc }} <br>
+                            <b> Tin học: </b> {{ $vienchuc->tinhoc_vc }} <br>
+                            <b> Ngày vào đảng: </b> {{ $vienchuc->ngayvaodang_vc }} <br>
+                            <b> Ngày chính thức: </b> {{ $vienchuc->ngaychinhthuc_vc }} <br>
+                            <b> Ngày bắt đầu làm việc: </b> {{ $vienchuc->ngaybatdaulamviec_vc }} <br>
+                            <b> Chức vụ: </b> {{ $vienchuc->ten_cv }} <br>
+                            <b> Dân tộc: </b> {{ $vienchuc->ten_dt }} <br>
+                            <b> Tôn giáo: </b> {{ $vienchuc->ten_tg }}
+                          </p>
+                        @endif
+                      @endforeach
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>{{ $vc->ten_k }}</td>
+              <td>
+                <div class="row ">
+                  <div class="col-md-12">
+                    <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
+                      style="height: 100px; overflow: auto;">
+                      <p>
+                        <b> Tên lớp:</b> {{ $vc->ten_l }} <br>
+                        <b> Ngày bắt đầu:</b> {{ $vc->ngaybatdau_l }} <br>
+                        <b> Ngày kết thúc: </b> {{ $vc->ngayketthuc_l }} <br>
+                        <b> Cơ sở đào tạo: </b> {{ $vc->tencosodaotao_l }} <br>
+                        <b> Quốc gia đào tạo: </b> {{ $vc->quocgiaodaotao_l }} <br>
+                        <b> Ngành học: </b> {{ $vc->nganhhoc_l }} <br>
+                        <b> Địa chỉ cơ sở: </b> {{ $vc->diachidaotao_l }} <br>
+                        <b> Email: </b> {{ $vc->emailcoso_l }} <br>
+                        <b> Số điện thoại: </b> {{ $vc->sdtcoso_l }} <br>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="row ">
+                  <div class="col-md-12">
+                    <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
+                      style="height: 100px; overflow: auto;">
+                      <p>
+                        <b> Tên người hướng dẫn:</b> {{ $vc->tennguoihuongdan_kq }} <br>
+                        <b> Email người hướng dẫn:</b> {{ $vc->emailnguoihuongdan_kq }} <br>
+                        <b> Bằng được cấp:</b> {{ $vc->bangduoccap_kq }} <br>
+                        <b> Ngày cấp bằng:</b> {{ $vc->ngaycapbang_kq }} <br>
+                        <b> Xếp loại:</b> {{ $vc->xeploai_kq }} <br>
+                        <b> Ngày về nước:</b> {{ $vc->ngayvenuoc_kq }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlcttc_hoanthanh_loc_15_pdf/'.$batdau_venuoc.'/'.$ketthuc_venuoc.'/'.$ma_k) }}">
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlcttc_hoanthanh_loc_15_excel/'.$batdau_venuoc.'/'.$ketthuc_venuoc.'/'.$ma_k) }}">
+            <button type="button" class="btn btn-warning button_xanhla" style="width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
+              &ensp;
+              Xuất file Excel
+            </button>
+          </a>
+        </div>
+      </div>
+    @endif
 
     @if (isset($list_giahan_all))
       <div class="alert alert-light color_alert" role="alert">
@@ -5987,6 +6117,12 @@
                   echo "{ year: '$ten_qg', value: $tong },";
                 }
               }
+            }
+          }else if(isset($count_hoanthanh_15) ){
+            foreach ($count_hoanthanh_15 as $key => $count){
+              $ngayvenuoc_kq = $count->ngayvenuoc_kq;
+              $tong = $count->sum;
+              echo "{ year: '$ngayvenuoc_kq', value: $tong },";
             }
           }else if(isset($count_giahan_all) ){
             foreach ($count_giahan_all as $key => $count){
