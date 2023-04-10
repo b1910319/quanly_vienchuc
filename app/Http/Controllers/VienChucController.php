@@ -275,33 +275,6 @@ class VienChucController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function admin_delete_vienchuc_khoa($ma_k, $ma_vc){
-  //   $this->check_login();
-  //   $ma_vc_login = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '9')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qlk){
-  //     VienChuc::find($ma_vc)->delete();
-  //     $list_noisinh = NoiSinh::where('ma_vc', $ma_vc)
-  //       ->get();
-  //     foreach($list_noisinh as $noisinh){
-  //       $noisinh->delete();
-  //     }
-  //     $list_quequan = QueQuan::where('ma_vc', $ma_vc)
-  //       ->get();
-  //     foreach($list_quequan as $quequan){
-  //       $quequan->delete();
-  //     }
-  //     return Redirect::to('/vienchuc_khoa/'.$ma_k);
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-    
-  // }
   public function admin_delete_vienchuc_khoa(Request $request){
     $this->check_login();
     $this->check_login();
@@ -740,6 +713,7 @@ class VienChucController extends Controller
       $vienchuc->quanlynhanuoc_vc = $data['quanlynhanuoc_vc'];
       $vienchuc->ngoaingu_vc = $data['ngoaingu_vc'];
       $vienchuc->tinhoc_vc = $data['tinhoc_vc'];
+      $vienchuc->hocphangiangday_vc = $data['hocphangiangday_vc'];
       $vienchuc->ngayvaodang_vc = $data['ngayvaodang_vc'];
       $vienchuc->ngaychinhthuc_vc = $data['ngaychinhthuc_vc'];
       $vienchuc->ngaynhapngu_vc = $data['ngaynhapngu_vc'];

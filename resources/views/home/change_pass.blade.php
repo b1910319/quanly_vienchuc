@@ -50,7 +50,7 @@
           </div>
           <div class="pb-2 pt-2 text-center">
             <button class="button fw-bold" type="submit" style="font-size: 20px;">
-              Đăng nhập
+              Cập nhật
             </button>
           </div>
         </div>

@@ -386,6 +386,14 @@
                   <input type='text' class='form-control input_table' autofocus required name="trinhdophothong_vc"  value="{{ $edit->trinhdophothong_vc }}">
                 </td>
               </tr>
+              <tr>
+                <th scope="row">Học phần giảng dạy: </th>
+                <td class="was-validated">
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="hocphangiangday_vc">
+                    {{ $edit->hocphangiangday_vc }}
+                  </textarea>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

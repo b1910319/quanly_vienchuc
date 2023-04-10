@@ -363,6 +363,7 @@ class HomeController extends Controller
       $vienchuc->gioitinh_vc = $data['gioitinh_vc'];
       $vienchuc->thuongtru_vc = $data['thuongtru_vc'];
       $vienchuc->hientai_vc = $data['hientai_vc'];
+      $vienchuc->hocphangiangday_vc = $data['hocphangiangday_vc'];
       $vienchuc->nghekhiduoctuyen_vc = $data['nghekhiduoctuyen_vc'];
       $vienchuc->ngaytuyendung_vc = $data['ngaytuyendung_vc'];
       $vienchuc->congviecchinhgiao_vc = $data['congviecchinhgiao_vc'];
@@ -816,7 +817,11 @@ class HomeController extends Controller
     if(isset($vienchuc)){
       $vienchuc_update = VienChuc::find($vienchuc->ma_vc);
       $vienchuc_update->pass_vc = VienChuc::find($vienchuc->ma_vc)->update(['pass_vc' => $pass_moi]);
-      return Redirect::to('/home');
+      session()->put('hoten_vc',null);
+      session()->put('ma_vc',null);
+      session()->put('ma_k',null);
+      session()->put('hinh_vc',null);
+      return Redirect::to('/login');
     }else{
       return Redirect::to('/change_pass');
     }

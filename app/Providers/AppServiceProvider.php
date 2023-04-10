@@ -74,6 +74,10 @@ class AppServiceProvider extends ServiceProvider
       ->where('ma_q', '=', '6')
       ->first();
     View::share('phanquyen_qlcttc', $phanquyen_qlcttc);
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '51')
+      ->first();
+    View::share('phanquyen_qlqtcv', $phanquyen_qlqtcv);
     Carbon::now('Asia/Ho_Chi_Minh'); 
     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)

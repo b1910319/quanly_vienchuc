@@ -265,6 +265,16 @@
                   @endif
                 </td>
               </tr>
+              <tr>
+                <th scope="row">Học phần giảng dạy: </th>
+                <td>
+                  @if ($vienchuc->hocphangiangday_vc != null)
+                    {{ $vienchuc->hocphangiangday_vc }}
+                  @else
+                    Chưa cập nhật <i class="fa-solid fa-circle-xmark" style="color: red;"></i>
+                  @endif
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
