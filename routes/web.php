@@ -642,6 +642,11 @@ Route::get('/thongke_qlcttc_dunghoc_loc_6_excel/{ma_l}',[ThongKeController::clas
 Route::get('/thongke_qlcttc_dunghoc_loc_7_pdf/{batdau_dunghoc}/{ketthuc_dunghoc}',[ThongKeController::class, 'thongke_qlcttc_dunghoc_loc_7_pdf']);
 Route::get('/thongke_qlcttc_dunghoc_loc_7_excel/{batdau_dunghoc}/{ketthuc_dunghoc}',[ThongKeController::class, 'thongke_qlcttc_dunghoc_loc_7_excel']);
 
+Route::get('/thongke_qlcttc_dunghoc_loc_8_pdf/{ma_qg}',[ThongKeController::class, 'thongke_qlcttc_dunghoc_loc_8_pdf']);
+Route::get('/thongke_qlcttc_dunghoc_loc_8_excel/{ma_qg}',[ThongKeController::class, 'thongke_qlcttc_dunghoc_loc_8_excel']);
+
+
+
 Route::post('/thongke_qlcttc_xinchuyen_loc',[ThongKeController::class, 'thongke_qlcttc_xinchuyen_loc']);
 
 Route::get('/thongke_qlcttc_chuyen_loc_all_pdf/{ma_k}/{ma_l}',[ThongKeController::class, 'thongke_qlcttc_chuyen_loc_all_pdf']);
