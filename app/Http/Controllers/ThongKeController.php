@@ -6075,6 +6075,40 @@ class ThongKeController extends Controller
 
           ->with('phanquyen_admin', $phanquyen_admin)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+      }else if(isset($data['ma_qg'])  && isset($data['batdau_dunghoc'])  && isset($data['ketthuc_dunghoc'])){
+        $count_dunghoc_11 =  DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
+        ->join('quocgia', 'quocgia.ma_qg', '=', 'lop.ma_qg')
+        ->where('status_dh', '<>', '2')
+        ->select(DB::raw('count(dunghoc.ma_dh) as sum, quocgia.ma_qg, dunghoc.batdau_dh'))
+        ->groupBy('quocgia.ma_qg', 'dunghoc.batdau_dh')
+        ->get();
+        $list_dunghoc_11 = VienChuc::join('dunghoc', 'dunghoc.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
+          ->join('quocgia', 'quocgia.ma_qg', '=', 'lop.ma_qg')
+          ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('status_dh', '<>', '2')
+          ->where('quocgia.ma_qg', $data['ma_qg'] )
+          ->whereBetween('dunghoc.batdau_dh', [$data['batdau_dunghoc'], $data['ketthuc_dunghoc']])
+          ->where('status_dh', '<>', '2')
+          ->where('status_vc', '<>', '2')
+          ->get();
+        return view('thongke.thongke_qlcttc')
+          ->with('title', $title)
+
+          ->with('count_dunghoc_11', $count_dunghoc_11)
+
+          ->with('list_khoa', $list_khoa)
+          ->with('list_quocgia', $list_quocgia)
+          ->with('list_lop', $list_lop)
+          ->with('list_vienchuc', $list_vienchuc)
+          ->with('list_dunghoc_11', $list_dunghoc_11)
+
+          ->with('ma_qg', $data['ma_qg'])
+          ->with('batdau_dunghoc', $data['batdau_dunghoc'])
+          ->with('ketthuc_dunghoc', $data['ketthuc_dunghoc'])
+
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
       }else if(isset($data['ma_k']) && isset($data['batdau_dunghoc'])  && isset($data['ketthuc_dunghoc'])){
         $count_dunghoc_3 =  VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('dunghoc', 'dunghoc.ma_vc', '=', 'vienchuc.ma_vc')
@@ -6710,6 +6744,52 @@ class ThongKeController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
       return Excel::download(new ThongKeQLCTTC_DungHoc_Loc_9Export($ma_k, $ma_qg), 'Vien-chuc-dung-hoc.xlsx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+
+    public function thongke_qlcttc_dunghoc_loc_11_pdf($ma_qg, $batdau_dunghoc, $ketthuc_dunghoc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $title = 'Viên chức xin dừng học';
+      $vienchuc = VienChuc::join('dunghoc', 'dunghoc.ma_vc', '=', 'vienchuc.ma_vc')
+      ->join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
+      ->join('quocgia', 'quocgia.ma_qg', '=', 'lop.ma_qg')
+      ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+      ->where('status_dh', '<>', '2')
+      ->where('quocgia.ma_qg', $ma_qg )
+      ->whereBetween('dunghoc.batdau_dh', [$batdau_dunghoc, $ketthuc_dunghoc])
+      ->where('status_dh', '<>', '2')
+      ->where('status_vc', '<>', '2')
+      ->get();
+      $pdf = PDF::loadView('pdf.thongke_qlcttc_dunghoc', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlcttc_dunghoc_loc_11_excel( $ma_qg, $batdau_dunghoc, $ketthuc_dunghoc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      return Excel::download(new ThongKeQLCTTC_DungHoc_Loc_11Export( $ma_qg, $batdau_dunghoc, $ketthuc_dunghoc), 'Vien-chuc-dung-hoc.xlsx');
     }else{
       return Redirect::to('/home');
     }
