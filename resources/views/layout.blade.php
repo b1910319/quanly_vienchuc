@@ -280,6 +280,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                       Nhiệm kỳ
                     </a>
                   </li>
+                  <li>
+                    <a href="{{ URL::to('/quatrinhchucvu') }}">
+                      Qúa trình chức vụ
+                    </a>
+                  </li>
                 </ul>
               </li>
             @endif

@@ -36,6 +36,7 @@ use App\Http\Controllers\ThoiHocController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\KhuVucController;
 use App\Http\Controllers\NhiemKyController;
+use App\Http\Controllers\QuaTrinhChucVuController;
 use App\Http\Controllers\QuocGiaController;
 
 Route::get('/login',[HomeController::class, 'index']);
@@ -992,6 +993,31 @@ Route::post('/update_nhiemky/{ma_nk}',[NhiemKyController::class, 'update_nhiemky
 Route::get('/delete_nhiemky',[NhiemKyController::class, 'delete_nhiemky']);
 Route::get('/delete_all_nhiemky',[NhiemKyController::class, 'delete_all_nhiemky']);
 Route::post('/delete_nhiemky_check',[NhiemKyController::class, 'delete_nhiemky_check']);
+
+
+
+
+Route::get('/quatrinhchucvu',[QuaTrinhChucVuController::class, 'quatrinhchucvu']);
+Route::get('/quatrinhchucvu_add/{ma_vc}',[QuaTrinhChucVuController::class, 'quatrinhchucvu_add']);
+Route::post('/add_quatrinhchucvu/{ma_vc}',[QuaTrinhChucVuController::class, 'add_quatrinhchucvu']);
+Route::get('/select_quatrinhchucvu/{ma_qtcv}',[QuaTrinhChucVuController::class, 'select_quatrinhchucvu']);
+Route::get('/edit_quatrinhchucvu/{ma_qtcv}/{ma_vc}',[QuaTrinhChucVuController::class, 'edit_quatrinhchucvu']);
+Route::post('/update_quatrinhchucvu/{ma_qtcv}/{ma_vc}',[QuaTrinhChucVuController::class, 'update_quatrinhchucvu']);
+Route::get('/delete_quatrinhchucvu',[QuaTrinhChucVuController::class, 'delete_quatrinhchucvu']);
+Route::post('/delete_quatrinhchucvu_check',[QuaTrinhChucVuController::class, 'delete_quatrinhchucvu_check']);
+Route::get('/delete_all_quatrinhchucvu/{ma_vc}',[QuaTrinhChucVuController::class, 'delete_all_quatrinhchucvu']);
+Route::get('/quatrinhchucvu_pdf/{ma_vc}',[QuaTrinhChucVuController::class, 'quatrinhchucvu_pdf']);
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 11, 2023 lúc 04:42 AM
+-- Thời gian đã tạo: Th4 11, 2023 lúc 07:04 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -1840,7 +1840,6 @@ INSERT INTO `phanquyen` (`ma_q`, `ma_vc`, `status_pq`, `created_pq`, `updated_pq
 (10, 71, 0, '2023-03-08 07:16:56', ' '),
 (9, 60, 0, '2023-03-08 09:02:01', ' '),
 (10, 72, 0, '2023-03-18 06:56:38', ' '),
-(9, 61, 0, '2023-03-21 00:50:56', ' '),
 (5, 1, 0, '2023-03-21 01:33:02', ' '),
 (6, 55, 0, '2023-03-22 02:00:32', ' '),
 (10, 73, 0, '2023-03-22 03:04:37', ' '),
@@ -1853,7 +1852,36 @@ INSERT INTO `phanquyen` (`ma_q`, `ma_vc`, `status_pq`, `created_pq`, `updated_pq
 (10, 80, 0, '2023-03-23 03:22:33', ' '),
 (10, 81, 0, '2023-03-23 03:22:37', ' '),
 (10, 82, 0, '2023-03-23 03:25:04', ' '),
-(9, 56, 0, '2023-03-29 04:05:47', ' ');
+(9, 56, 0, '2023-03-29 04:05:47', ' '),
+(51, 61, 0, '2023-04-11 02:59:00', ' '),
+(9, 61, 0, '2023-04-11 03:00:50', ' ');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `quatrinhchucvu`
+--
+
+CREATE TABLE `quatrinhchucvu` (
+  `ma_qtcv` int(11) NOT NULL,
+  `ma_nk` int(11) NOT NULL,
+  `ma_cv` int(11) NOT NULL,
+  `ma_vc` int(11) NOT NULL,
+  `ghichu_qtcv` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status_qtcv` int(11) NOT NULL DEFAULT 0,
+  `created_qtcv` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_qtcv` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `quatrinhchucvu`
+--
+
+INSERT INTO `quatrinhchucvu` (`ma_qtcv`, `ma_nk`, `ma_cv`, `ma_vc`, `ghichu_qtcv`, `status_qtcv`, `created_qtcv`, `updated_qtcv`) VALUES
+(2, 47, 6, 61, 'tyu', 0, '2023-04-11 04:19:11', '2023-04-11 04:44:28'),
+(10, 58, 5, 59, 'ghhg', 0, '2023-04-11 04:49:09', NULL),
+(11, 48, 7, 59, 'fgf', 0, '2023-04-11 04:49:14', NULL),
+(12, 64, 8, 59, 'ftr', 0, '2023-04-11 04:49:24', NULL);
 
 -- --------------------------------------------------------
 
@@ -13148,6 +13176,12 @@ ALTER TABLE `noisinh`
   ADD PRIMARY KEY (`ma_ns`);
 
 --
+-- Chỉ mục cho bảng `quatrinhchucvu`
+--
+ALTER TABLE `quatrinhchucvu`
+  ADD PRIMARY KEY (`ma_qtcv`);
+
+--
 -- Chỉ mục cho bảng `quequan`
 --
 ALTER TABLE `quequan`
@@ -13359,13 +13393,19 @@ ALTER TABLE `ngach`
 -- AUTO_INCREMENT cho bảng `nhiemky`
 --
 ALTER TABLE `nhiemky`
-  MODIFY `ma_nk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `ma_nk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT cho bảng `noisinh`
 --
 ALTER TABLE `noisinh`
   MODIFY `ma_ns` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+
+--
+-- AUTO_INCREMENT cho bảng `quatrinhchucvu`
+--
+ALTER TABLE `quatrinhchucvu`
+  MODIFY `ma_qtcv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `quequan`
