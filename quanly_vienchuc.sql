@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 31, 2023 lúc 10:14 AM
+-- Thời gian đã tạo: Th4 11, 2023 lúc 04:42 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -115,7 +115,7 @@ INSERT INTO `bangcap` (`ma_bc`, `ma_vc`, `ma_hdt`, `ma_lbc`, `trinhdochuyenmon_b
 (5, 61, 4, 8, 'èwr', 'ẻẻwẻ', 'ẻwẻwe', 'ẻwẻwr', '2023-02-15', 'ẻwrưe', 'ẻwr', 0, '2023-02-20 03:12:40', ' '),
 (6, 60, 5, 7, 'ẻ', 'eểô', 'ể', 'ưêô', '2023-02-17', 'eêô', 'ưeeô', 0, '2023-02-20 03:13:02', ' '),
 (7, 62, 4, 5, 'yhyy', 'gt5', 't54', 't54', '2023-02-06', 't5', 'tr54', 0, '2023-02-22 08:43:43', ' '),
-(8, 59, 5, 8, 'scfẻê', 'dfẻ̀', 'dtồ', 'dtô', '2023-02-06', 'cddẻ', 'dfẻ', 0, '2023-02-23 08:19:42', ' '),
+(8, 59, 5, 8, 'scfẻê', 'dfẻ̀', 'dtồ', 'dtô', '2023-02-06', 'cddẻ', 'dfẻ', 2, '2023-02-23 08:19:42', ' '),
 (9, 57, 5, 8, 'dfẻ', 'dt', 'fgr', 'dfẻê', '2023-02-08', 'cdfẻ', 'dfẻ', 0, '2023-02-23 08:22:05', ' '),
 (10, 1, 6, 10, 'vdfrô', 'fgrtô', 'fgrtô', 'grtô', '2023-02-21', 'cfêê', 'dfẻ', 0, '2023-02-23 08:22:36', ' '),
 (11, 55, 4, 8, 'csf', 'sd', 'cd', 'cs', '2023-02-06', 'cd', 'sd', 0, '2023-02-23 08:22:49', ' '),
@@ -123,7 +123,14 @@ INSERT INTO `bangcap` (`ma_bc`, `ma_vc`, `ma_hdt`, `ma_lbc`, `trinhdochuyenmon_b
 (16, 1, 4, 5, 'defr', 'rte', 'rte5', 'ggre', '2023-03-01', 'sdefwt', 'efw', 0, '2023-03-09 03:08:22', ' '),
 (17, 23, 4, 8, 'fgre', 'frt', 'rgte5', 'gre5', '2023-03-06', 'ty', 'gtr5', 0, '2023-03-09 03:08:55', ' '),
 (20, 61, 6, 7, 'sfẻê', 'dfre', 'dfe', 'de', '2023-03-02', 'fẻ', 'dxfe', 0, '2023-03-23 09:38:00', ' '),
-(21, 36, 4, 8, 'gfthy', 'ht', 'ỷfryy', 'jyh', '2023-03-15', 'gutyu', 'gutyú', 0, '2023-03-30 04:23:32', ' ');
+(21, 36, 4, 8, 'gfthy', 'ht', 'ỷfryy', 'jyh', '2023-03-15', 'gutyu', 'gutyú', 0, '2023-03-30 04:23:32', ' '),
+(22, 54, 4, 8, 'trinhdochuyemon1', 'truonghoc_bc1', 'nienkhoa_bc1', '1', '2023-04-24', 'noicap1', 'xephang1', 0, '2023-04-05 09:42:22', '2023-04-05 09:43:44'),
+(23, 54, 4, 7, 'trinhdochuyemon2', 'truonghoc_bc2', 'nienkhoa_bc2', '2', '2023-04-14', 'noicap2', 'xephang2', 0, '2023-04-05 09:42:22', '2023-04-05 09:43:38'),
+(24, 54, 4, 6, 'trinhdochuyemon3', 'truonghoc_bc3', 'nienkhoa_bc3', '3', '2023-03-30', 'noicap3', 'xephang3', 0, '2023-04-05 09:42:22', '2023-04-05 09:43:30'),
+(25, 54, 4, 5, 'trinhdochuyemon4', 'truonghoc_bc4', 'nienkhoa_bc4', '4', '2023-04-08', 'noicap4', 'xephang4', 0, '2023-04-05 09:42:22', '2023-04-05 09:43:22'),
+(26, 54, 4, 9, 'trinhdochuyemon5', 'truonghoc_bc5', 'nienkhoa_bc5', '5', '2023-03-14', 'noicap5', 'xephang5', 0, '2023-04-05 09:42:22', '2023-04-05 09:43:15'),
+(27, 54, 4, 10, 'trinhdochuyemon6', 'truonghoc_bc6', 'nienkhoa_bc6', '6', '2023-04-21', 'noicap6', 'xephang6', 0, '2023-04-05 09:42:22', '2023-04-05 09:43:08'),
+(28, 54, 4, 5, 'trinhdochuyemon7', 'truonghoc_bc7', 'nienkhoa_bc7', '7', '2023-04-04', 'noicap7', 'xephang7', 0, '2023-04-05 09:42:22', '2023-04-05 09:43:02');
 
 -- --------------------------------------------------------
 
@@ -133,10 +140,10 @@ INSERT INTO `bangcap` (`ma_bc`, `ma_vc`, `ma_hdt`, `ma_lbc`, `trinhdochuyenmon_b
 
 CREATE TABLE `chauluc` (
   `ma_cl` int(11) NOT NULL,
-  `ten_cl` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ten_cl` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `mota_cl` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status_cl` int(11) NOT NULL DEFAULT 0,
-  `created_cl` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status_cl` int(11) DEFAULT 0,
+  `created_cl` timestamp NULL DEFAULT current_timestamp(),
   `updated_cl` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -200,8 +207,9 @@ CREATE TABLE `chuyen` (
 
 INSERT INTO `chuyen` (`ma_c`, `ma_vc`, `ma_l`, `noidung_c`, `lydo_c`, `file_c`, `status_c`, `created_c`, `updated_c`) VALUES
 (8, 31, 7, 'ỷu', 'juy', '1677918816869.pdf', 0, '2023-03-04 08:33:36', NULL),
-(9, 53, 4, 'et4', 'grt', '1678094876460.pdf', 0, '2023-03-06 09:27:56', NULL),
-(10, 61, 7, 'thty', 'yuyu', '167930276783.pdf', 0, '2023-03-20 08:59:27', NULL);
+(10, 61, 7, 'thty', 'yuyu', '167930276783.pdf', 0, '2023-03-20 08:59:27', NULL),
+(20, 56, 64, 'cfgty5', 'vbhty', '1680775303522.docx', 0, '2023-04-06 10:01:43', NULL),
+(23, 1, 4, 'fgfdg', 'fghg', '1681016814943.docx', 0, '2023-04-09 05:06:54', NULL);
 
 -- --------------------------------------------------------
 
@@ -250,11 +258,21 @@ INSERT INTO `danhsach` (`ma_vc`, `ma_l`, `status_ds`, `created_ds`, `updated_ds`
 (49, 7, 2, '2023-03-01 07:52:34', ' '),
 (31, 7, 0, '2023-03-01 07:52:37', ' '),
 (56, 4, 0, '2023-03-01 07:54:19', ' '),
-(53, 4, 2, '2023-03-01 07:54:21', ' '),
+(53, 4, 0, '2023-03-01 07:54:21', ' '),
 (16, 7, 0, '2023-03-06 04:21:34', ' '),
 (15, 7, 3, '2023-03-06 04:21:41', ' '),
 (30, 3, 3, '2023-03-07 03:18:41', ' '),
-(61, 7, 3, '2023-03-20 07:32:04', ' ');
+(61, 7, 3, '2023-03-20 07:32:04', ' '),
+(62, 7, 0, '2023-04-01 05:46:40', ' '),
+(55, 13, 0, '2023-04-01 05:47:54', ' '),
+(52, 13, 3, '2023-04-02 02:37:19', ' '),
+(62, 13, 0, '2023-04-02 02:37:21', ' '),
+(61, 61, 0, '2023-04-06 08:34:55', ' '),
+(49, 61, 0, '2023-04-06 08:34:57', ' '),
+(56, 64, 3, '2023-04-06 08:48:00', ' '),
+(49, 64, 0, '2023-04-06 08:48:02', ' '),
+(52, 64, 0, '2023-04-06 08:59:42', ' '),
+(1, 4, 0, '2023-04-08 06:39:47', ' ');
 
 -- --------------------------------------------------------
 
@@ -264,10 +282,10 @@ INSERT INTO `danhsach` (`ma_vc`, `ma_l`, `status_ds`, `created_ds`, `updated_ds`
 
 CREATE TABLE `dantoc` (
   `ma_dt` int(11) NOT NULL,
-  `ten_dt` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status_dt` int(11) NOT NULL DEFAULT 0,
-  `created_dt` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_dt` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+  `ten_dt` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status_dt` int(11) DEFAULT 0,
+  `created_dt` timestamp NULL DEFAULT current_timestamp(),
+  `updated_dt` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT ' '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -319,7 +337,10 @@ INSERT INTO `dunghoc` (`ma_dh`, `ma_vc`, `ma_l`, `batdau_dh`, `ketthuc_dh`, `lyd
 (4, 56, 4, '2023-03-14', '2023-03-22', 'trinh', '1677835644321.pdf', 0, '2023-03-03 09:27:24', '2023-03-03 09:33:26'),
 (9, 31, 7, '2023-02-26', '2023-03-31', 'sgetổ', '1677896721763.pdf', 0, '2023-03-04 02:25:21', NULL),
 (10, 16, 7, '2023-02-28', '2023-03-15', 'fbgsfg', '1678090698899.pdf', 0, '2023-03-06 08:18:18', NULL),
-(11, 61, 7, '2023-03-06', '2023-03-20', 'yuyuy', '1679298529388.pdf', 0, '2023-03-20 07:48:49', NULL);
+(11, 61, 7, '2023-03-06', '2023-03-20', 'yuyuy', '1679298529388.pdf', 0, '2023-03-20 07:48:49', NULL),
+(13, 55, 13, '2023-04-12', '2023-04-12', 'ỵuyuy', '1680403404308.xlsx', 0, '2023-04-02 02:43:24', NULL),
+(17, 56, 64, '2023-04-12', '2023-04-12', 'l\';][\\', '168077373050.docx', 0, '2023-04-06 09:35:30', NULL),
+(18, 1, 4, '2023-04-03', '2023-04-27', 'rftryt', '1681015550430.pdf', 0, '2023-04-09 04:45:50', NULL);
 
 -- --------------------------------------------------------
 
@@ -391,9 +412,13 @@ CREATE TABLE `giadinh` (
 
 INSERT INTO `giadinh` (`ma_gd`, `ma_vc`, `moiquanhe_gd`, `hoten_gd`, `sdt_gd`, `ngaysinh_gd`, `nghenghiep_gd`, `status_gd`, `created_gd`, `updated_gd`) VALUES
 (9, 1, 'fgthyt', 'juíuọi', '0845125468', '2023-02-28', 'ètôt̀', 0, '2023-03-22 09:44:29', ' '),
-(16, 59, 'fht', 'hyụt', 'yiuyi', '2023-03-01', 'uyut̃', 0, '2023-03-29 03:42:56', ' '),
+(16, 59, 'fht', 'hyụt', 'yiuyi', '2023-03-01', 'uyut̃', 2, '2023-03-29 03:42:56', ' '),
 (17, 61, 'fgfdh', 'ghy', '0845124512', '2023-03-08', 'gthtgh', 0, '2023-03-29 07:06:47', ' '),
-(18, 1, 'ghh', 'hỵhjụ', '0987451245', '2023-02-28', 'trt', 0, '2023-03-29 08:52:39', ' ');
+(18, 1, 'ghh', 'hỵhjụ', '0987451245', '2023-02-28', 'trt', 0, '2023-03-29 08:52:39', ' '),
+(29, 1, 'fgdg', 'fgdg', 'fgd', '2023-04-27', 'dfd', 0, '2023-04-08 06:50:17', ' '),
+(30, 1, 'jhj', 'hjh', 'jhujuy', '2023-03-07', 'fdrfgf', 0, '2023-04-08 06:55:04', ' '),
+(31, 61, 'ghfgh', 'ghhg', 'bgfgfhg', '2023-03-29', 'ghgfh', 0, '2023-04-08 07:32:06', ' '),
+(32, 61, 'dfrr', 'grt', 'yttyuyiuoi', '2023-03-28', 'rytr', 0, '2023-04-08 07:33:45', ' ');
 
 -- --------------------------------------------------------
 
@@ -421,8 +446,11 @@ INSERT INTO `giahan` (`ma_gh`, `ma_l`, `ma_vc`, `thoigian_gh`, `lydo_gh`, `file_
 (5, 7, 31, '2023-03-15', 'fdgrte63', '1677896484317.pdf', 0, '2023-03-04 02:21:24', NULL),
 (7, 4, 53, '2023-02-20', 'fbhryẁ', '1679362470824.docx', 0, '2023-03-04 02:31:18', '2023-03-21 01:34:30'),
 (10, 7, 16, '2023-02-28', 'fregtr', '1678076519874.pdf', 0, '2023-03-06 04:21:59', NULL),
-(11, 7, 15, '2023-02-28', 'gngrdh', '167807656770.pdf', 0, '2023-03-06 04:22:47', NULL),
-(12, 7, 61, '2023-03-07', 'htyujyu', '1679298548321.pdf', 0, '2023-03-20 07:49:08', NULL);
+(12, 7, 61, '2023-03-07', 'htyujyu', '1679298548321.pdf', 0, '2023-03-20 07:49:08', NULL),
+(16, 13, 55, '2023-04-06', 'dfsdfd', '1680411034194.docx', 0, '2023-04-02 04:50:34', NULL),
+(18, 64, 56, '2023-04-26', 'cvgdfg', '168077520720.doc', 0, '2023-04-06 10:00:07', NULL),
+(19, 4, 1, '2023-04-20', 'dftẻ', '1681014851625.docx', 0, '2023-04-09 04:34:11', NULL),
+(20, 61, 61, '2023-04-03', 'yyuỵui', '1681019364415.pdf', 1, '2023-04-09 05:49:24', NULL);
 
 -- --------------------------------------------------------
 
@@ -1207,21 +1235,21 @@ INSERT INTO `huyen` (`ma_h`, `ma_t`, `ten_h`, `status_h`, `created_h`, `updated_
 
 CREATE TABLE `ketqua` (
   `ma_kq` int(11) NOT NULL,
-  `ma_l` int(11) NOT NULL,
-  `ma_vc` int(11) NOT NULL,
-  `tennguoihuongdan_kq` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
-  `emailnguoihuongdan_kq` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
-  `noidungaotao_kq` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '\' \'',
-  `bangduoccap_kq` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
-  `ngaycapbang_kq` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `xeploai_kq` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `detaitotnghiep_kq` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ngayvenuoc_kq` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `danhgiacuacoso_kq` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kiennghi_kq` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
-  `status_kq` int(11) NOT NULL DEFAULT 0,
-  `created_kq` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_kq` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+  `ma_l` int(11) DEFAULT NULL,
+  `ma_vc` int(11) DEFAULT NULL,
+  `tennguoihuongdan_kq` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT ' ',
+  `emailnguoihuongdan_kq` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT ' ',
+  `noidungaotao_kq` text COLLATE utf8mb4_unicode_ci DEFAULT '\'\\\' \\\'\'',
+  `bangduoccap_kq` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT ' ',
+  `ngaycapbang_kq` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `xeploai_kq` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `detaitotnghiep_kq` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ngayvenuoc_kq` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `danhgiacuacoso_kq` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `kiennghi_kq` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT ' ',
+  `status_kq` int(11) DEFAULT 0,
+  `created_kq` timestamp NULL DEFAULT current_timestamp(),
+  `updated_kq` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT ' '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1229,11 +1257,29 @@ CREATE TABLE `ketqua` (
 --
 
 INSERT INTO `ketqua` (`ma_kq`, `ma_l`, `ma_vc`, `tennguoihuongdan_kq`, `emailnguoihuongdan_kq`, `noidungaotao_kq`, `bangduoccap_kq`, `ngaycapbang_kq`, `xeploai_kq`, `detaitotnghiep_kq`, `ngayvenuoc_kq`, `danhgiacuacoso_kq`, `kiennghi_kq`, `status_kq`, `created_kq`, `updated_kq`) VALUES
-(5, 7, 31, 'dfthyetgf', 'dvư', 'dvưt', 'dtew', '2023-02-26', 'dfrứ', 'fdẻw', '2023-03-06', 'dcfưư', 'fddrư', 0, '2023-03-03 02:07:08', ' '),
-(8, 7, 49, 'yjty', 'hytu65', 'ty47', 'tu53', '2023-03-27', 'u6', 'r56', '2023-03-29', 'hty6', 't6', 0, '2023-03-06 01:07:37', ' '),
-(9, 4, 56, 'gj', 'bnj', 'bf', 'hgjhgj', '2023-03-07', 'hmf', 'jhjgh', '2023-03-15', 'hjf', 'gjd', 0, '2023-03-06 01:08:13', ' '),
-(10, 7, 16, 'efef', 'eewfe', 'efefe', 'edfefwe', '2023-03-02', 'dfef', 'efef', '2023-03-08', 'dsefe', 'efewf', 0, '2023-03-15 03:16:28', ' '),
-(11, 7, 61, 'fgfth', 'hjyti', 'jkiyui', 'jukiyú', '2023-02-28', 'fh', 'htgủ', '2023-03-07', 'thỷ', 'tg̉', 0, '2023-03-20 08:07:33', ' ');
+(5, 7, 31, 'dfthyetgf', 'dvư', 'dvưt', 'dtew', '2023-02-26', 'dfrứ', 'fdẻw', '2023-03-06', 'dcfưư', 'fddrư', 0, '2023-03-02 19:07:08', ' '),
+(8, 7, 49, 'yjty', 'hytu65', 'ty47', 'tu53', '2023-03-27', 'u6', 'r56', '2023-03-29', 'hty6', 't6', 0, '2023-03-05 18:07:37', ' '),
+(9, 4, 56, 'gj', 'bnj', 'bf', 'hgjhgj', '2023-03-07', 'hmf', 'jhjgh', '2023-03-15', 'hjf', 'gjd', 0, '2023-03-05 18:08:13', ' '),
+(10, 7, 16, 'efef', 'eewfe', 'efefe', 'edfefwe', '2023-03-02', 'dfef', 'efef', '2023-03-08', 'dsefe', 'efewf', 0, '2023-03-14 20:16:28', ' '),
+(11, 7, 61, 'fgfth', 'hjyti', 'jkiyui', 'jukiyú', '2023-02-28', 'fh', 'htgủ', '2023-03-07', 'thỷ', 'tg̉', 0, '2023-03-20 01:07:33', ' '),
+(51, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2023-04-06 09:32:33', ' '),
+(52, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2023-04-06 09:32:33', ' '),
+(53, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2023-04-06 09:32:33', ' '),
+(54, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2023-04-06 09:32:33', ' '),
+(55, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2023-04-06 09:32:33', ' '),
+(66, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2023-04-06 09:33:07', ' '),
+(67, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2023-04-06 09:33:07', ' '),
+(68, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2023-04-06 09:33:07', ' '),
+(69, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2023-04-06 09:33:07', ' '),
+(70, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2023-04-06 09:33:07', ' '),
+(80, 64, 56, 'tennguoihuongdan_kq10', 'emailnguoihuongdan_kq10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2023-04-06 09:33:50', ' '),
+(81, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2023-04-06 09:33:50', ' '),
+(82, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2023-04-06 09:33:50', ' '),
+(83, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2023-04-06 09:33:50', ' '),
+(84, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2023-04-06 09:33:50', ' '),
+(85, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2023-04-06 09:33:50', ' '),
+(86, 4, 1, 'sdsf', 'cgdg', 'fdd', 'cfgd', '2023-04-18', 'dcddfdd', 'sdsds', '2023-03-28', 'dcdfcss', 'xdcsdfdd', 0, '2023-04-08 06:40:26', ' '),
+(88, 61, 61, 'fvf', 'rfgre', 'rfge', 'rfger', '2023-04-05', 'rg', 'rgr', '2023-04-18', 'fgr', 'grgr', 1, '2023-04-09 06:14:46', ' ');
 
 -- --------------------------------------------------------
 
@@ -1267,7 +1313,13 @@ INSERT INTO `khenthuong` (`ma_kt`, `ma_vc`, `ma_lkt`, `ma_htkt`, `ngay_kt`, `noi
 (19, 61, 4, 8, '2023-03-09', 'fgtry', 0, '2023-03-29 07:16:13', ' '),
 (21, 61, 4, 6, '2023-02-27', 'dfrtg', 0, '2023-03-29 07:19:16', ' '),
 (22, 61, 5, 5, '2023-03-07', 'sfdsf', 0, '2023-03-29 07:19:24', ' '),
-(23, 1, 4, 5, '2023-03-07', 'rgtr', 0, '2023-03-30 07:40:01', '2023-03-30 07:40:13');
+(23, 1, 4, 5, '2023-03-07', 'rgtr', 0, '2023-03-30 07:40:01', '2023-03-30 07:40:13'),
+(24, 62, 4, 5, '2023-04-06', 'nội dung khen thuưưởng 1', 0, '2023-04-06 05:09:28', ' '),
+(25, 62, 5, 6, '2023-04-07', 'nội dung khen thuưưởng 2', 0, '2023-04-06 05:09:28', ' '),
+(26, 62, 4, 8, '2023-04-08', 'nội dung khen thuưưởng 3', 0, '2023-04-06 05:09:28', ' '),
+(27, 62, 5, 5, '2023-04-09', 'nội dung khen thuưưởng 4', 0, '2023-04-06 05:09:28', ' '),
+(28, 62, 4, 6, '2023-04-10', 'nội dung khen thuưưởng 5', 0, '2023-04-06 05:09:28', ' '),
+(29, 62, 5, 8, '2023-04-11', 'nội dung khen thuưưởng 6', 0, '2023-04-06 05:09:28', ' ');
 
 -- --------------------------------------------------------
 
@@ -1306,10 +1358,10 @@ INSERT INTO `khoa` (`ma_k`, `ten_k`, `mota_k`, `status_k`, `created_k`, `updated
 
 CREATE TABLE `khuvuc` (
   `ma_kv` int(11) NOT NULL,
-  `ma_cl` int(11) NOT NULL,
-  `ten_kv` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status_kv` int(11) NOT NULL DEFAULT 0,
-  `created_kv` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ma_cl` int(11) DEFAULT NULL,
+  `ten_kv` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status_kv` int(11) DEFAULT 0,
+  `created_kv` timestamp NULL DEFAULT current_timestamp(),
   `updated_kv` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1341,7 +1393,17 @@ INSERT INTO `khuvuc` (`ma_kv`, `ma_cl`, `ten_kv`, `status_kv`, `created_kv`, `up
 (47, 6, 'Các nước Đông Nam Á', 0, '2023-03-31 05:38:46', NULL),
 (48, 6, 'Các nước Nam Á', 0, '2023-03-31 05:38:55', NULL),
 (49, 6, 'Các nước Tây Á', 0, '2023-03-31 05:39:03', NULL),
-(50, 6, 'Các nước Trung Á', 0, '2023-03-31 05:39:11', NULL);
+(50, 6, 'Các nước Trung Á', 0, '2023-03-31 05:39:11', NULL),
+(71, NULL, NULL, 0, '2023-04-06 08:19:10', NULL),
+(72, NULL, NULL, 0, '2023-04-06 08:19:10', NULL),
+(73, NULL, NULL, 0, '2023-04-06 08:19:10', NULL),
+(74, NULL, NULL, 0, '2023-04-06 08:19:10', NULL),
+(75, NULL, NULL, 0, '2023-04-06 08:19:10', NULL),
+(86, NULL, NULL, 0, '2023-04-06 08:19:27', NULL),
+(87, NULL, NULL, 0, '2023-04-06 08:19:27', NULL),
+(88, NULL, NULL, 0, '2023-04-06 08:19:27', NULL),
+(89, NULL, NULL, 0, '2023-04-06 08:19:27', NULL),
+(90, NULL, NULL, 0, '2023-04-06 08:19:27', NULL);
 
 -- --------------------------------------------------------
 
@@ -1370,7 +1432,20 @@ INSERT INTO `kyluat` (`ma_kl`, `ma_vc`, `ma_lkl`, `lydo_kl`, `ngay_kl`, `status_
 (17, 54, 7, 'dsd', '2023-03-02', 0, '2023-03-29 08:12:24', ' '),
 (20, 55, 4, 'kipkip', '2023-03-09', 0, '2023-03-29 08:25:44', ' '),
 (21, 33, 10, 'fgfhfgt', '2023-03-08', 0, '2023-03-30 12:16:25', ' '),
-(22, 41, 4, 'dfdgf', '2023-03-20', 0, '2023-03-30 12:16:44', ' ');
+(22, 41, 4, 'dfdgf', '2023-03-20', 0, '2023-03-30 12:16:44', ' '),
+(30, 51, 4, 'lydo1', '2023-04-02', 0, '2023-04-06 06:06:42', ' '),
+(31, 51, 7, 'lydo2', '2023-04-03', 0, '2023-04-06 06:06:42', ' '),
+(32, 51, 10, 'lydo3', '2023-04-04', 0, '2023-04-06 06:06:42', ' '),
+(33, 51, 4, 'lydo4', '2023-04-05', 0, '2023-04-06 06:06:42', ' '),
+(34, 51, 7, 'lydo5', '2023-04-06', 0, '2023-04-06 06:06:42', ' '),
+(35, 51, 10, 'lydo6', '2023-04-07', 0, '2023-04-06 06:06:42', ' '),
+(36, 51, 7, 'lydo7', '2023-04-08', 0, '2023-04-06 06:06:42', ' '),
+(37, 51, 7, 'lydo8', '2023-04-09', 0, '2023-04-06 06:06:42', ' '),
+(38, 51, 7, 'lydo9', '2023-04-10', 0, '2023-04-06 06:06:42', ' '),
+(39, 30, 4, 'gtety6', '2023-04-03', 0, '2023-04-07 07:17:15', ' '),
+(40, 27, 10, 'dcssddf', '2023-04-03', 0, '2023-04-07 13:36:33', ' '),
+(41, 23, 4, 'sdđrr', '2023-03-26', 0, '2023-04-07 13:36:50', ' '),
+(42, 19, 4, 'dđew', '2023-04-05', 0, '2023-04-07 13:37:06', ' ');
 
 -- --------------------------------------------------------
 
@@ -1453,24 +1528,24 @@ INSERT INTO `loaikyluat` (`ma_lkl`, `ten_lkl`, `status_lkl`, `created_lkl`, `upd
 
 CREATE TABLE `lop` (
   `ma_l` int(11) NOT NULL,
-  `ma_dml` int(11) NOT NULL,
-  `ma_qg` int(11) NOT NULL,
-  `ten_l` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
-  `ngaybatdau_l` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
-  `ngayketthuc_l` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
-  `yeucau_l` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
-  `tencosodaotao_l` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
-  `nganhhoc_l` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `trinhdodaotao_l` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nguonkinhphi_l` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `noidunghoc_l` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
-  `diachidaotao_l` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `emailcoso_l` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sdtcoso_l` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `luotxem_l` int(11) NOT NULL DEFAULT 0,
-  `status_l` int(11) NOT NULL DEFAULT 0,
-  `created_l` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_l` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' '
+  `ma_dml` int(11) DEFAULT NULL,
+  `ma_qg` int(11) DEFAULT NULL,
+  `ten_l` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT ' ',
+  `ngaybatdau_l` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT ' ',
+  `ngayketthuc_l` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT ' ',
+  `yeucau_l` text COLLATE utf8mb4_unicode_ci DEFAULT '\'\\\' \\\'\'',
+  `tencosodaotao_l` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT ' ',
+  `nganhhoc_l` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `trinhdodaotao_l` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nguonkinhphi_l` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `noidunghoc_l` text COLLATE utf8mb4_unicode_ci DEFAULT '\'\\\' \\\'\'',
+  `diachidaotao_l` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `emailcoso_l` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sdtcoso_l` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `luotxem_l` int(11) DEFAULT 0,
+  `status_l` int(11) DEFAULT 0,
+  `created_l` timestamp NULL DEFAULT current_timestamp(),
+  `updated_l` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT ' '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1478,10 +1553,21 @@ CREATE TABLE `lop` (
 --
 
 INSERT INTO `lop` (`ma_l`, `ma_dml`, `ma_qg`, `ten_l`, `ngaybatdau_l`, `ngayketthuc_l`, `yeucau_l`, `tencosodaotao_l`, `nganhhoc_l`, `trinhdodaotao_l`, `nguonkinhphi_l`, `noidunghoc_l`, `diachidaotao_l`, `emailcoso_l`, `sdtcoso_l`, `luotxem_l`, `status_l`, `created_l`, `updated_l`) VALUES
-(3, 8, 80, 'Associate of Arts Degree', '2023-10-15', '2026-10-15', 'Ứng viên phải từ 18 tuổi trở lên trong năm dương lịch mà họ đăng ký học. Việc xem xét có thể được đưa ra cho những học sinh nhỏ tuổi đã hoàn thành bậc trung học. Để đáp ứng yêu cầu về tiếng Anh cho các chương trình học thuật, học sinh phải hoàn thành: BC English 12 hoặc BC English First Peoples 12 với điểm tối thiểu là C; hoặc Đầu vào thông qua chương trình Anh ngữ của NIC – đạt điểm C+ trong ESL 092 và ESL 095 Hoặc một trong những điều sau: Điểm tổng thể IELTS Học thuật là 6.0 (không có kỹ năng nào thấp hơn 5.5). Những học sinh không có điểm IELTS 6.0 trở lên ở môn Đọc và Viết sẽ phải thi tiếng Anh 104. TOEFL ibt 80 tổng thể không có tiểu mục nào dưới 19; TOEFL 550; CAEL 60 và viết 60 và PTE Academic 54 tổng thể không có thành phần nào dưới 46.', 'North Island College', 'Công nghệ thông tin', 'Tiến sĩ', 'CAD$16,015.00 (266,916,667 đ) một năm', 'Bắt đầu chương trình học của bạn tại NIC và nhận tín chỉ chuyển tiếp hai năm (60 tín chỉ) vào bất kỳ trường đại học BC nào. Học các kỹ năng nghiên cứu và tư duy phản biện mạnh mẽ mà các nhà tuyển dụng tìm kiếm khi bạn học nhân chủng học, tội phạm học, nghiên cứu về các quốc gia đầu tiên, tiếng Anh, địa lý, lịch sử, nghiên cứu tự do, ngôn ngữ hiện đại (tiếng Trung, tiếng Pháp và tiếng Tây Ban Nha), triết học, khoa học chính trị, tâm lý học, xã hội học và nghiên cứu của phụ nữ.\r\nĐiểm nổi bật của chương trình:\r\nKhám phá nhân chủng học, tội phạm học, tiếng Anh, các quốc gia đầu tiên, lịch sử, ngôn ngữ hiện đại (tiếng Trung, tiếng Pháp và tiếng Tây Ban Nha), nghiên cứu về Bắc Mỹ, triết học, khoa học chính trị, tâm lý học, xã hội học và nghiên cứu về phụ nữ, cũng như các môn tự chọn về toán và khoa học.\r\nBằng liên kết được cung cấp tại nhiều trường cao đẳng và đại học trên khắp BC. Họ công nhận việc hoàn thành thành công 60 tín chỉ học tập, tức là khoảng 20 khóa học. Với chương trình học toàn thời gian, bạn có thể hoàn thành bằng cao đẳng trong vòng hai năm học. Lựa chọn nghiên cứu bán thời gian cũng có sẵn.\r\nBằng liên kết cung cấp rất nhiều tính linh hoạt. Bạn có thể chọn các khóa học ưa thích của mình từ một danh sách cụ thể các khóa học đủ điều kiện, giúp bạn có thể tập trung học tập vào một lĩnh vực cụ thể hoặc khám phá nhiều môn học khác nhau.', '2300 Ryan Rd, Courtenay, BC V9N 8N6, Canada', 'questions@nic.bc.ca', '+1 800-715-0914', 11, 0, '2023-02-28 18:16:47', '2023-03-31 07:47:55'),
+(3, 8, 80, 'Associate of Arts Degree', '2023-10-15', '2026-10-15', 'Ứng viên phải từ 18 tuổi trở lên trong năm dương lịch mà họ đăng ký học. Việc xem xét có thể được đưa ra cho những học sinh nhỏ tuổi đã hoàn thành bậc trung học. Để đáp ứng yêu cầu về tiếng Anh cho các chương trình học thuật, học sinh phải hoàn thành: BC English 12 hoặc BC English First Peoples 12 với điểm tối thiểu là C; hoặc Đầu vào thông qua chương trình Anh ngữ của NIC – đạt điểm C+ trong ESL 092 và ESL 095 Hoặc một trong những điều sau: Điểm tổng thể IELTS Học thuật là 6.0 (không có kỹ năng nào thấp hơn 5.5). Những học sinh không có điểm IELTS 6.0 trở lên ở môn Đọc và Viết sẽ phải thi tiếng Anh 104. TOEFL ibt 80 tổng thể không có tiểu mục nào dưới 19; TOEFL 550; CAEL 60 và viết 60 và PTE Academic 54 tổng thể không có thành phần nào dưới 46.', 'North Island College', 'Công nghệ thông tin', 'Tiến sĩ', 'CAD$16,015.00 (266,916,667 đ) một năm', 'Bắt đầu chương trình học của bạn tại NIC và nhận tín chỉ chuyển tiếp hai năm (60 tín chỉ) vào bất kỳ trường đại học BC nào. Học các kỹ năng nghiên cứu và tư duy phản biện mạnh mẽ mà các nhà tuyển dụng tìm kiếm khi bạn học nhân chủng học, tội phạm học, nghiên cứu về các quốc gia đầu tiên, tiếng Anh, địa lý, lịch sử, nghiên cứu tự do, ngôn ngữ hiện đại (tiếng Trung, tiếng Pháp và tiếng Tây Ban Nha), triết học, khoa học chính trị, tâm lý học, xã hội học và nghiên cứu của phụ nữ.\r\nĐiểm nổi bật của chương trình:\r\nKhám phá nhân chủng học, tội phạm học, tiếng Anh, các quốc gia đầu tiên, lịch sử, ngôn ngữ hiện đại (tiếng Trung, tiếng Pháp và tiếng Tây Ban Nha), nghiên cứu về Bắc Mỹ, triết học, khoa học chính trị, tâm lý học, xã hội học và nghiên cứu về phụ nữ, cũng như các môn tự chọn về toán và khoa học.\r\nBằng liên kết được cung cấp tại nhiều trường cao đẳng và đại học trên khắp BC. Họ công nhận việc hoàn thành thành công 60 tín chỉ học tập, tức là khoảng 20 khóa học. Với chương trình học toàn thời gian, bạn có thể hoàn thành bằng cao đẳng trong vòng hai năm học. Lựa chọn nghiên cứu bán thời gian cũng có sẵn.\r\nBằng liên kết cung cấp rất nhiều tính linh hoạt. Bạn có thể chọn các khóa học ưa thích của mình từ một danh sách cụ thể các khóa học đủ điều kiện, giúp bạn có thể tập trung học tập vào một lĩnh vực cụ thể hoặc khám phá nhiều môn học khác nhau.', '2300 Ryan Rd, Courtenay, BC V9N 8N6, Canada', 'questions@nic.bc.ca', '+1 800-715-0914', 14, 0, '2023-02-28 18:16:47', '2023-03-31 07:47:55'),
 (4, 7, 80, 'Cử nhân Báo chí Phát thanh và Đa phương tiện', '2023-04-20', '2026-04-20', 'Những người có Tốt Nghiệp Phổ Thông Trung Học (Chứng nhận Tốt nghiệp Trung học Phổ thông) sẽ được xem xét để vào Tổ chức Quốc tế INTO UEA, lý tưởng nhất là với điểm trung bình từ 7.0 trở lên. Sinh viên hoàn thành năm thứ nhất chương trình cử nhân tại một trường đại học Việt Nam với điểm trung bình từ 7,5 trở lên sẽ được xét tuyển vào năm thứ nhất chương trình đại học tại UEA. Học sinh cần có điểm IELTS tổng thể là 6.0 với tối thiểu 5.5 trong mỗi thành phần.', 'Đại học East Anglia UEA', 'Phát thanh và Đa phương tiện', 'Cử nhân', '£19,250.00 (481,250,000 đ) một năm', 'Những người tìm kiếm sự thật và những người kể chuyện áp dụng ở đây. Nếu muốn tạo ra sự khác biệt trên thế giới, nắm giữ quyền lực để giải thích và tìm hiểu điều gì đang thực sự xảy ra, thì đây là khóa học dành cho bạn. Với bằng báo chí truyền hình và đa phương tiện này, bạn sẽ học các kỹ năng cần thiết để trở thành một nhà báo chuyên nghiệp có thể làm việc trên TV, đài phát thanh, báo in, phương tiện truyền thông xã hội và các nền tảng trực tuyến ở Vương quốc Anh và hơn thế nữa. Bạn sẽ học các kỹ năng nghiên cứu, kể chuyện và sản xuất cho thời đại kỹ thuật số. Bạn sẽ được dạy các kỹ năng điều tra và cách sử dụng dữ liệu trong báo chí của mình. Bạn sẽ hiểu các cấu trúc chính trị cung cấp các dịch vụ công cộng mà tất cả chúng ta đều dựa vào và bạn sẽ thực hành báo chí toàn diện, làm việc với các cộng đồng đa dạng để giúp họ kể câu chuyện của mình. Chúng tôi có trụ sở tại Bộ Chính trị tại UEA,', 'Norwich Research Park, Norwich NR4 7TJ, Vương quốc Anh', 'University.secretary@uea.ac.uk', '+44 1603 456161', 0, 0, '2023-02-28 18:46:58', '2023-03-31 07:47:45'),
-(7, 7, 57, 'Bachelor of Arts / Bachelor of Business', '2023-09-26', '2027-09-26', 'Hoàn thành thỏa đáng một trong những điều sau đây: hoàn thành thành công Chứng chỉ Giáo dục Victoria (VCE) hoặc tương đương, chẳng hạn như bằng cấp Lớp 12 liên bang hoặc quốc tế; hoàn thành hoặc hoàn thành một phần bằng cấp đại học đã được phê duyệt (bao gồm Chứng chỉ IV (đã hoàn thành), văn bằng, văn bằng nâng cao, bằng cao đẳng và bằng cấp).', 'Swinburne University of Technology', 'Công nghệ quảng cáo kỹ thuật số', 'Cử nhân', 'A$34,040.00 (567,333,333 đ) một năm', 'Với bằng kép về Cử nhân Nghệ thuật/Cử nhân Kinh doanh, bạn sẽ sẵn sàng trở thành một doanh nhân toàn diện, người hiểu được điều gì là tốt cho thế giới.\r\n\r\nXây dựng kiến ​​thức kinh doanh, quản lý và vận hành của bạn để bạn sẵn sàng tạo dấu ấn trong thế giới kinh doanh. Sau đó, đi sâu hơn, trau dồi tư duy phản biện và kỹ năng giao tiếp khi bạn khám phá các vấn đề xã hội, kinh tế và văn hóa toàn cầu quan trọng ảnh hưởng đến hoạt động của xã hội đương đại.\r\n\r\nVới sự kết hợp của các bằng cấp này - bạn sẽ có nhiều kỹ năng chuyển đổi cần thiết cho lực lượng lao động trong tương lai. Bạn sẽ học cách trở thành một nhà tư tưởng kinh doanh và nhà đổi mới, đồng thời tìm thấy vô số cơ hội nghề nghiệp đa dạng trong các tập đoàn, chính phủ và tổ chức phi lợi nhuận, doanh nghiệp nhỏ và công ty mới thành lập.\r\n\r\nXây dựng sơ yếu lý lịch của bạn với kinh nghiệm thực tế trong ngành với các chương trình Học tập Tích hợp Công việc của chúng tôi, được đảm bảo trên tất cả các bằng cử nhân của chúng tôi bao gồm các vị trí, thực tập hoặc các dự án liên kết với ngành.', 'John St, Hawthorn VIC 3122, Australia', 'jane.doe@swinburne.edu.au', '+61 1300 794 628', 8, 0, '2023-02-28 20:27:43', '2023-03-31 07:47:34'),
-(13, 8, 79, 'ledeimtrinh', '2023-06-20', '2027-06-28', 'sfe', 'cfsdề', 'dere', 'fdgr', 'dfdg', 'rfgfdg', 'fgd', 'sdfewf', 'dfse', 0, 0, '2023-03-31 08:11:04', '2023-03-31 08:14:11');
+(7, 7, 57, 'Bachelor of Arts / Bachelor of Business', '2023-09-26', '2027-09-26', 'Hoàn thành thỏa đáng một trong những điều sau đây: hoàn thành thành công Chứng chỉ Giáo dục Victoria (VCE) hoặc tương đương, chẳng hạn như bằng cấp Lớp 12 liên bang hoặc quốc tế; hoàn thành hoặc hoàn thành một phần bằng cấp đại học đã được phê duyệt (bao gồm Chứng chỉ IV (đã hoàn thành), văn bằng, văn bằng nâng cao, bằng cao đẳng và bằng cấp).', 'Swinburne University of Technology', 'Công nghệ quảng cáo kỹ thuật số', 'Cử nhân', 'A$34,040.00 (567,333,333 đ) một năm', 'Với bằng kép về Cử nhân Nghệ thuật/Cử nhân Kinh doanh, bạn sẽ sẵn sàng trở thành một doanh nhân toàn diện, người hiểu được điều gì là tốt cho thế giới.\r\n\r\nXây dựng kiến ​​thức kinh doanh, quản lý và vận hành của bạn để bạn sẵn sàng tạo dấu ấn trong thế giới kinh doanh. Sau đó, đi sâu hơn, trau dồi tư duy phản biện và kỹ năng giao tiếp khi bạn khám phá các vấn đề xã hội, kinh tế và văn hóa toàn cầu quan trọng ảnh hưởng đến hoạt động của xã hội đương đại.\r\n\r\nVới sự kết hợp của các bằng cấp này - bạn sẽ có nhiều kỹ năng chuyển đổi cần thiết cho lực lượng lao động trong tương lai. Bạn sẽ học cách trở thành một nhà tư tưởng kinh doanh và nhà đổi mới, đồng thời tìm thấy vô số cơ hội nghề nghiệp đa dạng trong các tập đoàn, chính phủ và tổ chức phi lợi nhuận, doanh nghiệp nhỏ và công ty mới thành lập.\r\n\r\nXây dựng sơ yếu lý lịch của bạn với kinh nghiệm thực tế trong ngành với các chương trình Học tập Tích hợp Công việc của chúng tôi, được đảm bảo trên tất cả các bằng cử nhân của chúng tôi bao gồm các vị trí, thực tập hoặc các dự án liên kết với ngành.', 'John St, Hawthorn VIC 3122, Australia', 'jane.doe@swinburne.edu.au', '+61 1300 794 628', 9, 0, '2023-02-28 20:27:43', '2023-03-31 07:47:34'),
+(13, 8, 79, 'ledeimtrinh', '2023-06-20', '2027-06-28', 'sfe', 'cfsdề', 'dere', 'fdgr', 'dfdg', 'rfgfdg', 'fgd', 'sdfewf', 'dfse', 3, 0, '2023-03-31 08:11:04', '2023-03-31 08:14:11'),
+(14, 4, 57, 'fggr', '2023-10-07', '2029-10-07', 'dferfe', 'edfr', 'edfr', 'edfer', 'bghy', 'jju', 'dsde', 'cfdtry', 'gtrh', 4, 0, '2023-04-02 08:18:17', ' '),
+(55, 4, 69, 'tên lớp 1', '2023-12-05', '2028-12-05', 'yêu cầu 1', 'tên cơ sở đào tạo 1', 'ngành học 1', 'trình độ đào tạo 1', 'nguồn kinh phí 1', 'nội dung học 1', 'địa chỉ đào tạo 1', 'email 1', '1425632', 1, 0, '2023-04-06 07:22:00', ' '),
+(56, 5, 70, 'tên lớp 2', '2023-12-06', '2028-12-06', 'yêu cầu 2', 'tên cơ sở đào tạo 2', 'ngành học 2', 'trình độ đào tạo 2', 'nguồn kinh phí 2', 'nội dung học 2', 'địa chỉ đào tạo 2', 'email 2', '1425632', 0, 0, '2023-04-06 07:22:00', ' '),
+(57, 6, 71, 'tên lớp 3', '2023-12-07', '2028-12-07', 'yêu cầu 3', 'tên cơ sở đào tạo 3', 'ngành học 3', 'trình độ đào tạo 3', 'nguồn kinh phí 3', 'nội dung học 3', 'địa chỉ đào tạo 3', 'email 3', '1425632', 1, 0, '2023-04-06 07:22:00', ' '),
+(58, 7, 72, 'tên lớp 4', '2023-12-08', '2028-12-08', 'yêu cầu 4', 'tên cơ sở đào tạo 4', 'ngành học 4', 'trình độ đào tạo 4', 'nguồn kinh phí 4', 'nội dung học 4', 'địa chỉ đào tạo 4', 'email 4', '1425632', 1, 0, '2023-04-06 07:22:00', ' '),
+(59, 8, 73, 'tên lớp 5', '2023-12-09', '2028-12-09', 'yêu cầu 5', 'tên cơ sở đào tạo 5', 'ngành học 5', 'trình độ đào tạo 5', 'nguồn kinh phí 5', 'nội dung học 5', 'địa chỉ đào tạo 5', 'email 5', '1425632', 0, 0, '2023-04-06 07:22:00', ' '),
+(60, 4, 75, 'tên lớp 6', '2023-12-10', '2028-12-10', 'yêu cầu 6', 'tên cơ sở đào tạo 6', 'ngành học 6', 'trình độ đào tạo 6', 'nguồn kinh phí 6', 'nội dung học 6', 'địa chỉ đào tạo 6', 'email 6', '1425632', 0, 0, '2023-04-06 07:22:00', ' '),
+(61, 5, 74, 'tên lớp 7', '2023-12-11', '2028-12-11', 'yêu cầu 7', 'tên cơ sở đào tạo 7', 'ngành học 7', 'trình độ đào tạo 7', 'nguồn kinh phí 7', 'nội dung học 7', 'địa chỉ đào tạo 7', 'email 7', '1425632', 0, 0, '2023-04-06 07:22:00', ' '),
+(62, 6, 76, 'tên lớp 8', '2023-12-12', '2028-12-12', 'yêu cầu 8', 'tên cơ sở đào tạo 8', 'ngành học 8', 'trình độ đào tạo 8', 'nguồn kinh phí 8', 'nội dung học 8', 'địa chỉ đào tạo 8', 'email 8', '1425632', 0, 0, '2023-04-06 07:22:00', ' '),
+(63, 7, 77, 'tên lớp 9', '2023-12-13', '2028-12-13', 'yêu cầu 9', 'tên cơ sở đào tạo 9', 'ngành học 9', 'trình độ đào tạo 9', 'nguồn kinh phí 9', 'nội dung học 9', 'địa chỉ đào tạo 9', 'email 9', '1425632', 0, 0, '2023-04-06 07:22:00', ' '),
+(64, 8, 76, 'tên lớp 10', '2023-12-14', '2028-12-14', 'yêu cầu 10', 'tên cơ sở đào tạo 10', 'ngành học 10', 'trình độ đào tạo 10', 'nguồn kinh phí 10', 'nội dung học 10', 'địa chỉ đào tạo 10', 'email 10', '1425632', 1, 0, '2023-04-06 07:22:00', ' ');
 
 -- --------------------------------------------------------
 
@@ -1544,6 +1630,49 @@ INSERT INTO `ngach` (`ma_n`, `ten_n`, `maso_n`, `sonamnangbac_n`, `status_n`, `c
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `nhiemky`
+--
+
+CREATE TABLE `nhiemky` (
+  `ma_nk` int(11) NOT NULL,
+  `ten_nk` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status_nk` int(11) NOT NULL DEFAULT 0,
+  `created_nk` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_nk` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `nhiemky`
+--
+
+INSERT INTO `nhiemky` (`ma_nk`, `ten_nk`, `status_nk`, `created_nk`, `updated_nk`) VALUES
+(42, '2001-2002', 0, '2023-04-11 02:36:58', NULL),
+(43, '2002-2003', 0, '2023-04-11 02:36:58', NULL),
+(44, '2003-2004', 0, '2023-04-11 02:36:58', NULL),
+(45, '2004-2005', 0, '2023-04-11 02:36:58', NULL),
+(46, '2005-2006', 0, '2023-04-11 02:36:58', NULL),
+(47, '2006-2007', 0, '2023-04-11 02:36:58', NULL),
+(48, '2007-2008', 0, '2023-04-11 02:36:58', NULL),
+(49, '2008-2009', 0, '2023-04-11 02:36:58', NULL),
+(50, '2009-2010', 0, '2023-04-11 02:36:58', NULL),
+(51, '20010-2011', 0, '2023-04-11 02:36:58', NULL),
+(52, '20011-2012', 0, '2023-04-11 02:36:58', NULL),
+(53, '20012-2013', 0, '2023-04-11 02:36:58', NULL),
+(54, '20013-2014', 0, '2023-04-11 02:36:58', NULL),
+(55, '20014-2015', 0, '2023-04-11 02:36:58', NULL),
+(56, '20015-2016', 0, '2023-04-11 02:36:58', NULL),
+(57, '20016-2017', 0, '2023-04-11 02:36:58', NULL),
+(58, '20017-2018', 0, '2023-04-11 02:36:58', NULL),
+(59, '20018-2019', 0, '2023-04-11 02:36:58', NULL),
+(60, '20019-2020', 0, '2023-04-11 02:36:58', NULL),
+(61, '2020-2021', 0, '2023-04-11 02:36:58', NULL),
+(62, '2021-2022', 0, '2023-04-11 02:36:58', NULL),
+(63, '2022-2023', 0, '2023-04-11 02:36:58', NULL),
+(64, '2023-2024', 0, '2023-04-11 02:36:58', '2023-04-11 02:42:23');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `noisinh`
 --
 
@@ -1573,7 +1702,7 @@ INSERT INTO `noisinh` (`ma_ns`, `ma_t`, `ma_h`, `ma_x`, `ma_vc`, `diachi_ns`, `s
 (10, 0, 0, 0, 20, ' ', 0, '2023-02-18 02:45:53', ' '),
 (11, 15, 160, 2685, 21, 'safrw4er', 0, '2023-02-18 02:45:53', ' '),
 (12, 0, 0, 0, 22, ' ', 0, '2023-02-18 02:45:53', ' '),
-(13, 0, 0, 0, 23, ' ', 0, '2023-02-18 02:45:53', ' '),
+(13, 59, 665, 10181, 23, 'dtẻt', 0, '2023-02-18 02:45:53', ' '),
 (14, 0, 0, 0, 24, ' ', 0, '2023-02-18 02:45:53', ' '),
 (15, 0, 0, 0, 25, ' ', 0, '2023-02-18 02:45:53', ' '),
 (16, 4, 55, 970, 26, 'dgsrtr', 2, '2023-02-18 02:45:53', ' '),
@@ -1609,7 +1738,7 @@ INSERT INTO `noisinh` (`ma_ns`, `ma_t`, `ma_h`, `ma_x`, `ma_vc`, `diachi_ns`, `s
 (46, 23, 247, 4291, 56, 'de3w', 0, '2023-02-18 02:48:02', ' '),
 (47, 55, 619, 9660, 57, 'cdfeẻq̀êa', 0, '2023-02-18 02:48:02', ' '),
 (48, 63, 699, 10511, 58, 'ỷ̀ỳ̉y', 0, '2023-02-18 02:48:02', ' '),
-(49, 2, 34, 639, 59, 'cds', 0, '2023-02-18 02:48:02', ' '),
+(49, 2, 34, 639, 59, 'cds', 2, '2023-02-18 02:48:02', ' '),
 (50, 59, 663, 10166, 60, 'ềwrẻ', 0, '2023-02-18 02:48:02', ' '),
 (51, 55, 620, 9669, 61, 'trinh', 0, '2023-02-18 02:48:02', ' '),
 (52, 0, 0, 0, 62, ' ', 0, '2023-02-18 02:48:02', ' '),
@@ -1758,7 +1887,7 @@ INSERT INTO `quequan` (`ma_qq`, `ma_t`, `ma_h`, `ma_x`, `ma_vc`, `diachi_qq`, `s
 (8, 1, 2, 16, 20, ' ', 0, '2023-02-18 03:17:55', ' '),
 (9, 19, 201, 3424, 21, 'sdcfdsf', 0, '2023-02-18 03:17:55', ' '),
 (10, 0, 0, 0, 22, ' ', 0, '2023-02-18 03:17:55', ' '),
-(11, 0, 0, 0, 23, ' ', 0, '2023-02-18 03:17:55', ' '),
+(11, 59, 665, 10181, 23, 'dfsetr', 0, '2023-02-18 03:17:55', ' '),
 (12, 0, 0, 0, 24, ' ', 0, '2023-02-18 03:17:55', ' '),
 (13, 0, 0, 0, 25, ' ', 0, '2023-02-18 03:18:40', ' '),
 (14, 23, 247, 4302, 26, 'ds', 2, '2023-02-18 03:18:40', ' '),
@@ -1794,7 +1923,7 @@ INSERT INTO `quequan` (`ma_qq`, `ma_t`, `ma_h`, `ma_x`, `ma_vc`, `diachi_qq`, `s
 (44, 2, 38, 710, 56, 'de32ews', 0, '2023-02-18 03:19:52', ' '),
 (45, 1, 18, 276, 57, 'sdfet̀â', 0, '2023-02-18 03:19:52', ' '),
 (46, 1, 18, 286, 58, 'ỷh̉̀y', 0, '2023-02-18 03:19:52', ' '),
-(47, 55, 619, 9659, 59, 'dcfeqưe', 0, '2023-02-18 03:19:52', ' '),
+(47, 55, 619, 9659, 59, 'dcfeqưe', 2, '2023-02-18 03:19:52', ' '),
 (48, 59, 664, 10173, 60, 'dềwrew', 0, '2023-02-18 03:19:52', ' '),
 (49, 55, 620, 9669, 61, 'dwede', 0, '2023-02-18 03:19:52', ' '),
 (50, 0, 0, 0, 62, ' ', 0, '2023-02-18 03:19:52', ' '),
@@ -1815,10 +1944,10 @@ INSERT INTO `quequan` (`ma_qq`, `ma_t`, `ma_h`, `ma_x`, `ma_vc`, `diachi_qq`, `s
 
 CREATE TABLE `quocgia` (
   `ma_qg` int(11) NOT NULL,
-  `ma_kv` int(11) NOT NULL,
-  `ten_qg` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status_qg` int(11) NOT NULL DEFAULT 0,
-  `created_qg` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ma_kv` int(11) DEFAULT NULL,
+  `ten_qg` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status_qg` int(11) DEFAULT 0,
+  `created_qg` timestamp NULL DEFAULT current_timestamp(),
   `updated_qg` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1922,7 +2051,8 @@ INSERT INTO `quyen` (`ma_q`, `ten_q`, `mota_q`, `status_q`, `created_q`, `update
 (7, 'Quản lý kĩ luật, khen thưởng', '<p>- Quản l&yacute; kĩ luật</p>\r\n\r\n<p>- Quản l&yacute; khen thưởng</p>', 0, '2023-02-14 06:09:03', ' '),
 (8, 'Quản lý thông tin viên chức', '<p>- Quản l&yacute; lớp học</p>', 0, '2023-02-14 06:10:09', ' '),
 (9, 'Quản lý khoa', '<p>- Quản l&yacute; th&ocirc;ng tin vi&ecirc;n chức trong khoa</p>', 0, '2023-02-14 06:11:01', '2023-03-08 02:45:33'),
-(10, 'Viên chức', '<p>- Đăng nhập, đăng xuất</p>\r\n\r\n<p>- Cập nhật th&ocirc;ng tin c&aacute; nh&acirc;n</p>', 0, '2023-02-14 07:32:11', '2023-03-22 01:57:05');
+(10, 'Viên chức', '<p>- Đăng nhập, đăng xuất</p>\r\n\r\n<p>- Cập nhật th&ocirc;ng tin c&aacute; nh&acirc;n</p>', 0, '2023-02-14 07:32:11', '2023-03-22 01:57:05'),
+(51, 'Quản lý quá trình chức vụ', '- Lưu thông tin chức vụ của viên chức\r\n- Lưu nhiệm kỳ viên chức giữ chức vụ gì', 0, '2023-04-10 13:42:28', ' ');
 
 -- --------------------------------------------------------
 
@@ -1952,7 +2082,11 @@ INSERT INTO `quyetdinh` (`ma_qd`, `ma_vc`, `ma_l`, `so_qd`, `ngayky_qd`, `file_q
 (23, 56, 4, '789', '2023-02-26', '167774322486.pdf', 0, '2023-03-02 07:47:04', ' '),
 (24, 53, 4, '159', '2023-02-27', '1677743257611.pdf', 0, '2023-03-02 07:47:37', '2023-03-03 04:32:09'),
 (27, 16, 7, 'thyt', '2023-03-08', '1678850165595.pdf', 0, '2023-03-15 03:16:05', ' '),
-(28, 61, 7, '5y5y6', '2023-03-20', '1679298493691.pdf', 0, '2023-03-20 07:48:13', ' ');
+(28, 61, 7, '5y5y6', '2023-03-20', '1679298493691.pdf', 0, '2023-03-20 07:48:13', ' '),
+(31, 55, 13, 'sfrt', '2023-03-30', '1680329640238.docx', 0, '2023-04-01 06:14:00', ' '),
+(32, 52, 13, 'hyĩi', '2023-03-30', '1680403366247.docx', 0, '2023-04-02 02:42:46', ' '),
+(37, 56, 64, 'gtytủ', '2023-04-02', '1680771039943.docx', 0, '2023-04-06 08:50:39', ' '),
+(38, 1, 4, 'ffthyt', '2023-03-29', '1680936003155.docx', 0, '2023-04-08 06:40:03', ' ');
 
 -- --------------------------------------------------------
 
@@ -1980,7 +2114,9 @@ INSERT INTO `thoihoc` (`ma_th`, `ma_vc`, `ma_l`, `ngay_th`, `lydo_th`, `file_th`
 (4, 31, 4, '2023-03-15', 'dstôổ', '1677919468791.pdf', 0, '2023-03-04 08:44:28', NULL),
 (5, 15, 7, '2023-03-05', 'dfs', '1678158459634.pdf', 0, '2023-03-07 03:07:39', NULL),
 (6, 30, 3, '2023-03-15', 'fewrf', '1678159143782.pdf', 0, '2023-03-07 03:19:03', NULL),
-(7, 61, 7, '2023-03-08', 'dfsg', '1679302876520.pdf', 0, '2023-03-20 09:01:16', NULL);
+(7, 61, 7, '2023-03-08', 'dfsg', '1679302876520.pdf', 0, '2023-03-20 09:01:16', NULL),
+(11, 52, 13, '2023-04-18', 't6y7', '1680415913985.xlsx', 0, '2023-04-02 06:11:53', NULL),
+(12, 56, 64, '2023-04-12', 'sfsedtr', '1680775582651.pdf', 0, '2023-04-06 10:06:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -2169,6 +2305,7 @@ CREATE TABLE `vienchuc` (
   `cannang_vc` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `nhommau_vc` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
   `chinhsach_vc` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `hocphangiangday_vc` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cccd_vc` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
   `ngaycapcccd_vc` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
   `bhxh_vc` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
@@ -2188,50 +2325,50 @@ CREATE TABLE `vienchuc` (
 -- Đang đổ dữ liệu cho bảng `vienchuc`
 --
 
-INSERT INTO `vienchuc` (`ma_vc`, `ma_k`, `ma_cv`, `ma_n`, `ma_b`, `ma_dt`, `ma_tg`, `ma_tb`, `user_vc`, `pass_vc`, `hoten_vc`, `sdt_vc`, `hinh_vc`, `tenkhac_vc`, `ngaysinh_vc`, `gioitinh_vc`, `thuongtru_vc`, `hientai_vc`, `nghekhiduoctuyen_vc`, `ngaytuyendung_vc`, `congviecchinhgiao_vc`, `phucap_vc`, `trinhdophothong_vc`, `chinhtri_vc`, `quanlynhanuoc_vc`, `ngoaingu_vc`, `tinhoc_vc`, `ngayvaodang_vc`, `ngaychinhthuc_vc`, `ngaynhapngu_vc`, `ngayxuatngu_vc`, `quanham_vc`, `danhhieucao_vc`, `sotruong_vc`, `chieucao_vc`, `cannang_vc`, `nhommau_vc`, `chinhsach_vc`, `cccd_vc`, `ngaycapcccd_vc`, `bhxh_vc`, `lichsubanthan1_vc`, `lichsubanthan2_vc`, `lichsubanthan3_vc`, `ngaybatdaulamviec_vc`, `thoigiannghi_vc`, `ngayhuongbac_vc`, `ngaynangbac_vc`, `status_vc`, `created_vc`, `updated_vc`) VALUES
-(1, 5, 8, 5, 16, 4, 4, 4, 'trinhb1910319@student.ctu.edu.vn', '6141bcafae02e2b1e6110f7f0c238ce7', 'Lê Diểm Trinh', '0824955654', ' ', 'trinh', '2001-01-12', 0, 'Phú Lộc, Tam Bình, Vĩnh Long', 'Phú Lộc, Tam Bình, Vĩnh Long', 'crrgyê', '2020-04-25', 'dgr', 'fhryè', '12/12', 'cdcss', 'sddfss', 'sdfddfs', 'dddddvddv', '2023-02-28', '2023-03-15', NULL, NULL, 'scdcssd', 'sdda', 'áấâââsd', 'sđa', 'ssd', 'cde', 'dcss', 'dcfddfd', '2023-03-14', 'sxcssc', 'dcddvdv', 'dxvs', 'vđvd', '2023-03-07', ' ', '2023-03-24', '2026-03-24', 0, '2023-02-14 00:56:49', '2023-02-15 06:34:45'),
-(15, 5, 8, 6, 0, 6, 5, 4, 'ptphi@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Thế Phi', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:05:17', ' '),
-(16, 5, 8, 7, 0, 4, 4, 4, 'tcan@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Công Án', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:05:39', ' '),
-(17, 5, 8, 8, 0, 6, 6, 5, 'tnbinh@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Ngân Bình', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:05:53', ' '),
-(19, 5, 8, 9, 0, 4, 7, 4, 'tmtuan@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Thái Minh Tuấn', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:06:24', ' '),
-(20, 5, 8, 10, 0, 4, 4, 0, 'bvqbao@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Bùi Võ Quốc Bảo', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:06:39', ' '),
-(21, 5, 8, 7, 30, 20, 5, 0, 'ptxdiem@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Thị Xuân Diễm', 'few52', ' ', 'sfrqr', '1977-08-15', 1, 'dwer', 'rerte', 'erer', '2023-03-10', 'dwef', 'efef', '12/12', 'dfdf', 'dfdgr', 'fgfg', 'fgrft', '2023-03-06', '2023-03-30', '2023-03-16', '2023-02-28', 'cdfre4', 'sdger', 'grtyr5y', 'tytr67', 'grtw4t', 'gfrgte', 'grfye6', 'dtw4', '2023-03-06', 'sfrq3r', 'defrw', 'efrwr', 'erfew4r', '2023-03-13', ' ', '2023-03-24', '2026-03-24', 0, '2023-02-15 07:06:50', ' '),
-(22, 5, 8, 10, 0, 4, 8, 0, 'nnmy@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Ngọc Mỹ', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:07:00', ' '),
-(23, 5, 8, 9, 0, 6, 9, 0, 'tcde@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Cao Đệ', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:07:15', ' '),
-(24, 5, 8, 8, 0, 6, 10, 0, 'lvlam@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Văn Lâm', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:07:28', ' '),
-(25, 5, 8, 7, 0, 7, 11, 0, 'tmtan@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Minh Tân', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:07:42', ' '),
-(26, 5, 8, 9, 42, 12, 4, 0, 'lhthao@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Hoàng Thảo', 'dfsdf', ' ', 'fret', '1963-03-09', 1, 'dsfsd', 'dfs', 'dffddfdd', '2023-03-23', 'dfs', 'fsdfdd', '12/12', 'dsfsd', 'fsdfsdf', 'dfddf', 'sdfs', '2023-03-06', '2023-03-23', NULL, NULL, 'sdfssf', 'cfddfsd', 'dfddfs', 'fddfddf', '15', 'dfsf', 'dfddf', 'dfddf', '2023-02-27', 'sdsd', 'dsfsdf', 'ssdf', 'dfsdf', '2023-02-26', '2023-03-13', '2023-03-09', '2026-03-09', 2, '2023-02-15 07:07:53', ' '),
-(27, 5, 8, 6, 0, 9, 12, 0, 'trungnguyen@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Minh Trung', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:08:07', ' '),
-(28, 5, 8, 9, 39, 13, 17, 0, 'ntkyen@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Kim Yến', 'dsvgeet', ' ', 'lediemtrinh', '1963-03-09', 1, 'aveêcdfeẻqê', 'êêava', 'degt', '2023-02-15', 'dvgetfdxdeqtềê', 'ể̀etwt', '12/12', 'rtôêtrt', 'eôt̀ể', 'ôtể', 'êêââềt', '2023-02-01', '2023-02-04', '2023-02-15', '2023-02-18', 'edfteôổ', 'ẻâẻ', 'rôeèổtô', 'eôổồ̉', '61', 'rt̀ổtồ', 'eềrằ', 'ưêôầê', '2023-02-03', 'ẻêôt', 'eề̃ỷ̃ịyụtẻt', 'dewrẻtr', 'rtôêổt̀t̉', '2023-02-09', '2023-03-08', '2022-02-12', '2023-03-26', 2, '2023-02-15 07:08:18', ' '),
-(29, 5, 8, 9, 0, 14, 13, 0, 'lhqbao@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Huỳnh Quốc Bảo', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:08:29', ' '),
-(30, 5, 8, 10, 0, 14, 14, 0, 'tmkhoi@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Minh Khôi', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:08:38', ' '),
-(31, 6, 8, 8, 0, 16, 15, 0, 'vhtram@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Võ Huỳnh Trâm', ' ', ' ', ' ', '1963-03-25', 1, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:09:19', ' '),
-(33, 6, 8, 7, 0, 17, 17, 0, 'hxhiep@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Huỳnh Xuân Hiệp', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:09:55', ' '),
-(34, 6, 8, 9, 0, 20, 17, 0, 'ttttuyen@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trương Thị Thanh Tuyền', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:10:12', ' '),
-(35, 6, 8, 6, 0, 21, 18, 0, 'lhbao@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Lâm Hoài Bảo', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:10:39', ' '),
-(36, 6, 6, 9, 39, 21, 12, 4, 'phcuong@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phan Huy Cường', '0124512451', ' ', 'dsvgtơ', '1977-02-02', 0, 'csa', 'dưư', 'ằdqưdfs', '2023-02-01', 'sèwtô', 'fbhreỳ', '12/12', 'dvgetôẩ', 'dvgưôtô', 'dgetwô', 'vdget', '2019-02-08', '2019-02-08', '2023-02-01', '2023-02-23', 'vdgetted', 'zvdagetq', 'vdagetq', 'getôed', '54', 'feêqê', 'dvè', 'dfe', '2021-02-03', 'vdgewt', 'csrgưư', 'vde', 'dfetê', '2023-02-02', ' ', '2023-02-27', '2026-03-30', 0, '2023-02-15 07:10:54', ' '),
-(37, 6, 8, 7, 0, 23, 19, 0, 'hqnghi@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Huỳnh Quang Nghi', ' ', ' ', ' ', '1963-04-02', 1, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '2023-03-24', ' ', ' ', 2, '2023-02-15 07:11:07', ' '),
-(38, 6, 8, 9, 0, 24, 4, 0, 'chgiang@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Cao Hoàng Giang', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:11:26', ' '),
-(39, 6, 8, 10, 0, 4, 5, 0, 'pplan@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phan Phương Lan', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:11:37', ' '),
-(40, 6, 8, 9, 0, 5, 6, 0, 'ncdanh@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Công Danh', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:11:51', ' '),
-(41, 6, 7, 9, 44, 16, 6, 5, 'tvhoang@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Văn Hoàng', 'fer53r', ' ', 'xsaf', '1994-02-04', 0, 'dvget4', 'grt4', 'grt', '2023-02-11', 'dfer', 'dfer', '12/12', 'dfer', 'dfe', 'der', 'er', '2023-02-16', '2023-02-13', '2023-02-14', '2023-02-02', 'efr', 'dcfer', 'csdwe', 'cdfe', '45', 'csdr', 'dw', 'de', '2023-02-09', 'cdfe', 'sd', 'sdw', 'sde', '2023-02-12', ' ', '2020-01-15', '2023-01-15', 0, '2023-02-15 07:12:15', ' '),
-(42, 6, 8, 6, 0, 6, 7, 0, 'hqthai@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Hồ Quang Thái', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:12:28', ' '),
-(43, 6, 8, 5, 0, 7, 8, 0, 'nvlinh@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Văn Linh', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:12:44', ' '),
-(44, 6, 8, 7, 0, 9, 9, 0, 'txviet@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trương Xuân Việt', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:12:58', ' '),
-(46, 6, 8, 8, 0, 10, 10, 0, 'otmlinh@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Ông Thị Mỹ Linh', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:13:24', ' '),
-(47, 7, 8, 5, 0, 11, 11, 0, 'ntnghe@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thái Nghe', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:14:43', ' '),
-(48, 7, 8, 6, 0, 12, 12, 0, 'ptndiem@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Thị Ngọc Diễm', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:14:58', ' '),
-(49, 7, 8, 7, 30, 21, 12, 0, 'tqdinh@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trương Quốc Định', '01234512452', ' ', 'adfssfs', '1977-03-01', 0, 'dăôââô', 'ưeqâ', 'eêeeêêê', '2021-03-19', 'df', 'èfể', '12/12', 'fèẻw', 'ẻẻwẻ', 'ewrê', 'eẻwểể', '2020-03-06', '2020-03-24', '1997-03-06', '1999-03-07', 'dcfddfsdf', 'dcddcf', 'sddd', 'ddd', '58', 'ddd', 'sdsd', 'dcsdfsf', '2023-03-14', 'cdds', 'sdsd', 'sdđá', 'sadđá', '2023-02-26', ' ', '2023-03-03', '2026-03-03', 0, '2023-02-15 07:15:14', ' '),
-(50, 7, 8, 7, 0, 13, 13, 0, 'tnmthai@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Nguyễn Minh Thái', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:15:30', ' '),
-(51, 7, 8, 8, 0, 14, 14, 0, 'nthai.cit@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thanh Hải', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:15:41', ' '),
-(52, 5, 8, 9, 0, 20, 15, 0, 'nmkhiem@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Minh Khiêm', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:15:53', ' '),
-(53, 7, 8, 9, 42, 16, 12, 5, 'thanhdien@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Thanh Điện', 'cder34', ' ', 'fer34', '2023-02-05', 0, 'csde3', 'sdwe', 'sw', '2023-02-07', 'wr3', 'ewfr3', '12/12', 'dfr', 'de', 'dew', 'wsr', '2023-02-08', '2023-02-02', '2023-01-30', '2023-02-17', 'er3ewd', 'derd', 'der3wd', 'sdwr', '45', 'fer33', 'sder', 'sewr3', '2023-02-08', 'der3', 'sdwr3', 'dw3', 'dwe3', '2023-02-08', ' ', '2023-02-22', '2026-02-22', 0, '2023-02-15 07:16:05', ' '),
-(54, 7, 8, 10, 0, 16, 10, 0, 'ptxloc@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Thị Xuân Lộc', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:16:16', ' '),
-(55, 7, 8, 8, 0, 17, 17, 0, 'vmhien@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Võ Minh Hiển', ' ', ' ', ' ', '1961-04-14', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:16:27', ' '),
-(56, 7, 6, 7, 28, 16, 12, 0, 'pttai@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phan Tấn Tài', 'rgt5', ' ', 'sdwe', '1961-10-20', 0, 'sdwr', 'dwe', 'swde', '2023-02-02', 'cdfer', 'd', '12/12', 'dere2e', 'dwe2', 'sdwe', 'sawe2', '2023-02-02', '2023-02-05', '2023-02-02', '2023-02-16', 'der34', 'dvfe4r2', 'dcfer', 'csd', '50', 'cfer32', 'csde34', 'csdew3', '2023-01-29', 'csd', 'xas', 'adq', 'asq', '2023-02-08', ' ', '2020-02-22', '2026-03-29', 0, '2023-02-15 07:16:36', ' '),
-(59, 7, 8, 9, 46, 4, 15, 4, 'mtcnhung@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Mai Thị Cẩm Nhung', '7412554665', ' ', 'dfcddfsdá', '1963-07-16', 1, 'csfsae', 'sdưe', 'fcewé', '2023-02-15', 'dcddf', 'dfcsdf', '12/12', 'vssfe', 'đếw', 'dsđ', 'sdd', '2023-02-15', '2023-02-20', '2023-02-14', '2023-02-06', 'cssft̀ô', 'dcdè', 'đewed', 'edeede', 'deeqưe', 'ưeqưeq', 'eweqe', '147258369', '2023-02-08', '123654789', 'ddfed', 'đw', 'wew', '2023-02-16', ' ', '2023-02-08', '2026-03-08', 0, '2023-02-15 07:17:08', ' '),
-(61, 5, 6, 9, 42, 4, 6, 5, 'ntthien@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Thanh Hiền', '08145132156', '1676704466395.jpg', 'gt45', '1963-01-30', 1, 'Ninh Kiều, Cần Thơ', 'wdwe', 'efwef', '2023-02-01', 'dfre', 'dewdwe', '12/12', 'wdeqweqw', 'dwed', 'wdeqwe', 'weqweq', '2023-02-08', '2023-02-14', '2023-02-14', '2023-02-02', 'wsdwqdeqw', 'sdqwed', 'weqwe', 'weqwe', 'weqwe', 'wqeqwe', 'weqwe', '123456789', '2023-02-08', 'sqws', 'wqeqw', 'qwq', 'qeqwe', '2023-02-07', ' ', '2023-02-06', '2026-03-20', 0, '2023-02-15 07:17:30', ' '),
-(62, 7, 8, 6, 0, 20, 18, 0, 'ldthang@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Đức Thắng', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:17:41', ' ');
+INSERT INTO `vienchuc` (`ma_vc`, `ma_k`, `ma_cv`, `ma_n`, `ma_b`, `ma_dt`, `ma_tg`, `ma_tb`, `user_vc`, `pass_vc`, `hoten_vc`, `sdt_vc`, `hinh_vc`, `tenkhac_vc`, `ngaysinh_vc`, `gioitinh_vc`, `thuongtru_vc`, `hientai_vc`, `nghekhiduoctuyen_vc`, `ngaytuyendung_vc`, `congviecchinhgiao_vc`, `phucap_vc`, `trinhdophothong_vc`, `chinhtri_vc`, `quanlynhanuoc_vc`, `ngoaingu_vc`, `tinhoc_vc`, `ngayvaodang_vc`, `ngaychinhthuc_vc`, `ngaynhapngu_vc`, `ngayxuatngu_vc`, `quanham_vc`, `danhhieucao_vc`, `sotruong_vc`, `chieucao_vc`, `cannang_vc`, `nhommau_vc`, `chinhsach_vc`, `hocphangiangday_vc`, `cccd_vc`, `ngaycapcccd_vc`, `bhxh_vc`, `lichsubanthan1_vc`, `lichsubanthan2_vc`, `lichsubanthan3_vc`, `ngaybatdaulamviec_vc`, `thoigiannghi_vc`, `ngayhuongbac_vc`, `ngaynangbac_vc`, `status_vc`, `created_vc`, `updated_vc`) VALUES
+(1, 5, 8, 5, 16, 4, 4, 4, 'trinhb1910319@student.ctu.edu.vn', '6141bcafae02e2b1e6110f7f0c238ce7', 'Lê Diểm Trinh', '0824955654', ' ', 'trinh', '2001-01-12', 0, 'Phú Lộc, Tam Bình, Vĩnh Long', 'Phú Lộc, Tam Bình, Vĩnh Long', 'crrgyê', '2020-04-25', 'dgr', 'fhryè', '12/12', 'cdcss', 'sddfss', 'sdfddfs', 'dddddvddv', '2023-02-28', '2023-03-15', NULL, NULL, 'scdcssd', 'sdda', 'áấâââsd', 'sđa', 'ssd', 'cde', 'dcss', 'cfghgngh', 'dcfddfd', '2023-03-14', 'sxcssc', 'dcddvdv', 'dxvs', 'vđvd', '2023-03-07', ' ', '2023-03-24', '2026-04-10', 0, '2023-02-14 00:56:49', '2023-02-15 06:34:45'),
+(15, 5, 8, 6, 0, 6, 5, 4, 'ptphi@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Thế Phi', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:05:17', ' '),
+(16, 5, 8, 7, 0, 4, 4, 4, 'tcan@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Công Án', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:05:39', ' '),
+(17, 5, 8, 8, 0, 6, 6, 5, 'tnbinh@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Ngân Bình', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:05:53', ' '),
+(19, 5, 8, 9, 0, 4, 7, 4, 'tmtuan@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Thái Minh Tuấn', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:06:24', ' '),
+(20, 5, 8, 10, 0, 4, 4, 0, 'bvqbao@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Bùi Võ Quốc Bảo', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:06:39', ' '),
+(21, 5, 8, 7, 30, 20, 5, 0, 'ptxdiem@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Thị Xuân Diễm', 'few52', ' ', 'sfrqr', '1977-08-15', 1, 'dwer', 'rerte', 'erer', '2023-03-10', 'dwef', 'efef', '12/12', 'dfdf', 'dfdgr', 'fgfg', 'fgrft', '2023-03-06', '2023-03-30', '2023-03-16', '2023-02-28', 'cdfre4', 'sdger', 'grtyr5y', 'tytr67', 'grtw4t', 'gfrgte', 'grfye6', NULL, 'dtw4', '2023-03-06', 'sfrq3r', 'defrw', 'efrwr', 'erfew4r', '2023-03-13', ' ', '2023-03-24', '2023-04-05', 0, '2023-02-15 07:06:50', ' '),
+(22, 5, 8, 10, 0, 4, 8, 0, 'nnmy@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Ngọc Mỹ', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:07:00', ' '),
+(23, 5, 8, 9, 39, 6, 9, 4, 'tcde@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Cao Đệ', '0845278545', ' ', 'uiu', '1961-06-04', 0, 'sdewr', 'rewre', 'ẻw', '2023-03-29', 'frt̀ô', 'fgrt̀', 'dfdf', 'fgrtt', 'fgr', 'dẻwê', 'dsứ', '2022-12-13', '2023-01-31', NULL, NULL, 'dfsdfsd', 'đsdfss', 'sdsds', 'sdsd', 'dsds', 'dsedf', 'dfddf', NULL, 'dfsdfs', '2022-11-08', 'ssf', 'dsdf', 'xcdcdsf', 'dsfcdf', '2023-04-04', ' ', '2023-04-07', '2026-04-07', 0, '2023-02-15 07:07:15', ' '),
+(24, 5, 8, 8, 0, 6, 10, 0, 'lvlam@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Văn Lâm', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:07:28', ' '),
+(25, 5, 8, 7, 0, 7, 11, 0, 'tmtan@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Minh Tân', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:07:42', ' '),
+(26, 5, 8, 9, 42, 12, 4, 0, 'lhthao@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Hoàng Thảo', 'dfsdf', ' ', 'fret', '1963-03-09', 1, 'dsfsd', 'dfs', 'dffddfdd', '2023-03-23', 'dfs', 'fsdfdd', '12/12', 'dsfsd', 'fsdfsdf', 'dfddf', 'sdfs', '2023-03-06', '2023-03-23', NULL, NULL, 'sdfssf', 'cfddfsd', 'dfddfs', 'fddfddf', '15', 'dfsf', 'dfddf', NULL, 'dfddf', '2023-02-27', 'sdsd', 'dsfsdf', 'ssdf', 'dfsdf', '2023-02-26', '2023-03-13', '2023-03-09', '2026-03-09', 2, '2023-02-15 07:07:53', ' '),
+(27, 5, 8, 6, 0, 9, 12, 0, 'trungnguyen@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Minh Trung', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:08:07', ' '),
+(28, 5, 8, 9, 39, 13, 17, 0, 'ntkyen@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Kim Yến', 'dsvgeet', ' ', 'lediemtrinh', '1963-03-09', 1, 'aveêcdfeẻqê', 'êêava', 'degt', '2023-02-15', 'dvgetfdxdeqtềê', 'ể̀etwt', '12/12', 'rtôêtrt', 'eôt̀ể', 'ôtể', 'êêââềt', '2023-02-01', '2023-02-04', '2023-02-15', '2023-02-18', 'edfteôổ', 'ẻâẻ', 'rôeèổtô', 'eôổồ̉', '61', 'rt̀ổtồ', 'eềrằ', NULL, 'ưêôầê', '2023-02-03', 'ẻêôt', 'eề̃ỷ̃ịyụtẻt', 'dewrẻtr', 'rtôêổt̀t̉', '2023-02-09', '2023-03-08', '2022-02-12', '2023-03-26', 2, '2023-02-15 07:08:18', ' '),
+(29, 5, 8, 9, 0, 14, 13, 0, 'lhqbao@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Huỳnh Quốc Bảo', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:08:29', ' '),
+(30, 5, 8, 10, 0, 14, 4, 0, 'tmkhoi@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Minh Khôi', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:08:38', ' '),
+(31, 6, 8, 8, 0, 16, 15, 0, 'vhtram@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Võ Huỳnh Trâm', ' ', ' ', ' ', '1963-03-25', 1, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:09:19', ' '),
+(33, 6, 8, 7, 0, 17, 17, 0, 'hxhiep@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Huỳnh Xuân Hiệp', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:09:55', ' '),
+(34, 6, 8, 9, 0, 20, 17, 0, 'ttttuyen@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trương Thị Thanh Tuyền', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:10:12', ' '),
+(35, 6, 8, 6, 0, 21, 18, 0, 'lhbao@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Lâm Hoài Bảo', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:10:39', ' '),
+(36, 6, 6, 9, 39, 21, 12, 4, 'phcuong@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phan Huy Cường', '0124512451', ' ', 'dsvgtơ', '1961-05-02', 0, 'csa', 'dưư', 'ằdqưdfs', '2023-02-01', 'sèwtô', 'fbhreỳ', '12/12', 'dvgetôẩ', 'dvgưôtô', 'dgetwô', 'vdget', '2019-02-08', '2019-02-08', '2023-02-01', '2023-02-23', 'vdgetted', 'zvdagetq', 'vdagetq', 'getôed', '54', 'feêqê', 'dvè', NULL, 'dfe', '2021-02-03', 'vdgewt', 'csrgưư', 'vde', 'dfetê', '2023-02-02', ' ', '2023-02-27', '2023-04-20', 0, '2023-02-15 07:10:54', ' '),
+(37, 6, 8, 7, 0, 23, 19, 0, 'hqnghi@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Huỳnh Quang Nghi', ' ', ' ', ' ', '1963-04-02', 1, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', '2023-03-24', ' ', ' ', 2, '2023-02-15 07:11:07', ' '),
+(38, 6, 8, 9, 0, 24, 4, 0, 'chgiang@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Cao Hoàng Giang', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:11:26', ' '),
+(39, 6, 8, 10, 0, 4, 5, 0, 'pplan@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phan Phương Lan', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:11:37', ' '),
+(40, 6, 8, 9, 0, 5, 6, 0, 'ncdanh@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Công Danh', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:11:51', ' '),
+(41, 6, 7, 9, 44, 16, 6, 5, 'tvhoang@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Văn Hoàng', 'fer53r', ' ', 'xsaf', '1994-02-04', 0, 'dvget4', 'grt4', 'grt', '2023-02-11', 'dfer', 'dfer', '12/12', 'dfer', 'dfe', 'der', 'er', '2023-02-16', '2023-02-13', '2023-02-14', '2023-02-02', 'efr', 'dcfer', 'csdwe', 'cdfe', '45', 'csdr', 'dw', NULL, 'de', '2023-02-09', 'cdfe', 'sd', 'sdw', 'sde', '2023-02-12', ' ', '2020-01-15', '2023-01-15', 0, '2023-02-15 07:12:15', ' '),
+(42, 6, 8, 6, 0, 6, 7, 0, 'hqthai@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Hồ Quang Thái', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:12:28', ' '),
+(43, 6, 8, 5, 0, 7, 8, 0, 'nvlinh@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Văn Linh', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:12:44', ' '),
+(44, 6, 8, 7, 0, 9, 9, 0, 'txviet@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trương Xuân Việt', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:12:58', ' '),
+(46, 6, 8, 8, 0, 10, 10, 0, 'otmlinh@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Ông Thị Mỹ Linh', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:13:24', ' '),
+(47, 7, 8, 5, 0, 11, 11, 0, 'ntnghe@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thái Nghe', ' ', ' ', ' ', '1961-04-05', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:14:43', ' '),
+(48, 7, 8, 6, 0, 12, 12, 0, 'ptndiem@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Thị Ngọc Diễm', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:14:58', ' '),
+(49, 7, 8, 7, 30, 21, 12, 0, 'tqdinh@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trương Quốc Định', '01234512452', ' ', 'adfssfs', '1977-03-01', 0, 'dăôââô', 'ưeqâ', 'eêeeêêê', '2021-03-19', 'df', 'èfể', '12/12', 'fèẻw', 'ẻẻwẻ', 'ewrê', 'eẻwểể', '2020-03-06', '2020-03-24', '1997-03-06', '1999-03-07', 'dcfddfsdf', 'dcddcf', 'sddd', 'ddd', '58', 'ddd', 'sdsd', NULL, 'dcsdfsf', '2023-03-14', 'cdds', 'sdsd', 'sdđá', 'sadđá', '2023-02-26', ' ', '2023-03-03', '2026-03-03', 0, '2023-02-15 07:15:14', ' '),
+(50, 7, 8, 7, 0, 13, 13, 0, 'tnmthai@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Nguyễn Minh Thái', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:15:30', ' '),
+(51, 7, 8, 8, 0, 14, 4, 0, 'nthai.cit@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thanh Hải', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:15:41', ' '),
+(52, 5, 8, 9, 0, 20, 15, 0, 'nmkhiem@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Minh Khiêm', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:15:53', ' '),
+(53, 7, 8, 9, 42, 16, 12, 5, 'thanhdien@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Thanh Điện', 'cder34', ' ', 'fer34', '2023-02-05', 0, 'csde3', 'sdwe', 'sw', '2023-02-07', 'wr3', 'ewfr3', '12/12', 'dfr', 'de', 'dew', 'wsr', '2023-02-08', '2023-02-02', '2023-01-30', '2023-02-17', 'er3ewd', 'derd', 'der3wd', 'sdwr', '45', 'fer33', 'sder', NULL, 'sewr3', '2023-02-08', 'der3', 'sdwr3', 'dw3', 'dwe3', '2023-02-08', ' ', '2023-02-22', '2026-02-22', 0, '2023-02-15 07:16:05', ' '),
+(54, 7, 8, 10, 0, 16, 10, 0, 'ptxloc@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Thị Xuân Lộc', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:16:16', ' '),
+(55, 7, 8, 8, 0, 17, 17, 0, 'vmhien@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Võ Minh Hiển', ' ', ' ', ' ', '1961-04-14', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:16:27', ' '),
+(56, 7, 6, 7, 28, 16, 12, 0, 'pttai@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Phan Tấn Tài', 'rgt5', ' ', 'sdwe', '1961-10-20', 0, 'sdwr', 'dwe', 'swde', '2023-02-02', 'cdfer', 'd', '12/12', 'dere2e', 'dwe2', 'sdwe', 'sawe2', '2023-02-02', '2023-02-05', '2023-02-02', '2023-02-16', 'der34', 'dvfe4r2', 'dcfer', 'csd', '50', 'cfer32', 'csde34', NULL, 'csdew3', '2023-01-29', 'csd', 'xas', 'adq', 'asq', '2023-02-08', ' ', '2020-02-22', '2026-03-29', 0, '2023-02-15 07:16:36', ' '),
+(59, 7, 8, 9, 46, 4, 15, 4, 'mtcnhung@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Mai Thị Cẩm Nhung', '7412554665', ' ', 'dfcddfsdá', '1963-04-05', 1, 'csfsae', 'sdưe', 'fcewé', '2023-02-15', 'dcddf', 'dfcsdf', '12/12', 'vssfe', 'đếw', 'dsđ', 'sdd', '2023-02-15', '2023-02-20', '2023-02-14', '2023-02-06', 'cssft̀ô', 'dcdè', 'đewed', 'edeede', 'deeqưe', 'ưeqưeq', 'eweqe', NULL, '147258369', '2023-02-08', '123654789', 'ddfed', 'đw', 'wew', '2023-02-16', '2023-04-05', '2023-02-08', '2026-04-05', 2, '2023-02-15 07:17:08', ' '),
+(61, 5, 6, 9, 42, 4, 6, 5, 'ntthien@ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Thanh Hiền', '08145132156', '1676704466395.jpg', 'gt45', '1963-01-30', 1, 'Ninh Kiều, Cần Thơ', 'wdwe', 'efwef', '2023-02-01', 'dfre', 'dewdwe', '12/12', 'wdeqweqw', 'dwed', 'wdeqwe', 'weqweq', '2023-02-08', '2023-02-14', '2023-02-14', '2023-02-02', 'wsdwqdeqw', 'sdqwed', 'weqwe', 'weqwe', 'weqwe', 'wqeqwe', 'weqwe', 'ytgugu', '123456789', '2023-02-08', 'sqws', 'wqeqw', 'qwq', 'qeqwe', '2023-02-07', ' ', '2023-02-06', '2026-04-10', 0, '2023-02-15 07:17:30', ' '),
+(62, 7, 8, 6, 0, 20, 18, 0, 'ldthang@cit.ctu.edu.vn', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Đức Thắng', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-02-15 07:17:41', ' ');
 
 -- --------------------------------------------------------
 
@@ -12999,6 +13136,12 @@ ALTER TABLE `ngach`
   ADD PRIMARY KEY (`ma_n`);
 
 --
+-- Chỉ mục cho bảng `nhiemky`
+--
+ALTER TABLE `nhiemky`
+  ADD PRIMARY KEY (`ma_nk`);
+
+--
 -- Chỉ mục cho bảng `noisinh`
 --
 ALTER TABLE `noisinh`
@@ -13072,49 +13215,49 @@ ALTER TABLE `xa`
 -- AUTO_INCREMENT cho bảng `bac`
 --
 ALTER TABLE `bac`
-  MODIFY `ma_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `ma_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT cho bảng `bangcap`
 --
 ALTER TABLE `bangcap`
-  MODIFY `ma_bc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `ma_bc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT cho bảng `chauluc`
 --
 ALTER TABLE `chauluc`
-  MODIFY `ma_cl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ma_cl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT cho bảng `chucvu`
 --
 ALTER TABLE `chucvu`
-  MODIFY `ma_cv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ma_cv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT cho bảng `chuyen`
 --
 ALTER TABLE `chuyen`
-  MODIFY `ma_c` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ma_c` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT cho bảng `danhmuclop`
 --
 ALTER TABLE `danhmuclop`
-  MODIFY `ma_dml` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ma_dml` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT cho bảng `dantoc`
 --
 ALTER TABLE `dantoc`
-  MODIFY `ma_dt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `ma_dt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 
 --
 -- AUTO_INCREMENT cho bảng `dunghoc`
 --
 ALTER TABLE `dunghoc`
-  MODIFY `ma_dh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ma_dh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT cho bảng `file`
@@ -13126,25 +13269,25 @@ ALTER TABLE `file`
 -- AUTO_INCREMENT cho bảng `giadinh`
 --
 ALTER TABLE `giadinh`
-  MODIFY `ma_gd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ma_gd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT cho bảng `giahan`
 --
 ALTER TABLE `giahan`
-  MODIFY `ma_gh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ma_gh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT cho bảng `hedaotao`
 --
 ALTER TABLE `hedaotao`
-  MODIFY `ma_hdt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ma_hdt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT cho bảng `hinhthuckhenthuong`
 --
 ALTER TABLE `hinhthuckhenthuong`
-  MODIFY `ma_htkt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ma_htkt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT cho bảng `huyen`
@@ -13156,61 +13299,67 @@ ALTER TABLE `huyen`
 -- AUTO_INCREMENT cho bảng `ketqua`
 --
 ALTER TABLE `ketqua`
-  MODIFY `ma_kq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ma_kq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT cho bảng `khenthuong`
 --
 ALTER TABLE `khenthuong`
-  MODIFY `ma_kt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `ma_kt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT cho bảng `khoa`
 --
 ALTER TABLE `khoa`
-  MODIFY `ma_k` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ma_k` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT cho bảng `khuvuc`
 --
 ALTER TABLE `khuvuc`
-  MODIFY `ma_kv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `ma_kv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT cho bảng `kyluat`
 --
 ALTER TABLE `kyluat`
-  MODIFY `ma_kl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ma_kl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT cho bảng `loaibangcap`
 --
 ALTER TABLE `loaibangcap`
-  MODIFY `ma_lbc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ma_lbc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT cho bảng `loaikhenthuong`
 --
 ALTER TABLE `loaikhenthuong`
-  MODIFY `ma_lkt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ma_lkt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT cho bảng `loaikyluat`
 --
 ALTER TABLE `loaikyluat`
-  MODIFY `ma_lkl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ma_lkl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT cho bảng `lop`
 --
 ALTER TABLE `lop`
-  MODIFY `ma_l` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ma_l` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT cho bảng `ngach`
 --
 ALTER TABLE `ngach`
-  MODIFY `ma_n` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `ma_n` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
+--
+-- AUTO_INCREMENT cho bảng `nhiemky`
+--
+ALTER TABLE `nhiemky`
+  MODIFY `ma_nk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT cho bảng `noisinh`
@@ -13228,31 +13377,31 @@ ALTER TABLE `quequan`
 -- AUTO_INCREMENT cho bảng `quocgia`
 --
 ALTER TABLE `quocgia`
-  MODIFY `ma_qg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `ma_qg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT cho bảng `quyen`
 --
 ALTER TABLE `quyen`
-  MODIFY `ma_q` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `ma_q` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT cho bảng `quyetdinh`
 --
 ALTER TABLE `quyetdinh`
-  MODIFY `ma_qd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `ma_qd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT cho bảng `thoihoc`
 --
 ALTER TABLE `thoihoc`
-  MODIFY `ma_th` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ma_th` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `thuongbinh`
 --
 ALTER TABLE `thuongbinh`
-  MODIFY `ma_tb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ma_tb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT cho bảng `tinh`
@@ -13264,13 +13413,13 @@ ALTER TABLE `tinh`
 -- AUTO_INCREMENT cho bảng `tongiao`
 --
 ALTER TABLE `tongiao`
-  MODIFY `ma_tg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ma_tg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT cho bảng `vienchuc`
 --
 ALTER TABLE `vienchuc`
-  MODIFY `ma_vc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `ma_vc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT cho bảng `xa`

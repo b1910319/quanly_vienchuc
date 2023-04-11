@@ -77,6 +77,9 @@ class HomeController extends Controller
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
 
     $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
     $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
@@ -205,6 +208,7 @@ class HomeController extends Controller
       ->with('thoihoc', $thoihoc)
 
       ->with('phanquyen_qlk', $phanquyen_qlk)
+      ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
       ->with('phanquyen_qltt', $phanquyen_qltt)
       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)

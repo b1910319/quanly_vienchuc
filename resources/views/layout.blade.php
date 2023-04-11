@@ -267,6 +267,22 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                 </ul>
               </li>
             @endif
+            @if ($phanquyen_qlqtcv || $phanquyen_admin)
+              <li>
+                <a href="javascript: void(0);" class="waves-effect">
+                  <i class="fa-solid fa-map-pin"></i>
+                  <span> Quản Lý Qúa Trình <br> Chức Vụ </span>
+                  <span class="menu-arrow"></span>
+                </a>
+                <ul class="nav-second-level" aria-expanded="false">
+                  <li>
+                    <a href="{{ URL::to('/nhiemky') }}">
+                      Nhiệm kỳ
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            @endif
             @if ($phanquyen_qlktkl || $phanquyen_admin)
               <li>
                 <a href="javascript: void(0);" class="waves-effect">

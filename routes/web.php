@@ -35,6 +35,7 @@ use App\Http\Controllers\QuyetDinhController;
 use App\Http\Controllers\ThoiHocController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\KhuVucController;
+use App\Http\Controllers\NhiemKyController;
 use App\Http\Controllers\QuocGiaController;
 
 Route::get('/login',[HomeController::class, 'index']);
@@ -982,7 +983,15 @@ Route::post('/delete_quocgia_check',[QuocGiaController::class, 'delete_quocgia_c
 
 
 
-
+Route::get('/nhiemky',[NhiemKyController::class, 'nhiemky']);
+Route::post('/add_nhiemky',[NhiemKyController::class, 'add_nhiemky']);
+Route::post('/add_nhiemky_excel',[NhiemKyController::class, 'add_nhiemky_excel']);
+Route::get('/select_nhiemky/{ma_nk}',[NhiemKyController::class, 'select_nhiemky']);
+Route::get('/edit_nhiemky/{ma_nk}',[NhiemKyController::class, 'edit_nhiemky']);
+Route::post('/update_nhiemky/{ma_nk}',[NhiemKyController::class, 'update_nhiemky']);
+Route::get('/delete_nhiemky',[NhiemKyController::class, 'delete_nhiemky']);
+Route::get('/delete_all_nhiemky',[NhiemKyController::class, 'delete_all_nhiemky']);
+Route::post('/delete_nhiemky_check',[NhiemKyController::class, 'delete_nhiemky_check']);
 
 
 

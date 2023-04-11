@@ -7,30 +7,30 @@
       <table class="table">
         <tbody>
           <tr>
-            <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">
+            <th scope="row" style="width: 20%; background-color: #005F99; font-weight: bold; font-size: 16px; color: white">
               Họ tên
             </th>
             <td >{{ $vienchuc->hoten_vc }}</td>
           </tr>
           <tr>
-            <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Mã số</th>
+            <th scope="row" style="width: 20%; background-color: #005F99; font-weight: bold; font-size: 16px; color: white">Mã số</th>
             <td >VC{{ $vienchuc->ma_vc }}</td>
           </tr>
           <tr>
-            <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Email</th>
+            <th scope="row" style="width: 20%; background-color: #005F99; font-weight: bold; font-size: 16px; color: white">Email</th>
             <td >{{ $vienchuc->user_vc }}</td>
           </tr>
           <tr>
-            <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Số điện thoại</th>
+            <th scope="row" style="width: 20%; background-color: #005F99; font-weight: bold; font-size: 16px; color: white">Số điện thoại</th>
             <td >{{ $vienchuc->sdt_vc }}</td>
           </tr>
           @if (!$phanquyen_admin)
             <tr>
-              <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Ngày sinh</th>
+              <th scope="row" style="width: 20%; background-color: #005F99; font-weight: bold; font-size: 16px; color: white">Ngày sinh</th>
               <td >{{ $vienchuc->ngaysinh_vc }}</td>
             </tr>
             <tr>
-              <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Ngạch viên chức</th>
+              <th scope="row" style="width: 20%; background-color: #005F99; font-weight: bold; font-size: 16px; color: white">Ngạch viên chức</th>
               <td >
                 @foreach ($list_ngach as $ngach )
                   @if ($ngach->ma_n == $vienchuc->ma_n)
@@ -40,7 +40,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Dân tộc</th>
+              <th scope="row" style="width: 20%; background-color: #005F99; font-weight: bold; font-size: 16px; color: white">Dân tộc</th>
               <td >
                 @foreach ($list_dantoc as $dantoc )
                   @if ($dantoc->ma_dt == $vienchuc->ma_dt)
@@ -51,7 +51,7 @@
             </tr>
           @endif
           <tr>
-            <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Khoa</th>
+            <th scope="row" style="width: 20%; background-color: #005F99; font-weight: bold; font-size: 16px; color: white">Khoa</th>
             @foreach ($list_khoa as $khoa )
               @if ($khoa->ma_k == $vienchuc->ma_k)
                 <td >
@@ -61,7 +61,7 @@
             @endforeach
           </tr>
           <tr>
-            <th scope="row" style="width: 20%; background-color: #14C38E; font-weight: bold; font-size: 16px; color: white">Chức vụ</th>
+            <th scope="row" style="width: 20%; background-color: #005F99; font-weight: bold; font-size: 16px; color: white">Chức vụ</th>
             @foreach ($list_chucvu as $chucvu )
               @if ($chucvu->ma_cv == $vienchuc->ma_cv)
                 <td >
@@ -304,7 +304,7 @@
             @foreach ($list_lop as $key => $lop )
               <tr>
                 <td>
-                  <h5 class="m-0 font-weight-normal">
+                  <h5 class="m-0 fw-bold">
                     {{ $lop->ten_l }}
                   </h5>
                 </td>
@@ -348,7 +348,7 @@
                             <tbody>
                               <tr>
                                 <td style="width: 20%;">
-                                  <h5 class="m-0 font-weight-normal">Tên lớp</h5>
+                                  <h5 class="m-0 fw-bold">Tên lớp</h5>
                                 </td>
                   
                                 <td>
@@ -357,7 +357,7 @@
                               </tr>
                               <tr>
                                 <td>
-                                  <h5 class="m-0 font-weight-normal">Ngày bắt đầu</h5>
+                                  <h5 class="m-0 fw-bold">Ngày bắt đầu</h5>
                                 </td>
                   
                                 <td>
@@ -366,7 +366,7 @@
                               </tr>
                               <tr>
                                 <td>
-                                  <h5 class="m-0 font-weight-normal">Ngày kết thúc</h5>
+                                  <h5 class="m-0 fw-bold">Ngày kết thúc</h5>
                                 </td>
                   
                                 <td>
@@ -375,7 +375,7 @@
                               </tr>
                               <tr>
                                 <td>
-                                  <h5 class="m-0 font-weight-normal">Yêu cầu</h5>
+                                  <h5 class="m-0 fw-bold">Yêu cầu</h5>
                                 </td>
                   
                                 <td>
@@ -384,7 +384,7 @@
                               </tr>
                               <tr>
                                 <td>
-                                  <h5 class="m-0 font-weight-normal">Tên cơ sở đào tạo</h5>
+                                  <h5 class="m-0 fw-bold">Tên cơ sở đào tạo</h5>
                                 </td>
                   
                                 <td>
@@ -393,7 +393,7 @@
                               </tr>
                               <tr>
                                 <td>
-                                  <h5 class="m-0 font-weight-normal">Quốc gia đào tạo</h5>
+                                  <h5 class="m-0 fw-bold">Quốc gia đào tạo</h5>
                                 </td>
                   
                                 <td>
@@ -402,7 +402,7 @@
                               </tr>
                               <tr>
                                 <td>
-                                  <h5 class="m-0 font-weight-normal">Ngành học</h5>
+                                  <h5 class="m-0 fw-bold">Ngành học</h5>
                                 </td>
                   
                                 <td>
@@ -411,7 +411,7 @@
                               </tr>
                               <tr>
                                 <td>
-                                  <h5 class="m-0 font-weight-normal">Trình độ đào tạo</h5>
+                                  <h5 class="m-0 fw-bold">Trình độ đào tạo</h5>
                                 </td>
                   
                                 <td>
@@ -420,7 +420,7 @@
                               </tr>
                               <tr>
                                 <td>
-                                  <h5 class="m-0 font-weight-normal">Nguồn kinh phí</h5>
+                                  <h5 class="m-0 fw-bold">Nguồn kinh phí</h5>
                                 </td>
                   
                                 <td>
@@ -429,7 +429,7 @@
                               </tr>
                               <tr>
                                 <td>
-                                  <h5 class="m-0 font-weight-normal">Địa chỉ đào tạo</h5>
+                                  <h5 class="m-0 fw-bold">Địa chỉ đào tạo</h5>
                                 </td>
                   
                                 <td>
@@ -438,7 +438,7 @@
                               </tr>
                               <tr>
                                 <td>
-                                  <h5 class="m-0 font-weight-normal">Nội dung học</h5>
+                                  <h5 class="m-0 fw-bold">Nội dung học</h5>
                                 </td>
                   
                                 <td>
@@ -447,7 +447,7 @@
                               </tr>
                               <tr>
                                 <td>
-                                  <h5 class="m-0 font-weight-normal">Email cơ sở</h5>
+                                  <h5 class="m-0 fw-bold">Email cơ sở</h5>
                                 </td>
                   
                                 <td>
@@ -456,7 +456,7 @@
                               </tr>
                               <tr>
                                 <td>
-                                  <h5 class="m-0 font-weight-normal">Số điện thoại cơ sở</h5>
+                                  <h5 class="m-0 fw-bold">Số điện thoại cơ sở</h5>
                                 </td>
                   
                                 <td>
@@ -677,7 +677,7 @@
                   {{ $key+1 }}
                 </td>
                 <td style="width: 70%">
-                  <h5 class="m-0 font-weight-normal">
+                  <h5 class="m-0 fw-bold">
                     {{ $file->ten_f }}
                   </h5>
                 </td>
