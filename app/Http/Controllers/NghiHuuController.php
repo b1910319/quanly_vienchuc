@@ -21,6 +21,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
+use App\Models\QuaTrinhChucVu;
 use App\Models\QueQuan;
 use App\Models\QuyetDinh;
 use App\Models\ThoiHoc;
@@ -264,6 +265,12 @@ class NghiHuuController extends Controller
       foreach ($quequan as $key => $qq) {
         $qq->status_qq = '2';
         $qq->save();
+      }
+      $quatrinhchucvu =  QuaTrinhChucVu::where('ma_vc', $data['ma_vc'])
+        ->get();
+      foreach ($quatrinhchucvu as $key => $qtcv) {
+        $qtcv->status_qtcv = '2';
+        $qtcv->save();
       }
       return Redirect::to('/nghihuu');
     }else{

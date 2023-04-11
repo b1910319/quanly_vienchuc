@@ -209,8 +209,6 @@
                             <b> Ngày chính thức: </b> {{ $vienchuc->ngaychinhthuc_vc }} <br>
                             <b> Ngày bắt đầu làm việc: </b> {{ $vienchuc->ngaybatdaulamviec_vc }} <br>
                             <b> Chức vụ: </b> {{ $vienchuc->ten_cv }} <br>
-                            <b> Dân tộc: </b> {{ $vienchuc->ten_dt }} <br>
-                            <b> Tôn giáo: </b> {{ $vienchuc->ten_tg }} <br>
                           </p>
                         @endif
                       @endforeach
@@ -218,11 +216,11 @@
                   </div>
                 </div>
               </td>
-              @foreach ($list_vienchuc as $vienchuc  )
-                @if ($vienchuc->ma_vc == $vc->ma_vc)
-                  <td>{{ $vienchuc->ten_k }}</td>
-                @endif
-              @endforeach
+                @foreach ($list_vienchuc as $vienchuc  )
+                  @if ($vienchuc->ma_vc == $vc->ma_vc)
+                    <td>{{ $vienchuc->ten_k }}</td>
+                  @endif
+                @endforeach
               <td>
                 <div class="row ">
                   <div class="col-md-12">

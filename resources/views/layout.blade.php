@@ -285,6 +285,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                       Qúa trình chức vụ
                     </a>
                   </li>
+                  <li>
+                    <a href="{{ URL::to('/thongke_qlqtcv') }}">
+                      Thống kê
+                    </a>
+                  </li>
                 </ul>
               </li>
             @endif
