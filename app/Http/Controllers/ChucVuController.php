@@ -25,6 +25,9 @@ class ChucVuController extends Controller
   public function chucvu(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -48,11 +51,6 @@ class ChucVuController extends Controller
       $count_status = ChucVu::select(DB::raw('count(ma_cv) as sum, status_cv'))
         ->groupBy('status_cv')
         ->get();
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('chucvu.chucvu')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
@@ -60,9 +58,9 @@ class ChucVuController extends Controller
         ->with('title', $title)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('count_status', $count_status)
-        ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('list', $list);
     }else{
       return Redirect::to('/home');
@@ -129,6 +127,9 @@ class ChucVuController extends Controller
   public function edit_chucvu($ma_cv){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -147,16 +148,11 @@ class ChucVuController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = ChucVu::find($ma_cv);
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('chucvu.chucvu_edit')
         ->with('edit', $edit)
         ->with('title', $title)
         ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qltt', $phanquyen_qltt)

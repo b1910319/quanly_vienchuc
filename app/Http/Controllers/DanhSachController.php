@@ -42,6 +42,9 @@ class DanhSachController extends Controller
   public function danhsach($ma_l){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -93,10 +96,6 @@ class DanhSachController extends Controller
         ->select(DB::raw('count(thoihoc.ma_th) as sum, vienchuc.ma_vc'))
         ->groupBy('vienchuc.ma_vc')
         ->get();
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       $list_vienchuc = VienChuc::where('status_vc', '<>', '2')
         ->orderBy('ma_vc', 'desc')
         ->get();
@@ -122,7 +121,6 @@ class DanhSachController extends Controller
         ->with('lop', $lop)
 
         ->with('count', $count)
-        ->with('count_nangbac', $count_nangbac)
         ->with('count_thoihoc_vienchuc', $count_thoihoc_vienchuc)
         ->with('count_chuyen_vienchuc', $count_chuyen_vienchuc)
         ->with('count_giahan_vienchuc', $count_giahan_vienchuc)
@@ -144,6 +142,7 @@ class DanhSachController extends Controller
         ->with('list_tinh',$list_tinh)
 
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_admin', $phanquyen_admin)
@@ -171,27 +170,6 @@ class DanhSachController extends Controller
       return Redirect::to('/home');
     }
   }
-  // public function delete_danhsach($ma_l, $ma_vc){
-  //   $this->check_login();
-  //   $ma_vc_login = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
-  //     ->where('ma_q', '=', '6')
-  //     ->first();
-  //     if($phanquyen_admin || $phanquyen_qlcttc){
-  //       $list = DanhSach::where('ma_vc', $ma_vc)
-  //         ->where('ma_l', $ma_l)
-  //         ->get();
-  //       foreach($list as $key => $danhsach){
-  //         $danhsach->delete();
-  //       }
-  //       return Redirect::to('/danhsach/'.$ma_l);
-  //     }else{
-  //       return Redirect::to('/home');
-  //     }
-  // }
   public function delete_danhsach(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

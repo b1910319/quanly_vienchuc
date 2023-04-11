@@ -24,6 +24,9 @@ class DungHocController extends Controller
   public function dunghoc($ma_l, $ma_vc){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
@@ -58,11 +61,6 @@ class DungHocController extends Controller
         ->get();
       $lop = Lop::find($ma_l);
       $vienchuc = VienChuc::find($ma_vc);
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('dunghoc.dunghoc')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
@@ -73,9 +71,9 @@ class DungHocController extends Controller
         ->with('lop', $lop)
         ->with('vienchuc', $vienchuc)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('count_nangbac', $count_nangbac);
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }
@@ -134,6 +132,9 @@ class DungHocController extends Controller
   public function edit_dunghoc($ma_dh){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -152,16 +153,11 @@ class DungHocController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
       $edit = DungHoc::find($ma_dh);
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('dunghoc.dunghoc_edit')
         ->with('edit', $edit)
         ->with('title', $title)
-        ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qlk', $phanquyen_qlk)
@@ -276,6 +272,9 @@ class DungHocController extends Controller
   public function dunghoc_all(){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
@@ -305,11 +304,6 @@ class DungHocController extends Controller
         ->get();
       $lop = '';
       $vienchuc = '';
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       $list_vienchuc = VienChuc::join('danhsach', 'danhsach.ma_vc', '=', 'vienchuc.ma_vc')
         ->get();
       $list_lop = Lop::orderBy('ten_l', 'asc')
@@ -325,10 +319,10 @@ class DungHocController extends Controller
         ->with('list_vienchuc', $list_vienchuc)
         ->with('list_lop', $list_lop)
         ->with('vienchuc', $vienchuc)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('count_nangbac', $count_nangbac);
+        ->with('phanquyen_qlk', $phanquyen_qlk);
     }else{
       return Redirect::to('/home');
     }
@@ -358,6 +352,9 @@ class DungHocController extends Controller
   public function vienchuc_dunghoc_add($ma_l){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -374,18 +371,12 @@ class DungHocController extends Controller
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
-    Carbon::now('Asia/Ho_Chi_Minh'); 
-    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
     return view('dunghoc.vienchuc_dunghoc_add')
       ->with('title', $title)
       ->with('ma_l', $ma_l)
 
-      ->with('count_nangbac', $count_nangbac)
-
       ->with('phanquyen_admin', $phanquyen_admin)
+      ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
       ->with('phanquyen_qltt', $phanquyen_qltt)
       ->with('phanquyen_qlk', $phanquyen_qlk)
       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)

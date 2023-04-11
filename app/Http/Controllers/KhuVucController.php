@@ -27,6 +27,9 @@ class KhuVucController extends Controller
     $this->check_login();
     $title = "Quản lý khu vực";
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
     ->where('ma_q', '=', '9')
     ->first();
@@ -53,11 +56,6 @@ class KhuVucController extends Controller
       $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
         ->where('ma_q', '=', '8')
         ->first();
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       $chauluc = ChauLuc::find($ma_cl);
       $count_quocgia_khuvuc = KhuVuc::leftJoin('quocgia', 'khuvuc.ma_kv', '=', 'quocgia.ma_kv')
         ->select(DB::raw('count(quocgia.ma_qg) as sum, khuvuc.ma_kv'))
@@ -69,12 +67,12 @@ class KhuVucController extends Controller
         ->with('chauluc', $chauluc)
 
         ->with('count_status', $count_status)
-        ->with('count_nangbac', $count_nangbac)
         ->with('count_quocgia_khuvuc', $count_quocgia_khuvuc)
 
         ->with('list', $list)
 
         ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -147,6 +145,9 @@ class KhuVucController extends Controller
     $this->check_login();
     $title = "Cập nhật thông tin khuvuc";
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
@@ -182,6 +183,7 @@ class KhuVucController extends Controller
         ->with('list_chauluc', $list_chauluc)
 
         ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)

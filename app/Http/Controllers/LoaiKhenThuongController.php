@@ -25,6 +25,9 @@ class LoaiKhenThuongController extends Controller
   public function loaikhenthuong(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -60,6 +63,7 @@ class LoaiKhenThuongController extends Controller
         ->with('title', $title)
         ->with('count_status', $count_status)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
@@ -129,6 +133,9 @@ class LoaiKhenThuongController extends Controller
   public function edit_loaikhenthuong($ma_lkt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -155,6 +162,7 @@ class LoaiKhenThuongController extends Controller
       return view('loaikhenthuong.loaikhenthuong_edit')
         ->with('edit', $edit)
         ->with('title', $title)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt)

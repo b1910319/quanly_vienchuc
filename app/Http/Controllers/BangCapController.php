@@ -27,6 +27,9 @@ class BangCapController extends Controller
   public function bangcap($ma_vc){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '9')
       ->first();
@@ -63,17 +66,13 @@ class BangCapController extends Controller
         ->orderBy('ten_lbc', 'asc')
         ->get();
       $vienchuc = VienChuc::find($ma_vc);
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('bangcap.bangcap')
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('count', $count)
         ->with('title', $title)
         ->with('ma_vc', $ma_vc)
@@ -81,7 +80,6 @@ class BangCapController extends Controller
         ->with('list_hedaotao', $list_hedaotao)
         ->with('list_loaibangcap', $list_loaibangcap)
         ->with('count_status', $count_status)
-        ->with('count_nangbac', $count_nangbac)
         ->with('list', $list);
     }else{
       return Redirect::to('/home');
@@ -167,6 +165,9 @@ class BangCapController extends Controller
     $this->check_login();
     $title = "Cập nhật thông tin bằng cấp";
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '9')
       ->first();
@@ -184,11 +185,6 @@ class BangCapController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
       $edit = BangCap::find($ma_bc);
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       $list_hedaotao = HeDaoTao::where('status_hdt', '<>', '1')
         ->orderBy('ten_hdt', 'asc')
         ->get();
@@ -203,9 +199,9 @@ class BangCapController extends Controller
         ->with('list_loaibangcap', $list_loaibangcap)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qltt', $phanquyen_qltt)
-        ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');

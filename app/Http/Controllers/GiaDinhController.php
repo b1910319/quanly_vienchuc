@@ -25,6 +25,9 @@ class GiaDinhController extends Controller
   public function giadinh($ma_vc){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
@@ -53,11 +56,6 @@ class GiaDinhController extends Controller
         ->groupBy('status_gd')
         ->get();
       $vienchuc = VienChuc::find($ma_vc);
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('giadinh.giadinh')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
@@ -67,9 +65,9 @@ class GiaDinhController extends Controller
         ->with('list', $list)
         ->with('vienchuc', $vienchuc)
         ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('count_nangbac', $count_nangbac)
         ->with('title', $title);
     }
   }
@@ -138,6 +136,9 @@ class GiaDinhController extends Controller
   public function edit_giadinh($ma_gd){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -158,17 +159,12 @@ class GiaDinhController extends Controller
       $edit = GiaDinh::find($ma_gd);
       $list_vienchuc = VienChuc::where('status_vc', '<>', '1')
         ->get();
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('giadinh.giadinh_edit')
         ->with('edit', $edit)
         ->with('title', $title)
         ->with('list_vienchuc', $list_vienchuc)
-        ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qltt', $phanquyen_qltt)

@@ -37,6 +37,9 @@ class KyLuatController extends Controller
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $ma_k = session()->get('ma_k');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -99,6 +102,7 @@ class KyLuatController extends Controller
       }
       return view('kyluat.kyluat')
         ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qltt', $phanquyen_qltt)
@@ -124,6 +128,9 @@ class KyLuatController extends Controller
   public function kyluat_add($ma_vc){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '6')
       ->first();
@@ -163,6 +170,7 @@ class KyLuatController extends Controller
         ->get();
       return view('kyluat.kyluat_add')
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -253,6 +261,9 @@ class KyLuatController extends Controller
     $this->check_login();
     $title = "Cập nhật thông tin kỷ luật";
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '9')
       ->first();
@@ -285,6 +296,7 @@ class KyLuatController extends Controller
         ->with('list_loaikyluat', $list_loaikyluat)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)

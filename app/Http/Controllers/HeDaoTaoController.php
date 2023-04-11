@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
-use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -25,6 +24,9 @@ class HeDaoTaoController extends Controller
   public function hedaotao(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -48,18 +50,13 @@ class HeDaoTaoController extends Controller
       $count_status = HeDaoTao::select(DB::raw('count(ma_hdt) as sum, status_hdt'))
         ->groupBy('status_hdt')
         ->get();
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('hedaotao.hedaotao')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
         ->with('title', $title)
         ->with('count_status', $count_status)
-        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
@@ -129,6 +126,9 @@ class HeDaoTaoController extends Controller
   public function edit_hedaotao($ma_hdt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -147,15 +147,10 @@ class HeDaoTaoController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = HeDaoTao::find($ma_hdt);
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('hedaotao.hedaotao_edit')
         ->with('edit', $edit)
         ->with('title', $title)
-        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)

@@ -27,6 +27,9 @@ class LopController extends Controller
   public function lop(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -78,6 +81,7 @@ class LopController extends Controller
         ->with('list_quocgia', $list_quocgia)
 
         ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlk', $phanquyen_qlk)
@@ -160,6 +164,9 @@ class LopController extends Controller
   public function edit_lop($ma_l){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -199,6 +206,7 @@ class LopController extends Controller
         ->with('count_nangbac', $count_nangbac)
 
         ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
@@ -308,6 +316,9 @@ class LopController extends Controller
   public function lop_danhmuclop($ma_dml){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -356,6 +367,7 @@ class LopController extends Controller
         ->with('list_quocgia', $list_quocgia)
 
         ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -422,6 +434,9 @@ class LopController extends Controller
   public function edit_lop_danhmuclop($ma_l){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -461,6 +476,7 @@ class LopController extends Controller
 
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_admin', $phanquyen_admin);

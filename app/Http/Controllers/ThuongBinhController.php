@@ -25,16 +25,19 @@ class ThuongBinhController extends Controller
   public function thuongbinh(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $title = "Quản lý thông tin thương binh";
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
-    $title = "Quản lý thông tin thương binh";
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
@@ -55,9 +58,10 @@ class ThuongBinhController extends Controller
         ->get();
       return view('thuongbinh.thuongbinh')
         ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('count', $count)
         ->with('title', $title)
@@ -130,8 +134,8 @@ class ThuongBinhController extends Controller
   public function edit_thuongbinh($ma_tb){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
@@ -139,13 +143,16 @@ class ThuongBinhController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
-    $title = "Cập nhật thông tin thương binh";
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
+    $title = "Cập nhật thông tin thương binh";
     if($phanquyen_admin || $phanquyen_qltt){
       $edit = ThuongBinh::find($ma_tb);
       Carbon::now('Asia/Ho_Chi_Minh'); 
@@ -157,11 +164,12 @@ class ThuongBinhController extends Controller
         ->with('edit', $edit)
         ->with('title', $title)
         ->with('count_nangbac', $count_nangbac)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_admin', $phanquyen_admin);
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }

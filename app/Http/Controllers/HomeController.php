@@ -81,10 +81,6 @@ class HomeController extends Controller
       ->where('ma_q', '=', '51')
       ->first();
 
-    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-      ->select(DB::raw('count(ma_vc) as sum'))
-      ->get();
     $count_vienchuc = VienChuc::select(DB::raw('count(ma_vc) as sum'))
       ->where('status_vc', '<>', '2')
       ->get();
@@ -183,7 +179,6 @@ class HomeController extends Controller
       ->with('count_vienchuc_nghihuu', $count_vienchuc_nghihuu)
       ->with('count_vienchuc_kyluat', $count_vienchuc_kyluat)
       ->with('count_vienchuc_khenthuong', $count_vienchuc_khenthuong)
-      ->with('count_nangbac', $count_nangbac)
       ->with('count_vienchuc_khoa', $count_vienchuc_khoa)
       ->with('count_vienchuc_nghihuu_khoa', $count_vienchuc_nghihuu_khoa)
       ->with('count_vienchuc_kyluat_khoa', $count_vienchuc_kyluat_khoa)
@@ -218,6 +213,9 @@ class HomeController extends Controller
     $this->check_login();
     $title = 'Thông tin cá nhân';
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -234,10 +232,6 @@ class HomeController extends Controller
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
-    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-      ->select(DB::raw('count(ma_vc) as sum'))
-      ->get();
     $vienchuc = VienChuc::find($ma_vc);
     $list_khoa = Khoa::get();
     $list_chucvu = ChucVu::get();
@@ -259,7 +253,7 @@ class HomeController extends Controller
       ->with('list_tongiao', $list_tongiao)
       ->with('list_thuongbinh', $list_thuongbinh)
 
-      ->with('count_nangbac', $count_nangbac)
+      ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
 
       ->with('phanquyen_qlk', $phanquyen_qlk)
       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
@@ -271,6 +265,9 @@ class HomeController extends Controller
     $this->check_login();
     $title = 'Cập nhật thông tin cá nhân';
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
@@ -287,10 +284,6 @@ class HomeController extends Controller
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '6')
       ->first();
-    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-      ->select(DB::raw('count(ma_vc) as sum'))
-      ->get();
     $edit = VienChuc::find($ma_vc);
     if($ma_vc == $ma_vc_login){
       $list_khoa = Khoa::get();
@@ -325,7 +318,7 @@ class HomeController extends Controller
         ->with('list_tongiao', $list_tongiao)
         ->with('list_thuongbinh', $list_thuongbinh)
 
-        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
@@ -426,6 +419,9 @@ class HomeController extends Controller
     $this->check_login();
     $title = 'Thông tin gia đình viên chức';
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -442,10 +438,6 @@ class HomeController extends Controller
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
-    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-      ->select(DB::raw('count(ma_vc) as sum'))
-      ->get();
     $list = GiaDinh::where('ma_vc', $ma_vc)
     ->get();
     return view('thongtin_vienchuc.thongtin_giadinh')
@@ -454,7 +446,7 @@ class HomeController extends Controller
       ->with('list', $list)
       ->with('ma_vc', $ma_vc)
 
-      ->with('count_nangbac', $count_nangbac)
+      ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
 
       ->with('phanquyen_qlk', $phanquyen_qlk)
       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
@@ -480,6 +472,9 @@ class HomeController extends Controller
     $this->check_login();
     $title = 'Cập nhật thông tin';
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -496,10 +491,6 @@ class HomeController extends Controller
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
-    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-      ->select(DB::raw('count(ma_vc) as sum'))
-      ->get();
     
     $edit = GiaDinh::find($ma_gd);
     return view('thongtin_vienchuc.thongtin_giadinh_edit')
@@ -507,7 +498,7 @@ class HomeController extends Controller
 
       ->with('edit', $edit)
 
-      ->with('count_nangbac', $count_nangbac)
+      ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
 
       ->with('phanquyen_qlk', $phanquyen_qlk)
       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
@@ -564,6 +555,9 @@ class HomeController extends Controller
     $this->check_login();
     $title = 'Thông tin gia đình viên chức';
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -580,10 +574,6 @@ class HomeController extends Controller
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
-    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-      ->select(DB::raw('count(ma_vc) as sum'))
-      ->get();
     $list_loaibangcap = LoaiBangCap::get();
     $list_hedaotao = HeDaoTao::get();
     $list = BangCap::where('ma_vc', $ma_vc)
@@ -594,7 +584,7 @@ class HomeController extends Controller
       ->with('list', $list)
       ->with('ma_vc', $ma_vc)
 
-      ->with('count_nangbac', $count_nangbac)
+      ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
 
       ->with('list_loaibangcap', $list_loaibangcap)
       ->with('list_hedaotao', $list_hedaotao)
@@ -610,6 +600,9 @@ class HomeController extends Controller
     $this->check_login();
     $title = 'Thông tin gia đình viên chức';
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -626,10 +619,6 @@ class HomeController extends Controller
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
-    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-      ->select(DB::raw('count(ma_vc) as sum'))
-      ->get();
     $list_loaikhenthuong = LoaiKhenThuong::get();
     $list_hinhthuckhenthuong = HinhThucKhenThuong::get();
     $list = KhenThuong::where('ma_vc', $ma_vc)
@@ -640,7 +629,7 @@ class HomeController extends Controller
       ->with('list', $list)
       ->with('ma_vc', $ma_vc)
 
-      ->with('count_nangbac', $count_nangbac)
+      ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
 
       ->with('list_loaikhenthuong', $list_loaikhenthuong)
       ->with('list_hinhthuckhenthuong', $list_hinhthuckhenthuong)
@@ -656,6 +645,9 @@ class HomeController extends Controller
     $this->check_login();
     $title = 'Thông tin gia đình viên chức';
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -672,10 +664,6 @@ class HomeController extends Controller
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
-    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-      ->select(DB::raw('count(ma_vc) as sum'))
-      ->get();
     $list_loaikyluat = LoaiKyLuat::get();
     $list = KyLuat::where('ma_vc', $ma_vc)
       ->get();
@@ -685,7 +673,7 @@ class HomeController extends Controller
       ->with('list', $list)
       ->with('ma_vc', $ma_vc)
 
-      ->with('count_nangbac', $count_nangbac)
+      ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
 
       ->with('list_loaikyluat', $list_loaikyluat)
 
@@ -700,6 +688,9 @@ class HomeController extends Controller
     $this->check_login();
     $title = 'Thông tin gia đình viên chức';
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -716,10 +707,6 @@ class HomeController extends Controller
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
-    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-      ->select(DB::raw('count(ma_vc) as sum'))
-      ->get();
     $list = VienChuc::join('danhsach', 'vienchuc.ma_vc', '=', 'danhsach.ma_vc')
       ->join('lop', 'lop.ma_l', '=', 'danhsach.ma_l')
       ->where('vienchuc.ma_vc', $ma_vc)
@@ -746,7 +733,7 @@ class HomeController extends Controller
       ->with('thoihoc', $thoihoc)
       ->with('chuyen', $chuyen)
 
-      ->with('count_nangbac', $count_nangbac)
+      ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
 
       ->with('phanquyen_qlk', $phanquyen_qlk)
       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
@@ -758,6 +745,9 @@ class HomeController extends Controller
     $this->check_login();
     $title = 'Đổi mật khẩu';
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -774,10 +764,6 @@ class HomeController extends Controller
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
-    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-      ->select(DB::raw('count(ma_vc) as sum'))
-      ->get();
     $vienchuc = VienChuc::find($ma_vc);
     return view('home.change_pass')
       ->with('title', $title)
@@ -785,7 +771,7 @@ class HomeController extends Controller
       ->with('ma_vc', $ma_vc)
       ->with('vienchuc', $vienchuc)
 
-      ->with('count_nangbac', $count_nangbac)
+      ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
 
       ->with('phanquyen_qlk', $phanquyen_qlk)
       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)

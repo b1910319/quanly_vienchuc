@@ -38,6 +38,9 @@ class KhenThuongController extends Controller
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $ma_k = session()->get('ma_k');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -108,6 +111,7 @@ class KhenThuongController extends Controller
         ->with('count_khenthuong_vienchuc', $count_khenthuong_vienchuc)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('list_vienchuc', $list_vienchuc);
     }else{
@@ -117,6 +121,9 @@ class KhenThuongController extends Controller
   public function khenthuong_add($ma_vc){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
@@ -164,6 +171,7 @@ class KhenThuongController extends Controller
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('count', $count)
         ->with('title', $title)
         ->with('ma_vc', $ma_vc)
@@ -252,6 +260,9 @@ class KhenThuongController extends Controller
     $this->check_login();
     $title = "Cập nhật thông tin khen thưởng";
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '9')
       ->first();
@@ -290,6 +301,7 @@ class KhenThuongController extends Controller
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{

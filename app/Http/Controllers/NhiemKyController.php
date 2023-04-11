@@ -25,11 +25,23 @@ class NhiemKyController extends Controller
   public function nhiemky(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '51')
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
       ->first();
     $title = "Quản lý thông tin nhiệm kỳ";
     if($phanquyen_qlqtcv || $phanquyen_admin){
@@ -42,6 +54,10 @@ class NhiemKyController extends Controller
       return view('nhiemky.nhiemky')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('count', $count)
         ->with('title', $title)
         ->with('count_status', $count_status)
@@ -111,11 +127,23 @@ class NhiemKyController extends Controller
   public function edit_nhiemky($ma_nk){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '51')
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
       ->first();
     $title = "Cập nhật thông tin nhiệm kỳ";
     if($phanquyen_admin || $phanquyen_qlqtcv){
@@ -123,8 +151,12 @@ class NhiemKyController extends Controller
       return view('nhiemky.nhiemky_edit')
         ->with('edit', $edit)
         ->with('title', $title)
+        ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
-        ->with('phanquyen_admin', $phanquyen_admin);
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }

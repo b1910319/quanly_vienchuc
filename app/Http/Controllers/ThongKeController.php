@@ -174,11 +174,23 @@ class ThongKeController extends Controller
   public function thongke_qltt(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
       ->first();
     $title = "Thống kê";
     if($phanquyen_admin || $phanquyen_qltt){
@@ -228,7 +240,11 @@ class ThongKeController extends Controller
 
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('phanquyen_qltt', $phanquyen_qltt);
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }
@@ -279,11 +295,23 @@ class ThongKeController extends Controller
   public function thongke_qltt_loc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
       ->first();
     $title = "Thống kê";
     if($phanquyen_admin || $phanquyen_qltt){
@@ -362,7 +390,11 @@ class ThongKeController extends Controller
           ->with('ma_tb', $data['ma_tb'])
 
           ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qltt', $phanquyen_qltt);
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k']) && isset($data['ma_cv'])){
         $count = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '<>', '2')
@@ -395,7 +427,11 @@ class ThongKeController extends Controller
           ->with('ma_cv', $data['ma_cv'])
 
           ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qltt', $phanquyen_qltt);
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])  && isset($data['ma_hdt'])){
         $count_3 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '<>', '2')
@@ -431,7 +467,11 @@ class ThongKeController extends Controller
           ->with('ma_hdt', $data['ma_hdt'])
 
           ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qltt', $phanquyen_qltt);
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])  && isset($data['ma_lbc'])){
         $count_4 = VienChuc::join('bangcap','bangcap.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
@@ -468,7 +508,11 @@ class ThongKeController extends Controller
           ->with('ma_lbc', $data['ma_lbc'])
 
           ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qltt', $phanquyen_qltt);
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])){
         $count_khoa = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '<>', '2')
@@ -499,7 +543,11 @@ class ThongKeController extends Controller
           ->with('ma_k', $data['ma_k'])
 
           ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qltt', $phanquyen_qltt);
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_cv'])){
         $count_chucvu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '<>', '2')
@@ -530,7 +578,11 @@ class ThongKeController extends Controller
           ->with('ma_cv', $data['ma_cv'])
 
           ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qltt', $phanquyen_qltt);
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_hdt'])){
         $count_hedaotao = VienChuc::join('bangcap','bangcap.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('hedaotao', 'hedaotao.ma_hdt','=', 'bangcap.ma_hdt')
@@ -562,8 +614,12 @@ class ThongKeController extends Controller
           ->with('ma_hdt', $data['ma_hdt'])
 
           ->with('list_thuongbinh', $list_thuongbinh)
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qltt', $phanquyen_qltt);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_lbc'])){
         $count_loaibangcap = VienChuc::join('bangcap','bangcap.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('loaibangcap', 'loaibangcap.ma_lbc','=', 'bangcap.ma_lbc')
@@ -595,8 +651,12 @@ class ThongKeController extends Controller
           ->with('ma_lbc', $data['ma_lbc'])
 
           ->with('list_thuongbinh', $list_thuongbinh)
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qltt', $phanquyen_qltt);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_n'])){
         $count_ngach = VienChuc::join('ngach', 'ngach.ma_n', '=', 'vienchuc.ma_n')
           ->where('status_vc', '<>', '2')
@@ -627,7 +687,11 @@ class ThongKeController extends Controller
           ->with('ma_n', $data['ma_n'])
 
           ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qltt', $phanquyen_qltt);
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_t'])){
         $count_tinh = VienChuc::join('quequan', 'quequan.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('tinh', 'tinh.ma_t', '=', 'quequan.ma_t')
@@ -659,8 +723,12 @@ class ThongKeController extends Controller
           ->with('ma_t', $data['ma_t'])
 
           ->with('list_thuongbinh', $list_thuongbinh)
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qltt', $phanquyen_qltt);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_dt'])){
         $count_dantoc = VienChuc::join('dantoc', 'dantoc.ma_dt', '=', 'vienchuc.ma_dt')
           ->where('status_vc', '<>', '2')
@@ -690,8 +758,12 @@ class ThongKeController extends Controller
 
           ->with('ma_dt', $data['ma_dt'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qltt', $phanquyen_qltt);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_tg'])){
         $count_tongiao = VienChuc::join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
           ->where('status_vc', '<>', '2')
@@ -721,8 +793,12 @@ class ThongKeController extends Controller
 
           ->with('ma_tg', $data['ma_tg'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qltt', $phanquyen_qltt);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_tb'])){
         $count_thuongbinh = VienChuc::join('thuongbinh', 'thuongbinh.ma_tb', '=', 'vienchuc.ma_tb')
           ->where('status_vc', '<>', '2')
@@ -752,8 +828,12 @@ class ThongKeController extends Controller
 
           ->with('ma_tb', $data['ma_tb'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qltt', $phanquyen_qltt);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -1324,11 +1404,23 @@ class ThongKeController extends Controller
   public function thongke_qltt_nghihuu_loc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
       ->first();
     $title = "Thống kê";
     if($phanquyen_admin || $phanquyen_qltt){
@@ -1384,8 +1476,12 @@ class ThongKeController extends Controller
           ->with('ketthuc', $data['ketthuc'])
 
           ->with('list_thuongbinh', $list_thuongbinh)
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qltt', $phanquyen_qltt);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])){
         $count_nghihuu_khoa = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '2')
@@ -1417,8 +1513,12 @@ class ThongKeController extends Controller
           ->with('ketthuc', $data['ketthuc'])
 
           ->with('list_thuongbinh', $list_thuongbinh)
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qltt', $phanquyen_qltt);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['batdau']) && isset($data['ketthuc']) ){
         $count_nghihuu_time = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '2')
@@ -1448,8 +1548,12 @@ class ThongKeController extends Controller
           ->with('ketthuc', $data['ketthuc'])
 
           ->with('list_thuongbinh', $list_thuongbinh)
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qltt', $phanquyen_qltt);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -1585,13 +1689,25 @@ class ThongKeController extends Controller
   public function thongke_qlktkl(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    $title = "Thống kê";
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
+    $title = "Thống kê";
     if($phanquyen_admin || $phanquyen_qlktkl){
       $count_loaikhenthuong = KhenThuong::join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
         ->where('status_kt', '<>', '2')
@@ -1626,6 +1742,10 @@ class ThongKeController extends Controller
         ->with('list_vienchuc', $list_vienchuc)
 
         ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
@@ -1676,13 +1796,25 @@ class ThongKeController extends Controller
   public function thongke_qltktkl_kt_loc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    $title = "Thống kê";
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
+    $title = "Thống kê";
     if($phanquyen_admin || $phanquyen_qlktkl){
       $list_loaikhenthuong = LoaiKhenThuong::orderBy('ten_lkt', 'asc')
         ->get();
@@ -1726,8 +1858,12 @@ class ThongKeController extends Controller
           ->with('batdau_kt', $data['batdau_kt'])
           ->with('ketthuc_kt', $data['ketthuc_kt'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_htkt'])  && isset($data['ma_k'])  && isset($data['batdau_kt'])  && isset($data['ketthuc_kt'])){
         $count_loaikhenthuong = KhenThuong::join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
         ->where('status_kt', '<>', '2')
@@ -1760,8 +1896,12 @@ class ThongKeController extends Controller
           ->with('batdau_kt', $data['batdau_kt'])
           ->with('ketthuc_kt', $data['ketthuc_kt'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_lkt'])  && isset($data['ma_htkt'])  && isset($data['batdau_kt'])  && isset($data['ketthuc_kt'])){
         $count_loaikhenthuong = KhenThuong::join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
         ->where('status_kt', '<>', '2')
@@ -1794,8 +1934,12 @@ class ThongKeController extends Controller
           ->with('batdau_kt', $data['batdau_kt'])
           ->with('ketthuc_kt', $data['ketthuc_kt'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_lkt'])  && isset($data['ma_k'])  && isset($data['batdau_kt'])  && isset($data['ketthuc_kt'])){
         $count_loaikhenthuong = KhenThuong::join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
         ->where('status_kt', '<>', '2')
@@ -1828,8 +1972,12 @@ class ThongKeController extends Controller
           ->with('batdau_kt', $data['batdau_kt'])
           ->with('ketthuc_kt', $data['ketthuc_kt'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_lkt'])  && isset($data['ma_k'])  && isset($data['ma_htkt'])){
         $count_loaikhenthuong = KhenThuong::join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
           ->where('status_kt', '<>', '2')
@@ -1861,8 +2009,12 @@ class ThongKeController extends Controller
           ->with('ma_k', $data['ma_k'])
           ->with('ma_htkt', $data['ma_htkt'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if( isset($data['ma_htkt'])  && isset($data['batdau_kt'])  && isset($data['ketthuc_kt'])){
         $count_5 = KhenThuong::join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
           ->where('status_kt', '<>', '2')
@@ -1893,8 +2045,12 @@ class ThongKeController extends Controller
           ->with('batdau_kt', $data['batdau_kt'])
           ->with('ketthuc_kt', $data['ketthuc_kt'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if( isset($data['ma_k'])  && isset($data['batdau_kt'])  && isset($data['ketthuc_kt'])){
         $count_6 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
@@ -1926,8 +2082,12 @@ class ThongKeController extends Controller
           ->with('batdau_kt', $data['batdau_kt'])
           ->with('ketthuc_kt', $data['ketthuc_kt'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])  && isset($data['ma_htkt'])){
         $count_7 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
@@ -1960,8 +2120,12 @@ class ThongKeController extends Controller
           ->with('ma_k', $data['ma_k'])
           ->with('ma_htkt', $data['ma_htkt'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if( isset($data['ma_lkt'])  && isset($data['batdau_kt'])  && isset($data['ketthuc_kt'])){
         $count_8 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
@@ -1994,8 +2158,12 @@ class ThongKeController extends Controller
           ->with('batdau_kt', $data['batdau_kt'])
           ->with('ketthuc_kt', $data['ketthuc_kt'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_lkt'])  && isset($data['ma_htkt'])){
         $count_9 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
@@ -2028,8 +2196,12 @@ class ThongKeController extends Controller
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_htkt', $data['ma_htkt'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_lkt'])  && isset($data['ma_k'])){
         $count_10 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
@@ -2062,8 +2234,12 @@ class ThongKeController extends Controller
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_lkt'])){
         $count_11 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
@@ -2094,8 +2270,12 @@ class ThongKeController extends Controller
 
           ->with('ma_lkt', $data['ma_lkt'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])){
         $count_12 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
@@ -2126,8 +2306,12 @@ class ThongKeController extends Controller
 
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_htkt'])){
         $count_13 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
@@ -2158,8 +2342,12 @@ class ThongKeController extends Controller
 
           ->with('ma_htkt', $data['ma_htkt'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['batdau_kt'])  && isset($data['ketthuc_kt'])){
         $count_14 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
@@ -2190,8 +2378,12 @@ class ThongKeController extends Controller
           ->with('batdau_kt', $data['batdau_kt'])
           ->with('ketthuc_kt', $data['ketthuc_kt'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -2907,13 +3099,25 @@ class ThongKeController extends Controller
   public function thongke_qltktkl_kl_loc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    $title = "Thống kê";
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
       ->first();
+    $title = "Thống kê";
     if($phanquyen_admin || $phanquyen_qlktkl){
       $list_loaikhenthuong = LoaiKhenThuong::orderBy('ten_lkt', 'asc')
         ->get();
@@ -2954,8 +3158,12 @@ class ThongKeController extends Controller
           ->with('batdau_kl', $data['batdau_kl'])
           ->with('ketthuc_kl', $data['ketthuc_kl'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])&& isset($data['batdau_kl'])  && isset($data['ketthuc_kl'])){
         $count_kl_2 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
@@ -2987,8 +3195,12 @@ class ThongKeController extends Controller
           ->with('batdau_kl', $data['batdau_kl'])
           ->with('ketthuc_kl', $data['ketthuc_kl'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_lkl'])&& isset($data['batdau_kl'])  && isset($data['ketthuc_kl'])){
         $count_kl_3 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
@@ -3021,8 +3233,12 @@ class ThongKeController extends Controller
           ->with('batdau_kl', $data['batdau_kl'])
           ->with('ketthuc_kl', $data['ketthuc_kl'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_lkl'])&& isset($data['ma_k'])){
         $count_kl_4 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
@@ -3054,8 +3270,12 @@ class ThongKeController extends Controller
           ->with('ma_lkl', $data['ma_lkl'])
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])){
         $count_kl_5 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
@@ -3085,8 +3305,12 @@ class ThongKeController extends Controller
 
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_lkl'])){
         $count_kl_6 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
@@ -3116,8 +3340,12 @@ class ThongKeController extends Controller
 
           ->with('ma_lkl', $data['ma_lkl'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['batdau_kl'])  && isset($data['ketthuc_kl'])){
         $count_kl_7 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
@@ -3148,8 +3376,12 @@ class ThongKeController extends Controller
           ->with('batdau_kl', $data['batdau_kl'])
           ->with('ketthuc_kl', $data['ketthuc_kl'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -3482,11 +3714,23 @@ class ThongKeController extends Controller
   public function thongke_qlcttc(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
       ->first();
     $title = "Thống kê";
     if($phanquyen_admin || $phanquyen_qlcttc){
@@ -3521,7 +3765,11 @@ class ThongKeController extends Controller
         ->with('list_vienchuc', $list_vienchuc)
 
         ->with('phanquyen_admin', $phanquyen_admin)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }
@@ -3570,11 +3818,23 @@ class ThongKeController extends Controller
   public function thongke_qlcttc_loc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
       ->first();
     $title = "Thống kê";
     if($phanquyen_admin || $phanquyen_qlcttc){
@@ -3617,8 +3877,12 @@ class ThongKeController extends Controller
           ->with('list_quocgia', $list_quocgia)
           ->with('list_vienchuc', $list_vienchuc)
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['hoanthanh'])){
         $count_hoanthanh =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
           ->where('status_kq', '<>', '2')
@@ -3642,8 +3906,12 @@ class ThongKeController extends Controller
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_hoanthanh', $list_hoanthanh)
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['giahan'])){
         $count_giahan =  GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
           ->where('status_gh', '<>', '2')
@@ -3667,8 +3935,12 @@ class ThongKeController extends Controller
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_giahan', $list_giahan)
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['tamdung'])){
         $count_dunghoc =  DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
           ->where('status_dh', '<>', '2')
@@ -3692,8 +3964,12 @@ class ThongKeController extends Controller
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_dunghoc', $list_dunghoc)
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['xinchuyen'])){
         $count_chuyen =  Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
           ->where('status_c', '<>', '2')
@@ -3717,8 +3993,12 @@ class ThongKeController extends Controller
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_chuyen', $list_chuyen)
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['thoihoc'])){
         $count_thoihoc =  ThoiHoc::join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
           ->where('status_th', '<>', '2')
@@ -3742,8 +4022,12 @@ class ThongKeController extends Controller
           ->with('list_vienchuc', $list_vienchuc)
           ->with('list_thoihoc', $list_thoihoc)
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -4011,11 +4295,23 @@ class ThongKeController extends Controller
   public function thongke_qlcttc_hoanthanh_loc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
       ->first();
     $title = "Thống kê";
     if($phanquyen_admin || $phanquyen_qlcttc){
@@ -4061,8 +4357,12 @@ class ThongKeController extends Controller
           ->with('batdau_venuoc', $data['batdau_venuoc'])
           ->with('ketthuc_venuoc', $data['ketthuc_venuoc'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_l'])  && isset($data['ma_k'])){
         $count_hoanthanh_11 =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
         ->where('status_kq', '<>', '2')
@@ -4092,8 +4392,12 @@ class ThongKeController extends Controller
           ->with('ma_l', $data['ma_l'])
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['batdau_capbang'])  && isset($data['ketthuc_capbang'])  && isset($data['batdau_venuoc'])  && isset($data['ketthuc_venuoc'])){
         $count_hoanthanh_2 =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
         ->where('status_kq', '<>', '2')
@@ -4124,8 +4428,12 @@ class ThongKeController extends Controller
           ->with('batdau_venuoc', $data['batdau_venuoc'])
           ->with('ketthuc_venuoc', $data['ketthuc_venuoc'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_l']) && isset($data['batdau_venuoc'])  && isset($data['ketthuc_venuoc'])){
         $count_hoanthanh_3 =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
         ->where('status_kq', '<>', '2')
@@ -4155,8 +4463,12 @@ class ThongKeController extends Controller
           ->with('batdau_venuoc', $data['batdau_venuoc'])
           ->with('ketthuc_venuoc', $data['ketthuc_venuoc'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_l']) && isset($data['batdau_capbang'])  && isset($data['ketthuc_capbang'])){
         $count_hoanthanh_4 =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
         ->where('status_kq', '<>', '2')
@@ -4186,8 +4498,12 @@ class ThongKeController extends Controller
           ->with('batdau_capbang', $data['batdau_capbang'])
           ->with('ketthuc_capbang', $data['ketthuc_capbang'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['batdau_capbang'])  && isset($data['ketthuc_capbang']) && isset($data['ma_k'])){
         $count_hoanthanh_13 =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
         ->join('vienchuc', 'vienchuc.ma_vc', '=', 'ketqua.ma_vc')
@@ -4220,8 +4536,12 @@ class ThongKeController extends Controller
           ->with('ketthuc_capbang', $data['ketthuc_capbang'])
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['batdau_capbang'])  && isset($data['ketthuc_capbang']) && isset($data['ma_qg'])){
         $count_hoanthanh_14 =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
         ->join('vienchuc', 'vienchuc.ma_vc', '=', 'ketqua.ma_vc')
@@ -4256,8 +4576,12 @@ class ThongKeController extends Controller
           ->with('ketthuc_capbang', $data['ketthuc_capbang'])
           ->with('ma_qg', $data['ma_qg'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['batdau_venuoc'])  && isset($data['ketthuc_venuoc']) && isset($data['ma_k'])){
         $count_hoanthanh_15 =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
         ->join('vienchuc', 'vienchuc.ma_vc', '=', 'ketqua.ma_vc')
@@ -4290,8 +4614,12 @@ class ThongKeController extends Controller
           ->with('ketthuc_venuoc', $data['ketthuc_venuoc'])
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['batdau_venuoc'])  && isset($data['ketthuc_venuoc']) && isset($data['ma_qg'])){
         $count_hoanthanh_16 =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
         ->join('vienchuc', 'vienchuc.ma_vc', '=', 'ketqua.ma_vc')
@@ -4326,8 +4654,12 @@ class ThongKeController extends Controller
           ->with('ketthuc_venuoc', $data['ketthuc_venuoc'])
           ->with('ma_qg', $data['ma_qg'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])  && isset($data['ma_qg'])){
         $count_hoanthanh_17 =  VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->join('ketqua', 'ketqua.ma_vc', '=', 'vienchuc.ma_vc')
@@ -4359,8 +4691,12 @@ class ThongKeController extends Controller
           ->with('ma_qg', $data['ma_qg'])
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_l'])){
         $count_hoanthanh_5 =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
         ->where('status_kq', '<>', '2')
@@ -4387,8 +4723,12 @@ class ThongKeController extends Controller
 
           ->with('ma_l', $data['ma_l'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['batdau_capbang'])  && isset($data['ketthuc_capbang'])){
         $count_hoanthanh_6 =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
         ->where('status_kq', '<>', '2')
@@ -4416,8 +4756,12 @@ class ThongKeController extends Controller
           ->with('batdau_capbang', $data['batdau_capbang'])
           ->with('ketthuc_capbang', $data['ketthuc_capbang'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['batdau_venuoc'])  && isset($data['ketthuc_venuoc'])){
         $count_hoanthanh_7 =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
         ->where('status_kq', '<>', '2')
@@ -4445,8 +4789,12 @@ class ThongKeController extends Controller
           ->with('batdau_venuoc', $data['batdau_venuoc'])
           ->with('ketthuc_venuoc', $data['ketthuc_venuoc'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])){
         $count_hoanthanh_8 =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
           ->join('vienchuc', 'vienchuc.ma_vc', '=', 'ketqua.ma_vc')
@@ -4476,8 +4824,12 @@ class ThongKeController extends Controller
 
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_qg'])){
         $count_hoanthanh_9 =  KetQua::join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
           ->join('quocgia', 'quocgia.ma_qg', '=', 'lop.ma_qg')
@@ -4506,8 +4858,12 @@ class ThongKeController extends Controller
 
           ->with('ma_qg', $data['ma_qg'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -5185,11 +5541,23 @@ class ThongKeController extends Controller
   public function thongke_qlcttc_giahan_loc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
       ->first();
     $title = "Thống kê";
     if($phanquyen_admin || $phanquyen_qlcttc){
@@ -5234,8 +5602,12 @@ class ThongKeController extends Controller
           ->with('batdau_giahan', $data['batdau_giahan'])
           ->with('ketthuc_giahan', $data['ketthuc_giahan'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_l'])  && isset($data['batdau_giahan'])  && isset($data['ketthuc_giahan'])){
         $count_giahan_2 =  GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
         ->where('status_gh', '<>', '2')
@@ -5266,8 +5638,12 @@ class ThongKeController extends Controller
           ->with('batdau_giahan', $data['batdau_giahan'])
           ->with('ketthuc_giahan', $data['ketthuc_giahan'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k']) && isset($data['batdau_giahan'])  && isset($data['ketthuc_giahan'])){
         $count_giahan_3 =  VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('giahan', 'giahan.ma_vc', '=', 'vienchuc.ma_vc')
@@ -5301,8 +5677,12 @@ class ThongKeController extends Controller
           ->with('batdau_giahan', $data['batdau_giahan'])
           ->with('ketthuc_giahan', $data['ketthuc_giahan'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])  && isset($data['ma_l'])){
         $count_giahan_4 =  VienChuc::join('giahan', 'giahan.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
@@ -5334,8 +5714,12 @@ class ThongKeController extends Controller
           ->with('ma_l', $data['ma_l'])
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])  && isset($data['ma_qg'])){
         $count_giahan_9 =  VienChuc::join('giahan', 'giahan.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
@@ -5369,8 +5753,12 @@ class ThongKeController extends Controller
           ->with('ma_qg', $data['ma_qg'])
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['batdau_giahan'])  && isset($data['ketthuc_giahan']) && isset($data['ma_qg'])){
         $count_giahan_11 =  VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('giahan', 'giahan.ma_vc', '=', 'vienchuc.ma_vc')
@@ -5406,8 +5794,12 @@ class ThongKeController extends Controller
           ->with('batdau_giahan', $data['batdau_giahan'])
           ->with('ketthuc_giahan', $data['ketthuc_giahan'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])){
         $count_giahan_5 =  VienChuc::join('giahan', 'giahan.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
@@ -5437,8 +5829,12 @@ class ThongKeController extends Controller
 
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_l'])){
         $count_giahan_6 =  VienChuc::join('giahan', 'giahan.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
@@ -5468,8 +5864,12 @@ class ThongKeController extends Controller
 
           ->with('ma_l', $data['ma_l'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['batdau_giahan'])  && isset($data['ketthuc_giahan'])){
         $count_giahan_7 =  VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('giahan', 'giahan.ma_vc', '=', 'vienchuc.ma_vc')
@@ -5501,8 +5901,12 @@ class ThongKeController extends Controller
           ->with('batdau_giahan', $data['batdau_giahan'])
           ->with('ketthuc_giahan', $data['ketthuc_giahan'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_qg'])){
         $count_giahan_8 =  VienChuc::join('giahan', 'giahan.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
@@ -5534,8 +5938,12 @@ class ThongKeController extends Controller
 
           ->with('ma_qg', $data['ma_qg'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -5995,11 +6403,23 @@ class ThongKeController extends Controller
   public function thongke_qlcttc_dunghoc_loc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
       ->first();
     $title = "Thống kê";
     if($phanquyen_admin || $phanquyen_qlcttc){
@@ -6044,8 +6464,12 @@ class ThongKeController extends Controller
           ->with('batdau_dunghoc', $data['batdau_dunghoc'])
           ->with('ketthuc_dunghoc', $data['ketthuc_dunghoc'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_l'])  && isset($data['batdau_dunghoc'])  && isset($data['ketthuc_dunghoc'])){
         $count_dunghoc_2 =  DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
         ->where('status_dh', '<>', '2')
@@ -6076,8 +6500,12 @@ class ThongKeController extends Controller
           ->with('batdau_dunghoc', $data['batdau_dunghoc'])
           ->with('ketthuc_dunghoc', $data['ketthuc_dunghoc'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_qg'])  && isset($data['batdau_dunghoc'])  && isset($data['ketthuc_dunghoc'])){
         $count_dunghoc_11 =  DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
         ->join('quocgia', 'quocgia.ma_qg', '=', 'lop.ma_qg')
@@ -6110,8 +6538,12 @@ class ThongKeController extends Controller
           ->with('batdau_dunghoc', $data['batdau_dunghoc'])
           ->with('ketthuc_dunghoc', $data['ketthuc_dunghoc'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k']) && isset($data['batdau_dunghoc'])  && isset($data['ketthuc_dunghoc'])){
         $count_dunghoc_3 =  VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('dunghoc', 'dunghoc.ma_vc', '=', 'vienchuc.ma_vc')
@@ -6145,8 +6577,12 @@ class ThongKeController extends Controller
           ->with('batdau_dunghoc', $data['batdau_dunghoc'])
           ->with('ketthuc_dunghoc', $data['ketthuc_dunghoc'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])  && isset($data['ma_l'])){
         $count_dunghoc_4 =  VienChuc::join('dunghoc', 'dunghoc.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
@@ -6178,8 +6614,12 @@ class ThongKeController extends Controller
           ->with('ma_l', $data['ma_l'])
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])  && isset($data['ma_qg'])){
         $count_dunghoc_9 =  VienChuc::join('dunghoc', 'dunghoc.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
@@ -6213,8 +6653,12 @@ class ThongKeController extends Controller
           ->with('ma_qg', $data['ma_qg'])
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])){
         $count_dunghoc_5 =  VienChuc::join('dunghoc', 'dunghoc.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
@@ -6244,8 +6688,12 @@ class ThongKeController extends Controller
 
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_l'])){
         $count_dunghoc_6 =  VienChuc::join('dunghoc', 'dunghoc.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
@@ -6275,8 +6723,12 @@ class ThongKeController extends Controller
 
           ->with('ma_l', $data['ma_l'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['batdau_dunghoc'])  && isset($data['ketthuc_dunghoc'])){
         $count_dunghoc_7 =  VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('dunghoc', 'dunghoc.ma_vc', '=', 'vienchuc.ma_vc')
@@ -6308,8 +6760,12 @@ class ThongKeController extends Controller
           ->with('batdau_dunghoc', $data['batdau_dunghoc'])
           ->with('ketthuc_dunghoc', $data['ketthuc_dunghoc'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_qg'])){
         $count_dunghoc_8 =  VienChuc::join('dunghoc', 'dunghoc.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
@@ -6341,8 +6797,12 @@ class ThongKeController extends Controller
 
           ->with('ma_qg', $data['ma_qg'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -6802,11 +7262,23 @@ class ThongKeController extends Controller
   public function thongke_qlcttc_xinchuyen_loc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
       ->first();
     $title = "Thống kê";
     if($phanquyen_admin || $phanquyen_qlcttc){
@@ -6850,8 +7322,12 @@ class ThongKeController extends Controller
           ->with('ma_l', $data['ma_l'])
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])  && isset($data['ma_qg'])){
         $count_chuyen_5 =  Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
           ->join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
@@ -6885,8 +7361,12 @@ class ThongKeController extends Controller
           ->with('ma_qg', $data['ma_qg'])
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])){
         $count_chuyen_2 =  Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
           ->join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
@@ -6916,8 +7396,12 @@ class ThongKeController extends Controller
 
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_l'])){
         $count_chuyen_3 =  Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
           ->join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
@@ -6947,8 +7431,12 @@ class ThongKeController extends Controller
 
           ->with('ma_l', $data['ma_l'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_qg'])){
         $count_chuyen_4 =  Chuyen::join('lop', 'lop.ma_l', '=', 'chuyen.ma_l')
           ->join('quocgia', 'quocgia.ma_qg', '=', 'lop.ma_qg')
@@ -6980,8 +7468,12 @@ class ThongKeController extends Controller
 
           ->with('ma_qg', $data['ma_qg'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -7215,11 +7707,23 @@ class ThongKeController extends Controller
   public function thongke_qlcttc_thoihoc_loc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
       ->first();
     $title = "Thống kê";
     if($phanquyen_admin || $phanquyen_qlcttc){
@@ -7264,8 +7768,12 @@ class ThongKeController extends Controller
           ->with('batdau_thoihoc', $data['batdau_thoihoc'])
           ->with('ketthuc_thoihoc', $data['ketthuc_thoihoc'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_l'])  && isset($data['batdau_thoihoc'])  && isset($data['ketthuc_thoihoc'])){
         $count_thoihoc_2 =  ThoiHoc::join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
         ->where('status_th', '<>', '2')
@@ -7296,8 +7804,12 @@ class ThongKeController extends Controller
           ->with('batdau_thoihoc', $data['batdau_thoihoc'])
           ->with('ketthuc_thoihoc', $data['ketthuc_thoihoc'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k']) && isset($data['batdau_thoihoc'])  && isset($data['ketthuc_thoihoc'])){
         $count_thoihoc_3 =  VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
@@ -7331,8 +7843,12 @@ class ThongKeController extends Controller
           ->with('batdau_thoihoc', $data['batdau_thoihoc'])
           ->with('ketthuc_thoihoc', $data['ketthuc_thoihoc'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])  && isset($data['ma_l'])){
         $count_thoihoc_4 =  VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
@@ -7364,8 +7880,12 @@ class ThongKeController extends Controller
           ->with('ma_l', $data['ma_l'])
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_k'])){
         $count_thoihoc_5 =  VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
@@ -7395,8 +7915,12 @@ class ThongKeController extends Controller
 
           ->with('ma_k', $data['ma_k'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_l'])){
         $count_thoihoc_6 =  VienChuc::join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
@@ -7426,8 +7950,12 @@ class ThongKeController extends Controller
 
           ->with('ma_l', $data['ma_l'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['batdau_thoihoc'])  && isset($data['ketthuc_thoihoc'])){
         $count_thoihoc_7 =  VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('thoihoc', 'thoihoc.ma_vc', '=', 'vienchuc.ma_vc')
@@ -7459,8 +7987,12 @@ class ThongKeController extends Controller
           ->with('batdau_thoihoc', $data['batdau_thoihoc'])
           ->with('ketthuc_thoihoc', $data['ketthuc_thoihoc'])
 
-          ->with('phanquyen_admin', $phanquyen_admin)
-          ->with('phanquyen_qlcttc', $phanquyen_qlcttc);
+           ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -7788,8 +8320,23 @@ class ThongKeController extends Controller
     $ma_vc = session()->get('ma_vc');
     $ma_k = session()->get('ma_k');
     $title = "Thống kê";
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
       ->first();
     if($phanquyen_qlk){
       $list_loaibangcap = LoaiBangCap::orderBy('ten_lbc', 'asc')
@@ -7851,7 +8398,12 @@ class ThongKeController extends Controller
         ->with('ma_k', $ma_k)
 
         ->with('list_thuongbinh', $list_thuongbinh)
-        ->with('phanquyen_qlk', $phanquyen_qlk);
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }
@@ -7902,8 +8454,23 @@ class ThongKeController extends Controller
     $ma_vc = session()->get('ma_vc');
     $ma_k = session()->get('ma_k');
     $title = "Thống kê";
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
       ->first();
     if($phanquyen_qlk){
       $list_loaibangcap = LoaiBangCap::orderBy('ten_lbc', 'asc')
@@ -7990,7 +8557,12 @@ class ThongKeController extends Controller
           ->with('ma_tg', $data['ma_tg'])
           ->with('ma_tb', $data['ma_tb'])
 
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
       else if(isset($data['ma_cv'])){
         $count_chucvu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
@@ -8026,7 +8598,12 @@ class ThongKeController extends Controller
 
           ->with('ma_cv', $data['ma_cv'])
 
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
       else if(isset($data['ma_hdt'])){
         $count_hedaotao = VienChuc::join('bangcap','bangcap.ma_vc', '=', 'vienchuc.ma_vc')
@@ -8064,7 +8641,12 @@ class ThongKeController extends Controller
 
           ->with('ma_hdt', $data['ma_hdt'])
 
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
       else if(isset($data['ma_lbc'])){
         $count_loaibangcap = VienChuc::join('bangcap','bangcap.ma_vc', '=', 'vienchuc.ma_vc')
@@ -8102,7 +8684,12 @@ class ThongKeController extends Controller
 
           ->with('ma_lbc', $data['ma_lbc'])
 
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
       else if(isset($data['ma_n'])){
         $count_ngach = VienChuc::join('ngach', 'ngach.ma_n', '=', 'vienchuc.ma_n')
@@ -8138,7 +8725,12 @@ class ThongKeController extends Controller
 
           ->with('ma_n', $data['ma_n'])
 
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
       else if(isset($data['ma_t'])){
         $count_tinh = VienChuc::join('quequan', 'quequan.ma_vc', '=', 'vienchuc.ma_vc')
@@ -8176,7 +8768,12 @@ class ThongKeController extends Controller
           ->with('ma_t', $data['ma_t'])
 
           ->with('list_thuongbinh', $list_thuongbinh)
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
       else if(isset($data['ma_dt'])){
         $count_dantoc = VienChuc::join('dantoc', 'dantoc.ma_dt', '=', 'vienchuc.ma_dt')
@@ -8212,7 +8809,12 @@ class ThongKeController extends Controller
 
           ->with('ma_dt', $data['ma_dt'])
 
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
       else if(isset($data['ma_tg'])){
         $count_tongiao = VienChuc::join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
@@ -8248,7 +8850,12 @@ class ThongKeController extends Controller
 
           ->with('ma_tg', $data['ma_tg'])
 
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
       else if(isset($data['ma_tb'])){
         $count_thuongbinh = VienChuc::join('thuongbinh', 'thuongbinh.ma_tb', '=', 'vienchuc.ma_tb')
@@ -8284,7 +8891,12 @@ class ThongKeController extends Controller
 
           ->with('ma_tb', $data['ma_tb'])
 
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -8658,9 +9270,24 @@ class ThongKeController extends Controller
     $ma_vc = session()->get('ma_vc');
     $ma_k = session()->get('ma_k');
     $title = "Thống kê";
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     if($phanquyen_qlk){
       $list_loaibangcap = LoaiBangCap::orderBy('ten_lbc', 'asc')
         ->get();
@@ -8720,7 +9347,12 @@ class ThongKeController extends Controller
           ->with('ketthuc', $data['ketthuc'])
 
           ->with('list_thuongbinh', $list_thuongbinh)
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -8770,9 +9402,24 @@ class ThongKeController extends Controller
     $ma_vc = session()->get('ma_vc');
     $ma_k = session()->get('ma_k');
     $title = "Thống kê";
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     if($phanquyen_qlk){
       $list_loaikhenthuong = LoaiKhenThuong::orderBy('ten_lkt', 'asc')
         ->get();
@@ -8842,7 +9489,12 @@ class ThongKeController extends Controller
           ->with('batdau_kt', $data['batdau_kt'])
           ->with('ketthuc_kt', $data['ketthuc_kt'])
 
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
       else if( isset($data['ma_htkt'])  && isset($data['batdau_kt'])  && isset($data['ketthuc_kt'])){
         $count_kt_2 = KhenThuong::join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
@@ -8886,7 +9538,12 @@ class ThongKeController extends Controller
           ->with('batdau_kt', $data['batdau_kt'])
           ->with('ketthuc_kt', $data['ketthuc_kt'])
 
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
       else if( isset($data['ma_lkt'])  && isset($data['batdau_kt'])  && isset($data['ketthuc_kt'])){
         $count_kt_3 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
@@ -8930,7 +9587,12 @@ class ThongKeController extends Controller
           ->with('batdau_kt', $data['batdau_kt'])
           ->with('ketthuc_kt', $data['ketthuc_kt'])
 
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
       else if(isset($data['ma_lkt'])  && isset($data['ma_htkt'])){
         $count_kt_4 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
@@ -8974,7 +9636,12 @@ class ThongKeController extends Controller
           ->with('ma_lkt', $data['ma_lkt'])
           ->with('ma_htkt', $data['ma_htkt'])
 
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
       else if(isset($data['ma_lkt'])){
         $count_kt_5 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
@@ -9016,7 +9683,12 @@ class ThongKeController extends Controller
 
           ->with('ma_lkt', $data['ma_lkt'])
 
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
       else if(isset($data['ma_htkt'])){
         $count_kt_6 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
@@ -9058,7 +9730,12 @@ class ThongKeController extends Controller
 
           ->with('ma_htkt', $data['ma_htkt'])
 
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
       else if(isset($data['batdau_kt'])  && isset($data['ketthuc_kt'])){
         $count_kt_7 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
@@ -9100,7 +9777,12 @@ class ThongKeController extends Controller
           ->with('batdau_kt', $data['batdau_kt'])
           ->with('ketthuc_kt', $data['ketthuc_kt'])
 
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -9419,9 +10101,24 @@ class ThongKeController extends Controller
     $ma_vc = session()->get('ma_vc');
     $ma_k = session()->get('ma_k');
     $title = "Thống kê";
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
     if($phanquyen_qlk){
       $list_loaikhenthuong = LoaiKhenThuong::orderBy('ten_lkt', 'asc')
         ->get();
@@ -9492,7 +10189,12 @@ class ThongKeController extends Controller
           ->with('batdau_kl', $data['batdau_kl'])
           ->with('ketthuc_kl', $data['ketthuc_kl'])
 
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['ma_lkl'])){
         $count_kl_2 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
@@ -9532,7 +10234,12 @@ class ThongKeController extends Controller
 
           ->with('ma_lkl', $data['ma_lkl'])
 
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else if(isset($data['batdau_kl'])  && isset($data['ketthuc_kl'])){
         $count_kl_3 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
@@ -9573,7 +10280,12 @@ class ThongKeController extends Controller
           ->with('batdau_kl', $data['batdau_kl'])
           ->with('ketthuc_kl', $data['ketthuc_kl'])
 
-          ->with('phanquyen_qlk', $phanquyen_qlk);
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');

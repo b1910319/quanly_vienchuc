@@ -25,6 +25,9 @@ class LoaiKyLuatController extends Controller
   public function loaikyluat(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -61,6 +64,7 @@ class LoaiKyLuatController extends Controller
         ->with('count_status', $count_status)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('list', $list);
@@ -129,6 +133,9 @@ class LoaiKyLuatController extends Controller
   public function edit_loaikyluat($ma_lkl){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -157,6 +164,7 @@ class LoaiKyLuatController extends Controller
         ->with('title', $title)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)

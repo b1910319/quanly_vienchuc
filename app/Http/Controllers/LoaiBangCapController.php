@@ -25,6 +25,9 @@ class LoaiBangCapController extends Controller
   public function loaibangcap(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
     ->where('ma_q', '=', '9')
     ->first();
@@ -61,6 +64,7 @@ class LoaiBangCapController extends Controller
         ->with('title', $title)
         ->with('count_status', $count_status)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('list', $list);
@@ -129,6 +133,9 @@ class LoaiBangCapController extends Controller
   public function edit_loaibangcap($ma_lbc){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '9')
       ->first();
@@ -160,6 +167,7 @@ class LoaiBangCapController extends Controller
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');

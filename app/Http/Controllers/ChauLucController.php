@@ -26,6 +26,9 @@ class ChauLucController extends Controller
     $this->check_login();
     $title = "Quản lý châu lục";
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
     ->where('ma_q', '=', '9')
     ->first();
@@ -46,12 +49,6 @@ class ChauLucController extends Controller
       $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
         ->where('ma_q', '=', '8')
         ->first();
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
-
       $count_khuvuc_chauluc = ChauLuc::leftJoin('khuvuc', 'chauluc.ma_cl', '=', 'khuvuc.ma_cl')
         ->select(DB::raw('count(ma_kv) as sum, chauluc.ma_cl'))
         ->groupBy('chauluc.ma_cl')
@@ -61,12 +58,12 @@ class ChauLucController extends Controller
         ->with('title', $title)
 
         ->with('count_status', $count_status)
-        ->with('count_nangbac', $count_nangbac)
         ->with('count_khuvuc_chauluc', $count_khuvuc_chauluc)
 
         ->with('list', $list)
 
         ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -139,6 +136,9 @@ class ChauLucController extends Controller
     $this->check_login();
     $title = "Cập nhật thông tin chauluc";
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
       ->first();
@@ -157,18 +157,12 @@ class ChauLucController extends Controller
     if($phanquyen_admin || $phanquyen_qlcttc){
       $edit = ChauLuc::find($ma_cl);
       $ma_vc = session()->get('ma_vc');
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('chauluc.chauluc_edit')
         ->with('title', $title)
         ->with('edit', $edit)
 
-        ->with('count_nangbac', $count_nangbac)
-
         ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)

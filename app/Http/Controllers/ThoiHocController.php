@@ -25,6 +25,9 @@ class ThoiHocController extends Controller
   public function thoihoc($ma_l, $ma_vc){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+    ->where('ma_q', '=', '51')
+    ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
@@ -74,6 +77,7 @@ class ThoiHocController extends Controller
         ->with('lop', $lop)
         ->with('vienchuc', $vienchuc)
         ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('count_nangbac', $count_nangbac);
@@ -139,6 +143,9 @@ class ThoiHocController extends Controller
   public function edit_thoihoc($ma_th){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '51')
+    ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -167,6 +174,7 @@ class ThoiHocController extends Controller
         ->with('title', $title)
         ->with('count_nangbac', $count_nangbac)
         ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
@@ -294,6 +302,9 @@ class ThoiHocController extends Controller
   public function thoihoc_all(){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+    ->where('ma_q', '=', '51')
+    ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
@@ -343,6 +354,7 @@ class ThoiHocController extends Controller
         ->with('list_vienchuc', $list_vienchuc)
         ->with('list_lop', $list_lop)
         ->with('vienchuc', $vienchuc)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
@@ -376,6 +388,9 @@ class ThoiHocController extends Controller
   public function vienchuc_thoihoc_add($ma_l){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '51')
+    ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -404,6 +419,7 @@ class ThoiHocController extends Controller
       ->with('count_nangbac', $count_nangbac)
 
       ->with('phanquyen_admin', $phanquyen_admin)
+      ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
       ->with('phanquyen_qltt', $phanquyen_qltt)
       ->with('phanquyen_qlk', $phanquyen_qlk)
       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)

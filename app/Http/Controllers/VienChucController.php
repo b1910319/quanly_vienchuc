@@ -75,14 +75,20 @@ class VienChucController extends Controller
     $this->check_login();
     $title = "Thêm viên chức theo khoa";
     $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
@@ -116,11 +122,12 @@ class VienChucController extends Controller
         ->with('khoa', $khoa)
         ->with('title', $title)
         ->with('count_nangbac', $count_nangbac)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_admin', $phanquyen_admin);
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }
@@ -217,20 +224,23 @@ class VienChucController extends Controller
     $this->check_login();
     $title = "Cập nhật thông tin viên chức";
     $ma_vc_login = session()->get('ma_vc');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
-      ->where('ma_q', '=', '9')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
-      ->where('ma_q', '=', '7')
-      ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '7')
       ->first();
     if($phanquyen_admin || $phanquyen_qlk){
       $edit = VienChuc::find($ma_vc);
@@ -243,11 +253,12 @@ class VienChucController extends Controller
         ->with('edit', $edit)
         ->with('title', $title)
         ->with('count_nangbac', $count_nangbac)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_admin', $phanquyen_admin);
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }
@@ -330,20 +341,23 @@ class VienChucController extends Controller
     $this->check_login();
     $title = "Quản lý viên chức thuộc khoa";
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '9')
       ->first();
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
       ->first();
     if($phanquyen_admin){
       $count = VienChuc::select(DB::raw('count(ma_vc) as sum'))
@@ -363,17 +377,19 @@ class VienChucController extends Controller
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
       return view('vienchuc.quanly_vienchuc_khoa')
-        ->with('phanquyen_qltt', $phanquyen_qltt)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('title', $title)
         ->with('count', $count)
         ->with('count_status', $count_status)
         ->with('list', $list)
         ->with('list_khoa', $list_khoa)
         ->with('count_nangbac', $count_nangbac)
+
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_admin', $phanquyen_admin);
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }
@@ -439,14 +455,20 @@ class VienChucController extends Controller
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $title = "Tìm kiếm viên chức";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
@@ -470,24 +492,20 @@ class VienChucController extends Controller
         ->orderBy('ten_k', 'asc')
         ->get();
       $khoa_ma = Khoa::find($ma_k);
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('vienchuc.search_vienchuc_khoa')
-        ->with('phanquyen_qltt', $phanquyen_qltt)
-        ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('count', $count)
         ->with('count_status', $count_status)
         ->with('list', $list)
         ->with('list_khoa', $list_khoa)
         ->with('khoa_ma', $khoa_ma)
         ->with('title', $title)
-        ->with('count_nangbac', $count_nangbac)
+        
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_admin', $phanquyen_admin);
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }
@@ -496,17 +514,20 @@ class VienChucController extends Controller
     $this->check_login();
     $title = "Thêm thông tin viên chức";
     $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
@@ -536,11 +557,13 @@ class VienChucController extends Controller
       ->with('count_nangbac', $count_nangbac)
       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
       ->with('count_quanhe_giadinh', $count_quanhe_giadinh)
+
+      ->with('phanquyen_admin', $phanquyen_admin)
+      ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
       ->with('phanquyen_qltt', $phanquyen_qltt)
       ->with('phanquyen_qlk', $phanquyen_qlk)
-      ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
       ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-      ->with('phanquyen_admin', $phanquyen_admin);
+      ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }
@@ -549,11 +572,8 @@ class VienChucController extends Controller
     $this->check_login();
     $title = "Thêm thông tin viên chức";
     $ma_vc_login = session()->get('ma_vc');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
@@ -561,7 +581,13 @@ class VienChucController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '8')
       ->first();
-    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
     if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
@@ -612,11 +638,12 @@ class VienChucController extends Controller
         ->with('noisinh', $noisinh)
         ->with('quequan', $quequan)
         ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_admin', $phanquyen_admin);
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }
@@ -766,17 +793,20 @@ class VienChucController extends Controller
     $this->check_login();
     $title = "Danh sách thông tin viên chức";
     $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
@@ -831,11 +861,12 @@ class VienChucController extends Controller
         ->with('count_status', $count_status)
         ->with('list_hedaotao', $list_hedaotao)
         ->with('list_loiabangcap', $list_loiabangcap)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('phanquyen_admin', $phanquyen_admin);
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
         
     }else{
       return Redirect::to('/home');
@@ -845,17 +876,20 @@ class VienChucController extends Controller
     $this->check_login();
     $title = "Viên chức theo khoa";
     $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
@@ -914,11 +948,12 @@ class VienChucController extends Controller
         ->with('count_status', $count_status)
         ->with('list_hedaotao', $list_hedaotao)
         ->with('list_loiabangcap', $list_loiabangcap)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_admin', $phanquyen_admin);
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }
@@ -927,17 +962,20 @@ class VienChucController extends Controller
     $this->check_login();
     $title = "Viên chức theo quê quán";
     $ma_vc = session()->get('ma_vc');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
@@ -1005,11 +1043,12 @@ class VienChucController extends Controller
           ->with('list_hedaotao', $list_hedaotao)
           ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
           ->with('list_loiabangcap', $list_loiabangcap)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else{
         $list_vienchuc = VienChuc::join('quequan', 'quequan.ma_vc', '=', 'vienchuc.ma_vc')
           ->where('quequan.ma_t', $data['ma_t'])
@@ -1036,11 +1075,12 @@ class VienChucController extends Controller
           ->with('list_hedaotao', $list_hedaotao)
           ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
           ->with('list_loiabangcap', $list_loiabangcap)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -1051,17 +1091,20 @@ class VienChucController extends Controller
     $title = "Viên chức theo dân tộc";
     $ma_vc = session()->get('ma_vc');
     $ma_k = session()->get('ma_k');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
@@ -1123,11 +1166,12 @@ class VienChucController extends Controller
           ->with('count_status', $count_status)
           ->with('list_hedaotao', $list_hedaotao)
           ->with('list_loiabangcap', $list_loiabangcap)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       } else {
         $list_vienchuc = VienChuc::where('ma_dt', $ma_dt)
           ->where('status_vc', '<>', '2')
@@ -1152,11 +1196,12 @@ class VienChucController extends Controller
           ->with('count_status', $count_status)
           ->with('list_hedaotao', $list_hedaotao)
           ->with('list_loiabangcap', $list_loiabangcap)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -1167,17 +1212,20 @@ class VienChucController extends Controller
     $title = "Viên chức theo ngày sinh";
     $ma_vc = session()->get('ma_vc');
     $ma_k = session()->get('ma_k');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
@@ -1238,11 +1286,12 @@ class VienChucController extends Controller
           ->with('count_status', $count_status)
           ->with('list_hedaotao', $list_hedaotao)
           ->with('list_loiabangcap', $list_loiabangcap)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else{
         $list_vienchuc = VienChuc::whereBetween('ngaysinh_vc', [$data['batdau'], $data['ketthuc']])
           ->where('status_vc', '<>', '2')
@@ -1267,11 +1316,12 @@ class VienChucController extends Controller
           ->with('count_status', $count_status)
           ->with('list_hedaotao', $list_hedaotao)
           ->with('list_loiabangcap', $list_loiabangcap)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -1282,17 +1332,20 @@ class VienChucController extends Controller
     $title = "Viên chức theo tôn giáo";
     $ma_vc = session()->get('ma_vc');
     $ma_k = session()->get('ma_k');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
@@ -1354,11 +1407,12 @@ class VienChucController extends Controller
           ->with('count_status', $count_status)
           ->with('list_hedaotao', $list_hedaotao)
           ->with('list_loiabangcap', $list_loiabangcap)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       } else {
         $list_vienchuc = VienChuc::where('ma_tg', $ma_tg)
           ->where('status_vc', '<>', '2')
@@ -1383,11 +1437,12 @@ class VienChucController extends Controller
           ->with('count_status', $count_status)
           ->with('list_hedaotao', $list_hedaotao)
           ->with('list_loiabangcap', $list_loiabangcap)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -1398,17 +1453,20 @@ class VienChucController extends Controller
     $title = "Viên chức theo giới tính viên chức";
     $ma_vc = session()->get('ma_vc');
     $ma_k = session()->get('ma_k');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
@@ -1474,11 +1532,12 @@ class VienChucController extends Controller
           ->with('count_status', $count_status)
           ->with('list_hedaotao', $list_hedaotao)
           ->with('list_loiabangcap', $list_loiabangcap)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       } else {
         $list_vienchuc = VienChuc::where('gioitinh_vc', $gt)
           ->where('status_vc', '<>', '2')
@@ -1503,11 +1562,12 @@ class VienChucController extends Controller
           ->with('count_status', $count_status)
           ->with('list_hedaotao', $list_hedaotao)
           ->with('list_loiabangcap', $list_loiabangcap)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -1518,17 +1578,20 @@ class VienChucController extends Controller
     $title = "Viên chức theo ngạch";
     $ma_vc = session()->get('ma_vc');
     $ma_k = session()->get('ma_k');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
@@ -1595,11 +1658,12 @@ class VienChucController extends Controller
           ->with('count_status', $count_status)
           ->with('list_hedaotao', $list_hedaotao)
           ->with('list_loiabangcap', $list_loiabangcap)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       } else {
         $list_vienchuc = VienChuc::where('ma_n', $data['ma_n'])
           ->where('ma_b', $data['ma_b'])
@@ -1625,11 +1689,12 @@ class VienChucController extends Controller
           ->with('count_status', $count_status)
           ->with('list_hedaotao', $list_hedaotao)
           ->with('list_loiabangcap', $list_loiabangcap)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -1640,17 +1705,20 @@ class VienChucController extends Controller
     $title = "Viên chức theo hạng thương binh";
     $ma_vc = session()->get('ma_vc');
     $ma_k = session()->get('ma_k');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
@@ -1712,11 +1780,12 @@ class VienChucController extends Controller
           ->with('list_loiabangcap', $list_loiabangcap)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('count_status', $count_status)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       } else {
         $list_vienchuc = VienChuc::where('ma_tb', $ma_tb)
           ->where('status_vc', '<>', '2')
@@ -1741,11 +1810,12 @@ class VienChucController extends Controller
           ->with('list_loiabangcap', $list_loiabangcap)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('count_status', $count_status)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_admin', $phanquyen_admin);  
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);  
       }
     }else{
       return Redirect::to('/home');
@@ -1756,17 +1826,20 @@ class VienChucController extends Controller
     $title = "Viên chức theo ngày bắt đầu làm việc";
     $ma_vc = session()->get('ma_vc');
     $ma_k = session()->get('ma_k');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
@@ -1827,11 +1900,12 @@ class VienChucController extends Controller
           ->with('list_loiabangcap', $list_loiabangcap)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('count_status', $count_status)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }else{
         $list_vienchuc = VienChuc::whereBetween('ngaybatdaulamviec_vc', [$data['batdau'], $data['ketthuc']])
           ->orderBy('vienchuc.ma_vc', 'desc')
@@ -1856,11 +1930,12 @@ class VienChucController extends Controller
           ->with('list_loiabangcap', $list_loiabangcap)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('count_status', $count_status)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
       
     }else{
@@ -1872,17 +1947,20 @@ class VienChucController extends Controller
     $title = "Viên chức theo hệ đào tạo";
     $ma_vc = session()->get('ma_vc');
     $ma_k = session()->get('ma_k');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
@@ -1950,11 +2028,12 @@ class VienChucController extends Controller
           ->with('list_loiabangcap', $list_loiabangcap)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('count_status', $count_status)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       } else {
         $list_vienchuc = VienChuc::join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
@@ -1981,11 +2060,12 @@ class VienChucController extends Controller
           ->with('list_loiabangcap', $list_loiabangcap)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('count_status', $count_status)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -1996,17 +2076,20 @@ class VienChucController extends Controller
     $title = "Viên chức theo loại bằng cấp";
     $ma_vc = session()->get('ma_vc');
     $ma_k = session()->get('ma_k');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-    ->where('ma_q', '=', '9')
-    ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
@@ -2074,11 +2157,12 @@ class VienChucController extends Controller
           ->with('list_loiabangcap', $list_loiabangcap)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('count_status', $count_status)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       } else {
         $list_vienchuc = VienChuc::join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
@@ -2105,11 +2189,12 @@ class VienChucController extends Controller
           ->with('list_loiabangcap', $list_loiabangcap)
           ->with('list_vienchuc', $list_vienchuc)
           ->with('count_status', $count_status)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
           ->with('phanquyen_qltt', $phanquyen_qltt)
           ->with('phanquyen_qlk', $phanquyen_qlk)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-          ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-          ->with('phanquyen_admin', $phanquyen_admin);
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -2134,6 +2219,9 @@ class VienChucController extends Controller
       ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
       ->first();
     if($phanquyen_qlk){
       $count = VienChuc::where('ma_k', $ma_k)
@@ -2199,6 +2287,7 @@ class VienChucController extends Controller
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_admin', $phanquyen_admin);
         
     }else{

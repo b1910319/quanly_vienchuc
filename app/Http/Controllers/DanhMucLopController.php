@@ -25,6 +25,9 @@ class DanhMucLopController extends Controller
   public function danhmuclop(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -52,11 +55,6 @@ class DanhMucLopController extends Controller
       $count_status = DanhMucLop::select(DB::raw('count(ma_dml) as sum, status_dml'))
         ->groupBy('status_dml')
         ->get();
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('danhmuclop.danhmuclop')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
@@ -65,9 +63,9 @@ class DanhMucLopController extends Controller
         ->with('count_lop_danhmuc', $count_lop_danhmuc)
         ->with('count_status', $count_status)
         ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('count_nangbac', $count_nangbac)
         ->with('list', $list);
     }else{
       return Redirect::to('/home');
@@ -134,6 +132,9 @@ class DanhMucLopController extends Controller
   public function edit_danhmuclop($ma_dml){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -152,16 +153,11 @@ class DanhMucLopController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
       $edit = DanhMucLop::find($ma_dml);
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('danhmuclop.danhmuclop_edit')
         ->with('edit', $edit)
         ->with('title', $title)
         ->with('phanquyen_qltt', $phanquyen_qltt)
-        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)

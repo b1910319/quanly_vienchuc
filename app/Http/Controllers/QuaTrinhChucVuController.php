@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\quatrinhchucvuImport;
 use App\Models\Bac;
 use App\Models\ChucVu;
 use App\Models\DanToc;
@@ -37,15 +36,24 @@ class QuaTrinhChucVuController extends Controller
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $ma_k = session()->get('ma_k');
+    $title = "Quản lý quá trình chức vụ";
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '51')
+    ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-    $title = "Quản lý quá trình chức vụ";
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '9')
       ->first();
-    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '51')
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
       ->first();
     if($phanquyen_admin || $phanquyen_qlqtcv || $phanquyen_qlk){
       $list_khoa = Khoa::get();
@@ -91,8 +99,12 @@ class QuaTrinhChucVuController extends Controller
 
         ->with('count_quatrinhchucvu_vienchuc', $count_quatrinhchucvu_vienchuc)
 
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_admin', $phanquyen_admin);
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }
@@ -100,15 +112,24 @@ class QuaTrinhChucVuController extends Controller
   public function quatrinhchucvu_add($ma_vc){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
-      ->where('ma_q', '=', '5')
-      ->first();
     $title = "Thêm thông tin quá trình chức vụ";
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
-      ->where('ma_q', '=', '9')
-      ->first();
     $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
       ->first();
     if($phanquyen_admin || $phanquyen_qlqtcv || $phanquyen_qlk){
       $list = QuaTrinhChucVu::join('nhiemky', 'nhiemky.ma_nk', '=', 'quatrinhchucvu.ma_nk')
@@ -128,9 +149,12 @@ class QuaTrinhChucVuController extends Controller
         ->get();
       $vienchuc = VienChuc::find($ma_vc);
       return view('quatrinhchucvu.quatrinhchucvu_add')
-        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
 
         ->with('count_status', $count_status)
 
@@ -201,14 +225,23 @@ class QuaTrinhChucVuController extends Controller
     $this->check_login();
     $title = "Cập nhật thông tin";
     $ma_vc_login = session()->get('ma_vc');
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
-      ->where('ma_q', '=', '9')
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '51')
       ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
-    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
-      ->where('ma_q', '=', '51')
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '7')
       ->first();
     if($phanquyen_admin || $phanquyen_qlqtcv || $phanquyen_qlk){
       $edit = QuaTrinhChucVu::find($ma_qtcv);
@@ -227,8 +260,12 @@ class QuaTrinhChucVuController extends Controller
         ->with('list_nhiemky', $list_nhiemky)
         ->with('list_chucvu', $list_chucvu)
 
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)
-        ->with('phanquyen_admin', $phanquyen_admin);
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }
@@ -291,7 +328,7 @@ class QuaTrinhChucVuController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
-      $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '51')
       ->first();
     if($phanquyen_admin || $phanquyen_qlqtcv || $phanquyen_qlk){

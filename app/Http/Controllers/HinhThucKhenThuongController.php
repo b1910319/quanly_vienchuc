@@ -25,6 +25,9 @@ class HinhThucKhenThuongController extends Controller
   public function hinhthuckhenthuong(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -48,18 +51,14 @@ class HinhThucKhenThuongController extends Controller
       $count_status = HinhThucKhenThuong::select(DB::raw('count(ma_htkt) as sum, status_htkt'))
         ->groupBy('status_htkt')
         ->get();
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
+      
       return view('hinhthuckhenthuong.hinhthuckhenthuong')
         ->with('phanquyen_admin', $phanquyen_admin)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('count', $count)
         ->with('title', $title)
         ->with('count_status', $count_status)
-        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
@@ -129,6 +128,9 @@ class HinhThucKhenThuongController extends Controller
   public function edit_hinhthuckhenthuong($ma_htkt){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '5')
       ->first();
@@ -147,15 +149,11 @@ class HinhThucKhenThuongController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlktkl){
       $edit = HinhThucKhenThuong::find($ma_htkt);
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
+      
       return view('hinhthuckhenthuong.hinhthuckhenthuong_edit')
         ->with('edit', $edit)
         ->with('title', $title)
-        ->with('count_nangbac', $count_nangbac)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt)
