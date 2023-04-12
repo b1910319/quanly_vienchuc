@@ -108,6 +108,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
               <i class="fa-solid fa-person-shelter"></i>
               <span>Lớp học</span>
             </a>
+            <a href="{{ URL::to('thongtin_quatrinhchucvu') }}" class="dropdown-item notify-item">
+              <i class="fa-solid fa-map-pin"></i>
+              <span>Qúa trình chức vụ</span>
+            </a>
 
             <div class="dropdown-divider"></div>
 

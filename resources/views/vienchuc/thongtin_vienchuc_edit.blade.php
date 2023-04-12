@@ -299,7 +299,6 @@
                 <td class="was-validated row">
                   @if ($edit->gioitinh_vc == 0)
                     <div class="form-check col-5 ms-3">
-                    
                       <input class="form-check-input" type="radio" name="gioitinh_vc" id="flexRadioDefault1" value="0" checked>
                       <label class="form-check-label" for="flexRadioDefault1">
                         Nam
@@ -326,7 +325,6 @@
                       </label>
                     </div>
                   @endif
-                  
                 </td>
               </tr>
               <tr>

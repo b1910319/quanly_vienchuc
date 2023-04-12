@@ -21,6 +21,9 @@
         <a href="{{ URL::to('thongtin_lophoc') }}" class="mt-2">
           <button type="button" class="btn btn-light fw-bold" style="width: 100%">Lớp học tham gia</button>
         </a>
+        <a href="{{ URL::to('thongtin_quatrinhchucvu') }}" class="mt-2">
+          <button type="button" class="btn btn-light fw-bold" style="width: 100%">Qúa trình chức vụ</button>
+        </a>
       </div>
     </div>
     <div class="col-10 card-box">

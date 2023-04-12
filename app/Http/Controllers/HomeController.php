@@ -28,6 +28,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
+use App\Models\QuaTrinhChucVu;
 use App\Models\QueQuan;
 use App\Models\ThoiHoc;
 use App\Models\ThuongBinh;
@@ -816,4 +817,64 @@ class HomeController extends Controller
       return Redirect::to('/change_pass');
     }
   }
+
+  public function thongtin_quatrinhchucvu(){
+    $this->check_login();
+    $title = 'Thông tin cá nhân';
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    Carbon::now('Asia/Ho_Chi_Minh'); 
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $list_quatrinhchucvu = QuaTrinhChucVu::join('chucvu', 'chucvu.ma_cv', '=', 'quatrinhchucvu.ma_cv')
+      ->join('nhiemky', 'nhiemky.ma_nk', '=', 'quatrinhchucvu.ma_nk')
+      ->where('ma_vc', $ma_vc)
+      ->get();
+    // $vienchuc = VienChuc::find($ma_vc);
+    // $list_khoa = Khoa::get();
+    // $list_chucvu = ChucVu::get();
+    // $list_bac =  Bac::get();
+    // $list_ngach = Ngach::get();
+    // $list_dantoc = DanToc::get();
+    // $list_tongiao = TonGiao::get();
+    // $list_thuongbinh = ThuongBinh::get();
+    return view('thongtin_vienchuc.thongtin_quatrinhchucvu')
+      ->with('title', $title)
+
+      // ->with('vienchuc', $vienchuc)
+
+      // ->with('list_khoa', $list_khoa)
+      // ->with('list_chucvu', $list_chucvu)
+      // ->with('list_bac', $list_bac)
+      // ->with('list_ngach', $list_ngach)
+      // ->with('list_dantoc', $list_dantoc)
+      // ->with('list_tongiao', $list_tongiao)
+      ->with('list_quatrinhchucvu', $list_quatrinhchucvu)
+
+      ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+
+      ->with('phanquyen_qlk', $phanquyen_qlk)
+      ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+      ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+      ->with('phanquyen_qltt', $phanquyen_qltt)
+      ->with('phanquyen_admin', $phanquyen_admin);
+  }
+
+
+
 }

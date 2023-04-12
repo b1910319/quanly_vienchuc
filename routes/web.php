@@ -66,6 +66,8 @@ Route::get('/thongtin_kyluat',[HomeController::class, 'thongtin_kyluat']);
 
 Route::get('/thongtin_lophoc',[HomeController::class, 'thongtin_lophoc']);
 
+Route::get('/thongtin_quatrinhchucvu',[HomeController::class, 'thongtin_quatrinhchucvu']);
+
 
 Route::post('/login',[VienChucController::class, 'login']);
 Route::get('/logout',[VienChucController::class, 'logout']);

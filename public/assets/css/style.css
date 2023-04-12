@@ -391,4 +391,76 @@ footer li {
     left: 100%;
   }
 }
+
 /*  */
+
+
+
+/* cột móc thời gian quá trình chức vụ */
+.dots-list ol {
+  padding-left: 150px;
+  position: relative;
+  margin-bottom: 20px;
+  list-style: none !important;
+}
+
+.dots-list ol li {
+  position: relative;
+  margin-top: 1.0em;
+  margin-bottom: 22px;
+}
+
+.dots-list ol li .date {
+  position: absolute;
+  left: -145px;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+
+
+.dots-list ol li:before {
+  content: "";
+  background: #000D6B;
+  /*Sửa màu*/
+  position: absolute;
+  width: 4px;
+  top: 5px;
+  bottom: -25px;
+  left: -22px;
+}
+
+.dots-list ol li:after {
+  content: "";
+  background: white;
+  /*edit circle colour*/
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  border: 4px solid #000D6B;
+  /*edit circle border colour*/
+  top: 5px;
+  left: -31px;
+}
+
+.dots-list ol li:last-child:before {
+  content: "";
+  background: rgba(0, 0, 0, 0);
+}
+
+/*  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
