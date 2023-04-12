@@ -709,24 +709,8 @@ Route::post('/thongke_qlqtcv_loc',[ThongKeController::class, 'thongke_qlqtcv_loc
 Route::get('/thongke_qlqtcv_loc_1_pdf/{ma_k}/{ma_cv}/{ma_nk}',[ThongKeController::class, 'thongke_qlqtcv_loc_1_pdf']);
 Route::get('/thongke_qlqtcv_loc_1_excel/{ma_k}/{ma_cv}/{ma_nk}',[ThongKeController::class, 'thongke_qlqtcv_loc_1_excel']);
 
-// Route::get('/thongke_qlktkl_kl_loc_2_pdf/{ma_k}/{batdau_kl}/{ketthuc_kl}',[ThongKeController::class, 'thongke_qlktkl_kl_loc_2_pdf']);
-// Route::get('/thongke_qlktkl_kl_loc_2_excel/{ma_k}/{batdau_kl}/{ketthuc_kl}',[ThongKeController::class, 'thongke_qlktkl_kl_loc_2_excel']);
-
-// Route::get('/thongke_qlktkl_kl_loc_3_pdf/{ma_lkl}/{batdau_kl}/{ketthuc_kl}',[ThongKeController::class, 'thongke_qlktkl_kl_loc_3_pdf']);
-// Route::get('/thongke_qlktkl_kl_loc_3_excel/{ma_lkl}/{batdau_kl}/{ketthuc_kl}',[ThongKeController::class, 'thongke_qlktkl_kl_loc_3_excel']);
-
-// Route::get('/thongke_qlktkl_kl_loc_4_pdf/{ma_lkl}/{ma_k}',[ThongKeController::class, 'thongke_qlktkl_kl_loc_4_pdf']);
-// Route::get('/thongke_qlktkl_kl_loc_4_excel/{ma_lkl}/{ma_k}',[ThongKeController::class, 'thongke_qlktkl_kl_loc_4_excel']);
-
-// Route::get('/thongke_qlktkl_kl_loc_5_pdf/{ma_k}',[ThongKeController::class, 'thongke_qlktkl_kl_loc_5_pdf']);
-// Route::get('/thongke_qlktkl_kl_loc_5_excel/{ma_k}',[ThongKeController::class, 'thongke_qlktkl_kl_loc_5_excel']);
-
-// Route::get('/thongke_qlktkl_kl_loc_6_pdf/{ma_lkl}',[ThongKeController::class, 'thongke_qlktkl_kl_loc_6_pdf']);
-// Route::get('/thongke_qlktkl_kl_loc_6_excel/{ma_lkl}',[ThongKeController::class, 'thongke_qlktkl_kl_loc_6_excel']);
-
-// Route::get('/thongke_qlktkl_kl_loc_7_pdf/{batdau_kl}/{ketthuc_kl}',[ThongKeController::class, 'thongke_qlktkl_kl_loc_7_pdf']);
-// Route::get('/thongke_qlktkl_kl_loc_7_excel/{batdau_kl}/{ketthuc_kl}',[ThongKeController::class, 'thongke_qlktkl_kl_loc_7_excel']);
-
+Route::get('/thongke_qlqtcv_loc_2_pdf/{ma_k}/{ma_cv}',[ThongKeController::class, 'thongke_qlqtcv_loc_2_pdf']);
+Route::get('/thongke_qlqtcv_loc_2_excel/{ma_k}/{ma_cv}',[ThongKeController::class, 'thongke_qlqtcv_loc_2_excel']);
 
 // ----------------------------------------------------------
 
