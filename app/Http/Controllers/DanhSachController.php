@@ -406,4 +406,121 @@ class DanhSachController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function quatrinhhoc(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $title = "Qúa trình học";
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list_vienchuc = VienChuc::orderBy('hoten_vc', 'asc')
+        ->get();
+      $list_khoa = Khoa::orderBy('ten_k', 'asc')
+        ->get();
+      $list_chucvu = ChucVu::get();
+      $list_ngach = Ngach::get();
+      $list_bac = Bac::get();
+      $list_dantoc = DanToc::get();
+      $list_tongiao = TonGiao::get();
+      $list_thuongbinh = ThuongBinh::get();
+      return view('danhsach.quatrinhhoc')
+        ->with('title', $title)
+
+        ->with('list_vienchuc', $list_vienchuc)
+        ->with('list_khoa', $list_khoa)
+        ->with('list_ngach', $list_ngach)
+        ->with('list_bac', $list_bac)
+        ->with('list_dantoc', $list_dantoc)
+        ->with('list_tongiao', $list_tongiao)
+        ->with('list_chucvu', $list_chucvu)
+        ->with('list_thuongbinh', $list_thuongbinh)
+
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qltt', $phanquyen_qltt);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+
+  public function quatrinhhoc_chitiet($ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $title = "Qúa trình học";
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $vienchuc = VienChuc::find($ma_vc);
+      $list_lop_vienchuc = VienChuc::join('danhsach', 'danhsach.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('lop', 'lop.ma_l', '=', 'danhsach.ma_l')
+        ->join('danhmuclop', 'danhmuclop.ma_dml', '=', 'lop.ma_dml')
+        ->join('quocgia', 'quocgia.ma_qg', '=', 'lop.ma_qg')
+        ->where('danhsach.ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_ketqua = KetQua::where('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_giahan = GiaHan::where('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_dunghoc = DungHoc::where('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_chuyen = Chuyen::where('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_thoihoc = ThoiHoc::where('ma_vc', $ma_vc)
+        ->get();
+      return view('danhsach.quatrinhhoc_chitiet')
+        ->with('title', $title)
+        ->with('vienchuc', $vienchuc)
+
+        ->with('list_lop_vienchuc', $list_lop_vienchuc)
+        ->with('list_quatrinhhoc_ketqua', $list_quatrinhhoc_ketqua)
+        ->with('list_quatrinhhoc_giahan', $list_quatrinhhoc_giahan)
+        ->with('list_quatrinhhoc_dunghoc', $list_quatrinhhoc_dunghoc)
+        ->with('list_quatrinhhoc_chuyen', $list_quatrinhhoc_chuyen)
+        ->with('list_quatrinhhoc_thoihoc', $list_quatrinhhoc_thoihoc)
+
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qltt', $phanquyen_qltt);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }

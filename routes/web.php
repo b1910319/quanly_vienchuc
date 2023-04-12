@@ -855,6 +855,10 @@ Route::get('/quyetdinh_dihoc_pdf/{ma_l}/{ma_vc}',[DanhSachController::class, 'qu
 Route::get('/danhsach_vienchuc_lop_pdf/{ma_l}',[DanhSachController::class, 'danhsach_vienchuc_lop_pdf']);
 Route::get('/danhsach_vienchuc_lop_excel/{ma_l}',[DanhSachController::class, 'danhsach_vienchuc_lop_excel']);
 
+Route::get('/quatrinhhoc',[DanhSachController::class, 'quatrinhhoc']);
+Route::get('/quatrinhhoc_chitiet/{ma_vc}',[DanhSachController::class, 'quatrinhhoc_chitiet']);
+Route::post('/quatrinhhoc_xuatfile',[DanhSachController::class, 'quatrinhhoc_xuatfile']);
+
 
 
 
