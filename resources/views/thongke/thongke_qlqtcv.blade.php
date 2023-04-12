@@ -741,6 +741,110 @@
         </div>
       </div>
     @endif
+    @if (isset($list_6))
+    <div class="alert alert-light color_alert" role="alert" >
+      ________THÔNG TIN QUÁ TRÌNH CHỨC VỤ CỦA VIÊN CHỨC________
+    </div>
+    <p style="font-weight: bold; color: #D36B00; font-size: 18px">
+      Danh sách được lọc theo: 
+      @foreach ($list_chucvu as $chucvu )
+        @if ($chucvu->ma_cv == $ma_cv)
+        <span class="badge text-bg-primary">{{ $chucvu->ten_cv }}</span>
+        @endif
+      @endforeach
+    </p>
+    <table class="table" id="mytable">
+      <thead class="color_table">
+        <tr>
+          <th class="text-light" scope="col">STT</th>
+          <th class="text-light" scope="col">Thông tin viên chức </th>
+          <th class="text-light" scope="col">Khoa</th>
+          <th class="text-light" scope="col">Thông tin quá trình chức vụ</th>
+        </tr>
+      </thead>
+      <tbody  >
+        @foreach($list_6 as $key => $vc)
+          <tr>
+            <td>{{ $key+1 }}</td>
+            <td>
+              <div class="row ">
+                <div class="col-md-12">
+                  <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
+                    style="height: 100px; overflow: auto;">
+                    @foreach ($list_vienchuc as $vienchuc )
+                      @if ($vienchuc->ma_vc == $vc->ma_vc)
+                        <p>
+                          <b> Tên viên chức:</b> {{ $vienchuc->hoten_vc }} <br>
+                          <b> Số điện thoại:</b> {{ $vienchuc->sdt_vc }} <br>
+                          <b> Email: </b> {{ $vienchuc->user_vc }} <br>
+                          <b> Ngày sinh: </b> {{ $vienchuc->ngaysinh_vc }} <br>
+                          <b> Giới tính: </b>
+                          @if ($vienchuc->giotinh_vc == 0)
+                            Nam
+                          @else
+                            Nữ
+                          @endif
+                          <br>
+                          <b> Địa chỉ hiện tại: </b> {{ $vienchuc->hientai_vc }} <br>
+                          <b> Địa chỉ thường trú: </b> {{ $vienchuc->thuongtru_vc }} <br>
+                          <b> Trình độ phổ thông: </b> {{ $vienchuc->trinhdophothong_vc }} <br>
+                          <b> Ngoại ngữ: </b> {{ $vienchuc->ngoaingu_vc }} <br>
+                          <b> Tin học: </b> {{ $vienchuc->tinhoc_vc }} <br>
+                          <b> Ngày vào đảng: </b> {{ $vienchuc->ngayvaodang_vc }} <br>
+                          <b> Ngày chính thức: </b> {{ $vienchuc->ngaychinhthuc_vc }} <br>
+                          <b> Ngày bắt đầu làm việc: </b> {{ $vienchuc->ngaybatdaulamviec_vc }} <br>
+                          <b> Chức vụ: </b> {{ $vienchuc->ten_cv }} <br>
+                        </p>
+                      @endif
+                    @endforeach
+                  </div>
+                </div>
+              </div>
+            </td>
+              @foreach ($list_vienchuc as $vienchuc  )
+                @if ($vienchuc->ma_vc == $vc->ma_vc)
+                  <td>{{ $vienchuc->ten_k }}</td>
+                @endif
+              @endforeach
+            <td>
+              <div class="row ">
+                <div class="col-md-12">
+                  <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
+                    style="height: 100px; overflow: auto;">
+                    <p>
+                      <b> Chức vụ:</b> {{ $vc->ten_cv }} <br>
+                      <b> Nhiệm kỳ:</b> {{ $vc->ten_nk }} <br>
+                      <b> Ghi chú: </b> {{ $vc->ghichu_qtcv }} <br>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        @endforeach
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-2">
+        <a href="{{ URL::to('/thongke_qlqtcv_loc_6_pdf/'.$ma_cv) }}">
+          <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+            <i class="fa-solid fa-file-pdf text-light"></i>
+            &ensp;
+            Xuất file PDF
+          </button>
+        </a>
+      </div>
+      <div class="col-2">
+        <a href="{{ URL::to('/thongke_qlqtcv_loc_6_excel/'.$ma_cv) }}">
+          <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+            <i class="fa-solid fa-file-excel text-light"></i>
+            &ensp;
+            Xuất file Excel
+          </button>
+        </a>
+      </div>
+    </div>
+  @endif
   </div>
 </div>
 <script>
@@ -824,6 +928,16 @@
                   $ten_k = $khoa->ten_k;
                   $tong = $count->sum;
                   echo "{ year: '$ten_k', value: $tong },";
+                }
+              }
+            }
+          }else if(isset($count_6) ){
+            foreach ($count_6 as $key => $count){
+              foreach($list_chucvu as $key => $chucvu){
+                if($count->ma_cv == $chucvu->ma_cv ){
+                  $ten_cv = $chucvu->ten_cv;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_cv', value: $tong },";
                 }
               }
             }
