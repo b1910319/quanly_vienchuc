@@ -771,6 +771,9 @@ Route::post('/delete_khenthuong_check',[KhenThuongController::class, 'delete_khe
 Route::get('/delete_all_khenthuong/{ma_vc}',[KhenThuongController::class, 'delete_all_khenthuong']);
 Route::get('/khenthuong_pdf/{ma_kt}',[KhenThuongController::class, 'khenthuong_pdf']);
 
+Route::get('/quanly_khenthuong_kyluat',[KhenThuongController::class, 'quanly_khenthuong_kyluat']);
+Route::get('/quanly_khenthuong_kyluat_chitiet/{ma_vc}',[KhenThuongController::class, 'quanly_khenthuong_kyluat_chitiet']);
+Route::post('/quanly_khenthuong_kyluat_xuatfile',[KhenThuongController::class, 'quanly_khenthuong_kyluat_xuatfile']);
 
 
 

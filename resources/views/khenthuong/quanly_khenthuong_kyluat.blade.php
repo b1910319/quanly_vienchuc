@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="mt-3"></div>
-    <form action="{{ URL::to('/quatrinhhoc_xuatfile') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ URL::to('/quanly_khenthuong_kyluat_xuatfile') }}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
       <table class="table" id="mytable1">
         <thead class="color_table">
@@ -60,7 +60,7 @@
                   @endif
                 @endif
               </td>
-              <td style="width: 16%">
+              <td style="width: 17%">
                 <div class="row">
                   <div class="col-12">
                     <button type="button" class="btn btn-primary luotxem_l{{ $key+1 }} btn_chitiet fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}" style="width: 100%">
@@ -68,9 +68,9 @@
                     </button>
                   </div>
                   <div class="col-12 mt-2">
-                    <a href="{{ URL::to('quatrinhhoc_chitiet/'.$vienchuc->ma_vc) }}">
+                    <a href="{{ URL::to('quanly_khenthuong_kyluat_chitiet/'.$vienchuc->ma_vc) }}">
                       <button type="button" class="btn btn-primary fw-bold" style="width: 100%; background-color: #A6CB12; border: none">
-                        <i class="fa-solid fa-circle-info text-light"></i> &ensp; Qúa trình học
+                        <i class="fa-solid fa-circle-info text-light"></i> &ensp; Khen thưởng, kỷ luật
                       </button>
                     </a>
                   </div>

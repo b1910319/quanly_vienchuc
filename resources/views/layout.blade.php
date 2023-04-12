@@ -331,6 +331,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                     </a>
                   </li>
                   <li>
+                    <a href="{{ URL::to('/quanly_khenthuong_kyluat') }}">
+                      Quản lý
+                    </a>
+                  </li>
+                  <li>
                     <a href="{{ URL::to('/thongke_qlktkl') }}">
                       Thống kê
                     </a>
