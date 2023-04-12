@@ -23,7 +23,6 @@ class ThongKeQLQTCV_Export implements FromCollection, WithHeadings, ShouldAutoSi
       'Chức vụ',
       'Nhiệm kỳ',
       'Ghi chú'
-      
     ];
   }
   public function collection()

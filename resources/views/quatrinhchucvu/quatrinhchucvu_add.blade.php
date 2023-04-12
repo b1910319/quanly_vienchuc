@@ -169,7 +169,7 @@
                 {{ $quatrinhchucvu->ten_cv }} ({{ $quatrinhchucvu->ma_cv }})
               </td>
               <td>
-                {{ $quatrinhchucvu->ten_nk }} ({{ $quatrinhchucvu->ma_nk }})
+                Nhiệm kỳ: {{ $quatrinhchucvu->ten_nk }} ({{ $quatrinhchucvu->ma_nk }})
               </td>
               <td>
                 {{ $quatrinhchucvu->ghichu_qtcv }}

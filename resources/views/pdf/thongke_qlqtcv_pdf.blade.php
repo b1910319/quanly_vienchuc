@@ -29,7 +29,7 @@
         <b>TRƯỜNG CÔNG NGHỆ THÔNG TIN VÀ TRUYỀN THÔNG - ĐẠI HỌC CẦN THƠ</b>
       </i>
     </p>
-    <p  style="font-size: 16px; font-weight: bold; text-align: center;">BẢNG THỐNG QUÁ TRÌNH CHỨC VỤ CỦA VIÊN CHỨC</p>
+    <p  style="font-size: 16px; font-weight: bold; text-align: center;">BẢNG THỐNG KÊ QUÁ TRÌNH CHỨC VỤ CỦA VIÊN CHỨC</p>
     <table class="table">
       <thead>
         <tr>

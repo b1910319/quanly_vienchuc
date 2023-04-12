@@ -704,10 +704,10 @@ Route::get('/thongke_qlqtcv',[ThongKeController::class, 'thongke_qlqtcv']);
 Route::get('/thongke_qlqtcv_pdf',[ThongKeController::class, 'thongke_qlqtcv_pdf']);
 Route::get('/thongke_qlqtcv_excel',[ThongKeController::class, 'thongke_qlqtcv_excel']);
 
-// Route::post('/thongke_qltktkl_kl_loc',[ThongKeController::class, 'thongke_qltktkl_kl_loc']);
+Route::post('/thongke_qlqtcv_loc',[ThongKeController::class, 'thongke_qlqtcv_loc']);
 
-// Route::get('/thongke_qlktkl_kl_loc_all_pdf/{ma_lkl}/{ma_k}/{batdau_kl}/{ketthuc_kl}',[ThongKeController::class, 'thongke_qlktkl_kl_loc_all_pdf']);
-// Route::get('/thongke_qlktkl_kl_loc_all_excel/{ma_lkl}/{ma_k}/{batdau_kl}/{ketthuc_kl}',[ThongKeController::class, 'thongke_qlktkl_kl_loc_all_excel']);
+Route::get('/thongke_qlqtcv_loc_1_pdf/{ma_k}/{ma_cv}/{ma_nk}',[ThongKeController::class, 'thongke_qlqtcv_loc_1_pdf']);
+Route::get('/thongke_qlqtcv_loc_1_excel/{ma_k}/{ma_cv}/{ma_nk}',[ThongKeController::class, 'thongke_qlqtcv_loc_1_excel']);
 
 // Route::get('/thongke_qlktkl_kl_loc_2_pdf/{ma_k}/{batdau_kl}/{ketthuc_kl}',[ThongKeController::class, 'thongke_qlktkl_kl_loc_2_pdf']);
 // Route::get('/thongke_qlktkl_kl_loc_2_excel/{ma_k}/{batdau_kl}/{ketthuc_kl}',[ThongKeController::class, 'thongke_qlktkl_kl_loc_2_excel']);
