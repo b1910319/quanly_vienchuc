@@ -35,7 +35,7 @@
     </p>
     <p>
       @foreach ($vienchuc as $vc )
-        <p class="text-center fw-bold" style="font-size: 13px">Thông tin viên chức</p>
+        <p class="text-center fw-bold" style="font-size: 13px">THÔNG TIN VIÊN CHỨC</p>
         <div class="row">
           <div class="col-6" style="float: left; width: 50%">
             <b>Tên viên chức: </b> {{ $vc->hoten_vc }}
@@ -52,10 +52,10 @@
             <b>Ngày sinh: </b> {{ $vc->ngaysinh_vc }}
           </div>
         </div>
-        <p class="text-center fw-bold" style="font-size: 13px">Quá trình học</p>
+        <p class="text-center fw-bold" style="font-size: 13px">QUÁ TRÌNH HỌC</p>
         @foreach ($list_lop_vienchuc as $key => $lop_vc)
           @if ($vc->ma_vc == $lop_vc->ma_vc)
-            <p class="fw-bold text-center text-danger">Thông tin lớp học</p>
+            <p class="fw-bold text-center text-danger">THÔNG TIN LỚP HỌC</p>
             <div class="row">
               <div class="col-6" style="float: left; width: 50%">
                 <span class="fw-bold">
@@ -111,12 +111,12 @@
               </div>
             </div>
             <p class="fw-bold text-center text-danger mt-2">
-              Thông tin quá trình học
+              THÔNG TIN QUÁ TRÌNH HỌC
             </p>
             @foreach ($list_quatrinhhoc_ketqua as $ketqua)
               @if ($ketqua->ma_l == $lop_vc->ma_l)
-                <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 20%;">
-                  Hoàn thành khoá học
+                <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 25%;">
+                  HOÀN THÀNH KHOÁ HỌC
                 </p>
                 <table class="table">
                   <thead>
@@ -154,8 +154,8 @@
             @endforeach
             @foreach ($list_quatrinhhoc_giahan as $giahan)
               @if ($giahan->ma_l == $lop_vc->ma_l)
-                <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 10%;">
-                  Gia hạn
+                <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 15%;">
+                  GIA HẠN
                 </p>
                 <table class="table">
                   <thead>
@@ -179,8 +179,8 @@
             @endforeach
             @foreach ($list_quatrinhhoc_dunghoc as $dunghoc )
               @if ($dunghoc->ma_l == $lop_vc->ma_l)
-                <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 10%;">
-                  Dừng học
+                <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 15%;">
+                  DỪNG HỌC
                 </p>
                 <table class="table">
                   <thead>
@@ -206,8 +206,8 @@
             @endforeach
             @foreach ($list_quatrinhhoc_chuyen as $chuyen)
               @if ($chuyen->ma_l == $lop_vc->ma_l)
-                <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 35%;">
-                  Chuyển nước, trường, ngành học ....
+                <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 40%;">
+                  CHUYỂN NƯỚC, NGÀNH HỌC, TRƯỜNG ...
                 </p>
                 <table class="table">
                   <thead>
@@ -231,8 +231,8 @@
             @endforeach
             @foreach ($list_quatrinhhoc_thoihoc as $thoihoc)
               @if ($thoihoc->ma_l == $lop_vc->ma_l)
-                <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 10%;">
-                  Thôi học
+                <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 15%;">
+                  THÔI HỌC
                 </p>
                 <table class="table">
                   <thead>

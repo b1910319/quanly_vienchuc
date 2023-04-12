@@ -27,7 +27,7 @@
         </div>
       </button>
       <div id="demo{{ $key+1 }}" class="collapse mt-2">
-        <p class="fw-bold text-center text-danger">Thông tin lớp học</p>
+        <p class="fw-bold text-center text-danger">THÔNG TIN LỚP HỌC</p>
         <div class="row">
           <div class="col-6">
             <span class="fw-bold">
@@ -83,12 +83,12 @@
           </div>
         </div>
         <p class="fw-bold text-center text-danger mt-2">
-          Thông tin quá trình học
+          THÔNG TIN QUÁ TRÌNH HỌC
         </p>
         @foreach ($list_quatrinhhoc_ketqua as $ketqua)
           @if ($ketqua->ma_l == $lop_vc->ma_l)
-            <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 12%;">
-              Hoàn thành khoá học
+            <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 15%;">
+              HOÀN THÀNH KHOÁ HỌC
             </p>
             <table class="table">
               <thead>
@@ -126,8 +126,8 @@
         @endforeach
         @foreach ($list_quatrinhhoc_giahan as $giahan)
           @if ($giahan->ma_l == $lop_vc->ma_l)
-            <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 5%;">
-              Gia hạn
+            <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 8%;">
+              GIA HẠN
             </p>
             <table class="table">
               <thead>
@@ -165,8 +165,8 @@
         @endforeach
         @foreach ($list_quatrinhhoc_dunghoc as $dunghoc)
           @if ($dunghoc->ma_l == $lop_vc->ma_l)
-            <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 6%;">
-              Dừng học
+            <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 8%;">
+              DỪNG HỌC
             </p>
             <table class="table">
               <thead>
@@ -206,8 +206,8 @@
         @endforeach
         @foreach ($list_quatrinhhoc_chuyen as $chuyen)
           @if ($chuyen->ma_l == $lop_vc->ma_l)
-            <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 20%;">
-              Chuyển nước, trường, ngành học ....
+            <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 23%;">
+              CHUYỂN NƯỚC, NGÀNH HỌC, TRƯỜNG...
             </p>
             <table class="table">
               <thead>
@@ -245,8 +245,8 @@
         @endforeach
         @foreach ($list_quatrinhhoc_thoihoc as $thoihoc)
           @if ($thoihoc->ma_l == $lop_vc->ma_l)
-            <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 5%;">
-              Thôi học
+            <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 8%;">
+              THÔI HỌC
             </p>
             <table class="table">
               <thead>
