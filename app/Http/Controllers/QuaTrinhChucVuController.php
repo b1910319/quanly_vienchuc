@@ -389,4 +389,31 @@ class QuaTrinhChucVuController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function quanlychucvu_xuatfile( Request $request){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '51')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlqtcv){
+      $ma_vc = $request->ma_vc;
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
+        ->whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhchucvu = QuaTrinhChucVu::join('nhiemky','quatrinhchucvu.ma_nk', '=', 'nhiemky.ma_nk')
+        ->join('chucvu', 'chucvu.ma_cv', 'quatrinhchucvu.ma_cv')
+        ->whereIn('ma_vc', $ma_vc)
+        ->get();
+      $pdf = PDF::loadView('pdf.quatrinhchucvu_pdf', [
+        'vienchuc' => $vienchuc,
+        'list_quatrinhchucvu' => $list_quatrinhchucvu,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }

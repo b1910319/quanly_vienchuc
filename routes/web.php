@@ -1048,6 +1048,7 @@ Route::post('/delete_quatrinhchucvu_check',[QuaTrinhChucVuController::class, 'de
 Route::get('/delete_all_quatrinhchucvu/{ma_vc}',[QuaTrinhChucVuController::class, 'delete_all_quatrinhchucvu']);
 Route::get('/quatrinhchucvu_pdf/{ma_vc}',[QuaTrinhChucVuController::class, 'quatrinhchucvu_pdf']);
 
+Route::post('/quanlychucvu_xuatfile',[QuaTrinhChucVuController::class, 'quanlychucvu_xuatfile']);
 
 
 
