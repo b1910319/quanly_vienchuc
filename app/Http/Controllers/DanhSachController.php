@@ -523,4 +523,48 @@ class DanhSachController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function quatrinhhoc_xuatfile( Request $request){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $ma_vc = $request->ma_vc;
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
+        ->whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_lop_vienchuc = VienChuc::join('danhsach', 'danhsach.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('lop', 'lop.ma_l', '=', 'danhsach.ma_l')
+        ->join('danhmuclop', 'danhmuclop.ma_dml', '=', 'lop.ma_dml')
+        ->join('quocgia', 'quocgia.ma_qg', '=', 'lop.ma_qg')
+        ->whereIn('danhsach.ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_ketqua = KetQua::whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_giahan = GiaHan::whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_dunghoc = DungHoc::whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_chuyen = Chuyen::whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_thoihoc = ThoiHoc::whereIn('ma_vc', $ma_vc)
+        ->get();
+      $pdf = PDF::loadView('pdf.quatrinhhoc_pdf', [
+        'vienchuc' => $vienchuc,
+        'list_lop_vienchuc' => $list_lop_vienchuc,
+        'list_quatrinhhoc_ketqua' => $list_quatrinhhoc_ketqua,
+        'list_quatrinhhoc_giahan' => $list_quatrinhhoc_giahan,
+        'list_quatrinhhoc_dunghoc' => $list_quatrinhhoc_dunghoc,
+        'list_quatrinhhoc_chuyen' => $list_quatrinhhoc_chuyen,
+        'list_quatrinhhoc_thoihoc' => $list_quatrinhhoc_thoihoc,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }

@@ -397,7 +397,7 @@
           @endforeach
         </tbody>
       </table>
-      <button type="button" class="btn btn-warning button_xanhla">
+      <button type="submit" class="btn btn-warning button_xanhla">
         <i class="fa-solid fa-file text-light"></i>
         &ensp;
         Xuất file
