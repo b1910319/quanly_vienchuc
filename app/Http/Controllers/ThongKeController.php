@@ -10653,6 +10653,44 @@ class ThongKeController extends Controller
           ->with('phanquyen_qlk', $phanquyen_qlk)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
           ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+      }else if(isset($data['ma_k']) && isset($data['ma_nk'])){
+        $count_3= QuaTrinhChucVu::join('nhiemky', 'nhiemky.ma_nk', '=', 'quatrinhchucvu.ma_nk')
+          ->join('chucvu', 'chucvu.ma_cv', '=', 'quatrinhchucvu.ma_cv')
+          ->join('vienchuc', 'vienchuc.ma_vc', '=', 'quatrinhchucvu.ma_vc')
+          ->join('khoa','khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('status_qtcv', '<>', '2')
+          ->select(DB::raw('count(quatrinhchucvu.ma_qtcv) as sum, nhiemky.ma_nk, khoa.ma_k'))
+          ->groupBy('nhiemky.ma_nk', 'khoa.ma_k')
+          ->get();
+        $list_3 = VienChuc::join('quatrinhchucvu', 'quatrinhchucvu.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('chucvu', 'chucvu.ma_cv', '=', 'quatrinhchucvu.ma_cv')
+          ->join('nhiemky', 'nhiemky.ma_nk', '=', 'quatrinhchucvu.ma_nk')
+          ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('khoa.ma_k', $data['ma_k'])
+          ->where('nhiemky.ma_nk', $data['ma_nk'])
+          ->where('status_vc', '<>', '2')
+          ->where('status_qtcv', '<>', '2')
+          ->get();
+        return view('thongke.thongke_qlqtcv')
+          ->with('title', $title)
+
+          ->with('count_3', $count_3)
+
+          ->with('list_3', $list_3)
+          ->with('list_khoa', $list_khoa)
+          ->with('list_nhiemky', $list_nhiemky)
+          ->with('list_chucvu', $list_chucvu)
+          ->with('list_vienchuc', $list_vienchuc)
+
+          ->with('ma_k', $data['ma_k'])
+          ->with('ma_nk', $data['ma_nk'])
+
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     }else{
       return Redirect::to('/home');
@@ -10749,6 +10787,53 @@ class ThongKeController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlqtcv){
       return Excel::download(new ThongKeQLQTCV_2Export($ma_k, $ma_cv), 'Qua-trinh-chuc-vu-vien-chuc.xlsx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+
+  public function thongke_qlqtcv_loc_3_pdf($ma_k, $ma_nk){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlqtcv){
+      $quatrinhchucvu = VienChuc::join('quatrinhchucvu', 'quatrinhchucvu.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('chucvu', 'chucvu.ma_cv', '=', 'quatrinhchucvu.ma_cv')
+        ->join('nhiemky', 'nhiemky.ma_nk', '=', 'quatrinhchucvu.ma_nk')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('khoa.ma_k', $ma_k)
+        ->where('nhiemky.ma_nk', $ma_nk)
+        ->where('status_vc', '<>', '2')
+        ->where('status_qtcv', '<>', '2')
+        ->get();
+      $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_vc', '<>', '2')
+        ->get();
+      $pdf = PDF::loadView('pdf.thongke_qlqtcv_pdf', [
+        'quatrinhchucvu' => $quatrinhchucvu,
+        'list_vienchuc' => $list_vienchuc,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlqtcv_loc_3_excel($ma_k, $ma_nk){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlqtcv){
+      return Excel::download(new ThongKeQLQTCV_3Export($ma_k, $ma_nk), 'Qua-trinh-chuc-vu-vien-chuc.xlsx');
     }else{
       return Redirect::to('/home');
     }

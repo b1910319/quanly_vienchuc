@@ -712,6 +712,11 @@ Route::get('/thongke_qlqtcv_loc_1_excel/{ma_k}/{ma_cv}/{ma_nk}',[ThongKeControll
 Route::get('/thongke_qlqtcv_loc_2_pdf/{ma_k}/{ma_cv}',[ThongKeController::class, 'thongke_qlqtcv_loc_2_pdf']);
 Route::get('/thongke_qlqtcv_loc_2_excel/{ma_k}/{ma_cv}',[ThongKeController::class, 'thongke_qlqtcv_loc_2_excel']);
 
+Route::get('/thongke_qlqtcv_loc_3_pdf/{ma_k}/{ma_nk}',[ThongKeController::class, 'thongke_qlqtcv_loc_3_pdf']);
+Route::get('/thongke_qlqtcv_loc_3_excel/{ma_k}/{ma_nk}',[ThongKeController::class, 'thongke_qlqtcv_loc_3_excel']);
+
+
+
 // ----------------------------------------------------------
 
 
