@@ -577,7 +577,9 @@ class HomeController extends Controller
       ->first();
     $list_loaibangcap = LoaiBangCap::get();
     $list_hedaotao = HeDaoTao::get();
-    $list = BangCap::where('ma_vc', $ma_vc)
+    $list = BangCap::join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
+      ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
+      ->where('ma_vc', $ma_vc)
       ->get();
     return view('thongtin_vienchuc.thongtin_bangcap')
       ->with('title', $title)
