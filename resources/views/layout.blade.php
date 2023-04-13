@@ -237,12 +237,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                     </a>
                   </li>
                   <li>
-                    <a href="javascript: void(0);" aria-expanded="false">Thông tin viên chức
+                    <a href="javascript: void(0);" aria-expanded="false">Quản lý thông tin viên chức
                       <span class="menu-arrow"></span>
                     </a>
                     <ul class="nav-third-level nav" aria-expanded="false">
                       <li>
-                        <a href="{{ URL::to('/thongtin_vienchuc_add') }}">Thêm thông tin</a>
+                        <a href="{{ URL::to('/thongtin_vienchuc_add') }}">Thông tin</a>
                       </li>
                       <li>
                         <a href="{{ URL::to('/danhsach_thongtin_vienchuc') }}">Danh sách viên chức</a>

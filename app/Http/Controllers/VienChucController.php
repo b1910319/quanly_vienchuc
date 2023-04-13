@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Bac;
+use App\Models\BangCap;
 use App\Models\ChucVu;
 use App\Models\DanToc;
+use App\Models\GiaDinh;
 use App\Models\HeDaoTao;
 use App\Models\Huyen;
 use App\Models\Khoa;
@@ -24,7 +26,7 @@ use App\Models\VienChuc;
 use App\Models\Xa;
 use Illuminate\Support\Carbon;
 use App\Rules\Captcha; 
-use Validator;
+use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 
 class VienChucController extends Controller
@@ -2307,6 +2309,60 @@ class VienChucController extends Controller
       $ma_vc = $request->ma_vc;
       VienChuc::whereIn('ma_vc', $ma_vc)->delete();
       return redirect()->back();
+    }
+  }
+  public function quanlythongtin_xuatfile( Request $request){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $ma_vc = $request->ma_vc;
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
+        ->whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_noisinh = NoiSinh::join('tinh', 'tinh.ma_t','=', 'noisinh.ma_t')
+        ->join('huyen', 'huyen.ma_h', '=', 'noisinh.ma_h')
+        ->join('xa', 'xa.ma_x', '=', 'noisinh.ma_x')
+        ->whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_quequan = QueQuan::join('tinh', 'tinh.ma_t','=', 'quequan.ma_t')
+        ->join('huyen', 'huyen.ma_h', '=', 'quequan.ma_h')
+        ->join('xa', 'xa.ma_x', '=', 'quequan.ma_x')
+        ->whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_dantoc = DanToc::get();
+      $list_tongiao = TonGiao::get();
+      $list_chucvu = ChucVu::get();
+      $list_ngach = Ngach::get();
+      $list_bac = Bac::get();
+      $list_thuongbinh = ThuongBinh::get();
+      $list_giadinh = GiaDinh::whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_bangcap = BangCap::join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
+        ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
+        ->whereIn('ma_vc', $ma_vc)
+        ->get();
+      $pdf = PDF::loadView('pdf.quanlythongtin_pdf', [
+        'vienchuc' => $vienchuc,
+        'list_noisinh' => $list_noisinh,
+        'list_quequan' => $list_quequan,
+        'list_dantoc' => $list_dantoc,
+        'list_tongiao' => $list_tongiao,
+        'list_chucvu' => $list_chucvu,
+        'list_ngach' => $list_ngach,
+        'list_bac' => $list_bac,
+        'list_thuongbinh' => $list_thuongbinh,
+        'list_giadinh' => $list_giadinh,
+        'list_bangcap' => $list_bangcap,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
     }
   }
 }

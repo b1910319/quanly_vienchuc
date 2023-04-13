@@ -107,6 +107,8 @@ Route::get('/check_user',[VienChucController::class, 'check_user']);
 
 Route::get('/thongtin_vienchuc_khoa',[VienChucController::class, 'thongtin_vienchuc_khoa']);
 
+Route::post('/quanlythongtin_xuatfile',[VienChucController::class, 'quanlythongtin_xuatfile']);
+
 
 
 
