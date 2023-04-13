@@ -2365,4 +2365,49 @@ class VienChucController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function quanlythongtin_thongtin_xuatfile( $ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
+        ->where('ma_vc', $ma_vc)
+        ->get();
+      $list_noisinh = NoiSinh::join('tinh', 'tinh.ma_t','=', 'noisinh.ma_t')
+        ->join('huyen', 'huyen.ma_h', '=', 'noisinh.ma_h')
+        ->join('xa', 'xa.ma_x', '=', 'noisinh.ma_x')
+        ->where('ma_vc', $ma_vc)
+        ->get();
+      $list_quequan = QueQuan::join('tinh', 'tinh.ma_t','=', 'quequan.ma_t')
+        ->join('huyen', 'huyen.ma_h', '=', 'quequan.ma_h')
+        ->join('xa', 'xa.ma_x', '=', 'quequan.ma_x')
+        ->where('ma_vc', $ma_vc)
+        ->get();
+      $list_dantoc = DanToc::get();
+      $list_tongiao = TonGiao::get();
+      $list_chucvu = ChucVu::get();
+      $list_ngach = Ngach::get();
+      $list_bac = Bac::get();
+      $list_thuongbinh = ThuongBinh::get();
+      $pdf = PDF::loadView('pdf.quanlythongtin_thongtin_pdf', [
+        'vienchuc' => $vienchuc,
+        'list_noisinh' => $list_noisinh,
+        'list_quequan' => $list_quequan,
+        'list_dantoc' => $list_dantoc,
+        'list_tongiao' => $list_tongiao,
+        'list_chucvu' => $list_chucvu,
+        'list_ngach' => $list_ngach,
+        'list_bac' => $list_bac,
+        'list_thuongbinh' => $list_thuongbinh,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }

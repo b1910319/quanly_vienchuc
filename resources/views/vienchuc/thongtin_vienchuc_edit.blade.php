@@ -554,7 +554,16 @@
           </table>
         </div>
         <div class="row mb-2">
-          <div class="col-5"></div>
+          <div class="col-2">
+            <a href="{{ URL::to('quanlythongtin_thongtin_xuatfile/'.$edit->ma_vc) }}">
+              <button type="button" class="btn btn-warning button_xanhla">
+                <i class="fa-solid fa-file text-light"></i>
+                &ensp;
+                Xuất file
+              </button>
+            </a>
+          </div>
+          <div class="col-3"></div>
           <div class="col-2">
             <button type="submit" class="btn btn-warning button_cam" style=" width: 100%">
               <i class="fa-solid fa-pen-to-square text-light"></i>
