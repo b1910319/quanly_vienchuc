@@ -398,7 +398,10 @@ class QuaTrinhChucVuController extends Controller
     $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '51')
       ->first();
-    if($phanquyen_admin || $phanquyen_qlqtcv){
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlqtcv || $phanquyen_qlk){
       $ma_vc = $request->ma_vc;
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
         ->whereIn('ma_vc', $ma_vc)

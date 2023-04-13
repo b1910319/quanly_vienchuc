@@ -455,18 +455,30 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                     </a>
                   </li>
                   <li>
-                    <a href="{{ URL::to('/qlk_quanly_khenthuong_kyluat') }}">
-                      Quản lý khen thưởng, kỷ luật
+                    <a href="javascript: void(0);" aria-expanded="false">Quản lý khen thưởng, kỷ luật
+                      <span class="menu-arrow"></span>
                     </a>
+                    <ul class="nav-third-level nav" aria-expanded="false">
+                      <li>
+                        <a href="{{ URL::to('/khenthuong') }}">
+                          Khen thưởng
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ URL::to('/kyluat') }}">
+                          Kỷ luật
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ URL::to('/qlk_quanly_khenthuong_kyluat') }}">
+                          Quản lý
+                        </a>
+                      </li>
+                    </ul>
                   </li>
                   <li>
-                    <a href="{{ URL::to('/khenthuong') }}">
-                      Khen thưởng
-                    </a>
-                  </li>
-                  <li>
-                    <a href="{{ URL::to('/kyluat') }}">
-                      Kỷ luật
+                    <a href="{{ URL::to('/quatrinhchucvu') }}">
+                      Qúa trình chức vụ
                     </a>
                   </li>
                   <li>

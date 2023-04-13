@@ -2439,7 +2439,10 @@ class VienChucController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '8')
       ->first();
-    if($phanquyen_admin || $phanquyen_qltt){
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
         ->where('ma_vc', $ma_vc)
         ->get();
