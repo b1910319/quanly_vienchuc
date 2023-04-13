@@ -81,6 +81,13 @@
             <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
             Thống kê
           </button>
+          <a href="{{ URL::to('quanlythongtin_bangcap_xuatfile/'.$ma_vc) }}">
+            <button type="button" class="btn btn-primary button_xanhla">
+              <i class="fa-solid fa-file text-light"></i>
+              &ensp;
+              Xuất file
+            </button>
+          </a>
           <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
               <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
