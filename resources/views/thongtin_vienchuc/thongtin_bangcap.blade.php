@@ -30,33 +30,57 @@
       <div class="alert alert-light color_alert" role="alert">
         ________THÔNG TIN BẰNG CẤP CỦA VIÊN CHỨC________
       </div>
-      <div class="dots-list">
-        <ol>
-          <div class="dots-list">
-            <ol>
-              @foreach ($list as $key => $bangcap )
-                <li>
-                  <span class="date">{{ $bangcap->ngaycap_bc }}</span>
-                  <b style="font-weight: bold; font-size: 22px">{{ $bangcap->truonghoc_bc }}</b>
-                  <br>
-                  <div class="row">
-                    <div class="col-6">
-                      <b>Hệ đào tạo: </b> {{ $bangcap->ten_hdt }} <br>
-                      <b>Loại bằng cấp: </b> {{ $bangcap->ten_lbc }} <br>
-                      <b>Trình độ chuyên môn: </b> {{ $bangcap->trinhdochuyenmon_bc }} <br>
-                    </div>
-                    <div class="col-6">
-                      <b>Niên khoá: </b> {{ $bangcap->nienkhoa_bc }} <br>
-                      <b>Số bằng: </b> {{ $bangcap->sobang_bc }} <br>
-                      <b>Nơi cấp: </b> {{ $bangcap->noicap_bc }} <br>
-                      <b>Xếp hạng: </b> {{ $bangcap->xephang_bc }}
+      <div class="row ">
+        <div class="mt-3"></div>
+        <table class="table" id="mytable">
+          <thead class="color_table" >
+            <tr>
+              <th class="text-light" scope="col">STT</th>
+              <th class="text-light" scope="col">Thông tin bằng cấp</th>
+              <th class="text-light" scope="col">Hệ đào tạo</th>
+              <th class="text-light" scope="col">Loại bằng cấp</th>
+            </tr>
+          </thead>
+          <tbody  >
+            @foreach ($list as $key => $bangcap)
+              <tr >
+                <th scope="row">{{ $key+1 }}</th>
+                <td>
+                  <div class="row ">
+                    <div class="col-md-12">
+                      <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
+                        style="height: 120px; overflow: auto;">
+                        <p>
+                          <b> Trình độ chuyên môn:</b> {{ $bangcap->trinhdochuyenmon_bc }} <br>
+                          <b> Trường:</b> {{ $bangcap->truonghoc_bc }} <br>
+                          <b> Niên khoá: </b> {{ $bangcap->nienkhoa_bc }} <br>
+                          <b> Mã số bằng: </b> {{ $bangcap->sobang_bc }} <br>
+                          <b> Ngày cấp: </b> {{ $bangcap->ngaycap_bc }} <br>
+                          <b> Nơi cấp: </b> {{ $bangcap->noicap_bc }} <br>
+                          <b> Xếp hạng: </b> {{ $bangcap->xephang_bc }}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </li>
-              @endforeach
-            </ol>
-          </div>
-        </ol>
+                </td>
+                <td>
+                  @foreach ($list_hedaotao as $hdt )
+                    @if ($hdt->ma_hdt == $bangcap->ma_hdt)
+                      {{ $hdt->ten_hdt }}
+                    @endif
+                  @endforeach
+                </td>
+                <td>
+                  @foreach ($list_loaibangcap as $lbc )
+                    @if ($lbc->ma_lbc == $bangcap->ma_lbc)
+                      {{ $lbc->ten_lbc }}
+                    @endif
+                  @endforeach
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
