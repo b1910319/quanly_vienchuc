@@ -2556,6 +2556,7 @@ class VienChucController extends Controller
       $list_bangcap = BangCap::join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
         ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
         ->where('ma_vc', $ma_vc)
+        ->orderBy('ngaycap_bc', 'desc')
         ->get();
       $list_quatrinhchucvu = QuaTrinhChucVu::join('chucvu', 'chucvu.ma_cv', '=', 'quatrinhchucvu.ma_cv')
         ->join('nhiemky', 'nhiemky.ma_nk', '=', 'quatrinhchucvu.ma_nk')
@@ -2620,6 +2621,97 @@ class VienChucController extends Controller
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function lylich_xuatfile( Request $request){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    if($phanquyen_admin){
+      $ma_vc = $request->ma_vc;
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
+        ->whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_noisinh = NoiSinh::join('tinh', 'tinh.ma_t','=', 'noisinh.ma_t')
+        ->join('huyen', 'huyen.ma_h', '=', 'noisinh.ma_h')
+        ->join('xa', 'xa.ma_x', '=', 'noisinh.ma_x')
+        ->whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_quequan = QueQuan::join('tinh', 'tinh.ma_t','=', 'quequan.ma_t')
+        ->join('huyen', 'huyen.ma_h', '=', 'quequan.ma_h')
+        ->join('xa', 'xa.ma_x', '=', 'quequan.ma_x')
+        ->whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_dantoc = DanToc::get();
+      $list_tongiao = TonGiao::get();
+      $list_chucvu = ChucVu::get();
+      $list_ngach = Ngach::get();
+      $list_bac = Bac::get();
+      $list_thuongbinh = ThuongBinh::get();
+      $list_giadinh = GiaDinh::whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_bangcap = BangCap::join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
+        ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
+        ->whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhchucvu = QuaTrinhChucVu::join('chucvu', 'chucvu.ma_cv', '=', 'quatrinhchucvu.ma_cv')
+        ->join('nhiemky', 'nhiemky.ma_nk', '=', 'quatrinhchucvu.ma_nk')
+        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'quatrinhchucvu.ma_vc')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->whereIn('quatrinhchucvu.ma_vc', $ma_vc)
+        ->get();
+      $list_khenthuong= KhenThuong::join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
+        ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
+        ->whereIn('ma_vc', $ma_vc)
+        ->orderBy('ngay_kt', 'desc')
+        ->get();
+      $list_kyluat= KyLuat::join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
+        ->whereIn('ma_vc', $ma_vc)
+        ->orderBy('ngay_kl', 'desc')
+        ->get();
+      $list_lop_vienchuc = VienChuc::join('danhsach', 'danhsach.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('lop', 'lop.ma_l', '=', 'danhsach.ma_l')
+        ->join('danhmuclop', 'danhmuclop.ma_dml', '=', 'lop.ma_dml')
+        ->join('quocgia', 'quocgia.ma_qg', '=', 'lop.ma_qg')
+        ->whereIn('danhsach.ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_ketqua = KetQua::whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_giahan = GiaHan::whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_dunghoc = DungHoc::whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_chuyen = Chuyen::whereIn('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_thoihoc = ThoiHoc::whereIn('ma_vc', $ma_vc)
+        ->get();
+      $pdf = PDF::loadView('pdf.lylich_pdf', [
+        'vienchuc' => $vienchuc,
+        'list_noisinh' => $list_noisinh,
+        'list_quequan' => $list_quequan,
+        'list_dantoc' => $list_dantoc,
+        'list_tongiao' => $list_tongiao,
+        'list_chucvu' => $list_chucvu,
+        'list_ngach' => $list_ngach,
+        'list_bac' => $list_bac,
+        'list_thuongbinh' => $list_thuongbinh,
+        'list_giadinh' => $list_giadinh,
+        'list_bangcap' => $list_bangcap,
+        'list_quatrinhchucvu' => $list_quatrinhchucvu,
+        'list_khenthuong' => $list_khenthuong,
+        'list_kyluat' => $list_kyluat,
+        'list_lop_vienchuc' => $list_lop_vienchuc,
+        'list_quatrinhhoc_ketqua' => $list_quatrinhhoc_ketqua,
+        'list_quatrinhhoc_giahan' => $list_quatrinhhoc_giahan,
+        'list_quatrinhhoc_dunghoc' => $list_quatrinhhoc_dunghoc,
+        'list_quatrinhhoc_chuyen' => $list_quatrinhhoc_chuyen,
+        'list_quatrinhhoc_thoihoc' => $list_quatrinhhoc_thoihoc,
+      ]);
+      return $pdf->stream();
     }else{
       return Redirect::to('/home');
     }

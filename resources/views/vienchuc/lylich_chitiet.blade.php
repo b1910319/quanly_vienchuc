@@ -233,23 +233,6 @@
   <div class="col-7">
     <div class="row">
       <div class="card-box">
-        <p class="text-center fw-bold" style=" color: #000d6b; font-size: 22px">QUÁ TRÌNH CHỨC VỤ VIÊN CHỨC</p>
-        <div class="dots-list">
-          <ol>
-            @foreach ($list_quatrinhchucvu as $qtcv )
-              <li>
-                <span class="date">{{ $qtcv->ten_nk }}</span>
-                <b style="font-weight: bold; font-size: 22px">{{ $qtcv->ten_cv }}</b>
-                <br>
-                {{ $qtcv->ghichu_qtcv }}
-              </li>
-            @endforeach
-          </ol>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="card-box">
         <p class="text-center fw-bold" style=" color: #000d6b; font-size: 22px">QUÁ TRÌNH KHEN THƯỞNG CỦA VIÊN CHỨC</p>
         <div class="dots-list">
           <ol>
@@ -260,6 +243,23 @@
                 <br>
                 Hình thức khen thưởng: {{ $khenthuong->ten_htkt }} <br>
                 Nội dung khen thưởng: {{ $khenthuong->noidung_kt }}
+              </li>
+            @endforeach
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card-box">
+        <p class="text-center fw-bold" style=" color: #000d6b; font-size: 22px">QUÁ TRÌNH CHỨC VỤ VIÊN CHỨC</p>
+        <div class="dots-list">
+          <ol>
+            @foreach ($list_quatrinhchucvu as $qtcv )
+              <li>
+                <span class="date">{{ $qtcv->ten_nk }}</span>
+                <b style="font-weight: bold; font-size: 22px">{{ $qtcv->ten_cv }}</b>
+                <br>
+                {{ $qtcv->ghichu_qtcv }}
               </li>
             @endforeach
           </ol>
@@ -546,6 +546,29 @@
     </div>
     <div class="row">
       <div class="card-box">
+        <p class="text-center fw-bold" style=" color: #000d6b; font-size: 22px">THÔNG TIN BẰNG CẤP CỦA VIÊN CHỨC</p>
+        <div class="dots-list">
+          <ol>
+            @foreach ($list_bangcap as $key => $bangcap )
+              <li>
+                <span class="date">{{ $bangcap->ngaycap_bc }}</span>
+                <b style="font-weight: bold; font-size: 22px">{{ $bangcap->truonghoc_bc }}</b>
+                <br>
+                <b>Hệ đào tạo: </b> {{ $bangcap->ten_hdt }} <br>
+                <b>Loại bằng cấp: </b> {{ $bangcap->ten_lbc }} <br>
+                <b>Trình độ chuyên môn: </b> {{ $bangcap->trinhdochuyenmon_bc }} <br>
+                <b>Niên khoá: </b> {{ $bangcap->nienkhoa_bc }} <br>
+                <b>Số bằng: </b> {{ $bangcap->sobang_bc }} <br>
+                <b>Nơi cấp: </b> {{ $bangcap->noicap_bc }} <br>
+                <b>Xếp hạng: </b> {{ $bangcap->xephang_bc }}
+              </li>
+            @endforeach
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card-box">
         <p class="text-center fw-bold" style=" color: #000d6b; font-size: 22px">THÔNG TIN GIA ĐÌNH VIÊN CHỨC</p>
         <table class="table">
           <thead>
@@ -582,7 +605,6 @@
         </table>
       </div>
     </div>
-    
   </div>
 </div>
 @endsection
