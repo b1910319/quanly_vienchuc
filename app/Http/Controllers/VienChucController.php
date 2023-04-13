@@ -9,16 +9,24 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\Bac;
 use App\Models\BangCap;
 use App\Models\ChucVu;
+use App\Models\Chuyen;
 use App\Models\DanToc;
+use App\Models\DungHoc;
 use App\Models\GiaDinh;
+use App\Models\GiaHan;
 use App\Models\HeDaoTao;
 use App\Models\Huyen;
+use App\Models\KetQua;
+use App\Models\KhenThuong;
 use App\Models\Khoa;
+use App\Models\KyLuat;
 use App\Models\LoaiBangCap;
 use App\Models\Ngach;
 use App\Models\NoiSinh;
 use App\Models\PhanQuyen;
+use App\Models\QuaTrinhChucVu;
 use App\Models\QueQuan;
+use App\Models\ThoiHoc;
 use App\Models\ThuongBinh;
 use App\Models\Tinh;
 use App\Models\TonGiao;
@@ -2456,6 +2464,162 @@ class VienChucController extends Controller
         'list_bangcap' => $list_bangcap,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function lylich(){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $title = 'Lý lịch viên chức';
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin){
+      $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
+        ->get();
+      return view('vienchuc.lylich')
+        ->with('list_vienchuc', $list_vienchuc)
+
+        ->with('title', $title)
+
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function lylich_chitiet($ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $title = 'Lý lịch viên chức';
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_admin){
+      $vienchuc_ma = VienChuc::find($ma_vc);
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
+        ->where('ma_vc', $ma_vc)
+        ->get();
+      $list_noisinh = NoiSinh::join('tinh', 'tinh.ma_t','=', 'noisinh.ma_t')
+        ->join('huyen', 'huyen.ma_h', '=', 'noisinh.ma_h')
+        ->join('xa', 'xa.ma_x', '=', 'noisinh.ma_x')
+        ->where('ma_vc', $ma_vc)
+        ->get();
+      $list_quequan = QueQuan::join('tinh', 'tinh.ma_t','=', 'quequan.ma_t')
+        ->join('huyen', 'huyen.ma_h', '=', 'quequan.ma_h')
+        ->join('xa', 'xa.ma_x', '=', 'quequan.ma_x')
+        ->where('ma_vc', $ma_vc)
+        ->get();
+      $list_dantoc = DanToc::get();
+      $list_tongiao = TonGiao::get();
+      $list_chucvu = ChucVu::get();
+      $list_ngach = Ngach::get();
+      $list_bac = Bac::get();
+      $list_thuongbinh = ThuongBinh::get();
+      $list_giadinh = GiaDinh::where('ma_vc', $ma_vc)
+        ->get();
+      $list_bangcap = BangCap::join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
+        ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
+        ->where('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhchucvu = QuaTrinhChucVu::join('chucvu', 'chucvu.ma_cv', '=', 'quatrinhchucvu.ma_cv')
+        ->join('nhiemky', 'nhiemky.ma_nk', '=', 'quatrinhchucvu.ma_nk')
+        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'quatrinhchucvu.ma_vc')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('quatrinhchucvu.ma_vc', $ma_vc)
+        ->get();
+      $list_khenthuong= KhenThuong::join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
+        ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
+        ->where('ma_vc', $ma_vc)
+        ->orderBy('ngay_kt', 'desc')
+        ->get();
+      $list_kyluat= KyLuat::join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
+        ->where('ma_vc', $ma_vc)
+        ->orderBy('ngay_kl', 'desc')
+        ->get();
+      $list_lop_vienchuc = VienChuc::join('danhsach', 'danhsach.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('lop', 'lop.ma_l', '=', 'danhsach.ma_l')
+        ->join('danhmuclop', 'danhmuclop.ma_dml', '=', 'lop.ma_dml')
+        ->join('quocgia', 'quocgia.ma_qg', '=', 'lop.ma_qg')
+        ->where('danhsach.ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_ketqua = KetQua::where('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_giahan = GiaHan::where('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_dunghoc = DungHoc::where('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_chuyen = Chuyen::where('ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhhoc_thoihoc = ThoiHoc::where('ma_vc', $ma_vc)
+        ->get();
+      return view('vienchuc.lylich_chitiet')
+        ->with('vienchuc', $vienchuc)
+        ->with('vienchuc_ma', $vienchuc_ma)
+
+        ->with('list_noisinh', $list_noisinh)
+        ->with('list_quequan', $list_quequan)
+        ->with('list_dantoc', $list_dantoc)
+        ->with('list_tongiao', $list_tongiao)
+        ->with('list_chucvu', $list_chucvu)
+        ->with('list_ngach', $list_ngach)
+        ->with('list_bac', $list_bac)
+        ->with('list_thuongbinh', $list_thuongbinh)
+        ->with('list_giadinh', $list_giadinh)
+        ->with('list_bangcap', $list_bangcap)
+        ->with('list_quatrinhchucvu', $list_quatrinhchucvu)
+        ->with('list_khenthuong', $list_khenthuong)
+        ->with('list_kyluat', $list_kyluat)
+        ->with('list_lop_vienchuc', $list_lop_vienchuc)
+        ->with('list_quatrinhhoc_ketqua', $list_quatrinhhoc_ketqua)
+        ->with('list_quatrinhhoc_giahan', $list_quatrinhhoc_giahan)
+        ->with('list_quatrinhhoc_dunghoc', $list_quatrinhhoc_dunghoc)
+        ->with('list_quatrinhhoc_chuyen', $list_quatrinhhoc_chuyen)
+        ->with('list_quatrinhhoc_thoihoc', $list_quatrinhhoc_thoihoc)
+
+        ->with('title', $title)
+
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }

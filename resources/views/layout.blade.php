@@ -188,6 +188,14 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                 </a>
               </li>
             @endif
+            @if ($phanquyen_admin)
+              <li>
+                <a href="{{ URL::to('lylich') }}" class="waves-effect">
+                  <i class="fa-solid fa-address-card"></i>
+                  <span> Lý lịch viên chức </span>
+                </a>
+              </li>
+            @endif
             @if ($phanquyen_qltt || $phanquyen_admin)
               <li>
                 <a href="javascript: void(0);" class="waves-effect">

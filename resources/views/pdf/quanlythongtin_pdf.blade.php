@@ -63,7 +63,7 @@
             7. Tôn giáo: {{ $tongiao->ten_tg }} <br>
           @endif
         @endforeach
-        8. Nơi đăng ký bộ khẩu thường trú: {{ $vc->thuongtru_vc }} <br>
+        8. Nơi đăng ký hộ khẩu thường trú: {{ $vc->thuongtru_vc }} <br>
         9. Nơi ở hiện nay: {{ $vc->hientai_vc }} <br>
         10. Nghề nghiệp khi được tuyển dụng: {{ $vc->nghekhiduoctuyen_vc }} <br>
         11. Ngày tuyển dụng: {{ $vc->ngaytuyendung_vc }}, Cơ quan tuyển dụng: Trường Công nghệ thông tin và Truyền thông - Đại học Cần Thơ <br>
