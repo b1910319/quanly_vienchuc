@@ -429,7 +429,17 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
                   <li>
-                    <a href="{{ URL::to('/thongtin_vienchuc_khoa') }}">Thông tin viên chức</a>
+                    <a href="javascript: void(0);" aria-expanded="false">Quản lý thông tin viên chức
+                      <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-third-level nav" aria-expanded="false">
+                      <li>
+                        <a href="{{ URL::to('/thongtin_vienchuc_add_khoa') }}">Thông tin</a>
+                      </li>
+                      <li>
+                        <a href="{{ URL::to('/thongtin_vienchuc_khoa') }}">Danh sách viên chức</a>
+                      </li>
+                    </ul>
                   </li>
                   <li>
                     <a href="{{ URL::to('/nghihuu') }}">

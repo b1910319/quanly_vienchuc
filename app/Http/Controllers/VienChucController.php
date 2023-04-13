@@ -578,6 +578,60 @@ class VienChucController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function thongtin_vienchuc_add_khoa(){
+    $this->check_login();
+    $title = "Thêm thông tin viên chức";
+    $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    if($phanquyen_qlk){
+      $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_vc', '<>', '1')
+        ->where('vienchuc.ma_k', $ma_k)
+        ->orderBy('vienchuc.ma_vc', 'desc')
+        ->get();
+      $count_quanhe_giadinh = VienChuc::leftJoin('giadinh', 'giadinh.ma_vc', '=', 'vienchuc.ma_vc')
+        ->select(DB::raw('count(ma_gd) as sum, vienchuc.ma_vc'))
+        ->groupBy('vienchuc.ma_vc')
+        ->get();
+      $count_bangcap = VienChuc::leftJoin('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
+        ->select(DB::raw('count(ma_bc) as sum, vienchuc.ma_vc'))
+        ->groupBy('vienchuc.ma_vc')
+        ->get();
+      return view('vienchuc.thongtin_vienchuc_add')
+      ->with('list_vienchuc', $list_vienchuc)
+      ->with('title', $title)
+      ->with('count_bangcap', $count_bangcap)
+      ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+      ->with('count_quanhe_giadinh', $count_quanhe_giadinh)
+
+      ->with('phanquyen_admin', $phanquyen_admin)
+      ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+      ->with('phanquyen_qltt', $phanquyen_qltt)
+      ->with('phanquyen_qlk', $phanquyen_qlk)
+      ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+      ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   public function thongtin_vienchuc_edit($ma_vc){
     $this->check_login();
     $title = "Thêm thông tin viên chức";
@@ -2328,7 +2382,10 @@ class VienChucController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '8')
       ->first();
-    if($phanquyen_admin || $phanquyen_qltt){
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
       $ma_vc = $request->ma_vc;
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
         ->whereIn('ma_vc', $ma_vc)
@@ -2427,7 +2484,10 @@ class VienChucController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '8')
       ->first();
-    if($phanquyen_admin || $phanquyen_qltt){
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
         ->where('ma_vc', $ma_vc)
         ->get();
@@ -2451,7 +2511,10 @@ class VienChucController extends Controller
     $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '8')
       ->first();
-    if($phanquyen_admin || $phanquyen_qltt){
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
         ->where('ma_vc', $ma_vc)
         ->get();

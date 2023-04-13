@@ -44,7 +44,7 @@ class GiaDinhController extends Controller
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '6')
       ->first();
-    if($phanquyen_admin || $phanquyen_qltt){
+    if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
       $list = GiaDinh::where('ma_vc', $ma_vc)
         ->orderBy('ma_gd', 'desc')
         ->get();

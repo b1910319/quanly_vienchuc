@@ -4,11 +4,21 @@
   <div class="card-box">
     <div class="alert alert-success row color_alert" role="alert">
       <div class="col-1">
-        <a href="{{ URL::to('thongtin_vienchuc_add') }}">
-          <button type="button" class="btn btn-warning" style="background-color: #E83A14; border-radius: 50%; border: none;">
-            <i class="fa-solid fa-angle-left fw-bold" style="font-size: 18px;"></i>
-          </button>
-        </a>
+        @if ($phanquyen_admin || $phanquyen_qltt)
+          <a href="{{ URL::to('thongtin_vienchuc_add') }}">
+            <button type="button" class="btn btn-warning" style="background-color: #E83A14; border-radius: 50%; border: none;">
+              <i class="fa-solid fa-angle-left fw-bold" style="font-size: 18px;"></i>
+            </button>
+          </a>
+        @else
+          @if ($phanquyen_qlk)
+            <a href="{{ URL::to('thongtin_vienchuc_add_khoa') }}">
+              <button type="button" class="btn btn-warning" style="background-color: #E83A14; border-radius: 50%; border: none;">
+                <i class="fa-solid fa-angle-left fw-bold" style="font-size: 18px;"></i>
+              </button>
+            </a>
+          @endif
+        @endif
       </div>
       <h4 class="text-center col-11 mt-1" style="font-weight: bold; color: white; font-size: 20px; text-transform: uppercase">
         ________THÔNG TIN GIA ĐINH VIÊN CHỨC " <span style="color: #FFFF00"> {{ $vienchuc->hoten_vc }}</span> "________

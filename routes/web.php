@@ -86,6 +86,7 @@ Route::post('/admin_delete_vienchuc_khoa_check',[VienChucController::class, 'adm
 Route::get('/admin_delete_vienchuc',[VienChucController::class, 'admin_delete_vienchuc']);
 Route::get('/search_vienchuc_khoa/{ma_k}',[VienChucController::class, 'search_vienchuc_khoa']);
 Route::get('/thongtin_vienchuc_add',[VienChucController::class, 'thongtin_vienchuc_add']);
+Route::get('/thongtin_vienchuc_add_khoa',[VienChucController::class, 'thongtin_vienchuc_add_khoa']);
 Route::get('/thongtin_vienchuc_edit/{ma_vc}',[VienChucController::class, 'thongtin_vienchuc_edit']);
 Route::get('/change_tinh',[VienChucController::class, 'change_tinh']);
 Route::get('/change_huyen',[VienChucController::class, 'change_huyen']);
