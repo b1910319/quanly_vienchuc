@@ -482,6 +482,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                     </a>
                   </li>
                   <li>
+                    <a href="{{ URL::to('/lylich') }}">
+                      Lý lịch viên chức
+                    </a>
+                  </li>
+                  <li>
                     <a href="{{ URL::to('/thongke_qlk') }}">
                       Thống kê
                     </a>

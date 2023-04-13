@@ -2537,6 +2537,7 @@ class VienChucController extends Controller
   public function lylich(){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
     $title = 'Lý lịch viên chức';
     $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '51')
@@ -2558,6 +2559,21 @@ class VienChucController extends Controller
       ->first();
     if($phanquyen_admin){
       $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
+        ->get();
+      return view('vienchuc.lylich')
+        ->with('list_vienchuc', $list_vienchuc)
+
+        ->with('title', $title)
+
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qltt', $phanquyen_qltt)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+    }else if($phanquyen_qlk){
+      $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
+        ->where('vienchuc.ma_k', $ma_k)
         ->get();
       return view('vienchuc.lylich')
         ->with('list_vienchuc', $list_vienchuc)
@@ -2596,7 +2612,7 @@ class VienChucController extends Controller
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
-    if($phanquyen_admin){
+    if($phanquyen_admin || $phanquyen_qlk){
       $vienchuc_ma = VienChuc::find($ma_vc);
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
         ->where('ma_vc', $ma_vc)
@@ -2697,7 +2713,10 @@ class VienChucController extends Controller
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '5')
       ->first();
-    if($phanquyen_admin){
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlk){
       $ma_vc = $request->ma_vc;
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
         ->whereIn('ma_vc', $ma_vc)
