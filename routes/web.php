@@ -787,6 +787,8 @@ Route::get('/quanly_khenthuong_kyluat',[KhenThuongController::class, 'quanly_khe
 Route::get('/quanly_khenthuong_kyluat_chitiet/{ma_vc}',[KhenThuongController::class, 'quanly_khenthuong_kyluat_chitiet']);
 Route::post('/quanly_khenthuong_kyluat_xuatfile',[KhenThuongController::class, 'quanly_khenthuong_kyluat_xuatfile']);
 
+Route::get('/qlk_quanly_khenthuong_kyluat',[KhenThuongController::class, 'qlk_quanly_khenthuong_kyluat']);
+
 
 
 

@@ -482,6 +482,63 @@ class KhenThuongController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function qlk_quanly_khenthuong_kyluat(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $ma_k = session()->get('ma_k');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $title = "Khen thưởng kỷ luật";
+    if($phanquyen_qlk){
+      $list_vienchuc = VienChuc::where('ma_k', $ma_k)
+        ->orderBy('hoten_vc', 'asc')
+        ->get();
+      $list_khoa = Khoa::orderBy('ten_k', 'asc')
+        ->get();
+      $list_chucvu = ChucVu::get();
+      $list_ngach = Ngach::get();
+      $list_bac = Bac::get();
+      $list_dantoc = DanToc::get();
+      $list_tongiao = TonGiao::get();
+      $list_thuongbinh = ThuongBinh::get();
+      return view('khenthuong.quanly_khenthuong_kyluat')
+        ->with('title', $title)
+
+        ->with('list_vienchuc', $list_vienchuc)
+        ->with('list_khoa', $list_khoa)
+        ->with('list_ngach', $list_ngach)
+        ->with('list_bac', $list_bac)
+        ->with('list_dantoc', $list_dantoc)
+        ->with('list_tongiao', $list_tongiao)
+        ->with('list_chucvu', $list_chucvu)
+        ->with('list_thuongbinh', $list_thuongbinh)
+
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qltt', $phanquyen_qltt);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
   public function quanly_khenthuong_kyluat_chitiet($ma_vc){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
@@ -495,8 +552,8 @@ class KhenThuongController extends Controller
       ->where('ma_q', '=', '8')
       ->first();
     $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
-    ->where('ma_q', '=', '9')
-    ->first();
+      ->where('ma_q', '=', '9')
+      ->first();
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
@@ -504,7 +561,7 @@ class KhenThuongController extends Controller
       ->where('ma_q', '=', '6')
       ->first();
     $title = "Khen thưởng, kỷ luật";
-    if($phanquyen_admin || $phanquyen_qlktkl){
+    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
       $vienchuc = VienChuc::find($ma_vc);
       $khenthuong = KhenThuong::join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
         ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
@@ -550,7 +607,10 @@ class KhenThuongController extends Controller
     $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
       ->where('ma_q', '=', '7')
       ->first();
-    if($phanquyen_admin || $phanquyen_qlktkl){
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
       $ma_vc = $request->ma_vc;
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
         ->whereIn('ma_vc', $ma_vc)

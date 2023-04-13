@@ -445,6 +445,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                     </a>
                   </li>
                   <li>
+                    <a href="{{ URL::to('/qlk_quanly_khenthuong_kyluat') }}">
+                      Quản lý khen thưởng, kỷ luật
+                    </a>
+                  </li>
+                  <li>
                     <a href="{{ URL::to('/khenthuong') }}">
                       Khen thưởng
                     </a>
