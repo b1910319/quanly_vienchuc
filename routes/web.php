@@ -111,6 +111,8 @@ Route::post('/quanlythongtin_xuatfile',[VienChucController::class, 'quanlythongt
 
 Route::get('/quanlythongtin_thongtin_xuatfile/{ma_vc}',[VienChucController::class, 'quanlythongtin_thongtin_xuatfile']);
 
+Route::get('/quanlythongtin_giadinh_xuatfile/{ma_vc}',[VienChucController::class, 'quanlythongtin_giadinh_xuatfile']);
+
 
 
 

@@ -2410,4 +2410,28 @@ class VienChucController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function quanlythongtin_giadinh_xuatfile( $ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qltt){
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
+        ->where('ma_vc', $ma_vc)
+        ->get();
+      $list_giadinh = GiaDinh::where('ma_vc', $ma_vc)
+        ->get();
+      $pdf = PDF::loadView('pdf.quanlythongtin_giadinh_pdf', [
+        'vienchuc' => $vienchuc,
+        'list_giadinh' => $list_giadinh,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }
