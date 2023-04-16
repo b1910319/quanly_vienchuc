@@ -595,8 +595,8 @@
                   <td>{{ $giadinh->hoten_gd }}</td>
                   <td>{{ $giadinh->ngaysinh_gd }}</td>
                   <td style="width: 40%">
-                    Số điện thoại: {{ $giadinh->sdt_gd }} <br>
-                    Nghề nghiệp: {{ $giadinh->nghenghiep_gd }}
+                    <b>Số điện thoại:</b> {{ $giadinh->sdt_gd }} <br>
+                    <b>Nghề nghiệp:</b> {{ $giadinh->nghenghiep_gd }}
                   </td>
                 </tr>
               @endif

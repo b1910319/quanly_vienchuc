@@ -261,10 +261,9 @@
     <table class="table mt-2" id="mytable">
       <thead class="color_table">
         <tr>
-          <th class="text-light" scope="col">STT</th>
+          <th class="text-light" scope="col">#</th>
           <th class="text-light" scope="col">Tên viên chức</th>
           <th class="text-light" scope="col">Thông tin viên chức</th>
-          <th class="text-light" scope="col">Thông tin cơ bản</th>
           <th class="text-light" scope="col">Quản lý</th>
           <th class="text-light" scope="col"></th>
         </tr>
@@ -278,7 +277,7 @@
               <br>
               {{ $vienchuc->user_vc }}
             </td>
-            <td style="width: 15%">
+            <td style="width: 20%">
               <button type="button" class="btn btn-primary fw-bold btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}">
                 <i class="fa-solid fa-circle-info text-light"></i>
                 &ensp;
@@ -607,10 +606,7 @@
                 </div>
               </div>
             </td>
-            <td>
-              <b>Số CCCD: </b> {{ $vienchuc->cccd_vc }}
-            </td>
-            <td style="width: 18%">
+            <td style="width: 14%">
               <?php
                 foreach ($count_bangcap as $key => $count) {
                   if($count->ma_vc == $vienchuc->ma_vc && $count->sum > 0){
@@ -618,7 +614,7 @@
                       <a href="{{ URL::to('/bangcap/'.$vienchuc->ma_vc) }}">
                         <button type="button" class="btn btn-primary position-relative button_xanhla">
                           <i class="fa-solid fa-layer-group text-light"></i> &ensp;
-                          Thêm bằng cấp
+                          Bằng cấp
                           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             <?php echo $count->sum ?>
                             <span class="visually-hidden">unread messages</span>
@@ -631,7 +627,7 @@
                       <a href="{{ URL::to('/bangcap/'.$vienchuc->ma_vc) }}">
                         <button type="button" class="btn btn-primary position-relative button_xanhla">
                           <i class="fa-solid fa-layer-group text-light"></i> &ensp;
-                          Thêm bằng cấp
+                          Bằng cấp
                         </button>
                       </a>
                     <?php

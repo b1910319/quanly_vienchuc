@@ -32,6 +32,13 @@
             <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
             Thống kê
           </button>
+          <a href="{{ URL::to('/quatrinhchucvu_pdf/'.$ma_vc) }}">
+            <button type="button" class="btn btn-warning button_xanhla">
+              <i class="fa-solid fa-file text-light"></i>
+              &ensp;
+              Xuất file
+            </button>
+          </a>
           <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
               <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
@@ -107,7 +114,9 @@
                         <tr>
                           <th scope="row">Ghi chú: </th>
                           <td class="was-validated">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="ghichu_qtcv"></textarea>
+                            <div class="mb-3">
+                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required name="ghichu_qtcv"></textarea>
+                            </div>
                           </td>
                         </tr>
                         <tr>
@@ -148,7 +157,7 @@
         <thead class="color_table">
           <tr>
             <th class="text-light" scope="col"></th>
-            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">#</th>
             <th class="text-light" scope="col">Chức vụ</th>
             <th class="text-light" scope="col">Nhiệm kỳ</th>
             <th class="text-light" scope="col">Ghi chú</th>
@@ -171,7 +180,7 @@
               <td>
                 Nhiệm kỳ: {{ $quatrinhchucvu->ten_nk }} ({{ $quatrinhchucvu->ma_nk }})
               </td>
-              <td>
+              <td style="width: 30%;">
                 {{ $quatrinhchucvu->ghichu_qtcv }}
               </td>
               <td>
@@ -229,13 +238,6 @@
         &ensp;
         Xoá
       </button>
-      <a href="{{ URL::to('/quatrinhchucvu_pdf/'.$ma_vc) }}">
-        <button type="button" class="btn btn-warning button_xanhla">
-          <i class="fa-solid fa-file text-light"></i>
-          &ensp;
-          Xuất file
-        </button>
-      </a>
     </form>
   </div>
 </div>

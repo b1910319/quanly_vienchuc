@@ -49,13 +49,13 @@
             <br>
             <b>Khoa: </b>{{ $vc->ten_k }}
             <br>
-            <b>Ngày sinh: </b> {{ $vc->ngaysinh_vc }}
+            <b>Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
           </div>
         </div>
         <p class="text-center fw-bold" style="font-size: 13px">QUÁ TRÌNH HỌC</p>
         @foreach ($list_lop_vienchuc as $key => $lop_vc)
           @if ($vc->ma_vc == $lop_vc->ma_vc)
-            <p class="fw-bold text-center text-danger">THÔNG TIN LỚP HỌC</p>
+            <p class="fw-bold text-danger">THÔNG TIN LỚP HỌC</p>
             <div class="row">
               <div class="col-6" style="float: left; width: 50%">
                 <span class="fw-bold">
@@ -82,6 +82,7 @@
                   Trình độ đào tạo: 
                 </span>
                 {{ $lop_vc->trinhdodaotao_l }}
+                <br>
               </div>
               <div class="col-6" style="float: right; width: 50%">
                 <span class="fw-bold">
@@ -107,12 +108,12 @@
                 <span class="fw-bold">
                   Quốc gia đào tạo: 
                 </span>
-                {{ $lop_vc->ten_qg }}
+                {{ $lop_vc->ten_qg }} <br>
               </div>
             </div>
-            <p class="fw-bold text-center text-danger mt-2">
+            {{-- <p class="fw-bold text-center text-danger mt-2">
               THÔNG TIN QUÁ TRÌNH HỌC
-            </p>
+            </p> --}}
             @foreach ($list_quatrinhhoc_ketqua as $ketqua)
               @if ($ketqua->ma_l == $lop_vc->ma_l)
                 <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 25%;">
@@ -256,7 +257,6 @@
             @endforeach
           @endif
         @endforeach
-        <hr>
       @endforeach
     </p>
   </div>

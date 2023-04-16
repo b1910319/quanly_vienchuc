@@ -302,7 +302,7 @@ class KetQuaController extends Controller
   }
   public function ketqua_all(){
     $this->check_login();
-    $$ma_vc = session()->get('ma_vc');
+    $ma_vc = session()->get('ma_vc');
     $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '51')
       ->first();

@@ -158,7 +158,7 @@
         <thead class="color_table">
           <tr>
             <th class="text-light" scope="col"></th>
-            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">#</th>
             <th class="text-light" scope="col">Tôn giáo </th>
             <th class="text-light" scope="col">Trạng thái</th>
             <th class="text-light" scope="col"></th>

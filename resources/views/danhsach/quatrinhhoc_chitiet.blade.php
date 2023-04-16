@@ -91,17 +91,17 @@
               HOÀN THÀNH KHOÁ HỌC
             </p>
             <table class="table">
-              <thead>
+              <thead class="color_table">
                 <tr>
-                  <th  scope="col">Tên người hướng dẫn</th>
-                  <th  scope="col">Email</th>
-                  <th  scope="col">Bằng được cấp</th>
-                  <th  scope="col">Ngày cấp bằng</th>
-                  <th  scope="col">Xếp loại</th>
-                  <th  scope="col">Đề tài tốt nghiệp</th>
-                  <th  scope="col">Ngày về nước</th>
-                  <th  scope="col">Đánh giá của cơ sở</th>
-                  <th  scope="col">Kiến nghị</th>
+                  <th class="text-light" scope="col">Tên người hướng dẫn</th>
+                  <th class="text-light" scope="col">Email người hướng dẫn</th>
+                  <th class="text-light" scope="col">Bằng được cấp</th>
+                  <th class="text-light" scope="col">Ngày cấp bằng</th>
+                  <th class="text-light" scope="col">Xếp loại</th>
+                  <th class="text-light" scope="col">Đề tài tốt nghiệp</th>
+                  <th class="text-light" scope="col">Ngày về nước</th>
+                  <th class="text-light" scope="col">Đánh giá của cơ sở</th>
+                  <th class="text-light" scope="col">Kiến nghị</th>
                 </tr>
               </thead>
               <tbody>
@@ -111,10 +111,10 @@
                       <td>{{ $ketqua->tennguoihuongdan_kq }}</td>
                       <td>{{ $ketqua->emailnguoihuongdan_kq }}</td>
                       <td>{{ $ketqua->bangduoccap_kq }}</td>
-                      <td>{{ $ketqua->ngaycapbang_kq }}</td>
+                      <td style="width: 8%">{{ $ketqua->ngaycapbang_kq }}</td>
                       <td>{{ $ketqua->xeploai_kq }}</td>
                       <td>{{ $ketqua->detaitotnghiep_kq }}</td>
-                      <td>{{ $ketqua->ngayvenuoc_kq }}</td>
+                      <td style="width: 8%">{{ $ketqua->ngayvenuoc_kq }}</td>
                       <td>{{ $ketqua->danhgiacuacoso_kq }}</td>
                       <td>{{ $ketqua->kiennghi_kq }}</td>
                     </tr>
@@ -130,11 +130,11 @@
               GIA HẠN
             </p>
             <table class="table">
-              <thead>
+              <thead class="color_table">
                 <tr>
-                  <th  scope="col">Thời gian gia hạn</th>
-                  <th  scope="col">Lý do gia hạn</th>
-                  <th  scope="col">File</th>
+                  <th class="text-light"   scope="col">Thời gian gia hạn</th>
+                  <th class="text-light"   scope="col">Lý do gia hạn</th>
+                  <th class="text-light"   scope="col">File</th>
                 </tr>
               </thead>
               <tbody>
@@ -169,12 +169,12 @@
               DỪNG HỌC
             </p>
             <table class="table">
-              <thead>
+              <thead class="color_table">
                 <tr>
-                  <th  scope="col">Ngày bắt đầu tạm dừng</th>
-                  <th  scope="col">Ngày kết thúc tạm dừng</th>
-                  <th  scope="col">Lý do tạm dừng</th>
-                  <th  scope="col">File</th>
+                  <th class="text-light"   scope="col">Ngày bắt đầu tạm dừng</th>
+                  <th class="text-light"   scope="col">Ngày kết thúc tạm dừng</th>
+                  <th class="text-light"   scope="col">Lý do tạm dừng</th>
+                  <th class="text-light"   scope="col">File</th>
                 </tr>
               </thead>
               <tbody>
@@ -210,11 +210,11 @@
               CHUYỂN NƯỚC, NGÀNH HỌC, TRƯỜNG...
             </p>
             <table class="table">
-              <thead>
+              <thead class="color_table">
                 <tr>
-                  <th  scope="col">Nội dung xin chuyển</th>
-                  <th  scope="col">Lý do chuyển</th>
-                  <th  scope="col">File</th>
+                  <th class="text-light"  scope="col">Nội dung xin chuyển</th>
+                  <th class="text-light"  scope="col">Lý do chuyển</th>
+                  <th class="text-light"  scope="col">File</th>
                 </tr>
               </thead>
               <tbody>
@@ -249,11 +249,11 @@
               THÔI HỌC
             </p>
             <table class="table">
-              <thead>
+              <thead class="color_table">
                 <tr>
-                  <th  scope="col">Ngày thôi học</th>
-                  <th  scope="col">Lý do thôi học</th>
-                  <th  scope="col">File</th>
+                  <th class="text-light"  scope="col">Ngày thôi học</th>
+                  <th class="text-light"  scope="col">Lý do thôi học</th>
+                  <th class="text-light"  scope="col">File</th>
                 </tr>
               </thead>
               <tbody>

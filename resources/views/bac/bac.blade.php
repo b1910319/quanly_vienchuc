@@ -129,8 +129,8 @@
                         <tr>
                           <th scope="row">Ngạch: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="ma_n">
-                              <option value="0" >Chọn ngạch</option>
+                            <select class="custom-select input_table" required id="gender2" name="ma_n">
+                              <option value="0">Chọn ngạch</option>
                               @foreach ($list_ngach as $ngach )
                                 <option value="{{ $ngach->ma_n }}" >{{ $ngach->ten_n }}</option>
                               @endforeach
@@ -175,7 +175,7 @@
         <thead class="color_table" >
           <tr>
             <th class="text-light" scope="col"></th>
-            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">#</th>
             <th class="text-light" scope="col">Ngạch </th>
             <th class="text-light" scope="col">Bậc</th>
             <th class="text-light" scope="col">Hệ số lương</th>
@@ -198,7 +198,7 @@
               <td>
                 {{ $bac->ten_b }} ({{ $bac->ma_b }})
               </td>
-              <td>
+              <td class="text-center">
                 {{ $bac->hesoluong_b }}
               </td>
               <td>

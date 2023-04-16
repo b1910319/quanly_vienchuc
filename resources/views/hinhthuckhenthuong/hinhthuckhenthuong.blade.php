@@ -174,7 +174,7 @@
               </td>
               <th scope="row">{{ $key+1 }}</th>
               <td>
-                {{ $hinhthuckhenthuong->ten_htkt }}
+                {{ $hinhthuckhenthuong->ten_htkt }} ({{ $hinhthuckhenthuong->ma_htkt }})
               </td>
               <td>
                 <?php

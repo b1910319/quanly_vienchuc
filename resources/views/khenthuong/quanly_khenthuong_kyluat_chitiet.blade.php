@@ -28,7 +28,7 @@
     <div class="row">
       <div class="col-6">
         @if ($khenthuong)
-          <p style="font-weight: bold; color: #E83A14; font-size: 20px; text-align: center;">KHEN THƯỞNG</p>
+          <p style="font-weight: bold; color: #E83A14; font-size: 22px; text-align: center; border-bottom: 3px solid #E83A14;">KHEN THƯỞNG</p>
           <div class="dots-list">
             <ol>
               @foreach ($list_khenthuong as $khenthuong )
@@ -47,7 +47,7 @@
       </div>
       <div class="col-6">
         @if ($kyluat)
-          <p style="font-weight: bold; color: #E83A14; font-size: 20px; text-align: center;">KỶ LUẬT</p>
+          <p style="font-weight: bold; color: #E83A14; font-size: 22px; text-align: center; border-bottom: 3px solid #E83A14;">KỶ LUẬT</p>
           <div class="dots-list">
             <ol>
               @foreach ($list_kyluat as $kyluat )

@@ -10,10 +10,9 @@
       <thead class="color_table">
         <tr>
           <th class="text-light" scope="col">STT</th>
-          <th class="text-light" scope="col">Tên </th>
-          <th class="text-light" scope="col">UserName</th>
-          <th class="text-light" scope="col">Quyền</th>
+          <th class="text-light" scope="col">Thông tin viên chức </th>
           <th class="text-light" scope="col">Khoa</th>
+          <th class="text-light" scope="col">Quyền</th>
           <th class="text-light" scope="col"></th>
         </tr>
       </thead>
@@ -22,9 +21,15 @@
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }})
+              <b>Họ tên:</b> {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }})
+              <br>
+              <b>Email:</b> {{ $vienchuc->user_vc }}
+              <br>
+              <b>Chức vụ:</b> {{ $vienchuc->ten_cv }}
             </td>
-            <td>{{ $vienchuc->user_vc }}</td>
+            <td>
+              {{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})
+            </td>
             <td>
               <div class="row">
                 <div class="col-6">
@@ -37,7 +42,6 @@
                       @endif
                     @endforeach
                   </b>
-                  
                 </div>
                 <div class="col-6">
                   <a href="{{ URL::to('lammoi_quyen/'.$vienchuc->ma_vc) }}">
@@ -51,9 +55,6 @@
                 </div>
               </div>
               
-            </td>
-            <td>
-              {{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})
             </td>
             <td class="was-validated" style="width: 25%">
               <form action="{{ URL::to('phanquyen_vc') }}" method="post">

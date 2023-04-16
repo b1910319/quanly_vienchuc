@@ -287,6 +287,7 @@ class BacController extends Controller
         ->groupBy('status_b')
         ->get();
       $list_ngach = Ngach::where('status_n', '<>', '1')
+        ->orderBy('ten_n', 'asc')
         ->get();
       return view('bac.bac')
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)

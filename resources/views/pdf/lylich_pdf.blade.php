@@ -288,6 +288,7 @@
                 <span class="fw-bold">
                   Tên cơ sở đào tạo: 
                 </span>
+                <br>
                 {{ $lop_vc->tencosodaotao_l }}
                 <br>
                 <span class="fw-bold">
@@ -327,46 +328,34 @@
                 {{ $lop_vc->ten_qg }}
               </div>
             </div>
-            <p class="fw-bold text-center text-danger mt-2">
-              THÔNG TIN QUÁ TRÌNH HỌC
-            </p>
             @foreach ($list_quatrinhhoc_ketqua as $ketqua)
               @if ($ketqua->ma_l == $lop_vc->ma_l)
                 <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 25%;">
                   HOÀN THÀNH KHOÁ HỌC
                 </p>
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th  scope="col">Tên người hướng dẫn</th>
-                      <th  scope="col">Email</th>
-                      <th  scope="col">Bằng được cấp</th>
-                      <th  scope="col">Ngày cấp bằng</th>
-                      <th  scope="col">Xếp loại</th>
-                      <th  scope="col">Đề tài tốt nghiệp</th>
-                      <th  scope="col">Ngày về nước</th>
-                      <th  scope="col">Đánh giá của cơ sở</th>
-                      <th  scope="col">Kiến nghị</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($list_quatrinhhoc_ketqua as $ketqua)
-                      @if ($ketqua->ma_l == $lop_vc->ma_l)
-                        <tr>
-                          <td>{{ $ketqua->tennguoihuongdan_kq }}</td>
-                          <td>{{ $ketqua->emailnguoihuongdan_kq }}</td>
-                          <td>{{ $ketqua->bangduoccap_kq }}</td>
-                          <td>{{ $ketqua->ngaycapbang_kq }}</td>
-                          <td>{{ $ketqua->xeploai_kq }}</td>
-                          <td>{{ $ketqua->detaitotnghiep_kq }}</td>
-                          <td>{{ $ketqua->ngayvenuoc_kq }}</td>
-                          <td>{{ $ketqua->danhgiacuacoso_kq }}</td>
-                          <td>{{ $ketqua->kiennghi_kq }}</td>
-                        </tr>
-                      @endif
-                    @endforeach
-                  </tbody>
-                </table>
+                <p>
+                  @foreach ($list_quatrinhhoc_ketqua as $ketqua)
+                    @if ($ketqua->ma_l == $lop_vc->ma_l)
+                      <b>Tên người hướng dẫn: </b> {{ $ketqua->tennguoihuongdan_kq }}
+                      <br>
+                      <b>Email người hướng dẫn: </b> {{ $ketqua->emailnguoihuongdan_kq }}
+                      <br>
+                      <b>Bằng được cấp: </b> {{ $ketqua->bangduoccap_kq }}
+                      <br>
+                      <b>Ngày cấp bằng: </b>{{ $ketqua->ngaycapbang_kq }}
+                      <br>
+                      <b>Xếp loại: </b> {{ $ketqua->xeploai_kq }}
+                      <br>
+                      <b>Đề tài tốt nghiệp: </b> {{ $ketqua->detaitotnghiep_kq }}
+                      <br>
+                      <b>Ngày về nước: </b> {{ $ketqua->ngayvenuoc_kq }}
+                      <br>
+                      <b>Đánh giá của cơ sở: </b> {{ $ketqua->danhgiacuacoso_kq }}
+                      <br>
+                      <b>Kiến nghị: </b> {{ $ketqua->kiennghi_kq }}
+                    @endif
+                  @endforeach
+                </p>
               @endif
             @endforeach
             @foreach ($list_quatrinhhoc_giahan as $giahan)

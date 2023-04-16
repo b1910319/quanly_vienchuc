@@ -86,7 +86,7 @@
     <table class="table" id="mytable">
       <thead class="color_table">
         <tr>
-          <th class="text-light" scope="col">STT</th>
+          <th class="text-light" scope="col">#</th>
           <th class="text-light" scope="col">Thông tin viên chức</th>
           <th class="text-light" scope="col">Khoa</th>
           <th class="text-light" scope="col">Trạng thái</th>
@@ -103,10 +103,10 @@
               <br>
               {{ $vienchuc->user_vc }}
             </td>
-            <td>
+            <td style="width: 20%">
               {{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})
             </td>
-            <td>
+            <td style="width: 9%">
               <?php
                 if($vienchuc->status_vc == 0){
                   ?>
@@ -129,7 +129,7 @@
                 }
               ?>
             </td>
-            <td class="was-validated" style="width: 25%">
+            <td class="was-validated" style="width: 19%">
               <form action="{{ URL::to('update_khoa_vc') }}" method="post">
                 {{ csrf_field() }}
                 <div class="row">
@@ -151,7 +151,7 @@
               </form>
               
             </td>
-            <td style="width: 28%;">
+            <td style="width: 29%;">
               <a href="{{ URL::to('/admin_edit_vienchuc_khoa/'.$vienchuc->ma_k.'/'.$vienchuc->ma_vc)}}">
                 <button type="button" class=" btn btn-warning button_cam">
                   <i class="fa-solid fa-pen-to-square text-light"></i>

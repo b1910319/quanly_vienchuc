@@ -12,7 +12,7 @@
         <thead class="color_table">
           <tr>
             <th class="text-light" scope="col"></th>
-            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">#</th>
             <th class="text-light" scope="col">Tên </th>
             <th class="text-light" scope="col">Email</th>
             <th class="text-light" scope="col">Khoa</th>
@@ -59,11 +59,11 @@
                   }
                 ?>
               </td>
-              <td style="width: 45%">
+              <td style="width: 35%">
                 <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc) }}">
                   <button type="button" class="btn btn-warning button_cam">
                     <i class="fa-solid fa-pen-to-square text-light"></i>
-                    &ensp; Cập nhật thông tin
+                    &ensp; Cập nhật
                   </button>
                 </a>
                 <?php
@@ -73,7 +73,7 @@
                         <a href="{{ URL::to('/giadinh/'.$vienchuc->ma_vc) }}">
                           <button type="button" class="btn btn-primary position-relative button_xanhla">
                             <i class="fa-solid fa-people-roof text-light"></i> &ensp;
-                            Thêm thành viên gia đình
+                            Thành viên gia đình
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                               <?php echo $count->sum ?>
                               <span class="visually-hidden">unread messages</span>
@@ -86,7 +86,7 @@
                         <a href="{{ URL::to('/giadinh/'.$vienchuc->ma_vc) }}">
                           <button type="button" class="btn btn-primary position-relative button_xanhla">
                             <i class="fa-solid fa-people-roof text-light"></i> &ensp;
-                            Thêm thành viên gia đình
+                            Thành viên gia đình
                           </button>
                         </a>
                       <?php
@@ -100,7 +100,7 @@
                         <a href="{{ URL::to('/bangcap/'.$vienchuc->ma_vc) }}">
                           <button type="button" class="btn btn-primary position-relative button_xanhla">
                             <i class="fa-solid fa-layer-group text-light"></i> &ensp;
-                            Thêm bằng cấp
+                            Bằng cấp
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                               <?php echo $count->sum ?>
                               <span class="visually-hidden">unread messages</span>
@@ -113,7 +113,7 @@
                         <a href="{{ URL::to('/bangcap/'.$vienchuc->ma_vc) }}">
                           <button type="button" class="btn btn-primary position-relative button_xanhla">
                             <i class="fa-solid fa-layer-group text-light"></i> &ensp;
-                            Thêm bằng cấp
+                            Bằng cấp
                           </button>
                         </a>
                       <?php

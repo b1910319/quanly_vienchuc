@@ -143,7 +143,7 @@
                         <tr>
                           <th scope="row">File tạm dừng học: </th>
                           <td class="was-validated">
-                            <input type='file' class='form-control input_table' name="file_dh">
+                            <input type='file' class='form-control input_table' required name="file_dh">
                           </td>
                         </tr>
                         <tr>

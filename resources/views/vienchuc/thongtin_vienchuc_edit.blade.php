@@ -170,7 +170,14 @@
               <tr>
                 <th scope="">Ngày sinh: </th>
                 <td class="was-validated">
-                  <input type='date' class='form-control input_table' autofocus required name="ngaysinh_vc"  value="{{ $edit->ngaysinh_vc }}">
+                  <?php 
+                    use Illuminate\Support\Carbon;
+                    Carbon::now('Asia/Ho_Chi_Minh'); 
+                    $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                    ?>
+                    <input type='date' class='form-control input_table' autofocus max="<?php echo $now ?>" required name="ngaysinh_vc"  value="{{ $edit->ngaysinh_vc }}">
+                    <?php
+                  ?>
                 </td>
               </tr>
               <tr>
@@ -352,7 +359,14 @@
               <tr>
                 <th scope="">Ngày tuyển dụng: </th>
                 <td class="was-validated">
-                  <input type='date' class='form-control input_table' autofocus required name="ngaytuyendung_vc"  value="{{ $edit->ngaytuyendung_vc }}">
+                  <?php 
+                    // use Illuminate\Support\Carbon;
+                    // Carbon::now('Asia/Ho_Chi_Minh'); 
+                    $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                    ?>
+                      <input type='date' class='form-control input_table' autofocus max="<?php echo $now ?>" required name="ngaytuyendung_vc"  value="{{ $edit->ngaytuyendung_vc }}">
+                    <?php
+                  ?>
                 </td>
               </tr>
               <tr>
@@ -414,25 +428,53 @@
               <tr>
                 <th scope="row">Ngày vào Đảng Cộng sản Việt Nam: </th>
                 <td class="was-validated">
-                  <input type='date' class='form-control input_table' autofocus required name="ngayvaodang_vc"  value="{{ $edit->ngayvaodang_vc }}">
+                  <?php 
+                    // use Illuminate\Support\Carbon;
+                    // Carbon::now('Asia/Ho_Chi_Minh'); 
+                    $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                    ?>
+                      <input type='date' class='form-control input_table' autofocus max="<?php echo $now ?>" required name="ngayvaodang_vc"  value="{{ $edit->ngayvaodang_vc }}">
+                    <?php
+                  ?>
                 </td>
               </tr>
               <tr>
                 <th scope="row">Ngày chính thức: </th>
                 <td class="was-validated">
-                  <input type='date' class='form-control input_table' autofocus required name="ngaychinhthuc_vc"  value="{{ $edit->ngaychinhthuc_vc }}">
+                  <?php 
+                    // use Illuminate\Support\Carbon;
+                    // Carbon::now('Asia/Ho_Chi_Minh'); 
+                    $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                    ?>
+                      <input type='date' class='form-control input_table' autofocus max="<?php echo $now ?>" required name="ngaychinhthuc_vc"  value="{{ $edit->ngaychinhthuc_vc }}">
+                    <?php
+                  ?>
                 </td>
               </tr>
               <tr>
                 <th scope="row">Ngày nhập ngũ: </th>
                 <td class="was-validated">
-                  <input type='date' class='form-control input_table' autofocus name="ngaynhapngu_vc"  value="{{ $edit->ngaynhapngu_vc }}">
+                  <?php 
+                    // use Illuminate\Support\Carbon;
+                    // Carbon::now('Asia/Ho_Chi_Minh'); 
+                    $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                    ?>
+                      <input type='date' class='form-control input_table' autofocus max="<?php echo $now ?>" name="ngaynhapngu_vc"  value="{{ $edit->ngaynhapngu_vc }}">
+                    <?php
+                  ?>
                 </td>
               </tr>
               <tr>
                 <th scope="row">Ngày xuất ngũ: </th>
                 <td class="was-validated">
-                  <input type='date' class='form-control input_table' autofocus name="ngayxuatngu_vc"  value="{{ $edit->ngayxuatngu_vc }}">
+                  <?php 
+                    // use Illuminate\Support\Carbon;
+                    // Carbon::now('Asia/Ho_Chi_Minh'); 
+                    $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                    ?>
+                      <input type='date' class='form-control input_table' autofocus max="<?php echo $now ?>" name="ngayxuatngu_vc"  value="{{ $edit->ngayxuatngu_vc }}">
+                    <?php
+                  ?>
                 </td>
               </tr>
               <tr>
@@ -444,7 +486,14 @@
               <tr>
                 <th scope="row">Ngày hưởng bậc: </th>
                 <td class="was-validated">
-                  <input type='date' class='form-control input_table' autofocus required name="ngayhuongbac_vc"  value="{{ $edit->ngayhuongbac_vc }}">
+                  <?php 
+                    // use Illuminate\Support\Carbon;
+                    // Carbon::now('Asia/Ho_Chi_Minh'); 
+                    $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                    ?>
+                      <input type='date' class='form-control input_table' autofocus max="<?php echo $now ?>" required name="ngayhuongbac_vc"  value="{{ $edit->ngayhuongbac_vc }}">
+                    <?php
+                  ?>
                 </td>
               </tr>
               <tr>
@@ -494,7 +543,14 @@
               <tr>
                 <th scope="row">Ngày cấp: </th>
                 <td class="was-validated">
-                  <input type='date' class='form-control input_table' autofocus required name="ngaycapcccd_vc"  value="{{ $edit->ngaycapcccd_vc }}">
+                  <?php 
+                    // use Illuminate\Support\Carbon;
+                    // Carbon::now('Asia/Ho_Chi_Minh'); 
+                    $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                    ?>
+                      <input type='date' class='form-control input_table' autofocus max="<?php echo $now ?>" required name="ngaycapcccd_vc"  value="{{ $edit->ngaycapcccd_vc }}">
+                    <?php
+                  ?>
                 </td>
               </tr>
               <tr>

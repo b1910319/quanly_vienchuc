@@ -154,7 +154,9 @@
                         <tr>
                           <th scope="row">Nội dung khen thưởng: </th>
                           <td class="was-validated">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" name="noidung_kt"></textarea>
+                            <div class="mb-3">
+                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required name="noidung_kt"></textarea>
+                            </div>
                           </td>
                         </tr>
                         <tr>
@@ -195,7 +197,7 @@
         <thead class="color_table">
           <tr>
             <th class="text-light" scope="col"></th>
-            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">#</th>
             <th class="text-light" scope="col">Loại khen thưởng</th>
             <th class="text-light" scope="col">Hình thức khen thưởng</th>
             <th class="text-light" scope="col">Ngày khen thưởng</th>

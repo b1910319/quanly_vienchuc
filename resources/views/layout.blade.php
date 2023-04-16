@@ -165,6 +165,18 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
             @endif
             @if ($phanquyen_admin)
               <li>
+                <a href="{{ URL::to('quanly_khoa') }}" class="waves-effect">
+                  <i class="fa-solid fa-building"></i>
+                  <span> Quản Lý Khoa </span>
+                </a>
+              </li>
+              <li>
+                <a href="{{ URL::to('quanly_vienchuc_khoa') }}" class="waves-effect">
+                  <i class="fa-solid fa-user-shield"></i>
+                  <span> Quản Lý Tài Khoản Viên Chức </span>
+                </a>
+              </li>
+              {{-- <li>
                 <a href="javascript: void(0);" class="waves-effect">
                   <i class="fa-solid fa-building"></i>
                   <span> Khoa </span>
@@ -178,7 +190,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                     <a href="{{ URL::to('/quanly_vienchuc_khoa') }}">Quản Lý Viên Chức Thuộc Khoa</a>
                   </li>
                 </ul>
-              </li>
+              </li> --}}
             @endif
             @if ($phanquyen_admin)
               <li>
@@ -519,7 +531,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                   <div class="col-10">
                     <h4 class="page-title">
                       <a href="{{ URL::to('home') }}">
-                        Xin chào !!!
                         <span style="text-transform: uppercase; font-weight: bold; color: #155263; font-size: 20px;">
                           <?php
                             $hoten_vc = session()->get('hoten_vc');

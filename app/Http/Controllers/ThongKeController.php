@@ -10455,11 +10455,11 @@ class ThongKeController extends Controller
       ->first();
     $title = "Thống kê";
     if($phanquyen_admin || $phanquyen_qlqtcv){
-      $count_nhiemky_chucvu = QuaTrinhChucVu::join('nhiemky', 'nhiemky.ma_nk', '=', 'quatrinhchucvu.ma_nk')
+      $count_nhiemky = QuaTrinhChucVu::join('nhiemky', 'nhiemky.ma_nk', '=', 'quatrinhchucvu.ma_nk')
         ->join('chucvu', 'chucvu.ma_cv', '=', 'quatrinhchucvu.ma_cv')
         ->where('status_qtcv', '<>', '2')
-        ->select(DB::raw('count(quatrinhchucvu.ma_qtcv) as sum, nhiemky.ma_nk, chucvu.ma_cv'))
-        ->groupBy('nhiemky.ma_nk', 'chucvu.ma_cv')
+        ->select(DB::raw('count(quatrinhchucvu.ma_qtcv) as sum, nhiemky.ma_nk'))
+        ->groupBy('nhiemky.ma_nk')
         ->get();
       $list_pdf = QuaTrinhChucVu::join('nhiemky', 'nhiemky.ma_nk', '=', 'quatrinhchucvu.ma_nk')
         ->join('chucvu', 'chucvu.ma_cv', '=', 'quatrinhchucvu.ma_cv')
@@ -10481,7 +10481,7 @@ class ThongKeController extends Controller
       return view('thongke.thongke_qlqtcv')
         ->with('title', $title)
 
-        ->with('count_nhiemky_chucvu', $count_nhiemky_chucvu)
+        ->with('count_nhiemky', $count_nhiemky)
 
         ->with('list_pdf', $list_pdf)
         ->with('list_nhiemky', $list_nhiemky)

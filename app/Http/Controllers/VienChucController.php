@@ -51,7 +51,7 @@ class VienChucController extends Controller
     $data = $request->validate([
       'user_vc' => 'required',
       'pass_vc' => 'required',
-      'g-recaptcha-response' => new Captcha(), 		//dòng kiểm tra Captcha
+      // 'g-recaptcha-response' => new Captcha(), 		//dòng kiểm tra Captcha
     ]);
 
     $user_vc = $request->user_vc;
@@ -68,7 +68,7 @@ class VienChucController extends Controller
       $request->session()->put('ma_k',$result->ma_k);
       return Redirect::to('/home');
     }else{
-      $request->session()->put('message','Username hoặc Password bị sai vui lòng nhập lại!! ');
+      $request->session()->put('message_login','Username hoặc Password bị sai vui lòng nhập lại!! ');
       return Redirect::to('/login');
     }
   }
@@ -686,7 +686,7 @@ class VienChucController extends Controller
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
-      return view('vienchuc.thongtin_vienchuc_edit')
+      return view('vienchuc.thongtin_vienchuc_edit') 
         ->with('title', $title)
         ->with('edit', $edit)
         ->with('list_khoa', $list_khoa)
@@ -784,7 +784,7 @@ class VienChucController extends Controller
       $get_image = $request->file('hinh_vc');
       if($get_image){
         $new_image = time().rand(0,999).'.'.$get_image->getClientOriginalExtension();
-        if($vienchuc->hinh_vc){
+        if($vienchuc->hinh_vc != ' '){
           unlink('public/uploads/vienchuc/'.$vienchuc->hinh_vc);
         }
         $get_image->move('public/uploads/vienchuc', $new_image);

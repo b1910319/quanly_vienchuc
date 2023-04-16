@@ -68,7 +68,14 @@
                 <tr>
                   <th scope="row">Ngày sinh: </th>
                   <td class="was-validated">
-                    <input type='date' class='form-control input_table' autofocus required name="ngaysinh_gd" value="{{ $edit->ngaysinh_gd }}">
+                    <?php 
+                      use Illuminate\Support\Carbon;
+                      Carbon::now('Asia/Ho_Chi_Minh'); 
+                      $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                      ?>
+                        <input type='date' class='form-control input_table' autofocus required max="<?php echo $now ?>" name="ngaysinh_gd" value="{{ $edit->ngaysinh_gd }}">
+                      <?php
+                    ?>
                   </td>
                 </tr>
                 <tr>

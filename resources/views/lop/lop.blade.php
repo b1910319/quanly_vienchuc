@@ -353,51 +353,62 @@
                   }
                 ?>
               </td>
-              <td style="width: 27%;">
-                <a href="{{ URL::to('/edit_lop/'.$lop->ma_l)}}">
-                  <button type="button" class=" btn btn-warning button_cam">
-                    <i class="fa-solid fa-pen-to-square text-light"></i>
-                    &ensp; Cập nhật
-                  </button>
-                </a>
-                <input class="ma_l{{ $lop->ma_l }}" type="hidden" value="{{ $lop->ma_l }}">
-                <button type="button" class=" xoa{{ $lop->ma_l }} btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
-                <?php
-                  if($lop->status_l == 0){
-                    ?>
-                      <a href="{{ URL::to('/select_lop/'.$lop->ma_l) }}">
-                        <button type="button" class="btn btn-secondary fw-bold">
-                          <i class="fa-solid fa-eye-slash text-light"></i> 
-                          &ensp; Ẩn
-                        </button>
-                      </a>
+              <td style="width: 32%;">
+                <div class="row">
+                  <div class="col-5">
+                    <a href="{{ URL::to('/edit_lop/'.$lop->ma_l)}}">
+                      <button type="button" class=" btn btn-warning button_cam" style="width: 100%">
+                        <i class="fa-solid fa-pen-to-square text-light"></i>
+                        &ensp; Cập nhật
+                      </button>
+                    </a>
+                  </div>
+                  <div class="col-3">
+                    <input class="ma_l{{ $lop->ma_l }}" type="hidden" value="{{ $lop->ma_l }}">
+                    <button type="button" class=" xoa{{ $lop->ma_l }} btn btn-danger button_do" style="width: 100%"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
+                  </div>
+                  <div class="col-4">
                     <?php
-                  }else if($lop->status_l == 1) {
+                      if($lop->status_l == 0){
+                        ?>
+                          <a href="{{ URL::to('/select_lop/'.$lop->ma_l) }}">
+                            <button type="button" class="btn btn-secondary fw-bold" style="width: 100%">
+                              <i class="fa-solid fa-eye-slash text-light"></i> 
+                              &ensp; Ẩn
+                            </button>
+                          </a>
+                        <?php
+                      }else if($lop->status_l == 1) {
+                        ?>
+                          <a href="{{ URL::to('/select_lop/'.$lop->ma_l) }}">
+                            <button type="button" class="btn btn-success fw-bold" style="width: 100%">
+                              <i class="fa-solid fa-eye text-light"></i>
+                              &ensp; Hiển thị
+                            </button>
+                          </a>
+                        <?php
+                      }
                     ?>
-                      <a href="{{ URL::to('/select_lop/'.$lop->ma_l) }}">
-                        <button type="button" class="btn btn-success fw-bold">
-                          <i class="fa-solid fa-eye text-light"></i>
-                          &ensp; Hiển thị
-                        </button>
-                      </a>
-                    <?php
-                  }
-                ?>
-                <br>
-                <a  href="{{ URL::to('/danhsach_vienchuc_lop_pdf/'.$lop->ma_l) }}">
-                  <button type="button" class="btn btn-warning button_do">
-                    <i class="fa-solid fa-file-pdf text-light"></i>
-                    &ensp;
-                    Xuất file PDF
-                  </button>
-                </a>
-                <a href="{{ URL::to('/danhsach_vienchuc_lop_excel/'.$lop->ma_l) }}">
-                  <button type="button" class="btn btn-warning button_xanhla">
-                    <i class="fa-solid fa-file-excel text-light"></i>
-                    &ensp;
-                    Xuất file Excel
-                  </button>
-                </a>
+                  </div>
+                  <div class="col-6 mt-1">
+                    <a  href="{{ URL::to('/danhsach_vienchuc_lop_pdf/'.$lop->ma_l) }}">
+                      <button type="button" class="btn btn-warning button_do" style="width: 100%">
+                        <i class="fa-solid fa-file-pdf text-light"></i>
+                        &ensp;
+                        Xuất file PDF
+                      </button>
+                    </a>
+                  </div>
+                  <div class="col-6 mt-1">
+                    <a href="{{ URL::to('/danhsach_vienchuc_lop_excel/'.$lop->ma_l) }}">
+                      <button type="button" class="btn btn-warning button_xanhla" style="width: 100%">
+                        <i class="fa-solid fa-file-excel text-light"></i>
+                        &ensp;
+                        Xuất file Excel
+                      </button>
+                    </a>
+                  </div>
+                </div>
               </td>
             </tr>
           @endforeach

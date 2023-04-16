@@ -35,12 +35,12 @@
     </p>
     <p>
       @foreach ($vienchuc as $vc )
-        <p class="text-center fw-bold" style="font-size: 13px">THÔNG TIN VIÊN CHỨC</p>
+        <p class="text-center fw-bold" style="font-size: 14px; color: #0C1E7F">THÔNG TIN VIÊN CHỨC</p>
         <div class="row">
           <div class="col-6" style="float: left; width: 50%">
             <b>Tên viên chức: </b> {{ $vc->hoten_vc }}
             <br>
-            <b>Mã số viên chức: </b> {{ $vc->ma_vc }}
+            <b>Mã số viên chức: </b> VC{{ $vc->ma_vc }}
             <br>
             <b>Email: </b>{{ $vc->user_vc }}
           </div>
@@ -77,7 +77,7 @@
                   <td><?php echo $i ?></td>
                   <td>{{ $qtcv->ten_nk }}</td>
                   <td>{{ $qtcv->ten_cv }}</td>
-                  <td>{{ $qtcv->ghichu_qtcv }}</td>
+                  <td style="width: 50%">{{ $qtcv->ghichu_qtcv }}</td>
                 </tr>
               @endif
             @endforeach

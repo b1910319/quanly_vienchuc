@@ -71,14 +71,14 @@
                   <span></span>
                 </div>
                 <?php
-                  $message=session()->get('message');
-                  if($message){
+                  $message_login=session()->get('message_login');
+                  if($message_login){
                     ?>
                       <p style="color: #CD0404; font-weight: bold;" class=" text-center">
-                        <?php echo $message ?>
+                        <?php echo $message_login ?>
                       </p>
                     <?php
-                    session()->put('message',null);
+                    session()->put('message_login',null);
                   }
                 ?>
                 <div class="row mt-1">
@@ -101,7 +101,7 @@
                   </div>
                   <div class="col-2"></div>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                   <div class="col-2"></div>
                   <div class="col-8">
                     <div class="g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}"></div>
@@ -112,7 +112,7 @@
                     @endif
                   </div>
                   <div class="col-2"></div>
-                </div>
+                </div> --}}
                 <div class="pb-2 pt-2 text-center">
                   <button class="button fw-bold" type="submit" style="font-size: 20px;">
                     Đăng nhập
@@ -391,3 +391,6 @@
 </body>
 
 </html>
+
+
+

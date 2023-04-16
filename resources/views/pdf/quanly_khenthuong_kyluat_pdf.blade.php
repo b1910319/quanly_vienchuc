@@ -35,12 +35,12 @@
     </p>
     <p>
       @foreach ($vienchuc as $vc )
-        <p class="text-center fw-bold" style="font-size: 13px">THÔNG TIN VIÊN CHỨC</p>
+        <p class="text-center fw-bold" style="font-size: 14px; color: #0C1E7F">THÔNG TIN VIÊN CHỨC</p>
         <div class="row">
           <div class="col-6" style="float: left; width: 50%">
             <b>Tên viên chức: </b> {{ $vc->hoten_vc }}
             <br>
-            <b>Mã số viên chức: </b> {{ $vc->ma_vc }}
+            <b>Mã số viên chức:</b> VC{{ $vc->ma_vc }}
             <br>
             <b>Email: </b>{{ $vc->user_vc }}
           </div>
@@ -52,7 +52,7 @@
             <b>Ngày sinh: </b> {{ $vc->ngaysinh_vc }}
           </div>
         </div>
-        <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 15%;">
+        <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 13%;">
           KHEN THƯỞNG
         </p>
         <table class="table">
@@ -86,7 +86,7 @@
             @endforeach
           </tbody>
         </table>
-        <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 15%;">
+        <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 8%;">
           KỶ LUẬT
         </p>
         <table class="table">
@@ -114,7 +114,9 @@
             @endforeach
           </tbody>
         </table>
-        <hr>
+        <p class="fw-bold">
+          _____________________________________________________________________________________________________________________________________
+        </p>
       @endforeach
     </p>
   </div>

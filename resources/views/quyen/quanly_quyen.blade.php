@@ -135,9 +135,9 @@
                         <tr>
                           <th scope="row" style="width: 20%">Mô tả: </th>
                           <td class="was-validated">
-                            <textarea class="form-control" rows="4" required name="mota_q">
-
-                            </textarea>
+                            <div class="mb-3">
+                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" required name="mota_q"></textarea>
+                            </div>
                           </td>
                         </tr>
                       </tbody>
@@ -197,12 +197,12 @@
                   if($quyen->status_q == 0){
                     ?>
                       <span class="badge badge-light-success">
-                        <i class="fas fa-solid fa-eye text-light"></i>&ensp;  Hiển thị
+                        <i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị
                       </span>
                     <?php
                   }else if($quyen->status_q == 1) {
                     ?>
-                      <span class="badge badge-light-danger text-light"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
+                      <span class="badge badge-light-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
                     <?php
                   }
                 ?>

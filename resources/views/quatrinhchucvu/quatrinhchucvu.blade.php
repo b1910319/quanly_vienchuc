@@ -11,7 +11,7 @@
         <thead class="color_table">
           <tr>
             <th class="text-light" scope="col"></th>
-            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">#</th>
             <th class="text-light" scope="col">Tên viên chức</th>
             <th class="text-light" scope="col">Thông tin viên chức</th>
             <th class="text-light" scope="col">Trạng thái</th>

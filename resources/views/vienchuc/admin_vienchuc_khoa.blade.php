@@ -223,7 +223,7 @@
                 {{ $vienchuc->user_vc }}
               </td>
               <td>
-                {{ $vienchuc->ten_k }}
+                {{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})
               </td>
               <td>
                 <?php

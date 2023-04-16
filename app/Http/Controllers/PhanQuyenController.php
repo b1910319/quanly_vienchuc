@@ -44,6 +44,7 @@ class PhanQuyenController extends Controller
     ->first();
     if($phanquyen_admin){
       $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('chucvu','chucvu.ma_cv', '=', 'vienchuc.ma_cv')
         ->where('status_vc', '<>', '1')
         ->orderBy('vienchuc.ma_vc', 'desc')
         ->get();

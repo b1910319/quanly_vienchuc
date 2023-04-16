@@ -48,6 +48,16 @@
             </div>
             <div class="col-2"></div>
           </div>
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+              <div class="mb-3">
+                <label for="username" class="form-label" style="color: white; font-weight: bold; font-size: 18px;">Xác nhận mật khẩu mới</label>
+                <input type="password" name="xacnhan_pass_moi" class="form-control text-dark fw-bold" placeholder="Password" required="" id="xacnhan_pass_moi" >
+              </div>
+            </div>
+            <div class="col-2"></div>
+          </div>
           <div class="pb-2 pt-2 text-center">
             <button class="button fw-bold" type="submit" style="font-size: 20px;">
               Cập nhật
@@ -84,6 +94,17 @@
           }
         }
       });
+    });
+    $('#xacnhan_pass_moi').change(function(){
+      var xacnhan_pass_moi= $(this).val();
+      var pass_moi = $('#pass_moi').val();
+      // alert(xacnhan_pass_moi);
+      // alert(pass_moi);
+      if(pass_moi == xacnhan_pass_moi ){
+        $('#message').html('');  
+      }else{
+        $('#message').html('Xác nhận mật khẩu nhập sai vui lòng nhập lại');  
+      }
     });
   });
 </script>

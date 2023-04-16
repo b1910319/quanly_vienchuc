@@ -16,8 +16,9 @@
         <thead class="color_table">
           <tr>
             <th class="text-light" scope="col"></th>
-            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">#</th>
             <th class="text-light" scope="col">Viên chức </th>
+            <th class="text-light" scope="col"></th>
           </tr>
         </thead>
         <tbody  >
@@ -40,6 +41,15 @@
                   <b>Mã số: </b> VC{{ $vienchuc->ma_vc }}
                 </a>
                 
+              </td>
+              <td>
+                <a href="{{ URL::to('lylich_chitiet/'.$vienchuc->ma_vc) }}">
+                  <button type="button" class="btn btn-primary btn_chitiet fw-bold">
+                    <i class="fa-solid fa-circle-info text-light"></i>
+                    &ensp;
+                    Chi tiết
+                  </button>
+                </a>
               </td>
             </tr>
           @endforeach

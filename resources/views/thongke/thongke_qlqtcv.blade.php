@@ -960,16 +960,13 @@
       barColors: ['#379237'],
       data: [
         <?php
-          if(isset($count_nhiemky_chucvu) ){
-            foreach ($count_nhiemky_chucvu as $key => $count){
+          if(isset($count_nhiemky) ){
+            foreach ($count_nhiemky as $key => $count){
               foreach($list_nhiemky as $key => $nhiemky){
-                foreach($list_chucvu as $key => $chucvu){
-                  if($count->ma_nk == $nhiemky->ma_nk && $count->ma_cv == $chucvu->ma_cv){
-                    $ten_nk = $nhiemky->ten_nk;
-                    $ten_cv = $chucvu->ten_cv;
-                    $tong = $count->sum;
-                    echo "{ year: '$ten_nk ($ten_cv)', value: $tong },";
-                  }
+                if($count->ma_nk == $nhiemky->ma_nk){
+                  $ten_nk = $nhiemky->ten_nk;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_nk', value: $tong },";
                 }
               }
             }

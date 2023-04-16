@@ -277,7 +277,7 @@ body {
   width: calc(190px + 70px);
   color: #3f33a6;
   font-weight: bold;
-  background-color: #000;
+  background-color: #dee2e6;
   -webkit-box-shadow: inset 0 1px 10px 0 rgba(154, 161, 171, .2);
   box-shadow: inset 0 1px 10px 0 rgba(154, 161, 171, .2);
   -webkit-transition: none;
@@ -515,7 +515,7 @@ body.enlarged {
 }
 
 .user-pro-dropdown {
-  background-color: #000;
+  background-color: #dee2e6;
   -webkit-box-shadow: none;
   box-shadow: none;
   padding: 15px 5px;
@@ -670,7 +670,7 @@ body.enlarged {
 }
 
 .notification-list .noti-title {
-  background-color: #000;
+  background-color: #dee2e6;
   padding: 15px 20px
 }
 
@@ -784,12 +784,12 @@ body.enlarged {
 
 .topbar-light .navbar-custom .app-search .form-control {
   color: #323a46;
-  background-color: #000;
+  background-color: #dee2e6;
   border-color: #000
 }
 
 .topbar-light .navbar-custom .app-search .btn {
-  background-color: #000;
+  background-color: #dee2e6;
   color: #ced4da
 }
 
@@ -850,7 +850,7 @@ body.enlarged {
   right: 0;
   color: #98a6ad;
   left: 240px;
-  background-color: #000;
+  background-color: #dee2e6;
   -webkit-box-shadow: 0 0 1px rgba(50, 58, 70, .1);
   box-shadow: 0 0 1px rgba(50, 58, 70, .1)
 }
@@ -886,7 +886,7 @@ body.enlarged {
 }
 
 .right-bar {
-  background-color: #000;
+  background-color: #dee2e6;
   -webkit-box-shadow: 0 0 24px 0 rgba(0, 0, 0, .06), 0 1px 0 0 rgba(0, 0, 0, .02);
   box-shadow: 0 0 24px 0 rgba(0, 0, 0, .06), 0 1px 0 0 rgba(0, 0, 0, .02);
   display: block;
@@ -940,7 +940,7 @@ body.enlarged {
   bottom: 0;
   height: 24px;
   width: 24px;
-  background-color: #000;
+  background-color: #dee2e6;
   line-height: 24px;
   border-radius: 50%;
   -webkit-box-shadow: 0 0 45px 0 rgba(0, 0, 0, .12);
@@ -1344,7 +1344,7 @@ body.boxed-layout.enlarged .footer {
 .checkbox label::before {
   -o-transition: .3s ease-in-out;
   -webkit-transition: .3s ease-in-out;
-  background-color: #000;
+  background-color: #dee2e6;
   border-radius: 3px;
   border: 2px solid #98a6ad;
   content: "";
@@ -1405,7 +1405,7 @@ body.boxed-layout.enlarged .footer {
 }
 
 .checkbox input[type=checkbox]:disabled+label::before {
-  background-color: #000;
+  background-color: #dee2e6;
   cursor: not-allowed
 }
 
@@ -1491,7 +1491,7 @@ body.boxed-layout.enlarged .footer {
 }
 
 .checkbox-light input[type=checkbox]:checked+label::before {
-  background-color: #000;
+  background-color: #dee2e6;
   border-color: #000
 }
 
@@ -1537,7 +1537,7 @@ body.boxed-layout.enlarged .footer {
 .radio label::before {
   -o-transition: border .5s ease-in-out;
   -webkit-transition: border .5s ease-in-out;
-  background-color: #000;
+  background-color: #dee2e6;
   border-radius: 50%;
   border: 2px solid #98a6ad;
   content: "";
@@ -2079,7 +2079,7 @@ body.boxed-layout.enlarged .footer {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #000;
+  background-color: #dee2e6;
   z-index: 9999
 }
 
@@ -2359,7 +2359,7 @@ body.boxed-layout.enlarged .footer {
 }
 
 .jq-icon-light {
-  background-color: #000;
+  background-color: #dee2e6;
   color: #000;
   border-color: #000
 }
@@ -2848,7 +2848,7 @@ body.boxed-layout.enlarged .footer {
 }
 
 .select2-container--default .select2-results__option[aria-selected=true] {
-  background-color: #000;
+  background-color: #dee2e6;
   color: #323a46
 }
 
@@ -3370,7 +3370,7 @@ div.dt-button-info h2 {
 }
 
 .responsive-table-plugin .checkbox-row label::before {
-  background-color: #000;
+  background-color: #dee2e6;
   border-radius: 3px;
   border: 1px solid #ced4da;
   content: "";
@@ -3427,7 +3427,7 @@ div.dt-button-info h2 {
 }
 
 .responsive-table-plugin .checkbox-row input[type=checkbox]:checked+label::before {
-  background-color: #000;
+  background-color: #dee2e6;
   border-color: #3f33a6
 }
 
@@ -3454,7 +3454,7 @@ div.dt-button-info h2 {
 }
 
 .responsive-table-plugin .btn-default {
-  background-color: #000;
+  background-color: #dee2e6;
   color: #323a46;
   border: 1px solid rgba(50, 58, 70, .3)
 }
@@ -3517,7 +3517,7 @@ div.dt-button-info h2 {
   margin-left: -1px;
   line-height: 1.25;
   color: #323a46;
-  background-color: #000;
+  background-color: #dee2e6;
   border: 1px solid #000;
   border-radius: 2px
 }
@@ -3989,7 +3989,7 @@ div.dt-button-info h2 {
   width: 20px;
   text-align: center;
   line-height: 20px;
-  background-color: #000;
+  background-color: #dee2e6;
   border-radius: 50%;
   margin: 5px;
   font-family: Roboto, sans-serif;
@@ -4213,7 +4213,7 @@ div.hopscotch-bubble .hopscotch-content {
 }
 
 .grid-structure .grid-container {
-  background-color: #000;
+  background-color: #dee2e6;
   margin-bottom: 10px;
   font-size: .8rem;
   font-weight: 500;
@@ -4613,7 +4613,7 @@ div.hopscotch-bubble .hopscotch-content {
 }
 
 .tasklist li {
-  background-color: #000;
+  background-color: #dee2e6;
   border: 1px solid #dee2e6;
   padding: 20px;
   margin-bottom: 15px;
@@ -4989,7 +4989,7 @@ div.hopscotch-bubble .hopscotch-content {
 }
 
 .gal-box {
-  background-color: #000;
+  background-color: #dee2e6;
   border-radius: 3px;
   border: 1px solid #e7eaed;
   margin-bottom: 24px
