@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Imports\Admin_VienChuc_KhoaImport;
+use App\Jobs\SendEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -686,6 +687,14 @@ class VienChucController extends Controller
       $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
         ->select(DB::raw('count(ma_vc) as sum'))
         ->get();
+      // $vienchuc = VienChuc::where('ma_vc', $ma_vc)
+      //   ->get();
+      // $message = [
+      //     'type' => 'Phân quyền cho viên chức',
+      //     'task' => 'test',
+      //     'content' => 'has been created!',
+      // ];
+      // SendEmail::dispatch($message, $vienchuc)->delay(now()->addMinute(1));
       return view('vienchuc.thongtin_vienchuc_edit') 
         ->with('title', $title)
         ->with('edit', $edit)

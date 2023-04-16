@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\PhanQuyenEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -88,6 +89,17 @@ class PhanQuyenController extends Controller
       $phanquyen->ma_q = $data['ma_q'];
       $phanquyen->save();
       $request->session()->put('message','Thêm thành công');
+      $vienchuc = VienChuc::where('ma_vc', $data['ma_vc'])
+        ->get();
+      $quyen = Quyen::find($data['ma_q']);
+      $vienchuc_ma = VienChuc::find($data['ma_vc']);
+      $message = [
+          'type' => 'Phân quyền cho viên chức',
+          'email' => $vienchuc_ma->user_vc,
+          'quyen' => $quyen->ten_q,
+          'url' => 'http://localhost/quanly_vienchuc/home',
+      ];
+      PhanQuyenEmail::dispatch($message, $vienchuc)->delay(now()->addMinute(1));
       return Redirect::to('/phanquyen');
     }else{
       return Redirect::to('/home');
