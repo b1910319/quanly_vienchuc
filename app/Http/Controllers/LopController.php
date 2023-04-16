@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Imports\LopImport;
+use App\Jobs\LopEmail;
 use App\Models\DanhMucLop;
 use App\Models\Lop;
 use Illuminate\Http\Request;
@@ -118,6 +119,20 @@ class LopController extends Controller
       $lop->sdtcoso_l = $data['sdtcoso_l'];
       $lop->status_l = $data['status_l'];
       $lop->save();
+      $vienchuc = VienChuc::whereIn('ma_vc', [1,177,187])
+        ->get();
+      $message = [
+          'type' => 'Lớp học mới',
+          'ten_l' => $data['ten_l'],
+          'ngaybatdau_l' => $data['ngaybatdau_l'],
+          'ngayketthuc_l' => $data['ngayketthuc_l'],
+          'tencosodaotao_l' => $data['tencosodaotao_l'],
+          'nganhhoc_l' => $data['nganhhoc_l'],
+          'diachidaotao_l' => $data['diachidaotao_l'],
+          'sdtcoso_l' => $data['sdtcoso_l'],
+          'url' => 'http://localhost/quanly_vienchuc/home',
+      ];
+      LopEmail::dispatch($message, $vienchuc)->delay(now()->addMinute(1));
       $request->session()->put('message','Thêm thành công');
       return Redirect::to('/lop');
     }else{
@@ -404,6 +419,20 @@ class LopController extends Controller
       $lop->sdtcoso_l = $data['sdtcoso_l'];
       $lop->status_l = $data['status_l'];
       $lop->save();
+      $vienchuc = VienChuc::whereIn('ma_vc', [1,177,187])
+        ->get();
+      $message = [
+          'type' => 'Lớp học mới',
+          'ten_l' => $data['ten_l'],
+          'ngaybatdau_l' => $data['ngaybatdau_l'],
+          'ngayketthuc_l' => $data['ngayketthuc_l'],
+          'tencosodaotao_l' => $data['tencosodaotao_l'],
+          'nganhhoc_l' => $data['nganhhoc_l'],
+          'diachidaotao_l' => $data['diachidaotao_l'],
+          'sdtcoso_l' => $data['sdtcoso_l'],
+          'url' => 'http://localhost/quanly_vienchuc/home',
+      ];
+      LopEmail::dispatch($message, $vienchuc)->delay(now()->addMinute(1));
       $request->session()->put('message','Thêm thành công');
       return Redirect::to('/lop_danhmuclop/'.$ma_dml);
     }else{
