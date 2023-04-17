@@ -102,7 +102,7 @@
           </div>
           <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body mt-3">
-              <form action="{{ URL::to('/add_nhiemky') }}" method="POST"
+              <form onsubmit="return check_submit()" action="{{ URL::to('/add_nhiemky') }}" method="POST"
                 autocomplete="off" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="row">
@@ -110,9 +110,14 @@
                     <table class="table">
                       <tbody>
                         <tr>
-                          <th scope="row">Tên nhiệm kỳ: </th>
-                          <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="ten_nk">
+                          <th scope="row" style="width: 10%">Từ: </th>
+                          <td class="was-validated" style="width: 40%">
+                            <input type='number' class='form-control input_table' id="batdau_nk" autofocus required name="batdau_nk" min="2000" max="<?php $date = getdate(); echo $date['year']+10 ?>">
+                          </td>
+                          <th scope="row" style="width: 10%">Đến: </th>
+                          <td class="was-validated" style="width: 40%">
+                            <input type='number' class='form-control input_table' id="ketthuc_nk" autofocus required name="ketthuc_nk" min="2000" max="<?php $date = getdate(); echo $date['year']+10 ?>">
+                            <p id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></p>
                           </td>
                         </tr>
                       </tbody>
@@ -137,7 +142,7 @@
                   <div class="row mb-2">
                     <div class="col-5"></div>
                     <div class="col-2">
-                      <button type="submit"  class="btn btn-primary button_xanhla them" style="width: 100%;">
+                      <button type="submit"  class="btn btn-primary button_xanhla them" style="width: 100%;" id="submit">
                         <i class="fas fa-plus-square text-light"></i>
                         &ensp;
                         Thêm
@@ -175,7 +180,7 @@
               </td>
               <th scope="row">{{ $key+1 }}</th>
               <td>
-                Nhiệm kỳ: {{ $nhiemky->ten_nk }} ({{ $nhiemky->ma_nk }})
+                Nhiệm kỳ: {{ $nhiemky->batdau_nk }} - {{ $nhiemky->ketthuc_nk }} ({{ $nhiemky->ma_nk }})
               </td>
               <td>
                 <?php
@@ -240,25 +245,25 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 {{--  --}}
 <script>
-  document.querySelector('.them').addEventListener('click', (event)=>{
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 1500,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
+  // document.querySelector('.them').addEventListener('click', (event)=>{
+  //   const Toast = Swal.mixin({
+  //     toast: true,
+  //     position: 'top-end',
+  //     showConfirmButton: false,
+  //     timer: 1500,
+  //     timerProgressBar: true,
+  //     didOpen: (toast) => {
+  //       toast.addEventListener('mouseenter', Swal.stopTimer)
+  //       toast.addEventListener('mouseleave', Swal.resumeTimer)
+  //     }
+  //   })
 
-    Toast.fire({
-      icon: 'success',
-      title: 'Thêm thành công'
-    })
+  //   Toast.fire({
+  //     icon: 'success',
+  //     title: 'Thêm thành công'
+  //   })
     
-  }); 
+  // }); 
   @foreach ($list as $nhiemky )
     document.querySelector('.xoa{{ $nhiemky->ma_nk }}').addEventListener('click', (event)=>{
       const swalWithBootstrapButtons = Swal.mixin({
@@ -305,6 +310,21 @@
     });
   @endforeach
   
+</script>
+<script language="javascript">
+  function check_submit()
+  {
+    let batdau_nk = document.getElementById("batdau_nk");
+    var ketthuc_nk = document.getElementById("ketthuc_nk");
+    var p = document.getElementById("baoloi");
+    var number_input = '';
+    if(batdau_nk.value > ketthuc_nk.value){
+      $('#baoloi').html('Năm kết thúc nhiệm kỳ phải lớn hơn năm bắt đầu nhiệm kỳ'); 
+      ketthuc_nk.value = number_input.value;
+      return false;
+    }
+    return true; 
+  }
 </script>
 <!--  -->
 @endsection

@@ -12,7 +12,9 @@ class QuaTrinhChucVu extends Model
     'ma_nk',
     'ma_cv',
     'ma_vc',
-    'ghichu_qtcv',
+    'soquyetdinh_qtcv',
+    'ngayky_qtcv',
+    'file_qtcv',
     'status_qtcv',
     'updated_qtcv'
 

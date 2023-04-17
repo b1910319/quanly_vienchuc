@@ -78,7 +78,8 @@ class NhiemKyController extends Controller
     if($phanquyen_admin || $phanquyen_qlqtcv){
       $data = $request->all();
       $nhiemky = new NhiemKy();
-      $nhiemky->ten_nk = $data['ten_nk'];
+      $nhiemky->batdau_nk = $data['batdau_nk'];
+      $nhiemky->ketthuc_nk = $data['ketthuc_nk'];
       $nhiemky->status_nk = $data['status_nk'];
       $nhiemky->save();
       return Redirect::to('/nhiemky');

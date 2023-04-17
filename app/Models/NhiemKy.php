@@ -9,7 +9,8 @@ class NhiemKy extends Model
 {
   use HasFactory;
   protected $fillable = [
-    'ten_nk',
+    'batdau_nk',
+    'ketthuc_nk',
     'status_nk',
     'updated_nk'
 
