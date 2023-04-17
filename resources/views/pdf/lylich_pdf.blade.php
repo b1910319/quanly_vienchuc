@@ -34,6 +34,13 @@
         <br>
       </p>
       <p>
+        <div style="float: left; width: 20%">
+          @if ($vc->hinh_vc != ' ')
+            <img src="{{ URL::to('public/uploads/vienchuc/'.$vc->hinh_vc) }}" class="img-fluid" style="width: 90%">
+          @else
+            Chưa cập nhật hình ảnh
+          @endif
+        </div>
         1. Họ và tên khai sinh (viết chữ in hoa): <span style="text-transform: uppercase">{{ $vc->hoten_vc }}</span> <br>
         2. Tên gọi khác: {{ $vc->tenkhac_vc }} <br>
         3. Ngày sinh : {{ $vc->ngaysinh_vc }} , Giới tính (nam, nữ): 
@@ -43,6 +50,7 @@
           Nữ
         @endif
         <br>
+        
         @foreach ($list_noisinh as $noisinh )
           @if ($noisinh->ma_vc == $vc->ma_vc)
             4. Nơi sinh: {{ $noisinh->ten_x }}, {{ $noisinh->ten_h }}, Tỉnh {{ $noisinh->ten_t }} <br>

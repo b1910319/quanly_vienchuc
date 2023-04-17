@@ -135,8 +135,8 @@
                         <tr>
                           <th scope="row">Hệ đào tạo: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="ma_hdt">
-                              <option value="0" >Chọn hệ đào tạo</option>
+                            <select class="custom-select" id="ma_hdt" name="ma_hdt" required>
+                              <option value="" >Chọn hệ đào tạo</option>
                               @foreach ($list_hedaotao as $hedaotao )
                                 <option value="{{ $hedaotao->ma_hdt }}" >{{ $hedaotao->ten_hdt }}</option>
                               @endforeach
@@ -146,8 +146,8 @@
                         <tr>
                           <th scope="row">Loại bằng cấp: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="ma_lbc">
-                              <option value="0" >Chọn loại bằng cấp</option>
+                            <select class="custom-select input_table" id="gender2" name="ma_lbc" required>
+                              <option value="" >Chọn loại bằng cấp</option>
                               @foreach ($list_loaibangcap as $loaibangcap )
                                 <option value="{{ $loaibangcap->ma_lbc }}" >{{ $loaibangcap->ten_lbc }}</option>
                               @endforeach
