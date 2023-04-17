@@ -316,7 +316,6 @@
   {
     let batdau_nk = document.getElementById("batdau_nk");
     var ketthuc_nk = document.getElementById("ketthuc_nk");
-    var p = document.getElementById("baoloi");
     var number_input = '';
     if(batdau_nk.value > ketthuc_nk.value){
       $('#baoloi').html('Năm kết thúc nhiệm kỳ phải lớn hơn năm bắt đầu nhiệm kỳ'); 

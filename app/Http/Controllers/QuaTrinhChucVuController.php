@@ -142,7 +142,7 @@ class QuaTrinhChucVuController extends Controller
         ->groupBy('status_qtcv')
         ->get();
       $list_nhiemky = NhiemKy::where('status_nk', '<>', '1')
-        ->orderBy('ten_nk', 'asc')
+        ->orderBy('batdau_nk', 'desc')
         ->get();
       $list_chucvu = ChucVu::where('status_cv', '<>', '1')
         ->orderBy('ten_cv', 'asc')
@@ -169,6 +169,21 @@ class QuaTrinhChucVuController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function check_soquyetdinh_qtcv(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $soquyetdinh_qtcv = $request->soquyetdinh_qtcv;
+      if($soquyetdinh_qtcv != null){
+        $quatrinhchucvu = QuaTrinhChucVu::where('soquyetdinh_qtcv', $soquyetdinh_qtcv)
+          ->first();
+        if(isset($quatrinhchucvu)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_quatrinhchucvu(Request $request, $ma_vc){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
@@ -187,7 +202,16 @@ class QuaTrinhChucVuController extends Controller
       $quatrinhchucvu->ma_nk = $data['ma_nk'];
       $quatrinhchucvu->ma_vc = $ma_vc;
       $quatrinhchucvu->ma_cv = $data['ma_cv'];
-      $quatrinhchucvu->ghichu_qtcv = $data['ghichu_qtcv'];
+      $quatrinhchucvu->soquyetdinh_qtcv = $data['soquyetdinh_qtcv'];
+      $quatrinhchucvu->ngayky_qtcv = $data['ngayky_qtcv'];
+      $get_file = $request->file('file_qtcv');
+      $vienchuc = VienChuc::find($ma_vc);
+      $chucvu = ChucVu::find($data['ma_cv']);
+      if($get_file){
+        $new_file = $vienchuc->hoten_vc.'-'.$chucvu->ten_cv.rand(0,999).'.'.$get_file->getClientOriginalExtension();
+        $get_file->move('public/uploads/quatrinhchucvu', $new_file);
+        $quatrinhchucvu->file_qtcv = $new_file;
+      }
       $quatrinhchucvu->status_qtcv = $data['status_qtcv'];
       $quatrinhchucvu->save();
       $vienchuc = VienChuc::find($ma_vc);
@@ -246,7 +270,7 @@ class QuaTrinhChucVuController extends Controller
     if($phanquyen_admin || $phanquyen_qlqtcv || $phanquyen_qlk){
       $edit = QuaTrinhChucVu::find($ma_qtcv);
       $list_nhiemky = NhiemKy::where('status_nk', '<>', '1')
-        ->orderBy('ten_nk', 'asc')
+        ->orderBy('batdau_nk', 'desc')
         ->get();
       $list_chucvu = ChucVu::where('status_cv', '<>', '1')
         ->orderBy('ten_cv', 'asc')
@@ -289,8 +313,20 @@ class QuaTrinhChucVuController extends Controller
       $quatrinhchucvu->ma_nk = $data['ma_nk'];
       $quatrinhchucvu->ma_vc = $ma_vc;
       $quatrinhchucvu->ma_cv = $data['ma_cv'];
-      $quatrinhchucvu->ghichu_qtcv = $data['ghichu_qtcv'];
+      $quatrinhchucvu->soquyetdinh_qtcv = $data['soquyetdinh_qtcv'];
+      $quatrinhchucvu->ngayky_qtcv = $data['ngayky_qtcv'];
       $quatrinhchucvu->status_qtcv = $data['status_qtcv'];
+      $get_file = $request->file('file_qtcv');
+      $vienchuc = VienChuc::find($ma_vc);
+      $chucvu = ChucVu::find($data['ma_cv']);
+      if($get_file){
+        $new_file = $vienchuc->hoten_vc.'-'.$chucvu->ten_cv.rand(0,999).'.'.$get_file->getClientOriginalExtension();$new_file = $vienchuc->hoten_vc.'-'.$chucvu->ten_cv.rand(0,999).'.'.$get_file->getClientOriginalExtension();
+        if($quatrinhchucvu->file_qtcv != ' '){
+          unlink('public/uploads/quatrinhchucvu/'.$quatrinhchucvu->file_qtcv);
+        }
+        $get_file->move('public/uploads/quatrinhchucvu', $new_file);
+        $quatrinhchucvu->file_qtcv = $new_file;
+      }
       $quatrinhchucvu->updated_qtcv = Carbon::now();
       $quatrinhchucvu->save();
       return Redirect::to('/quatrinhchucvu_add/'.$ma_vc);

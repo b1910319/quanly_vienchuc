@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 17, 2023 lúc 08:00 AM
+-- Thời gian đã tạo: Th4 17, 2023 lúc 11:56 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -2553,12 +2553,30 @@ CREATE TABLE `nhiemky` (
 --
 
 INSERT INTO `nhiemky` (`ma_nk`, `batdau_nk`, `ketthuc_nk`, `status_nk`, `created_nk`, `updated_nk`) VALUES
-(70, '2001', '2006', 0, '2023-04-17 05:41:54', NULL),
-(71, '2003', '2004', 0, '2023-04-17 05:42:36', NULL),
-(72, '2006', '2008', 0, '2023-04-17 05:43:53', NULL),
-(73, '2003', '2012', 0, '2023-04-17 05:44:52', NULL),
-(74, '2006', '2008', 0, '2023-04-17 05:49:56', NULL),
-(75, '2006', '2009', 0, '2023-04-17 05:50:50', NULL);
+(76, '2001', '2002', 0, '2023-04-17 06:54:21', NULL),
+(77, '2003', '2008', 0, '2023-04-17 06:54:21', NULL),
+(78, '2004', '2006', 0, '2023-04-17 06:54:21', NULL),
+(79, '2005', '2008', 0, '2023-04-17 06:54:21', NULL),
+(80, '2006', '2007', 0, '2023-04-17 06:54:21', NULL),
+(81, '2007', '2009', 0, '2023-04-17 06:54:21', NULL),
+(82, '2008', '2010', 0, '2023-04-17 06:54:21', NULL),
+(83, '2009', '2010', 0, '2023-04-17 06:54:21', NULL),
+(84, '2010', '2012', 0, '2023-04-17 06:54:21', NULL),
+(85, '2010', '2011', 0, '2023-04-17 06:54:21', NULL),
+(86, '2011', '2015', 0, '2023-04-17 06:54:21', NULL),
+(87, '2012', '2016', 0, '2023-04-17 06:54:21', NULL),
+(88, '2012', '2014', 0, '2023-04-17 06:54:21', NULL),
+(89, '2013', '2016', 0, '2023-04-17 06:54:21', NULL),
+(90, '2014', '2015', 0, '2023-04-17 06:54:21', NULL),
+(91, '2015', '2017', 0, '2023-04-17 06:54:21', NULL),
+(92, '2016', '2019', 0, '2023-04-17 06:54:21', NULL),
+(93, '2017', '2019', 0, '2023-04-17 06:54:21', NULL),
+(94, '2018', '2021', 0, '2023-04-17 06:54:21', NULL),
+(95, '2019', '2022', 0, '2023-04-17 06:54:21', NULL),
+(96, '2020', '2022', 0, '2023-04-17 06:54:21', NULL),
+(97, '2021', '2023', 0, '2023-04-17 06:54:21', NULL),
+(98, '2022', '2023', 0, '2023-04-17 06:54:21', NULL),
+(99, '2023', '2025', 0, '2023-04-17 06:54:21', NULL);
 
 -- --------------------------------------------------------
 
@@ -2833,6 +2851,14 @@ CREATE TABLE `quatrinhchucvu` (
   `created_qtcv` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_qtcv` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `quatrinhchucvu`
+--
+
+INSERT INTO `quatrinhchucvu` (`ma_qtcv`, `ma_nk`, `ma_cv`, `ma_vc`, `soquyetdinh_qtcv`, `ngayky_qtcv`, `file_qtcv`, `status_qtcv`, `created_qtcv`, `updated_qtcv`) VALUES
+(348, 98, 68, 194, '0124', '2013-05-20', 'Hoa Lý Cương-Thư ký Khoa759.pdf', 0, '2023-04-17 07:17:45', '2023-04-17 09:55:59'),
+(349, 97, 69, 194, '124', '2021-02-15', 'Hoa Lý Cương-Tổ trưởng Công đoàn262.pdf', 0, '2023-04-17 07:21:20', NULL);
 
 -- --------------------------------------------------------
 
@@ -3454,7 +3480,7 @@ INSERT INTO `vienchuc` (`ma_vc`, `ma_k`, `ma_cv`, `ma_n`, `ma_b`, `ma_dt`, `ma_t
 (191, 5, 8, 0, 0, 0, 0, 0, 'lhqbao', 'e10adc3949ba59abbe56e057f20f883e', ' Lê Huỳnh Quốc Bảo', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-04-15 03:05:35', ' '),
 (192, 5, 8, 0, 0, 0, 0, 0, 'tcnghi', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Công Nghị', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-04-15 03:05:35', ' '),
 (193, 5, 8, 20, 209, 4, 30, 6, 'tmkhoi', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Minh Khôi', '0124512458', ' ', 'Trần Minh Khôi', '1987-02-15', 0, 'Phú Lộc, Tam Bình, Vĩnh Long', 'Phú Lộc, Tam Bình, Vĩnh Long', 'giảng viên', '2000-01-12', 'giảng viên', 'không', '12/12', 'Cao cấp', 'giảng viên', 'C', 'C', '2001-01-12', '2001-02-12', '1987-01-12', '1988-01-12', 'không', 'giảng viên', 'Mạng máy tính, phân tích thiết kê hệ thống thông tin', '185', '56', 'A', 'không', 'Mạng máy tính, phân tích thiết kê hệ thống thông tin', '1245124875', '2008-08-06', 'XH015428', NULL, NULL, NULL, '2001-02-16', ' ', '2021-01-05', '2026-04-16', 0, '2023-04-15 03:05:35', ' '),
-(194, 5, 8, 0, 0, 0, 0, 0, 'hlcuong', 'e10adc3949ba59abbe56e057f20f883e', 'Hoa Lý Cương', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-04-15 03:05:35', ' ');
+(194, 5, 69, 0, 0, 0, 0, 0, 'hlcuong', 'e10adc3949ba59abbe56e057f20f883e', 'Hoa Lý Cương', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-04-15 03:05:35', ' ');
 
 -- --------------------------------------------------------
 
@@ -14451,7 +14477,7 @@ ALTER TABLE `ngach`
 -- AUTO_INCREMENT cho bảng `nhiemky`
 --
 ALTER TABLE `nhiemky`
-  MODIFY `ma_nk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `ma_nk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT cho bảng `noisinh`
@@ -14463,7 +14489,7 @@ ALTER TABLE `noisinh`
 -- AUTO_INCREMENT cho bảng `quatrinhchucvu`
 --
 ALTER TABLE `quatrinhchucvu`
-  MODIFY `ma_qtcv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=348;
+  MODIFY `ma_qtcv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=350;
 
 --
 -- AUTO_INCREMENT cho bảng `quequan`

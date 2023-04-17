@@ -86,8 +86,8 @@
                         <tr>
                           <th scope="row">Chức vụ: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="ma_cv">
-                              <option value="0" >Chọn chức vụ</option>
+                            <select class="custom-select input_table" id="gender2" name="ma_cv" required>
+                              <option value="" >Chọn chức vụ</option>
                               @foreach ($list_chucvu as $chucvu )
                                 <option value="{{ $chucvu->ma_cv }}" >{{ $chucvu->ten_cv }}</option>
                               @endforeach
@@ -97,12 +97,19 @@
                         <tr>
                           <th scope="row">Nhiệm kỳ: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="ma_nk">
-                              <option value="0" >Chọn nhiệm kỳ</option>
+                            <select class="custom-select input_table" id="gender2" name="ma_nk" required>
+                              <option value="" >Chọn nhiệm kỳ</option>
                               @foreach ($list_nhiemky as $nhiemky )
-                                <option value="{{ $nhiemky->ma_nk }}" >Nhiệm kỳ: {{ $nhiemky->ten_nk }}</option>
+                                <option value="{{ $nhiemky->ma_nk }}" >Nhiệm kỳ: {{ $nhiemky->batdau_nk }} - {{ $nhiemky->ketthuc_nk }}</option>
                               @endforeach
                             </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Số quyết định: </th>
+                          <td class="was-validated">
+                            <input type='text' id="soquyetdinh_qtcv"  class='form-control input_table' autofocus required name="soquyetdinh_qtcv">
+                            <p id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></p>
                           </td>
                         </tr>
                       </tbody>
@@ -112,11 +119,15 @@
                     <table class="table">
                       <tbody>
                         <tr>
-                          <th scope="row">Ghi chú: </th>
+                          <th scope="row">Ngày ký quyết định: </th>
                           <td class="was-validated">
-                            <div class="mb-3">
-                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required name="ghichu_qtcv"></textarea>
-                            </div>
+                            <input type='date' class='form-control input_table' autofocus required name="ngayky_qtcv">
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">File quyết định: </th>
+                          <td class="was-validated">
+                            <input type='file' class='form-control input_table' required name="file_qtcv">
                           </td>
                         </tr>
                         <tr>
@@ -160,7 +171,7 @@
             <th class="text-light" scope="col">#</th>
             <th class="text-light" scope="col">Chức vụ</th>
             <th class="text-light" scope="col">Nhiệm kỳ</th>
-            <th class="text-light" scope="col">Ghi chú</th>
+            <th class="text-light" scope="col">Thông tin quyết định</th>
             <th class="text-light" scope="col">Trạng thái</th>
             <th class="text-light" scope="col"></th>
           </tr>
@@ -178,10 +189,24 @@
                 {{ $quatrinhchucvu->ten_cv }} ({{ $quatrinhchucvu->ma_cv }})
               </td>
               <td>
-                Nhiệm kỳ: {{ $quatrinhchucvu->ten_nk }} ({{ $quatrinhchucvu->ma_nk }})
+                Nhiệm kỳ: {{ $quatrinhchucvu->batdau_nk }} - {{ $quatrinhchucvu->ketthuc_nk }} ({{ $quatrinhchucvu->ma_nk }})
               </td>
-              <td style="width: 30%;">
-                {{ $quatrinhchucvu->ghichu_qtcv }}
+              <td>
+                <b>Số quyết định: </b>{{ $quatrinhchucvu->soquyetdinh_qtcv }}
+                <br>
+                <b>Ngày ký quyết định: </b> {{ $quatrinhchucvu->ngayky_qtcv }}
+                <br>
+                @if ($quatrinhchucvu->file_qtcv !=' ')
+                  <a href="{{ asset('public/uploads/quatrinhchucvu/'.$quatrinhchucvu->file_qtcv) }}">
+                    <button type="button" class="btn btn-warning button_xanhla mt-2">
+                      <i class="fa-solid fa-file text-light"></i>
+                      &ensp;
+                      File
+                    </button>
+                  </a>
+                @else
+                  Không có file
+                @endif
               </td>
               <td>
                 <?php
@@ -312,6 +337,28 @@
     });
   @endforeach
   
+</script>
+<script>
+  $(document).ready(function(){
+    $('#soquyetdinh_qtcv').change(function(){
+      var soquyetdinh_qtcv = $(this).val();
+      var soquyetdinh = '';
+      // alert(soquyetdinh_qtcv);
+      $.ajax({
+        url:"{{ url("/check_soquyetdinh_qtcv") }}",
+        type:"GET",
+        data:{soquyetdinh_qtcv:soquyetdinh_qtcv},
+        success:function(data){
+          if(data == 1){  
+            $('#baoloi').html('Số quyết định đã tồn tại');
+            $('#soquyetdinh_qtcv').val('');
+          }else{
+            $('#thongbao').html(''); 
+          }
+        }
+      });
+    });
+  });
 </script>
 <!--  -->
 @endsection
