@@ -279,8 +279,8 @@
         text: "Bạn không thể khôi phục dữ liệu đã xoá",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
-        cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
+        confirmButtonText: '<i class="fa-solid fa-trash text-light"></i> &ensp;  Xoá',
+        cancelButtonText: '<i class="fa-solid fa-xmark text-light"></i> &ensp;  Huỷ',
         reverseButtons: true
       }).then((result) => {
         if (result.isConfirmed) {

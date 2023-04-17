@@ -15,7 +15,8 @@ class NhiemKyImport implements ToModel
   public function model(array $row)
   {
     return new NhiemKy([
-      'ten_nk'     => $row[0],
+      'batdau_nk'     => $row[0],
+      'ketthuc_nk'     => $row[1],
     ]);
   }
 }
