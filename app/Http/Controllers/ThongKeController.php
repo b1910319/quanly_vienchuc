@@ -10467,7 +10467,7 @@ class ThongKeController extends Controller
         ->orderBy('ma_vc', 'asc')
         ->get();
       $list_nhiemky = NhiemKy::where('status_nk', '<>', '1')
-        ->orderBy('ten_nk', 'asc')
+        ->orderBy('batdau_nk', 'desc')
         ->get();
       $list_chucvu = ChucVu::where('status_cv', '<>', '1')
         ->orderBy('ten_cv', 'asc')
@@ -10565,7 +10565,7 @@ class ThongKeController extends Controller
     $title = "Thống kê";
     if($phanquyen_admin || $phanquyen_qlqtcv){
       $list_nhiemky = NhiemKy::where('status_nk', '<>', '1')
-        ->orderBy('ten_nk', 'asc')
+        ->orderBy('batdau_nk', 'desc')
         ->get();
       $list_chucvu = ChucVu::where('status_cv', '<>', '1')
         ->orderBy('ten_cv', 'asc')
@@ -10581,8 +10581,8 @@ class ThongKeController extends Controller
         $count_1= QuaTrinhChucVu::join('nhiemky', 'nhiemky.ma_nk', '=', 'quatrinhchucvu.ma_nk')
           ->join('chucvu', 'chucvu.ma_cv', '=', 'quatrinhchucvu.ma_cv')
           ->where('status_qtcv', '<>', '2')
-          ->select(DB::raw('count(quatrinhchucvu.ma_qtcv) as sum, nhiemky.ma_nk, chucvu.ma_cv'))
-          ->groupBy('nhiemky.ma_nk', 'chucvu.ma_cv')
+          ->select(DB::raw('count(quatrinhchucvu.ma_qtcv) as sum, chucvu.ma_cv'))
+          ->groupBy('chucvu.ma_cv')
           ->get();
         $list_1 = VienChuc::join('quatrinhchucvu', 'quatrinhchucvu.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('chucvu', 'chucvu.ma_cv', '=', 'quatrinhchucvu.ma_cv')

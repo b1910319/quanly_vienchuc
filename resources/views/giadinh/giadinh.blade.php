@@ -170,7 +170,6 @@
                                 <input type='date' class='form-control input_table' autofocus required name="ngaysinh_gd" max="<?php echo $now ?>">
                               <?php
                             ?>
-                            
                           </td>
                         </tr>
                         <tr>

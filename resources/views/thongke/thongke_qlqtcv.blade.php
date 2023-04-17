@@ -53,7 +53,7 @@
                         <select class="custom-select input_table"  name="ma_nk">
                           <option value="" >Chọn nhiệm kỳ</option>
                           @foreach ($list_nhiemky as $nhiemky)
-                            <option value="{{ $nhiemky->ma_nk }}" >{{ $nhiemky->ten_nk }}</option>
+                            <option value="{{ $nhiemky->ma_nk }}" >{{ $nhiemky->batdau_nk }} - {{ $nhiemky->ketthuc_nk }}</option>
                           @endforeach
                         </select>
                       </div>
@@ -104,7 +104,7 @@
           <tr>
             <th class="text-light" scope="col">STT</th>
             <th class="text-light" scope="col">Thông tin viên chức </th>
-            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Đơn vị</th>
             <th class="text-light" scope="col">Thông tin quá trình chức vụ</th>
           </tr>
         </thead>
@@ -149,7 +149,7 @@
               </td>
                 @foreach ($list_vienchuc as $vienchuc  )
                   @if ($vienchuc->ma_vc == $vc->ma_vc)
-                    <td>{{ $vienchuc->ten_k }}</td>
+                    <td>{{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})</td>
                   @endif
                 @endforeach
               <td>
@@ -159,8 +159,21 @@
                       style="height: 100px; overflow: auto;">
                       <p>
                         <b> Chức vụ:</b> {{ $vc->ten_cv }} <br>
-                        <b> Nhiệm kỳ:</b> {{ $vc->ten_nk }} <br>
-                        <b> Ghi chú: </b> {{ $vc->ghichu_qtcv }} <br>
+                        <b> Số quyết định:</b> {{ $vc->soquyetdinh_qtcv }} <br>
+                        <b> Nhiệm kỳ: </b> {{ $vc->batdau_nk }} - {{ $vc->ketthuc_nk }} <br>
+                        <b>Ngày ký quyết định: </b> {{ $vc->ngayky_qtcv }}
+                        <br>
+                        @if ($vc->file_qtcv !=' ')
+                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}">
+                            <button type="button" class="btn btn-warning button_xanhla mt-2">
+                              <i class="fa-solid fa-file text-light"></i>
+                              &ensp;
+                              File
+                            </button>
+                          </a>
+                        @else
+                          Không có file
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -211,7 +224,7 @@
         ,
         @foreach ($list_nhiemky as $nhiemky )
           @if ($nhiemky->ma_nk == $ma_nk)
-          <span class="badge text-bg-danger">{{ $nhiemky->ten_nk }}</span>
+          <span class="badge text-bg-danger">{{ $nhiemky->batdau_nk }} - {{ $nhiemky->ketthuc_nk }}</span>
           @endif
         @endforeach
       </p>
@@ -220,7 +233,7 @@
           <tr>
             <th class="text-light" scope="col">STT</th>
             <th class="text-light" scope="col">Thông tin viên chức </th>
-            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Đơn vị</th>
             <th class="text-light" scope="col">Thông tin quá trình chức vụ</th>
           </tr>
         </thead>
@@ -265,7 +278,7 @@
               </td>
                 @foreach ($list_vienchuc as $vienchuc  )
                   @if ($vienchuc->ma_vc == $vc->ma_vc)
-                    <td>{{ $vienchuc->ten_k }}</td>
+                    <td>{{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})</td>
                   @endif
                 @endforeach
               <td>
@@ -275,8 +288,21 @@
                       style="height: 100px; overflow: auto;">
                       <p>
                         <b> Chức vụ:</b> {{ $vc->ten_cv }} <br>
-                        <b> Nhiệm kỳ:</b> {{ $vc->ten_nk }} <br>
-                        <b> Ghi chú: </b> {{ $vc->ghichu_qtcv }} <br>
+                        <b> Số quyết định:</b> {{ $vc->soquyetdinh_qtcv }} <br>
+                        <b> Nhiệm kỳ: </b> {{ $vc->batdau_nk }} - {{ $vc->ketthuc_nk }} <br>
+                        <b>Ngày ký quyết định: </b> {{ $vc->ngayky_qtcv }}
+                        <br>
+                        @if ($vc->file_qtcv !=' ')
+                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}">
+                            <button type="button" class="btn btn-warning button_xanhla mt-2">
+                              <i class="fa-solid fa-file text-light"></i>
+                              &ensp;
+                              File
+                            </button>
+                          </a>
+                        @else
+                          Không có file
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -330,7 +356,7 @@
           <tr>
             <th class="text-light" scope="col">STT</th>
             <th class="text-light" scope="col">Thông tin viên chức </th>
-            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Đơn vị</th>
             <th class="text-light" scope="col">Thông tin quá trình chức vụ</th>
           </tr>
         </thead>
@@ -375,7 +401,7 @@
               </td>
                 @foreach ($list_vienchuc as $vienchuc  )
                   @if ($vienchuc->ma_vc == $vc->ma_vc)
-                    <td>{{ $vienchuc->ten_k }}</td>
+                    <td>{{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})</td>
                   @endif
                 @endforeach
               <td>
@@ -385,8 +411,21 @@
                       style="height: 100px; overflow: auto;">
                       <p>
                         <b> Chức vụ:</b> {{ $vc->ten_cv }} <br>
-                        <b> Nhiệm kỳ:</b> {{ $vc->ten_nk }} <br>
-                        <b> Ghi chú: </b> {{ $vc->ghichu_qtcv }} <br>
+                        <b> Số quyết định:</b> {{ $vc->soquyetdinh_qtcv }} <br>
+                        <b> Nhiệm kỳ: </b> {{ $vc->batdau_nk }} - {{ $vc->ketthuc_nk }} <br>
+                        <b>Ngày ký quyết định: </b> {{ $vc->ngayky_qtcv }}
+                        <br>
+                        @if ($vc->file_qtcv !=' ')
+                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}">
+                            <button type="button" class="btn btn-warning button_xanhla mt-2">
+                              <i class="fa-solid fa-file text-light"></i>
+                              &ensp;
+                              File
+                            </button>
+                          </a>
+                        @else
+                          Không có file
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -431,7 +470,7 @@
         ,
         @foreach ($list_nhiemky as $nhiemky )
           @if ($nhiemky->ma_nk == $ma_nk)
-          <span class="badge text-bg-secondary">{{ $nhiemky->ten_nk }}</span>
+          <span class="badge text-bg-secondary">{{ $nhiemky->batdau_nk }} - {{ $nhiemky->ketthuc_nk }}</span>
           @endif
         @endforeach
       </p>
@@ -440,7 +479,7 @@
           <tr>
             <th class="text-light" scope="col">STT</th>
             <th class="text-light" scope="col">Thông tin viên chức </th>
-            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Đơn vị</th>
             <th class="text-light" scope="col">Thông tin quá trình chức vụ</th>
           </tr>
         </thead>
@@ -485,7 +524,7 @@
               </td>
                 @foreach ($list_vienchuc as $vienchuc  )
                   @if ($vienchuc->ma_vc == $vc->ma_vc)
-                    <td>{{ $vienchuc->ten_k }}</td>
+                    <td>{{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})</td>
                   @endif
                 @endforeach
               <td>
@@ -495,8 +534,21 @@
                       style="height: 100px; overflow: auto;">
                       <p>
                         <b> Chức vụ:</b> {{ $vc->ten_cv }} <br>
-                        <b> Nhiệm kỳ:</b> {{ $vc->ten_nk }} <br>
-                        <b> Ghi chú: </b> {{ $vc->ghichu_qtcv }} <br>
+                        <b> Số quyết định:</b> {{ $vc->soquyetdinh_qtcv }} <br>
+                        <b> Nhiệm kỳ: </b> {{ $vc->batdau_nk }} - {{ $vc->ketthuc_nk }} <br>
+                        <b>Ngày ký quyết định: </b> {{ $vc->ngayky_qtcv }}
+                        <br>
+                        @if ($vc->file_qtcv !=' ')
+                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}">
+                            <button type="button" class="btn btn-warning button_xanhla mt-2">
+                              <i class="fa-solid fa-file text-light"></i>
+                              &ensp;
+                              File
+                            </button>
+                          </a>
+                        @else
+                          Không có file
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -541,7 +593,7 @@
         ,
         @foreach ($list_nhiemky as $nhiemky )
           @if ($nhiemky->ma_nk == $ma_nk)
-          <span class="badge text-bg-secondary">{{ $nhiemky->ten_nk }}</span>
+          <span class="badge text-bg-secondary">{{ $nhiemky->batdau_nk }} - {{ $nhiemky->ketthuc_nk }}</span>
           @endif
         @endforeach
       </p>
@@ -550,7 +602,7 @@
           <tr>
             <th class="text-light" scope="col">STT</th>
             <th class="text-light" scope="col">Thông tin viên chức </th>
-            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Đơn vị</th>
             <th class="text-light" scope="col">Thông tin quá trình chức vụ</th>
           </tr>
         </thead>
@@ -595,7 +647,7 @@
               </td>
                 @foreach ($list_vienchuc as $vienchuc  )
                   @if ($vienchuc->ma_vc == $vc->ma_vc)
-                    <td>{{ $vienchuc->ten_k }}</td>
+                    <td>{{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})</td>
                   @endif
                 @endforeach
               <td>
@@ -605,8 +657,21 @@
                       style="height: 100px; overflow: auto;">
                       <p>
                         <b> Chức vụ:</b> {{ $vc->ten_cv }} <br>
-                        <b> Nhiệm kỳ:</b> {{ $vc->ten_nk }} <br>
-                        <b> Ghi chú: </b> {{ $vc->ghichu_qtcv }} <br>
+                        <b> Số quyết định:</b> {{ $vc->soquyetdinh_qtcv }} <br>
+                        <b> Nhiệm kỳ: </b> {{ $vc->batdau_nk }} - {{ $vc->ketthuc_nk }} <br>
+                        <b>Ngày ký quyết định: </b> {{ $vc->ngayky_qtcv }}
+                        <br>
+                        @if ($vc->file_qtcv !=' ')
+                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}">
+                            <button type="button" class="btn btn-warning button_xanhla mt-2">
+                              <i class="fa-solid fa-file text-light"></i>
+                              &ensp;
+                              File
+                            </button>
+                          </a>
+                        @else
+                          Không có file
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -654,7 +719,7 @@
           <tr>
             <th class="text-light" scope="col">STT</th>
             <th class="text-light" scope="col">Thông tin viên chức </th>
-            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Đơn vị</th>
             <th class="text-light" scope="col">Thông tin quá trình chức vụ</th>
           </tr>
         </thead>
@@ -699,7 +764,7 @@
               </td>
                 @foreach ($list_vienchuc as $vienchuc  )
                   @if ($vienchuc->ma_vc == $vc->ma_vc)
-                    <td>{{ $vienchuc->ten_k }}</td>
+                    <td>{{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})</td>
                   @endif
                 @endforeach
               <td>
@@ -709,8 +774,21 @@
                       style="height: 100px; overflow: auto;">
                       <p>
                         <b> Chức vụ:</b> {{ $vc->ten_cv }} <br>
-                        <b> Nhiệm kỳ:</b> {{ $vc->ten_nk }} <br>
-                        <b> Ghi chú: </b> {{ $vc->ghichu_qtcv }} <br>
+                        <b> Số quyết định:</b> {{ $vc->soquyetdinh_qtcv }} <br>
+                        <b> Nhiệm kỳ: </b> {{ $vc->batdau_nk }} - {{ $vc->ketthuc_nk }} <br>
+                        <b>Ngày ký quyết định: </b> {{ $vc->ngayky_qtcv }}
+                        <br>
+                        @if ($vc->file_qtcv !=' ')
+                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}">
+                            <button type="button" class="btn btn-warning button_xanhla mt-2">
+                              <i class="fa-solid fa-file text-light"></i>
+                              &ensp;
+                              File
+                            </button>
+                          </a>
+                        @else
+                          Không có file
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -758,7 +836,7 @@
           <tr>
             <th class="text-light" scope="col">STT</th>
             <th class="text-light" scope="col">Thông tin viên chức </th>
-            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Đơn vị</th>
             <th class="text-light" scope="col">Thông tin quá trình chức vụ</th>
           </tr>
         </thead>
@@ -803,7 +881,7 @@
               </td>
                 @foreach ($list_vienchuc as $vienchuc  )
                   @if ($vienchuc->ma_vc == $vc->ma_vc)
-                    <td>{{ $vienchuc->ten_k }}</td>
+                    <td>{{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})</td>
                   @endif
                 @endforeach
               <td>
@@ -813,8 +891,21 @@
                       style="height: 100px; overflow: auto;">
                       <p>
                         <b> Chức vụ:</b> {{ $vc->ten_cv }} <br>
-                        <b> Nhiệm kỳ:</b> {{ $vc->ten_nk }} <br>
-                        <b> Ghi chú: </b> {{ $vc->ghichu_qtcv }} <br>
+                        <b> Số quyết định:</b> {{ $vc->soquyetdinh_qtcv }} <br>
+                        <b> Nhiệm kỳ: </b> {{ $vc->batdau_nk }} - {{ $vc->ketthuc_nk }} <br>
+                        <b>Ngày ký quyết định: </b> {{ $vc->ngayky_qtcv }}
+                        <br>
+                        @if ($vc->file_qtcv !=' ')
+                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}">
+                            <button type="button" class="btn btn-warning button_xanhla mt-2">
+                              <i class="fa-solid fa-file text-light"></i>
+                              &ensp;
+                              File
+                            </button>
+                          </a>
+                        @else
+                          Không có file
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -853,7 +944,7 @@
         Danh sách được lọc theo: 
         @foreach ($list_nhiemky as $nhiemky )
           @if ($nhiemky->ma_nk == $ma_nk)
-          <span class="badge text-bg-primary">{{ $nhiemky->ten_nk }}</span>
+          <span class="badge text-bg-primary">{{ $nhiemky->batdau_nk }} - {{ $nhiemky->ketthuc_nk }}</span>
           @endif
         @endforeach
       </p>
@@ -862,7 +953,7 @@
           <tr>
             <th class="text-light" scope="col">STT</th>
             <th class="text-light" scope="col">Thông tin viên chức </th>
-            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Đơn vị</th>
             <th class="text-light" scope="col">Thông tin quá trình chức vụ</th>
           </tr>
         </thead>
@@ -907,7 +998,7 @@
               </td>
                 @foreach ($list_vienchuc as $vienchuc  )
                   @if ($vienchuc->ma_vc == $vc->ma_vc)
-                    <td>{{ $vienchuc->ten_k }}</td>
+                    <td>{{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})</td>
                   @endif
                 @endforeach
               <td>
@@ -917,8 +1008,21 @@
                       style="height: 100px; overflow: auto;">
                       <p>
                         <b> Chức vụ:</b> {{ $vc->ten_cv }} <br>
-                        <b> Nhiệm kỳ:</b> {{ $vc->ten_nk }} <br>
-                        <b> Ghi chú: </b> {{ $vc->ghichu_qtcv }} <br>
+                        <b> Số quyết định:</b> {{ $vc->soquyetdinh_qtcv }} <br>
+                        <b> Nhiệm kỳ: </b> {{ $vc->batdau_nk }} - {{ $vc->ketthuc_nk }} <br>
+                        <b>Ngày ký quyết định: </b> {{ $vc->ngayky_qtcv }}
+                        <br>
+                        @if ($vc->file_qtcv !=' ')
+                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}">
+                            <button type="button" class="btn btn-warning button_xanhla mt-2">
+                              <i class="fa-solid fa-file text-light"></i>
+                              &ensp;
+                              File
+                            </button>
+                          </a>
+                        @else
+                          Không có file
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -964,22 +1068,19 @@
             foreach ($count_nhiemky as $key => $count){
               foreach($list_nhiemky as $key => $nhiemky){
                 if($count->ma_nk == $nhiemky->ma_nk){
-                  $ten_nk = $nhiemky->ten_nk;
+                  $nhiemky = $nhiemky->batdau_nk.' - '.$nhiemky->ketthuc_nk;
                   $tong = $count->sum;
-                  echo "{ year: '$ten_nk', value: $tong },";
+                  echo "{ year: '$nhiemky', value: $tong },";
                 }
               }
             }
           }else if(isset($count_1) ){
             foreach ($count_1 as $key => $count){
-              foreach($list_nhiemky as $key => $nhiemky){
-                foreach($list_chucvu as $key => $chucvu){
-                  if($count->ma_nk == $nhiemky->ma_nk && $count->ma_cv == $chucvu->ma_cv){
-                    $ten_nk = $nhiemky->ten_nk;
-                    $ten_cv = $chucvu->ten_cv;
-                    $tong = $count->sum;
-                    echo "{ year: '$ten_nk ($ten_cv)', value: $tong },";
-                  }
+              foreach($list_chucvu as $key => $chucvu){
+                if($count->ma_cv == $chucvu->ma_cv){
+                  $ten_cv = $chucvu->ten_cv;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_cv', value: $tong },";
                 }
               }
             }
@@ -1002,9 +1103,9 @@
                 foreach($list_nhiemky as $key => $nhiemky){
                   if($count->ma_k == $khoa->ma_k && $count->ma_nk == $nhiemky->ma_nk){
                     $ten_k = $khoa->ten_k;
-                    $ten_nk = $nhiemky->ten_nk;
+                    $nhiemky = $nhiemky->batdau_nk.' - '.$nhiemky->ketthuc_nk;
                     $tong = $count->sum;
-                    echo "{ year: '$ten_k ($ten_nk)', value: $tong },";
+                    echo "{ year: '$ten_k ($nhiemky)', value: $tong },";
                   }
                 }
               }
@@ -1015,9 +1116,9 @@
                 foreach($list_nhiemky as $key => $nhiemky){
                   if($count->ma_cv == $chucvu->ma_cv && $count->ma_nk == $nhiemky->ma_nk){
                     $ten_cv = $chucvu->ten_cv;
-                    $ten_nk = $nhiemky->ten_nk;
+                    $nhiemky = $nhiemky->batdau_nk.' - '.$nhiemky->ketthuc_nk;
                     $tong = $count->sum;
-                    echo "{ year: '$ten_cv ($ten_nk)', value: $tong },";
+                    echo "{ year: '$ten_cv ($nhiemky)', value: $tong },";
                   }
                 }
               }
@@ -1046,9 +1147,9 @@
             foreach ($count_7 as $key => $count){
               foreach($list_nhiemky as $key => $nhiemky){
                 if($count->ma_nk == $nhiemky->ma_nk ){
-                  $ten_nk = $nhiemky->ten_nk;
+                  $nhiemky = $nhiemky->batdau_nk.' - '.$nhiemky->ketthuc_nk;
                   $tong = $count->sum;
-                  echo "{ year: '$ten_nk', value: $tong },";
+                  echo "{ year: '$nhiemky', value: $tong },";
                 }
               }
             }

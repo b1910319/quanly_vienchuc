@@ -121,7 +121,14 @@
                         <tr>
                           <th scope="row">Ngày ký quyết định: </th>
                           <td class="was-validated">
-                            <input type='date' class='form-control input_table' autofocus required name="ngayky_qtcv">
+                            <?php 
+                              use Illuminate\Support\Carbon;
+                              Carbon::now('Asia/Ho_Chi_Minh'); 
+                              $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                              ?>
+                                <input type='date' class='form-control input_table' autofocus required name="ngayky_qtcv" max="<?php echo $now ?>">
+                              <?php
+                            ?>
                           </td>
                         </tr>
                         <tr>
@@ -305,8 +312,8 @@
         text: "Bạn không thể khôi phục dữ liệu đã xoá",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
-        cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
+        confirmButtonText: '<i class="fa-solid fa-trash text-light"></i> &ensp;  Xoá',
+        cancelButtonText: '<i class="fa-solid fa-xmark text-light"></i> &ensp;  Huỷ',
         reverseButtons: true
       }).then((result) => {
         if (result.isConfirmed) {
@@ -353,7 +360,7 @@
             $('#baoloi').html('Số quyết định đã tồn tại');
             $('#soquyetdinh_qtcv').val('');
           }else{
-            $('#thongbao').html(''); 
+            $('#baoloi').html(''); 
           }
         }
       });

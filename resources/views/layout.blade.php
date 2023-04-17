@@ -167,7 +167,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
               <li>
                 <a href="{{ URL::to('quanly_khoa') }}" class="waves-effect">
                   <i class="fa-solid fa-building"></i>
-                  <span> Quản Lý Khoa </span>
+                  <span> Quản Lý Đơn Vị Trực Thuộc </span>
                 </a>
               </li>
               <li>

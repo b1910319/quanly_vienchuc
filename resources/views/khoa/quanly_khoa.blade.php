@@ -3,7 +3,7 @@
 <div class="row">
   <div class="card-box">
     <div class="alert alert-light color_alert" role="alert">
-      ________THÔNG TIN KHOA THUỘC TRƯỜNG CÔNG NGHỆ THÔNG TIN VÀ TRUYỀN THÔNG________
+      ________THÔNG TIN ĐƠN VỊ TRỰC THUỘC TRƯỜNG CÔNG NGHỆ THÔNG TIN VÀ TRUYỀN THÔNG________
     </div>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
@@ -110,7 +110,7 @@
                     <table class="table">
                       <tbody>
                         <tr>
-                          <th scope="row">Tên khoa: </th>
+                          <th scope="row">Đơn vị trực thuộc: </th>
                           <td class="was-validated">
                             <input type='text' class='form-control input_table' autofocus required name="ten_k" minlength="5">
                           </td>
@@ -168,7 +168,7 @@
           <tr>
             <th class="text-light" scope="col"></th>
             <th class="text-light" scope="col">STT</th>
-            <th class="text-light" scope="col">Khoa </th>
+            <th class="text-light" scope="col">Đơn vị trực thuộc </th>
             <th class="text-light" scope="col">Viên chức</th>
             <th class="text-light" scope="col">Trạng thái</th>
             <th class="text-light" scope="col"></th>

@@ -28,8 +28,10 @@ class ThongKeQLQTCV_5Export implements FromQuery,WithHeadings, ShouldAutoSize
       'Ngày sinh',
       'Khoa',
       'Chức vụ',
-      'Nhiệm kỳ',
-      'Ghi chú'
+      'Từ năm',
+      'Đến năm',
+      'Số quyết định',
+      'Ngày ký quyết định'
     ];
   }
   public function query()
@@ -41,6 +43,6 @@ class ThongKeQLQTCV_5Export implements FromQuery,WithHeadings, ShouldAutoSize
     ->where('khoa.ma_k', $this->ma_k)
     ->where('status_vc', '<>', '2')
     ->where('status_qtcv', '<>', '2')
-    ->select('vienchuc.ma_vc', 'vienchuc.hoten_vc', 'vienchuc.user_vc', 'vienchuc.sdt_vc', 'vienchuc.ngaysinh_vc', 'khoa.ten_k', 'chucvu.ten_cv','nhiemky.ten_nk', 'quatrinhchucvu.ghichu_qtcv');
+    ->select('vienchuc.ma_vc', 'vienchuc.hoten_vc', 'vienchuc.user_vc', 'vienchuc.sdt_vc', 'vienchuc.ngaysinh_vc', 'khoa.ten_k', 'chucvu.ten_cv','nhiemky.batdau_nk' , 'nhiemky.ketthuc_nk', 'quatrinhchucvu.soquyetdinh_qtcv', 'quatrinhchucvu.ngayky_qtcv');
   }
 }
