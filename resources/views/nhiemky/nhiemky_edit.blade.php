@@ -13,7 +13,7 @@
         ________CẬP NHẬT THÔNG TIN________
       </h4>
     </div>
-    <form action="{{ URL::to('/update_nhiemky/'.$edit->ma_nk) }}" method="POST"
+    <form onsubmit="return check_submit() " action="{{ URL::to('/update_nhiemky/'.$edit->ma_nk) }}" method="POST"
       autocomplete="off" enctype="multipart/form-data">
       {{ csrf_field() }}
       <div class="row">
@@ -21,9 +21,14 @@
           <table class="table">
             <tbody>
               <tr>
-                <th scope="row">Tên dân tộc: </th>
-                <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="ten_nk" value="{{ $edit->ten_nk }}">
+                <th scope="row" style="width: 10%">Từ: </th>
+                <td class="was-validated" style="width: 40%">
+                  <input type='number' class='form-control input_table' id="batdau_nk" autofocus required name="batdau_nk" min="2000" max="<?php $date = getdate(); echo $date['year']+10 ?>" value="{{ $edit->batdau_nk }}">
+                </td>
+                <th scope="row" style="width: 10%">Đến: </th>
+                <td class="was-validated" style="width: 40%">
+                  <input type='number' class='form-control input_table' id="ketthuc_nk" autofocus required name="ketthuc_nk" min="2000" max="<?php $date = getdate(); echo $date['year']+10 ?>" value="{{ $edit->ketthuc_nk }}">
+                  <p id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></p>
                 </td>
               </tr>
             </tbody>
@@ -63,4 +68,23 @@
       </div>
     </form>
   </div> 
+  {{-- ajax --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  {{--  --}}
+  <script language="javascript">
+    function check_submit()
+    {
+      let batdau_nk = document.getElementById("batdau_nk");
+      var ketthuc_nk = document.getElementById("ketthuc_nk");
+      var p = document.getElementById("baoloi");
+      var number_input = '';
+      if(batdau_nk.value > ketthuc_nk.value){
+        $('#baoloi').html('Năm kết thúc nhiệm kỳ phải lớn hơn năm bắt đầu nhiệm kỳ'); 
+        ketthuc_nk.value = number_input.value;
+        return false;
+      }
+      return true; 
+    }
+  </script>
 @endsection

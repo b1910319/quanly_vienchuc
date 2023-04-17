@@ -175,7 +175,8 @@ class NhiemKyController extends Controller
       $data = $request->all();
       Carbon::now('Asia/Ho_Chi_Minh');
       $nhiemky = NhiemKy::find($ma_nk);
-      $nhiemky->ten_nk = $data['ten_nk'];
+      $nhiemky->batdau_nk = $data['batdau_nk'];
+      $nhiemky->ketthuc_nk = $data['ketthuc_nk'];
       $nhiemky->status_nk = $data['status_nk'];
       $nhiemky->updated_nk = Carbon::now();
       $nhiemky->save();
