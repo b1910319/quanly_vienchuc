@@ -3025,16 +3025,6 @@ class VienChucController extends Controller
         ];
       };
       $temp->cloneRowAndSetValues('stt_gd', $giadinh_arr);
-      $temp->setValue('thuongtru_vc',$vienchuc->thuongtru_vc);
-      $temp->setValue('thuongtru_vc',$vienchuc->thuongtru_vc);
-      $temp->setValue('thuongtru_vc',$vienchuc->thuongtru_vc);
-      $temp->setValue('thuongtru_vc',$vienchuc->thuongtru_vc);
-      $temp->setValue('thuongtru_vc',$vienchuc->thuongtru_vc);
-      $temp->setValue('thuongtru_vc',$vienchuc->thuongtru_vc);
-      $temp->setValue('thuongtru_vc',$vienchuc->thuongtru_vc);
-      $temp->setValue('thuongtru_vc',$vienchuc->thuongtru_vc);
-      $temp->setValue('thuongtru_vc',$vienchuc->thuongtru_vc);
-      $temp->setValue('thuongtru_vc',$vienchuc->thuongtru_vc);
       $name_file = $vienchuc->hoten_vc;
       $temp->saveAs($name_file.'.docx');
       return response()->download($name_file.'.docx');

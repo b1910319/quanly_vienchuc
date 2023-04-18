@@ -35,7 +35,6 @@ use App\Exports\ThongKeQLCTTC_Chuyen_Loc_2Export;
 use App\Exports\ThongKeQLCTTC_Chuyen_Loc_3Export;
 use App\Exports\ThongKeQLCTTC_Chuyen_Loc_4Export;
 use App\Exports\ThongKeQLCTTC_Chuyen_Loc_5Export;
-use App\Exports\ThongKeQLCTTC_Chuyen_Loc_6Export;
 use App\Exports\ThongKeQLCTTC_DungHoc_Loc_AllExport;
 use App\Exports\ThongKeQLCTTC_DungHoc_Loc_2Export;
 use App\Exports\ThongKeQLCTTC_DungHoc_Loc_3Export;
@@ -45,7 +44,6 @@ use App\Exports\ThongKeQLCTTC_DungHoc_Loc_6Export;
 use App\Exports\ThongKeQLCTTC_DungHoc_Loc_7Export;
 use App\Exports\ThongKeQLCTTC_DungHoc_Loc_8Export;
 use App\Exports\ThongKeQLCTTC_DungHoc_Loc_9Export;
-use App\Exports\ThongKeQLCTTC_DungHoc_Loc_10Export;
 use App\Exports\ThongKeQLCTTC_DungHoc_Loc_11Export;
 use App\Exports\ThongKeQLCTTC_GiaHan_Loc_AllExport;
 use App\Exports\ThongKeQLCTTC_GiaHan_Loc_2Export;
@@ -56,7 +54,6 @@ use App\Exports\ThongKeQLCTTC_GiaHan_Loc_6Export;
 use App\Exports\ThongKeQLCTTC_GiaHan_Loc_7Export;
 use App\Exports\ThongKeQLCTTC_GiaHan_Loc_8Export;
 use App\Exports\ThongKeQLCTTC_GiaHan_Loc_9Export;
-use App\Exports\ThongKeQLCTTC_GiaHan_Loc_10Export;
 use App\Exports\ThongKeQLCTTC_GiaHan_Loc_11Export;
 use App\Exports\ThongKeQLCTTC_HoanThanh_Loc_AllExport;
 use App\Exports\ThongKeQLCTTC_HoanThanh_Loc_2Export;
@@ -114,17 +111,6 @@ use App\Exports\ThongKeQLQTCV_7Export;
 use App\Exports\ThongKeQLTT_2Export;
 use App\Exports\ThongKeQLTT_3Export;
 use App\Exports\ThongKeQLTT_4Export;
-use App\Exports\ThongKeQLTT_5Export;
-use App\Exports\ThongKeQLTT_6Export;
-use App\Exports\ThongKeQLTT_7Export;
-use App\Exports\ThongKeQLTT_8Export;
-use App\Exports\ThongKeQLTT_9Export;
-use App\Exports\ThongKeQLTT_10Export;
-use App\Exports\ThongKeQLTT_11Export;
-use App\Exports\ThongKeQLTT_12Export;
-use App\Exports\ThongKeQLTT_13Export;
-use App\Exports\ThongKeQLTT_14Export;
-use App\Exports\ThongKeQLTT_15Export;
 use App\Exports\ThongKeQLTT_allExport;
 use App\Exports\ThongKeQLTT_chucvuExport;
 use App\Exports\ThongKeQLTT_dantocExport;
@@ -170,6 +156,7 @@ use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 use PDF;
 use Excel;
+use PhpOffice\PhpWord\TemplateProcessor;
 
 class ThongKeController extends Controller
 {
@@ -11073,6 +11060,51 @@ class ThongKeController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlqtcv){
       return Excel::download(new ThongKeQLQTCV_5Export($ma_k), 'Qua-trinh-chuc-vu-vien-chuc.xlsx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlqtcv_loc_5_word($ma_k){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlqtcv){
+      $khoa = Khoa::find($ma_k);
+      $quatrinhchucvu = VienChuc::join('quatrinhchucvu', 'quatrinhchucvu.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('chucvu', 'chucvu.ma_cv', '=', 'quatrinhchucvu.ma_cv')
+        ->join('nhiemky', 'nhiemky.ma_nk', '=', 'quatrinhchucvu.ma_nk')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('khoa.ma_k', $ma_k)
+        ->where('status_vc', '<>', '2')
+        ->where('status_qtcv', '<>', '2')
+        ->orderBy('vienchuc.ma_vc', 'asc')
+        ->get();
+      $temp = new TemplateProcessor('public/word/quanly_qtcv.docx');
+      $qtcv_arr = array();
+      foreach($quatrinhchucvu as $key => $qtcv){
+        $qtcv_arr[] = [
+          'stt_qtcv' => $key+1, 
+          'hoten_vc' => $qtcv->hoten_vc, 
+          'user_vc' => $qtcv->user_vc, 
+          'sdt_vc' => $qtcv->sdt_vc, 
+          'ngaysinh_vc' => $qtcv->ngaysinh_vc, 
+          'ten_cv' => $qtcv->ten_cv, 
+          'batdau_nk' => $qtcv->batdau_nk, 
+          'ketthuc_nk' => $qtcv->ketthuc_nk, 
+          'soquyetdinh_qtcv' => $qtcv->soquyetdinh_qtcv, 
+          'ngayky_qtcv' => $qtcv->ngayky_qtcv, 
+          'ten_k' => $qtcv->ten_k
+        ];
+      };
+      $temp->cloneRowAndSetValues('stt_qtcv', $qtcv_arr);
+      $name_file = $khoa->ten_k;
+      $temp->saveAs($name_file.'.docx');
+      return response()->download($name_file.'.docx');
     }else{
       return Redirect::to('/home');
     }

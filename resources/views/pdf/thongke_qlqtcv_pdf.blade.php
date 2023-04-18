@@ -57,8 +57,9 @@
               @endforeach
             <td>
               <b>Chức vụ: </b>{{ $qtcv->ten_cv }}<br>
-              <b>Nhiệm kỳ: </b>{{ $qtcv->ten_nk }}<br>
-              <b>Ghi chú: </b>{{ $qtcv->ghichu_qtcv }}<br>
+              <b>Nhiệm kỳ: </b>{{ $qtcv->batdau_nk }} - {{ $qtcv->ketthuc_nk }}<br>
+              <b>Số quyết định: </b>{{ $qtcv->soquyetdinh_qtcv }}<br>
+              <b>Ngày ký quyết định: </b>{{ $qtcv->ngayky_qtcv }}<br>
             </td>
           </tr>
         @endforeach
