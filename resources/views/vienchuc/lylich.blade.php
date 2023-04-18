@@ -42,7 +42,7 @@
                 </a>
                 
               </td>
-              <td>
+              <td style="width: 25%">
                 <a href="{{ URL::to('lylich_chitiet/'.$vienchuc->ma_vc) }}">
                   <button type="button" class="btn btn-primary btn_chitiet fw-bold">
                     <i class="fa-solid fa-circle-info text-light"></i>
@@ -50,15 +50,22 @@
                     Chi tiết
                   </button>
                 </a>
+                <a href="{{ URL::to('lylich_xuatfile_word/'.$vienchuc->ma_vc) }}">
+                  <button type="button" class="btn btn-primary button_word" >
+                    <i class="fa-solid fa-file-word text-light"></i>
+                    &ensp;
+                    Xuất file Word
+                  </button>
+                </a>
               </td>
             </tr>
           @endforeach
         </tbody>
       </table>
-      <button type="submit" class="btn btn-warning button_xanhla">
-        <i class="fa-solid fa-file text-light"></i>
+      <button type="submit" class="btn btn-warning button_do" >
+        <i class="fa-solid fa-file-pdf text-light"></i>
         &ensp;
-        Xuất file
+        Xuất file PDF
       </button>
     </form>
   </div>

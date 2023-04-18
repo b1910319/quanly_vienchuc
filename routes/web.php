@@ -119,6 +119,7 @@ Route::get('/quanlythongtin_bangcap_xuatfile/{ma_vc}',[VienChucController::class
 Route::get('/lylich',[VienChucController::class, 'lylich']);
 Route::get('/lylich_chitiet/{ma_vc}',[VienChucController::class, 'lylich_chitiet']);
 Route::post('/lylich_xuatfile',[VienChucController::class, 'lylich_xuatfile']);
+Route::get('/lylich_xuatfile_word/{ma_vc}',[VienChucController::class, 'lylich_xuatfile_word']);
 
 
 

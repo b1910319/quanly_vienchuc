@@ -261,7 +261,7 @@
 }
 
 .btn_chitiet {
-  background-color: #2FA4FF;
+  background-color: #007965;
   border: none;
 }
 
@@ -282,7 +282,11 @@
   border: none;
   font-weight: bold;
 }
-
+.button_word {
+  background-color: #332FD0;
+  border: none;
+  font-weight: bold;
+}
 .button_loc {
   border-radius: 3px;
   background-color: #a4aa13;
