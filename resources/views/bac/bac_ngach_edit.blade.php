@@ -23,7 +23,8 @@
               <tr>
                 <th scope="row">Tên bậc: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="ten_b" value="{{ $edit->ten_b }}">
+                  <input id="ten_b" type='text' class='form-control input_table' autofocus required name="ten_b" value="{{ $edit->ten_b }}">
+                  <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
               <tr>
@@ -60,7 +61,7 @@
           <div class="col-5"></div>
           <div class="col-2">
             <button type="submit" class="btn btn-warning button_cam" style=" width: 100%">
-              <i class="fa-solid fa-pen-to-square"></i>
+              <i class="fa-solid fa-pen-to-square text-light"></i>
               &ensp; Cập nhật
             </button>
           </div>
@@ -69,4 +70,26 @@
       </div>
     </form>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('#ten_b').change(function(){
+        var ten_b = $(this).val();
+        var ten = '';
+        // alert(ten_b);
+        $.ajax({
+          url:"{{ url("/check_ten_b") }}",
+          type:"GET",
+          data:{ten_b:ten_b},
+          success:function(data){
+            if(data == 1){  
+              $('#baoloi').html('Bậc đã tồn tại');
+              $('#ten_b').val('');
+            }else{
+              $('#baoloi').html(''); 
+            }
+          }
+        });
+      });
+    });
+  </script>
 @endsection

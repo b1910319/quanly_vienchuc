@@ -80,6 +80,21 @@ class BacController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function check_ten_b(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_b = $request->ten_b;
+      if($ten_b != null){
+        $bac = Bac::where('ten_b', $ten_b)
+          ->first();
+        if(isset($bac)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_bac_ngach(Request $request, $ma_n){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
