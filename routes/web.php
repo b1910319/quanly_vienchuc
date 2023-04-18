@@ -275,6 +275,7 @@ Route::get('/delete_all_giadinh/{ma_vc}',[GiaDinhController::class, 'delete_all_
 
 
 Route::get('/loaibangcap',[LoaiBangCapController::class, 'loaibangcap']);
+Route::get('/check_ten_lbc',[LoaiBangCapController::class, 'check_ten_lbc']);
 Route::post('/add_loaibangcap',[LoaiBangCapController::class, 'add_loaibangcap']);
 Route::post('/add_loaibangcap_excel',[LoaiBangCapController::class, 'add_loaibangcap_excel']);
 Route::get('/select_loaibangcap/{ma_lbc}',[LoaiBangCapController::class, 'select_loaibangcap']);

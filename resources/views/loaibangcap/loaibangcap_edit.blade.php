@@ -23,7 +23,8 @@
               <tr>
                 <th scope="row">Loại bằng cấp: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="ten_lbc" value="{{ $edit->ten_lbc }}">
+                  <input id="ten_lbc" type='text' class='form-control input_table' autofocus required name="ten_lbc" value="{{ $edit->ten_lbc }}">
+                  <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
             </tbody>
@@ -63,4 +64,26 @@
       </div>
     </form>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('#ten_lbc').change(function(){
+        var ten_lbc = $(this).val();
+        var ten = '';
+        // alert(ten_lbc);
+        $.ajax({
+          url:"{{ url("/check_ten_lbc") }}",
+          type:"GET",
+          data:{ten_lbc:ten_lbc},
+          success:function(data){
+            if(data == 1){  
+              $('#baoloi').html('Loại bằng cấp đã tồn tại');
+              $('#ten_lbc').val('');
+            }else{
+              $('#baoloi').html(''); 
+            }
+          }
+        });
+      });
+    });
+  </script>
 @endsection

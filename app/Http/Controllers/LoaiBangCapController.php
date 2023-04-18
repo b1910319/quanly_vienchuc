@@ -72,6 +72,21 @@ class LoaiBangCapController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function check_ten_lbc(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_lbc = $request->ten_lbc;
+      if($ten_lbc != null){
+        $loaibangcap = LoaiBangCap::where('ten_lbc', $ten_lbc)
+          ->first();
+        if(isset($loaibangcap)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_loaibangcap(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
