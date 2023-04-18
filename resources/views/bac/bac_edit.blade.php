@@ -41,8 +41,8 @@
               <tr>
                 <th scope="row">Ngạch: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="ma_n">
-                    <option value="0" >Chọn ngạch</option>
+                  <select class="custom-select input_table" id="gender2" name="ma_n" required>
+                    <option value="" >Chọn ngạch</option>
                     @foreach ($list_ngach as $ngach )
                       <option
                         @if ($ngach->ma_n == $edit->ma_n)

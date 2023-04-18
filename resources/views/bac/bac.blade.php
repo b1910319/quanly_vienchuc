@@ -130,7 +130,7 @@
                           <th scope="row">Ngạch: </th>
                           <td class="was-validated">
                             <select class="custom-select input_table" required id="gender2" name="ma_n">
-                              <option value="0">Chọn ngạch</option>
+                              <option value="">Chọn ngạch</option>
                               @foreach ($list_ngach as $ngach )
                                 <option value="{{ $ngach->ma_n }}" >{{ $ngach->ten_n }}</option>
                               @endforeach
