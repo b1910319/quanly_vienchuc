@@ -23,7 +23,8 @@
               <tr>
                 <th scope="row">Tên tôn giáo: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="ten_tg" value="{{ $edit->ten_tg }}">
+                  <input id="ten_tg" type='text' class='form-control input_table' autofocus required name="ten_tg" value="{{ $edit->ten_tg }}">
+                  <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
             </tbody>
@@ -63,4 +64,26 @@
       </div>
     </form>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('#ten_tg').change(function(){
+        var ten_tg = $(this).val();
+        var ten = '';
+        // alert(ten_tg);
+        $.ajax({
+          url:"{{ url("/check_ten_tg") }}",
+          type:"GET",
+          data:{ten_tg:ten_tg},
+          success:function(data){
+            if(data == 1){  
+              $('#baoloi').html('Tôn giáo đã tồn tại');
+              $('#ten_tg').val('');
+            }else{
+              $('#baoloi').html(''); 
+            }
+          }
+        });
+      });
+    });
+  </script>
 @endsection

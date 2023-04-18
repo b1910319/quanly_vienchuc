@@ -72,6 +72,21 @@ class TonGiaoController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function check_ten_tg(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_tg = $request->ten_tg;
+      if($ten_tg != null){
+        $tongiao = TonGiao::where('ten_tg', $ten_tg)
+          ->first();
+        if(isset($tongiao)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_tongiao(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

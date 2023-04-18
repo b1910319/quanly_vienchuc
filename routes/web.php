@@ -232,6 +232,7 @@ Route::post('/updated_nangbac',[BacController::class, 'updated_nangbac']);
 
 
 Route::get('/tongiao',[TonGiaoController::class, 'tongiao']);
+Route::get('/check_ten_tg',[TonGiaoController::class, 'check_ten_tg']);
 Route::post('/add_tongiao',[TonGiaoController::class, 'add_tongiao']);
 Route::post('/add_tongiao_excel',[TonGiaoController::class, 'add_tongiao_excel']);
 Route::get('/select_tongiao/{ma_tg}',[TonGiaoController::class, 'select_tongiao']);
