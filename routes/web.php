@@ -160,6 +160,7 @@ Route::post('/delete_khoa_check',[KhoaController::class, 'delete_khoa_check']);
 
 
 Route::get('/dantoc',[DanTocController::class, 'dantoc']);
+Route::get('/check_ten_dt',[DanTocController::class, 'check_ten_dt']);
 Route::post('/add_dantoc',[DanTocController::class, 'add_dantoc']);
 Route::post('/add_dantoc_excel',[DanTocController::class, 'add_dantoc_excel']);
 Route::get('/select_dantoc/{ma_dt}',[DanTocController::class, 'select_dantoc']);

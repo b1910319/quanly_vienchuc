@@ -112,7 +112,8 @@
                         <tr>
                           <th scope="row">Tên dân tộc: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="ten_dt">
+                            <input type='text' id="ten_dt" class='form-control input_table' autofocus required name="ten_dt">
+                            <p id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></p>
                           </td>
                         </tr>
                       </tbody>
@@ -236,8 +237,8 @@
   </div>
 </div>
 {{-- ajax --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> --}}
 {{--  --}}
 <script>
   document.querySelector('.them').addEventListener('click', (event)=>{
@@ -305,6 +306,28 @@
     });
   @endforeach
   
+</script>
+<script>
+  $(document).ready(function(){
+    $('#ten_dt').change(function(){
+      var ten_dt = $(this).val();
+      var ten = '';
+      // alert(ten_dt);
+      $.ajax({
+        url:"{{ url("/check_ten_dt") }}",
+        type:"GET",
+        data:{ten_dt:ten_dt},
+        success:function(data){
+          if(data == 1){  
+            $('#baoloi').html('Dân tộc đã tồn tại');
+            $('#ten_dt').val('');
+          }else{
+            $('#baoloi').html(''); 
+          }
+        }
+      });
+    });
+  });
 </script>
 <!--  -->
 @endsection
