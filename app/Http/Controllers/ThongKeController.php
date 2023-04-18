@@ -10766,8 +10766,49 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function thongke_qlqtcv_loc(Request $request)
-  {
+  public function thongke_qlqtcv_word(){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlqtcv){
+      $quatrinhchucvu = VienChuc::join('quatrinhchucvu', 'quatrinhchucvu.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('nhiemky', 'nhiemky.ma_nk', '=', 'quatrinhchucvu.ma_nk')
+        ->join('chucvu', 'chucvu.ma_cv', '=', 'quatrinhchucvu.ma_cv')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('status_qtcv', '<>', '2')
+        ->where('status_vc', '<>', '2')
+        ->get();
+      $temp = new TemplateProcessor('public/word/quanly_qtcv.docx');
+      $qtcv_arr = array();
+      foreach($quatrinhchucvu as $key => $qtcv){
+        $qtcv_arr[] = [
+          'stt_qtcv' => $key+1, 
+          'hoten_vc' => $qtcv->hoten_vc, 
+          'user_vc' => $qtcv->user_vc, 
+          'sdt_vc' => $qtcv->sdt_vc, 
+          'ngaysinh_vc' => $qtcv->ngaysinh_vc, 
+          'ten_cv' => $qtcv->ten_cv, 
+          'batdau_nk' => $qtcv->batdau_nk, 
+          'ketthuc_nk' => $qtcv->ketthuc_nk, 
+          'soquyetdinh_qtcv' => $qtcv->soquyetdinh_qtcv, 
+          'ngayky_qtcv' => $qtcv->ngayky_qtcv, 
+          'ten_k' => $qtcv->ten_k
+        ];
+      };
+      $temp->cloneRowAndSetValues('stt_qtcv', $qtcv_arr);
+      $name_file = 'Qúa trình chức vụ';
+      $temp->saveAs($name_file.'.docx');
+      return response()->download($name_file.'.docx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qlqtcv_loc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)

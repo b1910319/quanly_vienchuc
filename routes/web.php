@@ -719,6 +719,7 @@ Route::get('/thongke_qlqtcv',[ThongKeController::class, 'thongke_qlqtcv']);
 
 Route::get('/thongke_qlqtcv_pdf',[ThongKeController::class, 'thongke_qlqtcv_pdf']);
 Route::get('/thongke_qlqtcv_excel',[ThongKeController::class, 'thongke_qlqtcv_excel']);
+Route::get('/thongke_qlqtcv_word',[ThongKeController::class, 'thongke_qlqtcv_word']);
 
 Route::post('/thongke_qlqtcv_loc',[ThongKeController::class, 'thongke_qlqtcv_loc']);
 
