@@ -744,6 +744,7 @@ Route::get('/thongke_qlqtcv_loc_6_word/{ma_cv}',[ThongKeController::class, 'thon
 
 Route::get('/thongke_qlqtcv_loc_7_pdf/{ma_nk}',[ThongKeController::class, 'thongke_qlqtcv_loc_7_pdf']);
 Route::get('/thongke_qlqtcv_loc_7_excel/{ma_nk}',[ThongKeController::class, 'thongke_qlqtcv_loc_7_excel']);
+Route::get('/thongke_qlqtcv_loc_7_word/{ma_nk}',[ThongKeController::class, 'thongke_qlqtcv_loc_7_word']);
 
 // ----------------------------------------------------------
 
