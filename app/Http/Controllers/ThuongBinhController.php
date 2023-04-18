@@ -72,6 +72,21 @@ class ThuongBinhController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function check_ten_tb(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_tb = $request->ten_tb;
+      if($ten_tb != null){
+        $thuongbinh = ThuongBinh::where('ten_tb', $ten_tb)
+          ->first();
+        if(isset($thuongbinh)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_thuongbinh(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

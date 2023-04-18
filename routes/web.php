@@ -246,6 +246,7 @@ Route::post('/delete_tongiao_check',[TonGiaoController::class, 'delete_tongiao_c
 
 
 Route::get('/thuongbinh',[ThuongBinhController::class, 'thuongbinh']);
+Route::get('/check_ten_tb',[ThuongBinhController::class, 'check_ten_tb']);
 Route::post('/add_thuongbinh',[ThuongBinhController::class, 'add_thuongbinh']);
 Route::post('/add_thuongbinh_excel',[ThuongBinhController::class, 'add_thuongbinh_excel']);
 Route::get('/select_thuongbinh/{ma_tb}',[ThuongBinhController::class, 'select_thuongbinh']);

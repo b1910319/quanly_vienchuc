@@ -112,7 +112,8 @@
                         <tr>
                           <th scope="row">Thương binh: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="ten_tb">
+                            <input id="ten_tb" type='text' class='form-control input_table' autofocus required name="ten_tb">
+                            <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                           </td>
                         </tr>
                         <tr>
@@ -136,7 +137,6 @@
                           <td class="was-validated">
                             <div class="form-floating">
                               <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" required style="height: 117px; resize: none;" name="mota_tb"></textarea>
-                              <label for="floatingTextarea2">Mô tả</label>
                             </div>
                           </td>
                         </tr>
@@ -250,16 +250,9 @@
     </form>
   </div>
 </div>
-<!-- trình soạn thảo  -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
-<script>
-  // CKEDITOR.replace('mota_tb');
-</script>
-<!--  -->
 {{-- ajax --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> --}}
 {{--  --}}
 <script>
   document.querySelector('.them').addEventListener('click', (event)=>{
@@ -296,8 +289,8 @@
         text: "Bạn không thể khôi phục dữ liệu đã xoá",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
-        cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
+        confirmButtonText: '<i class="fa-solid fa-trash text-light"></i> &ensp;  Xoá',
+        cancelButtonText: '<i class="fa-solid fa-xmark text-light"></i> &ensp;  Huỷ',
         reverseButtons: true
       }).then((result) => {
         if (result.isConfirmed) {
@@ -327,6 +320,28 @@
     });
   @endforeach
   
+</script>
+<script>
+  $(document).ready(function(){
+    $('#ten_tb').change(function(){
+      var ten_tb = $(this).val();
+      var ten = '';
+      // alert(ten_tb);
+      $.ajax({
+        url:"{{ url("/check_ten_tb") }}",
+        type:"GET",
+        data:{ten_tb:ten_tb},
+        success:function(data){
+          if(data == 1){  
+            $('#baoloi').html('Hạng thương binh đã tồn tại');
+            $('#ten_tb').val('');
+          }else{
+            $('#baoloi').html(''); 
+          }
+        }
+      });
+    });
+  });
 </script>
 <!--  -->
 @endsection

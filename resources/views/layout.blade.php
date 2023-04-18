@@ -893,6 +893,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
   <script>
     CKEDITOR.replace('mota_q');
     CKEDITOR.replace('mota_k');
+    CKEDITOR.replace('mota_tb');
   </script>
   {{-- ajax --}}
   {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
