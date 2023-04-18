@@ -887,6 +887,13 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
       });
     });
   </script>
+  <!-- trình soạn thảo  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+  <script>
+    CKEDITOR.replace('mota_q');
+  </script>
+    <!--  -->
 </body>
 
 </html>

@@ -126,6 +126,7 @@ Route::get('/lylich_xuatfile_word/{ma_vc}',[VienChucController::class, 'lylich_x
 
 
 Route::get('/quanly_quyen',[QuyenController::class, 'quanly_quyen']);
+Route::get('/check_ten_q',[QuyenController::class, 'check_ten_q']);
 Route::post('/add_quyen',[QuyenController::class, 'add_quyen']);
 Route::post('/add_quyen_excel',[QuyenController::class, 'add_quyen_excel']);
 Route::get('/select_quyen/{ma_q}',[QuyenController::class, 'select_quyen']);

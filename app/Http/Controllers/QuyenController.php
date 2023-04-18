@@ -66,6 +66,21 @@ class QuyenController extends Controller
     }
     
   }
+  public function check_ten_q(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_q = $request->ten_q;
+      if($ten_q != null){
+        $quyen = Quyen::where('ten_q','like', '%'.$ten_q.'%')
+          ->first();
+        if(isset($quyen)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_quyen(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

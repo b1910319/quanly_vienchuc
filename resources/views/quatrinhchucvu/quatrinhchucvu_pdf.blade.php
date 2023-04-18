@@ -33,7 +33,7 @@
     <p  style="font-size: 16px; font-weight: bold; text-align: center;">QUÁ TRÌNH CHỨC VỤ CỦA VIÊN CHỨC</p>
     <p>
       <b>Họ tên viên chức: </b> {{ $vienchuc->hoten_vc }} <br>
-      <b>Mã số viên chức: VC</b> {{ $vienchuc->ma_vc }} <br>
+      <b>Mã số viên chức: </b> VC{{ $vienchuc->ma_vc }} <br>
       <b>Số điện thoại: </b> {{ $vienchuc->sdt_vc }} <br>
       <b>Email: </b> {{ $vienchuc->user_vc }}
     </p>
@@ -44,7 +44,7 @@
           <th scope="col">#</th>
           <th scope="col">Chức vụ</th>
           <th scope="col">Nhiệm kỳ</th>
-          <th scope="col">Ghi chú</th>
+          <th scope="col">Thông tin</th>
         </tr>
       </thead>
       <tbody>
@@ -52,8 +52,11 @@
           <tr>
             <th scope="row">{{ $key+1 }}</th>
             <td>{{ $qtcv->ten_cv }}</td>
-            <td>Nhiệm kỳ: {{ $qtcv->ten_nk }}</td>
-            <td>{{ $qtcv->ghichu_qtcv }}</td>
+            <td>Nhiệm kỳ: {{ $qtcv->batdau_nk }} - {{ $qtcv->ketthuc_nk }}</td>
+            <td>
+              <b>Số quyết định: </b>{{ $qtcv->soquyetdinh_qtcv }} <br>
+              <b>Ngày ký: </b> {{ $qtcv->ngayky_qtcv }}
+            </td>
           </tr>
         @endforeach
         
