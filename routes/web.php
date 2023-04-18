@@ -289,6 +289,7 @@ Route::post('/delete_loaibangcap_check',[LoaiBangCapController::class, 'delete_l
 
 
 Route::get('/hedaotao',[HeDaoTaoController::class, 'hedaotao']);
+Route::get('/check_ten_hdt',[HeDaoTaoController::class, 'check_ten_hdt']);
 Route::post('/add_hedaotao',[HeDaoTaoController::class, 'add_hedaotao']);
 Route::post('/add_hedaotao_excel',[HeDaoTaoController::class, 'add_hedaotao_excel']);
 Route::get('/select_hedaotao/{ma_hdt}',[HeDaoTaoController::class, 'select_hedaotao']);

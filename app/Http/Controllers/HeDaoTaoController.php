@@ -65,6 +65,21 @@ class HeDaoTaoController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function check_ten_hdt(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_hdt = $request->ten_hdt;
+      if($ten_hdt != null){
+        $hedaotao = HeDaoTao::where('ten_hdt', $ten_hdt)
+          ->first();
+        if(isset($hedaotao)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_hedaotao(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
