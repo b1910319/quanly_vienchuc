@@ -740,6 +740,7 @@ Route::get('/thongke_qlqtcv_loc_5_word/{ma_k}',[ThongKeController::class, 'thong
 
 Route::get('/thongke_qlqtcv_loc_6_pdf/{ma_cv}',[ThongKeController::class, 'thongke_qlqtcv_loc_6_pdf']);
 Route::get('/thongke_qlqtcv_loc_6_excel/{ma_cv}',[ThongKeController::class, 'thongke_qlqtcv_loc_6_excel']);
+Route::get('/thongke_qlqtcv_loc_6_word/{ma_cv}',[ThongKeController::class, 'thongke_qlqtcv_loc_6_word']);
 
 Route::get('/thongke_qlqtcv_loc_7_pdf/{ma_nk}',[ThongKeController::class, 'thongke_qlqtcv_loc_7_pdf']);
 Route::get('/thongke_qlqtcv_loc_7_excel/{ma_nk}',[ThongKeController::class, 'thongke_qlqtcv_loc_7_excel']);
