@@ -454,6 +454,15 @@
             </button>
           </a>
         </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qlqtcv_loc_2_word/'.$ma_k.'/'.$ma_cv) }}">
+            <button type="button" class="btn btn-primary button_word" style="width: 100%">
+              <i class="fa-solid fa-file-word text-light"></i>
+              &ensp;
+              Xuất file Word
+            </button>
+          </a>
+        </div>
       </div>
     @endif
     @if (isset($list_3))

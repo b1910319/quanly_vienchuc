@@ -11167,6 +11167,51 @@ class ThongKeController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function thongke_qlqtcv_loc_2_word($ma_k, $ma_cv){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlqtcv){
+      $khoa = Khoa::find($ma_k);
+      $quatrinhchucvu = VienChuc::join('quatrinhchucvu', 'quatrinhchucvu.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('chucvu', 'chucvu.ma_cv', '=', 'quatrinhchucvu.ma_cv')
+        ->join('nhiemky', 'nhiemky.ma_nk', '=', 'quatrinhchucvu.ma_nk')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('khoa.ma_k', $ma_k)
+        ->where('chucvu.ma_cv', $ma_cv)
+        ->where('status_vc', '<>', '2')
+        ->where('status_qtcv', '<>', '2')
+        ->get();
+      $temp = new TemplateProcessor('public/word/quanly_qtcv.docx');
+      $qtcv_arr = array();
+      foreach($quatrinhchucvu as $key => $qtcv){
+        $qtcv_arr[] = [
+          'stt_qtcv' => $key+1, 
+          'hoten_vc' => $qtcv->hoten_vc, 
+          'user_vc' => $qtcv->user_vc, 
+          'sdt_vc' => $qtcv->sdt_vc, 
+          'ngaysinh_vc' => $qtcv->ngaysinh_vc, 
+          'ten_cv' => $qtcv->ten_cv, 
+          'batdau_nk' => $qtcv->batdau_nk, 
+          'ketthuc_nk' => $qtcv->ketthuc_nk, 
+          'soquyetdinh_qtcv' => $qtcv->soquyetdinh_qtcv, 
+          'ngayky_qtcv' => $qtcv->ngayky_qtcv, 
+          'ten_k' => $qtcv->ten_k
+        ];
+      };
+      $temp->cloneRowAndSetValues('stt_qtcv', $qtcv_arr);
+      $name_file = $khoa->ten_k;
+      $temp->saveAs($name_file.'.docx');
+      return response()->download($name_file.'.docx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 
   public function thongke_qlqtcv_loc_3_pdf($ma_k, $ma_nk)
   {
