@@ -71,7 +71,7 @@ class QuyenController extends Controller
     if($request->ajax()){
       $ten_q = $request->ten_q;
       if($ten_q != null){
-        $quyen = Quyen::where('ten_q','like', '%'.$ten_q.'%')
+        $quyen = Quyen::where('ten_q', $ten_q)
           ->first();
         if(isset($quyen)){
           return 1;

@@ -70,6 +70,21 @@ class KhoaController extends Controller
     }
     
   }
+  public function check_ten_k(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_k = $request->ten_k;
+      if($ten_k != null){
+        $khoa = Khoa::where('ten_k', $ten_k)
+          ->first();
+        if(isset($khoa)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_khoa(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

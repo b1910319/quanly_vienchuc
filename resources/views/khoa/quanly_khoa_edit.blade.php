@@ -21,9 +21,10 @@
           <table class="table">
             <tbody>
               <tr>
-                <th scope="row">Khoa: </th>
+                <th scope="row">Đơn vị: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="ten_k" minlength="5" value="{{ $edit->ten_k }}">
+                  <input id="ten_k" type='text' class='form-control input_table' autofocus required name="ten_k" minlength="5" value="{{ $edit->ten_k }}">
+                  <p id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></p>
                 </td>
               </tr>
               <tr>
@@ -73,11 +74,26 @@
       </div>
     </form>
   </div>
-  <!-- trình soạn thảo  -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
   <script>
-    CKEDITOR.replace('mota_k');
+    $(document).ready(function(){
+      $('#ten_k').change(function(){
+        var ten_k = $(this).val();
+        var ten = '';
+        // alert(ten_k);
+        $.ajax({
+          url:"{{ url("/check_ten_k") }}",
+          type:"GET",
+          data:{ten_k:ten_k},
+          success:function(data){
+            if(data == 1){  
+              $('#baoloi').html('Đơn vị đã tồn tại');
+              $('#ten_k').val('');
+            }else{
+              $('#baoloi').html(''); 
+            }
+          }
+        });
+      });
+    });
   </script>
-  <!--  -->
 @endsection

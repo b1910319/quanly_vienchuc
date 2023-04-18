@@ -112,7 +112,8 @@
                         <tr>
                           <th scope="row">Đơn vị trực thuộc: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="ten_k" minlength="5">
+                            <input type='text' id="ten_k" class='form-control input_table' autofocus required name="ten_k" minlength="5">
+                            <p id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></p>
                           </td>
                         </tr>
                         <tr>
@@ -134,7 +135,7 @@
                         <tr>
                           <th scope="row" style="width: 20%">Mô tả: </th>
                           <td class="was-validated">
-                            <textarea class="form-control" rows="4" required name="mota_k">
+                            <textarea class="form-control" required name="mota_k">
 
                             </textarea>
                           </td>
@@ -279,12 +280,6 @@
     
   </div>
 </div>
-<!-- trình soạn thảo  -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
-<script>
-  // CKEDITOR.replace('mota_k');
-</script>
 <!--  -->
 <script>
   document.querySelector('.them').addEventListener('click', (event)=>{
@@ -351,5 +346,27 @@
     });
   @endforeach
   
+</script>
+<script>
+  $(document).ready(function(){
+    $('#ten_k').change(function(){
+      var ten_k = $(this).val();
+      var ten = '';
+      // alert(ten_k);
+      $.ajax({
+        url:"{{ url("/check_ten_k") }}",
+        type:"GET",
+        data:{ten_k:ten_k},
+        success:function(data){
+          if(data == 1){  
+            $('#baoloi').html('Đơn vị đã tồn tại');
+            $('#ten_k').val('');
+          }else{
+            $('#baoloi').html(''); 
+          }
+        }
+      });
+    });
+  });
 </script>
 @endsection

@@ -147,6 +147,7 @@ Route::get('/lammoi_quyen/{ma_vc}',[PhanQuyenController::class, 'lammoi_quyen'])
 
 
 Route::get('/quanly_khoa',[KhoaController::class, 'quanly_khoa']);
+Route::get('/check_ten_k',[KhoaController::class, 'check_ten_k']);
 Route::post('/add_khoa',[KhoaController::class, 'add_khoa']);
 Route::post('/add_khoa_excel',[KhoaController::class, 'add_khoa_excel']);
 Route::get('/select_khoa/{ma_k}',[KhoaController::class, 'select_khoa']);
