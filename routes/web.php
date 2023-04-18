@@ -188,6 +188,8 @@ Route::post('/delete_chucvu_check',[ChucVuController::class, 'delete_chucvu_chec
 
 
 Route::get('/ngach',[NgachController::class, 'ngach']);
+Route::get('/check_ten_n',[NgachController::class, 'check_ten_n']);
+Route::get('/check_maso_n',[NgachController::class, 'check_maso_n']);
 Route::post('/add_ngach',[NgachController::class, 'add_ngach']);
 Route::post('/add_ngach_excel',[NgachController::class, 'add_ngach_excel']);
 Route::get('/select_ngach/{ma_n}',[NgachController::class, 'select_ngach']);

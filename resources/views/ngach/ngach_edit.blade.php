@@ -23,13 +23,15 @@
               <tr>
                 <th scope="row">Tên ngạch: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="ten_n" value="{{ $edit->ten_n }}">
+                  <input id="ten_n" type='text' class='form-control input_table' autofocus required name="ten_n" value="{{ $edit->ten_n }}">
+                  <span id="baoloi_ten" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
               <tr>
                 <th scope="row">Mã số ngạch: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="maso_n" value="{{ $edit->maso_n }}">
+                  <input id="maso_n" type='text' class='form-control input_table' autofocus required name="maso_n" value="{{ $edit->maso_n }}">
+                  <span id="baoloi_maso" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
             </tbody>
@@ -75,4 +77,45 @@
       </div>
     </form>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('#ten_n').change(function(){
+        var ten_n = $(this).val();
+        var ten = '';
+        // alert(ten_n);
+        $.ajax({
+          url:"{{ url("/check_ten_n") }}",
+          type:"GET",
+          data:{ten_n:ten_n},
+          success:function(data){
+            if(data == 1){  
+              $('#baoloi_ten').html('Ngạch đã tồn tại');
+              $('#ten_n').val('');
+            }else{
+              $('#baoloi_ten').html(''); 
+            }
+          }
+        });
+      });
+    });
+    $(document).ready(function(){
+      $('#maso_n').change(function(){
+        var maso_n = $(this).val();
+        // alert(maso_n);
+        $.ajax({
+          url:"{{ url("/check_maso_n") }}",
+          type:"GET",
+          data:{maso_n:maso_n},
+          success:function(data){
+            if(data == 1){  
+              $('#baoloi_maso').html('Mã số ngạch đã tồn tại');
+              $('#maso_n').val('');
+            }else{
+              $('#baoloi_maso').html(''); 
+            }
+          }
+        });
+      });
+    });
+  </script>
 @endsection

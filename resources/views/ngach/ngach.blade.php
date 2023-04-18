@@ -111,13 +111,15 @@
                         <tr>
                           <th scope="row">Tên ngạch: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="ten_n">
+                            <input id="ten_n" type='text' class='form-control input_table' autofocus required name="ten_n">
+                            <p id="baoloi_ten" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></p>
                           </td>
                         </tr>
                         <tr>
                           <th scope="row">Mã số ngạch: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="maso_n">
+                            <input type='text' id="maso_n" class='form-control input_table' autofocus required name="maso_n">
+                            <p id="baoloi_maso" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></p>
                           </td>
                         </tr>
                       </tbody>
@@ -286,8 +288,8 @@
   </div>
 </div>
 {{-- ajax --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> --}}
 {{--  --}}
 <script>
   document.querySelector('.them').addEventListener('click', (event)=>{
@@ -355,6 +357,47 @@
     });
   @endforeach
   
+</script>
+<script>
+  $(document).ready(function(){
+    $('#ten_n').change(function(){
+      var ten_n = $(this).val();
+      var ten = '';
+      // alert(ten_n);
+      $.ajax({
+        url:"{{ url("/check_ten_n") }}",
+        type:"GET",
+        data:{ten_n:ten_n},
+        success:function(data){
+          if(data == 1){  
+            $('#baoloi_ten').html('Ngạch đã tồn tại');
+            $('#ten_n').val('');
+          }else{
+            $('#baoloi_ten').html(''); 
+          }
+        }
+      });
+    });
+  });
+  $(document).ready(function(){
+    $('#maso_n').change(function(){
+      var maso_n = $(this).val();
+      // alert(maso_n);
+      $.ajax({
+        url:"{{ url("/check_maso_n") }}",
+        type:"GET",
+        data:{maso_n:maso_n},
+        success:function(data){
+          if(data == 1){  
+            $('#baoloi_maso').html('Mã số ngạch đã tồn tại');
+            $('#maso_n').val('');
+          }else{
+            $('#baoloi_maso').html(''); 
+          }
+        }
+      });
+    });
+  });
 </script>
 <!--  -->
 @endsection

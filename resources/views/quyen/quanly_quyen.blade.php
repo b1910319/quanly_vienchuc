@@ -114,7 +114,7 @@
                           <th scope="row">Quyền: </th>
                           <td class="was-validated">
                             <input type='text' id="ten_q" class='form-control input_table' autofocus required name="ten_q" minlength="5">
-                            <p id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></p>
+                            <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                           </td>
                         </tr>
                         <tr>

@@ -24,7 +24,7 @@
                 <th scope="row">Tên dân tộc: </th>
                 <td class="was-validated">
                   <input id="ten_dt" type='text' class='form-control input_table' autofocus required name="ten_dt" value="{{ $edit->ten_dt }}">
-                  <p id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></p>
+                  <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
             </tbody>

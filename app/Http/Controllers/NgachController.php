@@ -77,6 +77,36 @@ class NgachController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function check_ten_n(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_n = $request->ten_n;
+      if($ten_n != null){
+        $ngach = Ngach::where('ten_n', $ten_n)
+          ->first();
+        if(isset($ngach)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
+  public function check_maso_n(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $maso_n = $request->maso_n;
+      if($maso_n != null){
+        $ngach = Ngach::where('maso_n', $maso_n)
+          ->first();
+        if(isset($ngach)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_ngach(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
