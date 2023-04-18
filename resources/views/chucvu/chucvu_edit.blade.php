@@ -23,7 +23,8 @@
               <tr>
                 <th scope="row">Chức vụ: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="ten_cv" value="{{ $edit->ten_cv }}">
+                  <input id="ten_cv" type='text' class='form-control input_table' autofocus required name="ten_cv" value="{{ $edit->ten_cv }}">
+                  <p id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></p>
                 </td>
               </tr>
             </tbody>
@@ -63,4 +64,26 @@
       </div>
     </form>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('#ten_cv').change(function(){
+        var ten_cv = $(this).val();
+        var ten = '';
+        // alert(ten_cv);
+        $.ajax({
+          url:"{{ url("/check_ten_cv") }}",
+          type:"GET",
+          data:{ten_cv:ten_cv},
+          success:function(data){
+            if(data == 1){  
+              $('#baoloi').html('Chức vụ đã tồn tại');
+              $('#ten_cv').val('');
+            }else{
+              $('#baoloi').html(''); 
+            }
+          }
+        });
+      });
+    });
+  </script>
 @endsection

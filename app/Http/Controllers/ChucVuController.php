@@ -66,6 +66,21 @@ class ChucVuController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function check_ten_cv(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_cv = $request->ten_cv;
+      if($ten_cv != null){
+        $chucvu = ChucVu::where('ten_cv', $ten_cv)
+          ->first();
+        if(isset($chucvu)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_chucvu(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
