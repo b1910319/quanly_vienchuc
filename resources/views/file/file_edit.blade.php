@@ -23,7 +23,8 @@
               <tr>
                 <th scope="row">Tên file: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="ten_f" value="{{ $edit->ten_f }}">
+                  <input id="ten_f" type='text' class='form-control input_table' autofocus required name="ten_f" value="{{ $edit->ten_f }}">
+                  <p id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></p>
                 </td>
               </tr>
               <tr>
@@ -86,4 +87,26 @@
       </div>
     </form>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('#ten_f').change(function(){
+        var ten_f = $(this).val();
+        var ten = '';
+        // alert(ten_f);
+        $.ajax({
+          url:"{{ url("/check_ten_f") }}",
+          type:"GET",
+          data:{ten_f:ten_f},
+          success:function(data){
+            if(data == 1){  
+              $('#baoloi').html('File đã tồn tại');
+              $('#ten_f').val('');
+            }else{
+              $('#baoloi').html(''); 
+            }
+          }
+        });
+      });
+    });
+  </script>
 @endsection

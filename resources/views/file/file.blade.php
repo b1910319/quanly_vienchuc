@@ -70,7 +70,8 @@
                         <tr>
                           <th scope="row">Tên file: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="ten_f">
+                            <input type='text' id="ten_f" class='form-control input_table' autofocus required name="ten_f">
+                            <p id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></p>
                           </td>
                         </tr>
                         <tr>
@@ -220,8 +221,8 @@
   </div>
 </div>
 {{-- ajax --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> --}}
 {{--  --}}
 <script>
   document.querySelector('.them').addEventListener('click', (event)=>{
@@ -289,5 +290,27 @@
     });
   @endforeach
   
+</script>
+<script>
+  $(document).ready(function(){
+    $('#ten_f').change(function(){
+      var ten_f = $(this).val();
+      var ten = '';
+      // alert(ten_f);
+      $.ajax({
+        url:"{{ url("/check_ten_f") }}",
+        type:"GET",
+        data:{ten_f:ten_f},
+        success:function(data){
+          if(data == 1){  
+            $('#baoloi').html('File đã tồn tại');
+            $('#ten_f').val('');
+          }else{
+            $('#baoloi').html(''); 
+          }
+        }
+      });
+    });
+  });
 </script>
 @endsection

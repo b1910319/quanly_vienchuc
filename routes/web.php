@@ -1003,6 +1003,7 @@ Route::post('/vienchuc_add_thoihoc',[ThoiHocController::class, 'vienchuc_add_tho
 
 
 Route::get('/file',[FileController::class, 'file']);
+Route::get('/check_ten_f',[FileController::class, 'check_ten_f']);
 Route::post('/add_file',[FileController::class, 'add_file']);
 Route::get('/select_file/{ma_f}',[FileController::class, 'select_file']);
 Route::get('/edit_file/{ma_f}',[FileController::class, 'edit_file']);

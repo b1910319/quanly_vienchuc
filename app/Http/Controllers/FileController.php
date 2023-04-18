@@ -66,6 +66,21 @@ class FileController extends Controller
         ->with('title', $title);
     }
   }
+  public function check_ten_f(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_f = $request->ten_f;
+      if($ten_f != null){
+        $file = File::where('ten_f', $ten_f)
+          ->first();
+        if(isset($file)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_file(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
