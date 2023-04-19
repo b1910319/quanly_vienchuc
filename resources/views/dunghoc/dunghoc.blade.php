@@ -95,8 +95,8 @@
                           <tr>
                             <th scope="row">Viên chức: </th>
                             <td class="was-validated">
-                              <select class="custom-select input_table" id="gender2" name="ma_vc">
-                                <option value="0" >Chọn viên chức</option>
+                              <select class="custom-select input_table" id="gender2" name="ma_vc" required>
+                                <option value="" >Chọn viên chức</option>
                                 @foreach ($list_vienchuc as $vienchuc )
                                 <option value="{{ $vienchuc->ma_vc }}" >{{ $vienchuc->hoten_vc }}</option>
                                 @endforeach
@@ -106,8 +106,8 @@
                           <tr>
                             <th scope="row">Lớp: </th>
                             <td class="was-validated">
-                              <select class="custom-select input_table" id="gender2" name="ma_l">
-                                <option value="0" >Chọn lớp</option>
+                              <select class="custom-select input_table" id="gender2" name="ma_l" required>
+                                <option value="" >Chọn lớp</option>
                                 @foreach ($list_lop as $lop )
                                   <option value="{{ $lop->ma_l }}" >{{ $lop->ten_l }}</option>
                                 @endforeach
@@ -119,13 +119,14 @@
                         <tr>
                           <th scope="row">Ngày bắt đầu tạm dừng học: </th>
                           <td class="was-validated">
-                            <input type='date' class='form-control input_table' autofocus required name="batdau_dh">
+                            <input id="batdau_dh" type='date' class='form-control input_table' autofocus required name="batdau_dh">
                           </td>
                         </tr>
                         <tr>
                           <th scope="row">Ngày kết thúc tạm dừng học: </th>
                           <td class="was-validated">
-                            <input type='date' class='form-control input_table' autofocus required name="ketthuc_dh">
+                            <input id="ketthuc_dh" type='date' class='form-control input_table' autofocus required name="ketthuc_dh">
+                            <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                           </td>
                         </tr>
                       </tbody>
@@ -294,8 +295,8 @@
   </div>
 </div>
 {{-- ajax --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> --}}
 {{--  --}}
 <script>
   document.querySelector('.them').addEventListener('click', (event)=>{
@@ -363,6 +364,22 @@
     });
   @endforeach
   
+</script>
+<script>
+  $(document).ready(function(){
+    $('#ketthuc_dh').change(function(){
+      var ketthuc_dh = $(this).val();
+      var batdau_dh = $('#batdau_dh').val();
+      // alert(batdau_dh);
+      // alert(ketthuc_dh);
+      if(batdau_dh > ketthuc_dh){  
+        $('#baoloi').html('Ngày kết thúc phải lớn hơn ngày bắt đầu');
+        $('#ketthuc_dh').val('');
+      }else{
+        $('#baoloi').html(''); 
+      }
+    });
+  });
 </script>
 <!--  -->
 @endsection
