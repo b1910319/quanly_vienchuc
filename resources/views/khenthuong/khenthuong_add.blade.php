@@ -120,8 +120,8 @@
                         <tr>
                           <th scope="row">Loại khen thưởng: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="ma_lkt">
-                              <option value="0" >Chọn loại khen thưởng</option>
+                            <select class="custom-select input_table" id="gender2" name="ma_lkt" required>
+                              <option value="" >Chọn loại khen thưởng</option>
                               @foreach ($list_loaikhenthuong as $loaikhenthuong )
                                 <option value="{{ $loaikhenthuong->ma_lkt }}" >{{ $loaikhenthuong->ten_lkt }}</option>
                               @endforeach
@@ -131,8 +131,8 @@
                         <tr>
                           <th scope="row">Hình thức khen thưởng: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="ma_htkt">
-                              <option value="0" >Chọn hình thức khen thưởng</option>
+                            <select class="custom-select input_table" id="gender2" name="ma_htkt" required>
+                              <option value="" >Chọn hình thức khen thưởng</option>
                               @foreach ($list_hinhthuckhenthuong as $hinhthuckhenthuong )
                                 <option value="{{ $hinhthuckhenthuong->ma_htkt }}" >{{ $hinhthuckhenthuong->ten_htkt }}</option>
                               @endforeach
@@ -140,9 +140,23 @@
                           </td>
                         </tr>
                         <tr>
-                          <th scope="row">Ngày khen thưởng: </th>
+                          <th scope="row">Ngày ký quyết định khen thưởng: </th>
                           <td class="was-validated">
-                            <input type='date' class='form-control input_table' autofocus required name="ngay_kt">
+                            <?php 
+                              use Illuminate\Support\Carbon;
+                              Carbon::now('Asia/Ho_Chi_Minh'); 
+                              $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                              ?>
+                                <input type='date' class='form-control input_table' autofocus required name="ngay_kt" max="<?php echo $now ?>">
+                              <?php
+                            ?>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Số quyết định: </th>
+                          <td class="was-validated">
+                            <input type='text' id="soquyetdinh_kt"  class='form-control input_table' autofocus required name="soquyetdinh_kt">
+                            <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                           </td>
                         </tr>
                       </tbody>
@@ -151,6 +165,12 @@
                   <div class="col-6">
                     <table class="table">
                       <tbody>
+                        <tr>
+                          <th scope="row">File quyết định: </th>
+                          <td class="was-validated">
+                            <input type='file' class='form-control input_table' required name="filequyetdinh_kt">
+                          </td>
+                        </tr>
                         <tr>
                           <th scope="row">Nội dung khen thưởng: </th>
                           <td class="was-validated">
@@ -162,8 +182,8 @@
                         <tr>
                           <th scope="row">Trạng thái: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="status_kt">
-                              <option value="0" >Chọn trạng thái</option>
+                            <select class="custom-select input_table" id="gender2" name="status_kt" required>
+                              <option value="" >Chọn trạng thái</option>
                               <option value="1" >Ẩn</option>
                               <option selected value="0" >Hiển thị</option>
                             </select>
@@ -200,7 +220,6 @@
             <th class="text-light" scope="col">#</th>
             <th class="text-light" scope="col">Loại khen thưởng</th>
             <th class="text-light" scope="col">Hình thức khen thưởng</th>
-            <th class="text-light" scope="col">Ngày khen thưởng</th>
             <th class="text-light" scope="col">Nội dung khen thưởng</th>
             <th class="text-light" scope="col">Trạng thái</th>
             <th class="text-light" scope="col"></th>
@@ -222,10 +241,18 @@
                 {{ $khenthuong->ten_htkt }} ({{ $khenthuong->ma_htkt }})
               </td>
               <td>
-                {{ date('d-m-Y') , strtotime($khenthuong->ngay_kt) }}
-              </td>
-              <td>
-                {{ $khenthuong->noidung_kt }}
+                <b>Nội dung khen thưởng: </b>{{ $khenthuong->noidung_kt }} <br>
+                <b>Số quyết định khen thưởng: </b>{{ $khenthuong->soquyetdinh_kt }} <br>
+                <b>Ngày ký quyết định: </b>{{ date('d-m-Y') , strtotime($khenthuong->ngay_kt) }} <br>
+                @if ($khenthuong->filequyetdinh_kt)
+                  <a href="{{ asset('public/uploads/khenthuong/'.$khenthuong->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                    <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                    File quyết định
+                  </a>
+                @else
+                  <p style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</p>
+                @endif
+                
               </td>
               <td>
                 <?php
@@ -293,8 +320,8 @@
   </div>
 </div>
 {{-- ajax --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> --}}
 {{--  --}}
 <script>
   document.querySelector('.them').addEventListener('click', (event)=>{
@@ -363,6 +390,27 @@
     });
   @endforeach
   
+</script>
+<script>
+  $(document).ready(function(){
+    $('#soquyetdinh_kt').mouseout(function(){
+      var soquyetdinh_kt = $(this).val();
+      var soquyetdinh = '';
+      $.ajax({
+        url:"{{ url("/check_soquyetdinh_kt") }}",
+        type:"GET",
+        data:{soquyetdinh_kt:soquyetdinh_kt},
+        success:function(data){
+          if(data == 1){  
+            $('#baoloi').html('Số quyết định đã tồn tại');
+            $('#soquyetdinh_kt').val('');
+          }else{
+            $('#baoloi').html(''); 
+          }
+        }
+      });
+    });
+  });
 </script>
 <!--  -->
 @endsection

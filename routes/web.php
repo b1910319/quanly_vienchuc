@@ -808,6 +808,8 @@ Route::get('/delete_all_hinhthuckhenthuong',[HinhThucKhenThuongController::class
 
 
 Route::get('/khenthuong',[KhenThuongController::class, 'khenthuong']);
+Route::get('/check_soquyetdinh_kt',[KhenThuongController::class, 'check_soquyetdinh_kt']);
+Route::get('/check_soquyetdinh_kt_edit',[KhenThuongController::class, 'check_soquyetdinh_kt_edit']);
 Route::get('/khenthuong_add/{ma_vc}',[KhenThuongController::class, 'khenthuong_add']);
 Route::post('/add_khenthuong/{ma_vc}',[KhenThuongController::class, 'add_khenthuong']);
 Route::post('/add_khenthuong_excel',[KhenThuongController::class, 'add_khenthuong_excel']);

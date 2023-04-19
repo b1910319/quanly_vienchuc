@@ -18,8 +18,9 @@ class KhenThuongImport implements ToModel
       'ma_vc'     => $row[0],
       'ma_lkt'     => $row[1],
       'ma_htkt'     => $row[2],
-      'ngay_kt'     => $row[3],
-      'noidung_kt'     => $row[4],
+      'soquyetdinh_kt'     => $row[3],
+      'ngay_kt'     => $row[4],
+      'noidung_kt'     => $row[5],
     ]);
   }
 }

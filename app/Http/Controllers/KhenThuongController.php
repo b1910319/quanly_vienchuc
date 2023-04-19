@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
+use App\Models\QuaTrinhChucVu;
+use App\Models\QuyetDinh;
 use App\Models\ThuongBinh;
 use App\Models\Tinh;
 use App\Models\TonGiao;
@@ -186,6 +188,46 @@ class KhenThuongController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function check_soquyetdinh_kt(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $soquyetdinh_kt = $request->soquyetdinh_kt;
+      if($soquyetdinh_kt != null){
+        $quatrinhchucvu = QuaTrinhChucVu::where('soquyetdinh_qtcv', $soquyetdinh_kt)
+          ->first();
+        $quyetdinh = QuyetDinh::where('so_qd', $soquyetdinh_kt)
+          ->first();
+        $khenthuong = KhenThuong::where('soquyetdinh_kt', $soquyetdinh_kt)
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
+  public function check_soquyetdinh_kt_edit(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $soquyetdinh_kt = $request->soquyetdinh_kt;
+      $ma_kt = $request->ma_kt;
+      if($soquyetdinh_kt != null && $ma_kt != null){
+        $khenthuong = KhenThuong::where('soquyetdinh_kt', $soquyetdinh_kt)
+          ->where('ma_kt', '<>', $ma_kt)
+          ->first();
+        $quatrinhchucvu = QuaTrinhChucVu::where('soquyetdinh_qtcv', $soquyetdinh_kt)
+          ->first();
+        $quyetdinh = QuyetDinh::where('so_qd', $soquyetdinh_kt)
+          ->first();
+        if(isset($khenthuong) || isset($quatrinhchucvu) || isset($quyetdinh)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_khenthuong(Request $request, $ma_vc){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
@@ -200,6 +242,7 @@ class KhenThuongController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
       $data = $request->all();
+      $vienchuc = VienChuc::find($ma_vc);
       $khenthuong = new KhenThuong();
       $khenthuong->ma_lkt = $data['ma_lkt'];
       $khenthuong->ma_vc = $ma_vc;
@@ -207,6 +250,13 @@ class KhenThuongController extends Controller
       $khenthuong->ngay_kt = $data['ngay_kt'];
       $khenthuong->noidung_kt = $data['noidung_kt'];
       $khenthuong->status_kt = $data['status_kt'];
+      $khenthuong->soquyetdinh_kt = $data['soquyetdinh_kt'];
+      $get_file = $request->file('filequyetdinh_kt');
+      if($get_file){
+        $new_file = $vienchuc->hoten_vc.rand(0,999).'.'.$get_file->getClientOriginalExtension();
+        $get_file->move('public/uploads/khenthuong', $new_file);
+        $khenthuong->filequyetdinh_kt = $new_file;
+      }
       $khenthuong->save();
       $request->session()->put('message','Thêm thành công');
       return Redirect::to('/khenthuong_add/'.$ma_vc);
@@ -323,6 +373,7 @@ class KhenThuongController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
       $data = $request->all();
+      $vienchuc = VienChuc::find($ma_vc);
       Carbon::now('Asia/Ho_Chi_Minh');
       $khenthuong = KhenThuong::find($ma_kt);
       $khenthuong->ma_lkt = $data['ma_lkt'];
@@ -331,6 +382,15 @@ class KhenThuongController extends Controller
       $khenthuong->ngay_kt = $data['ngay_kt'];
       $khenthuong->noidung_kt = $data['noidung_kt'];
       $khenthuong->status_kt = $data['status_kt'];
+      $get_file = $request->file('filequyetdinh_kt');
+      if($get_file){
+        $new_file = $vienchuc->hoten_vc.rand(0,999).'.'.$get_file->getClientOriginalExtension();
+        if($khenthuong->filequyetdinh_kt){
+          unlink('public/uploads/khenthuong/'.$khenthuong->filequyetdinh_kt);
+        }
+        $get_file->move('public/uploads/khenthuong', $new_file);
+        $khenthuong->filequyetdinh_kt = $new_file;
+      }
       $khenthuong->updated_kt = Carbon::now();
       $khenthuong->save();
       return Redirect::to('/khenthuong_add/'.$ma_vc);
@@ -354,6 +414,10 @@ class KhenThuongController extends Controller
       if($request->ajax()){
         $id =$request->id;
         if($id != null){
+          $khenthuong = KhenThuong::find($id);
+          if($khenthuong->filequyetdinh_kt){
+            unlink('public/uploads/khenthuong/'.$khenthuong->filequyetdinh_kt);
+          }
           KhenThuong::find($id)->delete();
         }
       }
@@ -373,6 +437,12 @@ class KhenThuongController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlk || $phanquyen_qlktkl){
       $ma_kt = $request->ma_kt;
+      $khenthuong = KhenThuong::whereIn('ma_kt', $ma_kt)->get();
+      foreach($khenthuong as $kt){
+        if($kt->filequyetdinh_kt){
+          unlink('public/uploads/khenthuong/'.$kt->filequyetdinh_kt);
+        }
+      }
       KhenThuong::whereIn('ma_kt', $ma_kt)->delete();
       return redirect()->back();
     }
@@ -393,6 +463,9 @@ class KhenThuongController extends Controller
       $list = KhenThuong::where('ma_vc', $ma_vc)
         ->get();
       foreach($list as $key => $khenthuong){
+        if($khenthuong->filequyetdinh_kt){
+          unlink('public/uploads/khenthuong/'.$khenthuong->filequyetdinh_kt);
+        }
         $khenthuong->delete();
       }
       return Redirect::to('/khenthuong_add/'.$ma_vc);

@@ -109,7 +109,7 @@
                           <th scope="row">Số quyết định: </th>
                           <td class="was-validated">
                             <input type='text' id="soquyetdinh_qtcv"  class='form-control input_table' autofocus required name="soquyetdinh_qtcv">
-                            <p id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></p>
+                            <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                           </td>
                         </tr>
                       </tbody>
@@ -274,8 +274,8 @@
   </div>
 </div>
 {{-- ajax --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> --}}
 {{--  --}}
 <script>
   document.querySelector('.them').addEventListener('click', (event)=>{

@@ -14,6 +14,8 @@ class KhenThuong extends Model
     'ma_htkt',
     'ngay_kt',
     'noidung_kt',
+    'soquyetdinh_kt',
+    'filequyetdinh_kt',
     'status_kt',
     'updated_kt'
 
