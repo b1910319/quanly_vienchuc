@@ -112,14 +112,15 @@
                         <tr>
                           <th scope="row">Tên châu lục: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="ten_cl">
+                            <input id="ten_cl" type='text' class='form-control input_table' autofocus required name="ten_cl">
+                            <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                           </td>
                         </tr>
                         <tr>
                           <th scope="row">Trạng thái: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="status_cl">
-                              <option value="0" >Chọn trạng thái</option>
+                            <select class="custom-select input_table" id="gender2" name="status_cl" required>
+                              <option value="" >Chọn trạng thái</option>
                               <option value="1" >Ẩn</option>
                               <option selected value="0" >Hiển thị</option>
                             </select>
@@ -283,13 +284,6 @@
     
   </div>
 </div>
-<!-- trình soạn thảo  -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
-<script>
-  // CKEDITOR.replace('mota_cl');
-</script>
-<!--  -->
 <script>
   document.querySelector('.them').addEventListener('click', (event)=>{
     const Toast = Swal.mixin({
@@ -356,5 +350,26 @@
     });
   @endforeach
   
+</script>
+<script>
+  $(document).ready(function(){
+    $('#ten_cl').mouseout(function(){
+      var ten_cl = $(this).val();
+      // alert(ten_cl);
+      $.ajax({
+        url:"{{ url("/check_ten_cl") }}",
+        type:"GET",
+        data:{ten_cl:ten_cl},
+        success:function(data){
+          if(data == 1){  
+            $('#baoloi').html('Châu lục đã tồn tại');
+            $('#ten_cl').val('');
+          }else{
+            $('#baoloi').html(''); 
+          }
+        }
+      });
+    });
+  });
 </script>
 @endsection

@@ -1026,7 +1026,12 @@ Route::get('/delete_all_file',[FileController::class, 'delete_all_file']);
 Route::get('/file_luottai',[FileController::class, 'file_luottai']);
 Route::post('/delete_file_check',[FileController::class, 'delete_file_check']);
 
+
+
+
+
 Route::get('/chauluc',[ChauLucController::class, 'chauluc']);
+Route::get('/check_ten_cl',[ChauLucController::class, 'check_ten_cl']);
 Route::post('/add_chauluc',[ChauLucController::class, 'add_chauluc']);
 Route::post('/add_chauluc_excel',[ChauLucController::class, 'add_chauluc_excel']);
 Route::get('/select_chauluc/{ma_kv}',[ChauLucController::class, 'select_chauluc']);
