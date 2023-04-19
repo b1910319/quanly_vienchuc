@@ -83,6 +83,21 @@ class QuocGiaController extends Controller
     }
     
   }
+  public function check_ten_qg(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_qg = $request->ten_qg;
+      if($ten_qg != null){
+        $quocgia = QuocGia::where('ten_qg', $ten_qg)
+          ->first();
+        if(isset($quocgia)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_quocgia(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

@@ -23,7 +23,7 @@
               <tr>
                 <th scope="row">Tên khu vực: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" aria-label="Default select example" name="ma_kv">
+                  <select class="custom-select input_table" aria-label="Default select example" name="ma_kv" required>
                     @foreach ($list_khuvuc as $khuvuc )
                       <option  
                         @if ($khuvuc->ma_kv == $edit->ma_kv)
@@ -39,7 +39,8 @@
               <tr>
                 <th scope="row">Tên quốc gia: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="ten_qg" value="{{ $edit->ten_qg }}">
+                  <input id="ten_qg" type='text' class='form-control input_table' autofocus required name="ten_qg" value="{{ $edit->ten_qg }}">
+                  <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
             </tbody>
@@ -51,8 +52,8 @@
               <tr>
                 <th scope="row">Trạng thái: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="status_qg">
-                    <option value="0" >Chọn trạng thái</option>
+                  <select class="custom-select input_table" id="gender2" name="status_qg" required>
+                    <option value="" >Chọn trạng thái</option>
                     @if ($edit->status_qg == 1)
                       <option selected value="1" >Ẩn</option>
                       <option value="0" >Hiển thị</option>
@@ -79,4 +80,25 @@
       </div>
     </form>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('#ten_qg').mouseout(function(){
+        var ten_qg = $(this).val();
+        // alert(ten_qg);
+        $.ajax({
+          url:"{{ url("/check_ten_qg") }}",
+          type:"GET",
+          data:{ten_qg:ten_qg},
+          success:function(data){
+            if(data == 1){  
+              $('#baoloi').html('Quốc gia đã tồn tại');
+              $('#ten_qg').val('');
+            }else{
+              $('#baoloi').html(''); 
+            }
+          }
+        });
+      });
+    });
+  </script>
 @endsection

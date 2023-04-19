@@ -1058,6 +1058,7 @@ Route::post('/delete_khuvuc_check',[KhuVucController::class, 'delete_khuvuc_chec
 
 
 Route::get('/quocgia/{ma_kv}',[QuocGiaController::class, 'quocgia']);
+Route::get('/check_ten_qg',[QuocGiaController::class, 'check_ten_qg']);
 Route::post('/add_quocgia',[QuocGiaController::class, 'add_quocgia']);
 Route::post('/add_quocgia_excel',[QuocGiaController::class, 'add_quocgia_excel']);
 Route::get('/select_quocgia/{ma_qg}',[QuocGiaController::class, 'select_quocgia']);
