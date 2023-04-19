@@ -82,6 +82,21 @@ class KhuVucController extends Controller
     }
     
   }
+  public function check_ten_kv(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_kv = $request->ten_kv;
+      if($ten_kv != null){
+        $khuvuc = KhuVuc::where('ten_kv', $ten_kv)
+          ->first();
+        if(isset($khuvuc)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_khuvuc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

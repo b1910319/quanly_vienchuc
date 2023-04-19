@@ -1045,6 +1045,7 @@ Route::post('/delete_chauluc_check',[ChauLucController::class, 'delete_chauluc_c
 
 
 Route::get('/khuvuc/{ma_cl}',[KhuVucController::class, 'khuvuc']);
+Route::get('/check_ten_kv',[KhuVucController::class, 'check_ten_kv']);
 Route::post('/add_khuvuc',[KhuVucController::class, 'add_khuvuc']);
 Route::post('/add_khuvuc_excel',[KhuVucController::class, 'add_khuvuc_excel']);
 Route::get('/select_khuvuc/{ma_kv}',[KhuVucController::class, 'select_khuvuc']);

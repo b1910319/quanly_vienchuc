@@ -37,9 +37,10 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row">Tên quốc gia: </th>
+                <th scope="row">Tên khu vực: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="ten_kv" value="{{ $edit->ten_kv }}">
+                  <input id="ten_kv" type='text' class='form-control input_table' autofocus required name="ten_kv" value="{{ $edit->ten_kv }}">
+                  <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
             </tbody>
@@ -51,8 +52,8 @@
               <tr>
                 <th scope="row">Trạng thái: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="status_kv">
-                    <option value="0" >Chọn trạng thái</option>
+                  <select class="custom-select input_table" id="gender2" name="status_kv" required>
+                    <option value="" >Chọn trạng thái</option>
                     @if ($edit->status_kv == 1)
                       <option selected value="1" >Ẩn</option>
                       <option value="0" >Hiển thị</option>
@@ -79,4 +80,25 @@
       </div>
     </form>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('#ten_kv').mouseout(function(){
+        var ten_kv = $(this).val();
+        // alert(ten_kv);
+        $.ajax({
+          url:"{{ url("/check_ten_kv") }}",
+          type:"GET",
+          data:{ten_kv:ten_kv},
+          success:function(data){
+            if(data == 1){  
+              $('#baoloi').html('Khu vực đã tồn tại');
+              $('#ten_kv').val('');
+            }else{
+              $('#baoloi').html(''); 
+            }
+          }
+        });
+      });
+    });
+  </script>
 @endsection
