@@ -66,9 +66,8 @@
   </div>
   <script>
     $(document).ready(function(){
-      $('#ten_tg').change(function(){
+      $('#ten_tg').mouseout(function(){
         var ten_tg = $(this).val();
-        var ten = '';
         // alert(ten_tg);
         $.ajax({
           url:"{{ url("/check_ten_tg") }}",

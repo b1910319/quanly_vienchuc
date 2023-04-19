@@ -364,7 +364,7 @@
 </script>
 <script>
   $(document).ready(function(){
-    $('#user').change(function(){
+    $('#user').mouseout(function(){
       var user_vc= $(this).val();
       // alert(user_vc);
       $.ajax({
@@ -374,6 +374,7 @@
         success:function(data){
           if(data == 1){   
             $('#thongbao').html('Email đã tồn tại vui lòng nhập email khác');  
+            $('#user').val('');
           }else{
             $('#thongbao').html(''); 
           }

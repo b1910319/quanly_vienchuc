@@ -66,7 +66,7 @@
   </div>
   <script>
     $(document).ready(function(){
-      $('#ten_hdt').change(function(){
+      $('#ten_hdt').mouseout(function(){
         var ten_hdt = $(this).val();
         var ten = '';
         // alert(ten_hdt);

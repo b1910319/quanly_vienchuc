@@ -310,9 +310,8 @@
 </script>
 <script>
   $(document).ready(function(){
-    $('#ten_cv').change(function(){
+    $('#ten_cv').mouseout(function(){
       var ten_cv = $(this).val();
-      var ten = '';
       // alert(ten_cv);
       $.ajax({
         url:"{{ url("/check_ten_cv") }}",

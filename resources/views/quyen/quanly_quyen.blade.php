@@ -324,7 +324,7 @@
 </script>
 <script>
   $(document).ready(function(){
-    $('#ten_q').change(function(){
+    $('#ten_q').mouseout(function(){
       var ten_q = $(this).val();
       var ten = '';
       // alert(ten_q);

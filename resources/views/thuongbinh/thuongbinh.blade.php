@@ -323,7 +323,7 @@
 </script>
 <script>
   $(document).ready(function(){
-    $('#ten_tb').change(function(){
+    $('#ten_tb').mouseout(function(){
       var ten_tb = $(this).val();
       var ten = '';
       // alert(ten_tb);

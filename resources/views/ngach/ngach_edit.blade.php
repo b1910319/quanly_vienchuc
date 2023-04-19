@@ -79,7 +79,7 @@
   </div>
   <script>
     $(document).ready(function(){
-      $('#ten_n').change(function(){
+      $('#ten_n').mouseout(function(){
         var ten_n = $(this).val();
         var ten = '';
         // alert(ten_n);
@@ -99,7 +99,7 @@
       });
     });
     $(document).ready(function(){
-      $('#maso_n').change(function(){
+      $('#maso_n').mouseout(function(){
         var maso_n = $(this).val();
         // alert(maso_n);
         $.ajax({

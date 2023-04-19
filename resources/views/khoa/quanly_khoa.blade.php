@@ -349,9 +349,8 @@
 </script>
 <script>
   $(document).ready(function(){
-    $('#ten_k').change(function(){
+    $('#ten_k').mouseout(function(){
       var ten_k = $(this).val();
-      var ten = '';
       // alert(ten_k);
       $.ajax({
         url:"{{ url("/check_ten_k") }}",

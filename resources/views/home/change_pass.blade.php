@@ -76,7 +76,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script>
   $(document).ready(function(){
-    $('#pass_cu').change(function(){
+    $('#pass_cu').mouseout(function(){
       var pass_cu= $(this).val();
       var user_vc = $('#user_vc').val();
       // alert(pass_cu);
@@ -88,6 +88,7 @@
         success:function(data){
           if(data == 0){   
             $('#message').html('Mật khẩu sai vui lòng nhập lại');  
+            $('#pass_cu').val('');
             // location.reload();
           }else{
             $('#message').html(''); 
@@ -95,7 +96,7 @@
         }
       });
     });
-    $('#xacnhan_pass_moi').change(function(){
+    $('#xacnhan_pass_moi').mouseout(function(){
       var xacnhan_pass_moi= $(this).val();
       var pass_moi = $('#pass_moi').val();
       // alert(xacnhan_pass_moi);
@@ -103,7 +104,8 @@
       if(pass_moi == xacnhan_pass_moi ){
         $('#message').html('');  
       }else{
-        $('#message').html('Xác nhận mật khẩu nhập sai vui lòng nhập lại');  
+        $('#message').html('Xác nhận mật khẩu nhập sai vui lòng nhập lại'); 
+        $('#xacnhan_pass_moi').val('');
       }
     });
   });

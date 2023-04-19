@@ -310,7 +310,7 @@
 </script>
 <script>
   $(document).ready(function(){
-    $('#ten_lbc').change(function(){
+    $('#ten_lbc').mouseout(function(){
       var ten_lbc = $(this).val();
       var ten = '';
       // alert(ten_lbc);

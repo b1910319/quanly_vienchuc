@@ -76,9 +76,8 @@
   </div>
   <script>
     $(document).ready(function(){
-      $('#ten_tb').change(function(){
+      $('#ten_tb').mouseout(function(){
         var ten_tb = $(this).val();
-        var ten = '';
         // alert(ten_tb);
         $.ajax({
           url:"{{ url("/check_ten_tb") }}",

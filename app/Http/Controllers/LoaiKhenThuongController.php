@@ -72,6 +72,21 @@ class LoaiKhenThuongController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function check_ten_lkt(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_lkt = $request->ten_lkt;
+      if($ten_lkt != null){
+        $loaikhenthuong = LoaiKhenThuong::where('ten_lkt', $ten_lkt)
+          ->first();
+        if(isset($loaikhenthuong)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_loaikhenthuong(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

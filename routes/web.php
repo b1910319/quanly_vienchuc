@@ -766,6 +766,7 @@ Route::get('/thongke_qlqtcv_loc_7_word/{ma_nk}',[ThongKeController::class, 'thon
 
 
 Route::get('/loaikhenthuong',[LoaiKhenThuongController::class, 'loaikhenthuong']);
+Route::get('/check_ten_lkt',[LoaiKhenThuongController::class, 'check_ten_lkt']);
 Route::post('/add_loaikhenthuong',[LoaiKhenThuongController::class, 'add_loaikhenthuong']);
 Route::post('/add_loaikhenthuong_excel',[LoaiKhenThuongController::class, 'add_loaikhenthuong_excel']);
 Route::get('/select_loaikhenthuong/{ma_lkt}',[LoaiKhenThuongController::class, 'select_loaikhenthuong']);
