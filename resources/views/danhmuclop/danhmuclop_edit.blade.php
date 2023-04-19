@@ -23,7 +23,8 @@
               <tr>
                 <th scope="row">Danh mục lớp: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="ten_dml" value="{{ $edit->ten_dml }}">
+                  <input id="ten_dml" type='text' class='form-control input_table' autofocus required name="ten_dml" value="{{ $edit->ten_dml }}">
+                  <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
             </tbody>
@@ -35,8 +36,8 @@
               <tr>
                 <th scope="row">Trạng thái: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="status_dml">
-                    <option value="0" >Chọn trạng thái</option>
+                  <select class="custom-select input_table" id="gender2" name="status_dml" required>
+                    <option value="" >Chọn trạng thái</option>
                     @if ($edit->status_dml == 1)
                       <option selected value="1" >Ẩn</option>
                       <option value="0" >Hiển thị</option>
@@ -63,4 +64,25 @@
       </div>
     </form>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('#ten_dml').mouseout(function(){
+        var ten_dml = $(this).val();
+        // alert(ten_dml);
+        $.ajax({
+          url:"{{ url("/check_ten_dml") }}",
+          type:"GET",
+          data:{ten_dml:ten_dml},
+          success:function(data){
+            if(data == 1){  
+              $('#baoloi').html('Danh mục lớp đã tồn tại');
+              $('#ten_dml').val('');
+            }else{
+              $('#baoloi').html(''); 
+            }
+          }
+        });
+      });
+    });
+  </script>
 @endsection

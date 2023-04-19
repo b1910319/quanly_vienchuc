@@ -117,7 +117,7 @@
                           <th scope="row" style="width: 10%">Đến: </th>
                           <td class="was-validated" style="width: 40%">
                             <input type='number' class='form-control input_table' id="ketthuc_nk" autofocus required name="ketthuc_nk" min="2000" max="<?php $date = getdate(); echo $date['year']+10 ?>">
-                            <p id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></p>
+                            <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                           </td>
                         </tr>
                       </tbody>

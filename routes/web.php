@@ -851,6 +851,7 @@ Route::post('/delete_kyluat_check',[KyLuatController::class, 'delete_kyluat_chec
 
 
 Route::get('/danhmuclop',[DanhMucLopController::class, 'danhmuclop']);
+Route::get('/check_ten_dml',[DanhMucLopController::class, 'check_ten_dml']);
 Route::post('/add_danhmuclop',[DanhMucLopController::class, 'add_danhmuclop']);
 Route::post('/add_danhmuclop_excel',[DanhMucLopController::class, 'add_danhmuclop_excel']);
 Route::get('/select_danhmuclop/{ma_dml}',[DanhMucLopController::class, 'select_danhmuclop']);

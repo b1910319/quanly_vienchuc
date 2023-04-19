@@ -347,7 +347,7 @@
 </script>
 <script>
   $(document).ready(function(){
-    $('#soquyetdinh_qtcv').change(function(){
+    $('#soquyetdinh_qtcv').mouseout(function(){
       var soquyetdinh_qtcv = $(this).val();
       var soquyetdinh = '';
       // alert(soquyetdinh_qtcv);
