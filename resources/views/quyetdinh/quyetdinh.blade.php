@@ -95,8 +95,8 @@
                           <tr>
                             <th scope="row">Viên chức: </th>
                             <td class="was-validated">
-                              <select class="custom-select input_table" id="gender2" name="ma_vc">
-                                <option value="0" >Chọn viên chức</option>
+                              <select class="custom-select input_table" id="gender2" name="ma_vc" required>
+                                <option value="" >Chọn viên chức</option>
                                 @foreach ($list_vienchuc as $vienchuc )
                                 <option value="{{ $vienchuc->ma_vc }}" >{{ $vienchuc->hoten_vc }}</option>
                                 @endforeach
@@ -106,8 +106,8 @@
                           <tr>
                             <th scope="row">Lớp: </th>
                             <td class="was-validated">
-                              <select class="custom-select input_table" id="gender2" name="ma_l">
-                                <option value="0" >Chọn lớp</option>
+                              <select class="custom-select input_table" id="gender2" name="ma_l" required>
+                                <option value="" >Chọn lớp</option>
                                 @foreach ($list_lop as $lop )
                                   <option value="{{ $lop->ma_l }}" >{{ $lop->ten_l }}</option>
                                 @endforeach
@@ -115,17 +115,24 @@
                             </td>
                           </tr>
                         @endif
-                        
-                        <tr>
-                          <th scope="row">Số quyết định: </th>
-                          <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="so_qd">
-                          </td>
-                        </tr>
                         <tr>
                           <th scope="row">Ngày ký quyết định: </th>
                           <td class="was-validated">
-                            <input type='date' class='form-control input_table' autofocus required name="ngayky_qd">
+                            <?php 
+                              use Illuminate\Support\Carbon;
+                              Carbon::now('Asia/Ho_Chi_Minh'); 
+                              $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                              ?>
+                              <input type='date' class='form-control input_table' autofocus required name="ngayky_qd" max="<?php echo $now ?>">
+                              <?php
+                            ?>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Số quyết định: </th>
+                          <td class="was-validated">
+                            <input id="so_qd" type='text' class='form-control input_table' autofocus required name="so_qd">
+                            <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                           </td>
                         </tr>
                       </tbody>
@@ -143,8 +150,8 @@
                         <tr>
                           <th scope="row">Trạng thái: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="status_qd">
-                              <option value="0" >Chọn trạng thái</option>
+                            <select class="custom-select input_table" id="gender2" name="status_qd" required>
+                              <option value="" >Chọn trạng thái</option>
                               <option value="1" >Ẩn</option>
                               <option selected value="0" >Hiển thị</option>
                             </select>
@@ -289,8 +296,8 @@
   </div>
 </div>
 {{-- ajax --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> --}}
 {{--  --}}
 <script>
   document.querySelector('.them').addEventListener('click', (event)=>{
@@ -358,6 +365,27 @@
     });
   @endforeach
   
+</script>
+<script>
+  $(document).ready(function(){
+    $('#so_qd').mouseout(function(){
+      var so_qd = $(this).val();
+      // alert(so_qd);
+      $.ajax({
+        url:"{{ url("/check_so_qd") }}",
+        type:"GET",
+        data:{so_qd:so_qd},
+        success:function(data){
+          if(data == 1){  
+            $('#baoloi').html('Số quyết định đã tồn tại');
+            $('#so_qd').val('');
+          }else{
+            $('#baoloi').html(''); 
+          }
+        }
+      });
+    });
+  });
 </script>
 <!--  -->
 @endsection

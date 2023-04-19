@@ -23,6 +23,7 @@
               <tr>
                 <th scope="row">Hệ đào tạo: </th>
                 <td class="was-validated">
+                  <input type="hidden" id="ma_hdt" value="{{ $eidt->ma_hdt }}">
                   <input id="ten_hdt" type='text' class='form-control input_table' autofocus required name="ten_hdt" value="{{ $edit->ten_hdt }}">
                   <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
@@ -36,8 +37,8 @@
               <tr>
                 <th scope="row">Trạng thái: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="status_hdt">
-                    <option value="0" >Chọn trạng thái</option>
+                  <select class="custom-select input_table" id="gender2" name="status_hdt" required>
+                    <option value="" >Chọn trạng thái</option>
                     @if ($edit->status_hdt == 1)
                       <option selected value="1" >Ẩn</option>
                       <option value="0" >Hiển thị</option>
@@ -68,12 +69,12 @@
     $(document).ready(function(){
       $('#ten_hdt').mouseout(function(){
         var ten_hdt = $(this).val();
-        var ten = '';
+        var ma_hdt = $('#ma_hdt').val();
         // alert(ten_hdt);
         $.ajax({
-          url:"{{ url("/check_ten_hdt") }}",
+          url:"{{ url("/check_ten_hdt_edit") }}",
           type:"GET",
-          data:{ten_hdt:ten_hdt},
+          data:{ten_hdt:ten_hdt, ma_hdt:ma_hdt},
           success:function(data){
             if(data == 1){  
               $('#baoloi').html('Hệ đào tạo đã tồn tại');

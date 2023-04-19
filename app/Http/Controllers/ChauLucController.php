@@ -88,6 +88,23 @@ class ChauLucController extends Controller
       }
     }
   }
+  public function check_ten_cl_edit(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_cl = $request->ten_cl;
+      $ma_cl = $request->ma_cl;
+      if($ten_cl != null && $ma_cl != null){
+        $chauluc = ChauLuc::where('ten_cl', $ten_cl)
+          ->where('ma_cl', '<>', $ma_cl)
+          ->first();
+        if(isset($chauluc)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_chauluc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

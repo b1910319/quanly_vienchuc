@@ -39,6 +39,7 @@
               <tr>
                 <th scope="row">Tên khu vực: </th>
                 <td class="was-validated">
+                  <input type="hidden" id="ma_kv" value="{{ $edit->ma_kv }}">
                   <input id="ten_kv" type='text' class='form-control input_table' autofocus required name="ten_kv" value="{{ $edit->ten_kv }}">
                   <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
@@ -84,11 +85,12 @@
     $(document).ready(function(){
       $('#ten_kv').mouseout(function(){
         var ten_kv = $(this).val();
+        var ma_kv = $('#ma_kv').val();
         // alert(ten_kv);
         $.ajax({
-          url:"{{ url("/check_ten_kv") }}",
+          url:"{{ url("/check_ten_kv_edit") }}",
           type:"GET",
-          data:{ten_kv:ten_kv},
+          data:{ten_kv:ten_kv, ma_kv:ma_kv},
           success:function(data){
             if(data == 1){  
               $('#baoloi').html('Khu vực đã tồn tại');

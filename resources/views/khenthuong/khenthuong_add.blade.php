@@ -222,7 +222,7 @@
                 {{ $khenthuong->ten_htkt }} ({{ $khenthuong->ma_htkt }})
               </td>
               <td>
-                {{ $khenthuong->ngay_kt }}
+                {{ date('d-m-Y') , strtotime($khenthuong->ngay_kt) }}
               </td>
               <td>
                 {{ $khenthuong->noidung_kt }}

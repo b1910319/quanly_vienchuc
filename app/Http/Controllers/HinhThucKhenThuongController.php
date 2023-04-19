@@ -82,6 +82,23 @@ class HinhThucKhenThuongController extends Controller
       }
     }
   }
+  public function check_ten_htkt_edit(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_htkt = $request->ten_htkt;
+      $ma_htkt = $request->ma_htkt;
+      if($ten_htkt != null && $ma_htkt != null){
+        $hinhthuckhenthuong = HinhThucKhenThuong::where('ten_htkt', $ten_htkt)
+          ->where('ma_htkt', '<>', $ma_htkt)
+          ->first();
+        if(isset($hinhthuckhenthuong)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_hinhthuckhenthuong(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

@@ -81,6 +81,23 @@ class QuyenController extends Controller
       }
     }
   }
+  public function check_ten_q_edit(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_q = $request->ten_q;
+      $ma_q = $request->ma_q;
+      if($ten_q != null && $ma_q != null){
+        $quyen = Quyen::where('ten_q', $ten_q)
+          ->where('ma_q', '<>', $ma_q)
+          ->first();
+        if(isset($quyen)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_quyen(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

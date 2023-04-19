@@ -39,6 +39,7 @@
               <tr>
                 <th scope="row">Tên quốc gia: </th>
                 <td class="was-validated">
+                  <input type="hidden" id="ma_qg" value="{{ $edit->ma_qg }}">
                   <input id="ten_qg" type='text' class='form-control input_table' autofocus required name="ten_qg" value="{{ $edit->ten_qg }}">
                   <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
@@ -84,11 +85,12 @@
     $(document).ready(function(){
       $('#ten_qg').mouseout(function(){
         var ten_qg = $(this).val();
+        var ma_qg = $('#ma_qg').val();
         // alert(ten_qg);
         $.ajax({
-          url:"{{ url("/check_ten_qg") }}",
+          url:"{{ url("/check_ten_qg_edit") }}",
           type:"GET",
-          data:{ten_qg:ten_qg},
+          data:{ten_qg:ten_qg, ma_qg:ma_qg},
           success:function(data){
             if(data == 1){  
               $('#baoloi').html('Quốc gia đã tồn tại');

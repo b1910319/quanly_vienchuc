@@ -82,6 +82,23 @@ class DanTocController extends Controller
       }
     }
   }
+  public function check_ten_dt_edit(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_dt = $request->ten_dt;
+      $ma_dt = $request->ma_dt;
+      if($ten_dt != null && $ma_dt != null){
+        $dantoc = DanToc::where('ten_dt', $ten_dt)
+          ->where('ma_dt', '<>', $ma_dt)
+          ->first();
+        if(isset($dantoc)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_dantoc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

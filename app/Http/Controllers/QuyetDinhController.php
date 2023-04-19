@@ -87,6 +87,38 @@ class QuyetDinhController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function check_so_qd(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $so_qd = $request->so_qd;
+      if($so_qd != null){
+        $quyetdinh = QuyetDinh::where('so_qd', $so_qd)
+          ->first();
+        if(isset($quyetdinh)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
+  public function check_so_qd_edit(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $so_qd = $request->so_qd;
+      $ma_qd = $request->ma_qd;
+      if($so_qd != null && $ma_qd != null){
+        $quyetdinh = QuyetDinh::where('so_qd', $so_qd)
+          ->where('ma_qd', '<>', $ma_qd)
+          ->first();
+        if(isset($quyetdinh)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_quyetdinh(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

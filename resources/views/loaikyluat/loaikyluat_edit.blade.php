@@ -21,8 +21,9 @@
           <table class="table">
             <tbody>
               <tr>
-                <th scope="row">Loại khen thưởng: </th>
+                <th scope="row">Loại kỷ luật: </th>
                 <td class="was-validated">
+                  <input type="hidden" id="ma_lkl" value="{{ $edit->ma_lkl }}">
                   <input id="ten_lkl" type='text' class='form-control input_table' autofocus required name="ten_lkl" value="{{ $edit->ten_lkl }}">
                   <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
@@ -55,7 +56,7 @@
           <div class="col-5"></div>
           <div class="col-2">
             <button type="submit" class="btn btn-warning button_cam" style=" width: 100%">
-              <i class="fa-solid fa-pen-to-square"></i>
+              <i class="fa-solid fa-pen-to-square text-light"></i>
               &ensp; Cập nhật
             </button>
           </div>
@@ -68,11 +69,13 @@
     $(document).ready(function(){
       $('#ten_lkl').mouseout(function(){
         var ten_lkl = $(this).val();
+        var ma_lkl = $('#ma_lkl').val();
         // alert(ten_lkl);
+        // alert(ma_lkl);
         $.ajax({
-          url:"{{ url("/check_ten_lkl") }}",
+          url:"{{ url("/check_ten_lkl_edit") }}",
           type:"GET",
-          data:{ten_lkl:ten_lkl},
+          data:{ten_lkl:ten_lkl, ma_lkl:ma_lkl},
           success:function(data){
             if(data == 1){  
               $('#baoloi').html('Loại kỷ luật đã tồn tại');

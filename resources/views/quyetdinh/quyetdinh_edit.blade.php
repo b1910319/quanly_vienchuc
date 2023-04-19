@@ -31,15 +31,24 @@
               <input type="hidden" name="ma_vc" value="{{ $edit->ma_vc }}">
               <input type="hidden" name="ma_l" value="{{ $edit->ma_l }}">
               <tr>
-                <th scope="row">Số quyết định: </th>
+                <th scope="row">Ngày ký quyết định: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="so_qd" value="{{ $edit->so_qd }}">
+                  <?php 
+                    use Illuminate\Support\Carbon;
+                    Carbon::now('Asia/Ho_Chi_Minh'); 
+                    $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                    ?>
+                      <input type='date' class='form-control input_table' autofocus required name="ngayky_qd" value="{{ $edit->ngayky_qd }}" max="<?php echo $now ?>">
+                    <?php
+                  ?>
                 </td>
               </tr>
               <tr>
-                <th scope="row">Ngày ký quyết định: </th>
+                <th scope="row">Số quyết định: </th>
                 <td class="was-validated">
-                  <input type='date' class='form-control input_table' autofocus required name="ngayky_qd" value="{{ $edit->ngayky_qd }}">
+                  <input type="hidden" id="ma_qd" value="{{ $edit->ma_qd }}">
+                  <input id="so_qd" type='text' class='form-control input_table' autofocus required name="so_qd" value="{{ $edit->so_qd }}">
+                  <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
             </tbody>
@@ -53,7 +62,7 @@
                 <td class="was-validated">
                   <div class="row">
                     <div class="col-6">
-                      <input type='file' class='form-control input_table' name="file_qd">
+                      <input type='file' class='form-control input_table' name="file_qd" required>
                     </div>
                     <div class="col-6">
                       @if ($edit->file_qd != ' ')
@@ -74,8 +83,8 @@
               <tr>
                 <th scope="row">Trạng thái: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="status_qd">
-                    <option value="0" >Chọn trạng thái</option>
+                  <select class="custom-select input_table" id="gender2" name="status_qd" required>
+                    <option value="" >Chọn trạng thái</option>
                     @if ($edit->status_qd == 1)
                       <option selected value="1" >Ẩn</option>
                       <option value="0" >Hiển thị</option>
@@ -102,4 +111,27 @@
       </div>
     </form>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('#so_qd').mouseout(function(){
+        var so_qd = $(this).val();
+        var ma_qd = $('#ma_qd').val();var ma_qd = $('#ma_qd').val();
+
+        // alert(ma_qd);
+        $.ajax({
+          url:"{{ url("/check_so_qd_edit") }}",
+          type:"GET",
+          data:{so_qd:so_qd, ma_qd:ma_qd},
+          success:function(data){
+            if(data == 1){  
+              $('#baoloi').html('Số quyết định đã tồn tại');
+              $('#so_qd').val('');
+            }else{
+              $('#baoloi').html(''); 
+            }
+          }
+        });
+      });
+    });
+  </script>
 @endsection

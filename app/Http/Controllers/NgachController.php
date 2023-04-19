@@ -107,6 +107,40 @@ class NgachController extends Controller
       }
     }
   }
+  public function check_ten_n_edit(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_n = $request->ten_n;
+      $ma_n = $request->ma_n;
+      if($ten_n != null && $ma_n != null){
+        $ngach = Ngach::where('ten_n', $ten_n)
+          ->where('ma_n', '<>', $ma_n)
+          ->first();
+        if(isset($ngach)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
+  public function check_maso_n_edit(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $maso_n = $request->maso_n;
+      $ma_q = $request->ma_q;
+      if($maso_n != null && $ma_q != null){
+        $ngach = Ngach::where('maso_n', $maso_n)
+          ->where('ma_q', '<>', $ma_q)
+          ->first();
+        if(isset($ngach)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_ngach(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

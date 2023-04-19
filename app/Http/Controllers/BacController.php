@@ -84,8 +84,29 @@ class BacController extends Controller
     $this->check_login();
     if($request->ajax()){
       $ten_b = $request->ten_b;
+      $ma_n =  $request->ma_n;
       if($ten_b != null){
         $bac = Bac::where('ten_b', $ten_b)
+          ->where('ma_n', $ma_n)
+          ->first();
+        if(isset($bac)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
+  public function check_ten_b_edit(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_b = $request->ten_b;
+      $ma_b = $request->ma_b;
+      $ma_n =  $request->ma_n;
+      if($ten_b != null && $ma_b != null && $ma_n != null){
+        $bac = Bac::where('ten_b', $ten_b)
+          ->where('ma_b', '<>', $ma_b)
+          ->where('ma_n', $ma_n)
           ->first();
         if(isset($bac)){
           return 1;

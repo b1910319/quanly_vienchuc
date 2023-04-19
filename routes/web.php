@@ -127,6 +127,7 @@ Route::get('/lylich_xuatfile_word/{ma_vc}',[VienChucController::class, 'lylich_x
 
 Route::get('/quanly_quyen',[QuyenController::class, 'quanly_quyen']);
 Route::get('/check_ten_q',[QuyenController::class, 'check_ten_q']);
+Route::get('/check_ten_q_edit',[QuyenController::class, 'check_ten_q_edit']);
 Route::post('/add_quyen',[QuyenController::class, 'add_quyen']);
 Route::post('/add_quyen_excel',[QuyenController::class, 'add_quyen_excel']);
 Route::get('/select_quyen/{ma_q}',[QuyenController::class, 'select_quyen']);
@@ -148,6 +149,7 @@ Route::get('/lammoi_quyen/{ma_vc}',[PhanQuyenController::class, 'lammoi_quyen'])
 
 Route::get('/quanly_khoa',[KhoaController::class, 'quanly_khoa']);
 Route::get('/check_ten_k',[KhoaController::class, 'check_ten_k']);
+Route::get('/check_ten_k_edit',[KhoaController::class, 'check_ten_k_edit']);
 Route::post('/add_khoa',[KhoaController::class, 'add_khoa']);
 Route::post('/add_khoa_excel',[KhoaController::class, 'add_khoa_excel']);
 Route::get('/select_khoa/{ma_k}',[KhoaController::class, 'select_khoa']);
@@ -161,6 +163,7 @@ Route::post('/delete_khoa_check',[KhoaController::class, 'delete_khoa_check']);
 
 Route::get('/dantoc',[DanTocController::class, 'dantoc']);
 Route::get('/check_ten_dt',[DanTocController::class, 'check_ten_dt']);
+Route::get('/check_ten_dt_edit',[DanTocController::class, 'check_ten_dt_edit']);
 Route::post('/add_dantoc',[DanTocController::class, 'add_dantoc']);
 Route::post('/add_dantoc_excel',[DanTocController::class, 'add_dantoc_excel']);
 Route::get('/select_dantoc/{ma_dt}',[DanTocController::class, 'select_dantoc']);
@@ -175,6 +178,7 @@ Route::post('/delete_dantoc_check',[DanTocController::class, 'delete_dantoc_chec
 
 Route::get('/chucvu',[ChucVuController::class, 'chucvu']);
 Route::get('/check_ten_cv',[ChucVuController::class, 'check_ten_cv']);
+Route::get('/check_ten_cv_edit',[ChucVuController::class, 'check_ten_cv_edit']);
 Route::post('/add_chucvu',[ChucVuController::class, 'add_chucvu']);
 Route::post('/add_chucvu_excel',[ChucVuController::class, 'add_chucvu_excel']);
 Route::get('/select_chucvu/{ma_cv}',[ChucVuController::class, 'select_chucvu']);
@@ -190,6 +194,8 @@ Route::post('/delete_chucvu_check',[ChucVuController::class, 'delete_chucvu_chec
 Route::get('/ngach',[NgachController::class, 'ngach']);
 Route::get('/check_ten_n',[NgachController::class, 'check_ten_n']);
 Route::get('/check_maso_n',[NgachController::class, 'check_maso_n']);
+Route::get('/check_ten_n_edit',[NgachController::class, 'check_ten_n_edit']);
+Route::get('/check_maso_n_edit',[NgachController::class, 'check_maso_n_edit']);
 Route::post('/add_ngach',[NgachController::class, 'add_ngach']);
 Route::post('/add_ngach_excel',[NgachController::class, 'add_ngach_excel']);
 Route::get('/select_ngach/{ma_n}',[NgachController::class, 'select_ngach']);
@@ -205,6 +211,7 @@ Route::post('/delete_ngach_check',[NgachController::class, 'delete_ngach_check']
 
 Route::get('/bac_ngach/{ma_n}',[BacController::class, 'bac_ngach']);
 Route::get('/check_ten_b',[BacController::class, 'check_ten_b']);
+Route::get('/check_ten_b_edit',[BacController::class, 'check_ten_b_edit']);
 Route::post('/add_bac_ngach/{ma_n}',[BacController::class, 'add_bac_ngach']);
 Route::post('/add_bac_ngach_excel',[BacController::class, 'add_bac_ngach_excel']);
 Route::get('/select_bac_ngach/{ma_n}/{ma_b}',[BacController::class, 'select_bac_ngach']);
@@ -233,6 +240,7 @@ Route::post('/updated_nangbac',[BacController::class, 'updated_nangbac']);
 
 Route::get('/tongiao',[TonGiaoController::class, 'tongiao']);
 Route::get('/check_ten_tg',[TonGiaoController::class, 'check_ten_tg']);
+Route::get('/check_ten_tg_edit',[TonGiaoController::class, 'check_ten_tg_edit']);
 Route::post('/add_tongiao',[TonGiaoController::class, 'add_tongiao']);
 Route::post('/add_tongiao_excel',[TonGiaoController::class, 'add_tongiao_excel']);
 Route::get('/select_tongiao/{ma_tg}',[TonGiaoController::class, 'select_tongiao']);
@@ -247,6 +255,7 @@ Route::post('/delete_tongiao_check',[TonGiaoController::class, 'delete_tongiao_c
 
 Route::get('/thuongbinh',[ThuongBinhController::class, 'thuongbinh']);
 Route::get('/check_ten_tb',[ThuongBinhController::class, 'check_ten_tb']);
+Route::get('/check_ten_tb_edit',[ThuongBinhController::class, 'check_ten_tb_edit']);
 Route::post('/add_thuongbinh',[ThuongBinhController::class, 'add_thuongbinh']);
 Route::post('/add_thuongbinh_excel',[ThuongBinhController::class, 'add_thuongbinh_excel']);
 Route::get('/select_thuongbinh/{ma_tb}',[ThuongBinhController::class, 'select_thuongbinh']);
@@ -276,6 +285,7 @@ Route::get('/delete_all_giadinh/{ma_vc}',[GiaDinhController::class, 'delete_all_
 
 Route::get('/loaibangcap',[LoaiBangCapController::class, 'loaibangcap']);
 Route::get('/check_ten_lbc',[LoaiBangCapController::class, 'check_ten_lbc']);
+Route::get('/check_ten_lbc_edit',[LoaiBangCapController::class, 'check_ten_lbc_edit']);
 Route::post('/add_loaibangcap',[LoaiBangCapController::class, 'add_loaibangcap']);
 Route::post('/add_loaibangcap_excel',[LoaiBangCapController::class, 'add_loaibangcap_excel']);
 Route::get('/select_loaibangcap/{ma_lbc}',[LoaiBangCapController::class, 'select_loaibangcap']);
@@ -290,6 +300,7 @@ Route::post('/delete_loaibangcap_check',[LoaiBangCapController::class, 'delete_l
 
 Route::get('/hedaotao',[HeDaoTaoController::class, 'hedaotao']);
 Route::get('/check_ten_hdt',[HeDaoTaoController::class, 'check_ten_hdt']);
+Route::get('/check_ten_hdt_edit',[HeDaoTaoController::class, 'check_ten_hdt_edit']);
 Route::post('/add_hedaotao',[HeDaoTaoController::class, 'add_hedaotao']);
 Route::post('/add_hedaotao_excel',[HeDaoTaoController::class, 'add_hedaotao_excel']);
 Route::get('/select_hedaotao/{ma_hdt}',[HeDaoTaoController::class, 'select_hedaotao']);
@@ -767,6 +778,7 @@ Route::get('/thongke_qlqtcv_loc_7_word/{ma_nk}',[ThongKeController::class, 'thon
 
 Route::get('/loaikhenthuong',[LoaiKhenThuongController::class, 'loaikhenthuong']);
 Route::get('/check_ten_lkt',[LoaiKhenThuongController::class, 'check_ten_lkt']);
+Route::get('/check_ten_lkt_edit',[LoaiKhenThuongController::class, 'check_ten_lkt_edit']);
 Route::post('/add_loaikhenthuong',[LoaiKhenThuongController::class, 'add_loaikhenthuong']);
 Route::post('/add_loaikhenthuong_excel',[LoaiKhenThuongController::class, 'add_loaikhenthuong_excel']);
 Route::get('/select_loaikhenthuong/{ma_lkt}',[LoaiKhenThuongController::class, 'select_loaikhenthuong']);
@@ -781,6 +793,7 @@ Route::post('/delete_loaikhenthuong_check',[LoaiKhenThuongController::class, 'de
 
 Route::get('/hinhthuckhenthuong',[HinhThucKhenThuongController::class, 'hinhthuckhenthuong']);
 Route::get('/check_ten_htkt',[HinhThucKhenThuongController::class, 'check_ten_htkt']);
+Route::get('/check_ten_htkt_edit',[HinhThucKhenThuongController::class, 'check_ten_htkt_edit']);
 Route::post('/add_hinhthuckhenthuong',[HinhThucKhenThuongController::class, 'add_hinhthuckhenthuong']);
 Route::post('/add_hinhthuckhenthuong_excel',[HinhThucKhenThuongController::class, 'add_hinhthuckhenthuong_excel']);
 Route::get('/select_hinhthuckhenthuong/{ma_htkt}',[HinhThucKhenThuongController::class, 'select_hinhthuckhenthuong']);
@@ -820,6 +833,7 @@ Route::get('/qlk_quanly_khenthuong_kyluat',[KhenThuongController::class, 'qlk_qu
 
 Route::get('/loaikyluat',[LoaiKyLuatController::class, 'loaikyluat']);
 Route::get('/check_ten_lkl',[LoaiKyLuatController::class, 'check_ten_lkl']);
+Route::get('/check_ten_lkl_edit',[LoaiKyLuatController::class, 'check_ten_lkl_edit']);
 Route::post('/add_loaikyluat',[LoaiKyLuatController::class, 'add_loaikyluat']);
 Route::post('/add_loaikyluat_excel',[LoaiKyLuatController::class, 'add_loaikyluat_excel']);
 Route::get('/select_loaikyluat/{ma_lkl}',[LoaiKyLuatController::class, 'select_loaikyluat']);
@@ -852,6 +866,7 @@ Route::post('/delete_kyluat_check',[KyLuatController::class, 'delete_kyluat_chec
 
 Route::get('/danhmuclop',[DanhMucLopController::class, 'danhmuclop']);
 Route::get('/check_ten_dml',[DanhMucLopController::class, 'check_ten_dml']);
+Route::get('/check_ten_dml_edit',[DanhMucLopController::class, 'check_ten_dml_edit']);
 Route::post('/add_danhmuclop',[DanhMucLopController::class, 'add_danhmuclop']);
 Route::post('/add_danhmuclop_excel',[DanhMucLopController::class, 'add_danhmuclop_excel']);
 Route::get('/select_danhmuclop/{ma_dml}',[DanhMucLopController::class, 'select_danhmuclop']);
@@ -906,6 +921,8 @@ Route::post('/quatrinhhoc_xuatfile',[DanhSachController::class, 'quatrinhhoc_xua
 
 
 Route::get('/quyetdinh/{ma_l}/{ma_vc}',[QuyetDinhController::class, 'quyetdinh']);
+Route::get('/check_so_qd',[QuyetDinhController::class, 'check_so_qd']);
+Route::get('/check_so_qd_edit',[QuyetDinhController::class, 'check_so_qd_edit']);
 Route::post('/add_quyetdinh',[QuyetDinhController::class, 'add_quyetdinh']);
 Route::get('/select_quyetdinh/{ma_qd}',[QuyetDinhController::class, 'select_quyetdinh']);
 Route::get('/edit_quyetdinh/{ma_qd}',[QuyetDinhController::class, 'edit_quyetdinh']);
@@ -1018,6 +1035,7 @@ Route::post('/vienchuc_add_thoihoc',[ThoiHocController::class, 'vienchuc_add_tho
 
 Route::get('/file',[FileController::class, 'file']);
 Route::get('/check_ten_f',[FileController::class, 'check_ten_f']);
+Route::get('/check_ten_f_edit',[FileController::class, 'check_ten_f_edit']);
 Route::post('/add_file',[FileController::class, 'add_file']);
 Route::get('/select_file/{ma_f}',[FileController::class, 'select_file']);
 Route::get('/edit_file/{ma_f}',[FileController::class, 'edit_file']);
@@ -1033,6 +1051,7 @@ Route::post('/delete_file_check',[FileController::class, 'delete_file_check']);
 
 Route::get('/chauluc',[ChauLucController::class, 'chauluc']);
 Route::get('/check_ten_cl',[ChauLucController::class, 'check_ten_cl']);
+Route::get('/check_ten_cl_edit',[ChauLucController::class, 'check_ten_cl_edit']);
 Route::post('/add_chauluc',[ChauLucController::class, 'add_chauluc']);
 Route::post('/add_chauluc_excel',[ChauLucController::class, 'add_chauluc_excel']);
 Route::get('/select_chauluc/{ma_kv}',[ChauLucController::class, 'select_chauluc']);
@@ -1047,6 +1066,7 @@ Route::post('/delete_chauluc_check',[ChauLucController::class, 'delete_chauluc_c
 
 Route::get('/khuvuc/{ma_cl}',[KhuVucController::class, 'khuvuc']);
 Route::get('/check_ten_kv',[KhuVucController::class, 'check_ten_kv']);
+Route::get('/check_ten_kv_edit',[KhuVucController::class, 'check_ten_kv_edit']);
 Route::post('/add_khuvuc',[KhuVucController::class, 'add_khuvuc']);
 Route::post('/add_khuvuc_excel',[KhuVucController::class, 'add_khuvuc_excel']);
 Route::get('/select_khuvuc/{ma_kv}',[KhuVucController::class, 'select_khuvuc']);
@@ -1060,6 +1080,7 @@ Route::post('/delete_khuvuc_check',[KhuVucController::class, 'delete_khuvuc_chec
 
 Route::get('/quocgia/{ma_kv}',[QuocGiaController::class, 'quocgia']);
 Route::get('/check_ten_qg',[QuocGiaController::class, 'check_ten_qg']);
+Route::get('/check_ten_qg_edit',[QuocGiaController::class, 'check_ten_qg_edit']);
 Route::post('/add_quocgia',[QuocGiaController::class, 'add_quocgia']);
 Route::post('/add_quocgia_excel',[QuocGiaController::class, 'add_quocgia_excel']);
 Route::get('/select_quocgia/{ma_qg}',[QuocGiaController::class, 'select_quocgia']);

@@ -87,6 +87,23 @@ class TonGiaoController extends Controller
       }
     }
   }
+  public function check_ten_tg_edit(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_tg = $request->ten_tg;
+      $ma_tg = $request->ma_tg;
+      if($ten_tg != null && $ma_tg != null){
+        $tongiao = TonGiao::where('ten_tg', $ten_tg)
+          ->where('ma_tg', '<>', $ma_tg)
+          ->first();
+        if(isset($tongiao)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_tongiao(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

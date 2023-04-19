@@ -23,6 +23,7 @@
               <tr>
                 <th scope="row">Tên châu lục: </th>
                 <td class="was-validated">
+                  <input type="hidden" id="ma_cl" value="{{ $edit->ma_cl }}">
                   <input id="ten_cl" type='text' class='form-control input_table' autofocus required name="ten_cl" value="{{ $edit->ten_cl }}">
                   <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
@@ -76,11 +77,12 @@
     $(document).ready(function(){
       $('#ten_cl').mouseout(function(){
         var ten_cl = $(this).val();
+        var ma_cl = $('#ma_cl').val();
         // alert(ten_cl);
         $.ajax({
-          url:"{{ url("/check_ten_cl") }}",
+          url:"{{ url("/check_ten_cl_edit") }}",
           type:"GET",
-          data:{ten_cl:ten_cl},
+          data:{ten_cl:ten_cl, ma_cl:ma_cl},
           success:function(data){
             if(data == 1){  
               $('#baoloi').html('Châu lục đã tồn tại');

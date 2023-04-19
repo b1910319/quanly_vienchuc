@@ -23,6 +23,7 @@
               <tr>
                 <th scope="row">Quyền: </th>
                 <td class="was-validated">
+                  <input type="hidden" id="ma_q" value="{{ $edit->ma_q }}">
                   <input type='text' id="ten_q" class='form-control input_table' autofocus required name="ten_q" minlength="5" value="{{ $edit->ten_q }}">
                   <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
@@ -82,12 +83,12 @@
   $(document).ready(function(){
     $('#ten_q').mouseout(function(){
       var ten_q = $(this).val();
-      var ten = '';
+      var ma_q = $('#ma_q').val();
       // alert(ten_q);
       $.ajax({
-        url:"{{ url("/check_ten_q") }}",
+        url:"{{ url("/check_ten_q_edit") }}",
         type:"GET",
-        data:{ten_q:ten_q},
+        data:{ten_q:ten_q, ma_q:ma_q},
         success:function(data){
           if(data == 1){  
             $('#baoloi').html('Quyền đã tồn tại');

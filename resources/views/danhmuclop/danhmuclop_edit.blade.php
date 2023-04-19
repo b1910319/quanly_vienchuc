@@ -23,6 +23,7 @@
               <tr>
                 <th scope="row">Danh mục lớp: </th>
                 <td class="was-validated">
+                  <input type="hidden" id="ma_dml" value="{{ $edit->ma_dml }}">
                   <input id="ten_dml" type='text' class='form-control input_table' autofocus required name="ten_dml" value="{{ $edit->ten_dml }}">
                   <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
@@ -68,11 +69,12 @@
     $(document).ready(function(){
       $('#ten_dml').mouseout(function(){
         var ten_dml = $(this).val();
+        var ma_dml = $('#ma_dml').val();
         // alert(ten_dml);
         $.ajax({
-          url:"{{ url("/check_ten_dml") }}",
+          url:"{{ url("/check_ten_dml_edit") }}",
           type:"GET",
-          data:{ten_dml:ten_dml},
+          data:{ten_dml:ten_dml, ma_dml:ma_dml},
           success:function(data){
             if(data == 1){  
               $('#baoloi').html('Danh mục lớp đã tồn tại');

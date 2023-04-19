@@ -81,6 +81,23 @@ class ChucVuController extends Controller
       }
     }
   }
+  public function check_ten_cv_edit(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_cv = $request->ten_cv;
+      $ma_cv = $request->ma_cv;
+      if($ten_cv != null && $ma_cv != null){
+        $chucvu = ChucVu::where('ten_cv', $ten_cv)
+          ->where('ma_cv', '<>', $ma_cv)
+          ->first();
+        if(isset($chucvu)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_chucvu(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

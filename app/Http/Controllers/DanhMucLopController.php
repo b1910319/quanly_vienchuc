@@ -86,6 +86,23 @@ class DanhMucLopController extends Controller
       }
     }
   }
+  public function check_ten_dml_edit(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_dml = $request->ten_dml;
+      $ma_dml = $request->ma_dml;
+      if($ten_dml != null && $ma_dml != null){
+        $danhmuclop = DanhMucLop::where('ten_dml', $ten_dml)
+          ->where('ma_dml', '<>', $ma_dml)
+          ->first();
+        if(isset($danhmuclop)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_danhmuclop(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

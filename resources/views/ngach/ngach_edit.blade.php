@@ -23,6 +23,7 @@
               <tr>
                 <th scope="row">Tên ngạch: </th>
                 <td class="was-validated">
+                  <input type="hidden" id="ma_n" value="{{ $edit->ma_n }}">
                   <input id="ten_n" type='text' class='form-control input_table' autofocus required name="ten_n" value="{{ $edit->ten_n }}">
                   <span id="baoloi_ten" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
@@ -49,8 +50,8 @@
               <tr>
                 <th scope="row">Trạng thái: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="status_n">
-                    <option value="0" >Chọn trạng thái</option>
+                  <select class="custom-select input_table" id="gender2" name="status_n" required>
+                    <option value="" >Chọn trạng thái</option>
                     @if ($edit->status_n == 1)
                       <option selected value="1" >Ẩn</option>
                       <option value="0" >Hiển thị</option>
@@ -81,18 +82,18 @@
     $(document).ready(function(){
       $('#ten_n').mouseout(function(){
         var ten_n = $(this).val();
-        var ten = '';
+        var ma_n = $('#ma_n').val();
         // alert(ten_n);
         $.ajax({
-          url:"{{ url("/check_ten_n") }}",
+          url:"{{ url("/check_ten_n_edit") }}",
           type:"GET",
-          data:{ten_n:ten_n},
+          data:{ten_n:ten_n, ma_n:ma_n},
           success:function(data){
             if(data == 1){  
               $('#baoloi_ten').html('Ngạch đã tồn tại');
               $('#ten_n').val('');
             }else{
-              $('#baoloi_ten').html(''); 
+              $('#baoloi').html(''); 
             }
           }
         });
@@ -101,17 +102,18 @@
     $(document).ready(function(){
       $('#maso_n').mouseout(function(){
         var maso_n = $(this).val();
+        var ma_n = $('#ma_n').val();
         // alert(maso_n);
         $.ajax({
-          url:"{{ url("/check_maso_n") }}",
+          url:"{{ url("/check_maso_n_edit") }}",
           type:"GET",
-          data:{maso_n:maso_n},
+          data:{maso_n:maso_n, ma_n:ma_n},
           success:function(data){
             if(data == 1){  
               $('#baoloi_maso').html('Mã số ngạch đã tồn tại');
               $('#maso_n').val('');
             }else{
-              $('#baoloi_maso').html(''); 
+              $('#baoloi').html(''); 
             }
           }
         });

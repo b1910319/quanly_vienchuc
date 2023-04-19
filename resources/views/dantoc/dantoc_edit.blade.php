@@ -23,6 +23,7 @@
               <tr>
                 <th scope="row">Tên dân tộc: </th>
                 <td class="was-validated">
+                  <input type="hidden" id="ma_dt" value="{{ $edit->ma_dt }}">
                   <input id="ten_dt" type='text' class='form-control input_table' autofocus required name="ten_dt" value="{{ $edit->ten_dt }}">
                   <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
@@ -36,8 +37,8 @@
               <tr>
                 <th scope="row">Trạng thái: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="status_dt">
-                    <option value="0" >Chọn trạng thái</option>
+                  <select class="custom-select input_table" id="gender2" name="status_dt" required>
+                    <option value="" >Chọn trạng thái</option>
                     @if ($edit->status_dt == 1)
                       <option selected value="1" >Ẩn</option>
                       <option value="0" >Hiển thị</option>
@@ -68,12 +69,13 @@
     $(document).ready(function(){
       $('#ten_dt').mouseout(function(){
         var ten_dt = $(this).val();
+        var ma_dt = $('#ma_dt').val();
         var ten = '';
         // alert(ten_dt);
         $.ajax({
-          url:"{{ url("/check_ten_dt") }}",
+          url:"{{ url("/check_ten_dt_edit") }}",
           type:"GET",
-          data:{ten_dt:ten_dt},
+          data:{ten_dt:ten_dt, ma_dt:ma_dt},
           success:function(data){
             if(data == 1){  
               $('#baoloi').html('Dân tộc đã tồn tại');

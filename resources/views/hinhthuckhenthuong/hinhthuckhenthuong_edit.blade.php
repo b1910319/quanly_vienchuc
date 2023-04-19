@@ -23,6 +23,7 @@
               <tr>
                 <th scope="row">Hình thức khen thưởng: </th>
                 <td class="was-validated">
+                  <input type="hidden" id="ma_htkt" value="{{ $edit->ma_htkt }}">
                   <input id="ten_htkt" type='text' class='form-control input_table' autofocus required name="ten_htkt" value="{{ $edit->ten_htkt }}">
                   <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
@@ -68,11 +69,12 @@
     $(document).ready(function(){
       $('#ten_htkt').mouseout(function(){
         var ten_htkt = $(this).val();
+        var ma_htkt = $('#ma_htkt').val();
         // alert(ten_htkt);
         $.ajax({
-          url:"{{ url("/check_ten_htkt") }}",
+          url:"{{ url("/check_ten_htkt_edit") }}",
           type:"GET",
-          data:{ten_htkt:ten_htkt},
+          data:{ten_htkt:ten_htkt, ma_htkt:ma_htkt},
           success:function(data){
             if(data == 1){  
               $('#baoloi').html('Hình thức khen thưởng đã tồn tại');

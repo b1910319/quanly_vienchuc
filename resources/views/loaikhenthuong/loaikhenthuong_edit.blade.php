@@ -23,6 +23,7 @@
               <tr>
                 <th scope="row">Loại khen thưởng: </th>
                 <td class="was-validated">
+                  <input type="hidden" id="ma_lkt" value="{{ $edit->ma_lkt }}">
                   <input id="ten_lkt" type='text' class='form-control input_table' autofocus required name="ten_lkt" value="{{ $edit->ten_lkt }}">
                   <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
@@ -37,7 +38,7 @@
                 <th scope="row">Trạng thái: </th>
                 <td class="was-validated">
                   <select class="custom-select input_table" id="gender2" name="status_lkt" required>
-                    <option value="0" >Chọn trạng thái</option>
+                    <option value="" >Chọn trạng thái</option>
                     @if ($edit->status_lkt == 1)
                       <option selected value="1" >Ẩn</option>
                       <option value="" >Hiển thị</option>
@@ -68,15 +69,15 @@
     $(document).ready(function(){
       $('#ten_lkt').mouseout(function(){
         var ten_lkt = $(this).val();
-        var ten = '';
+        var ma_lkt = $('#ma_lkt').val();
         // alert(ten_lkt);
         $.ajax({
-          url:"{{ url("/check_ten_lkt") }}",
+          url:"{{ url("/check_ten_lkt_edit") }}",
           type:"GET",
-          data:{ten_lkt:ten_lkt},
+          data:{ten_lkt:ten_lkt, ma_lkt:ma_lkt},
           success:function(data){
             if(data == 1){  
-              $('#baoloi').html('Loại khen thưởng đã tồn tại');
+              $('#baoloi').html('Quyền đã tồn tại');
               $('#ten_lkt').val('');
             }else{
               $('#baoloi').html(''); 

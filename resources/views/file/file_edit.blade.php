@@ -23,6 +23,7 @@
               <tr>
                 <th scope="row">Tên file: </th>
                 <td class="was-validated">
+                  <input type="hidden" name="" id="ma_f" value="{{ $edit->ma_f }}">
                   <input id="ten_f" type='text' class='form-control input_table' autofocus required name="ten_f" value="{{ $edit->ten_f }}">
                   <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
@@ -59,8 +60,8 @@
               <tr>
                 <th scope="row">Trạng thái: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="status_f">
-                    <option value="0" >Chọn trạng thái</option>
+                  <select class="custom-select input_table" id="gender2" name="status_f" required>
+                    <option value="" >Chọn trạng thái</option>
                     @if ($edit->status_f == 1)
                       <option selected value="1" >Ẩn</option>
                       <option value="0" >Hiển thị</option>
@@ -91,12 +92,13 @@
     $(document).ready(function(){
       $('#ten_f').mouseout(function(){
         var ten_f = $(this).val();
+        var ma_f = $('#ma_f').val();
         var ten = '';
         // alert(ten_f);
         $.ajax({
-          url:"{{ url("/check_ten_f") }}",
+          url:"{{ url("/check_ten_f_edit") }}",
           type:"GET",
-          data:{ten_f:ten_f},
+          data:{ten_f:ten_f, ma_f:ma_f},
           success:function(data){
             if(data == 1){  
               $('#baoloi').html('File đã tồn tại');
