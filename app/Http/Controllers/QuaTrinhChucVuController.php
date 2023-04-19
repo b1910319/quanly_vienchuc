@@ -6,7 +6,9 @@ use App\Models\Bac;
 use App\Models\ChucVu;
 use App\Models\DanToc;
 use App\Models\HeDaoTao;
+use App\Models\KhenThuong;
 use App\Models\Khoa;
+use App\Models\KyLuat;
 use App\Models\Ngach;
 use App\Models\NhiemKy;
 use Illuminate\Http\Request;
@@ -179,7 +181,11 @@ class QuaTrinhChucVuController extends Controller
           ->first();
         $quatrinhchucvu_qd = QuyetDinh::where('so_qd', $soquyetdinh_qtcv)
           ->first();
-        if(isset($quatrinhchucvu) || isset($quatrinhchucvu_qd)){
+        $khenthuong = KhenThuong::where('soquyetdinh_kt', $soquyetdinh_qtcv)
+          ->first();
+        $kyluat = KyLuat::where('soquyetdinh_kl', $soquyetdinh_qtcv)
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quatrinhchucvu_qd) || isset($khenthuong) || isset($kyluat)){
           return 1;
         }else{
           return 0;
@@ -198,7 +204,11 @@ class QuaTrinhChucVuController extends Controller
           ->first();
         $quatrinhchucvu_qd = QuyetDinh::where('so_qd', $soquyetdinh_qtcv)
           ->first();
-        if(isset($quatrinhchucvu) || isset($quatrinhchucvu_qd)){
+        $khenthuong = KhenThuong::where('soquyetdinh_kt', $soquyetdinh_qtcv)
+          ->first();
+        $kyluat = KyLuat::where('soquyetdinh_kl', $soquyetdinh_qtcv)
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quatrinhchucvu_qd) || isset($khenthuong) || isset($kyluat)){
           return 1;
         }else{
           return 0;

@@ -98,6 +98,33 @@
                 </td>
               </tr>
               <tr>
+                <th scope="row">File kết quả: </th>
+                <td class="was-validated">
+                  <div class="row">
+                    <div class="col-6">
+                      <input type='file' class='form-control input_table' name="file_kq"
+                      @if (!$edit->file_kq)
+                        required
+                      @endif
+                      >
+                    </div>
+                    <div class="col-6">
+                      @if ($edit->file_kq)
+                        <a href="{{ asset('public/uploads/ketqua/'.$edit->file_kq) }}">
+                          <button type="button" class="btn btn-warning button_xanhla">
+                            <i class="fa-solid fa-file text-light"></i>
+                            &ensp;
+                            File
+                          </button>
+                        </a>
+                      @else
+                        <span style="color: #FF1E1E; font-weight: bold">Không có file</span>
+                      @endif
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
                 <th scope="row">Trạng thái: </th>
                 <td class="was-validated">
                   <select class="custom-select input_table" id="gender2" name="status_kq">

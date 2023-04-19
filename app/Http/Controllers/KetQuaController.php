@@ -108,6 +108,13 @@ class KetQuaController extends Controller
       $ketqua->ngayvenuoc_kq = $data['ngayvenuoc_kq'];
       $ketqua->danhgiacuacoso_kq = $data['danhgiacuacoso_kq'];
       $ketqua->kiennghi_kq = $data['kiennghi_kq'];
+      $vienchuc = VienChuc::find($data['ma_vc']);
+      $get_file = $request->file('file_kq');
+      if($get_file){
+        $new_file = $vienchuc->hoten_vc.rand(0,999).'.'.$get_file->getClientOriginalExtension();
+        $get_file->move('public/uploads/ketqua', $new_file);
+        $ketqua->file_kq = $new_file;
+      }
       $ketqua->status_kq = $data['status_kq'];
       $ketqua->save();
       return redirect()->back();
@@ -215,6 +222,16 @@ class KetQuaController extends Controller
       $ketqua->danhgiacuacoso_kq = $data['danhgiacuacoso_kq'];
       $ketqua->kiennghi_kq = $data['kiennghi_kq'];
       $ketqua->status_kq = $data['status_kq'];
+      $vienchuc = VienChuc::find($data['ma_vc']);
+      $get_file = $request->file('file_kq');
+      if($get_file){
+        $new_file = $vienchuc->hoten_vc.rand(0,999).'.'.$get_file->getClientOriginalExtension();
+        if($ketqua->file_kq){
+          unlink('public/uploads/ketqua/'.$ketqua->file_kq);
+        }
+        $get_file->move('public/uploads/ketqua', $new_file);
+        $ketqua->file_kq = $new_file;
+      }
       $ketqua->updated_kq = Carbon::now();
       $ketqua->save();
       return Redirect::to('/ketqua/'.$data['ma_l'].'/'.$data['ma_vc'],302);
@@ -235,6 +252,10 @@ class KetQuaController extends Controller
       if($request->ajax()){
         $id =$request->id;
         if($id != null){
+          $ketqua = KetQua::find($id);
+          if($ketqua->file_kq){
+            unlink('public/uploads/ketqua/'.$ketqua->file_kq);
+          }
           KetQua::find($id)->delete();
         }
       }
@@ -251,6 +272,12 @@ class KetQuaController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
       $ma_kq = $request->ma_kq;
+      $list = KetQua::whereIn('ma_kq', $ma_kq)->get();
+      foreach($list as $ketqua){
+        if($ketqua->file_kq){
+          unlink('public/uploads/ketqua/'.$ketqua->file_kq);
+        }
+      }
       KetQua::whereIn('ma_kq', $ma_kq)->delete();
       return redirect()->back();
     }
@@ -269,6 +296,9 @@ class KetQuaController extends Controller
         ->where('ma_vc', $ma_vc)
         ->get();
       foreach($list as $key => $ketqua){
+        if($ketqua->file_kq){
+          unlink('public/uploads/ketqua/'.$ketqua->file_kq);
+        }
         $ketqua->delete();
       }
       return redirect()->back();

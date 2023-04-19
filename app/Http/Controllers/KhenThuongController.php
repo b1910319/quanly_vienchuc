@@ -199,7 +199,9 @@ class KhenThuongController extends Controller
           ->first();
         $khenthuong = KhenThuong::where('soquyetdinh_kt', $soquyetdinh_kt)
           ->first();
-        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong)){
+        $kyluat = KyLuat::where('soquyetdinh_kl', $soquyetdinh_kt)
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat)){
           return 1;
         }else{
           return 0;
@@ -220,7 +222,9 @@ class KhenThuongController extends Controller
           ->first();
         $quyetdinh = QuyetDinh::where('so_qd', $soquyetdinh_kt)
           ->first();
-        if(isset($khenthuong) || isset($quatrinhchucvu) || isset($quyetdinh)){
+        $kyluat = KyLuat::where('soquyetdinh_kl', $soquyetdinh_kt)
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat)){
           return 1;
         }else{
           return 0;

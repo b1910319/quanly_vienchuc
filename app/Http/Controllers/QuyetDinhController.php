@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KhenThuong;
+use App\Models\KyLuat;
 use App\Models\Lop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -97,7 +99,11 @@ class QuyetDinhController extends Controller
           ->first();
         $quantrinhchucvu = QuaTrinhChucVu::where('soquyetdinh_qtcv', $so_qd)
           ->first();
-        if(isset($quyetdinh) || isset($quantrinhchucvu)){
+        $khenthuong = KhenThuong::where('soquyetdinh_kt', $so_qd)
+          ->first();
+        $kyluat = KyLuat::where('soquyetdinh_kl', $so_qd)
+          ->first();
+        if(isset($quyetdinh) || isset($quantrinhchucvu) || isset($khenthuong) || isset($kyluat)){
           return 1;
         }else{
           return 0;
@@ -116,7 +122,11 @@ class QuyetDinhController extends Controller
           ->first();
         $quantrinhchucvu = QuaTrinhChucVu::where('soquyetdinh_qtcv', $so_qd)
           ->first();
-        if(isset($quyetdinh) || isset($quantrinhchucvu)){
+        $khenthuong = KhenThuong::where('soquyetdinh_kt', $so_qd)
+          ->first();
+        $kyluat = KyLuat::where('soquyetdinh_kl', $so_qd)
+          ->first();
+        if(isset($quyetdinh) || isset($quantrinhchucvu) || isset($khenthuong) || isset($kyluat)){
           return 1;
         }else{
           return 0;
