@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
 use App\Models\QuaTrinhChucVu;
+use App\Models\QuyetDinh;
 use App\Models\ThuongBinh;
 use App\Models\Tinh;
 use App\Models\TonGiao;
@@ -176,7 +177,9 @@ class QuaTrinhChucVuController extends Controller
       if($soquyetdinh_qtcv != null){
         $quatrinhchucvu = QuaTrinhChucVu::where('soquyetdinh_qtcv', $soquyetdinh_qtcv)
           ->first();
-        if(isset($quatrinhchucvu)){
+        $quatrinhchucvu_1 = QuyetDinh::where('so_qd', $soquyetdinh_qtcv)
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quatrinhchucvu_1)){
           return 1;
         }else{
           return 0;
