@@ -819,6 +819,7 @@ Route::get('/qlk_quanly_khenthuong_kyluat',[KhenThuongController::class, 'qlk_qu
 
 
 Route::get('/loaikyluat',[LoaiKyLuatController::class, 'loaikyluat']);
+Route::get('/check_ten_lkl',[LoaiKyLuatController::class, 'check_ten_lkl']);
 Route::post('/add_loaikyluat',[LoaiKyLuatController::class, 'add_loaikyluat']);
 Route::post('/add_loaikyluat_excel',[LoaiKyLuatController::class, 'add_loaikyluat_excel']);
 Route::get('/select_loaikyluat/{ma_lkl}',[LoaiKyLuatController::class, 'select_loaikyluat']);

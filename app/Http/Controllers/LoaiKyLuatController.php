@@ -72,6 +72,21 @@ class LoaiKyLuatController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function check_ten_lkl(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_lkl = $request->ten_lkl;
+      if($ten_lkl != null){
+        $loaikyluat = LoaiKyLuat::where('ten_lkl', $ten_lkl)
+          ->first();
+        if(isset($loaikyluat)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_loaikyluat(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

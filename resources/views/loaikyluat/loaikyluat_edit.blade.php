@@ -23,7 +23,8 @@
               <tr>
                 <th scope="row">Loại khen thưởng: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="ten_lkl" value="{{ $edit->ten_lkl }}">
+                  <input id="ten_lkl" type='text' class='form-control input_table' autofocus required name="ten_lkl" value="{{ $edit->ten_lkl }}">
+                  <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
             </tbody>
@@ -35,8 +36,8 @@
               <tr>
                 <th scope="row">Trạng thái: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="status_lkl">
-                    <option value="0" >Chọn trạng thái</option>
+                  <select class="custom-select input_table" id="gender2" name="status_lkl" required>
+                    <option value="" >Chọn trạng thái</option>
                     @if ($edit->status_lkl == 1)
                       <option selected value="1" >Ẩn</option>
                       <option value="0" >Hiển thị</option>
@@ -63,4 +64,25 @@
       </div>
     </form>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('#ten_lkl').mouseout(function(){
+        var ten_lkl = $(this).val();
+        // alert(ten_lkl);
+        $.ajax({
+          url:"{{ url("/check_ten_lkl") }}",
+          type:"GET",
+          data:{ten_lkl:ten_lkl},
+          success:function(data){
+            if(data == 1){  
+              $('#baoloi').html('Loại kỷ luật đã tồn tại');
+              $('#ten_lkl').val('');
+            }else{
+              $('#baoloi').html(''); 
+            }
+          }
+        });
+      });
+    });
+  </script>
 @endsection

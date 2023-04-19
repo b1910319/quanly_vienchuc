@@ -326,7 +326,6 @@
   $(document).ready(function(){
     $('#ten_q').mouseout(function(){
       var ten_q = $(this).val();
-      var ten = '';
       // alert(ten_q);
       $.ajax({
         url:"{{ url("/check_ten_q") }}",
