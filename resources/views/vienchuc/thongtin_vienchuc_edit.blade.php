@@ -35,10 +35,10 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row">Khoa: </th>
+                <th scope="row">Đơn vị: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="ma_k">
-                    <option value="0" >Chọn khoa</option>
+                  <select class="custom-select input_table" id="gender2" name="ma_k" required>
+                    <option value="" >Chọn đơn vị</option>
                     @foreach ($list_khoa as $khoa )
                       <option
                         @if ($khoa->ma_k == $edit->ma_k)
@@ -52,8 +52,8 @@
               <tr>
                 <th scope="row">Chức vụ: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="ma_cv">
-                    <option value="0" >Chọn chức vụ</option>
+                  <select class="custom-select input_table" id="gender2" name="ma_cv" required>
+                    <option value="" >Chọn chức vụ</option>
                     @foreach ($list_chucvu as $chucvu )
                       <option
                         @if ($chucvu->ma_cv == $edit->ma_cv)
@@ -67,8 +67,8 @@
               <tr>
                 <th scope="row">Dân tộc: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="ma_dt">
-                    <option value="0" >Chọn dân tộc</option>
+                  <select class="custom-select input_table" id="gender2" name="ma_dt" required>
+                    <option value="" >Chọn dân tộc</option>
                     @foreach ($list_dantoc as $dantoc )
                       <option
                         @if ($dantoc->ma_dt == $edit->ma_dt)
@@ -82,8 +82,8 @@
               <tr>
                 <th scope="row">Tôn giáo: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="ma_tg">
-                    <option value="0" >Chọn tôn giáo</option>
+                  <select class="custom-select input_table" id="gender2" name="ma_tg" required>
+                    <option value="" >Chọn tôn giáo</option>
                     @foreach ($list_tongiao as $tongiao )
                       <option
                         @if ($tongiao->ma_tg == $edit->ma_tg)
@@ -97,8 +97,8 @@
               <tr>
                 <th scope="row">Thương binh: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="ma_tb">
-                    <option value="0" >Chọn thương binh</option>
+                  <select class="custom-select input_table" id="gender2" name="ma_tb" required>
+                    <option value="" >Chọn thương binh</option>
                     @foreach ($list_thuongbinh as $thuongbinh )
                       <option
                         @if ($thuongbinh->ma_tb == $edit->ma_tb)
@@ -112,8 +112,8 @@
               <tr>
                 <th scope="row">Ngạch: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table choose ngach" name="ma_n" id="ngach">
-                    <option value="0" >Chọn ngạch</option>
+                  <select class="custom-select input_table choose ngach" name="ma_n" id="ngach" required>
+                    <option value="" >Chọn ngạch</option>
                     @foreach ($list_ngach as $ngach)
                       <option
                       @if ($ngach->ma_n == $edit->ma_n)
@@ -127,7 +127,7 @@
               <tr>
                 <th scope="row">Bậc: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table choose bac" name="ma_b" id="bac">
+                  <select class="custom-select input_table choose bac" name="ma_b" id="bac" required>
                     @foreach ($list_bac as $bac)
                       <option
                       @if ($bac->ma_b == $edit->ma_b)
@@ -141,7 +141,7 @@
               <tr>
                 <th scope="row">Họ tên viên chức: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="hoten_vc"  value="{{ $edit->hoten_vc }}">
+                  <input type='text' class='form-control input_table' autofocus required name="hoten_vc"  value="{{ $edit->hoten_vc }}" maxlength="50">
                 </td>
               </tr>
               <tr>
@@ -155,16 +155,16 @@
                 <td class="was-validated">
                   @if ($edit->hinh_vc != ' ')
                     <img src="{{ URL::to('public/uploads/vienchuc/'.$edit->hinh_vc) }}" class="img-fluid" style="width: 15%">
-                    <input type='file' name="hinh_vc">
+                    <input type='file' name="hinh_vc" readonly>
                   @else
-                    <input type='file' name="hinh_vc">
+                    <input type='file' name="hinh_vc" readonly>
                   @endif
                 </td>
               </tr>
               <tr>
                 <th scope="row">Tên gọi khác: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="tenkhac_vc"  value="{{ $edit->tenkhac_vc }}">
+                  <input type='text' class='form-control input_table' autofocus name="tenkhac_vc"  value="{{ $edit->tenkhac_vc }}">
                 </td>
               </tr>
               <tr>
@@ -186,8 +186,8 @@
               <tr>
                 <td class="was-validated" colspan="2">
                   <div class="row">
-                    <select class="custom-select input_table choose tinh col-3" name="ma_t_ns" id="tinh">
-                      <option value="0" >Chọn tỉnh</option>
+                    <select class="custom-select input_table choose tinh col-3" name="ma_t_ns" id="tinh" required>
+                      <option value="" >Chọn tỉnh</option>
                       @foreach ($list_tinh as $tinh)
                         @foreach ($noisinh as $ns )
                           <option
@@ -198,8 +198,8 @@
                         @endforeach
                       @endforeach
                     </select>
-                    <select class="custom-select input_table choose huyen col-3 ms-4" name="ma_h_ns" id="huyen">
-                      <option value="0" >Chọn huyện</option>
+                    <select class="custom-select input_table choose huyen col-3 ms-4" name="ma_h_ns" id="huyen" required>
+                      <option value="" >Chọn huyện</option>
                       @foreach ($list_huyen as $huyen)
                         @foreach ($noisinh as $ns)
                           <option
@@ -211,8 +211,8 @@
                         
                       @endforeach
                     </select>
-                    <select class="custom-select input_table choose xa col-3 ms-4" name="ma_x_ns" id="xa">
-                      <option value="0" >Chọn xã</option>
+                    <select class="custom-select input_table choose xa col-3 ms-4" name="ma_x_ns" id="xa" required>
+                      <option value="" >Chọn xã</option>
                       @foreach ($list_xa as $xa)
                         @foreach ($noisinh as $ns)
                           <option
@@ -246,8 +246,8 @@
               <tr>
                 <td class="was-validated" colspan="2">
                   <div class="row">
-                    <select class="custom-select input_table choose tinh col-3" name="ma_t_qq" id="tinh_qq">
-                      <option value="0" >Chọn tỉnh</option>
+                    <select class="custom-select input_table choose tinh col-3" name="ma_t_qq" id="tinh_qq" required>
+                      <option value="" >Chọn tỉnh</option>
                       @foreach ($list_tinh as $tinh)
                         @foreach ($quequan as $qq )
                           <option
@@ -258,8 +258,8 @@
                         @endforeach
                       @endforeach
                     </select>
-                    <select class="custom-select input_table choose huyen col-3 ms-4" name="ma_h_qq" id="huyen_qq">
-                      <option value="0" >Chọn huyện</option>
+                    <select class="custom-select input_table choose huyen col-3 ms-4" name="ma_h_qq" id="huyen_qq" required>
+                      <option value="" >Chọn huyện</option>
                       @foreach ($list_huyen as $huyen)
                         @foreach ($quequan as $qq)
                           <option
@@ -271,8 +271,8 @@
                         
                       @endforeach
                     </select>
-                    <select class="custom-select input_table choose xa col-3 ms-4" name="ma_x_qq" id="xa_qq">
-                      <option value="0" >Chọn xã</option>
+                    <select class="custom-select input_table choose xa col-3 ms-4" name="ma_x_qq" id="xa_qq" required>
+                      <option value="" >Chọn xã</option>
                       @foreach ($list_xa as $xa)
                         @foreach ($quequan as $qq)
                           <option
@@ -336,8 +336,9 @@
               </tr>
               <tr>
                 <th scope="row">Địa chỉ thường trú: </th>
+                
                 <td class="was-validated">
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="thuongtru_vc">
+                  <textarea class="form-control"  name="thuongtru_vc" required>
                     {{ $edit->thuongtru_vc }}
                   </textarea>
                 </td>
@@ -345,7 +346,7 @@
               <tr>
                 <th scope="row">Địa chỉ hiện tại: </th>
                 <td class="was-validated">
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="hientai_vc">
+                  <textarea class="form-control" name="hientai_vc" required>
                     {{ $edit->hientai_vc }}
                   </textarea>
                 </td>
@@ -384,7 +385,7 @@
               <tr>
                 <th scope="row">Học phần giảng dạy: </th>
                 <td class="was-validated">
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="hocphangiangday_vc">
+                  <textarea class="form-control" name="hocphangiangday_vc" required>
                     {{ $edit->hocphangiangday_vc }}
                   </textarea>
                 </td>
@@ -429,8 +430,6 @@
                 <th scope="row">Ngày vào Đảng Cộng sản Việt Nam: </th>
                 <td class="was-validated">
                   <?php 
-                    // use Illuminate\Support\Carbon;
-                    // Carbon::now('Asia/Ho_Chi_Minh'); 
                     $now = Carbon::parse(Carbon::now())->format('Y-m-d');
                     ?>
                       <input type='date' class='form-control input_table' autofocus max="<?php echo $now ?>" required name="ngayvaodang_vc"  value="{{ $edit->ngayvaodang_vc }}">
@@ -441,9 +440,7 @@
               <tr>
                 <th scope="row">Ngày chính thức: </th>
                 <td class="was-validated">
-                  <?php 
-                    // use Illuminate\Support\Carbon;
-                    // Carbon::now('Asia/Ho_Chi_Minh'); 
+                  <?php  
                     $now = Carbon::parse(Carbon::now())->format('Y-m-d');
                     ?>
                       <input type='date' class='form-control input_table' autofocus max="<?php echo $now ?>" required name="ngaychinhthuc_vc"  value="{{ $edit->ngaychinhthuc_vc }}">
@@ -455,8 +452,6 @@
                 <th scope="row">Ngày nhập ngũ: </th>
                 <td class="was-validated">
                   <?php 
-                    // use Illuminate\Support\Carbon;
-                    // Carbon::now('Asia/Ho_Chi_Minh'); 
                     $now = Carbon::parse(Carbon::now())->format('Y-m-d');
                     ?>
                       <input type='date' class='form-control input_table' autofocus max="<?php echo $now ?>" name="ngaynhapngu_vc"  value="{{ $edit->ngaynhapngu_vc }}">
@@ -468,8 +463,6 @@
                 <th scope="row">Ngày xuất ngũ: </th>
                 <td class="was-validated">
                   <?php 
-                    // use Illuminate\Support\Carbon;
-                    // Carbon::now('Asia/Ho_Chi_Minh'); 
                     $now = Carbon::parse(Carbon::now())->format('Y-m-d');
                     ?>
                       <input type='date' class='form-control input_table' autofocus max="<?php echo $now ?>" name="ngayxuatngu_vc"  value="{{ $edit->ngayxuatngu_vc }}">
@@ -480,15 +473,13 @@
               <tr>
                 <th scope="row">Quân hàm cao nhất: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="quanham_vc"  value="{{ $edit->quanham_vc }}">
+                  <input type='text' class='form-control input_table' autofocus name="quanham_vc"  value="{{ $edit->quanham_vc }}">
                 </td>
               </tr>
               <tr>
                 <th scope="row">Ngày hưởng bậc: </th>
                 <td class="was-validated">
                   <?php 
-                    // use Illuminate\Support\Carbon;
-                    // Carbon::now('Asia/Ho_Chi_Minh'); 
                     $now = Carbon::parse(Carbon::now())->format('Y-m-d');
                     ?>
                       <input type='date' class='form-control input_table' autofocus max="<?php echo $now ?>" required name="ngayhuongbac_vc"  value="{{ $edit->ngayhuongbac_vc }}">
@@ -499,13 +490,13 @@
               <tr>
                 <th scope="row">Danh hiệu được phong tặng cao nhất : </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="danhhieucao_vc"  value="{{ $edit->danhhieucao_vc }}">
+                  <input type='text' class='form-control input_table' autofocus name="danhhieucao_vc"  value="{{ $edit->danhhieucao_vc }}">
                 </td>
               </tr>
               <tr>
                 <th scope="row">Sở trường công tác: </th>
                 <td class="was-validated">
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="sotruong_vc">
+                  <textarea class="form-control" name="sotruong_vc" required>
                     {{ $edit->sotruong_vc }}
                   </textarea>
                 </td>
@@ -513,13 +504,23 @@
               <tr>
                 <th scope="row">Chiều cao: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="chieucao_vc"  value="{{ $edit->chieucao_vc }}">
+                  <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                      <input type="number" id="inputPassword6" class="form-control" required aria-labelledby="passwordHelpInline" name="chieucao_vc"  value="{{ $edit->chieucao_vc }}" min="50" max="300" >
+                    </div>
+                    <div class="col-auto">
+                      <span id="passwordHelpInline" class="form-text">
+                        Ví dụ: bạn nhập 180 = 1m8
+                      </span>
+                    </div>
+                  </div>
+                  {{-- <input type='number' class='form-control input_table' autofocus required name="chieucao_vc"  value="{{ $edit->chieucao_vc }}"> --}}
                 </td>
               </tr>
               <tr>
                 <th scope="row">Cân nặng: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="cannang_vc"  value="{{ $edit->cannang_vc }}">
+                  <input type='number' class='form-control input_table' autofocus required name="cannang_vc"  value="{{ $edit->cannang_vc }}" min="30" max="100">
                 </td>
               </tr>
               <tr>
@@ -537,15 +538,13 @@
               <tr>
                 <th scope="row">Số CCCD: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="cccd_vc"  value="{{ $edit->cccd_vc }}">
+                  <input type='number' class='form-control input_table' autofocus required name="cccd_vc"  value="{{ $edit->cccd_vc }}" max="999999999999">
                 </td>
               </tr>
               <tr>
                 <th scope="row">Ngày cấp: </th>
                 <td class="was-validated">
                   <?php 
-                    // use Illuminate\Support\Carbon;
-                    // Carbon::now('Asia/Ho_Chi_Minh'); 
                     $now = Carbon::parse(Carbon::now())->format('Y-m-d');
                     ?>
                       <input type='date' class='form-control input_table' autofocus max="<?php echo $now ?>" required name="ngaycapcccd_vc"  value="{{ $edit->ngaycapcccd_vc }}">
@@ -556,13 +555,13 @@
               <tr>
                 <th scope="row">Số sổ BHXH: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="bhxh_vc"  value="{{ $edit->bhxh_vc }}">
+                  <input type='number' class='form-control input_table' autofocus required name="bhxh_vc"  value="{{ $edit->bhxh_vc }}" max="9999999999">
                 </td>
               </tr>
               <tr>
                 <th style="width: 30%" scope="row">Khai rõ: bị bắt, bị tù (từ ngày tháng năm nào đến ngày tháng năm nào, ở đâu), đã khai báo cho ai, những vấn đề gì? Bản thân có làm việc trong chế độ cũ (cơ quan, đơn vị nào, địa điểm, chức danh, chức vụ, thời gian làm việc ....): </th>
                 <td class="was-validated">
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" name="lichsubanthan1_vc">
+                  <textarea class="form-control"  rows="6" name="lichsubanthan1_vc">
                     {{ $edit->lichsubanthan1_vc }}
                   </textarea>
                 </td>
@@ -570,7 +569,7 @@
               <tr>
                 <th scope="row">Tham gia hoặc có quan hệ với các tổ chức chính trị, kinh tế, xã hội nào ở nước ngoài (làm gì, tổ chức nào, đặt trụ sở ở đâu .........?): : </th>
                 <td class="was-validated">
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="lichsubanthan2_vc">
+                  <textarea class="form-control"  rows="4" name="lichsubanthan2_vc">
                     {{ $edit->lichsubanthan2_vc }}
                   </textarea>
                 </td>
@@ -578,7 +577,7 @@
               <tr>
                 <th scope="row">Có thân nhân (Cha, Mẹ, Vợ, Chồng, con, anh chị em ruột) ở nước ngoài (làm gì, địa chỉ)?: </th>
                 <td class="was-validated">
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="lichsubanthan3_vc">
+                  <textarea class="form-control"  rows="3" name="lichsubanthan3_vc">
                     {{ $edit->lichsubanthan3_vc }}
                   </textarea>
                 </td>
@@ -586,14 +585,19 @@
               <tr>
                 <th scope="row">Ngày bắt đầu làm việc: </th>
                 <td class="was-validated">
-                  <input type='date' class='form-control input_table' autofocus required name="ngaybatdaulamviec_vc"  value="{{ $edit->ngaybatdaulamviec_vc }}">
+                  <?php 
+                    $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                    ?>
+                      <input type='date' class='form-control input_table' autofocus required name="ngaybatdaulamviec_vc"  value="{{ $edit->ngaybatdaulamviec_vc }}" max="<?php echo $now ?>">
+                    <?php
+                  ?>
                 </td>
               </tr>
               <tr>
                 <th scope="row">Trạng thái: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="status_vc">
-                    <option value="0" >Chọn trạng thái</option>
+                  <select class="custom-select input_table" id="gender2" name="status_vc" required>
+                    <option value="" >Chọn trạng thái</option>
                     @if ($edit->status_vc == 1)
                       <option selected value="1" >Ẩn</option>
                       <option value="0" >Hiển thị</option>
@@ -612,10 +616,10 @@
         <div class="row mb-2">
           <div class="col-2">
             <a href="{{ URL::to('quanlythongtin_thongtin_xuatfile/'.$edit->ma_vc) }}">
-              <button type="button" class="btn btn-warning button_xanhla">
-                <i class="fa-solid fa-file text-light"></i>
+              <button type="button" class="btn btn-warning button_do" style="width: 100%">
+                <i class="fa-solid fa-file-pdf text-light"></i>
                 &ensp;
-                Xuất file
+                Xuất file PDF
               </button>
             </a>
           </div>

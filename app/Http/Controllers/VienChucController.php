@@ -547,7 +547,7 @@ class VienChucController extends Controller
     if($phanquyen_admin || $phanquyen_qltt){
       $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '1')
-        ->orderBy('vienchuc.ma_vc', 'desc')
+        ->orderBy('vienchuc.hoten_vc', 'asc')
         ->get();
       $count_quanhe_giadinh = VienChuc::leftJoin('giadinh', 'giadinh.ma_vc', '=', 'vienchuc.ma_vc')
         ->select(DB::raw('count(ma_gd) as sum, vienchuc.ma_vc'))
@@ -557,16 +557,10 @@ class VienChucController extends Controller
         ->select(DB::raw('count(ma_bc) as sum, vienchuc.ma_vc'))
         ->groupBy('vienchuc.ma_vc')
         ->get();
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       return view('vienchuc.thongtin_vienchuc_add')
       ->with('list_vienchuc', $list_vienchuc)
       ->with('title', $title)
       ->with('count_bangcap', $count_bangcap)
-      ->with('count_nangbac', $count_nangbac)
       ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
       ->with('count_quanhe_giadinh', $count_quanhe_giadinh)
 
