@@ -780,6 +780,7 @@ Route::post('/delete_loaikhenthuong_check',[LoaiKhenThuongController::class, 'de
 // -------------------------------------------------------
 
 Route::get('/hinhthuckhenthuong',[HinhThucKhenThuongController::class, 'hinhthuckhenthuong']);
+Route::get('/check_ten_htkt',[HinhThucKhenThuongController::class, 'check_ten_htkt']);
 Route::post('/add_hinhthuckhenthuong',[HinhThucKhenThuongController::class, 'add_hinhthuckhenthuong']);
 Route::post('/add_hinhthuckhenthuong_excel',[HinhThucKhenThuongController::class, 'add_hinhthuckhenthuong_excel']);
 Route::get('/select_hinhthuckhenthuong/{ma_htkt}',[HinhThucKhenThuongController::class, 'select_hinhthuckhenthuong']);
