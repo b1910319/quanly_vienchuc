@@ -111,8 +111,8 @@
                         <tr>
                           <th scope="row">Danh mục lớp: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="ma_dml">
-                              <option value="0" >Chọn danh mục lớp</option>
+                            <select class="custom-select input_table" id="gender2" name="ma_dml" required>
+                              <option value="" >Chọn danh mục lớp</option>
                               @foreach ($list_danhmuclop as $danhmuclop )
                                 <option value="{{ $danhmuclop->ma_dml }}" >{{ $danhmuclop->ten_dml }}</option>
                               @endforeach
@@ -122,8 +122,8 @@
                         <tr>
                           <th scope="row">Quốc gia đào tạo: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="ma_qg">
-                              <option value="0" >Chọn quốc gia</option>
+                            <select class="custom-select input_table" id="gender2" name="ma_qg" required>
+                              <option value="" >Chọn quốc gia</option>
                               @foreach ($list_quocgia as $quocgia )
                                 <option value="{{ $quocgia->ma_qg }}" >{{ $quocgia->ten_qg }}</option>
                               @endforeach
@@ -133,7 +133,8 @@
                         <tr>
                           <th scope="row">Tên lớp học: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="ten_l">
+                            <input id="ten_l" type='text' class='form-control input_table' autofocus required name="ten_l">
+                            <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                           </td>
                         </tr>
                         <tr>
@@ -217,7 +218,7 @@
                         <tr>
                           <th scope="row">Trạng thái: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="status_l">
+                            <select class="custom-select input_table" id="gender2" name="status_l" required>
                               <option value="0" >Chọn trạng thái</option>
                               <option value="1" >Ẩn</option>
                               <option selected value="0" >Hiển thị</option>
@@ -423,8 +424,8 @@
   </div>
 </div>
 {{-- ajax --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> --}}
 {{--  --}}
 <script>
   document.querySelector('.them').addEventListener('click', (event)=>{
@@ -492,6 +493,27 @@
     });
   @endforeach
   
+</script>
+<script>
+  $(document).ready(function(){
+    $('#ten_l').mouseout(function(){
+      var ten_l = $(this).val();
+      // alert(ten_l);
+      $.ajax({
+        url:"{{ url("/check_ten_l") }}",
+        type:"GET",
+        data:{ten_l:ten_l},
+        success:function(data){
+          if(data == 1){  
+            $('#baoloi').html('Lớp học đã tồn tại');
+            $('#ten_l').val('');
+          }else{
+            $('#baoloi').html(''); 
+          }
+        }
+      });
+    });
+  });
 </script>
 <!--  -->
 @endsection

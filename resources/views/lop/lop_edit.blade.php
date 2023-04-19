@@ -23,8 +23,8 @@
               <tr>
                 <th scope="row">Danh mục lớp: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="ma_dml">
-                    <option value="0" >Chọn danh mục lớp</option>
+                  <select class="custom-select input_table" id="gender2" name="ma_dml" required>
+                    <option value="" >Chọn danh mục lớp</option>
                     @foreach ($list_danhmuclop as $danhmuclop )
                       <option
                         @if ($danhmuclop->ma_dml == $edit->ma_dml)
@@ -38,8 +38,8 @@
               <tr>
                 <th scope="row">Quốc gia đào tạo: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="ma_qg">
-                    <option value="0" >Chọn quốc gia đào tạo</option>
+                  <select class="custom-select input_table" id="gender2" name="ma_qg" required>
+                    <option value="" >Chọn quốc gia đào tạo</option>
                     @foreach ($list_quocgia as $quocgia )
                       <option
                         @if ($quocgia->ma_qg == $edit->ma_qg)
@@ -53,7 +53,8 @@
               <tr>
                 <th scope="row">Tên lớp học: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="ten_l" value="{{ $edit->ten_l }}">
+                  <input id="ten_l" type='text' class='form-control input_table' autofocus required name="ten_l" value="{{ $edit->ten_l }}">
+                  <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
               <tr>
@@ -163,4 +164,25 @@
       </div>
     </form>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('#ten_l').mouseout(function(){
+        var ten_l = $(this).val();
+        // alert(ten_l);
+        $.ajax({
+          url:"{{ url("/check_ten_l") }}",
+          type:"GET",
+          data:{ten_l:ten_l},
+          success:function(data){
+            if(data == 1){  
+              $('#baoloi').html('Lớp học đã tồn tại');
+              $('#ten_l').val('');
+            }else{
+              $('#baoloi').html(''); 
+            }
+          }
+        });
+      });
+    });
+  </script>
 @endsection
