@@ -287,16 +287,26 @@ class HomeController extends Controller
       ->first();
     $edit = VienChuc::find($ma_vc);
     if($ma_vc == $ma_vc_login){
-      $list_khoa = Khoa::get();
-      $list_chucvu = ChucVu::get();
-      $list_bac =  Bac::get();
-      $list_ngach = Ngach::get();
-      $list_dantoc = DanToc::get();
-      $list_tongiao = TonGiao::get();
-      $list_thuongbinh = ThuongBinh::get();
-      $list_tinh = Tinh::get();
-      $list_huyen = Huyen::get();
-      $list_xa = Xa::get();
+      $list_khoa = Khoa::orderBy('ten_k', 'asc')
+        ->get();
+      $list_chucvu = ChucVu::orderBy('ten_cv', 'asc')
+        ->get();
+      $list_bac =  Bac::orderBy('ten_b', 'asc')
+        ->get();
+      $list_ngach = Ngach::orderBy('ten_n', 'asc')
+        ->get();
+      $list_dantoc = DanToc::orderBy('ten_dt', 'asc')
+        ->get();
+      $list_tongiao = TonGiao::orderBy('ten_tg', 'asc')
+        ->get();
+      $list_thuongbinh = ThuongBinh::orderBy('ten_tb', 'asc')
+        ->get();
+      $list_tinh = Tinh::orderBy('ten_t', 'asc')
+        ->get();
+      $list_huyen = Huyen::orderBy('ten_h', 'asc')
+        ->get();
+      $list_xa = Xa::orderBy('ten_x', 'asc')
+        ->get();
       $noisinh = NoiSinh::where('ma_vc', $ma_vc)
         ->get();
       $quequan = QueQuan::where('ma_vc', $ma_vc)

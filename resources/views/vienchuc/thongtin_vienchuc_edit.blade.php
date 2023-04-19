@@ -29,7 +29,7 @@
           <table class="table">
             <tbody>
               <tr>
-                <th scope="row">Email: </th>
+                <th style="width: 30%" scope="row">Email: </th>
                 <td class="was-validated">
                   <input type='text' class='form-control input_table' autofocus required name="user_vc"  value="{{ $edit->user_vc }}" readonly>
                 </td>
@@ -390,12 +390,6 @@
                   </textarea>
                 </td>
               </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-6">
-          <table class="table">
-            <tbody>
               <tr>
                 <th scope="row">Trình độ giáo dục phổ thông : </th>
                 <td class="was-validated">
@@ -408,14 +402,20 @@
                   <input type='text' class='form-control input_table' autofocus required name="chinhtri_vc"  value="{{ $edit->chinhtri_vc }}">
                 </td>
               </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-6">
+          <table class="table">
+            <tbody>
               <tr>
-                <th scope="row">Quản lý nhà nước: </th>
+                <th  scope="row">Quản lý nhà nước: </th>
                 <td class="was-validated">
                   <input type='text' class='form-control input_table' autofocus required name="quanlynhanuoc_vc"  value="{{ $edit->quanlynhanuoc_vc }}">
                 </td>
               </tr>
               <tr>
-                <th scope="row">Ngoại ngữ: </th>
+                <th style="width: 30%" scope="row">Ngoại ngữ: </th>
                 <td class="was-validated">
                   <input type='text' class='form-control input_table' autofocus required name="ngoaingu_vc"  value="{{ $edit->ngoaingu_vc }}">
                 </td>

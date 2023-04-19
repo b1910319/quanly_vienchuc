@@ -95,8 +95,8 @@
                           <tr>
                             <th scope="row">Viên chức: </th>
                             <td class="was-validated">
-                              <select class="custom-select input_table" id="gender2" name="ma_vc">
-                                <option value="0" >Chọn viên chức</option>
+                              <select class="custom-select input_table" id="gender2" name="ma_vc" required>
+                                <option value="" >Chọn viên chức</option>
                                 @foreach ($list_vienchuc as $vienchuc )
                                 <option value="{{ $vienchuc->ma_vc }}" >{{ $vienchuc->hoten_vc }}</option>
                                 @endforeach
@@ -104,10 +104,10 @@
                             </td>
                           </tr>
                           <tr>
-                            <th scope="row">Lớp: </th>
+                            <th style="width: 30%" scope="row">Lớp: </th>
                             <td class="was-validated">
-                              <select class="custom-select input_table" id="gender2" name="ma_l">
-                                <option value="0" >Chọn lớp</option>
+                              <select class="custom-select input_table" id="gender2" name="ma_l" required>
+                                <option value="" >Chọn lớp</option>
                                 @foreach ($list_lop as $lop )
                                   <option value="{{ $lop->ma_l }}" >{{ $lop->ten_l }}</option>
                                 @endforeach
@@ -134,16 +134,16 @@
                     <table class="table">
                       <tbody>
                         <tr>
-                          <th scope="row">File thôi học: </th>
+                          <th style="width: 30%" scope="row">File thôi học: </th>
                           <td class="was-validated">
-                            <input type='file' class='form-control input_table' name="file_th">
+                            <input type='file' class='form-control input_table' name="file_th" required>
                           </td>
                         </tr>
                         <tr>
                           <th scope="row">Trạng thái: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="status_th">
-                              <option value="0" >Chọn trạng thái</option>
+                            <select class="custom-select input_table" id="gender2" name="status_th" required>
+                              <option value="" >Chọn trạng thái</option>
                               <option value="1" >Ẩn</option>
                               <option selected value="0" >Hiển thị</option>
                             </select>

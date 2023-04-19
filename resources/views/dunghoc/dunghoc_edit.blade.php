@@ -31,15 +31,16 @@
               <input type="hidden" name="ma_vc" value="{{ $edit->ma_vc }}">
               <input type="hidden" name="ma_l" value="{{ $edit->ma_l }}">
               <tr>
-                <th scope="row">Ngày bắt đầu tạm dừng học: </th>
+                <th style="width: 30%" scope="row">Ngày bắt đầu tạm dừng học: </th>
                 <td class="was-validated">
-                  <input type='date' class='form-control input_table' autofocus required name="batdau_dh" value="{{ $edit->batdau_dh }}">
+                  <input id="batdau_dh" type='date' class='form-control input_table' autofocus required name="batdau_dh" value="{{ $edit->batdau_dh }}">
                 </td>
               </tr>
               <tr>
                 <th scope="row">Ngày kết thúc tạm dừng học: </th>
                 <td class="was-validated">
-                  <input type='date' class='form-control input_table' autofocus required name="ketthuc_dh" value="{{ $edit->ketthuc_dh }}">
+                  <input id="ketthuc_dh" type='date' class='form-control input_table' autofocus required name="ketthuc_dh" value="{{ $edit->ketthuc_dh }}">
+                  <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
             </tbody>
@@ -49,7 +50,7 @@
           <table class="table">
             <tbody>
               <tr>
-                <th scope="row">Lý do tạm dừng học: </th>
+                <th style="width: 30%" scope="row">Lý do tạm dừng học: </th>
                 <td class="was-validated">
                   <input type='text' class='form-control input_table' autofocus required name="lydo_dh" value="{{ $edit->lydo_dh }}">
                 </td>
@@ -108,4 +109,20 @@
       </div>
     </form>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('#ketthuc_dh').change(function(){
+        var ketthuc_dh = $(this).val();
+        var batdau_dh = $('#batdau_dh').val();
+        // alert(batdau_dh);
+        // alert(ketthuc_dh);
+        if(batdau_dh > ketthuc_dh){  
+          $('#baoloi').html('Ngày kết thúc phải lớn hơn ngày bắt đầu');
+          $('#ketthuc_dh').val('');
+        }else{
+          $('#baoloi').html(''); 
+        }
+      });
+    });
+  </script>
 @endsection
