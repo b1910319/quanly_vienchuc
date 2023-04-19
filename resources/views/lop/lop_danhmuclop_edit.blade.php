@@ -23,8 +23,8 @@
               <tr>
                 <th scope="row">Danh mục lớp: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="ma_dml">
-                    <option value="0" >Chọn danh mục lớp</option>
+                  <select class="custom-select input_table" id="gender2" name="ma_dml" required>
+                    <option value="" >Chọn danh mục lớp</option>
                     @foreach ($list_danhmuclop as $danhmuclop )
                       <option
                         @if ($danhmuclop->ma_dml == $edit->ma_dml)
@@ -38,8 +38,8 @@
               <tr>
                 <th scope="row">Quốc gia đào tạo: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="ma_qg">
-                    <option value="0" >Chọn quốc gia đào tạo</option>
+                  <select class="custom-select input_table" id="gender2" name="ma_qg" required>
+                    <option value="" >Chọn quốc gia đào tạo</option>
                     @foreach ($list_quocgia as $quocgia )
                       <option
                         @if ($quocgia->ma_qg == $edit->ma_qg)
@@ -77,7 +77,7 @@
               <tr>
                 <th scope="row">Yêu cầu lớp học: </th>
                 <td class="was-validated">
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" name="yeucau_l">
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" name="yeucau_l" required>
                     {{ $edit->yeucau_l }}
                   </textarea>
                 </td>
@@ -109,7 +109,7 @@
               <tr>
                 <th scope="row">Nội dung học: </th>
                 <td class="was-validated">
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="noidunghoc_l">
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="noidunghoc_l" required>
                     {{ $edit->noidunghoc_l }}
                   </textarea>
                 </td>
@@ -135,8 +135,8 @@
               <tr>
                 <th scope="row">Trạng thái: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="status_l">
-                    <option value="0" >Chọn trạng thái</option>
+                  <select class="custom-select input_table" id="gender2" name="status_l" required>
+                    <option value="" >Chọn trạng thái</option>
                     @if ($edit->status_l == 1)
                       <option selected value="1" >Ẩn</option>
                       <option value="0" >Hiển thị</option>

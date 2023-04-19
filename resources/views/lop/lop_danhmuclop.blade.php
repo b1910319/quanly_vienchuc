@@ -120,8 +120,8 @@
                         <tr>
                           <th scope="row">Quốc gia đào tạo: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="ma_qg">
-                              <option value="0" >Chọn quốc gia</option>
+                            <select class="custom-select input_table" id="gender2" name="ma_qg" required>
+                              <option value="" >Chọn quốc gia</option>
                               @foreach ($list_quocgia as $quocgia )
                                 <option value="{{ $quocgia->ma_qg }}" >{{ $quocgia->ten_qg }}</option>
                               @endforeach
@@ -215,8 +215,8 @@
                         <tr>
                           <th scope="row">Trạng thái: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="status_l">
-                              <option value="0" >Chọn trạng thái</option>
+                            <select class="custom-select input_table" id="gender2" name="status_l" required>
+                              <option value="" >Chọn trạng thái</option>
                               <option value="1" >Ẩn</option>
                               <option selected value="0" >Hiển thị</option>
                             </select>
