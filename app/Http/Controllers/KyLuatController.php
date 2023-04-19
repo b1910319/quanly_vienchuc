@@ -7,6 +7,7 @@ use App\Models\Bac;
 use App\Models\ChucVu;
 use App\Models\DanToc;
 use App\Models\HeDaoTao;
+use App\Models\KhenThuong;
 use App\Models\Khoa;
 use App\Models\Loaikyluat;
 use App\Models\Ngach;
@@ -15,6 +16,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
+use App\Models\QuaTrinhChucVu;
+use App\Models\QuyetDinh;
 use App\Models\ThuongBinh;
 use App\Models\Tinh;
 use App\Models\TonGiao;
@@ -187,6 +190,50 @@ class KyLuatController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function check_soquyetdinh_kl(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $soquyetdinh_kl = $request->soquyetdinh_kl;
+      if($soquyetdinh_kl != null){
+        $quatrinhchucvu = QuaTrinhChucVu::where('soquyetdinh_qtcv', $soquyetdinh_kl)
+          ->first();
+        $quyetdinh = QuyetDinh::where('so_qd', $soquyetdinh_kl)
+          ->first();
+        $khenthuong = KhenThuong::where('soquyetdinh_kt', $soquyetdinh_kl)
+          ->first();
+        $kyluat = KyLuat::where('soquyetdinh_kl', $soquyetdinh_kl)
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
+  public function check_soquyetdinh_kl_edit(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $soquyetdinh_kl = $request->soquyetdinh_kl;
+      $ma_kl = $request->ma_kl;
+      if($soquyetdinh_kl != null && $ma_kl != null){
+        $kyluat = KyLuat::where('soquyetdinh_kl', $soquyetdinh_kl)
+          ->where('ma_kl', '<>', $ma_kl)
+          ->first();
+        $khenthuong = KhenThuong::where('soquyetdinh_kt', $soquyetdinh_kl)
+          ->first();
+        $quatrinhchucvu = QuaTrinhChucVu::where('soquyetdinh_qtcv', $soquyetdinh_kl)
+          ->first();
+        $quyetdinh = QuyetDinh::where('so_qd', $soquyetdinh_kl)
+          ->first();
+        if(isset($khenthuong) || isset($quatrinhchucvu) || isset($quyetdinh) || isset($kyluat)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_kyluat(Request $request, $ma_vc){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
@@ -202,11 +249,19 @@ class KyLuatController extends Controller
     if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
       $data = $request->all();
       $kyluat = new KyLuat();
+      $vienchuc = VienChuc::find($ma_vc);
       $kyluat->ma_lkl = $data['ma_lkl'];
       $kyluat->ma_vc = $ma_vc;
       $kyluat->ngay_kl = $data['ngay_kl'];
       $kyluat->lydo_kl = $data['lydo_kl'];
       $kyluat->status_kl = $data['status_kl'];
+      $kyluat->soquyetdinh_kl = $data['soquyetdinh_kl'];
+      $get_file = $request->file('filequyetdinh_kl');
+      if($get_file){
+        $new_file = $vienchuc->hoten_vc.rand(0,999).'.'.$get_file->getClientOriginalExtension();
+        $get_file->move('public/uploads/kyluat', $new_file);
+        $kyluat->filequyetdinh_kl = $new_file;
+      }
       $kyluat->save();
       $request->session()->put('message','Thêm thành công');
       return Redirect::to('/kyluat_add/'.$ma_vc);
@@ -319,6 +374,7 @@ class KyLuatController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
       $data = $request->all();
+      $vienchuc = VienChuc::find($ma_vc);
       Carbon::now('Asia/Ho_Chi_Minh');
       $kyluat = KyLuat::find($ma_kl);
       $kyluat->ma_lkl = $data['ma_lkl'];
@@ -326,6 +382,16 @@ class KyLuatController extends Controller
       $kyluat->ngay_kl = $data['ngay_kl'];
       $kyluat->lydo_kl = $data['lydo_kl'];
       $kyluat->status_kl = $data['status_kl'];
+      $kyluat->soquyetdinh_kl = $data['soquyetdinh_kl'];
+      $get_file = $request->file('filequyetdinh_kl');
+      if($get_file){
+        $new_file = $vienchuc->hoten_vc.rand(0,999).'.'.$get_file->getClientOriginalExtension();
+        if($kyluat->filequyetdinh_kl){
+          unlink('public/uploads/kyluat/'.$kyluat->filequyetdinh_kl);
+        }
+        $get_file->move('public/uploads/kyluat', $new_file);
+        $kyluat->filequyetdinh_kl = $new_file;
+      }
       $kyluat->updated_kl = Carbon::now();
       $kyluat->save();
       return Redirect::to('/kyluat_add/'.$ma_vc);
@@ -349,6 +415,10 @@ class KyLuatController extends Controller
       if($request->ajax()){
         $id =$request->id;
         if($id != null){
+          $kyluat =  KyLuat::find($id);
+          if($kyluat->filequyetdinh_kl){
+            unlink('public/uploads/kyluat/'.$kyluat->filequyetdinh_kl);
+          }
           KyLuat::find($id)->delete();
         }
       }
@@ -368,7 +438,14 @@ class KyLuatController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlk || $phanquyen_qlktkl){
       $ma_kl = $request->ma_kl;
+      $kyluat = KyLuat::whereIn('ma_kl', $ma_kl)->get();
+      foreach($kyluat as $kl){
+        if($kl->filequyetdinh_kl){
+          unlink('public/uploads/kyluat/'.$kl->filequyetdinh_kl);
+        }
+      }
       KyLuat::whereIn('ma_kl', $ma_kl)->delete();
+      $request->session()->put('message','Xoá thành công');
       return redirect()->back();
     }
   }
@@ -388,8 +465,12 @@ class KyLuatController extends Controller
       $list = KyLuat::where('ma_vc', $ma_vc)
         ->get();
       foreach($list as $key => $kyluat){
+        if($kyluat->filequyetdinh_kl){
+          unlink('public/uploads/kyluat/'.$kyluat->filequyetdinh_kl);
+        }
         $kyluat->delete();
       }
+      session()->put('message','Xoá thành công');
       return Redirect::to('/kyluat_add/'.$ma_vc);
     }else{
       return Redirect::to('/home');

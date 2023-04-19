@@ -32,7 +32,8 @@ class ThongKeQLK_KhenThuong_Loc_7Export implements FromQuery, WithHeadings, Shou
       'Ngày khen thưởng',
       'Nội dung khen thưởng', 
       'Loại khen thưởng',
-      'Hình thức khen thưởng'
+      'Hình thức khen thưởng',
+      'Số quyết định'
     ];
   }
   public function query()
@@ -46,6 +47,6 @@ class ThongKeQLK_KhenThuong_Loc_7Export implements FromQuery, WithHeadings, Shou
     ->whereBetween('khenthuong.ngay_kt', [$this->batdau_kt, $this->ketthuc_kt])
     ->where('status_vc', '<>', '2')
     ->where('status_kt', '<>', '2')
-      ->select('vienchuc.ma_vc', 'vienchuc.hoten_vc', 'vienchuc.user_vc', 'vienchuc.sdt_vc', 'vienchuc.ngaysinh_vc', 'khoa.ten_k', 'chucvu.ten_cv', 'khenthuong.ngay_kt', 'khenthuong.noidung_kt', 'loaikhenthuong.ten_lkt', 'hinhthuckhenthuong.ten_htkt');
+      ->select('vienchuc.ma_vc', 'vienchuc.hoten_vc', 'vienchuc.user_vc', 'vienchuc.sdt_vc', 'vienchuc.ngaysinh_vc', 'khoa.ten_k', 'chucvu.ten_cv', 'khenthuong.ngay_kt', 'khenthuong.noidung_kt', 'loaikhenthuong.ten_lkt', 'hinhthuckhenthuong.ten_htkt', 'khenthuong.soquyetdinh_kt');
   }
 }

@@ -56,7 +56,8 @@
             <td>
               <b>Loaị khen thưởng: </b>{{ $kt->ten_lkt }}<br>
               <b>Hình thức khen thưởng: </b>{{ $kt->ten_htkt }}<br>
-              <b>Ngày: </b>{{ $kt->ngay_kt }}<br>
+              <b>Số quyết định: </b>{{ $kt->soquyetdinh_kt }} <br>
+              <b>Ngày ký quyết định: </b>{{ $kt->ngay_kt }}<br>
             </td>
           </tr>
         @endforeach

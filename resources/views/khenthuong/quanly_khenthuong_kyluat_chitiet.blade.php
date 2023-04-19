@@ -28,7 +28,7 @@
     <div class="row">
       <div class="col-6">
         @if ($khenthuong)
-          <p style="font-weight: bold; color: #E83A14; font-size: 22px; text-align: center; border-bottom: 3px solid #E83A14;">KHEN THƯỞNG</p>
+          <p style="font-weight: bold; color: #E83A14; font-size: 22px; text-align: center;">KHEN THƯỞNG</p>
           <div class="dots-list">
             <ol>
               @foreach ($list_khenthuong as $khenthuong )
@@ -36,9 +36,18 @@
                   <span class="date">{{ $khenthuong->ngay_kt }}</span>
                   <b style="font-weight: bold; font-size: 22px">{{ $khenthuong->ten_lkt }}</b>
                   <br>
-                  Hình thức khen thưởng: {{ $khenthuong->ten_htkt }}
+                  <b>Hình thức khen thưởng:</b> {{ $khenthuong->ten_htkt }}
                   <br>
-                  Nội dung khen thưởng: {{ $khenthuong->noidung_kt }}
+                  <b>Nội dung khen thưởng:</b> {{ $khenthuong->noidung_kt }} <br>
+                  <b>Số quyết định khen thưởng: </b> {{ $khenthuong->soquyetdinh_kt }} <br>
+                  @if ($khenthuong->filequyetdinh_kt)
+                    <a href="{{ asset('public/uploads/khenthuong/'.$khenthuong->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                      <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                      File quyết định
+                    </a>
+                  @else
+                    <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                  @endif
                 </li>
               @endforeach
             </ol>
@@ -47,7 +56,7 @@
       </div>
       <div class="col-6">
         @if ($kyluat)
-          <p style="font-weight: bold; color: #E83A14; font-size: 22px; text-align: center; border-bottom: 3px solid #E83A14;">KỶ LUẬT</p>
+          <p style="font-weight: bold; color: #E83A14; font-size: 22px; text-align: center;">KỶ LUẬT</p>
           <div class="dots-list">
             <ol>
               @foreach ($list_kyluat as $kyluat )
@@ -55,7 +64,16 @@
                   <span class="date">{{ $kyluat->ngay_kl }}</span>
                   <b style="font-weight: bold; font-size: 22px">{{ $kyluat->ten_lkl }}</b>
                   <br>
-                  Lý do kỷ luật: {{ $kyluat->lydo_kl }}
+                  <b>Lý do kỷ luật:</b> {{ $kyluat->lydo_kl }} <br>
+                  <b>Số quyết định kỷ luật: </b>{{ $kyluat->soquyetdinh_kl }} <br>
+                  @if ($kyluat->filequyetdinh_kl)
+                    <a href="{{ asset('public/uploads/kyluat/'.$kyluat->filequyetdinh_kl) }}" style="color: #000D6B; font-weight: bold">
+                      <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                      File quyết định
+                    </a>
+                  @else
+                    <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                  @endif
                 </li>
               @endforeach
             </ol>

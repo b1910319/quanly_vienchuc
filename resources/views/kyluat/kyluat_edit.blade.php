@@ -23,8 +23,8 @@
               <tr>
                 <th scope="row">Loại kỷ luật: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="ma_lkl">
-                    <option value="0" >Chọn loại kỷ luật</option>
+                  <select class="custom-select input_table" id="gender2" name="ma_lkl" required>
+                    <option value="" >Chọn loại kỷ luật</option>
                     @foreach ($list_loaikyluat as $loaikyluat )
                       <option
                       @if ($edit->ma_lkl == $loaikyluat->ma_lkl)
@@ -38,22 +38,45 @@
               <tr>
                 <th scope="row">Ngày kỷ luật: </th>
                 <td class="was-validated">
-                  <input type='date' class='form-control input_table' autofocus required name="ngay_kl" value="{{ $edit->ngay_kl }}">
+                  <?php 
+                    use Illuminate\Support\Carbon;
+                    Carbon::now('Asia/Ho_Chi_Minh'); 
+                    $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                    ?>
+                      <input type='date' class='form-control input_table' autofocus required name="ngay_kl" value="{{ $edit->ngay_kl }}" max="<?php echo $now ?>">
+                    <?php
+                  ?>
                 </td>
               </tr>
               <tr>
-                <th scope="row">Trạng thái: </th>
+                <th scope="row">File quyết định: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="status_kl">
-                    <option value="0" >Chọn trạng thái</option>
-                    @if ($edit->status_kl == 1)
-                      <option selected value="1" >Ẩn</option>
-                      <option value="0" >Hiển thị</option>
-                    @else
-                      <option value="0" selected >Hiển thị</option>
-                      <option value="1" >Ẩn</option>
-                    @endif
-                  </select>
+                  <div class="row">
+                    <div class="col-6">
+                      <input type='file' class='form-control input_table' name="filequyetdinh_kl">
+                    </div>
+                    <div class="col-6">
+                      @if ($edit->filequyetdinh_kl != ' ')
+                        <a href="{{ asset('public/uploads/khenthuong/'.$edit->filequyetdinh_kl) }}">
+                          <button type="button" class="btn btn-warning button_xanhla">
+                            <i class="fa-solid fa-file text-light"></i>
+                            &ensp;
+                            File
+                          </button>
+                        </a>
+                      @else
+                        Không có file
+                      @endif
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Số quyết định: </th>
+                <td class="was-validated">
+                  <input type="hidden" id="ma_kl" value="{{ $edit->ma_kl }}">
+                  <input type='text' id="soquyetdinh_kl"  class='form-control input_table' autofocus required name="soquyetdinh_kl" value="{{ $edit->soquyetdinh_kl }}">
+                  <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
             </tbody>
@@ -68,6 +91,21 @@
                   <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="lydo_kl">
                     {{ $edit->lydo_kl }}
                   </textarea>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Trạng thái: </th>
+                <td class="was-validated">
+                  <select class="custom-select input_table" id="gender2" name="status_kl" required>
+                    <option value="" >Chọn trạng thái</option>
+                    @if ($edit->status_kl == 1)
+                      <option selected value="1" >Ẩn</option>
+                      <option value="0" >Hiển thị</option>
+                    @else
+                      <option value="0" selected >Hiển thị</option>
+                      <option value="1" >Ẩn</option>
+                    @endif
+                  </select>
                 </td>
               </tr>
             </tbody>
@@ -86,4 +124,26 @@
       </div>
     </form>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('#soquyetdinh_kl').mouseout(function(){
+        var soquyetdinh_kl = $(this).val();
+        var ma_kl = $('#ma_kl').val();
+        // alert(ma_kl);
+        $.ajax({
+          url:"{{ url("/check_soquyetdinh_kl_edit") }}",
+          type:"GET",
+          data:{soquyetdinh_kl:soquyetdinh_kl, ma_kl:ma_kl},
+          success:function(data){
+            if(data == 1){  
+              $('#baoloi').html('Số quyết định đã tồn tại');
+              $('#soquyetdinh_kl').val('');
+            }else{
+              $('#baoloi').html(''); 
+            }
+          }
+        });
+      });
+    });
+  </script>
 @endsection

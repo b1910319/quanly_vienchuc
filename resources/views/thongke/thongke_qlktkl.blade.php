@@ -3,7 +3,7 @@
 <div class="row">
   <div class="card-box col-12">
     <div class="row">
-      <p class="fw-bold" style="font-size: 18px;">Thống kê khen thưởng kỷ luật của viên chức </p>
+      <p class="fw-bold" style="font-size: 22px; text-transform: uppercase">Thống kê khen thưởng kỷ luật của viên chức </p>
     </div>
     <div class="row">
       <div class="col-2">
@@ -190,6 +190,7 @@
                         @if ($vienchuc->ma_vc == $vc->ma_vc)
                           <p>
                             <b> Tên viên chức:</b> {{ $vienchuc->hoten_vc }} <br>
+                            <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                             <b> Số điện thoại:</b> {{ $vienchuc->sdt_vc }} <br>
                             <b> Email: </b> {{ $vienchuc->user_vc }} <br>
                             <b> Ngày sinh: </b> {{ $vienchuc->ngaysinh_vc }} <br>
@@ -218,7 +219,9 @@
               </td>
                 @foreach ($list_vienchuc as $vienchuc  )
                   @if ($vienchuc->ma_vc == $vc->ma_vc)
-                    <td>{{ $vienchuc->ten_k }}</td>
+                    <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
                   @endif
                 @endforeach
               <td>
@@ -230,7 +233,16 @@
                         <b> Loại khen thưởng:</b> {{ $vc->ten_lkt }} <br>
                         <b> Hình thức khen thưởng:</b> {{ $vc->ten_htkt }} <br>
                         <b> Ngày khen thưởng: </b> {{ $vc->ngay_kt }} <br>
-                        <b> Nội dung: </b> {{ $vc->noidung_kt }}
+                        <b> Nội dung: </b> {{ $vc->noidung_kt }} <br>
+                        <b>Số quyết định khen thưởng: </b> {{ $vc->soquyetdinh_kt }} <br>
+                        @if ($vc->filequyetdinh_kt)
+                          <a href="{{ asset('public/uploads/khenthuong/'.$vc->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -311,6 +323,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -336,7 +349,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -346,7 +361,16 @@
                         <b> Loại khen thưởng:</b> {{ $vc->ten_lkt }} <br>
                         <b> Hình thức khen thưởng:</b> {{ $vc->ten_htkt }} <br>
                         <b> Ngày khen thưởng: </b> {{ $vc->ngay_kt }} <br>
-                        <b> Nội dung: </b> {{ $vc->noidung_kt }}
+                        <b> Nội dung: </b> {{ $vc->noidung_kt }} <br>
+                        <b>Số quyết định khen thưởng: </b> {{ $vc->soquyetdinh_kt }} <br>
+                        @if ($vc->filequyetdinh_kt)
+                          <a href="{{ asset('public/uploads/khenthuong/'.$vc->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -420,6 +444,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -445,7 +470,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -455,7 +482,16 @@
                         <b> Loại khen thưởng:</b> {{ $vc->ten_lkt }} <br>
                         <b> Hình thức khen thưởng:</b> {{ $vc->ten_htkt }} <br>
                         <b> Ngày khen thưởng: </b> {{ $vc->ngay_kt }} <br>
-                        <b> Nội dung: </b> {{ $vc->noidung_kt }}
+                        <b> Nội dung: </b> {{ $vc->noidung_kt }} <br>
+                        <b>Số quyết định khen thưởng: </b> {{ $vc->soquyetdinh_kt }} <br>
+                        @if ($vc->filequyetdinh_kt)
+                          <a href="{{ asset('public/uploads/khenthuong/'.$vc->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -529,6 +565,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -554,7 +591,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -564,7 +603,16 @@
                         <b> Loại khen thưởng:</b> {{ $vc->ten_lkt }} <br>
                         <b> Hình thức khen thưởng:</b> {{ $vc->ten_htkt }} <br>
                         <b> Ngày khen thưởng: </b> {{ $vc->ngay_kt }} <br>
-                        <b> Nội dung: </b> {{ $vc->noidung_kt }}
+                        <b> Nội dung: </b> {{ $vc->noidung_kt }} <br>
+                        <b>Số quyết định khen thưởng: </b> {{ $vc->soquyetdinh_kt }} <br>
+                        @if ($vc->filequyetdinh_kt)
+                          <a href="{{ asset('public/uploads/khenthuong/'.$vc->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -638,6 +686,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -663,7 +712,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -673,7 +724,16 @@
                         <b> Loại khen thưởng:</b> {{ $vc->ten_lkt }} <br>
                         <b> Hình thức khen thưởng:</b> {{ $vc->ten_htkt }} <br>
                         <b> Ngày khen thưởng: </b> {{ $vc->ngay_kt }} <br>
-                        <b> Nội dung: </b> {{ $vc->noidung_kt }}
+                        <b> Nội dung: </b> {{ $vc->noidung_kt }} <br>
+                        <b>Số quyết định khen thưởng: </b> {{ $vc->soquyetdinh_kt }} <br>
+                        @if ($vc->filequyetdinh_kt)
+                          <a href="{{ asset('public/uploads/khenthuong/'.$vc->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -749,6 +809,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -774,7 +835,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -784,7 +847,16 @@
                         <b> Loại khen thưởng:</b> {{ $vc->ten_lkt }} <br>
                         <b> Hình thức khen thưởng:</b> {{ $vc->ten_htkt }} <br>
                         <b> Ngày khen thưởng: </b> {{ $vc->ngay_kt }} <br>
-                        <b> Nội dung: </b> {{ $vc->noidung_kt }}
+                        <b> Nội dung: </b> {{ $vc->noidung_kt }} <br>
+                        <b>Số quyết định khen thưởng: </b> {{ $vc->soquyetdinh_kt }} <br>
+                        @if ($vc->filequyetdinh_kt)
+                          <a href="{{ asset('public/uploads/khenthuong/'.$vc->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -852,6 +924,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -877,7 +950,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -887,7 +962,16 @@
                         <b> Loại khen thưởng:</b> {{ $vc->ten_lkt }} <br>
                         <b> Hình thức khen thưởng:</b> {{ $vc->ten_htkt }} <br>
                         <b> Ngày khen thưởng: </b> {{ $vc->ngay_kt }} <br>
-                        <b> Nội dung: </b> {{ $vc->noidung_kt }}
+                        <b> Nội dung: </b> {{ $vc->noidung_kt }} <br>
+                        <b>Số quyết định khen thưởng: </b> {{ $vc->soquyetdinh_kt }} <br>
+                        @if ($vc->filequyetdinh_kt)
+                          <a href="{{ asset('public/uploads/khenthuong/'.$vc->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -955,6 +1039,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -980,7 +1065,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -990,7 +1077,16 @@
                         <b> Loại khen thưởng:</b> {{ $vc->ten_lkt }} <br>
                         <b> Hình thức khen thưởng:</b> {{ $vc->ten_htkt }} <br>
                         <b> Ngày khen thưởng: </b> {{ $vc->ngay_kt }} <br>
-                        <b> Nội dung: </b> {{ $vc->noidung_kt }}
+                        <b> Nội dung: </b> {{ $vc->noidung_kt }} <br>
+                        <b>Số quyết định khen thưởng: </b> {{ $vc->soquyetdinh_kt }} <br>
+                        @if ($vc->filequyetdinh_kt)
+                          <a href="{{ asset('public/uploads/khenthuong/'.$vc->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -1060,6 +1156,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -1085,7 +1182,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -1095,7 +1194,16 @@
                         <b> Loại khen thưởng:</b> {{ $vc->ten_lkt }} <br>
                         <b> Hình thức khen thưởng:</b> {{ $vc->ten_htkt }} <br>
                         <b> Ngày khen thưởng: </b> {{ $vc->ngay_kt }} <br>
-                        <b> Nội dung: </b> {{ $vc->noidung_kt }}
+                        <b> Nội dung: </b> {{ $vc->noidung_kt }} <br>
+                        <b>Số quyết định khen thưởng: </b> {{ $vc->soquyetdinh_kt }} <br>
+                        @if ($vc->filequyetdinh_kt)
+                          <a href="{{ asset('public/uploads/khenthuong/'.$vc->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -1163,6 +1271,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -1188,7 +1297,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -1198,7 +1309,16 @@
                         <b> Loại khen thưởng:</b> {{ $vc->ten_lkt }} <br>
                         <b> Hình thức khen thưởng:</b> {{ $vc->ten_htkt }} <br>
                         <b> Ngày khen thưởng: </b> {{ $vc->ngay_kt }} <br>
-                        <b> Nội dung: </b> {{ $vc->noidung_kt }}
+                        <b> Nội dung: </b> {{ $vc->noidung_kt }} <br>
+                        <b>Số quyết định khen thưởng: </b> {{ $vc->soquyetdinh_kt }} <br>
+                        @if ($vc->filequyetdinh_kt)
+                          <a href="{{ asset('public/uploads/khenthuong/'.$vc->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -1268,6 +1388,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -1293,7 +1414,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -1303,7 +1426,16 @@
                         <b> Loại khen thưởng:</b> {{ $vc->ten_lkt }} <br>
                         <b> Hình thức khen thưởng:</b> {{ $vc->ten_htkt }} <br>
                         <b> Ngày khen thưởng: </b> {{ $vc->ngay_kt }} <br>
-                        <b> Nội dung: </b> {{ $vc->noidung_kt }}
+                        <b> Nội dung: </b> {{ $vc->noidung_kt }} <br>
+                        <b>Số quyết định khen thưởng: </b> {{ $vc->soquyetdinh_kt }} <br>
+                        @if ($vc->filequyetdinh_kt)
+                          <a href="{{ asset('public/uploads/khenthuong/'.$vc->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -1373,6 +1505,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -1398,7 +1531,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -1408,7 +1543,16 @@
                         <b> Loại khen thưởng:</b> {{ $vc->ten_lkt }} <br>
                         <b> Hình thức khen thưởng:</b> {{ $vc->ten_htkt }} <br>
                         <b> Ngày khen thưởng: </b> {{ $vc->ngay_kt }} <br>
-                        <b> Nội dung: </b> {{ $vc->noidung_kt }}
+                        <b> Nội dung: </b> {{ $vc->noidung_kt }} <br>
+                        <b>Số quyết định khen thưởng: </b> {{ $vc->soquyetdinh_kt }} <br>
+                        @if ($vc->filequyetdinh_kt)
+                          <a href="{{ asset('public/uploads/khenthuong/'.$vc->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -1472,6 +1616,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -1497,7 +1642,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -1507,7 +1654,16 @@
                         <b> Loại khen thưởng:</b> {{ $vc->ten_lkt }} <br>
                         <b> Hình thức khen thưởng:</b> {{ $vc->ten_htkt }} <br>
                         <b> Ngày khen thưởng: </b> {{ $vc->ngay_kt }} <br>
-                        <b> Nội dung: </b> {{ $vc->noidung_kt }}
+                        <b> Nội dung: </b> {{ $vc->noidung_kt }} <br>
+                        <b>Số quyết định khen thưởng: </b> {{ $vc->soquyetdinh_kt }} <br>
+                        @if ($vc->filequyetdinh_kt)
+                          <a href="{{ asset('public/uploads/khenthuong/'.$vc->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -1571,6 +1727,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -1596,7 +1753,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -1606,7 +1765,16 @@
                         <b> Loại khen thưởng:</b> {{ $vc->ten_lkt }} <br>
                         <b> Hình thức khen thưởng:</b> {{ $vc->ten_htkt }} <br>
                         <b> Ngày khen thưởng: </b> {{ $vc->ngay_kt }} <br>
-                        <b> Nội dung: </b> {{ $vc->noidung_kt }}
+                        <b> Nội dung: </b> {{ $vc->noidung_kt }} <br>
+                        <b>Số quyết định khen thưởng: </b> {{ $vc->soquyetdinh_kt }} <br>
+                        @if ($vc->filequyetdinh_kt)
+                          <a href="{{ asset('public/uploads/khenthuong/'.$vc->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -1670,6 +1838,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -1695,7 +1864,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -1705,7 +1876,16 @@
                         <b> Loại khen thưởng:</b> {{ $vc->ten_lkt }} <br>
                         <b> Hình thức khen thưởng:</b> {{ $vc->ten_htkt }} <br>
                         <b> Ngày khen thưởng: </b> {{ $vc->ngay_kt }} <br>
-                        <b> Nội dung: </b> {{ $vc->noidung_kt }}
+                        <b> Nội dung: </b> {{ $vc->noidung_kt }} <br>
+                        <b>Số quyết định khen thưởng: </b> {{ $vc->soquyetdinh_kt }} <br>
+                        @if ($vc->filequyetdinh_kt)
+                          <a href="{{ asset('public/uploads/khenthuong/'.$vc->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -1767,6 +1947,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -1792,7 +1973,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -1802,7 +1985,16 @@
                         <b> Loại khen thưởng:</b> {{ $vc->ten_lkt }} <br>
                         <b> Hình thức khen thưởng:</b> {{ $vc->ten_htkt }} <br>
                         <b> Ngày khen thưởng: </b> {{ $vc->ngay_kt }} <br>
-                        <b> Nội dung: </b> {{ $vc->noidung_kt }}
+                        <b> Nội dung: </b> {{ $vc->noidung_kt }} <br>
+                        <b>Số quyết định khen thưởng: </b> {{ $vc->soquyetdinh_kt }} <br>
+                        @if ($vc->filequyetdinh_kt)
+                          <a href="{{ asset('public/uploads/khenthuong/'.$vc->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -1877,6 +2069,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -1902,7 +2095,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -1911,7 +2106,17 @@
                       <p>
                         <b> Loại kỷ luật:</b> {{ $vc->ten_lkl }} <br>
                         <b> Lý do kỷ luật:</b> {{ $vc->lydo_kl }} <br>
-                        <b> Ngày kỷ luật: </b> {{ $vc->ngay_kl }}
+                        <b> Ngày kỷ luật: </b> {{ $vc->ngay_kl }} <br>
+                        <b>Số quyết dịnh kỷ luật: </b> {{ $vc->soquyetdinh_kl }} <br>
+                        @if ($vc->filequyetdinh_kl)
+                          <a href="{{ asset('public/uploads/kyluat/'.$vc->filequyetdinh_kl) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
+
                       </p>
                     </div>
                   </div>
@@ -1979,6 +2184,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -2004,7 +2210,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -2013,7 +2221,16 @@
                       <p>
                         <b> Loại kỷ luật:</b> {{ $vc->ten_lkl }} <br>
                         <b> Lý do kỷ luật:</b> {{ $vc->lydo_kl }} <br>
-                        <b> Ngày kỷ luật: </b> {{ $vc->ngay_kl }}
+                        <b> Ngày kỷ luật: </b> {{ $vc->ngay_kl }} <br>
+                        <b>Số quyết dịnh kỷ luật: </b> {{ $vc->soquyetdinh_kl }} <br>
+                        @if ($vc->filequyetdinh_kl)
+                          <a href="{{ asset('public/uploads/kyluat/'.$vc->filequyetdinh_kl) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -2081,6 +2298,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -2106,7 +2324,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -2115,7 +2335,16 @@
                       <p>
                         <b> Loại kỷ luật:</b> {{ $vc->ten_lkl }} <br>
                         <b> Lý do kỷ luật:</b> {{ $vc->lydo_kl }} <br>
-                        <b> Ngày kỷ luật: </b> {{ $vc->ngay_kl }}
+                        <b> Ngày kỷ luật: </b> {{ $vc->ngay_kl }} <br>
+                        <b>Số quyết dịnh kỷ luật: </b> {{ $vc->soquyetdinh_kl }} <br>
+                        @if ($vc->filequyetdinh_kl)
+                          <a href="{{ asset('public/uploads/kyluat/'.$vc->filequyetdinh_kl) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -2185,6 +2414,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -2210,7 +2440,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -2219,7 +2451,16 @@
                       <p>
                         <b> Loại kỷ luật:</b> {{ $vc->ten_lkl }} <br>
                         <b> Lý do kỷ luật:</b> {{ $vc->lydo_kl }} <br>
-                        <b> Ngày kỷ luật: </b> {{ $vc->ngay_kl }}
+                        <b> Ngày kỷ luật: </b> {{ $vc->ngay_kl }} <br>
+                        <b>Số quyết dịnh kỷ luật: </b> {{ $vc->soquyetdinh_kl }} <br>
+                        @if ($vc->filequyetdinh_kl)
+                          <a href="{{ asset('public/uploads/kyluat/'.$vc->filequyetdinh_kl) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -2283,6 +2524,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -2308,7 +2550,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -2317,7 +2561,16 @@
                       <p>
                         <b> Loại kỷ luật:</b> {{ $vc->ten_lkl }} <br>
                         <b> Lý do kỷ luật:</b> {{ $vc->lydo_kl }} <br>
-                        <b> Ngày kỷ luật: </b> {{ $vc->ngay_kl }}
+                        <b> Ngày kỷ luật: </b> {{ $vc->ngay_kl }} <br>
+                        <b>Số quyết dịnh kỷ luật: </b> {{ $vc->soquyetdinh_kl }} <br>
+                        @if ($vc->filequyetdinh_kl)
+                          <a href="{{ asset('public/uploads/kyluat/'.$vc->filequyetdinh_kl) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -2381,6 +2634,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -2406,7 +2660,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -2415,7 +2671,16 @@
                       <p>
                         <b> Loại kỷ luật:</b> {{ $vc->ten_lkl }} <br>
                         <b> Lý do kỷ luật:</b> {{ $vc->lydo_kl }} <br>
-                        <b> Ngày kỷ luật: </b> {{ $vc->ngay_kl }}
+                        <b> Ngày kỷ luật: </b> {{ $vc->ngay_kl }} <br>
+                        <b>Số quyết dịnh kỷ luật: </b> {{ $vc->soquyetdinh_kl }} <br>
+                        @if ($vc->filequyetdinh_kl)
+                          <a href="{{ asset('public/uploads/kyluat/'.$vc->filequyetdinh_kl) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>
@@ -2477,6 +2742,7 @@
                       <p>
                         <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
                         <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b>Mã số viên chức: </b>VC{{ $vc->ma_vc }} <br>
                         <b> Email: </b> {{ $vc->user_vc }} <br>
                         <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
                         <b> Giới tính: </b>
@@ -2502,7 +2768,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}</td>
+              <td>
+                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+              </td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">
@@ -2511,7 +2779,16 @@
                       <p>
                         <b> Loại kỷ luật:</b> {{ $vc->ten_lkl }} <br>
                         <b> Lý do kỷ luật:</b> {{ $vc->lydo_kl }} <br>
-                        <b> Ngày kỷ luật: </b> {{ $vc->ngay_kl }}
+                        <b> Ngày kỷ luật: </b> {{ $vc->ngay_kl }} <br>
+                        <b>Số quyết dịnh kỷ luật: </b> {{ $vc->soquyetdinh_kl }} <br>
+                        @if ($vc->filequyetdinh_kl)
+                          <a href="{{ asset('public/uploads/kyluat/'.$vc->filequyetdinh_kl) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
+                        @endif
                       </p>
                     </div>
                   </div>

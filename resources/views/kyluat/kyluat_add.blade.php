@@ -120,8 +120,8 @@
                         <tr>
                           <th scope="row">Loại kỷ luật: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="ma_lkl">
-                              <option value="0" >Chọn loại kỷ luật</option>
+                            <select class="custom-select input_table" id="gender2" name="ma_lkl" required>
+                              <option value="" >Chọn loại kỷ luật</option>
                               @foreach ($list_loaikyluat as $loaikyluat )
                                 <option value="{{ $loaikyluat->ma_lkl }}" >{{ $loaikyluat->ten_lkl }}</option>
                               @endforeach
@@ -131,7 +131,27 @@
                         <tr>
                           <th scope="row">Ngày kỷ luật: </th>
                           <td class="was-validated">
-                            <input type='date' class='form-control input_table' autofocus required name="ngay_kl">
+                            <?php 
+                              use Illuminate\Support\Carbon;
+                              Carbon::now('Asia/Ho_Chi_Minh'); 
+                              $now = Carbon::parse(Carbon::now())->format('Y-m-d');
+                              ?>
+                                <input type='date' class='form-control input_table' autofocus required name="ngay_kl" max="<?php echo $now ?>">
+                              <?php
+                            ?>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Số quyết định: </th>
+                          <td class="was-validated">
+                            <input type='text' id="soquyetdinh_kl"  class='form-control input_table' autofocus required name="soquyetdinh_kl">
+                            <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">File quyết định: </th>
+                          <td class="was-validated">
+                            <input type='file' class='form-control input_table' required name="filequyetdinh_kl">
                           </td>
                         </tr>
                       </tbody>
@@ -144,7 +164,7 @@
                           <th scope="row">Lý do kỷ luật: </th>
                           <td class="was-validated">
                             <div class="form-floating">
-                              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" required style="height: 117px; resize: none;" name="lydo_kl"></textarea>
+                              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" required style="height:190px; resize: none;" name="lydo_kl"></textarea>
                               <label for="floatingTextarea2">Lý do kỷ luật</label>
                             </div>
                           </td>
@@ -152,8 +172,8 @@
                         <tr>
                           <th scope="row">Trạng thái: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="status_kl">
-                              <option value="0" >Chọn trạng thái</option>
+                            <select class="custom-select input_table" id="gender2" name="status_kl" required>
+                              <option value="" >Chọn trạng thái</option>
                               <option value="1" >Ẩn</option>
                               <option selected value="0" >Hiển thị</option>
                             </select>
@@ -181,6 +201,18 @@
       </div>
     </div>
     <div class="mt-3"></div>
+    <?php
+      $message=session()->get('message');
+      if($message){
+        ?>
+          <div class="alert alert-warning alert-dismissible fade show fw-bold" role="alert">
+            <?php echo $message ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        session()->put('message',null);
+      }
+    ?>
     <form action="{{ URL::to('/delete_kyluat_check') }}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
       <table class="table" id="mytable">
@@ -189,8 +221,7 @@
             <th class="text-light" scope="col"></th>
             <th class="text-light" scope="col">STT</th>
             <th class="text-light" scope="col">Loại kỷ luật</th>
-            <th class="text-light" scope="col">Ngày kỷ luật</th>
-            <th class="text-light" scope="col">Lý do kỷ luật</th>
+            <th class="text-light" scope="col">Thông tin kỷ luật</th>
             <th class="text-light" scope="col">Trạng thái</th>
             <th class="text-light" scope="col"></th>
           </tr>
@@ -207,11 +238,18 @@
               <td>
                 {{ $kyluat->ten_lkl }} ({{ $kyluat->ma_lkl }})
               </td>
-              <td>
-                {{ $kyluat->ngay_kl }}
-              </td>
-              <td>
-                {{ $kyluat->lydo_kl }}
+              <td style="width: 35%">
+                <b>Lý do kỷ luật: </b> {{ $kyluat->lydo_kl }} <br>
+                <b>Số quyết định: </b> {{ $kyluat->soquyetdinh_kl }} <br>
+                <b>Ngày ky quyết định: </b> {{ date('d-m-Y') , strtotime($kyluat->ngay_kl) }} <br>
+                @if ($kyluat->filequyetdinh_kl)
+                  <a href="{{ asset('public/uploads/kyluat/'.$kyluat->filequyetdinh_kl) }}" style="color: #000D6B; font-weight: bold">
+                    <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                    File quyết định
+                  </a>
+                @else
+                  <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                @endif
               </td>
               <td>
                 <?php
@@ -279,8 +317,8 @@
   </div>
 </div>
 {{-- ajax --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> --}}
 {{--  --}}
 <script>
   document.querySelector('.them').addEventListener('click', (event)=>{
@@ -349,6 +387,27 @@
     });
   @endforeach
   
+</script>
+<script>
+  $(document).ready(function(){
+    $('#soquyetdinh_kl').mouseout(function(){
+      var soquyetdinh_kl = $(this).val();
+      var soquyetdinh = '';
+      $.ajax({
+        url:"{{ url("/check_soquyetdinh_kl") }}",
+        type:"GET",
+        data:{soquyetdinh_kl:soquyetdinh_kl},
+        success:function(data){
+          if(data == 1){  
+            $('#baoloi').html('Số quyết định đã tồn tại');
+            $('#soquyetdinh_kl').val('');
+          }else{
+            $('#baoloi').html(''); 
+          }
+        }
+      });
+    });
+  });
 </script>
 <!--  -->
 @endsection

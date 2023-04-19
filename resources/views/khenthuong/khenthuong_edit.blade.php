@@ -82,10 +82,14 @@
                 <td class="was-validated">
                   <div class="row">
                     <div class="col-6">
-                      <input type='file' class='form-control input_table' name="filequyetdinh_kt">
+                      <input type='file' class='form-control input_table' name="filequyetdinh_kt"
+                      @if (!$edit->filequyetdinh_kt)
+                        required
+                      @endif
+                      >
                     </div>
                     <div class="col-6">
-                      @if ($edit->filequyetdinh_kt != ' ')
+                      @if ($edit->filequyetdinh_kt)
                         <a href="{{ asset('public/uploads/khenthuong/'.$edit->filequyetdinh_kt) }}">
                           <button type="button" class="btn btn-warning button_xanhla">
                             <i class="fa-solid fa-file text-light"></i>
@@ -94,7 +98,7 @@
                           </button>
                         </a>
                       @else
-                        Không có file
+                        <span style="color: #FF1E1E; font-weight: bold">Không có file</span>
                       @endif
                     </div>
                   </div>
@@ -143,7 +147,7 @@
     $(document).ready(function(){
       $('#soquyetdinh_kt').mouseout(function(){
         var soquyetdinh_kt = $(this).val();
-        var ma_kt = $('#ma_kt').val();var ma_kt = $('#ma_kt').val();
+        var ma_kt = $('#ma_kt').val();
 
         // alert(ma_kt);
         $.ajax({

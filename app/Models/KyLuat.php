@@ -13,6 +13,8 @@ class KyLuat extends Model
     'ma_lkl',
     'ngay_kl',
     'lydo_kl',
+    'soquyetdinh_kl',
+    'filequyetdinh_kl',
     'status_kl',
     'updated_kl'
 

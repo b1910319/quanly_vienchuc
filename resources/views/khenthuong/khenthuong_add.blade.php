@@ -250,7 +250,7 @@
                     File quyết định
                   </a>
                 @else
-                  <p style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</p>
+                  <span style="color: #FF1E1E; font-weight: bold">Chua cập nhật file</span>
                 @endif
                 
               </td>

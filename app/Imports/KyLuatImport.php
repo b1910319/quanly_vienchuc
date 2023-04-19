@@ -19,6 +19,7 @@ class KyLuatImport implements ToModel
       'ma_lkl'     => $row[1],
       'lydo_kl'     => $row[2],
       'ngay_kl'     => $row[3],
+      'soquyetdinh_kl'     => $row[4],
     ]);
   }
 }
