@@ -1108,6 +1108,7 @@ Route::post('/delete_nhiemky_check',[NhiemKyController::class, 'delete_nhiemky_c
 
 Route::get('/quatrinhchucvu',[QuaTrinhChucVuController::class, 'quatrinhchucvu']);
 Route::get('/check_soquyetdinh_qtcv',[QuaTrinhChucVuController::class, 'check_soquyetdinh_qtcv']);
+Route::get('/check_soquyetdinh_qtcv_edit',[QuaTrinhChucVuController::class, 'check_soquyetdinh_qtcv_edit']);
 Route::get('/quatrinhchucvu_add/{ma_vc}',[QuaTrinhChucVuController::class, 'quatrinhchucvu_add']);
 Route::post('/add_quatrinhchucvu/{ma_vc}',[QuaTrinhChucVuController::class, 'add_quatrinhchucvu']);
 Route::get('/select_quatrinhchucvu/{ma_qtcv}',[QuaTrinhChucVuController::class, 'select_quatrinhchucvu']);

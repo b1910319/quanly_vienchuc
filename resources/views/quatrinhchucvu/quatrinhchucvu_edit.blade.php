@@ -23,6 +23,7 @@
               <tr>
                 <th scope="row">Chức vụ: </th>
                 <td class="was-validated">
+                  <input type="hidden" id="ma_qtcv" value="{{ $edit->ma_qtcv }}">
                   <select class="custom-select input_table" id="gender2" name="ma_cv">
                     <option value="0" >Chọn chức vụ</option>
                     @foreach ($list_chucvu as $chucvu )
@@ -129,14 +130,14 @@
   {{--  --}}
   <script>
     $(document).ready(function(){
-      $('#soquyetdinh_qtcv').change(function(){
+      $('#soquyetdinh_qtcv').mouseout(function(){
         var soquyetdinh_qtcv = $(this).val();
-        var soquyetdinh = '';
+        var ma_qtcv = $('#ma_qtcv').val();
         // alert(soquyetdinh_qtcv);
         $.ajax({
-          url:"{{ url("/check_soquyetdinh_qtcv") }}",
+          url:"{{ url("/check_soquyetdinh_qtcv_edit") }}",
           type:"GET",
-          data:{soquyetdinh_qtcv:soquyetdinh_qtcv},
+          data:{soquyetdinh_qtcv:soquyetdinh_qtcv, ma_qtcv:ma_qtcv},
           success:function(data){
             if(data == 1){  
               $('#baoloi').html('Số quyết định đã tồn tại');

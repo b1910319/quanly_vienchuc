@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
+use App\Models\QuaTrinhChucVu;
 use App\Models\QuyetDinh;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
@@ -94,7 +95,9 @@ class QuyetDinhController extends Controller
       if($so_qd != null){
         $quyetdinh = QuyetDinh::where('so_qd', $so_qd)
           ->first();
-        if(isset($quyetdinh)){
+        $quantrinhchucvu = QuaTrinhChucVu::where('soquyetdinh_qtcv', $so_qd)
+          ->first();
+        if(isset($quyetdinh) || isset($quantrinhchucvu)){
           return 1;
         }else{
           return 0;
@@ -111,7 +114,9 @@ class QuyetDinhController extends Controller
         $quyetdinh = QuyetDinh::where('so_qd', $so_qd)
           ->where('ma_qd', '<>', $ma_qd)
           ->first();
-        if(isset($quyetdinh)){
+        $quantrinhchucvu = QuaTrinhChucVu::where('soquyetdinh_qtcv', $so_qd)
+          ->first();
+        if(isset($quyetdinh) || isset($quantrinhchucvu)){
           return 1;
         }else{
           return 0;

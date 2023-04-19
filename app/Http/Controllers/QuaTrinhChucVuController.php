@@ -177,9 +177,28 @@ class QuaTrinhChucVuController extends Controller
       if($soquyetdinh_qtcv != null){
         $quatrinhchucvu = QuaTrinhChucVu::where('soquyetdinh_qtcv', $soquyetdinh_qtcv)
           ->first();
-        $quatrinhchucvu_1 = QuyetDinh::where('so_qd', $soquyetdinh_qtcv)
+        $quatrinhchucvu_qd = QuyetDinh::where('so_qd', $soquyetdinh_qtcv)
           ->first();
-        if(isset($quatrinhchucvu) || isset($quatrinhchucvu_1)){
+        if(isset($quatrinhchucvu) || isset($quatrinhchucvu_qd)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
+  public function check_soquyetdinh_qtcv_edit(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $soquyetdinh_qtcv = $request->soquyetdinh_qtcv;
+      $ma_qtcv = $request->ma_qtcv;
+      if($soquyetdinh_qtcv != null && $ma_qtcv != null){
+        $quatrinhchucvu = QuaTrinhChucVu::where('soquyetdinh_qtcv', $soquyetdinh_qtcv)
+          ->where('ma_qtcv', '<>', $ma_qtcv)
+          ->first();
+        $quatrinhchucvu_qd = QuyetDinh::where('so_qd', $soquyetdinh_qtcv)
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quatrinhchucvu_qd)){
           return 1;
         }else{
           return 0;
