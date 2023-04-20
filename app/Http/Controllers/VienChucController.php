@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Imports\Admin_VienChuc_KhoaImport;
-use App\Jobs\SendEmail;
+use App\Jobs\KichHoat_VoHieuHoa_TaiKhoanEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -436,8 +436,20 @@ class VienChucController extends Controller
       $vienchuc = VienChuc::find($ma_vc);
       if($vienchuc->status_vc == 1){
         $vienchuc->status_vc = VienChuc::find($ma_vc)->update(['status_vc' => 0]);
+        $message = [
+          'type' => 'Kích hoạt tài khoản',
+          'email' => $vienchuc->user_vc,
+          'content' => 'đã được quản trị viên kích hoạt tài khoản và hiện bạn đã có thể truy cập vào website http://localhost/quanly_vienchuc/home',
+        ];
+        KichHoat_VoHieuHoa_TaiKhoanEmail::dispatch($message, $vienchuc)->delay(now()->addMinute(1));
       }elseif($vienchuc->status_vc == 0){
         $vienchuc->status_vc = VienChuc::find($ma_vc)->update(['status_vc' => 1]);
+        $message = [
+          'type' => 'Vô hiệu hoá tài khoản',
+          'email' => $vienchuc->user_vc,
+          'content' => 'đã bị vô hiệu hoá',
+        ];
+        KichHoat_VoHieuHoa_TaiKhoanEmail::dispatch($message, $vienchuc)->delay(now()->addMinute(1));
       }
       return redirect()->back();
     }else{

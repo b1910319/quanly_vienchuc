@@ -204,15 +204,12 @@
                 <b>Ngày ký quyết định: </b> {{ $quatrinhchucvu->ngayky_qtcv }}
                 <br>
                 @if ($quatrinhchucvu->file_qtcv !=' ')
-                  <a href="{{ asset('public/uploads/quatrinhchucvu/'.$quatrinhchucvu->file_qtcv) }}">
-                    <button type="button" class="btn btn-warning button_xanhla mt-2">
-                      <i class="fa-solid fa-file text-light"></i>
-                      &ensp;
-                      File
-                    </button>
+                  <a href="{{ asset('public/uploads/quatrinhchucvu/'.$quatrinhchucvu->file_qtcv) }}" style="color: #000D6B; font-weight: bold">
+                    <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                    File quyết định
                   </a>
                 @else
-                  Không có file
+                  <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
                 @endif
               </td>
               <td>

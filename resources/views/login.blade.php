@@ -141,7 +141,7 @@
                   @foreach ($list_lop as $key => $lop )
                     <tr>
                       <td>
-                        <h5 class="m-0 font-weight-normal">
+                        <h5 class="m-0 fw-bold">
                           {{ $lop->ten_l }}
                         </h5>
                       </td>
@@ -180,7 +180,7 @@
                                   <tbody>
                                     <tr>
                                       <td style="width: 20%;">
-                                        <h5 class="m-0 font-weight-normal">Tên lớp</h5>
+                                        <h5 class="m-0 fw-bold">Tên lớp</h5>
                                       </td>
                         
                                       <td>
@@ -189,7 +189,7 @@
                                     </tr>
                                     <tr>
                                       <td>
-                                        <h5 class="m-0 font-weight-normal">Ngày bắt đầu</h5>
+                                        <h5 class="m-0 fw-bold">Ngày bắt đầu</h5>
                                       </td>
                         
                                       <td>
@@ -198,7 +198,7 @@
                                     </tr>
                                     <tr>
                                       <td>
-                                        <h5 class="m-0 font-weight-normal">Ngày kết thúc</h5>
+                                        <h5 class="m-0 fw-bold">Ngày kết thúc</h5>
                                       </td>
                         
                                       <td>
@@ -207,7 +207,7 @@
                                     </tr>
                                     <tr>
                                       <td>
-                                        <h5 class="m-0 font-weight-normal">Yêu cầu</h5>
+                                        <h5 class="m-0 fw-bold">Yêu cầu</h5>
                                       </td>
                         
                                       <td>
@@ -216,7 +216,7 @@
                                     </tr>
                                     <tr>
                                       <td>
-                                        <h5 class="m-0 font-weight-normal">Tên cơ sở đào tạo</h5>
+                                        <h5 class="m-0 fw-bold">Tên cơ sở đào tạo</h5>
                                       </td>
                         
                                       <td>
@@ -225,16 +225,16 @@
                                     </tr>
                                     <tr>
                                       <td>
-                                        <h5 class="m-0 font-weight-normal">Quốc gia đào tạo</h5>
+                                        <h5 class="m-0 fw-bold">Quốc gia đào tạo</h5>
                                       </td>
                         
                                       <td>
-                                        {{ $lop->quocgiaodaotao_l }}
+                                        {{ $lop->ten_qg }}
                                       </td>
                                     </tr>
                                     <tr>
                                       <td>
-                                        <h5 class="m-0 font-weight-normal">Ngành học</h5>
+                                        <h5 class="m-0 fw-bold">Ngành học</h5>
                                       </td>
                         
                                       <td>
@@ -243,7 +243,7 @@
                                     </tr>
                                     <tr>
                                       <td>
-                                        <h5 class="m-0 font-weight-normal">Trình độ đào tạo</h5>
+                                        <h5 class="m-0 fw-bold">Trình độ đào tạo</h5>
                                       </td>
                         
                                       <td>
@@ -252,7 +252,7 @@
                                     </tr>
                                     <tr>
                                       <td>
-                                        <h5 class="m-0 font-weight-normal">Nguồn kinh phí</h5>
+                                        <h5 class="m-0 fw-bold">Nguồn kinh phí</h5>
                                       </td>
                         
                                       <td>
@@ -261,7 +261,7 @@
                                     </tr>
                                     <tr>
                                       <td>
-                                        <h5 class="m-0 font-weight-normal">Địa chỉ đào tạo</h5>
+                                        <h5 class="m-0 fw-bold">Địa chỉ đào tạo</h5>
                                       </td>
                         
                                       <td>
@@ -270,7 +270,7 @@
                                     </tr>
                                     <tr>
                                       <td>
-                                        <h5 class="m-0 font-weight-normal">Nội dung học</h5>
+                                        <h5 class="m-0 fw-bold">Nội dung học</h5>
                                       </td>
                         
                                       <td>
@@ -279,7 +279,7 @@
                                     </tr>
                                     <tr>
                                       <td>
-                                        <h5 class="m-0 font-weight-normal">Email cơ sở</h5>
+                                        <h5 class="m-0 fw-bold">Email cơ sở</h5>
                                       </td>
                         
                                       <td>
@@ -288,7 +288,7 @@
                                     </tr>
                                     <tr>
                                       <td>
-                                        <h5 class="m-0 font-weight-normal">Số điện thoại cơ sở</h5>
+                                        <h5 class="m-0 fw-bold">Số điện thoại cơ sở</h5>
                                       </td>
                         
                                       <td>
