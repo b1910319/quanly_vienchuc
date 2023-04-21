@@ -699,7 +699,7 @@ class HomeController extends Controller
 
   public function thongtin_lophoc(){
     $this->check_login();
-    $title = 'Thông tin gia đình viên chức';
+    $title = 'Thông tin quá trình công tác';
     $ma_vc = session()->get('ma_vc');
     $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '51')
@@ -722,6 +722,8 @@ class HomeController extends Controller
       ->first();
     $list = VienChuc::join('danhsach', 'vienchuc.ma_vc', '=', 'danhsach.ma_vc')
       ->join('lop', 'lop.ma_l', '=', 'danhsach.ma_l')
+      ->join('quyetdinh', 'lop.ma_l', '=', 'quyetdinh.ma_l')
+      ->where('quyetdinh.ma_vc', $ma_vc)
       ->where('vienchuc.ma_vc', $ma_vc)
       ->get();
     $ketqua = KetQua::where('status_kq', '<>', '1')

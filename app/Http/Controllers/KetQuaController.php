@@ -461,6 +461,13 @@ class KetQuaController extends Controller
     $ketqua->danhgiacuacoso_kq = $data['danhgiacuacoso_kq'];
     $ketqua->kiennghi_kq = $data['kiennghi_kq'];
     $ketqua->status_kq = $data['status_kq'];
+    $vienchuc = VienChuc::find($ma_vc);
+    $get_file = $request->file('file_kq');
+    if($get_file){
+      $new_file = $vienchuc->hoten_vc.rand(0,999).'.'.$get_file->getClientOriginalExtension();
+      $get_file->move('public/uploads/ketqua', $new_file);
+      $ketqua->file_kq = $new_file;
+    }
     $ketqua->save();
     return Redirect::to('thongtin_lophoc');
   }

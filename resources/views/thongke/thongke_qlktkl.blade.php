@@ -220,8 +220,8 @@
                 @foreach ($list_vienchuc as $vienchuc  )
                   @if ($vienchuc->ma_vc == $vc->ma_vc)
                     <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
-              </td>
+                      {{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})
+                    </td>
                   @endif
                 @endforeach
               <td>

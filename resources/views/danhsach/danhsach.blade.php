@@ -786,7 +786,7 @@
             <td style="width: 15%">
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+50 }}">
-                Quán trình học
+                Qúa trình học
               </button>
 
               <!-- Modal -->

@@ -54,7 +54,7 @@
                 <tr>
                   <th scope="row">Email người hướng dẫn: </th>
                   <td class="was-validated">
-                    <input type='text' class='form-control input_table' autofocus required name="emailnguoihuongdan_kq">
+                    <input type='email' class='form-control input_table' autofocus required name="emailnguoihuongdan_kq">
                   </td>
                 </tr>
                 <tr>
@@ -109,6 +109,12 @@
                   <th scope="row">Kiến nghị, đề xuất: </th>
                   <td class="was-validated">
                     <input type='text' class='form-control input_table' autofocus required name="kiennghi_kq">
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">File kết quả: </th>
+                  <td class="was-validated">
+                    <input type='file' class='form-control input_table' name="file_kq" required>
                   </td>
                 </tr>
               </tbody>

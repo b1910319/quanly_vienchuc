@@ -284,7 +284,7 @@
                 </div>
               </td>
               <th scope="row">{{ $key+1 }}</th>
-              <td>
+              <td style="width: 20%">
                 <b>Họ tên viên chức: </b> {{ $ketqua->hoten_vc }} <br>
                 <b>Email viên chức: </b> {{ $ketqua->user_vc }} <br>
                 <b>Số điện thoại viên chức: </b> {{ $ketqua->sdt_vc }} <br>
@@ -331,19 +331,19 @@
                   if($ketqua->status_kq == 0){
                     ?>
                       <span class="badge badge-light-success">
-                        <i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị
+                        <i class="fa-solid fa-circle-check "></i>&ensp;  Đã duyệt
                       </span>
                     <?php
                   }else if($ketqua->status_kq == 1) {
                     ?>
-                      <span class="badge badge-light-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
+                      <span class="badge badge-light-danger"><i class="fa-solid fa-circle-xmark "></i>&ensp; Chưa duyệt</span>
                     <?php
                   }
                 ?>
               </td>
-              <td style="width: 25%;">
+              <td style="width: 12%;">
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-12">
                     <a href="{{ URL::to('/edit_ketqua/'.$ketqua->ma_kq)}}">
                       <button type="button" class=" btn btn-warning button_cam" style="width: 100%">
                         <i class="fa-solid fa-pen-to-square text-light"></i>
@@ -351,18 +351,18 @@
                       </button>
                     </a>
                   </div>
-                  <div class="col-6">
+                  <div class="col-12 mt-1">
                     <input class="ma_kq{{ $ketqua->ma_kq }}" type="hidden" value="{{ $ketqua->ma_kq }}">
                     <button type="button" class=" xoa{{ $ketqua->ma_kq }} btn btn-danger button_do" style="width: 100%"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
                   </div>
-                  <div class="col-6 mt-1">
+                  <div class="col-12 mt-1">
                     <?php
                       if($ketqua->status_kq == 0){
                         ?>
                           <a href="{{ URL::to('/select_ketqua/'.$ketqua->ma_kq) }}">
                             <button type="button" class="btn btn-secondary fw-bold" style="width: 100%">
-                              <i class="fa-solid fa-eye-slash text-light"></i> 
-                              &ensp; Ẩn
+                              <i class="fa-solid fa-circle-xmark text-light "></i>
+                              &ensp; Chưa duyệt
                             </button>
                           </a>
                         <?php
@@ -370,15 +370,15 @@
                         ?>
                           <a href="{{ URL::to('/select_ketqua/'.$ketqua->ma_kq) }}">
                             <button type="button" class="btn btn-success fw-bold" style="width: 100%">
-                              <i class="fa-solid fa-eye text-light"></i>
-                              &ensp; Hiển thị
+                              <i class="fa-solid fa-circle-check text-light "></i>
+                              &ensp; Duyệt
                             </button>
                           </a>
                         <?php
                       }
                     ?>
                   </div>
-                  <div class="col-6 mt-1">
+                  <div class="col-12 mt-1">
                     <a href="{{ URL::to('/ketqua_pdf/'.$ketqua->ma_kq) }}">
                       <button type="button" class="btn btn-warning button_xanhla" style="width: 100%">
                         <i class="fa-solid fa-file-pdf text-light"></i>
