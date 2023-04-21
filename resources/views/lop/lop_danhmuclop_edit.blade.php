@@ -53,25 +53,22 @@
               <tr>
                 <th scope="row">Tên lớp học: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="ten_l" value="{{ $edit->ten_l }}">
+                  <input type="hidden" id="ma_l" value="{{ $edit->ma_l }}">
+                  <input id="ten_l" type='text' class='form-control input_table' autofocus required name="ten_l" value="{{ $edit->ten_l }}">
+                  <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
               <tr>
                 <th scope="row">Ngày bắt đầu lớp học: </th>
                 <td class="was-validated">
-                  <input type='date' class='form-control input_table' autofocus required name="ngaybatdau_l" value="{{ $edit->ngaybatdau_l }}">
+                  <input id="ngaybatdau_l" type='date' class='form-control input_table' autofocus required name="ngaybatdau_l" value="{{ $edit->ngaybatdau_l }}">
                 </td>
               </tr>
               <tr>
                 <th scope="row">Ngày kết thức lớp học: </th>
                 <td class="was-validated">
-                  <input type='date' class='form-control input_table' autofocus required name="ngayketthuc_l" value="{{ $edit->ngayketthuc_l }}">
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Cơ sở đào tạo: </th>
-                <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="tencosodaotao_l" value="{{ $edit->tencosodaotao_l }}"> 
+                  <input id="ngayketthuc_l" type='date' class='form-control input_table' autofocus required name="ngayketthuc_l" value="{{ $edit->ngayketthuc_l }}">
+                  <span id="baoloi_ngay" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
               <tr>
@@ -80,6 +77,12 @@
                   <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" name="yeucau_l" required>
                     {{ $edit->yeucau_l }}
                   </textarea>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Cơ sở đào tạo: </th>
+                <td class="was-validated">
+                  <input type='text' class='form-control input_table' autofocus required name="tencosodaotao_l" value="{{ $edit->tencosodaotao_l }}"> 
                 </td>
               </tr>
             </tbody>
@@ -123,7 +126,7 @@
               <tr>
                 <th scope="row">Email cơ sở: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="emailcoso_l" value="{{ $edit->emailcoso_l }}">
+                  <input type='email' class='form-control input_table' autofocus required name="emailcoso_l" value="{{ $edit->emailcoso_l }}">
                 </td>
               </tr>
               <tr>
@@ -163,4 +166,42 @@
       </div>
     </form>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('#ten_l').mouseout(function(){
+        var ten_l = $(this).val();
+        var ma_l = $('#ma_l').val();
+        // alert(ten_l);
+        $.ajax({
+          url:"{{ url("/check_ten_l_edit") }}",
+          type:"GET",
+          data:{ten_l:ten_l, ma_l:ma_l},
+          success:function(data){
+            if(data == 1){  
+              $('#baoloi').html('Lớp học đã tồn tại');
+              $('#ten_l').val('');
+            }else{
+              $('#baoloi').html(''); 
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <script>
+    $(document).ready(function(){
+      $('#ngayketthuc_l').change(function(){
+        var ngayketthuc_l = $(this).val();
+        var ngaybatdau_l = $('#ngaybatdau_l').val();
+        // alert(ngaybatdau_l);
+        // alert(ngayketthuc_l);
+        if(ngaybatdau_l > ngayketthuc_l){  
+          $('#baoloi_ngay').html('Ngày kết thúc phải lớn hơn ngày bắt đầu');
+          $('#ngayketthuc_l').val('');
+        }else{
+          $('#baoloi_ngay').html(''); 
+        }
+      });
+    });
+  </script>
 @endsection

@@ -98,19 +98,19 @@ class HomeController extends Controller
       ->get();
     $count_vienchuc_kyluat = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
       ->where('status_vc', '<>', '2')
-      ->select(DB::raw('count(DISTINCT kyluat.ma_vc) as sum'))
+      ->select(DB::raw('count(kyluat.ma_kl) as sum'))
       ->get();
     $count_vienchuc_kyluat_khoa = VienChuc::join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
       ->where('vienchuc.ma_k', $ma_k)
       ->where('status_vc', '<>', '2')
-      ->select(DB::raw('count(DISTINCT kyluat.ma_vc) as sum'))
+      ->select(DB::raw('count(kyluat.ma_kl) as sum'))
       ->get();
     $count_vienchuc_khenthuong = VienChuc::join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
-      ->select(DB::raw('count(DISTINCT khenthuong.ma_vc) as sum'))
+      ->select(DB::raw('count(khenthuong.ma_kt) as sum'))
       ->where('status_vc', '<>', '2')
       ->get();
     $count_vienchuc_khenthuong_khoa = VienChuc::join('khenthuong', 'khenthuong.ma_vc', '=', 'vienchuc.ma_vc')
-      ->select(DB::raw('count(DISTINCT khenthuong.ma_vc) as sum'))
+      ->select(DB::raw('count(khenthuong.ma_kt) as sum'))
       ->where('status_vc', '<>', '2')
       ->where('vienchuc.ma_k', $ma_k)
       ->get();

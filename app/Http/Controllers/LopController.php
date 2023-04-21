@@ -106,6 +106,23 @@ class LopController extends Controller
       }
     }
   }
+  public function check_ten_l_edit(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $ten_l = $request->ten_l;
+      $ma_l = $request->ma_l;
+      if($ten_l != null && $ma_l != null){
+        $lop = Lop::where('ten_l', $ten_l)
+          ->where('ma_l', '<>', $ma_l)
+          ->first();
+        if(isset($lop)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_lop(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
