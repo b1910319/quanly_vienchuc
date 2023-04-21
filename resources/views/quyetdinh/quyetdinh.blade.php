@@ -40,11 +40,11 @@
             </button>
             </a>
           @endif
-          <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+          {{-- <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
             <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
             Thống kê
-          </button>
-          <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+          </button> --}}
+          {{-- <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
               <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
                 <i class="fa-solid fa-chart-simple"></i>
@@ -78,7 +78,7 @@
                 </tbody>
               </table>
             </div>
-          </div>
+          </div> --}}
           <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body mt-3">
               <form action="{{ URL::to('/add_quyetdinh') }}" method="POST"
@@ -188,10 +188,8 @@
             <th class="text-light" scope="col">STT</th>
             <th class="text-light" scope="col">Thông tin viên chức</th>
             <th class="text-light" scope="col">Thông tin lớp học</th>
-            <th class="text-light" scope="col">Mã số quyết định</th>
+            <th class="text-light" scope="col">Thông tin quyết định</th>
             <th class="text-light" scope="col">Trạng thái</th>
-            <th class="text-light" scope="col">Ngày ký quyết định</th>
-            <th class="text-light" scope="col">File quyết định</th>
             <th class="text-light" scope="col"></th>
           </tr>
         </thead>
@@ -209,17 +207,27 @@
                 <b>Email viên chức: </b> {{ $quyetdinh->user_vc }} <br>
                 <b>Số điện thoại viên chức: </b> {{ $quyetdinh->sdt_vc }} <br>
               </td>
-              <td>
+              <td style="width: 25%">
                 <b>Tên lớp học: </b> {{ $quyetdinh->ten_l }} <br>
                 <b>Ngày bắt đầu: </b> {{ $quyetdinh->ngaybatdau_l }} <br>
                 <b>Ngày kết thúc: </b> {{ $quyetdinh->ngayketthuc_l }} <br>
                 <b>Tên cơ sở đào tạo: </b> {{ $quyetdinh->tencosodaotao_l }} <br>
-                <b>Quốc gia đào tạo: </b> {{ $quyetdinh->quocgiaodaotao_l }} <br>
+                <b>Quốc gia đào tạo: </b> {{ $quyetdinh->ten_qg }} <br>
                 <b>Email cơ sở đào tạo: </b> {{ $quyetdinh->emailcoso_l }} <br>
                 <b>Số điện thoại cơ sở đào tạo: </b> {{ $quyetdinh->sdtcoso_l }} <br>
               </td>
               <td>
-                {{ $quyetdinh->so_qd }}
+                <b>Số quyết định: </b>{{ $quyetdinh->so_qd }} <br>
+                <b>Ngày ký quyết định: </b> <br> {{ date('d-m-Y') , strtotime($quyetdinh->ngayky_qg) }} <br>
+                @if ($quyetdinh->file_qg)
+                  <a href="{{ asset('public/uploads/quyetdinh/'.$quyetdinh->file_qd) }}" style="color: #000D6B; font-weight: bold">
+                    <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                    File quyết định
+                  </a>
+                @else
+                  <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                @endif
+
               </td>
               <td>
                 <?php
@@ -236,52 +244,47 @@
                   }
                 ?>
               </td>
-              <td>
-                {{ $quyetdinh->ngayky_qd }}
-              </td>
-              <td style="width: 10%">
-                @if ($quyetdinh->file_qd !=' ')
-                  <a href="{{ asset('public/uploads/quyetdinh/'.$quyetdinh->file_qd) }}">
-                    <button type="button" class="btn btn-warning button_xanhla">
-                      <i class="fa-solid fa-file text-light"></i>
-                      &ensp;
-                      File
+              <td style="width: 12%;">
+                <div class="row">
+                  <div class="col-12 mt-1">
+                    <a href="{{ URL::to('/edit_quyetdinh/'.$quyetdinh->ma_qd)}}">
+                      <button type="button" class=" btn btn-warning button_cam" style="width: 100%">
+                        <i class="fa-solid fa-pen-to-square text-light"></i>
+                        &ensp; Cập nhật
+                      </button>
+                    </a>
+                  </div>
+                  <div class="col-12 mt-1">
+                    <input class="ma_qd{{ $quyetdinh->ma_qd }}" type="hidden" value="{{ $quyetdinh->ma_qd }}">
+                    <button type="button" class=" xoa{{ $quyetdinh->ma_qd }} btn btn-danger button_do" style="width: 100%">
+                      <i class="fa-solid fa-trash text-light"></i> 
+                      &ensp;Xoá
                     </button>
-                  </a>
-                @else
-                  Không có file
-                @endif
-              </td>
-              <td style="width: 27%;">
-                <a href="{{ URL::to('/edit_quyetdinh/'.$quyetdinh->ma_qd)}}">
-                  <button type="button" class=" btn btn-warning button_cam">
-                    <i class="fa-solid fa-pen-to-square text-light"></i>
-                    &ensp; Cập nhật
-                  </button>
-                </a>
-                <input class="ma_qd{{ $quyetdinh->ma_qd }}" type="hidden" value="{{ $quyetdinh->ma_qd }}">
-                <button type="button" class=" xoa{{ $quyetdinh->ma_qd }} btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
-                <?php
-                  if($quyetdinh->status_qd == 0){
-                    ?>
-                      <a href="{{ URL::to('/select_quyetdinh/'.$quyetdinh->ma_qd) }}">
-                        <button type="button" class="btn btn-secondary fw-bold">
-                          <i class="fa-solid fa-eye-slash text-light"></i> 
-                          &ensp; Ẩn
-                        </button>
-                      </a>
+                  </div>
+                  <div class="col-12 mt-1">
                     <?php
-                  }else if($quyetdinh->status_qd == 1) {
+                      if($quyetdinh->status_qd == 0){
+                        ?>
+                          <a href="{{ URL::to('/select_quyetdinh/'.$quyetdinh->ma_qd) }}">
+                            <button type="button" class="btn btn-secondary fw-bold" style="width: 100%">
+                              <i class="fa-solid fa-eye-slash text-light"></i> 
+                              &ensp; Ẩn
+                            </button>
+                          </a>
+                        <?php
+                      }else if($quyetdinh->status_qd == 1) {
+                        ?>
+                          <a href="{{ URL::to('/select_quyetdinh/'.$quyetdinh->ma_qd) }}">
+                            <button type="button" class="btn btn-success fw-bold" style="width: 100%">
+                              <i class="fa-solid fa-eye text-light"></i>
+                              &ensp; Hiển thị
+                            </button>
+                          </a>
+                        <?php
+                      }
                     ?>
-                      <a href="{{ URL::to('/select_quyetdinh/'.$quyetdinh->ma_qd) }}">
-                        <button type="button" class="btn btn-success fw-bold">
-                          <i class="fa-solid fa-eye text-light"></i>
-                          &ensp; Hiển thị
-                        </button>
-                      </a>
-                    <?php
-                  }
-                ?>
+                  </div>
+                </div>
               </td>
             </tr>
           @endforeach

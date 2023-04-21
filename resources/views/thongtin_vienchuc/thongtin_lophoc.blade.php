@@ -30,49 +30,29 @@
       <div class="alert alert-light color_alert" role="alert">
         ________THÔNG TIN LỚP HỌC VIÊN CHỨC THAM GIA________
       </div>
-      <div class="row ">
-        <div class="mt-3"></div>
-        <table class="table" id="mytable">
-          <thead class="color_table" >
-            <tr>
-              <th class="text-light" scope="col">STT</th>
-              <th class="text-light" scope="col">Thông tin lớp học</th>
-              <th class="text-light" scope="col">Thông tin kết quả</th>
-              <th class="text-light" scope="col">Thông tin gia hạn</th>
-              <th class="text-light" scope="col">Thông tin tạm dừng</th>
-              <th class="text-light" scope="col">Thông tin xin chuyển</th>
-              <th class="text-light" scope="col">Thông tin thôi học</th>
-            </tr>
-          </thead>
-          <tbody  >
-            @foreach ($list as $key => $lop)
-              <tr >
-                <th scope="row" style="width: 5%;">{{ $key+1 }}</th>
-                <td style="width: 21%">
-                  <div class="row ">
-                    <div class="col-md-12">
-                      <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
-                        style="height: 150px; overflow: auto;">
-                        <p>
-                          <b> Tên lớp:</b> {{ $lop->ten_l }} <br>
-                          <b> Ngày bắt đầu:</b> {{ $lop->ngaybatdau_l }} <br>
-                          <b> Ngày kết thúc: </b> {{ $lop->ngayketthuc_l }} <br>
-                          <b> Yêu cầu: </b> {{ $lop->yeucau_l }} <br>
-                          <b> Tên cơ sở đào tạo: </b> {{ $lop->tencosodaotao_l }} <br>
-                          <b> Quốc gia đào tạo: </b> {{ $lop->quocgiaodaotao_l }} <br>
-                          <b> Ngành học: </b> {{ $lop->nganhhoc_l }} <br>
-                          <b> Trình độ đào tạo: </b> {{ $lop->trinhdodaotao_l }} <br>
-                          <b> Nguồn kinh phí: </b> {{ $lop->nguonkinhphi_l }} <br>
-                          <b> Địa chỉ đào tạo: </b> {{ $lop->diachidaotao_l }} <br>
-                          <b> Nội dung học: </b> {{ $lop->noidunghoc_l }} <br>
-                          <b> Email cơ sở: </b> {{ $lop->emailcoso_l }} <br>
-                          <b> Số điện thoại cơ sở: </b> {{ $lop->sdtcoso_l }}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td style="width: 13%;">
+      <div class="dots-list">
+        <ol>
+          @foreach ($list as $key => $lop)
+            <li>
+              <span class="date">
+                {{ $lop->ngaybatdau_l }}
+                <br>
+                {{ $lop->ngayketthuc_l }}
+              </span>
+              <b style="font-weight: bold; font-size: 22px">{{ $lop->ten_l }}</b>
+              <br>
+              <b>Cơ sở đào tạo: </b> {{ $lop->tencosodaotao_l }} <br>
+              <b>Ngành học: </b> {{ $lop->nganhhoc_l }} <br>
+              <b>Trình độ đào tạo: </b> {{ $lop->trinhdodaotao_l }} <br>
+              <b>Địa chỉ đào tạo: </b> {{ $lop->diachidaotao_l }} <br>
+              <b>Nội dung học: </b> {{ $lop->noidunghoc_l }} <br>
+              <b>Email cơ sở đào tạo: </b> {{ $lop->emailcoso_l }} <br>
+              <b>Số điện thoại cơ sở: </b> {{ $lop->sdtcoso_l }} <br> <br>
+              <b style="color: #FF5B00; font-weight: bold; font-size: 22px">QUÁ TRÌNH HỌC</b> <br>
+              <div class="row">
+                <div class="col-4 mt-2">
+                  <b>Thông tin kết quả</b>
+                  <br>
                   @php
                     $i = 0;
                   @endphp
@@ -83,20 +63,20 @@
                   @endforeach
                   @if ($i == 0)
                     <a href="{{ URL::to('vienchuc_ketqua_add/'.$lop->ma_l) }}">
-                      <button type="submit"  class="btn btn-primary button_xanhla" style=" width: 100%;">
+                      <button type="submit"  class="btn btn-primary button_xanhla ">
                         <i class="fas fa-plus-square text-light"></i>
                         &ensp;
                         Thêm
                       </button>
                     </a>
                   @else
-                    <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #FFBE0F; border: none; color: black; width: 100%;">
+                    <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #FFBE0F; border: none; color: black; ">
                       <i class="fa-solid fa-square-poll-vertical "></i>
                       &ensp;
                       Kết quả
                     </button>
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
+                      <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                           <div class="modal-header">
                             <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">KẾT QUẢ</h1>
@@ -162,10 +142,10 @@
                       </div>
                     </div>
                   @endif
-                  
-                  
-                </td>
-                <td style="width: 16%;">
+                </div>
+                <div class="col-4 mt-2">
+                  <b>Thông tin gia hạn</b>
+                  <br>
                   <a href="{{ URL::to('vienchuc_giahan_add/'.$lop->ma_l) }}">
                     <button type="button"  class="btn btn-primary button_xanhla">
                       <i class="fas fa-plus-square text-light"></i>
@@ -181,19 +161,18 @@
                       </div>
                       @if ($gh->file_gh !=' ')
                         <a href="{{ asset('public/uploads/giahan/'.$gh->file_gh) }}">
-                          <button type="button" class="btn btn-warning mt-2 button_do">
-                            <i class="fa-solid fa-file text-light"></i>
-                            &ensp;
-                            File
-                          </button>
+                          <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                        File
                         </a>
                       @else
                         Không có file
                       @endif
                     @endif
                   @endforeach
-                </td>
-                <td style="width: 16%;">
+                </div>
+                <div class="col-4 mt-2">
+                  <b>Thông tin tạm dừng</b>
+                  <br>
                   <a href="{{ URL::to('vienchuc_dunghoc_add/'.$lop->ma_l) }}">
                     <button type="submit"  class="btn btn-primary button_xanhla">
                       <i class="fas fa-plus-square text-light"></i>
@@ -203,26 +182,25 @@
                   </a>
                   @foreach ($dunghoc as $dh )
                     @if ($dh->ma_l == $lop->ma_l && $dh->ma_vc == $lop->ma_vc)
-                      <div style="height: 120px" class="mt-1">
+                      <div  class="mt-1">
                         <b>Thời gian bắt đầu: </b> {{ $dh->batdau_dh }} <br>
                         <b>Thời gian kết thúc: </b> {{ $dh->ketthuc_dh }} <br>
                         <b>Lý do dừng học: </b> {{ $dh->lydo_dh }} <br>
-                      </div>
-                      @if ($dh->file_dh !=' ')
-                        <a href="{{ asset('public/uploads/dunghoc/'.$dh->file_dh) }}">
-                          <button type="button" class="btn btn-warning mt-2 button_do">
-                            <i class="fa-solid fa-file text-light"></i>
-                            &ensp;
-                            File
-                          </button>
+                        @if ($dh->file_dh !=' ')
+                        <a href="{{ asset('public/uploads/dunghoc/'.$dh->file_dh) }}" style="color: #000D6B; font-weight: bold">
+                          <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                          File
                         </a>
                       @else
                         Không có file
                       @endif
+                      </div>
                     @endif
                   @endforeach
-                </td>
-                <td style="width: 16%;">
+                </div>
+                <div class="col-4 mt-2">
+                  <b>Thông tin xin chuyển</b>
+                  <br>
                   <a href="{{ URL::to('vienchuc_chuyen_add/'.$lop->ma_l) }}">
                     <button type="submit"  class="btn btn-primary button_xanhla">
                       <i class="fas fa-plus-square text-light"></i>
@@ -239,9 +217,8 @@
                       @if ($c->file_c !=' ')
                         <a href="{{ asset('public/uploads/chuyen/'.$c->file_c) }}">
                           <button type="button" class="btn btn-warning mt-2 button_do">
-                            <i class="fa-solid fa-file text-light"></i>
-                            &ensp;
-                            File
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                        File
                           </button>
                         </a>
                       @else
@@ -249,8 +226,10 @@
                       @endif
                     @endif
                   @endforeach
-                </td>
-                <td style="width: 16%;">
+                </div>
+                <div class="col-4 mt-2">
+                  <b>Thông tin thôi học</b>
+                  <br>
                   @php
                     $i = 0;
                   @endphp
@@ -288,11 +267,11 @@
                       @endif
                     @endforeach
                   @endif
-                </td>
-              </tr>
-            @endforeach
-          </tbody>
-        </table>
+                </div>
+              </div>
+            </li>
+          @endforeach
+        </ol>
       </div>
     </div>
   </div>

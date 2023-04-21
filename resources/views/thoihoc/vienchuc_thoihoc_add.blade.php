@@ -48,7 +48,7 @@
                 <tr>
                   <th scope="row">Ngày thôi học: </th>
                   <td class="was-validated">
-                    <input type='date' class='form-control input_table' autofocus required name="ngay_th">
+                    <input type='date' class='form-control input_table' autofocus required name="ngay_th" min="{{ $lop->ngaybatdau_l }}" max="{{ $lop->ngayketthuc_l }}">
                   </td>
                 </tr>
                 <tr>
@@ -66,7 +66,7 @@
                 <tr>
                   <th scope="row">File thôi học: </th>
                   <td class="was-validated">
-                    <input type='file' class='form-control input_table' name="file_th">
+                    <input type='file' class='form-control input_table' name="file_th" required>
                   </td>
                 </tr>
               </tbody>

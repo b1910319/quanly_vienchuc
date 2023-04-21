@@ -48,13 +48,28 @@
                 <tr>
                   <th scope="row">Ngày bắt đầu tạm dừng học: </th>
                   <td class="was-validated">
-                    <input type='date' class='form-control input_table' autofocus required name="batdau_dh">
+                    <input id="batdau_dh" type='date' class='form-control input_table' autofocus required name="batdau_dh" 
+                      @if (isset($dunghoc->ketthuc_dh))
+                        min="{{ $dunghoc->ketthuc_dh }}"
+                      @else
+                        min="{{ $lop->ngaybatdau_l }}"
+                      @endif
+                      max="{{ $lop->ngayketthuc_l }}"
+                    >
                   </td>
                 </tr>
                 <tr>
                   <th scope="row">Ngày kết thúc tạm dừng học: </th>
                   <td class="was-validated">
-                    <input type='date' class='form-control input_table' autofocus required name="ketthuc_dh">
+                    <input id="ketthuc_dh" type='date' class='form-control input_table' autofocus required name="ketthuc_dh"
+                      @if (isset($dunghoc->ketthuc_dh))
+                        min="{{ $dunghoc->ketthuc_dh }}"
+                      @else
+                        min="{{ $lop->ngaybatdau_l }}"
+                      @endif
+                      max="{{ $lop->ngayketthuc_l }}"
+                    >
+                    <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                   </td>
                 </tr>
               </tbody>
@@ -72,7 +87,7 @@
                 <tr>
                   <th scope="row">File tạm dừng học: </th>
                   <td class="was-validated">
-                    <input type='file' class='form-control input_table' name="file_dh">
+                    <input type='file' class='form-control input_table' name="file_dh" required>
                   </td>
                 </tr>
               </tbody>
@@ -93,4 +108,20 @@
       </form>
     </div>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('#ketthuc_dh').change(function(){
+        var ketthuc_dh = $(this).val();
+        var batdau_dh = $('#batdau_dh').val();
+        // alert(batdau_dh);
+        // alert(ketthuc_dh);
+        if(batdau_dh > ketthuc_dh){  
+          $('#baoloi').html('Ngày kết thúc phải lớn hơn ngày bắt đầu');
+          $('#ketthuc_dh').val('');
+        }else{
+          $('#baoloi').html(''); 
+        }
+      });
+    });
+  </script>
 @endsection

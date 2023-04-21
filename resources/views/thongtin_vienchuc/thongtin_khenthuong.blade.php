@@ -49,7 +49,15 @@
                   <p>
                     <b> Ngày khen thưởng:</b> {{ $khenthuong->ngay_kt }} <br>
                     <b> Nội dung khen thưởng: </b> {{ $khenthuong->noidung_kt }} <br>
-                    <b> Mã số khen thưởng: </b> {{ $khenthuong->ma_kt }}
+                    <b> Số quyết định khen thưởng: </b> {{ $khenthuong->soquyetdinh_kt }} <br>
+                    @if ($khenthuong->file_kt)
+                      <a href="{{ asset('public/uploads/khenthuong/'.$khenthuong->file_kt) }}" style="color: #000D6B; font-weight: bold">
+                        <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                        File kết quả
+                      </a>
+                    @else
+                      <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                    @endif
                   </p>
                 </td>
                 <td>

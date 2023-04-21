@@ -371,9 +371,16 @@ class DungHocController extends Controller
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
+    $lop = Lop::find($ma_l);
+    $dunghoc = DungHoc::where('ma_vc', $ma_vc)
+      ->where('ma_l', $ma_l)
+      ->orderBy('ketthuc_dh', 'desc')
+      ->first();
     return view('dunghoc.vienchuc_dunghoc_add')
       ->with('title', $title)
       ->with('ma_l', $ma_l)
+      ->with('lop', $lop)
+      ->with('dunghoc', $dunghoc)
 
       ->with('phanquyen_admin', $phanquyen_admin)
       ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)

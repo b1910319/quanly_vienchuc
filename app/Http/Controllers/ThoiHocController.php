@@ -407,16 +407,11 @@ class ThoiHocController extends Controller
     $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '6')
       ->first();
-    Carbon::now('Asia/Ho_Chi_Minh'); 
-    $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-    $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
+    $lop = Lop::find($ma_l);
     return view('thoihoc.vienchuc_thoihoc_add')
       ->with('title', $title)
       ->with('ma_l', $ma_l)
-
-      ->with('count_nangbac', $count_nangbac)
+      ->with('lop', $lop)
 
       ->with('phanquyen_admin', $phanquyen_admin)
       ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)

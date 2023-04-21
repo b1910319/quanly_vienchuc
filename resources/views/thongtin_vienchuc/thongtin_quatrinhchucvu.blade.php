@@ -41,6 +41,14 @@
               <br>
               <b>Ngày ký: </b>  </b>{{ $qtcv->ngayky_qtcv }}
               <br>
+              @if ($qtcv->file_qtcv)
+                <a href="{{ asset('public/uploads/quatrinhchucvu/'.$qtcv->file_qtcv) }}" style="color: #000D6B; font-weight: bold">
+                  <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                  File kết quả
+                </a>
+              @else
+                <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+              @endif
             </li>
           @endforeach
         </ol>

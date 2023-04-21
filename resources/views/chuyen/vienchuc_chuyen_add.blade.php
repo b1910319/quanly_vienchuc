@@ -66,7 +66,7 @@
                 <tr>
                   <th scope="row">File xin chuyển: </th>
                   <td class="was-validated">
-                    <input type='file' class='form-control input_table' name="file_c">
+                    <input type='file' class='form-control input_table' name="file_c" required>
                   </td>
                 </tr>
               </tbody>

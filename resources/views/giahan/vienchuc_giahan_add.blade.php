@@ -48,7 +48,14 @@
                 <tr>
                   <th scope="row">Gia hạn đến: </th>
                   <td class="was-validated">
-                    <input type='date' class='form-control input_table' autofocus required name="thoigian_gh">
+                    <input type='date' class='form-control input_table' autofocus required name="thoigian_gh" 
+                      @if (isset($giahan->thoigian_gh))
+                        min="{{ $giahan->thoigian_gh }}"
+                      @else
+                        min="{{ $lop->ngaybatdau_l }}"
+                      @endif
+                      max="{{ $lop->ngayketthuc_l }}"
+                    >
                   </td>
                 </tr>
                 <tr>

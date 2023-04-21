@@ -140,13 +140,14 @@
                         <tr>
                           <th scope="row">Ngày bắt đầu lớp học: </th>
                           <td class="was-validated">
-                            <input type='date' class='form-control input_table' autofocus required name="ngaybatdau_l">
+                            <input id="ngaybatdau_l" type='date' class='form-control input_table' autofocus required name="ngaybatdau_l">
                           </td>
                         </tr>
                         <tr>
                           <th scope="row">Ngày kết thức lớp học: </th>
                           <td class="was-validated">
-                            <input type='date' class='form-control input_table' autofocus required name="ngayketthuc_l">
+                            <input id="ngayketthuc_l" type='date' class='form-control input_table' autofocus required name="ngayketthuc_l">
+                            <span id="baoloi_ngay" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                           </td>
                         </tr>
                         <tr>
@@ -512,6 +513,22 @@
           }
         }
       });
+    });
+  });
+</script>
+<script>
+  $(document).ready(function(){
+    $('#ngayketthuc_l').change(function(){
+      var ngayketthuc_l = $(this).val();
+      var ngaybatdau_l = $('#ngaybatdau_l').val();
+      // alert(ngaybatdau_l);
+      // alert(ngayketthuc_l);
+      if(ngaybatdau_l > ngayketthuc_l){  
+        $('#baoloi_ngay').html('Ngày kết thúc phải lớn hơn ngày bắt đầu');
+        $('#ngayketthuc_l').val('');
+      }else{
+        $('#baoloi_ngay').html(''); 
+      }
     });
   });
 </script>

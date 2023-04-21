@@ -49,6 +49,7 @@ class QuyetDinhController extends Controller
     if($phanquyen_admin || $phanquyen_qlcttc){
       $list = QuyetDinh::join('vienchuc', 'vienchuc.ma_vc', '=', 'quyetdinh.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'quyetdinh.ma_l')
+        ->join('quocgia', 'quocgia.ma_qg', '=', 'lop.ma_qg')
         ->orderBy('ma_qd', 'desc')
         ->where('quyetdinh.ma_l', $ma_l)
         ->where('quyetdinh.ma_vc', $ma_vc)
@@ -354,6 +355,7 @@ class QuyetDinhController extends Controller
     if($phanquyen_admin || $phanquyen_qlcttc){
       $list = QuyetDinh::join('vienchuc', 'vienchuc.ma_vc', '=', 'quyetdinh.ma_vc')
         ->join('lop', 'lop.ma_l', '=', 'quyetdinh.ma_l')
+        ->join('quocgia', 'quocgia.ma_qg', '=', 'lop.ma_qg')
         ->orderBy('ma_qd', 'desc')
         ->get();
       $count = QuyetDinh::select(DB::raw('count(ma_qd) as sum'))
@@ -363,11 +365,6 @@ class QuyetDinhController extends Controller
         ->get();
       $lop = '';
       $vienchuc = '';
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $ketthuc = Carbon::parse(Carbon::now())->format('Y-m-d'); 
-      $count_nangbac = VienChuc::where('ngaynangbac_vc','LIKE', $ketthuc)
-        ->select(DB::raw('count(ma_vc) as sum'))
-        ->get();
       $list_vienchuc = VienChuc::join('danhsach', 'danhsach.ma_vc', '=', 'vienchuc.ma_vc')
         ->whereNotIn('vienchuc.ma_vc', function($query) {
             $query->select('quyetdinh.ma_vc')->from('quyetdinh');
@@ -389,8 +386,7 @@ class QuyetDinhController extends Controller
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
-        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('count_nangbac', $count_nangbac);
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
     }else{
       return Redirect::to('/home');
     }

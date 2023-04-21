@@ -726,6 +726,7 @@ class HomeController extends Controller
       ->join('quyetdinh', 'lop.ma_l', '=', 'quyetdinh.ma_l')
       ->where('quyetdinh.ma_vc', $ma_vc)
       ->where('vienchuc.ma_vc', $ma_vc)
+      ->orderBy('lop.ngayketthuc_l', 'asc')
       ->get();
     $ketqua = KetQua::where('status_kq', '<>', '1')
       ->get();
