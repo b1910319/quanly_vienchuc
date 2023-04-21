@@ -3038,4 +3038,123 @@ class VienChucController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function quanlythongtin_thongtin_xuatfile_word($ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlk || $phanquyen_qltt){
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
+        ->where('ma_vc', $ma_vc)
+        ->first();
+      $list_noisinh = NoiSinh::join('tinh', 'tinh.ma_t','=', 'noisinh.ma_t')
+        ->join('huyen', 'huyen.ma_h', '=', 'noisinh.ma_h')
+        ->join('xa', 'xa.ma_x', '=', 'noisinh.ma_x')
+        ->where('ma_vc', $ma_vc)
+        ->first();
+      $list_quequan = QueQuan::join('tinh', 'tinh.ma_t','=', 'quequan.ma_t')
+        ->join('huyen', 'huyen.ma_h', '=', 'quequan.ma_h')
+        ->join('xa', 'xa.ma_x', '=', 'quequan.ma_x')
+        ->first();
+      $list_dantoc = DanToc::get();
+      $list_tongiao = TonGiao::get();
+      $list_chucvu = ChucVu::get();
+      $list_ngach = Ngach::get();
+      $list_bac = Bac::get();
+      $list_thuongbinh = ThuongBinh::get();
+      $temp = new TemplateProcessor('public/word/thongtin_vienchuc.docx');
+      $temp->setValue('hoten_vc',$vienchuc->hoten_vc);
+      $temp->setValue('tenkhac_vc',$vienchuc->tenkhac_vc);
+      $temp->setValue('ngaysinh_vc',$vienchuc->ngaysinh_vc);
+      if($vienchuc->gioitinh_vc == 0){
+        $gioitinh_vc = 'Nam';
+      }else if($vienchuc->gioitinh_vc == 1){
+        $gioitinh_vc = 'Nữ';
+      }
+      $temp->setValue('gioitinh_vc',$gioitinh_vc);
+      $temp->setValue('ten_x',$list_noisinh->ten_x);
+      $temp->setValue('ten_h',$list_noisinh->ten_h);
+      $temp->setValue('ten_t',$list_noisinh->ten_t);
+      $temp->setValue('ten_x_qq',$list_quequan->ten_x);
+      $temp->setValue('ten_h_qq',$list_quequan->ten_h);
+      $temp->setValue('ten_t_qq',$list_quequan->ten_t);
+      foreach ($list_dantoc as $key => $dantoc) {
+        if ($dantoc->ma_dt == $vienchuc->ma_dt) {
+          $temp->setValue('ten_dt',$dantoc->ten_dt);
+        }
+      }
+      foreach ($list_tongiao as $key => $tongiao) {
+        if ($tongiao->ma_tg == $vienchuc->ma_tg) {
+          $temp->setValue('ten_tg',$tongiao->ten_tg);
+        }
+      }
+      $temp->setValue('thuongtru_vc',$vienchuc->thuongtru_vc);
+      $temp->setValue('hientai_vc',$vienchuc->hientai_vc);
+      $temp->setValue('nghekhiduoctuyen_vc',$vienchuc->nghekhiduoctuyen_vc);
+      $temp->setValue('ngaytuyendung_vc',$vienchuc->ngaytuyendung_vc);
+      foreach ($list_chucvu as $key => $chucvu) {
+        if ($chucvu->ma_cv == $vienchuc->ma_cv) {
+          $temp->setValue('ten_cv',$chucvu->ten_cv);
+        }
+      }
+      $temp->setValue('congviecchinhgiao_vc',$vienchuc->congviecchinhgiao_vc);
+      foreach ($list_ngach as $key => $ngach) {
+        if ($ngach->ma_n == $vienchuc->ma_n) {
+          $temp->setValue('ten_n',$ngach->ten_n);
+          $temp->setValue('maso_n',$ngach->maso_n);
+        }
+      }
+      foreach ($list_bac as $key => $bac) {
+        if ($bac->ma_b == $vienchuc->ma_b) {
+          $temp->setValue('ten_b',$bac->ten_b);
+          $temp->setValue('hesoluong_b',$bac->hesoluong_b);
+        }
+      }
+      $temp->setValue('ngayhuongbac_vc',$vienchuc->ngayhuongbac_vc);
+      $temp->setValue('phucap_vc',$vienchuc->phucap_vc);
+      $temp->setValue('trinhdophothong_vc',$vienchuc->trinhdophothong_vc);
+      $temp->setImageValue('hinh_vc', array('path' => 'public/uploads/vienchuc/'.$vienchuc->hinh_vc, 'width' => 100, 'height' => 150));
+      $temp->setValue('chinhtri_vc',$vienchuc->chinhtri_vc);
+      $temp->setValue('quanlynhanuoc_vc',$vienchuc->quanlynhanuoc_vc);
+      $temp->setValue('ngoaingu_vc',$vienchuc->ngoaingu_vc);
+      $temp->setValue('tinhoc_vc',$vienchuc->tinhoc_vc);
+      $temp->setValue('ngayvaodang_vc',$vienchuc->ngayvaodang_vc);
+      $temp->setValue('ngaychinhthuc_vc',$vienchuc->ngaychinhthuc_vc);
+      $temp->setValue('ngaynhapngu_vc',$vienchuc->ngaynhapngu_vc);
+      $temp->setValue('ngayxuatngu_vc',$vienchuc->ngayxuatngu_vc);
+      $temp->setValue('quanham_vc',$vienchuc->quanham_vc);
+      $temp->setValue('danhhieucao_vc',$vienchuc->danhhieucao_vc);
+      $temp->setValue('sotruong_vc',$vienchuc->sotruong_vc);
+
+      $temp->setValue('chieucao_vc',$vienchuc->chieucao_vc);
+      $temp->setValue('cannang_vc',$vienchuc->cannang_vc);
+      $temp->setValue('nhommau_vc',$vienchuc->nhommau_vc);
+      foreach($list_thuongbinh as $thuongbinh){
+        if($vienchuc->ma_tb == $thuongbinh->ma_tb){
+          $temp->setValue('ten_tb',$thuongbinh->ten_tb);
+        }
+      }
+      
+      $temp->setValue('chinhsach_vc',$vienchuc->chinhsach_vc);
+      $temp->setValue('hocphangiangday_vc',$vienchuc->hocphangiangday_vc);
+      $temp->setValue('cccd_vc',$vienchuc->cccd_vc);
+      $temp->setValue('ngaycapcccd_vc',$vienchuc->ngaycapcccd_vc);
+      $temp->setValue('bhxh_vc',$vienchuc->bhxh_vc);
+      $temp->setValue('lichsubanthan1_vc',$vienchuc->lichsubanthan1_vc);
+      $temp->setValue('lichsubanthan2_vc',$vienchuc->lichsubanthan2_vc);
+      $temp->setValue('lichsubanthan3_vc',$vienchuc->lichsubanthan3_vc);
+      $name_file = $vienchuc->hoten_vc;
+      $temp->saveAs($name_file.'.docx');
+      return response()->download($name_file.'.docx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }

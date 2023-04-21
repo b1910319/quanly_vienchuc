@@ -623,7 +623,16 @@
               </button>
             </a>
           </div>
-          <div class="col-3"></div>
+          <div class="col-2">
+            <a href="{{ URL::to('quanlythongtin_thongtin_xuatfile_word/'.$edit->ma_vc) }}">
+              <button type="button" class="btn btn-primary button_word" style="width: 100%" >
+                <i class="fa-solid fa-file-word text-light"></i>
+                &ensp;
+                Xuất file Word
+              </button>
+            </a>
+          </div>
+          <div class="col-1"></div>
           <div class="col-2">
             <button type="submit" class="btn btn-warning button_cam" style=" width: 100%">
               <i class="fa-solid fa-pen-to-square text-light"></i>
