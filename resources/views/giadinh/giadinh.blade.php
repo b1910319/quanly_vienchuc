@@ -79,19 +79,26 @@
               Xoá tất cả
             </button>
           </a>
-          <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+          {{-- <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
             <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
             Thống kê
-          </button>
+          </button> --}}
           <a href="{{ URL::to('quanlythongtin_giadinh_xuatfile/'.$ma_vc) }}">
-            <button type="button" class="btn btn-primary button_xanhla">
-              <i class="fa-solid fa-file text-light"></i>
+            <button type="button" class="btn btn-warning fw-bold button_do">
+              <i class="fa-solid fa-file-pdf text-light"></i>
               &ensp;
-              Xuất file
+              Xuất file PDF
+            </button>
+          </a>
+          <a href="{{ URL::to('quanlythongtin_giadinh_xuatfile_word/'.$ma_vc) }}">
+            <button type="button" class="btn btn-primary button_word" >
+              <i class="fa-solid fa-file-word text-light"></i>
+              &ensp;
+              Xuất file Word
             </button>
           </a>
   
-          <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+          {{-- <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
               <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
                 <i class="fa-solid fa-chart-simple"></i>
@@ -125,7 +132,7 @@
                 </tbody>
               </table>
             </div>
-          </div>
+          </div> --}}
           <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body mt-3">
               <form action="{{ URL::to('/add_giadinh/'.$ma_vc) }}" method="POST"

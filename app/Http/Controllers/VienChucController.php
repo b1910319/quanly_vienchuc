@@ -3157,4 +3157,54 @@ class VienChucController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function quanlythongtin_giadinh_xuatfile_word($ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlk || $phanquyen_qltt){
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
+        ->where('ma_vc', $ma_vc)
+        ->first();
+      $list_giadinh = GiaDinh::where('ma_vc', $ma_vc)
+        ->get();
+      $temp = new TemplateProcessor('public/word/giadinh_vienchuc.docx');
+      $temp->setValue('hoten_vc',$vienchuc->hoten_vc);
+      $temp->setValue('tenkhac_vc',$vienchuc->tenkhac_vc);
+      $temp->setValue('ngaysinh_vc',$vienchuc->ngaysinh_vc);
+      if($vienchuc->gioitinh_vc == 0){
+        $gioitinh_vc = 'Nam';
+      }else if($vienchuc->gioitinh_vc == 1){
+        $gioitinh_vc = 'Nữ';
+      }
+      $temp->setValue('gioitinh_vc',$gioitinh_vc);
+      $temp->setValue('ten_k',$vienchuc->ten_k);
+      $temp->setValue('user_vc',$vienchuc->user_vc);
+      $temp->setImageValue('hinh_vc', array('path' => 'public/uploads/vienchuc/'.$vienchuc->hinh_vc, 'width' => 100, 'height' => 150));
+      $giadinh_arr = array();
+      foreach($list_giadinh as $key => $giadinh){
+        $giadinh_arr[] = [
+          'stt_gd' => $key+1, 
+          'moiquanhe_gd' => $giadinh->moiquanhe_gd, 
+          'hoten_gd' => $giadinh->hoten_gd, 
+          'ngaysinh_gd' => $giadinh->ngaysinh_gd, 
+          'sdt_gd' => $giadinh->sdt_gd, 
+          'nghenghiep_gd' => $giadinh->nghenghiep_gd
+        ];
+      };
+      $temp->cloneRowAndSetValues('stt_gd', $giadinh_arr);
+      $name_file = $vienchuc->hoten_vc;
+      $temp->saveAs($name_file.'.docx');
+      return response()->download($name_file.'.docx');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
 }
