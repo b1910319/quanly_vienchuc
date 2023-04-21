@@ -14,11 +14,13 @@ class BangCap extends Model
     'ma_lbc',
     'trinhdochuyenmon_bc',
     'truonghoc_bc',
-    'nienkhoa_bc',
+    'tunam_bc',
+    'dennam_bc',
     'sobang_bc',
     'ngaycap_bc',
     'noicap_bc',
     'xephang_bc',
+    'file_bc',
     'status_bc',
     'updated_bc'
   ];

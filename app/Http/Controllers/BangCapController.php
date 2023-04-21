@@ -85,6 +85,21 @@ class BangCapController extends Controller
       return Redirect::to('/home');
     }
   }
+  public function check_sobang_bc(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $sobang_bc = $request->sobang_bc;
+      if($sobang_bc != null){
+        $bangcap = BangCap::where('sobang_bc', $sobang_bc)
+          ->first();
+        if(isset($bangcap)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
   public function add_bangcap(Request $request, $ma_vc){
     $this->check_login();
     $ma_vc_login = session()->get('ma_vc');
@@ -105,12 +120,20 @@ class BangCapController extends Controller
       $bangcap->ma_lbc = $data['ma_lbc'];
       $bangcap->trinhdochuyenmon_bc = $data['trinhdochuyenmon_bc'];
       $bangcap->truonghoc_bc = $data['truonghoc_bc'];
-      $bangcap->nienkhoa_bc = $data['nienkhoa_bc'];
+      $bangcap->tunam_bc = $data['tunam_bc'];
+      $bangcap->dennam_bc = $data['dennam_bc'];
       $bangcap->sobang_bc = $data['sobang_bc'];
       $bangcap->ngaycap_bc = $data['ngaycap_bc'];
       $bangcap->noicap_bc = $data['noicap_bc'];
       $bangcap->xephang_bc = $data['xephang_bc'];
       $bangcap->status_bc = $data['status_bc'];
+      $vienchuc = VienChuc::find($ma_vc);
+      $get_file = $request->file('file_bc');
+      if($get_file){
+        $new_file = $vienchuc->hoten_vc.rand(0,999).'.'.$get_file->getClientOriginalExtension();
+        $get_file->move('public/uploads/bangcap', $new_file);
+        $bangcap->file_bc = $new_file;
+      }
       $bangcap->save();
       $request->session()->put('message','Thêm thành công');
       return Redirect::to('/bangcap/'.$ma_vc);
@@ -228,12 +251,23 @@ class BangCapController extends Controller
       $bangcap->ma_lbc = $data['ma_lbc'];
       $bangcap->trinhdochuyenmon_bc = $data['trinhdochuyenmon_bc'];
       $bangcap->truonghoc_bc = $data['truonghoc_bc'];
-      $bangcap->nienkhoa_bc = $data['nienkhoa_bc'];
+      $bangcap->tunam_bc = $data['tunam_bc'];
+      $bangcap->dennam_bc = $data['dennam_bc'];
       $bangcap->sobang_bc = $data['sobang_bc'];
       $bangcap->ngaycap_bc = $data['ngaycap_bc'];
       $bangcap->noicap_bc = $data['noicap_bc'];
       $bangcap->xephang_bc = $data['xephang_bc'];
       $bangcap->status_bc = $data['status_bc'];
+      $vienchuc = VienChuc::find($ma_vc);
+      $get_file = $request->file('file_bc');
+      if($get_file){
+        $new_file = $vienchuc->hoten_vc.rand(0,999).'.'.$get_file->getClientOriginalExtension();
+        if($bangcap->file_bc){
+          unlink('public/uploads/bangcap/'.$bangcap->file_bc);
+        }
+        $get_file->move('public/uploads/bangcap', $new_file);
+        $bangcap->file_bc = $new_file;
+      }
       $bangcap->updated_bc = Carbon::now();
       $bangcap->save();
       return Redirect::to('/bangcap/'.$ma_vc);
@@ -254,6 +288,10 @@ class BangCapController extends Controller
       if($request->ajax()){
         $id =$request->id;
         if($id != null){
+          $bangcap = BangCap::find($id);
+          if($bangcap->file_bc){
+            unlink('public/uploads/bangcap/'.$bangcap->file_bc);
+          }
           BangCap::find($id)->delete();
         }
       }
@@ -270,6 +308,12 @@ class BangCapController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qltt){
       $ma_bc = $request->ma_bc;
+      $list = BangCap::whereIn('ma_bc', $ma_bc)->get();
+      foreach($list as $bangcap){
+        if($bangcap->file_bc){
+          unlink('public/uploads/bangcap/'.$bangcap->file_bc);
+        }
+      }
       BangCap::whereIn('ma_bc', $ma_bc)->delete();
       return redirect()->back();
     }
@@ -290,6 +334,9 @@ class BangCapController extends Controller
       $list = BangCap::where('ma_vc', $ma_vc)
         ->get();
       foreach($list as $key => $bangcap){
+        if($bangcap->file_bc){
+          unlink('public/uploads/bangcap/'.$bangcap->file_bc);
+        }
         $bangcap->delete();
       }
       return Redirect::to('/bangcap/'.$ma_vc);

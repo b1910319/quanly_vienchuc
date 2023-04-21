@@ -317,6 +317,7 @@ Route::post('/delete_hedaotao_check',[HeDaoTaoController::class, 'delete_hedaota
 
 
 Route::get('/bangcap/{ma_vc}',[BangCapController::class, 'bangcap']);
+Route::get('/check_sobang_bc',[BangCapController::class, 'check_sobang_bc']);
 Route::post('/add_bangcap/{ma_vc}',[BangCapController::class, 'add_bangcap']);
 Route::post('/add_bangcap_excel',[BangCapController::class, 'add_bangcap_excel']);
 Route::get('/select_bangcap/{ma_bc}',[BangCapController::class, 'select_bangcap']);

@@ -564,7 +564,7 @@ class HomeController extends Controller
 
   public function thongtin_bangcap(){
     $this->check_login();
-    $title = 'Thông tin gia đình viên chức';
+    $title = 'Thông tin bằng cấp viên chức';
     $ma_vc = session()->get('ma_vc');
     $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
       ->where('ma_q', '=', '51')
@@ -589,6 +589,7 @@ class HomeController extends Controller
     $list_hedaotao = HeDaoTao::get();
     $list = BangCap::join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
       ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
+      ->orderBy('tunam_bc', 'desc')
       ->where('ma_vc', $ma_vc)
       ->get();
     return view('thongtin_vienchuc.thongtin_bangcap')

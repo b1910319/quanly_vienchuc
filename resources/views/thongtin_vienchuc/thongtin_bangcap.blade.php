@@ -53,11 +53,19 @@
                         <p>
                           <b> Trình độ chuyên môn:</b> {{ $bangcap->trinhdochuyenmon_bc }} <br>
                           <b> Trường:</b> {{ $bangcap->truonghoc_bc }} <br>
-                          <b> Niên khoá: </b> {{ $bangcap->nienkhoa_bc }} <br>
+                          <b> Niên khoá: </b> {{ $bangcap->tunam_bc }} - {{ $bangcap->dennam_bc }} <br>
                           <b> Mã số bằng: </b> {{ $bangcap->sobang_bc }} <br>
                           <b> Ngày cấp: </b> {{ $bangcap->ngaycap_bc }} <br>
                           <b> Nơi cấp: </b> {{ $bangcap->noicap_bc }} <br>
-                          <b> Xếp hạng: </b> {{ $bangcap->xephang_bc }}
+                          <b> Xếp hạng: </b> {{ $bangcap->xephang_bc }} <br>
+                          @if ($bangcap->file_bc)
+                            <a href="{{ asset('public/uploads/bangcap/'.$bangcap->file_bc) }}" style="color: #000D6B; font-weight: bold">
+                              <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                              File kết quả
+                            </a>
+                          @else
+                            <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                          @endif
                         </p>
                       </div>
                     </div>

@@ -77,10 +77,10 @@
               Xoá tất cả
             </button>
           </a>
-          <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+          {{-- <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
             <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
             Thống kê
-          </button>
+          </button> --}}
           <a href="{{ URL::to('quanlythongtin_bangcap_xuatfile/'.$ma_vc) }}">
             <button type="button" class="btn btn-primary button_xanhla">
               <i class="fa-solid fa-file text-light"></i>
@@ -88,7 +88,7 @@
               Xuất file
             </button>
           </a>
-          <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+          {{-- <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
               <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
                 <i class="fa-solid fa-chart-simple"></i>
@@ -122,10 +122,10 @@
                 </tbody>
               </table>
             </div>
-          </div>
+          </div> --}}
           <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body mt-3">
-              <form action="{{ URL::to('/add_bangcap/'.$ma_vc) }}" method="POST"
+              <form onsubmit="return check_submit()" action="{{ URL::to('/add_bangcap/'.$ma_vc) }}" method="POST"
                 autocomplete="off" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="row">
@@ -169,7 +169,18 @@
                         <tr>
                           <th scope="row">Niên khoá: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="nienkhoa_bc">
+                            <div class="row">
+                              <div class="col-5">
+                                <input id="tunam_bc" type='number' class='form-control input_table' autofocus required name="tunam_bc" min="1500"  max="<?php $date = getdate(); echo $date['year'] ?>">
+                              </div>
+                              <div class="col-2">
+                                <p class="mt-1 fw-bold text-center">Đến</p>
+                              </div>
+                              <div class="col-5">
+                                <input id="dennam_bc" type='number' class='form-control input_table' autofocus required name="dennam_bc" min="1500"  max="<?php $date = getdate(); echo $date['year'] ?>">
+                                <span id="baoloi_nienkhoa" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
+                              </div>
+                            </div>
                           </td>
                         </tr>
                       </tbody>
@@ -181,7 +192,8 @@
                         <tr>
                           <th scope="row">Số bằng: </th>
                           <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="sobang_bc">
+                            <input id="sobang_bc" type='number' class='form-control input_table' autofocus required name="sobang_bc" min="1">
+                            <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                           </td>
                         </tr>
                         <tr>
@@ -207,6 +219,12 @@
                           <th scope="row">Xếp hạng: </th>
                           <td class="was-validated">
                             <input type='text' class='form-control input_table' autofocus required name="xephang_bc">
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">File bằng cấp: </th>
+                          <td class="was-validated">
+                            <input type='file' class='form-control input_table' name="file_bc" required>
                           </td>
                         </tr>
                         <tr>
@@ -251,12 +269,7 @@
             <th class="text-light" scope="col">Loại bằng cấp</th>
             <th class="text-light" scope="col">Hệ đào tạo</th>
             <th class="text-light" scope="col">Trình độ chuyên môn</th>
-            <th class="text-light" scope="col">Trường học</th>
-            <th class="text-light" scope="col">Niên khoá</th>
-            <th class="text-light" scope="col">Số bằng</th>
-            <th class="text-light" scope="col">Ngày cấp</th>
-            <th class="text-light" scope="col">Nơi cấp</th>
-            <th class="text-light" scope="col">Xếp hạng</th>
+            <th class="text-light" scope="col">Thông tin băn cấp</th>
             <th class="text-light" scope="col">Trạng thái</th>
             <th class="text-light" scope="col"></th>
           </tr>
@@ -280,22 +293,20 @@
                 {{ $bangcap->trinhdochuyenmon_bc }}
               </td>
               <td>
-                {{ $bangcap->truonghoc_bc }}
-              </td>
-              <td>
-                {{ $bangcap->nienkhoa_bc }}
-              </td>
-              <td>
-                {{ $bangcap->sobang_bc }}
-              </td>
-              <td>
-                {{ $bangcap->ngaycap_bc }}
-              </td>
-              <td>
-                {{ $bangcap->noicap_bc }}
-              </td>
-              <td>
-                {{ $bangcap->xephang_bc }}
+                <b>Trường học: </b>{{ $bangcap->truonghoc_bc }} <br>
+                <b>Niên khoá: </b>{{ $bangcap->tunam_bc }} - {{ $bangcap->dennam_bc }} <br>
+                <b>Số bằng: </b>{{ $bangcap->sobang_bc }} <br>
+                <b>Ngày cấp bằng: </b> {{ $bangcap->ngaycap_bc }} <br>
+                <b>Nơi cấp: </b> {{ $bangcap->noicap_bc }} <br>
+                <b>Xếp loại tốt nghiệp: </b>{{ $bangcap->xephang_bc }} <br>
+                @if ($bangcap->file_bc)
+                  <a href="{{ asset('public/uploads/bangcap/'.$bangcap->file_bc) }}" style="color: #000D6B; font-weight: bold">
+                    <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                    File kết quả
+                  </a>
+                @else
+                  <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                @endif
               </td>
               <td>
                 <?php
@@ -317,8 +328,8 @@
                     &ensp; Cập nhật
                   </button>
                 </a>
-                <input class="ma_bc" type="hidden" value="{{ $bangcap->ma_bc }}">
-                <button type="button" class=" xoa btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
+                <input class="ma_bc{{ $bangcap->ma_bc }}" type="hidden" value="{{ $bangcap->ma_bc }}">
+                <button type="button" class=" xoa{{ $bangcap->ma_bc }} btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
                 <?php
                   if($bangcap->status_bc == 0){
                     ?>
@@ -354,8 +365,8 @@
   </div>
 </div>
 {{-- ajax --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> --}}
 {{--  --}}
 <script>
   document.querySelector('.them').addEventListener('click', (event)=>{
@@ -377,50 +388,89 @@
     })
     
   });
-  document.querySelector('.xoa').addEventListener('click', (event)=>{
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-      },
-      buttonsStyling: false
-    })
+  @foreach ($list as $key => $bangcap)
+    document.querySelector('.xoa{{ $bangcap->ma_bc }}').addEventListener('click', (event)=>{
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
 
-    swalWithBootstrapButtons.fire({
-      title: 'Bạn có chắc muốn xoá không?',
-      text: "Bạn không thể khôi phục dữ liệu đã xoá",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
-      cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        var id= $('.ma_bc').val();
-        $.ajax({
-          url:"{{ url("/delete_bangcap") }}", 
-          type: "GET", 
-          data: {id:id},
-        });
-        swalWithBootstrapButtons.fire(
-          'Xoá thành công',
-          'Dữ liệu của bạn đã được xoá.',
-          'success'
-        )
-        location.reload();
-      } else if (
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Đã huỷ',
-          'Dữ liệu được an toàn',
-          'error'
-        )
-        location.reload();
-      }
-    })
-    
+      swalWithBootstrapButtons.fire({
+        title: 'Bạn có chắc muốn xoá không?',
+        text: "Bạn không thể khôi phục dữ liệu đã xoá",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: '<i class="fa-solid fa-trash text-light"></i> &ensp;  Xoá',
+        cancelButtonText: '<i class="fa-solid fa-xmark text-light"></i> &ensp;  Huỷ',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          var id= $('.ma_bc{{ $bangcap->ma_bc }}').val();
+          $.ajax({
+            url:"{{ url("/delete_bangcap") }}", 
+            type: "GET", 
+            data: {id:id},
+          });
+          swalWithBootstrapButtons.fire(
+            'Xoá thành công',
+            'Dữ liệu của bạn đã được xoá.',
+            'success'
+          )
+          location.reload();
+        } else if (
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Đã huỷ',
+            'Dữ liệu được an toàn',
+            'error'
+          )
+          location.reload();
+        }
+      })
+      
+    });
+  @endforeach
+  
+</script>
+<script>
+  $(document).ready(function(){
+    $('#sobang_bc').mouseout(function(){
+      var sobang_bc = $(this).val();
+      var ten = '';
+      // alert(sobang_bc);
+      $.ajax({
+        url:"{{ url("/check_sobang_bc") }}",
+        type:"GET",
+        data:{sobang_bc:sobang_bc},
+        success:function(data){
+          if(data == 1){  
+            $('#baoloi').html('Số bằng đã tồn tại');
+            $('#sobang_bc').val('');
+          }else{
+            $('#baoloi').html(''); 
+          }
+        }
+      });
+    });
   });
+</script>
+<script language="javascript">
+  function check_submit()
+  {
+    let tunam_bc = document.getElementById("tunam_bc");
+    var dennam_bc = document.getElementById("dennam_bc");
+    var number_input = '';
+    if(tunam_bc.value >= dennam_bc.value){
+      $('#baoloi_nienkhoa').html('Năm kết thúc niên khoá phải lớn hơn năm bắt đầu niên khoá'); 
+      dennam_bc.value = number_input.value;
+      return false;
+    }
+    return true; 
+  }
 </script>
 <!--  -->
 @endsection
