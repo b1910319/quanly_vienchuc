@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 22, 2023 lúc 09:09 AM
+-- Thời gian đã tạo: Th4 22, 2023 lúc 10:25 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -765,8 +765,7 @@ CREATE TABLE `chuyen` (
 --
 
 INSERT INTO `chuyen` (`ma_c`, `ma_vc`, `ma_l`, `noidung_c`, `lydo_c`, `file_c`, `soquyetdinh_c`, `ngaykyquyetdinh_c`, `filequyetdinh_c`, `status_c`, `created_c`, `updated_c`) VALUES
-(24, 175, 71, 'Don’t cry because it’s over, smile because it happened.', 'Don’t cry because it’s over, smile because it happened.', '1681549766621.pdf', 'sdas', '2023-04-04', '1682145584277.pdf', 0, '2023-04-15 09:09:26', '2023-04-22 07:07:16'),
-(28, 177, 72, 'fr', 'gtry', '1682147224399.pdf', 'dqe', '2023-01-03', '1682147246936.pdf', 0, '2023-04-22 07:07:04', '2023-04-22 07:07:26');
+(24, 175, 71, 'Don’t cry because it’s over, smile because it happened.', 'Don’t cry because it’s over, smile because it happened.', '1681549766621.pdf', 'sdas', '2023-04-04', '1682145584277.pdf', 0, '2023-04-15 09:09:26', '2023-04-22 07:07:16');
 
 -- --------------------------------------------------------
 
@@ -879,7 +878,7 @@ INSERT INTO `danhsach` (`ma_vc`, `ma_l`, `status_ds`, `created_ds`, `updated_ds`
 (126, 71, 0, '2023-04-15 08:35:35', ' '),
 (118, 71, 0, '2023-04-15 08:35:45', ' '),
 (187, 72, 0, '2023-04-16 03:20:42', ' '),
-(177, 72, 2, '2023-04-16 03:20:46', ' '),
+(177, 72, 0, '2023-04-16 03:20:46', ' '),
 (166, 72, 0, '2023-04-16 03:20:50', ' '),
 (157, 72, 3, '2023-04-16 03:20:53', ' ');
 
@@ -3232,6 +3231,9 @@ CREATE TABLE `thoihoc` (
   `ngay_th` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lydo_th` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `file_th` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
+  `soquyetdinh_th` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ngaykyquyetdinh_th` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `filequyetdinh_th` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status_th` int(11) NOT NULL DEFAULT 0,
   `created_th` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_th` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
@@ -3241,9 +3243,9 @@ CREATE TABLE `thoihoc` (
 -- Đang đổ dữ liệu cho bảng `thoihoc`
 --
 
-INSERT INTO `thoihoc` (`ma_th`, `ma_vc`, `ma_l`, `ngay_th`, `lydo_th`, `file_th`, `status_th`, `created_th`, `updated_th`) VALUES
-(14, 179, 71, '2021-06-10', 'Don’t cry because it’s over, smile because it happened.', '1681549798427.pdf', 0, '2023-04-15 09:09:58', NULL),
-(15, 157, 72, '2019-09-20', 'Vấn đề cá nhân', '1681615885192.pdf', 0, '2023-04-16 03:31:25', NULL);
+INSERT INTO `thoihoc` (`ma_th`, `ma_vc`, `ma_l`, `ngay_th`, `lydo_th`, `file_th`, `soquyetdinh_th`, `ngaykyquyetdinh_th`, `filequyetdinh_th`, `status_th`, `created_th`, `updated_th`) VALUES
+(14, 179, 71, '2021-06-10', 'Don’t cry because it’s over, smile because it happened.', '1681549798427.pdf', NULL, NULL, NULL, 0, '2023-04-15 09:09:58', NULL),
+(15, 157, 72, '2019-09-20', 'Vấn đề cá nhân', '1681615885192.pdf', NULL, NULL, NULL, 1, '2023-04-16 03:31:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -14593,7 +14595,7 @@ ALTER TABLE `quyetdinh`
 -- AUTO_INCREMENT cho bảng `thoihoc`
 --
 ALTER TABLE `thoihoc`
-  MODIFY `ma_th` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ma_th` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `thuongbinh`

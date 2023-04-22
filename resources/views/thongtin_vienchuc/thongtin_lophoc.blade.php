@@ -146,13 +146,30 @@
                 <div class="col-4 mt-2">
                   <b>Thông tin gia hạn</b>
                   <br>
-                  <a href="{{ URL::to('vienchuc_giahan_add/'.$lop->ma_l) }}">
-                    <button type="button"  class="btn btn-primary button_xanhla">
-                      <i class="fas fa-plus-square text-light"></i>
-                      &ensp;
-                      Thêm
-                    </button>
-                  </a>
+                  @php
+                    $i = 0;
+                    $a = 0;
+                  @endphp
+                  @foreach ($thoihoc as $th )
+                    @if ($th->ma_l == $lop->ma_l && $th->ma_vc == $lop->ma_vc)
+                      <?php $i++ ?>
+                    @endif
+                  @endforeach
+                  @foreach ($chuyen as $c )
+                    @if ($c->ma_l == $lop->ma_l && $c->ma_vc == $lop->ma_vc)
+                      <?php $a++ ?>
+                    @endif
+                  @endforeach
+                  @if ($i == 0 && $a == 0)
+                    <a href="{{ URL::to('vienchuc_giahan_add/'.$lop->ma_l) }}">
+                      <button type="button"  class="btn btn-primary button_xanhla">
+                        <i class="fas fa-plus-square text-light"></i>
+                        &ensp;
+                        Thêm
+                      </button>
+                    </a>
+                  @endif
+                  
                   @foreach ($giahan as $gh )
                     @if ($gh->ma_l == $lop->ma_l && $gh->ma_vc == $lop->ma_vc)
                       <div style="height: 120px" class="mt-1">
@@ -182,13 +199,29 @@
                 <div class="col-4 mt-2">
                   <b>Thông tin tạm dừng</b>
                   <br>
-                  <a href="{{ URL::to('vienchuc_dunghoc_add/'.$lop->ma_l) }}">
-                    <button type="submit"  class="btn btn-primary button_xanhla">
-                      <i class="fas fa-plus-square text-light"></i>
-                      &ensp;
-                      Thêm
-                    </button>
-                  </a>
+                  @php
+                    $i = 0;
+                    $a = 0;
+                  @endphp
+                  @foreach ($thoihoc as $th )
+                    @if ($th->ma_l == $lop->ma_l && $th->ma_vc == $lop->ma_vc)
+                      <?php $i++ ?>
+                    @endif
+                  @endforeach
+                  @foreach ($chuyen as $c )
+                    @if ($c->ma_l == $lop->ma_l && $c->ma_vc == $lop->ma_vc)
+                      <?php $a++ ?>
+                    @endif
+                  @endforeach
+                  @if ($i == 0 && $a == 0)
+                    <a href="{{ URL::to('vienchuc_dunghoc_add/'.$lop->ma_l) }}">
+                      <button type="submit"  class="btn btn-primary button_xanhla">
+                        <i class="fas fa-plus-square text-light"></i>
+                        &ensp;
+                        Thêm
+                      </button>
+                    </a>
+                  @endif
                   @foreach ($dunghoc as $dh )
                     @if ($dh->ma_l == $lop->ma_l && $dh->ma_vc == $lop->ma_vc)
                       <div  class="mt-1">
@@ -219,13 +252,29 @@
                 <div class="col-4 mt-2">
                   <b>Thông tin xin chuyển</b>
                   <br>
-                  <a href="{{ URL::to('vienchuc_chuyen_add/'.$lop->ma_l) }}">
-                    <button type="submit"  class="btn btn-primary button_xanhla">
-                      <i class="fas fa-plus-square text-light"></i>
-                      &ensp;
-                      Thêm
-                    </button>
-                  </a>
+                  @php
+                    $i = 0;
+                    $a = 0;
+                  @endphp
+                  @foreach ($thoihoc as $th )
+                    @if ($th->ma_l == $lop->ma_l && $th->ma_vc == $lop->ma_vc)
+                      <?php $i++ ?>
+                    @endif
+                  @endforeach
+                  @foreach ($chuyen as $c )
+                    @if ($c->ma_l == $lop->ma_l && $c->ma_vc == $lop->ma_vc)
+                      <?php $a++ ?>
+                    @endif
+                  @endforeach
+                  @if ($i == 0 && $a == 0)
+                    <a href="{{ URL::to('vienchuc_chuyen_add/'.$lop->ma_l) }}">
+                      <button type="submit"  class="btn btn-primary button_xanhla">
+                        <i class="fas fa-plus-square text-light"></i>
+                        &ensp;
+                        Thêm
+                      </button>
+                    </a>
+                  @endif
                   @foreach ($chuyen as $c )
                     @if ($c->ma_l == $lop->ma_l && $c->ma_vc == $lop->ma_vc)
                       <div style="height: 120px" class="mt-1">
@@ -257,13 +306,19 @@
                   <br>
                   @php
                     $i = 0;
+                    $a = 0;
                   @endphp
                   @foreach ($thoihoc as $th )
                     @if ($th->ma_l == $lop->ma_l && $th->ma_vc == $lop->ma_vc)
                       <?php $i++ ?>
                     @endif
                   @endforeach
-                  @if ($i == 0)
+                  @foreach ($chuyen as $c )
+                    @if ($c->ma_l == $lop->ma_l && $c->ma_vc == $lop->ma_vc)
+                      <?php $a++ ?>
+                    @endif
+                  @endforeach
+                  @if ($i == 0 && $a == 0)
                     <a href="{{ URL::to('vienchuc_thoihoc_add/'.$lop->ma_l) }}">
                       <button type="submit"  class="btn btn-primary button_xanhla">
                         <i class="fas fa-plus-square text-light"></i>
@@ -271,27 +326,32 @@
                         Thêm
                       </button>
                     </a>
-                  @else
-                    @foreach ($thoihoc as $th )
-                      @if ($th->ma_l == $lop->ma_l && $th->ma_vc == $lop->ma_vc)
-                        <div style="height: 120px" class="mt-1">
-                          <b>Ngày xin thôi học: </b> {{ $th->ngay_th }} <br>
-                          <b>Lý do xin thôi học: </b> {{ $th->lydo_th }} <br>
-                        </div>
+                  @endif
+                  @foreach ($thoihoc as $th )
+                    @if ($th->ma_l == $lop->ma_l && $th->ma_vc == $lop->ma_vc)
+                      <div style="height: 120px" class="mt-1">
+                        <b>Ngày xin thôi học: </b> {{ $th->ngay_th }} <br>
+                        <b>Lý do xin thôi học: </b> {{ $th->lydo_th }} <br>
                         @if ($th->file_th !=' ')
-                          <a href="{{ asset('public/uploads/thoihoc/'.$th->file_th) }}">
-                            <button type="button" class="btn btn-warning mt-2 button_do">
-                              <i class="fa-solid fa-file text-light"></i>
-                              &ensp;
-                              File
-                            </button>
+                          <a href="{{ asset('public/uploads/chuyen/'.$th->file_th) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File xin dừng học
                           </a>
                         @else
                           Không có file
                         @endif
-                      @endif
-                    @endforeach
-                  @endif
+                        <br>
+                        @if ($th->filequyetdinh_th !=' ')
+                          <a href="{{ asset('public/uploads/chuyen/'.$th->filequyetdinh_th) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          Không có file
+                        @endif
+                      </div>
+                    @endif
+                  @endforeach
                 </div>
               </div>
             </li>

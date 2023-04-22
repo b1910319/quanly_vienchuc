@@ -14,6 +14,9 @@ class ThoiHoc extends Model
     'ngay_th',
     'lydo_th',
     'file_th',
+    'soquyetdinh_th',
+    'ngaykyquyetdinh_th',
+    'filequyetdinh_th',
     'status_th',
     'updated_th'
 

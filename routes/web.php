@@ -1037,10 +1037,15 @@ Route::post('/vienchuc_add_chuyen',[ChuyenController::class, 'vienchuc_add_chuye
 
 
 Route::get('/thoihoc/{ma_l}/{ma_vc}',[ThoiHocController::class, 'thoihoc']);
+Route::get('/vienchuc_thoihoc_edit/{ma_l}/{ma_th}',[ThoiHocController::class, 'vienchuc_thoihoc_edit']);
+Route::get('/vienchuc_thoihoc_delete',[ThoiHocController::class, 'vienchuc_thoihoc_delete']);
 Route::post('/add_thoihoc',[ThoiHocController::class, 'add_thoihoc']);
 Route::get('/select_thoihoc/{ma_th}',[ThoiHocController::class, 'select_thoihoc']);
 Route::get('/edit_thoihoc/{ma_th}',[ThoiHocController::class, 'edit_thoihoc']);
+Route::get('/check_soquyetdinh_th_edit',[ThoiHocController::class, 'check_soquyetdinh_th_edit']);
 Route::post('/update_thoihoc/{ma_th}',[ThoiHocController::class, 'update_thoihoc']);
+Route::post('/vienchuc_updated_thoihoc/{ma_th}',[ThoiHocController::class, 'vienchuc_updated_thoihoc']);
+Route::post('/update_thoihoc_quyetdinh/{ma_th}',[ThoiHocController::class, 'update_thoihoc_quyetdinh']);
 Route::get('/delete_thoihoc',[ThoiHocController::class, 'delete_thoihoc']);
 Route::post('/delete_thoihoc_check',[ThoiHocController::class, 'delete_thoihoc_check']);
 Route::get('/delete_all_thoihoc/{ma_l}/{ma_vc}',[ThoiHocController::class, 'delete_all_thoihoc']);
