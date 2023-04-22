@@ -15,6 +15,9 @@ class DungHoc extends Model
     'ketthuc_dh',
     'lydo_dh',
     'file_dh',
+    'soquyetdinh_dh',
+    'ngaykyquyetdinh_dh',
+    'filequyetdinh_dh',
     'status_dh',
     'updated_dh'
 

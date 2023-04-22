@@ -19,10 +19,10 @@
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
-          <button role="button" class="item-question collapsed btn btn-primary button_xanhla" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a">
+          {{-- <button role="button" class="item-question collapsed btn btn-primary button_xanhla" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a">
             <i class="fas fa-plus-square text-light"></i>
             &ensp; Thêm
-          </button>
+          </button> --}}
           @if ($vienchuc != '' && $lop != '')
             <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_dunghoc/'.$lop->ma_l.'/'.$vienchuc->ma_vc) }}">
               <button type="button" class="btn btn-danger button_do">
@@ -55,7 +55,7 @@
             </div>
             <div class="offcanvas-body">
               <table class="table">
-                <thead class="table-dark text-light">
+                <thead class="">
                   <tr>
                     <th scope="col">Tên</th>
                     <th scope="col">Số lượng</th>
@@ -79,7 +79,7 @@
               </table>
             </div>
           </div>
-          <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
+          {{-- <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body mt-3">
               <form action="{{ URL::to('/add_dunghoc') }}" method="POST"
                 autocomplete="off" enctype="multipart/form-data">
@@ -150,8 +150,8 @@
                         <tr>
                           <th scope="row">Trạng thái: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="status_dh">
-                              <option value="0" >Chọn trạng thái</option>
+                            <select class="custom-select input_table" id="gender2" name="status_dh" required>
+                              <option value="" >Chọn trạng thái</option>
                               <option value="1" >Ẩn</option>
                               <option selected value="0" >Hiển thị</option>
                             </select>
@@ -174,7 +174,7 @@
                 </div>
               </form>
             </div>
-          </div>
+          </div> --}}
         </div>
       </div>
     </div>
@@ -190,7 +190,6 @@
             <th class="text-light" scope="col">Thông tin lớp học</th>
             <th class="text-light" scope="col">Thông tin tạm dừng học</th>
             <th class="text-light" scope="col">Trạng thái</th>
-            <th class="text-light" scope="col">File</th>
             <th class="text-light" scope="col"></th>
           </tr>
         </thead>
@@ -218,69 +217,81 @@
                 <b>Email cơ sở đào tạo: </b> {{ $dunghoc->emailcoso_l }} <br>
                 <b>Số điện thoại cơ sở đào tạo: </b> {{ $dunghoc->sdtcoso_l }} <br>
               </td>
-              <td>
-                <b>Ngày bắt đầu tạm dừng: </b> {{ $dunghoc->batdau_dh }} <br>
-                <b>Ngày kết thúc tạm dừng: </b> {{ $dunghoc->ketthuc_dh }} <br>
-                <b>Lý do tạm dừng: </b> {{ $dunghoc->lydo_dh }}
+              <td style="width: 19%">
+                <b>Bắt đầu tạm dừng: </b> {{ $dunghoc->batdau_dh }} <br>
+                <b>Kết thúc tạm dừng: </b> {{ $dunghoc->ketthuc_dh }} <br>
+                <b>Lý do tạm dừng: </b> {{ $dunghoc->lydo_dh }} <br>
+                @if ($dunghoc->file_dh)
+                  <a href="{{ asset('public/uploads/dunghoc/'.$dunghoc->file_dh) }}" style="color: #000D6B; font-weight: bold">
+                    <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                    File xin tạm dừng
+                  </a>
+                @else
+                  <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                @endif
+                <br>
+                @if ($dunghoc->filequyetdinh_dh)
+                  <a href="{{ asset('public/uploads/dunghoc/'.$dunghoc->filequyetdinh_dh) }}" style="color: #000D6B; font-weight: bold">
+                    <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                    File quyết định
+                  </a>
+                @else
+                  <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file quyết định</span>
+                @endif
               </td>
               <td>
                 <?php
                   if($dunghoc->status_dh == 0){
                     ?>
                       <span class="badge badge-light-success">
-                        <i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị
+                        <i class="fa-solid fa-circle-check "></i>&ensp;  Đã duyệt
                       </span>
                     <?php
                   }else if($dunghoc->status_dh == 1) {
                     ?>
-                      <span class="badge badge-light-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
+                      <span class="badge badge-light-danger"><i class="fa-solid fa-circle-xmark "></i>&ensp; Chưa duyệt</span>
                     <?php
                   }
                 ?>
               </td>
-              <td style="width: 8%">
-                @if ($dunghoc->file_dh !=' ')
-                  <a href="{{ asset('public/uploads/dunghoc/'.$dunghoc->file_dh) }}">
-                    <button type="button" class="btn btn-warning button_xanhla">
-                      <i class="fa-solid fa-file text-light"></i>
-                      &ensp;
-                      File
-                    </button>
-                  </a>
-                @else
-                  Không có file
-                @endif
-              </td>
-              <td style="width: 27%;">
-                <a href="{{ URL::to('/edit_dunghoc/'.$dunghoc->ma_dh)}}">
-                  <button type="button" class=" btn btn-warning button_cam ">
-                    <i class="fa-solid fa-pen-to-square text-light"></i>
-                    &ensp; Cập nhật
-                  </button>
-                </a>
-                <input class="ma_dh{{ $dunghoc->ma_dh }}" type="hidden" value="{{ $dunghoc->ma_dh }}">
-                <button type="button" class=" xoa{{ $dunghoc->ma_dh }} btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
-                <?php
-                  if($dunghoc->status_dh == 0){
-                    ?>
-                      <a href="{{ URL::to('/select_dunghoc/'.$dunghoc->ma_dh) }}">
-                        <button type="button" class="btn btn-secondary fw-bold">
-                          <i class="fa-solid fa-eye-slash text-light"></i> 
-                          &ensp; Ẩn
-                        </button>
-                      </a>
+              <td style="width: 12%;">
+                <div class="row">
+                  <div class="col-12 mt-1">
+                    <a href="{{ URL::to('/edit_dunghoc/'.$dunghoc->ma_dh)}}">
+                      <button type="button" style="width: 100%" class=" btn btn-warning button_cam ">
+                        <i class="fa-solid fa-pen-to-square text-light"></i>
+                        &ensp; Cập nhật
+                      </button>
+                    </a>
+                  </div>
+                  <div class="col-12 mt-1">
+                    <input class="ma_dh{{ $dunghoc->ma_dh }}" type="hidden" value="{{ $dunghoc->ma_dh }}">
+                <button type="button" style="width: 100%" class=" xoa{{ $dunghoc->ma_dh }} btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
+                  </div>
+                  <div class="col-12 mt-1">
                     <?php
-                  }else if($dunghoc->status_dh == 1) {
+                      if($dunghoc->status_dh == 0){
+                        ?>
+                          <a href="{{ URL::to('/select_dunghoc/'.$dunghoc->ma_dh) }}">
+                            <button type="button" style="width: 100%" class="btn btn-secondary fw-bold">
+                              <i class="fa-solid fa-circle-xmark text-light "></i>
+                              &ensp; Chưa duyệt
+                            </button>
+                          </a>
+                        <?php
+                      }else if($dunghoc->status_dh == 1) {
+                        ?>
+                          <a href="{{ URL::to('/select_dunghoc/'.$dunghoc->ma_dh) }}">
+                            <button type="button" style="width: 100%" class="btn btn-success fw-bold">
+                              <i class="fa-solid fa-circle-check text-light "></i>
+                              &ensp; Duyệt
+                            </button>
+                          </a>
+                        <?php
+                      }
                     ?>
-                      <a href="{{ URL::to('/select_dunghoc/'.$dunghoc->ma_dh) }}">
-                        <button type="button" class="btn btn-success fw-bold">
-                          <i class="fa-solid fa-eye text-light"></i>
-                          &ensp; Hiển thị
-                        </button>
-                      </a>
-                    <?php
-                  }
-                ?>
+                  </div>
+                </div>
               </td>
             </tr>
           @endforeach

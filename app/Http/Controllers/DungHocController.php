@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\DungHoc;
+use App\Models\KhenThuong;
+use App\Models\KyLuat;
 use App\Models\Lop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
+use App\Models\QuaTrinhChucVu;
+use App\Models\QuyetDinh;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 
@@ -153,9 +157,14 @@ class DungHocController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
       $edit = DungHoc::find($ma_dh);
+      $lop = DungHoc::join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
+        ->where('ma_dh', $ma_dh)
+        ->first();
       return view('dunghoc.dunghoc_edit')
         ->with('edit', $edit)
         ->with('title', $title)
+        ->with('lop', $lop)
+
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
         ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
@@ -164,6 +173,31 @@ class DungHocController extends Controller
         ->with('phanquyen_admin', $phanquyen_admin);
     }else{
       return Redirect::to('/home');
+    }
+  }
+  public function check_soquyetdinh_dh_edit(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $soquyetdinh_dh = $request->soquyetdinh_dh;
+      $ma_dh = $request->ma_dh;
+      if($soquyetdinh_dh != null && $ma_dh != null){
+        $khenthuong = KhenThuong::where('soquyetdinh_kt', $soquyetdinh_dh)
+          ->first();
+        $quatrinhchucvu = QuaTrinhChucVu::where('soquyetdinh_qtcv', $soquyetdinh_dh)
+          ->first();
+        $quyetdinh = QuyetDinh::where('so_qd', $soquyetdinh_dh)
+          ->first();
+        $kyluat = KyLuat::where('soquyetdinh_kl', $soquyetdinh_dh)
+          ->first();
+        $dunghoc = DungHoc::where('soquyetdinh_dh', $soquyetdinh_dh)
+          ->where('ma_dh', '<>', $ma_dh)  
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat) || isset($dunghoc)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
     }
   }
   public function update_dunghoc(Request $request, $ma_dh){
@@ -194,6 +228,38 @@ class DungHocController extends Controller
         }
         $get_file->move('public/uploads/dunghoc', $new_image);
         $dunghoc->file_dh = $new_image;
+      }
+      $dunghoc->updated_dh = Carbon::now();
+      $dunghoc->save();
+      return Redirect::to('/dunghoc/'.$data['ma_l'].'/'.$data['ma_vc'],302);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function update_dunghoc_quyetdinh(Request $request, $ma_dh){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $dunghoc = DungHoc::find($ma_dh);
+      $dunghoc->soquyetdinh_dh = $data['soquyetdinh_dh'];
+      $dunghoc->ngaykyquyetdinh_dh = $data['ngaykyquyetdinh_dh'];
+      $dunghoc->status_dh = $data['status_dh'];
+      $get_file = $request->file('filequyetdinh_dh');
+      if($get_file){
+        $new_image = time().rand(0,999).'.'.$get_file->getClientOriginalExtension();
+        if($dunghoc->filequyetdinh_dh){
+          unlink('public/uploads/dunghoc/'.$dunghoc->filequyetdinh_dh);
+        }
+        $get_file->move('public/uploads/dunghoc', $new_image);
+        $dunghoc->filequyetdinh_dh = $new_image;
       }
       $dunghoc->updated_dh = Carbon::now();
       $dunghoc->save();

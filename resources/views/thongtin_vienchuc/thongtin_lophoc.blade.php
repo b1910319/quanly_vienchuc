@@ -187,13 +187,22 @@
                         <b>Thời gian kết thúc: </b> {{ $dh->ketthuc_dh }} <br>
                         <b>Lý do dừng học: </b> {{ $dh->lydo_dh }} <br>
                         @if ($dh->file_dh !=' ')
-                        <a href="{{ asset('public/uploads/dunghoc/'.$dh->file_dh) }}" style="color: #000D6B; font-weight: bold">
-                          <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
-                          File
-                        </a>
-                      @else
-                        Không có file
-                      @endif
+                          <a href="{{ asset('public/uploads/dunghoc/'.$dh->file_dh) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File xin dừng học
+                          </a>
+                        @else
+                          Không có file
+                        @endif
+                        <br>
+                        @if ($dh->filequyetdinh_dh !=' ')
+                          <a href="{{ asset('public/uploads/dunghoc/'.$dh->filequyetdinh_dh) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          Không có file
+                        @endif
                       </div>
                     @endif
                   @endforeach

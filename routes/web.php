@@ -965,10 +965,12 @@ Route::post('/vienchuc_add_ketqua',[KetQuaController::class, 'vienchuc_add_ketqu
 
 
 Route::get('/dunghoc/{ma_l}/{ma_vc}',[DungHocController::class, 'dunghoc']);
+Route::get('/check_soquyetdinh_dh_edit',[DungHocController::class, 'check_soquyetdinh_dh_edit']);
 Route::post('/add_dunghoc',[DungHocController::class, 'add_dunghoc']);
 Route::get('/select_dunghoc/{ma_dh}',[DungHocController::class, 'select_dunghoc']);
 Route::get('/edit_dunghoc/{ma_dh}',[DungHocController::class, 'edit_dunghoc']);
 Route::post('/update_dunghoc/{ma_dh}',[DungHocController::class, 'update_dunghoc']);
+Route::post('/update_dunghoc_quyetdinh/{ma_dh}',[DungHocController::class, 'update_dunghoc_quyetdinh']);
 Route::get('/delete_dunghoc',[DungHocController::class, 'delete_dunghoc']);
 Route::get('/delete_all_dunghoc/{ma_l}/{ma_vc}',[DungHocController::class, 'delete_all_dunghoc']);
 Route::get('/dunghoc_all',[DungHocController::class, 'dunghoc_all']);

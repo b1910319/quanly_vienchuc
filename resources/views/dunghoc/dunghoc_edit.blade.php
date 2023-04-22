@@ -18,10 +18,10 @@
         @endif
       </div>
       <h4 class="text-center col-11 mt-1" style="font-weight: bold; color: white; font-size: 20px;">
-        ________CẬP NHẬT THÔNG TIN________
+        ________CẬP NHẬT QUYẾT ĐỊNH XIN TẠM DỪNG HỌC CỦA VIÊN CHỨC________
       </h4>
     </div>
-    <form action="{{ URL::to('/update_dunghoc/'.$edit->ma_dh) }}" method="POST"
+    <form action="{{ URL::to('/update_dunghoc_quyetdinh/'.$edit->ma_dh) }}" method="POST"
       autocomplete="off" enctype="multipart/form-data">
       {{ csrf_field() }}
       <div class="row">
@@ -31,16 +31,17 @@
               <input type="hidden" name="ma_vc" value="{{ $edit->ma_vc }}">
               <input type="hidden" name="ma_l" value="{{ $edit->ma_l }}">
               <tr>
-                <th style="width: 30%" scope="row">Ngày bắt đầu tạm dừng học: </th>
+                <th style="width: 30%" scope="row">Số quyết định: </th>
                 <td class="was-validated">
-                  <input id="batdau_dh" type='date' class='form-control input_table' autofocus required name="batdau_dh" value="{{ $edit->batdau_dh }}">
+                  <input type="hidden" id="ma_dh" value="{{ $edit->ma_dh }}">
+                  <input id="soquyetdinh_dh" type='text' class='form-control input_table' autofocus required name="soquyetdinh_dh" value="">
+                  <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
               <tr>
-                <th scope="row">Ngày kết thúc tạm dừng học: </th>
+                <th scope="row">Ngày ký quyết định: </th>
                 <td class="was-validated">
-                  <input id="ketthuc_dh" type='date' class='form-control input_table' autofocus required name="ketthuc_dh" value="{{ $edit->ketthuc_dh }}">
-                  <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
+                  <input id="ngaykyquyetdinh_dh" type='date' class='form-control input_table' autofocus required name="ngaykyquyetdinh_dh" min="{{ $lop->ngaybatdau_l }}" max="{{ $lop->ngayketthuc_l }}">
                 </td>
               </tr>
             </tbody>
@@ -50,46 +51,18 @@
           <table class="table">
             <tbody>
               <tr>
-                <th style="width: 30%" scope="row">Lý do tạm dừng học: </th>
+                <th scope="row">File quyết định: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="lydo_dh" value="{{ $edit->lydo_dh }}">
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">File tạm dừng: </th>
-                <td class="was-validated">
-                  <div class="row">
-                    <div class="col-6">
-                      <input type='file' class='form-control input_table' name="file_dh">
-                    </div>
-                    <div class="col-6">
-                      @if ($edit->file_dh != ' ')
-                        <a href="{{ asset('public/uploads/dunghoc/'.$edit->file_dh) }}">
-                          <button type="button" class="btn btn-warning button_xanhla">
-                            <i class="fa-solid fa-file text-light"></i>
-                            &ensp;
-                            File
-                          </button>
-                        </a>
-                      @else
-                        Không có file
-                      @endif
-                    </div>
-                  </div>
+                  <input type='file' class='form-control input_table' name="filequyetdinh_dh" required>
                 </td>
               </tr>
               <tr>
                 <th scope="row">Trạng thái: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="status_dh">
-                    <option value="0" >Chọn trạng thái</option>
-                    @if ($edit->status_dh == 1)
-                      <option selected value="1" >Ẩn</option>
-                      <option value="0" >Hiển thị</option>
-                    @else
-                      <option value="0" selected >Hiển thị</option>
-                      <option value="1" >Ẩn</option>
-                    @endif
+                  <select class="custom-select input_table" id="gender2" name="status_dh" required>
+                    <option value="" >Chọn trạng thái</option>
+                    <option value="0" selected >Hiển thị</option>
+                    <option value="1" >Ẩn</option>
                   </select>
                 </td>
               </tr>
@@ -111,17 +84,24 @@
   </div>
   <script>
     $(document).ready(function(){
-      $('#ketthuc_dh').change(function(){
-        var ketthuc_dh = $(this).val();
-        var batdau_dh = $('#batdau_dh').val();
-        // alert(batdau_dh);
-        // alert(ketthuc_dh);
-        if(batdau_dh > ketthuc_dh){  
-          $('#baoloi').html('Ngày kết thúc phải lớn hơn ngày bắt đầu');
-          $('#ketthuc_dh').val('');
-        }else{
-          $('#baoloi').html(''); 
-        }
+      $('#soquyetdinh_dh').mouseout(function(){
+        var soquyetdinh_dh = $(this).val();
+        var ma_dh = $('#ma_dh').val();
+
+        // alert(ma_dh);
+        $.ajax({
+          url:"{{ url("/check_soquyetdinh_dh_edit") }}",
+          type:"GET",
+          data:{soquyetdinh_dh:soquyetdinh_dh, ma_dh:ma_dh},
+          success:function(data){
+            if(data == 1){  
+              $('#baoloi').html('Số quyết định đã tồn tại');
+              $('#soquyetdinh_dh').val('');
+            }else{
+              $('#baoloi').html(''); 
+            }
+          }
+        });
       });
     });
   </script>
