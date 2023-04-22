@@ -14,6 +14,9 @@ class GiaHan extends Model
     'thoigian_gh',
     'lydo_gh',
     'file_gh',
+    'soquyetdinh_gh',
+    'ngaykyquyetdinh_gh',
+    'filequyetdinh_gh',
     'status_gh',
     'updated_gh'
   ];

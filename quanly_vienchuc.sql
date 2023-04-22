@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 22, 2023 lúc 06:47 AM
+-- Thời gian đã tạo: Th4 22, 2023 lúc 08:10 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -1038,6 +1038,9 @@ CREATE TABLE `giahan` (
   `thoigian_gh` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lydo_gh` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `file_gh` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `soquyetdinh_gh` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ngaykyquyetdinh_gh` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `filequyetdinh_gh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status_gh` int(11) NOT NULL DEFAULT 0,
   `created_gh` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_gh` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
@@ -1047,9 +1050,11 @@ CREATE TABLE `giahan` (
 -- Đang đổ dữ liệu cho bảng `giahan`
 --
 
-INSERT INTO `giahan` (`ma_gh`, `ma_l`, `ma_vc`, `thoigian_gh`, `lydo_gh`, `file_gh`, `status_gh`, `created_gh`, `updated_gh`) VALUES
-(21, 71, 189, '2023-05-20', 'Vấn đề cá nhân', '1681548759973.pdf', 0, '2023-04-15 08:52:39', NULL),
-(22, 72, 187, '2023-02-20', 'Vấn đề cá nhân', '1681615483812.pdf', 0, '2023-04-16 03:24:43', NULL);
+INSERT INTO `giahan` (`ma_gh`, `ma_l`, `ma_vc`, `thoigian_gh`, `lydo_gh`, `file_gh`, `soquyetdinh_gh`, `ngaykyquyetdinh_gh`, `filequyetdinh_gh`, `status_gh`, `created_gh`, `updated_gh`) VALUES
+(21, 71, 189, '2023-05-20', 'Vấn đề cá nhân', '1681548759973.pdf', 'rert', '2023-03-29', '1682143442908.pdf', 0, '2023-04-15 08:52:39', '2023-04-22 06:04:02'),
+(22, 72, 187, '2023-02-20', 'Vấn đề cá nhân', '1681615483812.pdf', 'dfdg', '2022-11-15', '1682143409792.pdf', 0, '2023-04-16 03:24:43', '2023-04-22 06:03:29'),
+(23, 72, 177, '2023-01-11', 'yutyu', '1682140139348.pdf', '845', '2023-01-02', '1682141040998.pdf', 0, '2023-04-22 05:08:59', '2023-04-22 05:28:26'),
+(24, 72, 177, '2023-01-11', 'hjỵ', '1682142113358.pdf', 'ghf', '2023-01-04', '1682143513889.pdf', 0, '2023-04-22 05:41:53', '2023-04-22 06:05:13');
 
 -- --------------------------------------------------------
 
@@ -14458,7 +14463,7 @@ ALTER TABLE `giadinh`
 -- AUTO_INCREMENT cho bảng `giahan`
 --
 ALTER TABLE `giahan`
-  MODIFY `ma_gh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ma_gh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT cho bảng `hedaotao`

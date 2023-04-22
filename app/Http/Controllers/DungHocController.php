@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DungHoc;
+use App\Models\GiaHan;
 use App\Models\KhenThuong;
 use App\Models\KyLuat;
 use App\Models\Lop;
@@ -192,7 +193,9 @@ class DungHocController extends Controller
         $dunghoc = DungHoc::where('soquyetdinh_dh', $soquyetdinh_dh)
           ->where('ma_dh', '<>', $ma_dh)  
           ->first();
-        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat) || isset($dunghoc)){
+        $giahan = GiaHan::where('soquyetdinh_gh', $soquyetdinh_dh)
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat) || isset($dunghoc) || isser($giahan)){
           return 1;
         }else{
           return 0;

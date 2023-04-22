@@ -34,14 +34,14 @@
                 <th style="width: 30%" scope="row">Số quyết định: </th>
                 <td class="was-validated">
                   <input type="hidden" id="ma_dh" value="{{ $edit->ma_dh }}">
-                  <input id="soquyetdinh_dh" type='text' class='form-control input_table' autofocus required name="soquyetdinh_dh" value="">
+                  <input id="soquyetdinh_dh" type='text' class='form-control input_table' autofocus required name="soquyetdinh_dh" value="{{ $edit->soquyetdinh_dh }}">
                   <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
               <tr>
                 <th scope="row">Ngày ký quyết định: </th>
                 <td class="was-validated">
-                  <input id="ngaykyquyetdinh_dh" type='date' class='form-control input_table' autofocus required name="ngaykyquyetdinh_dh" min="{{ $lop->ngaybatdau_l }}" max="{{ $lop->ngayketthuc_l }}">
+                  <input id="ngaykyquyetdinh_dh" type='date' class='form-control input_table' autofocus required name="ngaykyquyetdinh_dh" min="{{ $lop->ngaybatdau_l }}" max="{{ $lop->ngayketthuc_l }}" value="{{ $edit->ngaykyquyetdinh_dh }}">
                 </td>
               </tr>
             </tbody>
@@ -53,7 +53,28 @@
               <tr>
                 <th scope="row">File quyết định: </th>
                 <td class="was-validated">
-                  <input type='file' class='form-control input_table' name="filequyetdinh_dh" required>
+                  <div class="row">
+                    <div class="col-6">
+                      <input type='file' class='form-control input_table' name="filequyetdinh_dh"
+                      @if (!$edit->filequyetdinh_dh)
+                        required
+                      @endif
+                      >
+                    </div>
+                    <div class="col-6">
+                      @if ($edit->filequyetdinh_dh)
+                        <a href="{{ asset('public/uploads/dunghoc/'.$edit->filequyetdinh_dh) }}">
+                          <button type="button" class="btn btn-warning button_xanhla">
+                            <i class="fa-solid fa-file text-light"></i>
+                            &ensp;
+                            File
+                          </button>
+                        </a>
+                      @else
+                        <span style="color: #FF1E1E; font-weight: bold">Không có file</span>
+                      @endif
+                    </div>
+                  </div>
                 </td>
               </tr>
               <tr>

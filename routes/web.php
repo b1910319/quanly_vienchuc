@@ -988,15 +988,20 @@ Route::get('/vienchuc_dunghoc_delete',[DungHocController::class, 'vienchuc_dungh
 
 
 Route::get('/giahan/{ma_l}/{ma_vc}',[GiaHanController::class, 'giahan']);
+Route::get('/check_soquyetdinh_gh_edit',[GiaHanController::class, 'check_soquyetdinh_gh_edit']);
 Route::post('/add_giahan',[GiaHanController::class, 'add_giahan']);
+Route::post('/update_giahan_quyetdinh/{ma_gh}',[GiaHanController::class, 'update_giahan_quyetdinh']);
+Route::post('/vienchuc_updated_giahan/{ma_gh}',[GiaHanController::class, 'vienchuc_updated_giahan']);
 Route::get('/select_giahan/{ma_gh}',[GiaHanController::class, 'select_giahan']);
 Route::get('/edit_giahan/{ma_gh}',[GiaHanController::class, 'edit_giahan']);
 Route::post('/update_giahan/{ma_gh}',[GiaHanController::class, 'update_giahan']);
 Route::get('/delete_giahan',[GiaHanController::class, 'delete_giahan']);
+Route::get('/vienchuc_giahan_edit/{ma_l}/{ma_gh}',[GiaHanController::class, 'vienchuc_giahan_edit']);
 Route::get('/delete_all_giahan/{ma_l}/{ma_vc}',[GiaHanController::class, 'delete_all_giahan']);
 Route::post('/delete_giahan_check',[GiaHanController::class, 'delete_giahan_check']);
 Route::get('/giahan_all',[GiaHanController::class, 'giahan_all']);
 Route::get('/delete_giahan_all',[GiaHanController::class, 'delete_giahan_all']);
+Route::get('/vienchuc_giahan_delete',[GiaHanController::class, 'vienchuc_giahan_delete']);
 
 Route::get('/vienchuc_giahan_add/{ma_l}',[GiaHanController::class, 'vienchuc_giahan_add']);
 Route::post('/vienchuc_add_giahan',[GiaHanController::class, 'vienchuc_add_giahan']);

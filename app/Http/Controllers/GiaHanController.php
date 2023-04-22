@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DungHoc;
 use App\Models\GiaHan;
+use App\Models\KhenThuong;
+use App\Models\KyLuat;
 use App\Models\Lop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
+use App\Models\QuaTrinhChucVu;
+use App\Models\QuyetDinh;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 
@@ -152,9 +157,13 @@ class GiaHanController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qlcttc){
       $edit = GiaHan::find($ma_gh);
+      $lop = GiaHan::join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
+        ->where('ma_gh', $ma_gh)
+        ->first();
       return view('giahan.giahan_edit')
         ->with('edit', $edit)
         ->with('title', $title)
+        ->with('lop', $lop)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
@@ -373,11 +382,16 @@ class GiaHanController extends Controller
       ->where('ma_l', $ma_l)
       ->orderBy('thoigian_gh', 'desc')
       ->first();
+    $giahan_chuaduyet = GiaHan::where('ma_vc', $ma_vc)
+      ->where('ma_l', $ma_l)
+      ->where('status_gh', '1')
+      ->get();
     return view('giahan.vienchuc_giahan_add')
       ->with('title', $title)
       ->with('ma_l', $ma_l)
       ->with('lop', $lop)
       ->with('giahan', $giahan)
+      ->with('giahan_chuaduyet', $giahan_chuaduyet)
 
       ->with('phanquyen_admin', $phanquyen_admin)
       ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
@@ -403,6 +417,142 @@ class GiaHanController extends Controller
       $giahan->file_gh = $new_file;
     }
     $giahan->save();
-    return Redirect::to('thongtin_lophoc');
+    return redirect()->back();
+  }
+  public function check_soquyetdinh_gh_edit(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $soquyetdinh_gh = $request->soquyetdinh_gh;
+      $ma_gh = $request->ma_gh;
+      if($soquyetdinh_gh != null && $ma_gh != null){
+        $khenthuong = KhenThuong::where('soquyetdinh_kt', $soquyetdinh_gh)
+          ->first();
+        $quatrinhchucvu = QuaTrinhChucVu::where('soquyetdinh_qtcv', $soquyetdinh_gh)
+          ->first();
+        $quyetdinh = QuyetDinh::where('so_qd', $soquyetdinh_gh)
+          ->first();
+        $kyluat = KyLuat::where('soquyetdinh_kl', $soquyetdinh_gh)
+          ->first();
+        $dunghoc = DungHoc::where('soquyetdinh_dh', $soquyetdinh_gh)
+          ->first();
+        $giahan = GiaHan::where('soquyetdinh_gh', $soquyetdinh_gh)
+          ->where('ma_gh', '<>', $ma_gh)  
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat) || isset($dunghoc) || isset($giahan)){
+          return 1;
+        }else{
+          return 0;
+        }
+      }
+    }
+  }
+  public function update_giahan_quyetdinh(Request $request, $ma_gh){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $data = $request->all();
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $giahan = GiaHan::find($ma_gh);
+      $giahan->soquyetdinh_gh = $data['soquyetdinh_gh'];
+      $giahan->ngaykyquyetdinh_gh = $data['ngaykyquyetdinh_gh'];
+      $giahan->status_gh = $data['status_gh'];
+      $get_file = $request->file('filequyetdinh_gh');
+      if($get_file){
+        $new_image = time().rand(0,999).'.'.$get_file->getClientOriginalExtension();
+        if($giahan->filequyetdinh_gh){
+          unlink('public/uploads/giahan/'.$giahan->filequyetdinh_gh);
+        }
+        $get_file->move('public/uploads/giahan', $new_image);
+        $giahan->filequyetdinh_gh = $new_image;
+      }
+      $giahan->updated_gh = Carbon::now();
+      $giahan->save();
+      return Redirect::to('/giahan_all');
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function vienchuc_giahan_edit($ma_l, $ma_gh){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Thêm thông tin";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $lop = Lop::find($ma_l);
+    $edit = GiaHan::find($ma_gh);
+    $giahan = GiaHan::where('ma_vc', $ma_vc)
+      ->where('ma_l', $ma_l)
+      ->where('ma_gh', '<>', $ma_gh)
+      ->orderBy('thoigian_gh', 'desc')
+      ->first();
+    return view('giahan.vienchuc_giahan_edit')
+      ->with('title', $title)
+      ->with('ma_l', $ma_l)
+      ->with('lop', $lop)
+      ->with('edit', $edit)
+      ->with('giahan', $giahan)
+
+      ->with('phanquyen_admin', $phanquyen_admin)
+      ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+      ->with('phanquyen_qltt', $phanquyen_qltt)
+      ->with('phanquyen_qlk', $phanquyen_qlk)
+      ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+      ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+  }
+  public function vienchuc_updated_giahan(Request $request, $ma_gh){
+    $this->check_login();
+    $data = $request->all();
+    Carbon::now('Asia/Ho_Chi_Minh');
+    $giahan = GiaHan::find($ma_gh);
+    $giahan->ma_l = $data['ma_l'];
+    $giahan->thoigian_gh = $data['thoigian_gh'];
+    $giahan->lydo_gh = $data['lydo_gh'];
+    $get_file = $request->file('file_gh');
+    if($get_file){
+      $new_image = time().rand(0,999).'.'.$get_file->getClientOriginalExtension();
+      if($giahan->file_gh != ' '){
+        unlink('public/uploads/giahan/'.$giahan->file_gh);
+      }
+      $get_file->move('public/uploads/giahan', $new_image);
+      $giahan->file_gh = $new_image;
+    }
+    $giahan->updated_gh = Carbon::now();
+    $giahan->save();
+    return Redirect::to('/vienchuc_giahan_add/'.$data['ma_l']);
+  }
+  public function vienchuc_giahan_delete(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $id =$request->id;
+      if($id != null){
+        $giahan = GiaHan::find($id);
+        if($giahan->file_gh != ' '){
+          unlink('public/uploads/giahan/'.$giahan->file_gh);
+        }
+        $giahan->delete();
+      }
+    }
   }
 }

@@ -158,15 +158,24 @@
                       <div style="height: 120px" class="mt-1">
                         <b>Thời gian gia hạn: </b> {{ $gh->thoigian_gh }} <br>
                         <b>Lý do gia hạn: </b> {{ $gh->lydo_gh }} <br>
+                        @if ($gh->file_gh !=' ')
+                          <a href="{{ asset('public/uploads/giahan/'.$gh->file_gh) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                          File xin gia hạn
+                          </a>
+                        @else
+                          Không có file
+                        @endif
+                        <br>
+                        @if ($gh->filequyetdinh_gh !=' ')
+                          <a href="{{ asset('public/uploads/giahan/'.$gh->filequyetdinh_gh) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          Không có file
+                        @endif
                       </div>
-                      @if ($gh->file_gh !=' ')
-                        <a href="{{ asset('public/uploads/giahan/'.$gh->file_gh) }}">
-                          <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
-                        File
-                        </a>
-                      @else
-                        Không có file
-                      @endif
                     @endif
                   @endforeach
                 </div>
