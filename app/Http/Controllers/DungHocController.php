@@ -200,42 +200,6 @@ class DungHocController extends Controller
       }
     }
   }
-  public function update_dunghoc(Request $request, $ma_dh){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '6')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qlcttc){
-      $data = $request->all();
-      Carbon::now('Asia/Ho_Chi_Minh');
-      $dunghoc = DungHoc::find($ma_dh);
-      $dunghoc->ma_vc = $data['ma_vc'];
-      $dunghoc->ma_l = $data['ma_l'];
-      $dunghoc->batdau_dh = $data['batdau_dh'];
-      $dunghoc->ketthuc_dh = $data['ketthuc_dh'];
-      $dunghoc->lydo_dh = $data['lydo_dh'];
-      $dunghoc->ma_l = $data['ma_l'];
-      $dunghoc->status_dh = $data['status_dh'];
-      $get_file = $request->file('file_dh');
-      if($get_file){
-        $new_image = time().rand(0,999).'.'.$get_file->getClientOriginalExtension();
-        if($dunghoc->file_dh != ' '){
-          unlink('public/uploads/dunghoc/'.$dunghoc->file_dh);
-        }
-        $get_file->move('public/uploads/dunghoc', $new_image);
-        $dunghoc->file_dh = $new_image;
-      }
-      $dunghoc->updated_dh = Carbon::now();
-      $dunghoc->save();
-      return Redirect::to('/dunghoc/'.$data['ma_l'].'/'.$data['ma_vc'],302);
-    }else{
-      return Redirect::to('/home');
-    }
-  }
   public function update_dunghoc_quyetdinh(Request $request, $ma_dh){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -442,10 +406,58 @@ class DungHocController extends Controller
       ->where('ma_l', $ma_l)
       ->orderBy('ketthuc_dh', 'desc')
       ->first();
+    $dunghoc_chuaduyet = DungHoc::where('ma_vc', $ma_vc)
+      ->where('ma_l', $ma_l)
+      ->where('status_dh', '1')
+      ->get();
     return view('dunghoc.vienchuc_dunghoc_add')
       ->with('title', $title)
       ->with('ma_l', $ma_l)
       ->with('lop', $lop)
+      ->with('dunghoc', $dunghoc)
+      ->with('dunghoc_chuaduyet', $dunghoc_chuaduyet)
+
+      ->with('phanquyen_admin', $phanquyen_admin)
+      ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+      ->with('phanquyen_qltt', $phanquyen_qltt)
+      ->with('phanquyen_qlk', $phanquyen_qlk)
+      ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+      ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+  }
+  public function vienchuc_dunghoc_edit($ma_l, $ma_dh){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $title = "Thêm thông tin";
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $lop = Lop::find($ma_l);
+    $edit = DungHoc::find($ma_dh);
+    $dunghoc = DungHoc::where('ma_vc', $ma_vc)
+      ->where('ma_l', $ma_l)
+      ->where('ma_dh', '<>', $ma_dh)
+      ->orderBy('ketthuc_dh', 'desc')
+      ->first();
+    return view('dunghoc.vienchuc_dunghoc_edit')
+      ->with('title', $title)
+      ->with('ma_l', $ma_l)
+      ->with('lop', $lop)
+      ->with('edit', $edit)
       ->with('dunghoc', $dunghoc)
 
       ->with('phanquyen_admin', $phanquyen_admin)
@@ -474,5 +486,40 @@ class DungHocController extends Controller
     }
     $dunghoc->save();
     return Redirect::to('thongtin_lophoc');
+  }
+  public function vienchuc_updated_dunghoc(Request $request, $ma_dh){
+    $this->check_login();
+    $data = $request->all();
+    Carbon::now('Asia/Ho_Chi_Minh');
+    $dunghoc = DungHoc::find($ma_dh);
+    $dunghoc->ma_l = $data['ma_l'];
+    $dunghoc->batdau_dh = $data['batdau_dh'];
+    $dunghoc->ketthuc_dh = $data['ketthuc_dh'];
+    $dunghoc->lydo_dh = $data['lydo_dh'];
+    $get_file = $request->file('file_dh');
+    if($get_file){
+      $new_image = time().rand(0,999).'.'.$get_file->getClientOriginalExtension();
+      if($dunghoc->file_dh != ' '){
+        unlink('public/uploads/dunghoc/'.$dunghoc->file_dh);
+      }
+      $get_file->move('public/uploads/dunghoc', $new_image);
+      $dunghoc->file_dh = $new_image;
+    }
+    $dunghoc->updated_dh = Carbon::now();
+    $dunghoc->save();
+    return Redirect::to('/vienchuc_dunghoc_add/'.$data['ma_l']);
+  }
+  public function vienchuc_dunghoc_delete(Request $request){
+    $this->check_login();
+    if($request->ajax()){
+      $id =$request->id;
+      if($id != null){
+        $dunghoc = DungHoc::find($id);
+        if($dunghoc->file_dh != ' '){
+          unlink('public/uploads/dunghoc/'.$dunghoc->file_dh);
+        }
+        $dunghoc->delete();
+      }
+    }
   }
 }

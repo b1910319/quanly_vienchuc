@@ -265,10 +265,6 @@
                     </a>
                   </div>
                   <div class="col-12 mt-1">
-                    <input class="ma_dh{{ $dunghoc->ma_dh }}" type="hidden" value="{{ $dunghoc->ma_dh }}">
-                <button type="button" style="width: 100%" class=" xoa{{ $dunghoc->ma_dh }} btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
-                  </div>
-                  <div class="col-12 mt-1">
                     <?php
                       if($dunghoc->status_dh == 0){
                         ?>
@@ -309,73 +305,6 @@
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> --}}
 {{--  --}}
-<script>
-  document.querySelector('.them').addEventListener('click', (event)=>{
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 1500,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
-
-    Toast.fire({
-      icon: 'success',
-      title: 'Thêm thành công'
-    })
-    
-  }); 
-  @foreach ($list as $dunghoc )
-    document.querySelector('.xoa{{ $dunghoc->ma_dh }}').addEventListener('click', (event)=>{
-      const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-          confirmButton: 'btn btn-success',
-          cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false
-      })
-
-      swalWithBootstrapButtons.fire({
-        title: 'Bạn có chắc muốn xoá không?',
-        text: "Bạn không thể khôi phục dữ liệu đã xoá",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: '<i class="fa-solid fa-trash text-light"></i> &ensp;  Xoá',
-        cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-          var id= $('.ma_dh{{ $dunghoc->ma_dh }}').val();
-          $.ajax({
-            url:"{{ url("/delete_dunghoc") }}", 
-            type: "GET", 
-            data: {id:id},
-          });
-          swalWithBootstrapButtons.fire(
-            'Xoá thành công',
-            'Dữ liệu của bạn đã được xoá.',
-            'success'
-          )
-        } else if (
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-          swalWithBootstrapButtons.fire(
-            'Đã huỷ',
-            'Dữ liệu được an toàn',
-            'error'
-          )
-        }
-        location.reload();
-      })
-      
-    });
-  @endforeach
-  
-</script>
 <script>
   $(document).ready(function(){
     $('#ketthuc_dh').change(function(){

@@ -978,7 +978,10 @@ Route::post('/delete_dunghoc_check',[DungHocController::class, 'delete_dunghoc_c
 Route::get('/delete_dunghoc_all',[DungHocController::class, 'delete_dunghoc_all']);
 
 Route::get('/vienchuc_dunghoc_add/{ma_l}',[DungHocController::class, 'vienchuc_dunghoc_add']);
+Route::get('/vienchuc_dunghoc_edit/{ma_l}/{ma_dh}',[DungHocController::class, 'vienchuc_dunghoc_edit']);
 Route::post('/vienchuc_add_dunghoc',[DungHocController::class, 'vienchuc_add_dunghoc']);
+Route::post('/vienchuc_updated_dunghoc/{ma_dh}',[DungHocController::class, 'vienchuc_updated_dunghoc']);
+Route::get('/vienchuc_dunghoc_delete',[DungHocController::class, 'vienchuc_dunghoc_delete']);
 
 
 

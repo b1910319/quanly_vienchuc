@@ -367,7 +367,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
               <li>
                 <a href="javascript: void(0);" class="waves-effect">
                   <i class="fa-solid fa-sitemap"></i>
-                  <span> Quản lý công tác <br> tổ chức </span>
+                  <span> Quản lý quá trình <br> công tác </span>
                   <span class="menu-arrow"></span>
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
