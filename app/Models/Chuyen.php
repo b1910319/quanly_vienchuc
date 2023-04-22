@@ -14,6 +14,9 @@ class Chuyen extends Model
     'noidung_c',
     'lydo_c',
     'file_c',
+    'soquyetdinh_c',
+    'ngaykyquyetdinh_c',
+    'filequyetdinh_c',
     'status_c',
     'updated_c'
 

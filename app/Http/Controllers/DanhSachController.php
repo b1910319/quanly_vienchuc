@@ -70,31 +70,37 @@ class DanhSachController extends Controller
         ->where('quyetdinh.ma_l', $ma_l)
         ->select(DB::raw('count(quyetdinh.ma_qd) as sum, vienchuc.ma_vc'))
         ->groupBy('vienchuc.ma_vc')
+        ->where('status_qd', '<>', '1')
         ->get();
       $count_dunghoc_vienchuc = DungHoc::join('vienchuc', 'vienchuc.ma_vc', '=', 'dunghoc.ma_vc')
         ->where('dunghoc.ma_l', $ma_l)
         ->select(DB::raw('count(dunghoc.ma_dh) as sum, vienchuc.ma_vc'))
         ->groupBy('vienchuc.ma_vc')
+        ->where('status_dh', '<>', '1')
         ->get();
       $count_ketqua_vienchuc = KetQua::join('vienchuc', 'vienchuc.ma_vc', '=', 'ketqua.ma_vc')
         ->where('ketqua.ma_l', $ma_l)
         ->select(DB::raw('count(ketqua.ma_kq) as sum, vienchuc.ma_vc'))
         ->groupBy('vienchuc.ma_vc')
+        ->where('status_kq', '<>', '1')
         ->get();
       $count_giahan_vienchuc = GiaHan::join('vienchuc', 'vienchuc.ma_vc', '=', 'giahan.ma_vc')
         ->where('giahan.ma_l', $ma_l)
         ->select(DB::raw('count(giahan.ma_gh) as sum, vienchuc.ma_vc'))
         ->groupBy('vienchuc.ma_vc')
+        ->where('status_gh', '<>', '1')
         ->get();
       $count_chuyen_vienchuc = Chuyen::join('vienchuc', 'vienchuc.ma_vc', '=', 'chuyen.ma_vc')
         ->where('chuyen.ma_l', $ma_l)
         ->select(DB::raw('count(chuyen.ma_c) as sum, vienchuc.ma_vc'))
         ->groupBy('vienchuc.ma_vc')
+        ->where('status_c', '<>', '1')
         ->get();
       $count_thoihoc_vienchuc = ThoiHoc::join('vienchuc', 'vienchuc.ma_vc', '=', 'thoihoc.ma_vc')
         ->where('thoihoc.ma_l', $ma_l)
         ->select(DB::raw('count(thoihoc.ma_th) as sum, vienchuc.ma_vc'))
         ->groupBy('vienchuc.ma_vc')
+        ->where('status_th', '<>', '1')
         ->get();
       $list_vienchuc = VienChuc::where('status_vc', '<>', '2')
         ->orderBy('ma_vc', 'desc')

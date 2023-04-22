@@ -221,6 +221,8 @@
                 <b>Bắt đầu tạm dừng: </b> {{ $dunghoc->batdau_dh }} <br>
                 <b>Kết thúc tạm dừng: </b> {{ $dunghoc->ketthuc_dh }} <br>
                 <b>Lý do tạm dừng: </b> {{ $dunghoc->lydo_dh }} <br>
+                <b>Số quyết định: </b>{{ $dunghoc->soquyetdinh_dh }} <br>
+                <b>Ngày ký quyết định: </b>{{ $dunghoc->ngaykyquyetdinh_dh }} <br>
                 @if ($dunghoc->file_dh)
                   <a href="{{ asset('public/uploads/dunghoc/'.$dunghoc->file_dh) }}" style="color: #000D6B; font-weight: bold">
                     <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>

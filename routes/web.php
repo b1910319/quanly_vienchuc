@@ -1012,15 +1012,20 @@ Route::post('/vienchuc_add_giahan',[GiaHanController::class, 'vienchuc_add_giaha
 
 
 Route::get('/chuyen/{ma_l}/{ma_vc}',[ChuyenController::class, 'chuyen']);
+Route::get('/check_soquyetdinh_c_edit',[ChuyenController::class, 'check_soquyetdinh_c_edit']);
 Route::post('/add_chuyen',[ChuyenController::class, 'add_chuyen']);
+Route::post('/update_chuyen_quyetdinh/{ma_c}',[ChuyenController::class, 'update_chuyen_quyetdinh']);
 Route::get('/select_chuyen/{ma_c}',[ChuyenController::class, 'select_chuyen']);
 Route::get('/edit_chuyen/{ma_c}',[ChuyenController::class, 'edit_chuyen']);
 Route::post('/update_chuyen/{ma_c}',[ChuyenController::class, 'update_chuyen']);
 Route::get('/delete_chuyen',[ChuyenController::class, 'delete_chuyen']);
 Route::get('/delete_all_chuyen/{ma_l}/{ma_vc}',[ChuyenController::class, 'delete_all_chuyen']);
+Route::get('/vienchuc_chuyen_edit/{ma_l}/{ma_c}',[ChuyenController::class, 'vienchuc_chuyen_edit']);
 Route::post('/delete_chuyen_check',[ChuyenController::class, 'delete_chuyen_check']);
 Route::get('/chuyen_all',[ChuyenController::class, 'chuyen_all']);
+Route::get('/vienchuc_chuyen_delete',[ChuyenController::class, 'vienchuc_chuyen_delete']);
 Route::get('/delete_chuyen_all',[ChuyenController::class, 'delete_chuyen_all']);
+Route::post('/vienchuc_updated_chuyen/{ma_c}',[ChuyenController::class, 'vienchuc_updated_chuyen']);
 
 Route::get('/vienchuc_chuyen_add/{ma_l}',[ChuyenController::class, 'vienchuc_chuyen_add']);
 Route::post('/vienchuc_add_chuyen',[ChuyenController::class, 'vienchuc_add_chuyen']);

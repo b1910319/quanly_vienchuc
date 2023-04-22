@@ -54,6 +54,7 @@ class GiaHanController extends Controller
         ->orderBy('ma_gh', 'desc')
         ->where('giahan.ma_l', $ma_l)
         ->where('giahan.ma_vc', $ma_vc)
+        ->where('status_gh', '<>', '1')
         ->get();
       $count = GiaHan::select(DB::raw('count(ma_gh) as sum'))
         ->where('ma_l', $ma_l)

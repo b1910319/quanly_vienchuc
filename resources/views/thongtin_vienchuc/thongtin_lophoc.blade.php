@@ -231,17 +231,24 @@
                       <div style="height: 120px" class="mt-1">
                         <b>Nội dung xin chyển: </b> {{ $c->noidung_c }} <br>
                         <b>Lý do xin chuyển: </b> {{ $c->lydo_c }} <br>
-                      </div>
-                      @if ($c->file_c !=' ')
-                        <a href="{{ asset('public/uploads/chuyen/'.$c->file_c) }}">
-                          <button type="button" class="btn btn-warning mt-2 button_do">
+                        @if ($c->file_c !=' ')
+                          <a href="{{ asset('public/uploads/chuyen/'.$c->file_c) }}" style="color: #000D6B; font-weight: bold">
                             <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
-                        File
-                          </button>
-                        </a>
-                      @else
-                        Không có file
-                      @endif
+                            File xin dừng học
+                          </a>
+                        @else
+                          Không có file
+                        @endif
+                        <br>
+                        @if ($c->filequyetdinh_c !=' ')
+                          <a href="{{ asset('public/uploads/chuyen/'.$c->filequyetdinh_c) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          Không có file
+                        @endif
+                      </div>
                     @endif
                   @endforeach
                 </div>

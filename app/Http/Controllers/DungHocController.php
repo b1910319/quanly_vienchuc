@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chuyen;
 use App\Models\DungHoc;
 use App\Models\GiaHan;
 use App\Models\KhenThuong;
@@ -195,7 +196,9 @@ class DungHocController extends Controller
           ->first();
         $giahan = GiaHan::where('soquyetdinh_gh', $soquyetdinh_dh)
           ->first();
-        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat) || isset($dunghoc) || isser($giahan)){
+        $chuyen = Chuyen::where('soquyetdinh_c', $soquyetdinh_dh)
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat) || isset($dunghoc) || isset($giahan) || isset($chuyen)){
           return 1;
         }else{
           return 0;

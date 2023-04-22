@@ -85,6 +85,134 @@
           </div>
         </div>
       </form>
+      <table class="table" id="mytable">
+        <thead class="color_table">
+          <tr>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin xin chuyển</th>
+            <th class="text-light" scope="col">Trạng thái</th>
+            <th class="text-light" scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($chuyen_chuaduyet as $key => $chuyen)
+            <tr >
+              <th scope="row">{{ $key+1 }}</th>
+              <td>
+                <b>Nội dung chuyển: </b> {{ $chuyen->noidung_c }} <br>
+                <b>Lý do chuyển: </b> {{ $chuyen->lydo_c }} <br>
+                @if ($chuyen->file_c)
+                  <a href="{{ asset('public/uploads/chuyen/'.$chuyen->file_c) }}" style="color: #000D6B; font-weight: bold">
+                    <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                    File xin tạm dừng
+                  </a>
+                @else
+                  <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                @endif
+                <br>
+              </td>
+              <td>
+                <?php
+                  if($chuyen->status_c == 0){
+                    ?>
+                      <span class="badge badge-light-success">
+                        <i class="fa-solid fa-circle-check "></i>&ensp;  Đã duyệt
+                      </span>
+                    <?php
+                  }else if($chuyen->status_c == 1) {
+                    ?>
+                      <span class="badge badge-light-danger"><i class="fa-solid fa-circle-xmark "></i>&ensp; Chưa duyệt</span>
+                    <?php
+                  }
+                ?>
+              </td>
+              <td style="width: 12%;">
+                <div class="row">
+                  <div class="col-12 mt-1">
+                    <a href="{{ URL::to('/vienchuc_chuyen_edit/'.$ma_l.'/'.$chuyen->ma_c)}}">
+                      <button type="button" style="width: 100%" class=" btn btn-warning button_cam ">
+                        <i class="fa-solid fa-pen-to-square text-light"></i>
+                        &ensp; Cập nhật
+                      </button>
+                    </a>
+                  </div>
+                  <div class="col-12 mt-1">
+                    <input class="ma_c{{ $chuyen->ma_c }}" type="hidden" value="{{ $chuyen->ma_c }}">
+                    <button type="button" style="width: 100%" class=" xoa{{ $chuyen->ma_c }} btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
     </div>
   </div>
+  <script>
+    document.querySelector('.them').addEventListener('click', (event)=>{
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+  
+      Toast.fire({
+        icon: 'success',
+        title: 'Thêm thành công'
+      })
+      
+    }); 
+    @foreach ($chuyen_chuaduyet as $chuyen )
+      document.querySelector('.xoa{{ $chuyen->ma_c }}').addEventListener('click', (event)=>{
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+          },
+          buttonsStyling: false
+        })
+  
+        swalWithBootstrapButtons.fire({
+          title: 'Bạn có chắc muốn xoá không?',
+          text: "Bạn không thể khôi phục dữ liệu đã xoá",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: '<i class="fa-solid fa-trash text-light"></i> &ensp;  Xoá',
+          cancelButtonText: '<i class="fa-solid fa-xmark text-light"></i> &ensp;  Huỷ',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            var id= $('.ma_c{{ $chuyen->ma_c }}').val();
+            $.ajax({
+              url:"{{ url("/vienchuc_chuyen_delete") }}", 
+              type: "GET", 
+              data: {id:id},
+            });
+            swalWithBootstrapButtons.fire(
+              'Xoá thành công',
+              'Dữ liệu của bạn đã được xoá.',
+              'success'
+            )
+          } else if (
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              'Đã huỷ',
+              'Dữ liệu được an toàn',
+              'error'
+            )
+          }
+          location.reload();
+        })
+        
+      });
+    @endforeach
+    
+  </script>
 @endsection

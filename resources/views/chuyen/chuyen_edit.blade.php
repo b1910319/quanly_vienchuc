@@ -21,7 +21,7 @@
         ________CẬP NHẬT THÔNG TIN________
       </h4>
     </div>
-    <form action="{{ URL::to('/update_chuyen/'.$edit->ma_c) }}" method="POST"
+    <form action="{{ URL::to('/update_chuyen_quyetdinh/'.$edit->ma_c) }}" method="POST"
       autocomplete="off" enctype="multipart/form-data">
       {{ csrf_field() }}
       <div class="row">
@@ -31,15 +31,17 @@
               <input type="hidden" name="ma_vc" value="{{ $edit->ma_vc }}">
               <input type="hidden" name="ma_l" value="{{ $edit->ma_l }}">
               <tr>
-                <th scope="row">Nội dung chuyển: </th>
+                <th style="width: 30%" scope="row">Số quyết định: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="noidung_c" value="{{ $edit->noidung_c }}">
+                  <input type="hidden" id="ma_c" value="{{ $edit->ma_c }}">
+                  <input id="soquyetdinh_c" type='text' class='form-control input_table' autofocus required name="soquyetdinh_c" value="{{ $edit->soquyetdinh_c }}">
+                  <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
                 </td>
               </tr>
               <tr>
-                <th scope="row">Lý do chuyển: </th>
+                <th scope="row">Ngày ký quyết định: </th>
                 <td class="was-validated">
-                  <input type='text' class='form-control input_table' autofocus required name="lydo_c" value="{{ $edit->lydo_c }}">
+                  <input id="ngaykyquyetdinh_c" type='date' class='form-control input_table' autofocus required name="ngaykyquyetdinh_c" min="{{ $lop->ngaybatdau_l }}" max="{{ $lop->ngayketthuc_l }}" value="{{ $edit->ngaykyquyetdinh_c }}">
                 </td>
               </tr>
             </tbody>
@@ -49,15 +51,19 @@
           <table class="table">
             <tbody>
               <tr>
-                <th scope="row">File xin chuyển: </th>
+                <th scope="row">File quyết định: </th>
                 <td class="was-validated">
                   <div class="row">
                     <div class="col-6">
-                      <input type='file' class='form-control input_table' name="file_c">
+                      <input type='file' class='form-control input_table' name="filequyetdinh_c"
+                      @if (!$edit->filequyetdinh_c)
+                        required
+                      @endif
+                      >
                     </div>
                     <div class="col-6">
-                      @if ($edit->file_c != ' ')
-                        <a href="{{ asset('public/uploads/chuyen/'.$edit->file_c) }}">
+                      @if ($edit->filequyetdinh_c)
+                        <a href="{{ asset('public/uploads/dunghoc/'.$edit->filequyetdinh_c) }}">
                           <button type="button" class="btn btn-warning button_xanhla">
                             <i class="fa-solid fa-file text-light"></i>
                             &ensp;
@@ -65,7 +71,7 @@
                           </button>
                         </a>
                       @else
-                        Không có file
+                        <span style="color: #FF1E1E; font-weight: bold">Không có file</span>
                       @endif
                     </div>
                   </div>
@@ -74,15 +80,10 @@
               <tr>
                 <th scope="row">Trạng thái: </th>
                 <td class="was-validated">
-                  <select class="custom-select input_table" id="gender2" name="status_c">
-                    <option value="0" >Chọn trạng thái</option>
-                    @if ($edit->status_c == 1)
-                      <option selected value="1" >Ẩn</option>
-                      <option value="0" >Hiển thị</option>
-                    @else
-                      <option value="0" selected >Hiển thị</option>
-                      <option value="1" >Ẩn</option>
-                    @endif
+                  <select class="custom-select input_table" id="gender2" name="status_c" required>
+                    <option value="" >Chọn trạng thái</option>
+                    <option value="0" selected >Hiển thị</option>
+                    <option value="1" >Ẩn</option>
                   </select>
                 </td>
               </tr>
@@ -102,4 +103,27 @@
       </div>
     </form>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('#soquyetdinh_c').mouseout(function(){
+        var soquyetdinh_c = $(this).val();
+        var ma_c = $('#ma_c').val();
+
+        // alert(ma_c);
+        $.ajax({
+          url:"{{ url("/check_soquyetdinh_c_edit") }}",
+          type:"GET",
+          data:{soquyetdinh_c:soquyetdinh_c, ma_c:ma_c},
+          success:function(data){
+            if(data == 1){  
+              $('#baoloi').html('Số quyết định đã tồn tại');
+              $('#soquyetdinh_c').val('');
+            }else{
+              $('#baoloi').html(''); 
+            }
+          }
+        });
+      });
+    });
+  </script>
 @endsection

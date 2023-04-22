@@ -19,10 +19,10 @@
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
-          <button role="button" class="item-question collapsed btn btn-primary button_xanhla" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a">
+          {{-- <button role="button" class="item-question collapsed btn btn-primary button_xanhla" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a">
             <i class="fas fa-plus-square text-light"></i>
             &ensp; Thêm
-          </button>
+          </button> --}}
           @if ($vienchuc != '' && $lop != '')
             <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_chuyen/'.$lop->ma_l.'/'.$vienchuc->ma_vc) }}">
               <button type="button" class="btn btn-danger button_do">
@@ -79,7 +79,7 @@
               </table>
             </div>
           </div>
-          <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
+          {{-- <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body mt-3">
               <form action="{{ URL::to('/add_chuyen') }}" method="POST"
                 autocomplete="off" enctype="multipart/form-data">
@@ -166,7 +166,7 @@
                 </div>
               </form>
             </div>
-          </div>
+          </div> --}}
         </div>
       </div>
     </div>
@@ -182,7 +182,6 @@
             <th class="text-light" scope="col">Thông tin lớp học</th>
             <th class="text-light" scope="col">Thông tin chuyển trường, nước ....</th>
             <th class="text-light" scope="col">Trạng thái</th>
-            <th class="text-light" scope="col">File xin chuyển</th>
             <th class="text-light" scope="col"></th>
           </tr>
         </thead>
@@ -212,66 +211,77 @@
               </td>
               <td>
                 <b>Nội dung chuyển: </b> {{ $chuyen->noidung_c }} <br>
-                <b>Lý do chuyển: </b> {{ $chuyen->lydo_c }}
+                <b>Lý do chuyển: </b> {{ $chuyen->lydo_c }} <br>
+                <b>Số quyết định: </b>{{ $chuyen->soquyetdinh_c }} <br>
+                <b>Ngày ký quyết định: </b>{{ $chuyen->ngaykyquyetdinh_c }} <br>
+                @if ($chuyen->file_c)
+                  <a href="{{ asset('public/uploads/chuyen/'.$chuyen->file_c) }}" style="color: #000D6B; font-weight: bold">
+                    <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                    File xin chuyển
+                  </a>
+                @else
+                  <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                @endif
+                <br>
+                @if ($chuyen->filequyetdinh_c)
+                  <a href="{{ asset('public/uploads/chuyen/'.$chuyen->filequyetdinh_c) }}" style="color: #000D6B; font-weight: bold">
+                    <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                    File quyết định
+                  </a>
+                @else
+                  <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file quyết định</span>
+                @endif
               </td>
               <td>
                 <?php
                   if($chuyen->status_c == 0){
                     ?>
                       <span class="badge badge-light-success">
-                        <i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị
+                        <i class="fa-solid fa-circle-check "></i>&ensp;  Đã duyệt
                       </span>
                     <?php
                   }else if($chuyen->status_c == 1) {
                     ?>
-                      <span class="badge badge-light-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
+                      <span class="badge badge-light-danger"><i class="fa-solid fa-circle-xmark "></i>&ensp; Chưa duyệt</span>
                     <?php
                   }
                 ?>
               </td>
-              <td>
-                @if ($chuyen->file_c !=' ')
-                  <a href="{{ asset('public/uploads/chuyen/'.$chuyen->file_c) }}">
-                    <button type="button" class="btn btn-warning button_xanhla">
-                      <i class="fa-solid fa-file text-light"></i>
-                      &ensp;
-                      File
-                    </button>
-                  </a>
-                @else
-                  Không có file
-                @endif
-              </td>
-              <td style="width: 27%;">
-                <a href="{{ URL::to('/edit_chuyen/'.$chuyen->ma_c)}}">
-                  <button type="button" class=" btn btn-warning button_cam">
-                    <i class="fa-solid fa-pen-to-square text-light"></i>
-                    &ensp; Cập nhật
-                  </button>
-                </a>
-                <input class="ma_c{{ $chuyen->ma_c }}" type="hidden" value="{{ $chuyen->ma_c }}">
-                <button type="button" class=" xoa{{ $chuyen->ma_c }} btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
-                <?php
-                  if($chuyen->status_c == 0){
-                    ?>
-                      <a href="{{ URL::to('/select_chuyen/'.$chuyen->ma_c) }}">
-                        <button type="button" class="btn btn-secondary fw-bold">
-                          <i class="fa-solid fa-eye-slash text-light"></i> 
-                          &ensp; Ẩn
-                        </button>
-                      </a>
+              <td style="width: 12%;">
+                <div class="row">
+                  <div class="col-12 mt-1">
+                    <a href="{{ URL::to('/edit_chuyen/'.$chuyen->ma_c)}}">
+                      <button style="width: 100%" type="button" class=" btn btn-warning button_cam">
+                        <i class="fa-solid fa-pen-to-square text-light"></i>
+                        &ensp; Cập nhật
+                      </button>
+                    </a>
+                  </div>
+                  <div class="col-12 mt-1">
                     <?php
-                  }else if($chuyen->status_c == 1) {
+                      if($chuyen->status_c == 0){
+                        ?>
+                          <a href="{{ URL::to('/select_chuyen/'.$chuyen->ma_c) }}">
+                            <button style="width: 100%" type="button" class="btn btn-secondary fw-bold">
+                              <i class="fa-solid fa-circle-xmark text-light "></i>
+                              &ensp; Chưa duyệt
+                            </button>
+                          </a>
+                        <?php
+                      }else if($chuyen->status_c == 1) {
+                        ?>
+                          <a href="{{ URL::to('/select_chuyen/'.$chuyen->ma_c) }}">
+                            <button style="width: 100%" type="button" class="btn btn-success fw-bold">
+                              <i class="fa-solid fa-circle-check text-light "></i>
+                              &ensp; Duyệt
+                            </button>
+                          </a>
+                        <?php
+                      }
                     ?>
-                      <a href="{{ URL::to('/select_chuyen/'.$chuyen->ma_c) }}">
-                        <button type="button" class="btn btn-success fw-bold">
-                          <i class="fa-solid fa-eye text-light"></i>
-                          &ensp; Hiển thị
-                        </button>
-                      </a>
-                    <?php
-                  }
-                ?>
+                  </div>
+                </div>
+                
               </td>
             </tr>
           @endforeach
