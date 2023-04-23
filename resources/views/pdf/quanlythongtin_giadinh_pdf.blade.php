@@ -34,6 +34,13 @@
         <br>
       </p>
       <p>
+        <div style="float: left; width: 20%">
+          @if ($vc->hinh_vc != ' ')
+            <img src="{{ URL::to('public/uploads/vienchuc/'.$vc->hinh_vc) }}" class="img-fluid" style="width: 80%">
+          @else
+            Chưa cập nhật hình ảnh
+          @endif
+        </div>
         1. Họ và tên khai sinh (viết chữ in hoa): <span style="text-transform: uppercase">{{ $vc->hoten_vc }}</span> <br>
         2. Tên gọi khác: {{ $vc->tenkhac_vc }} <br>
         3. Ngày sinh : {{ $vc->ngaysinh_vc }} , Giới tính (nam, nữ): 
@@ -43,8 +50,8 @@
           Nữ
         @endif
         <br>
-        4. Khoa: {{ $vc->ten_k }} <br>
-        5. Email: {{ $vc->user_vc }} <br>
+        4. Email: {{ $vc->user_vc }} <br>
+        5. Khoa: {{ $vc->ten_k }} <br><br><br>
         6. Quan hệ gia đình: <br>
         <table class="table">
           <thead>
@@ -69,7 +76,7 @@
                   <th scope="row"><?php echo $i ?></th>
                   <td>{{ $giadinh->moiquanhe_gd }}</td>
                   <td>{{ $giadinh->hoten_gd }}</td>
-                  <td>{{ $giadinh->ngaysinh_gd }}</td>
+                  <td>{{ date('d-m-Y') , strtotime($giadinh->ngaysinh_gd) }}</td>
                   <td style="width: 40%">
                     Số điện thoại: {{ $giadinh->sdt_gd }} <br>
                     Nghề nghiệp: {{ $giadinh->nghenghiep_gd }}

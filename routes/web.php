@@ -326,6 +326,7 @@ Route::post('/update_bangcap/{ma_bc}/{ma_vc}',[BangCapController::class, 'update
 Route::get('/delete_bangcap',[BangCapController::class, 'delete_bangcap']);
 Route::post('/delete_bangcap_check',[BangCapController::class, 'delete_bangcap_check']);
 Route::get('/delete_all_bangcap/{ma_vc}',[BangCapController::class, 'delete_all_bangcap']);
+Route::get('/bangcap_xuatfile_word/{ma_vc}',[BangCapController::class, 'bangcap_xuatfile_word']);
 
 
 

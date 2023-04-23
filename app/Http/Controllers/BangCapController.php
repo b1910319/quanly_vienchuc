@@ -13,6 +13,7 @@ use App\Models\PhanQuyen;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpWord\TemplateProcessor;
 
 class BangCapController extends Controller
 {
@@ -340,6 +341,62 @@ class BangCapController extends Controller
         $bangcap->delete();
       }
       return Redirect::to('/bangcap/'.$ma_vc);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function bangcap_xuatfile_word($ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlk || $phanquyen_qltt){
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
+        ->where('ma_vc', $ma_vc)
+        ->first();
+      $list_bangcap = BangCap::join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
+        ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
+        ->where('ma_vc', $ma_vc)
+        ->get();
+      $temp = new TemplateProcessor('public/word/bangcap_vienchuc.docx');
+      $temp->setValue('hoten_vc',$vienchuc->hoten_vc);
+      $temp->setValue('tenkhac_vc',$vienchuc->tenkhac_vc);
+      $temp->setValue('ngaysinh_vc',$vienchuc->ngaysinh_vc);
+      if($vienchuc->gioitinh_vc == 0){
+        $gioitinh_vc = 'Nam';
+      }else if($vienchuc->gioitinh_vc == 1){
+        $gioitinh_vc = 'Nữ';
+      }
+      $temp->setValue('gioitinh_vc',$gioitinh_vc);
+      $temp->setValue('ten_k',$vienchuc->ten_k);
+      $temp->setValue('user_vc',$vienchuc->user_vc);
+      $temp->setImageValue('hinh_vc', array('path' => 'public/uploads/vienchuc/'.$vienchuc->hinh_vc, 'width' => 100, 'height' => 150));
+      $bangcap_arr = array();
+      foreach($list_bangcap as $key => $bangcap){
+        $bangcap_arr[] = [
+          'stt' => $key+1, 
+          'ten_hdt' => $bangcap->ten_hdt, 
+          'ten_lbc' => $bangcap->ten_lbc, 
+          'trinhdochuyenmon_bc' => $bangcap->trinhdochuyenmon_bc, 
+          'truonghoc_bc' => $bangcap->truonghoc_bc, 
+          'nienkhoa_bc' => $bangcap->nienkhoa_bc, 
+          'sobang_bc' => $bangcap->sobang_bc,
+          'ngaycap_bc' => $bangcap->ngaycap_bc,
+          'noicap_bc' => $bangcap->noicap_bc,
+          'xephang_bc' => $bangcap->xephang_bc
+        ];
+      };
+      $temp->cloneRowAndSetValues('stt', $bangcap_arr);
+      $name_file = $vienchuc->hoten_vc;
+      $temp->saveAs($name_file.'.docx');
+      return response()->download($name_file.'.docx');
     }else{
       return Redirect::to('/home');
     }
