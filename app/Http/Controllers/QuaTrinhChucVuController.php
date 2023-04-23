@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Bac;
 use App\Models\ChucVu;
+use App\Models\Chuyen;
 use App\Models\DanToc;
+use App\Models\DungHoc;
+use App\Models\GiaHan;
 use App\Models\HeDaoTao;
 use App\Models\KhenThuong;
 use App\Models\Khoa;
@@ -17,6 +20,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
 use App\Models\QuaTrinhChucVu;
 use App\Models\QuyetDinh;
+use App\Models\ThoiHoc;
 use App\Models\ThuongBinh;
 use App\Models\Tinh;
 use App\Models\TonGiao;
@@ -24,6 +28,7 @@ use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
+use PhpOffice\PhpWord\TemplateProcessor;
 
 class QuaTrinhChucVuController extends Controller
 {
@@ -185,7 +190,15 @@ class QuaTrinhChucVuController extends Controller
           ->first();
         $kyluat = KyLuat::where('soquyetdinh_kl', $soquyetdinh_qtcv)
           ->first();
-        if(isset($quatrinhchucvu) || isset($quatrinhchucvu_qd) || isset($khenthuong) || isset($kyluat)){
+        $giahan = GiaHan::where('soquyetdinh_gh', $soquyetdinh_qtcv)
+          ->first();
+        $chuyen = Chuyen::where('soquyetdinh_c', $soquyetdinh_qtcv)
+          ->first();
+        $dunghoc = DungHoc::where('soquyetdinh_dh', $soquyetdinh_qtcv)
+          ->first();
+        $thoihoc = ThoiHoc::where('soquyetdinh_th', $soquyetdinh_qtcv)
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quatrinhchucvu_qd) || isset($khenthuong) || isset($kyluat)|| isset($giahan) || isset($chuyen) || isset($dunghoc) || isset($thoihoc)){
           return 1;
         }else{
           return 0;
@@ -208,7 +221,15 @@ class QuaTrinhChucVuController extends Controller
           ->first();
         $kyluat = KyLuat::where('soquyetdinh_kl', $soquyetdinh_qtcv)
           ->first();
-        if(isset($quatrinhchucvu) || isset($quatrinhchucvu_qd) || isset($khenthuong) || isset($kyluat)){
+        $giahan = GiaHan::where('soquyetdinh_gh', $soquyetdinh_qtcv)
+          ->first();
+        $chuyen = Chuyen::where('soquyetdinh_c', $soquyetdinh_qtcv)
+          ->first();
+        $dunghoc = DungHoc::where('soquyetdinh_dh', $soquyetdinh_qtcv)
+          ->first();
+        $thoihoc = ThoiHoc::where('soquyetdinh_th', $soquyetdinh_qtcv)
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quatrinhchucvu_qd) || isset($khenthuong) || isset($kyluat)|| isset($giahan) || isset($chuyen) || isset($dunghoc) || isset($thoihoc)){
           return 1;
         }else{
           return 0;
@@ -483,6 +504,62 @@ class QuaTrinhChucVuController extends Controller
         'list_quatrinhchucvu' => $list_quatrinhchucvu,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function quatrinhchucvu_word($ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '51')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlk || $phanquyen_qlqtcv){
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
+        ->where('ma_vc', $ma_vc)
+        ->first();
+      $list_quatrinhchucvu = QuaTrinhChucVu::join('chucvu', 'chucvu.ma_cv', '=', 'quatrinhchucvu.ma_cv')
+        ->join('nhiemky', 'nhiemky.ma_nk', '=', 'quatrinhchucvu.ma_nk')
+        ->join('vienchuc', 'vienchuc.ma_vc', '=', 'quatrinhchucvu.ma_vc')
+        ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->where('quatrinhchucvu.ma_vc', $ma_vc)
+        ->orderBy('batdau_nk', 'desc')
+        ->get();
+      $temp = new TemplateProcessor('public/word/quatrinhchucvu_vienchuc.docx');
+      $temp->setValue('hoten_vc',$vienchuc->hoten_vc);
+      $temp->setValue('tenkhac_vc',$vienchuc->tenkhac_vc);
+      $temp->setValue('ngaysinh_vc',$vienchuc->ngaysinh_vc);
+      if($vienchuc->gioitinh_vc == 0){
+        $gioitinh_vc = 'Nam';
+      }else if($vienchuc->gioitinh_vc == 1){
+        $gioitinh_vc = 'Nữ';
+      }
+      $temp->setValue('gioitinh_vc',$gioitinh_vc);
+      $temp->setValue('ten_k',$vienchuc->ten_k);
+      $temp->setValue('user_vc',$vienchuc->user_vc);
+      $temp->setImageValue('hinh_vc', array('path' => 'public/uploads/vienchuc/'.$vienchuc->hinh_vc, 'width' => 100, 'height' => 150));
+
+      $quatrinhchucvu_arr = array();
+      foreach($list_quatrinhchucvu as $key => $quatrinhchucvu){
+        $quatrinhchucvu_arr[] = [
+          'stt_qtcv' => $key+1, 
+          'batdau_nk' => $quatrinhchucvu->batdau_nk, 
+          'ketthuc_nk' => $quatrinhchucvu->ketthuc_nk, 
+          'ten_cv' => $quatrinhchucvu->ten_cv, 
+          'soquyetdinh_qtcv' => $quatrinhchucvu->soquyetdinh_qtcv, 
+          'ngayky_qtcv' => $quatrinhchucvu->ngayky_qtcv
+        ];
+      };
+      $temp->cloneRowAndSetValues('stt_qtcv', $quatrinhchucvu_arr);
+      $name_file = $vienchuc->hoten_vc;
+      $temp->saveAs($name_file.'.docx');
+      return response()->download($name_file.'.docx');
     }else{
       return Redirect::to('/home');
     }

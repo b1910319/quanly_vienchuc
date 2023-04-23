@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Imports\KhenThuongImport;
 use App\Models\Bac;
 use App\Models\ChucVu;
+use App\Models\Chuyen;
 use App\Models\DanToc;
+use App\Models\DungHoc;
+use App\Models\GiaHan;
 use App\Models\HeDaoTao;
 use App\Models\HinhThucKhenThuong;
 use App\Models\KhenThuong;
@@ -19,6 +22,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
 use App\Models\QuaTrinhChucVu;
 use App\Models\QuyetDinh;
+use App\Models\ThoiHoc;
 use App\Models\ThuongBinh;
 use App\Models\Tinh;
 use App\Models\TonGiao;
@@ -201,7 +205,15 @@ class KhenThuongController extends Controller
           ->first();
         $kyluat = KyLuat::where('soquyetdinh_kl', $soquyetdinh_kt)
           ->first();
-        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat)){
+        $giahan = GiaHan::where('soquyetdinh_gh', $soquyetdinh_kt)
+          ->first();
+        $chuyen = Chuyen::where('soquyetdinh_c', $soquyetdinh_kt)
+          ->first();
+        $dunghoc = DungHoc::where('soquyetdinh_dh', $soquyetdinh_kt)
+          ->first();
+        $thoihoc = ThoiHoc::where('soquyetdinh_th', $soquyetdinh_kt)
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat)|| isset($giahan) || isset($chuyen) || isset($dunghoc) || isset($thoihoc)){
           return 1;
         }else{
           return 0;
@@ -224,7 +236,15 @@ class KhenThuongController extends Controller
           ->first();
         $kyluat = KyLuat::where('soquyetdinh_kl', $soquyetdinh_kt)
           ->first();
-        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat)){
+        $giahan = GiaHan::where('soquyetdinh_gh', $soquyetdinh_kt)
+          ->first();
+        $chuyen = Chuyen::where('soquyetdinh_c', $soquyetdinh_kt)
+          ->first();
+        $dunghoc = DungHoc::where('soquyetdinh_dh', $soquyetdinh_kt)
+          ->first();
+        $thoihoc = ThoiHoc::where('soquyetdinh_th', $soquyetdinh_kt)
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat) || isset($giahan) || isset($chuyen) || isset($dunghoc) || isset($thoihoc)){
           return 1;
         }else{
           return 0;

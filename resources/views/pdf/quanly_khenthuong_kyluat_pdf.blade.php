@@ -30,7 +30,7 @@
       </i>
     </p>
     <p  style="font-size: 16px; font-weight: bold; text-align: center;">
-      TỔNG HỢP QUÁ TRÌNH HỌC CỦA VIÊN CHỨC
+      TỔNG HỢP QUÁ TRÌNH KHEN THƯỞNG, KỶ LUẬT CỦA VIÊN CHỨC
       <br>
     </p>
     <p>

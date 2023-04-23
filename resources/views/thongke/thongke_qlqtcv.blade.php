@@ -164,12 +164,10 @@
                         <b>Ngày ký quyết định: </b> {{ $vc->ngayky_qtcv }}
                         <br>
                         @if ($vc->file_qtcv !=' ')
-                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}">
-                            <button type="button" class="btn btn-warning button_xanhla mt-2">
-                              <i class="fa-solid fa-file text-light"></i>
+                          <a style="color: #000D6B; font-weight: bold" href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
                               &ensp;
                               File
-                            </button>
                           </a>
                         @else
                           Không có file
@@ -302,12 +300,10 @@
                         <b>Ngày ký quyết định: </b> {{ $vc->ngayky_qtcv }}
                         <br>
                         @if ($vc->file_qtcv !=' ')
-                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}">
-                            <button type="button" class="btn btn-warning button_xanhla mt-2">
-                              <i class="fa-solid fa-file text-light"></i>
+                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file text-light" style="color: #000D6B; font-weight: bold"></i>
                               &ensp;
                               File
-                            </button>
                           </a>
                         @else
                           Không có file
@@ -434,12 +430,10 @@
                         <b>Ngày ký quyết định: </b> {{ $vc->ngayky_qtcv }}
                         <br>
                         @if ($vc->file_qtcv !=' ')
-                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}">
-                            <button type="button" class="btn btn-warning button_xanhla mt-2">
-                              <i class="fa-solid fa-file text-light"></i>
+                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file text-light" style="color: #000D6B; font-weight: bold"></i>
                               &ensp;
                               File
-                            </button>
                           </a>
                         @else
                           Không có file
@@ -566,12 +560,10 @@
                         <b>Ngày ký quyết định: </b> {{ $vc->ngayky_qtcv }}
                         <br>
                         @if ($vc->file_qtcv !=' ')
-                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}">
-                            <button type="button" class="btn btn-warning button_xanhla mt-2">
-                              <i class="fa-solid fa-file text-light"></i>
+                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file text-light" style="color: #000D6B; font-weight: bold"></i>
                               &ensp;
                               File
-                            </button>
                           </a>
                         @else
                           Không có file
@@ -698,12 +690,10 @@
                         <b>Ngày ký quyết định: </b> {{ $vc->ngayky_qtcv }}
                         <br>
                         @if ($vc->file_qtcv !=' ')
-                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}">
-                            <button type="button" class="btn btn-warning button_xanhla mt-2">
-                              <i class="fa-solid fa-file text-light"></i>
+                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file text-light" style="color: #000D6B; font-weight: bold"></i>
                               &ensp;
                               File
-                            </button>
                           </a>
                         @else
                           Không có file
@@ -824,12 +814,10 @@
                         <b>Ngày ký quyết định: </b> {{ $vc->ngayky_qtcv }}
                         <br>
                         @if ($vc->file_qtcv !=' ')
-                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}">
-                            <button type="button" class="btn btn-warning button_xanhla mt-2">
-                              <i class="fa-solid fa-file text-light"></i>
+                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file text-light" style="color: #000D6B; font-weight: bold"></i>
                               &ensp;
                               File
-                            </button>
                           </a>
                         @else
                           Không có file
@@ -950,12 +938,10 @@
                         <b>Ngày ký quyết định: </b> {{ $vc->ngayky_qtcv }}
                         <br>
                         @if ($vc->file_qtcv !=' ')
-                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}">
-                            <button type="button" class="btn btn-warning button_xanhla mt-2">
-                              <i class="fa-solid fa-file text-light"></i>
+                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file text-light" style="color: #000D6B; font-weight: bold"></i>
                               &ensp;
                               File
-                            </button>
                           </a>
                         @else
                           Không có file
@@ -1076,12 +1062,10 @@
                         <b>Ngày ký quyết định: </b> {{ $vc->ngayky_qtcv }}
                         <br>
                         @if ($vc->file_qtcv !=' ')
-                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}">
-                            <button type="button" class="btn btn-warning button_xanhla mt-2">
-                              <i class="fa-solid fa-file text-light"></i>
+                          <a href="{{ asset('public/uploads/quatrinhchucvu/'.$vc->file_qtcv) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file text-light" style="color: #000D6B; font-weight: bold"></i>
                               &ensp;
                               File
-                            </button>
                           </a>
                         @else
                           Không có file

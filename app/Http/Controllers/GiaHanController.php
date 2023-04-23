@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chuyen;
 use App\Models\DungHoc;
 use App\Models\GiaHan;
 use App\Models\KhenThuong;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
 use App\Models\QuaTrinhChucVu;
 use App\Models\QuyetDinh;
+use App\Models\ThoiHoc;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 
@@ -439,7 +441,11 @@ class GiaHanController extends Controller
         $giahan = GiaHan::where('soquyetdinh_gh', $soquyetdinh_gh)
           ->where('ma_gh', '<>', $ma_gh)  
           ->first();
-        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat) || isset($dunghoc) || isset($giahan)){
+        $chuyen = Chuyen::where('soquyetdinh_c', $soquyetdinh_gh)
+          ->first();
+        $thoihoc = ThoiHoc::where('soquyetdinh_th', $soquyetdinh_gh)
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat) || isset($dunghoc) || isset($giahan) || isset($chuyen) || isset($thoihoc)){
           return 1;
         }else{
           return 0;

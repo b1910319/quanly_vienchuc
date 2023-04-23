@@ -73,7 +73,7 @@
             </div>
           </div>
           <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_giadinh/'.$ma_vc) }}">
-            <button type="button" class="btn btn-danger button_cam">
+            <button type="button" class="btn btn-danger button_do">
               <i class="fa-solid fa-trash text-light"></i>
               &ensp;
               Xoá tất cả

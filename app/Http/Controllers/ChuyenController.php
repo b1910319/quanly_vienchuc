@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
 use App\Models\QuaTrinhChucVu;
 use App\Models\QuyetDinh;
+use App\Models\ThoiHoc;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 
@@ -427,7 +428,9 @@ class ChuyenController extends Controller
         $chuyen = Chuyen::where('soquyetdinh_c', $soquyetdinh_c)
           ->where('ma_c', '<>', $ma_c)  
           ->first();
-        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat) || isset($dunghoc) || isset($giahan) || isset($chuyen)){
+        $thoihoc = ThoiHoc::where('soquyetdinh_th', $soquyetdinh_c)
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat) || isset($dunghoc) || isset($giahan) || isset($chuyen) || isset($thoihoc)){
           return 1;
         }else{
           return 0;

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chuyen;
+use App\Models\DungHoc;
+use App\Models\GiaHan;
 use App\Models\KhenThuong;
 use App\Models\KyLuat;
 use App\Models\Lop;
@@ -11,6 +14,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
 use App\Models\QuaTrinhChucVu;
 use App\Models\QuyetDinh;
+use App\Models\ThoiHoc;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 
@@ -104,7 +108,15 @@ class QuyetDinhController extends Controller
           ->first();
         $kyluat = KyLuat::where('soquyetdinh_kl', $so_qd)
           ->first();
-        if(isset($quyetdinh) || isset($quantrinhchucvu) || isset($khenthuong) || isset($kyluat)){
+        $giahan = GiaHan::where('soquyetdinh_gh', $so_qd)
+          ->first();
+        $chuyen = Chuyen::where('soquyetdinh_c', $so_qd)
+          ->first();
+        $dunghoc = DungHoc::where('soquyetdinh_dh', $so_qd)
+          ->first();
+        $thoihoc = ThoiHoc::where('soquyetdinh_th', $so_qd)
+          ->first();
+        if(isset($quyetdinh) || isset($quantrinhchucvu) || isset($khenthuong) || isset($kyluat) || isset($giahan) || isset($chuyen) || isset($dunghoc) || isset($thoihoc)){
           return 1;
         }else{
           return 0;
@@ -127,7 +139,15 @@ class QuyetDinhController extends Controller
           ->first();
         $kyluat = KyLuat::where('soquyetdinh_kl', $so_qd)
           ->first();
-        if(isset($quyetdinh) || isset($quantrinhchucvu) || isset($khenthuong) || isset($kyluat)){
+        $giahan = GiaHan::where('soquyetdinh_gh', $so_qd)
+          ->first();
+        $chuyen = Chuyen::where('soquyetdinh_c', $so_qd)
+          ->first();
+        $dunghoc = DungHoc::where('soquyetdinh_dh', $so_qd)
+          ->first();
+        $thoihoc = ThoiHoc::where('soquyetdinh_th', $so_qd)
+          ->first();
+        if(isset($quyetdinh) || isset($quantrinhchucvu) || isset($khenthuong) || isset($kyluat) || isset($giahan) || isset($chuyen) || isset($dunghoc) || isset($thoihoc)){
           return 1;
         }else{
           return 0;

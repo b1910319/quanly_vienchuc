@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-6">
     <div class="card-box">
-      <p class="fw-bold text-center" style="font-size: 22px; color: #155263">THÔNG TIN VIÊN CHỨC</p>
+      <p class="fw-bold text-center " style="font-size: 22px; color: #155263">THÔNG TIN VIÊN CHỨC</p>
       <table class="table">
         <tbody>
           <tr>

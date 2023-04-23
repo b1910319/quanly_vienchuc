@@ -531,12 +531,13 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                   <div class="col-10">
                     <h4 class="page-title">
                       <a href="{{ URL::to('home') }}">
-                        <span style="text-transform: uppercase; font-weight: bold; color: #155263; font-size: 20px;">
+                        <img src="{{ asset('public/assets/images/welcome.png') }}" alt="" class="img-fluid" style="width: 8%">
+                        {{-- <span style="text-transform: uppercase; font-weight: bold; color: #155263; font-size: 20px;">
                           <?php
                             $hoten_vc = session()->get('hoten_vc');
                             echo $hoten_vc;
                           ?>
-                        </span>
+                        </span> --}}
                       </a>
                     </h4>
                   </div>
