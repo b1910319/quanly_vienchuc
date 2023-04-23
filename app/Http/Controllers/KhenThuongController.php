@@ -30,6 +30,7 @@ use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
+use PhpOffice\PhpWord\TemplateProcessor;
 
 class KhenThuongController extends Controller
 {
@@ -405,6 +406,7 @@ class KhenThuongController extends Controller
       $khenthuong->ma_htkt = $data['ma_htkt'];
       $khenthuong->ngay_kt = $data['ngay_kt'];
       $khenthuong->noidung_kt = $data['noidung_kt'];
+      $khenthuong->soquyetdinh_kt = $data['soquyetdinh_kt'];
       $khenthuong->status_kt = $data['status_kt'];
       $get_file = $request->file('filequyetdinh_kt');
       if($get_file){
@@ -725,6 +727,89 @@ class KhenThuongController extends Controller
         'list_kyluat' => $list_kyluat,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function khenthuong_xuatfile_pdf( $ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
+        ->where('ma_vc', $ma_vc)
+        ->get();
+      $list_khenthuong= KhenThuong::join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
+        ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
+        ->where('ma_vc', $ma_vc)
+        ->get();
+      $list_kyluat= KyLuat::join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
+        ->where('ma_vc', $ma_vc)
+        ->get();
+      $pdf = PDF::loadView('pdf.khenthuong_pdf', [
+        'vienchuc' => $vienchuc,
+        'list_khenthuong' => $list_khenthuong,
+        'list_kyluat' => $list_kyluat,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function khenthuong_xuatfile_word($ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlk){
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
+        ->where('ma_vc', $ma_vc)
+        ->first();
+      $list_khenthuong= KhenThuong::join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
+        ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
+        ->where('ma_vc', $ma_vc)
+        ->orderBy('ngay_kt', 'desc')
+        ->get();
+      $temp = new TemplateProcessor('public/word/khenthuong_vienchuc.docx');
+      $temp->setValue('hoten_vc',$vienchuc->hoten_vc);
+      $temp->setValue('tenkhac_vc',$vienchuc->tenkhac_vc);
+      $temp->setValue('ngaysinh_vc',$vienchuc->ngaysinh_vc);
+      if($vienchuc->gioitinh_vc == 0){
+        $gioitinh_vc = 'Nam';
+      }else if($vienchuc->gioitinh_vc == 1){
+        $gioitinh_vc = 'Nữ';
+      }
+      $temp->setValue('gioitinh_vc',$gioitinh_vc);
+      $temp->setValue('ten_k',$vienchuc->ten_k);
+      $temp->setValue('user_vc',$vienchuc->user_vc);
+      $temp->setImageValue('hinh_vc', array('path' => 'public/uploads/vienchuc/'.$vienchuc->hinh_vc, 'width' => 100, 'height' => 150));
+      $khenthuong_arr = array();
+      foreach($list_khenthuong as $key => $khenthuong){
+        $khenthuong_arr[] = [
+          'stt_kt' => $key+1, 
+          'ten_lkt' => $khenthuong->ten_lkt, 
+          'ten_htkt' => $khenthuong->ten_htkt, 
+          'soquyetdinh_kt' => $khenthuong->soquyetdinh_kt, 
+          'ngay_kt' => date('d-m-Y') , strtotime($khenthuong->ngay_kt), 
+          'noidung_kt' => $khenthuong->noidung_kt
+        ];
+      };
+      $temp->cloneRowAndSetValues('stt_kt', $khenthuong_arr);
+      $name_file = $vienchuc->hoten_vc;
+      $temp->saveAs($name_file.'.docx');
+      return response()->download($name_file.'.docx');
     }else{
       return Redirect::to('/home');
     }
