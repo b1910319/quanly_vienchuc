@@ -866,6 +866,8 @@ Route::post('/update_kyluat/{ma_kl}/{ma_vc}',[KyLuatController::class, 'update_k
 Route::get('/delete_kyluat',[KyLuatController::class, 'delete_kyluat']);
 Route::get('/delete_all_kyluat/{ma_vc}',[KyLuatController::class, 'delete_all_kyluat']);
 Route::get('/kyluat_pdf/{ma_kl}',[KyLuatController::class, 'kyluat_pdf']);
+Route::get('/kyluat_xuatfile_pdf/{ma_vc}',[KyLuatController::class, 'kyluat_xuatfile_pdf']);
+Route::get('/kyluat_xuatfile_word/{ma_vc}',[KyLuatController::class, 'kyluat_xuatfile_word']);
 Route::post('/delete_kyluat_check',[KyLuatController::class, 'delete_kyluat_check']);
 
 

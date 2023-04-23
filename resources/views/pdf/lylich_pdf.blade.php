@@ -143,10 +143,8 @@
           <thead>
             <tr>
               <th  scope="col">#</th>
-              <th  scope="col">Loại khen thưởng</th>
-              <th  scope="col">Hình thức khen thưởng</th>
-              <th  scope="col">Ngày khen thưởng</th>
-              <th  scope="col">Nội dung khen thưởng</th>
+              <th  scope="col">Thông tin khen thưởng</th>
+              <th  scope="col">Thông tin quyết định khen thưởng</th>
             </tr>
           </thead>
           <tbody>
@@ -161,10 +159,15 @@
                 @endphp
                 <tr>
                   <td><?php echo $i ?></td>
-                  <td>{{ $khenthuong->ten_lkt }}</td>
-                  <td>{{ $khenthuong->ten_htkt }}</td>
-                  <td>{{ $khenthuong->ngay_kt }}</td>
-                  <td>{{ $khenthuong->noidung_kt }}</td>
+                  <td>
+                    - Loại khen thưởng: {{ $khenthuong->ten_lkt }} <br>
+                    - Hình thức khen thưởng: {{ $khenthuong->ten_htkt }} <br>
+                    - Nội dung khen thưởng: {{ $khenthuong->noidung_kt }} <br>
+                  </td>
+                  <td>
+                    - Số quyết định: {{ $khenthuong->soquyetdinh_kt }} <br>
+                    - Ngày ký quyết định: {{ $khenthuong->ngay_kt }}
+                  </td>
                 </tr>
               @endif
             @endforeach
@@ -175,9 +178,8 @@
           <thead>
             <tr>
               <th  scope="col">#</th>
-              <th  scope="col">Loại kỷ luật</th>
-              <th  scope="col">Ngày kỷ luật</th>
-              <th  scope="col">Lý do kỷ luật</th>
+              <th  scope="col">Thông tin kỷ luật</th>
+              <th  scope="col">Thông tin quyết định kỷ luật</th>
             </tr>
           </thead>
           <tbody>
@@ -188,9 +190,14 @@
                 @endphp
                 <tr>
                   <td><?php echo $a ?></td>
-                  <td>{{ $kyluat->ten_lkl }}</td>
-                  <td>{{ $kyluat->ngay_kl }}</td>
-                  <td style="width: 40%">{{ $kyluat->lydo_kl }}</td>
+                  <td>
+                    - Loại kỷ luật: {{ $kyluat->ten_lkl }} <br>
+                    - Lý do kỷ luật: {{ $kyluat->lydo_kl }}
+                  </td>
+                  <td>
+                    - Số quyết định: {{ $kyluat->soquyetdinh_kl }} <br>
+                    - Ngày ký quyết định: {{ $kyluat->ngay_kl }}
+                  </td>
                 </tr>
               @endif
             @endforeach
@@ -211,7 +218,7 @@
               <th  scope="col">#</th>
               <th  scope="col">Nhiệm kỳ</th>
               <th  scope="col">Chức vụ</th>
-              <th  scope="col">Ghi chú</th>
+              <th  scope="col">Thông tin quyết định</th>
             </tr>
           </thead>
           <tbody>
@@ -225,9 +232,12 @@
                 @endphp
                 <tr>
                   <td><?php echo $i ?></td>
-                  <td>{{ $qtcv->ten_nk }}</td>
+                  <td>{{ $qtcv->batdau_nk }} - {{ $qtcv->ketthuc_nk }}</td>
                   <td>{{ $qtcv->ten_cv }}</td>
-                  <td style="width: 40%">{{ $qtcv->ghichu_qtcv }}</td>
+                  <td>
+                    - Số quyết định: {{ $qtcv->soquyetdinh_qtcv }} <br>
+                    - Ngày ký: {{ $qtcv->ngayky_qtcv }}
+                  </td>
                 </tr>
               @endif
             @endforeach

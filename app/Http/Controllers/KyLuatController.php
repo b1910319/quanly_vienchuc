@@ -29,6 +29,7 @@ use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
+use PhpOffice\PhpWord\TemplateProcessor;
 
 class KyLuatController extends Controller
 {
@@ -518,6 +519,82 @@ class KyLuatController extends Controller
         'kyluat' => $kyluat,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function kyluat_xuatfile_pdf( $ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlktkl || $phanquyen_qlk){
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
+        ->where('ma_vc', $ma_vc)
+        ->get();
+      $list_kyluat= KyLuat::join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
+        ->where('ma_vc', $ma_vc)
+        ->get();
+      $pdf = PDF::loadView('pdf.kyluat_pdf', [
+        'vienchuc' => $vienchuc,
+        'list_kyluat' => $list_kyluat,
+      ]);
+      return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function kyluat_xuatfile_word($ma_vc){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '9')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlk){
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', 'vienchuc.ma_k')
+        ->where('ma_vc', $ma_vc)
+        ->first();
+        $list_kyluat= KyLuat::join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
+        ->where('ma_vc', $ma_vc)
+        ->orderBy('ngay_kl', 'desc')
+        ->get();
+      $temp = new TemplateProcessor('public/word/kyluat_vienchuc.docx');
+      $temp->setValue('hoten_vc',$vienchuc->hoten_vc);
+      $temp->setValue('tenkhac_vc',$vienchuc->tenkhac_vc);
+      $temp->setValue('ngaysinh_vc',$vienchuc->ngaysinh_vc);
+      if($vienchuc->gioitinh_vc == 0){
+        $gioitinh_vc = 'Nam';
+      }else if($vienchuc->gioitinh_vc == 1){
+        $gioitinh_vc = 'Nữ';
+      }
+      $temp->setValue('gioitinh_vc',$gioitinh_vc);
+      $temp->setValue('ten_k',$vienchuc->ten_k);
+      $temp->setValue('user_vc',$vienchuc->user_vc);
+      $temp->setImageValue('hinh_vc', array('path' => 'public/uploads/vienchuc/'.$vienchuc->hinh_vc, 'width' => 100, 'height' => 150));
+      $kyluat_arr = array();
+      foreach($list_kyluat as $key => $kyluat){
+        $kyluat_arr[] = [
+          'stt_kl' => $key+1, 
+          'ten_lkl' => $kyluat->ten_lkl, 
+          'soquyetdinh_kl' => $kyluat->soquyetdinh_kl, 
+          'ngay_kl' => $kyluat->ngay_kl, 
+          'lydo_kl' => $kyluat->lydo_kl
+        ];
+      };
+      $temp->cloneRowAndSetValues('stt_kl', $kyluat_arr);
+      $name_file = $vienchuc->hoten_vc;
+      $temp->saveAs($name_file.'.docx');
+      return response()->download($name_file.'.docx');
     }else{
       return Redirect::to('/home');
     }

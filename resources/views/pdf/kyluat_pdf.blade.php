@@ -30,7 +30,7 @@
       </i>
     </p>
     <p  style="font-size: 16px; font-weight: bold; text-align: center;">
-      TỔNG HỢP QUÁ TRÌNH KHEN THƯỞNG, KỶ LUẬT CỦA VIÊN CHỨC
+      TỔNG HỢP QUÁ TRÌNH KỶ LUẬT CỦA VIÊN CHỨC
       <br>
     </p>
     <p>
@@ -54,37 +54,35 @@
         <br>
         4. Email: {{ $vc->user_vc }} <br>
         5. Khoa: {{ $vc->ten_k }}
-        <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 13%;">
-          KHEN THƯỞNG
+        <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 8%;">
+          KỶ LUẬT
         </p>
         <table class="table">
           <thead>
             <tr>
               <th  scope="col">#</th>
-              <th  scope="col">Thông tin khen thưởng</th>
-              <th  scope="col">Thông tin quyét định</th>
+              <th  scope="col">Thông tin kỷ luật</th>
+              <th  scope="col">Thông tin quyết định</th>
             </tr>
           </thead>
           <tbody>
             @php
-              $i = 0;
               $a = 0;
             @endphp
-            @foreach ($list_khenthuong as $key => $khenthuong)
-              @if ($khenthuong->ma_vc == $vc->ma_vc)
+            @foreach ($list_kyluat as $key => $kyluat)
+              @if ($kyluat->ma_vc == $vc->ma_vc)
                 @php
-                  $i = $i+1;
+                  $a = $a+1;
                 @endphp
                 <tr>
-                  <td style="width: 5%"><?php echo $i ?></td>
-                  <td>
-                    - Loại khen thưởng: {{ $khenthuong->ten_lkt }} <br>
-                    - Hình thức khen thưởng: {{ $khenthuong->ten_htkt }} <br>
-                    - Nội dung khen thưởng: {{ $khenthuong->noidung_kt }}
+                  <td style="width: 5%"><?php echo $a ?></td>
+                  <td style="width: 50%">
+                    - Loại kỷ luật: {{ $kyluat->ten_lkl }} <br>
+                    - Lý do kỷ luật: {{ $kyluat->lydo_kl }}
                   </td>
                   <td>
-                    - Số quyết định: {{ $khenthuong->soquyetdinh_kt }} <br>
-                    - Ngày ký quyết định: {{ $khenthuong->ngay_kt }}
+                    - Số quyết định: {{ $kyluat->soquyetdinh_kl }} <br>
+                    - Ngày ký quyết định: {{ date('d-m-Y') , strtotime($kyluat->ngay_kl) }}
                   </td>
                 </tr>
               @endif

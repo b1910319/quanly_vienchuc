@@ -2959,6 +2959,7 @@ class VienChucController extends Controller
           'stt_kt' => $key+1, 
           'ten_lkt' => $khenthuong->ten_lkt, 
           'ten_htkt' => $khenthuong->ten_htkt, 
+          'soquyetdinh_kt' => $khenthuong->soquyetdinh_kt, 
           'ngay_kt' => $khenthuong->ngay_kt, 
           'noidung_kt' => $khenthuong->noidung_kt
         ];
@@ -2970,6 +2971,7 @@ class VienChucController extends Controller
         $kyluat_arr[] = [
           'stt_kl' => $key+1, 
           'ten_lkl' => $kyluat->ten_lkl, 
+          'soquyetdinh_kl' => $kyluat->soquyetdinh_kl, 
           'ngay_kl' => $kyluat->ngay_kl, 
           'lydo_kl' => $kyluat->lydo_kl
         ];

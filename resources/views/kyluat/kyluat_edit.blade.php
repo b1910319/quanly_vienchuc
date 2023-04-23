@@ -53,11 +53,16 @@
                 <td class="was-validated">
                   <div class="row">
                     <div class="col-6">
-                      <input type='file' class='form-control input_table' name="filequyetdinh_kl">
+                      <input type='file' class='form-control input_table' name="filequyetdinh_kl" 
+                      @if (!$edit->filequyetdinh_kl)
+                        required
+                      @endif
+                      
+                      >
                     </div>
                     <div class="col-6">
-                      @if ($edit->filequyetdinh_kl != ' ')
-                        <a href="{{ asset('public/uploads/khenthuong/'.$edit->filequyetdinh_kl) }}">
+                      @if ($edit->filequyetdinh_kl)
+                        <a href="{{ asset('public/uploads/kyluat/'.$edit->filequyetdinh_kl) }}">
                           <button type="button" class="btn btn-warning button_xanhla">
                             <i class="fa-solid fa-file text-light"></i>
                             &ensp;
@@ -65,7 +70,7 @@
                           </button>
                         </a>
                       @else
-                        Không có file
+                        <span style="color: #FF1E1E; font-weight: bold">Không có file</span>
                       @endif
                     </div>
                   </div>

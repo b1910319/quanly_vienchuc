@@ -69,7 +69,21 @@
               Xoá tất cả
             </button>
           </a>
-          <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+          <a href="{{ URL::to('/kyluat_xuatfile_pdf/'.$ma_vc) }}">
+            <button type="button" class="btn btn-warning fw-bold button_do">
+              <i class="fa-solid fa-file-pdf text-light"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
+          </a>
+          <a href="{{ URL::to('/kyluat_xuatfile_word/'.$ma_vc) }}">
+            <button type="button" class="btn btn-primary button_word" >
+              <i class="fa-solid fa-file-word text-light"></i>
+              &ensp;
+              Xuất file Word
+            </button>
+          </a>
+          {{-- <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
             <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
             Thống kê
           </button>
@@ -107,7 +121,7 @@
                 </tbody>
               </table>
             </div>
-          </div>
+          </div> --}}
           <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body mt-3">
               <form action="{{ URL::to('/add_kyluat/'.$ma_vc) }}" method="POST"
@@ -266,43 +280,51 @@
                   }
                 ?>
               </td>
-              <td style="width: 32%;">
-                <a href="{{ URL::to('/edit_kyluat/'.$kyluat->ma_kl.'/'.$ma_vc)}}">
-                  <button type="button" class=" btn btn-warning button_cam">
-                    <i class="fa-solid fa-pen-to-square text-light"></i>
-                    &ensp; Cập nhật
-                  </button>
-                </a>
-                <input class="ma_kl{{ $kyluat->ma_kl }}" type="hidden" value="{{ $kyluat->ma_kl }}">
-                <button type="button" class=" xoa{{ $kyluat->ma_kl }} btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
-                <?php
-                  if($kyluat->status_kl == 0){
-                    ?>
-                      <a href="{{ URL::to('/select_kyluat/'.$kyluat->ma_kl) }}">
-                        <button type="button" class="btn btn-secondary fw-bold">
-                          <i class="fa-solid fa-eye-slash text-light"></i> 
-                          &ensp; Ẩn
-                        </button>
-                      </a>
+              <td style="width: 12%;">
+                <div class="row">
+                  <div class="col-12">
+                    <a href="{{ URL::to('/edit_kyluat/'.$kyluat->ma_kl.'/'.$ma_vc)}}">
+                      <button style="width: 100%" type="button" class=" btn btn-warning button_cam">
+                        <i class="fa-solid fa-pen-to-square text-light"></i>
+                        &ensp; Cập nhật
+                      </button>
+                    </a>
+                  </div>
+                  <div class="col-12 mt-1">
+                    <input class="ma_kl{{ $kyluat->ma_kl }}" type="hidden" value="{{ $kyluat->ma_kl }}">
+                    <button style="width: 100%" type="button" class=" xoa{{ $kyluat->ma_kl }} btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
+                  </div>
+                  <div class="col-12 mt-1">
                     <?php
-                  }else if($kyluat->status_kl == 1) {
+                      if($kyluat->status_kl == 0){
+                        ?>
+                          <a href="{{ URL::to('/select_kyluat/'.$kyluat->ma_kl) }}">
+                            <button style="width: 100%" type="button" class="btn btn-secondary fw-bold">
+                              <i class="fa-solid fa-eye-slash text-light"></i> 
+                              &ensp; Ẩn
+                            </button>
+                          </a>
+                        <?php
+                      }else if($kyluat->status_kl == 1) {
+                        ?>
+                          <a href="{{ URL::to('/select_kyluat/'.$kyluat->ma_kl) }}">
+                            <button style="width: 100%" type="button" class="btn btn-success fw-bold">
+                              <i class="fa-solid fa-eye text-light"></i>
+                              &ensp; Hiển thị
+                            </button>
+                          </a>
+                        <?php
+                      }
                     ?>
-                      <a href="{{ URL::to('/select_kyluat/'.$kyluat->ma_kl) }}">
-                        <button type="button" class="btn btn-success fw-bold">
-                          <i class="fa-solid fa-eye text-light"></i>
-                          &ensp; Hiển thị
-                        </button>
-                      </a>
-                    <?php
-                  }
-                ?>
-                <a href="{{ URL::to('/kyluat_pdf/'.$kyluat->ma_kl) }}">
+                  </div>
+                </div>
+                {{-- <a href="{{ URL::to('/kyluat_pdf/'.$kyluat->ma_kl) }}">
                   <button type="button" class="btn btn-warning button_xanhla">
                     <i class="fa-solid fa-file text-light"></i>
                     &ensp;
                     Xuất file
                   </button>
-                </a>
+                </a> --}}
               </td>
             </tr>
           @endforeach
