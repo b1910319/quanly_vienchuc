@@ -3,7 +3,7 @@
 <style>
   *{
     font-family: DejaVu Sans !important;
-    font-size: 11px;
+    font-size: 12px;
   }
 </style>
 <head>
@@ -122,36 +122,37 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th  scope="col">Tên người hướng dẫn</th>
-                      <th  scope="col">Email</th>
-                      <th  scope="col">Bằng được cấp</th>
-                      <th  scope="col">Ngày cấp bằng</th>
-                      <th  scope="col">Xếp loại</th>
-                      <th  scope="col">Đề tài tốt nghiệp</th>
-                      <th  scope="col">Ngày về nước</th>
-                      <th  scope="col">Đánh giá của cơ sở</th>
-                      <th  scope="col">Kiến nghị</th>
+                      <th  scope="col">Thông tin người hướng dẫn</th>
+                      <th  scope="col">Thông tin bằng cấp</th>
+                      <th  scope="col">Thông tin khác</th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach ($list_quatrinhhoc_ketqua as $ketqua)
                       @if ($ketqua->ma_l == $lop_vc->ma_l)
                         <tr>
-                          <td>{{ $ketqua->tennguoihuongdan_kq }}</td>
-                          <td>{{ $ketqua->emailnguoihuongdan_kq }}</td>
-                          <td>{{ $ketqua->bangduoccap_kq }}</td>
-                          <td>{{ $ketqua->ngaycapbang_kq }}</td>
-                          <td>{{ $ketqua->xeploai_kq }}</td>
-                          <td>{{ $ketqua->detaitotnghiep_kq }}</td>
-                          <td>{{ $ketqua->ngayvenuoc_kq }}</td>
-                          <td>{{ $ketqua->danhgiacuacoso_kq }}</td>
-                          <td>{{ $ketqua->kiennghi_kq }}</td>
+                          <td>
+                            - Tên người hướng dẫn: {{ $ketqua->tennguoihuongdan_kq }} <br>
+                            - Email người hướng dẫn: {{ $ketqua->emailnguoihuongdan_kq }}
+                          </td>
+                          <td>
+                            - Bằng được cấp: {{ $ketqua->bangduoccap_kq }} <br>
+                            - Ngày cấp bằng: {{ $ketqua->ngaycapbang_kq }} <br>
+                            - Xếp loại: {{ $ketqua->xeploai_kq }}
+                            - Đề tài tốt nghiệp: {{ $ketqua->detaitotnghiep_kq }}
+                          </td>
+                          <td>
+                            - Ngày về nước: {{ date('d-m-Y') , strtotime($ketqua->ngayvenuoc_kq) }}
+                            - Đánh giá của cơ sở: {{ $ketqua->danhgiacuacoso_kq }} <br>
+                            - Kiến nghị: {{ $ketqua->kiennghi_kq }}
+                          </td>
                         </tr>
                       @endif
                     @endforeach
                   </tbody>
                 </table>
               @endif
+              @break
             @endforeach
             @foreach ($list_quatrinhhoc_giahan as $giahan)
               @if ($giahan->ma_l == $lop_vc->ma_l)
@@ -161,49 +162,62 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th  scope="col">Thời gian gia hạn</th>
-                      <th  scope="col">Lý do gia hạn</th>
+                      <th  scope="col">Thông tin gia hạn</th>
+                      <th  scope="col">Thông tin quyết định</th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach ($list_quatrinhhoc_giahan as $giahan)
                       @if ($giahan->ma_l == $lop_vc->ma_l)
                         <tr>
-                          <td>{{ $giahan->thoigian_gh }}</td>
-                          <td>{{ $giahan->lydo_gh }}</td>
+                          <td>
+                            - Thời gian gia hạn: {{ $giahan->thoigian_gh }} <br>
+                            - Lý do gia hạn: {{ $giahan->lydo_gh }}
+                          </td>
+                          <td>
+                            - Số quyết định: {{ $giahan->soquyetdinh_gh }} <br>
+                            - Ngày ký quyết định: {{ $giahan->ngaykyquyetdinh_gh }}
+                          </td>
                         </tr>
                       @endif
                     @endforeach
                   </tbody>
                 </table>
               @endif
+              @break
             @endforeach
             @foreach ($list_quatrinhhoc_dunghoc as $dunghoc )
               @if ($dunghoc->ma_l == $lop_vc->ma_l)
-                <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 15%;">
+                <p style="font-weight: bold; border-bottom: 2px solid #E83A14; width: 10%;">
                   DỪNG HỌC
                 </p>
                 <table class="table">
                   <thead>
                     <tr>
-                      <th  scope="col">Ngày bắt đầu tạm dừng</th>
-                      <th  scope="col">Ngày kết thúc tạm dừng</th>
-                      <th  scope="col">Lý do tạm dừng</th>
+                      <th  scope="col">Thông tin dừng học</th>
+                      <th  scope="col">Thông tin quyết định</th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach ($list_quatrinhhoc_dunghoc as $dunghoc)
                       @if ($dunghoc->ma_l == $lop_vc->ma_l)
                         <tr>
-                          <td>{{ $dunghoc->batdau_dh }}</td>
-                          <td>{{ $dunghoc->ketthuc_dh }}</td>
-                          <td>{{ $dunghoc->lydo_dh }}</td>
+                          <td>
+                            - Ngày bắt đầu tạm dừng: {{ $dunghoc->batdau_dh }} <br>
+                            - Ngày kết thúc tạm dừng: {{ $dunghoc->ketthuc_dh }} <br>
+                            - Lý do xin tạm dừng: {{ $dunghoc->lydo_dh }}
+                          </td>
+                          <td>
+                            - Số quyết định: {{ $dunghoc->soquyetdinh_dh }} <br>
+                            - Ngày ký quyết định: {{ $dunghoc->ngaykyquyetdinh_dh }}
+                          </td>
                         </tr>
                       @endif
                     @endforeach
                   </tbody>
                 </table>
               @endif
+              @break
             @endforeach
             @foreach ($list_quatrinhhoc_chuyen as $chuyen)
               @if ($chuyen->ma_l == $lop_vc->ma_l)
@@ -213,22 +227,29 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th  scope="col">Nội dung xin chuyển</th>
-                      <th  scope="col">Lý do chuyển</th>
+                      <th  scope="col">Thông tin xin chuyển</th>
+                      <th  scope="col">Thông tin quyết định</th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach ($list_quatrinhhoc_chuyen as $chuyen)
                       @if ($chuyen->ma_l == $lop_vc->ma_l)
                         <tr>
-                          <td>{{ $chuyen->noidung_c }}</td>
-                          <td>{{ $chuyen->lydo_c }}</td>
+                          <td style="width: 60%;">
+                            - Nội dung xin chuyển: {{ $chuyen->noidung_c }} <br>
+                            - Lý do xin chuyển: {{ $chuyen->lydo_c }}
+                          </td>
+                          <td>
+                            - Số quyết định: {{ $chuyen->soquyetdinh_c }} <br>
+                            - Ngày ký quyết định: {{ $chuyen->ngaykyquyetdinh_c }}
+                          </td>
                         </tr>
                       @endif
                     @endforeach
                   </tbody>
                 </table>
               @endif
+              @break
             @endforeach
             @foreach ($list_quatrinhhoc_thoihoc as $thoihoc)
               @if ($thoihoc->ma_l == $lop_vc->ma_l)
@@ -238,22 +259,29 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th  scope="col">Ngày thôi học</th>
-                      <th  scope="col">Lý do thôi học</th>
+                      <th  scope="col">Thông tin thôi học</th>
+                      <th  scope="col">Thông tin quyết định</th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach ($list_quatrinhhoc_thoihoc as $thoihoc)
                       @if ($thoihoc->ma_l == $lop_vc->ma_l)
                         <tr>
-                          <td>{{ $thoihoc->ngay_th }}</td>
-                          <td>{{ $thoihoc->lydo_th }}</td>
+                          <td>
+                            - Ngày thôi học: {{ $thoihoc->ngay_th }} <br>
+                            - Lý do thôi học: {{ $thoihoc->lydo_th }}
+                          </td>
+                          <td>
+                            - Số quyết định: {{ $thoihoc->soquyetdinh_th }} <br>
+                            - Ngày ký quyết định: {{ $thoihoc->ngaykyquyetdinh_th }}
+                          </td>
                         </tr>
                       @endif
                     @endforeach
                   </tbody>
                 </table>
               @endif
+              @break
             @endforeach
           @endif
         @endforeach

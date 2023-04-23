@@ -397,10 +397,10 @@
           @endforeach
         </tbody>
       </table>
-      <button type="submit" class="btn btn-warning button_xanhla">
-        <i class="fa-solid fa-file text-light"></i>
+      <button type="submit" class="btn btn-warning fw-bold button_do">
+        <i class="fa-solid fa-file-pdf text-light"></i>
         &ensp;
-        Xuất file
+        Xuất file PDF
       </button>
     </form>
 
