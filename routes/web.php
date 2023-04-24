@@ -335,6 +335,8 @@ Route::get('/nghihuu',[NghiHuuController::class, 'nghihuu']);
 Route::post('/updated_nghihuu',[NghiHuuController::class, 'updated_nghihuu']);
 Route::get('/nghihuu_pdf',[NghiHuuController::class, 'nghihuu_pdf']);
 Route::get('/nghihuu_excel',[NghiHuuController::class, 'nghihuu_excel']);
+Route::post('/search_nghihuu',[NghiHuuController::class, 'search_nghihuu']);
+Route::get('/sap_nghihuu',[NghiHuuController::class, 'sap_nghihuu']);
 
 // --------------------------------------------------------
 

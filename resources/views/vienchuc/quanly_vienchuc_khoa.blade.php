@@ -6,8 +6,8 @@
     <div class="alert alert-light color_alert" role="alert" >
       ________THÔNG TIN VIÊN CHỨC________
     </div>
-    <div class="row">
-      <div class="col-2 mb-3">
+    <div class="row mb-2">
+      {{-- <div class="col-2 mb-3">
         <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="width: 100%">
           <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
           Thống kê
@@ -57,7 +57,7 @@
             </table>
           </div>
         </div>
-      </div>
+      </div> --}}
       <div class="col-2">
         <div class="dropdown" style="width: 100%;">
           <button class="dropbtn button_loc" >

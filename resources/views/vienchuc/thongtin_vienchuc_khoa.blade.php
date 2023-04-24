@@ -4,7 +4,7 @@
   <div class="card-box col-2">
     <div class="row">
       <div class="mb-2">
-        <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="width: 100%">
+        {{-- <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="width: 100%">
           <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
           Thống kê
         </button>
@@ -58,7 +58,7 @@
               </tbody>
             </table>
           </div>
-        </div>
+        </div> --}}
       </div>
       <a href="{{ URL::to('thongtin_vienchuc_khoa') }}">
         <button type="button" class="btn btn-light fw-bold" style="width: 100%; ">

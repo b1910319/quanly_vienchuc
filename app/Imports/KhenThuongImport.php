@@ -21,6 +21,7 @@ class KhenThuongImport implements ToModel
       'soquyetdinh_kt'     => $row[3],
       'ngay_kt'     => $row[4],
       'noidung_kt'     => $row[5],
+      'filequyetdinh_kt'     => $row[6],
     ]);
   }
 }
