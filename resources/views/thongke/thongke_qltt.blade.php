@@ -2188,7 +2188,113 @@
         </div>
       </div>
     @endif
-
+    @if (isset($list_nghi_5) )
+      <div class="alert alert-light color_alert" role="alert" >
+        ________DANH SÁCH VIÊN CHỨC NGHỈ________
+      </div>
+      <p style="font-weight: bold; color: #D36B00; font-size: 18px">
+        Danh sách được lọc theo:
+        @foreach ($list_danhmucnghi as $danhmucnghi )
+          @if ($danhmucnghi->ma_dmn == $ma_dmn)
+            <span class="badge badge rounded-pill text-bg-primary">{{ $danhmucnghi->ten_dmn }}</span>
+          @endif
+        @endforeach
+      </p>
+      <table class="table" id="mytable">
+        <thead class="color_table">
+          <tr>
+            <th class="text-light" scope="col">STT</th>
+            <th class="text-light" scope="col">Thông tin viên chức </th>
+            <th class="text-light" scope="col">Khoa</th>
+            <th class="text-light" scope="col">Thông tin nghỉ</th>
+            <th class="text-light" scope="col">Thông tin quyết định</th>
+          </tr>
+        </thead>
+        <tbody  >
+          @foreach($list_nghi_5 as $key => $vc)
+            <tr>
+              <td>{{ $key+1 }}</td>
+              <td>
+                <div class="row ">
+                  <div class="col-md-12">
+                    <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
+                      style="height: 100px; overflow: auto;">
+                      <p>
+                        <b> Tên viên chức:</b> {{ $vc->hoten_vc }} <br>
+                        <b> Số điện thoại:</b> {{ $vc->sdt_vc }} <br>
+                        <b> Email: </b> {{ $vc->user_vc }} <br>
+                        <b> Ngày sinh: </b> {{ $vc->ngaysinh_vc }} <br>
+                        <b> Giới tính: </b>
+                        @if ($vc->giotinh_vc == 0)
+                          Nam
+                        @else
+                          Nữ
+                        @endif
+                        <br>
+                        <b> Địa chỉ hiện tại: </b> {{ $vc->hientai_vc }} <br>
+                        <b> Địa chỉ thường trú: </b> {{ $vc->thuongtru_vc }} <br>
+                        <b> Trình độ phổ thông: </b> {{ $vc->trinhdophothong_vc }} <br>
+                        <b> Ngoại ngữ: </b> {{ $vc->ngoaingu_vc }} <br>
+                        <b> Tin học: </b> {{ $vc->tinhoc_vc }} <br>
+                        <b> Ngày vào đảng: </b> {{ $vc->ngayvaodang_vc }} <br>
+                        <b> Ngày chính thức: </b> {{ $vc->ngaychinhthuc_vc }} <br>
+                        <b> Ngày bắt đầu làm việc: </b> {{ $vc->ngaybatdaulamviec_vc }} <br>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>
+                - Danh mục nghỉ: {{ $vc->ten_dmn }} ({{ $vc->ma_dmn }}) <br>
+                - Ngày bắt đầu nghỉ: {{ $vc->batdau_qtn }}<br>
+                - Ghi chú: {{ $vc->ghichu_qtn }} <br>
+                @if ($vc->file_qtn)
+                  <a href="{{ asset('public/uploads/quatrinhnghi/'.$vc->file_qtn) }}" style="color: #000D6B; font-weight: bold">
+                    <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                    File 
+                  </a>
+                @else
+                  <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                @endif
+              </td>
+              <td>
+                - Số quyết định: {{ $vc->soquyetdinh_qtn }} <br>
+                - Ngày ký quyết định: {{ $vc->ngaykyquyetdinh_qtn }} <br>
+                @if ($vc->filequyetdinh_qtn)
+                  <a href="{{ asset('public/uploads/quatrinhnghi/'.$vc->filequyetdinh_qtn) }}" style="color: #000D6B; font-weight: bold">
+                    <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                    File 
+                  </a>
+                @else
+                  <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                @endif
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qltt_loc_nghi_5_pdf/'.$ma_dmn) }}">
+            <button type="button" class="btn btn-warning button_do" style=" width: 100%;">
+              <i class="fa-solid fa-file-pdf text-light"></i>
+              &ensp;
+              Xuất file PDF
+            </button>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="{{ URL::to('/thongke_qltt_loc_nghi_5_excel/'.$ma_dmn) }}">
+            <button type="button" class="btn btn-warning button_xanhla" style=" width: 100%;">
+              <i class="fa-solid fa-file-excel text-light"></i>
+              &ensp;
+              Xuất file Excel
+            </button>
+          </a>
+        </div>
+      </div>
+    @endif
   </div>
 </div>
 <script>
@@ -2381,6 +2487,16 @@
                   $ten_k = $khoa->ten_k;
                   $tong = $count->sum;
                   echo "{ year: '$ten_k', value: $tong },";
+                }
+              }
+            }
+          }else if(isset($count_nghi_5)){
+            foreach ($count_nghi_5 as $key => $count){
+              foreach($list_danhmucnghi as $key => $danhmucnghi){
+                if($count->ma_dmn == $danhmucnghi->ma_dmn){
+                  $ten_dmn = $danhmucnghi->ten_dmn;
+                  $tong = $count->sum;
+                  echo "{ year: '$ten_dmn', value: $tong },";
                 }
               }
             }

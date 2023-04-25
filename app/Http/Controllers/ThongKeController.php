@@ -2056,6 +2056,43 @@ class ThongKeController extends Controller
           ->with('phanquyen_qlk', $phanquyen_qlk)
           ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
           ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+      }else if (isset($data['ma_dmn'])) {
+        $count_nghi_5 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->join('quatrinhnghi', 'quatrinhnghi.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('danhmucnghi', 'danhmucnghi.ma_dmn', '=', 'quatrinhnghi.ma_dmn')
+          ->select(DB::raw('count(quatrinhnghi.ma_vc) as sum, danhmucnghi.ma_dmn'))
+          ->groupBy('danhmucnghi.ma_dmn')
+          ->get();
+        $list_nghi_5 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->join('quatrinhnghi', 'quatrinhnghi.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('danhmucnghi', 'danhmucnghi.ma_dmn', '=', 'quatrinhnghi.ma_dmn')
+          ->where('danhmucnghi.ma_dmn', $data['ma_dmn'])
+          ->get();
+        return view('thongke.thongke_qltt')
+          ->with('title', $title)
+
+          ->with('count_nghi_5', $count_nghi_5)
+
+          ->with('list_khoa', $list_khoa)
+          ->with('list_loaibangcap', $list_loaibangcap)
+          ->with('list_ngach', $list_ngach)
+          ->with('list_hedaotao', $list_hedaotao)
+          ->with('list_chucvu', $list_chucvu)
+          ->with('list_tinh', $list_tinh)
+          ->with('list_dantoc', $list_dantoc)
+          ->with('list_tongiao', $list_tongiao)
+          ->with('list_nghi_5', $list_nghi_5)
+          ->with('list_danhmucnghi', $list_danhmucnghi)
+
+          ->with('ma_dmn', $data['ma_dmn'])
+
+          ->with('list_thuongbinh', $list_thuongbinh)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
       }
     } else {
       return Redirect::to('/home');
@@ -2187,7 +2224,7 @@ class ThongKeController extends Controller
     }
   }
 
-    public function thongke_qltt_loc_nghi_4_pdf( $ma_k, $batdau, $ketthuc){
+  public function thongke_qltt_loc_nghi_4_pdf( $ma_k, $batdau, $ketthuc){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -2223,6 +2260,46 @@ class ThongKeController extends Controller
       ->first();
     if ($phanquyen_admin || $phanquyen_qltt) {
       return (new ThongKeQLTT_nghi_4Export( $ma_k, $batdau, $ketthuc))->download('Danh-sach-vien-chuc.xlsx');
+    } else {
+      return Redirect::to('/home');
+    }
+  }
+
+    public function thongke_qltt_loc_nghi_5_pdf($ma_dmn){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if ($phanquyen_admin || $phanquyen_qltt) {
+      $title = '';
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('quatrinhnghi', 'quatrinhnghi.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('danhmucnghi', 'danhmucnghi.ma_dmn', '=', 'quatrinhnghi.ma_dmn')
+        ->where('danhmucnghi.ma_dmn', $ma_dmn)
+        ->get();
+      $pdf = PDF::loadView('pdf.thongke_qltt_nghi_pdf', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+      ]);
+      return $pdf->stream();
+    } else {
+      return Redirect::to('/home');
+    }}
+  public function thongke_qltt_loc_nghi_5_excel($ma_dmn){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if ($phanquyen_admin || $phanquyen_qltt) {
+      return (new ThongKeQLTT_nghi_5Export($ma_dmn))->download('Danh-sach-vien-chuc.xlsx');
     } else {
       return Redirect::to('/home');
     }
