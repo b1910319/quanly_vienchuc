@@ -933,14 +933,14 @@
                 </div>
               </div>
             </td>
-            <td style="width: 17%"> 
-              <a href="{{ URL::to('/quyetdinh_dihoc_pdf/'.$danhsach->ma_l.'/'.$danhsach->ma_vc) }}">
+            <td style="width: 8%"> 
+              {{-- <a href="{{ URL::to('/quyetdinh_dihoc_pdf/'.$danhsach->ma_l.'/'.$danhsach->ma_vc) }}">
                 <button type="button" class="btn btn-warning button_xanhla">
                   <i class="fa-solid fa-file text-light"></i>
                   &ensp;
                   Xuất file
                 </button>
-              </a>
+              </a> --}}
               <input class="ma_vc{{ $danhsach->ma_vc }}" type="hidden" value="{{ $danhsach->ma_vc }}">
               <input class="ma_l{{ $danhsach->ma_l }}" type="hidden" value="{{ $danhsach->ma_l }}">
               <button type="button" class=" xoa{{ $danhsach->ma_l }}{{ $danhsach->ma_vc }} btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>

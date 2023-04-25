@@ -93,30 +93,38 @@
             <table class="table">
               <thead class="color_table">
                 <tr>
-                  <th class="text-light" scope="col">Tên người hướng dẫn</th>
-                  <th class="text-light" scope="col">Email người hướng dẫn</th>
-                  <th class="text-light" scope="col">Bằng được cấp</th>
-                  <th class="text-light" scope="col">Ngày cấp bằng</th>
-                  <th class="text-light" scope="col">Xếp loại</th>
-                  <th class="text-light" scope="col">Đề tài tốt nghiệp</th>
-                  <th class="text-light" scope="col">Ngày về nước</th>
-                  <th class="text-light" scope="col">Đánh giá của cơ sở</th>
-                  <th class="text-light" scope="col">Kiến nghị</th>
+                  <th class="text-light" scope="col">Thông tin người hướng dẫn</th>
+                  <th class="text-light" scope="col">Thông tin bằng cấp</th>
+                  <th class="text-light" scope="col">Thông tin liên quan</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($list_quatrinhhoc_ketqua as $ketqua)
                   @if ($ketqua->ma_l == $lop_vc->ma_l)
                     <tr>
-                      <td>{{ $ketqua->tennguoihuongdan_kq }}</td>
-                      <td>{{ $ketqua->emailnguoihuongdan_kq }}</td>
-                      <td>{{ $ketqua->bangduoccap_kq }}</td>
-                      <td style="width: 8%">{{ $ketqua->ngaycapbang_kq }}</td>
-                      <td>{{ $ketqua->xeploai_kq }}</td>
-                      <td>{{ $ketqua->detaitotnghiep_kq }}</td>
-                      <td style="width: 8%">{{ $ketqua->ngayvenuoc_kq }}</td>
-                      <td>{{ $ketqua->danhgiacuacoso_kq }}</td>
-                      <td>{{ $ketqua->kiennghi_kq }}</td>
+                      <td>
+                        <b>- Tên người hướng dẫn: </b>{{ $ketqua->tennguoihuongdan_kq }} <br>
+                        <b>- Email người hướng dẫn: </b>{{ $ketqua->emailnguoihuongdan_kq }} <br>
+                      </td>
+                      <td>
+                        <b>- Bằng được cấp: </b>{{ $ketqua->bangduoccap_kq }} <br>
+                        <b>- Ngày cấp bằng: </b>{{ date('d-m-Y') , strtotime($ketqua->ngaycapbang_kq) }} <br>
+                        <b>- Xếp loại: </b>{{ $ketqua->xeploai_kq }} <br>
+                        <b>- Đề tài tốt nghiệp: </b>{{ $ketqua->detaitotnghiep_kq }} <br>
+                      </td>
+                      <td>
+                        <b>- Ngày về nước:</b> {{ date('d-m-Y') , strtotime($ketqua->ngayvenuoc_kq) }} <br>
+                        <b>- Đánh giá của cơ sở: </b> {{ $ketqua->danhgiacuacoso_kq }} <br>
+                        <b>- Kiến nghị: </b>{{ $ketqua->kiennghi_kq }} <br>
+                        @if ($ketqua->file_kq)
+                          <a href="{{ asset('public/uploads/ketqua/'.$ketqua->file_kq) }}" style="color: #000D6B; font-weight: bold">
+                            <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                            File quyết định
+                          </a>
+                        @else
+                          <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                        @endif
+                      </td>
                     </tr>
                   @endif
                 @endforeach

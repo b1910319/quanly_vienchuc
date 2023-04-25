@@ -238,11 +238,20 @@
           <ol>
             @foreach ($list_khenthuong as $khenthuong )
               <li>
-                <span class="date">{{ $khenthuong->ngay_kt }}</span>
+                <span class="date">{{ date('d-m-Y') , strtotime($khenthuong->ngay_kt) }}</span>
                 <b style="font-weight: bold; font-size: 22px">{{ $khenthuong->ten_lkt }}</b>
                 <br>
-                Hình thức khen thưởng: {{ $khenthuong->ten_htkt }} <br>
-                Nội dung khen thưởng: {{ $khenthuong->noidung_kt }}
+                <b>- Hình thức khen thưởng: </b> {{ $khenthuong->ten_htkt }} <br>
+                <b>- Nội dung khen thưởng:</b> {{ $khenthuong->noidung_kt }} <br>
+                <b>- Số quyết định: </b>{{ $khenthuong->soquyetdinh_kt }} <br>
+                @if ($khenthuong->filequyetdinh_kt)
+                  <a href="{{ asset('public/uploads/khenthuong/'.$khenthuong->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
+                    <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                    File quyết định
+                  </a>
+                @else
+                  <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                @endif
               </li>
             @endforeach
           </ol>
@@ -259,8 +268,16 @@
                 <span class="date">{{ $qtcv->batdau_nk }} - {{ $qtcv->ketthuc_nk }}</span>
                 <b style="font-weight: bold; font-size: 22px">{{ $qtcv->ten_cv }}</b>
                 <br>
-                <b>Số quyết định: </b>{{ $qtcv->soquyetdinh_qtcv }} <br>
-                <b>Ngày ký quyết định: </b>{{ $qtcv->ngayky_qtcv }} <br>
+                <b>- Số quyết định: </b>{{ $qtcv->soquyetdinh_qtcv }} <br>
+                <b>- Ngày ký quyết định: </b>{{ date('d-m-Y') , strtotime($qtcv->ngayky_qtcv) }} <br>
+                @if ($qtcv->file_qtcv)
+                  <a href="{{ asset('public/uploads/quatrinhchucvu/'.$qtcv->file_qtcv) }}" style="color: #000D6B; font-weight: bold">
+                    <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                    File quyết định
+                  </a>
+                @else
+                  <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                @endif
               </li>
             @endforeach
           </ol>
@@ -274,10 +291,19 @@
           <ol>
             @foreach ($list_kyluat as $kyluat )
               <li>
-                <span class="date">{{ $kyluat->ngay_kl }}</span>
+                <span class="date">{{ date('d-m-Y') , strtotime($kyluat->ngay_kl) }}</span>
                 <b style="font-weight: bold; font-size: 22px">{{ $kyluat->ten_lkl }}</b>
                 <br>
-                Lý do kỷ luật: {{ $kyluat->lydo_kl }}
+                <b>- Lý do kỷ luật:</b> {{ $kyluat->lydo_kl }} <br>
+                <b>- Số quyết định: </b>{{ $kyluat->soquyetdinh_kl }} <br>
+                @if ($kyluat->filequyetdinh_kl)
+                  <a href="{{ asset('public/uploads/kyluat/'.$kyluat->filequyetdinh_kl) }}" style="color: #000D6B; font-weight: bold">
+                    <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                    File quyết định
+                  </a>
+                @else
+                  <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                @endif
               </li>
             @endforeach
           </ol>
@@ -391,28 +417,36 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th  scope="col">Thời gian gia hạn</th>
-                      <th  scope="col">Lý do gia hạn</th>
-                      <th  scope="col">File</th>
+                      <th  scope="col">Thông tin gia hạn</th>
+                      <th  scope="col">Thông tin quyết định</th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach ($list_quatrinhhoc_giahan as $giahan)
                       @if ($giahan->ma_l == $lop_vc->ma_l)
                         <tr>
-                          <td>{{ $giahan->thoigian_gh }}</td>
-                          <td>{{ $giahan->lydo_gh }}</td>
                           <td>
-                            @if ($giahan->file_gh !=' ')
-                              <a href="{{ asset('public/uploads/giahan/'.$giahan->file_gh) }}">
-                                <button type="button" class="btn btn-warning button_xanhla">
-                                  <i class="fa-solid fa-file text-light"></i>
-                                  &ensp;
-                                  File
-                                </button>
+                            - Thời gian gia hạn: {{ $giahan->thoigian_gh }} <br>
+                            - Lý do xin gia hạn: {{ $giahan->lydo_gh }} <br>
+                            @if ($giahan->file_gh)
+                              <a href="{{ asset('public/uploads/giahan/'.$giahan->file_gh) }}" style="color: #000D6B; font-weight: bold">
+                                <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                                File gia hạn
                               </a>
                             @else
-                              Không có file
+                              <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                            @endif
+                          </td>
+                          <td>
+                            - Số quyết định: {{ $giahan->soquyetdinh_gh }} <br>
+                            - Ngày ký quyết định: {{ $giahan->ngayky_quyetdinh_gh }} <br>
+                            @if ($giahan->filequyetdinh_gh)
+                              <a href="{{ asset('public/uploads/giahan/'.$giahan->filequyetdinh_gh) }}" style="color: #000D6B; font-weight: bold">
+                                <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                                File quyết định
+                              </a>
+                            @else
+                              <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
                             @endif
                           </td>
                         </tr>
@@ -430,30 +464,36 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th  scope="col">Ngày bắt đầu tạm dừng</th>
-                      <th  scope="col">Ngày kết thúc tạm dừng</th>
-                      <th  scope="col">Lý do tạm dừng</th>
-                      <th  scope="col">File</th>
+                      <th  scope="col">Thông tin xin tạm dừng</th>
+                      <th  scope="col">Thông tin quyết định</th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach ($list_quatrinhhoc_dunghoc as $dunghoc)
                       @if ($dunghoc->ma_l == $lop_vc->ma_l)
                         <tr>
-                          <td>{{ $dunghoc->batdau_dh }}</td>
-                          <td>{{ $dunghoc->ketthuc_dh }}</td>
-                          <td>{{ $dunghoc->lydo_dh }}</td>
                           <td>
-                            @if ($dunghoc->file_dh !=' ')
-                              <a href="{{ asset('public/uploads/dunghoc/'.$dunghoc->file_dh) }}">
-                                <button type="button" class="btn btn-warning button_xanhla">
-                                  <i class="fa-solid fa-file text-light"></i>
-                                  &ensp;
-                                  File
-                                </button>
+                            - Ngày bắt đầu: {{ $dunghoc->batdau_dh }} <br>
+                            - Ngày kết thúc: {{ $dunghoc->ketthuc_dh }} <br>
+                            @if ($dunghoc->file_dh)
+                              <a href="{{ asset('public/uploads/dunghoc/'.$dunghoc->file_dh) }}" style="color: #000D6B; font-weight: bold">
+                                <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                                File gia hạn
                               </a>
                             @else
-                              Không có file
+                              <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                            @endif
+                          </td>
+                          <td>
+                            - Số quyết định: {{ $dunghoc->soquyetdinh_dh }} <br>
+                            - Ngày ký quyết định: {{ $dunghoc->ngaykyquyetdinh_dh }} <br>
+                            @if ($dunghoc->filequyetdinh_dh)
+                              <a href="{{ asset('public/uploads/dunghoc/'.$dunghoc->filequyetdinh_dh) }}" style="color: #000D6B; font-weight: bold">
+                                <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                                File quyết định
+                              </a>
+                            @else
+                              <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
                             @endif
                           </td>
                         </tr>
@@ -471,28 +511,36 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th  scope="col">Nội dung xin chuyển</th>
-                      <th  scope="col">Lý do chuyển</th>
-                      <th  scope="col">File</th>
+                      <th  scope="col">Thông tin xin chuyển</th>
+                      <th  scope="col">Thông tin quyết định</th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach ($list_quatrinhhoc_chuyen as $chuyen)
                       @if ($chuyen->ma_l == $lop_vc->ma_l)
                         <tr>
-                          <td>{{ $chuyen->noidung_c }}</td>
-                          <td>{{ $chuyen->lydo_c }}</td>
-                          <td>
-                            @if ($chuyen->file_c !=' ')
-                              <a href="{{ asset('public/uploads/chuyen/'.$chuyen->file_c) }}">
-                                <button type="button" class="btn btn-warning button_xanhla">
-                                  <i class="fa-solid fa-file text-light"></i>
-                                  &ensp;
-                                  File
-                                </button>
+                          <td style="width: 60%">
+                            - Nội dung xin chuyển: {{ $chuyen->noidung_c }} <br>
+                            - Lý do xin chuyển: {{ $chuyen->lydo_c }} <br>
+                            @if ($chuyen->file_c)
+                              <a href="{{ asset('public/uploads/chuyen/'.$chuyen->file_c) }}" style="color: #000D6B; font-weight: bold">
+                                <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                                File gia hạn
                               </a>
                             @else
-                              Không có file
+                              <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                            @endif
+                          </td>
+                          <td>
+                            - Số quyết định: {{ $chuyen->soquyetdinh_c }} <br>
+                            - Ngày ký quyết định: {{ date('d-m-Y') , strtotime($chuyen->ngaykyquyetdinh_c) }} <br>
+                            @if ($chuyen->filequyetdinh_c)
+                              <a href="{{ asset('public/uploads/chuyen/'.$chuyen->filequyetdinh_c) }}" style="color: #000D6B; font-weight: bold">
+                                <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                                File quyết định
+                              </a>
+                            @else
+                              <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
                             @endif
                           </td>
                         </tr>
@@ -510,28 +558,36 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th  scope="col">Ngày thôi học</th>
-                      <th  scope="col">Lý do thôi học</th>
-                      <th  scope="col">File</th>
+                      <th  scope="col">Thông tin thôi học</th>
+                      <th  scope="col">Thông tin quyết định</th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach ($list_quatrinhhoc_thoihoc as $thoihoc)
                       @if ($thoihoc->ma_l == $lop_vc->ma_l)
                         <tr>
-                          <td>{{ $thoihoc->ngay_th }}</td>
-                          <td>{{ $thoihoc->lydo_th }}</td>
                           <td>
-                            @if ($thoihoc->file_th !=' ')
-                              <a href="{{ asset('public/uploads/thoihoc/'.$thoihoc->file_th) }}">
-                                <button type="button" class="btn btn-warning button_xanhla">
-                                  <i class="fa-solid fa-file text-light"></i>
-                                  &ensp;
-                                  File
-                                </button>
+                            - Ngày thôi học: {{ date('d-m-Y') , strtotime($thoihoc->ngay_th) }} <br>
+                            - Lý do xin thôi học: {{ $thoihoc->lydo_th }} <br>
+                            @if ($thoihoc->file_th)
+                              <a href="{{ asset('public/uploads/thoihoc/'.$thoihoc->file_th) }}" style="color: #000D6B; font-weight: bold">
+                                <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                                File gia hạn
                               </a>
                             @else
-                              Không có file
+                              <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                            @endif
+                          </td>
+                          <td>
+                            - Số quyết định: {{ $thoihoc->soquyetdinh_th }} <br>
+                            - Ngày ký quyết định: {{ date('d-m-Y') , strtotime($thoihoc->ngaykyquyetdinh_th) }} <br>
+                            @if ($thoihoc->filequyetdinh_th)
+                              <a href="{{ asset('public/uploads/thoihoc/'.$thoihoc->filequyetdinh_th) }}" style="color: #000D6B; font-weight: bold">
+                                <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                                File quyết định
+                              </a>
+                            @else
+                              <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
                             @endif
                           </td>
                         </tr>
@@ -552,16 +608,32 @@
           <ol>
             @foreach ($list_bangcap as $key => $bangcap )
               <li>
-                <span class="date">{{ $bangcap->ngaycap_bc }}</span>
+                <span class="date">{{ date('d-m-Y') , strtotime($bangcap->ngaycap_bc) }}</span>
                 <b style="font-weight: bold; font-size: 22px">{{ $bangcap->truonghoc_bc }}</b>
                 <br>
-                <b>Hệ đào tạo: </b> {{ $bangcap->ten_hdt }} <br>
-                <b>Loại bằng cấp: </b> {{ $bangcap->ten_lbc }} <br>
-                <b>Trình độ chuyên môn: </b> {{ $bangcap->trinhdochuyenmon_bc }} <br>
-                <b>Niên khoá: </b> {{ $bangcap->nienkhoa_bc }} <br>
-                <b>Số bằng: </b> {{ $bangcap->sobang_bc }} <br>
-                <b>Nơi cấp: </b> {{ $bangcap->noicap_bc }} <br>
-                <b>Xếp hạng: </b> {{ $bangcap->xephang_bc }}
+                <div class="row">
+                  <div class="col-6">
+                    <b>- Hệ đào tạo: </b> {{ $bangcap->ten_hdt }} <br>
+                    <b>- Loại bằng cấp: </b> {{ $bangcap->ten_lbc }} <br>
+                    <b>- Trình độ chuyên môn: </b> {{ $bangcap->trinhdochuyenmon_bc }} <br>
+                    <b>- Niên khoá: </b> {{ $bangcap->tunam_bc }} - {{ $bangcap->dennam_bc }} <br>
+                  </div>
+                  <div class="col-6">
+                    <b>- Số bằng: </b> {{ $bangcap->sobang_bc }} <br>
+                    <b>- Nơi cấp: </b> {{ $bangcap->noicap_bc }} <br>
+                    <b>- Xếp hạng: </b> {{ $bangcap->xephang_bc }} <br>
+                    @if ($bangcap->file_bc)
+                      <a href="{{ asset('public/uploads/bangcap/'.$bangcap->file_bc) }}" style="color: #000D6B; font-weight: bold">
+                        <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                        File gia hạn
+                      </a>
+                    @else
+                      <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                    @endif
+                  </div>
+                </div>
+                
+                
               </li>
             @endforeach
           </ol>

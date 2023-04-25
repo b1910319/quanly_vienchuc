@@ -19,6 +19,7 @@ use App\Http\Controllers\BangCapController;
 use App\Http\Controllers\ChauLucController;
 use App\Http\Controllers\ChuyenController;
 use App\Http\Controllers\DanhMucLopController;
+use App\Http\Controllers\DanhMucNghiController;
 use App\Http\Controllers\DanhSachController;
 use App\Http\Controllers\DungHocController;
 use App\Http\Controllers\GiaHanController;
@@ -1158,7 +1159,17 @@ Route::post('/quanlychucvu_xuatfile',[QuaTrinhChucVuController::class, 'quanlych
 
 
 
-
+Route::get('/danhmucnghi',[DanhMucNghiController::class, 'danhmucnghi']);
+Route::get('/check_ten_dmn',[DanhMucNghiController::class, 'check_ten_dmn']);
+Route::get('/check_ten_dmn_edit',[DanhMucNghiController::class, 'check_ten_dmn_edit']);
+Route::post('/add_danhmucnghi',[DanhMucNghiController::class, 'add_danhmucnghi']);
+// Route::post('/add_danhmucnghi_excel',[DanhMucNghiController::class, 'add_danhmucnghi_excel']);
+Route::get('/select_danhmucnghi/{ma_dmn}',[DanhMucNghiController::class, 'select_danhmucnghi']);
+Route::get('/edit_danhmucnghi/{ma_dmn}',[DanhMucNghiController::class, 'edit_danhmucnghi']);
+Route::post('/update_danhmucnghi/{ma_dmn}',[DanhMucNghiController::class, 'update_danhmucnghi']);
+Route::get('/delete_danhmucnghi',[DanhMucNghiController::class, 'delete_danhmucnghi']);
+Route::get('/delete_all_danhmucnghi',[DanhMucNghiController::class, 'delete_all_danhmucnghi']);
+Route::post('/delete_danhmucnghi_check',[DanhMucNghiController::class, 'delete_danhmucnghi_check']);
 
 
 

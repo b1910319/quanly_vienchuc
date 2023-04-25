@@ -217,44 +217,56 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
                   <li>
-                    <a href="{{ URL::to('/dantoc') }}">
-                      Dân Tộc
+                    <a href="javascript: void(0);" aria-expanded="false">Quản lý thành <br> phần
+                      <span class="menu-arrow"></span>
                     </a>
-                  </li>
-                  <li>
-                    <a href="{{ URL::to('/chucvu') }}">
-                      Chức Vụ
-                    </a>
-                  </li>
-                  <li>
-                    <a href="{{ URL::to('/ngach') }}">
-                      Ngạch viên chức
-                    </a>
-                  </li>
-                  <li>
-                    <a href="{{ URL::to('/bac') }}">
-                      Bậc
-                    </a>
-                  </li>
-                  <li>
-                    <a href="{{ URL::to('/tongiao') }}">
-                      Tôn giáo
-                    </a>
-                  </li>
-                  <li>
-                    <a href="{{ URL::to('/thuongbinh') }}">
-                      Thương binh
-                    </a>
-                  </li>
-                  <li>
-                    <a href="{{ URL::to('/loaibangcap') }}">
-                      Loại bằng cấp
-                    </a>
-                  </li>
-                  <li>
-                    <a href="{{ URL::to('/hedaotao') }}">
-                      Hệ đào tạo
-                    </a>
+                    <ul class="nav-third-level nav" aria-expanded="false">
+                      <li>
+                        <a href="{{ URL::to('/dantoc') }}">
+                          Dân Tộc
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ URL::to('/chucvu') }}">
+                          Chức Vụ
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ URL::to('/ngach') }}">
+                          Ngạch viên chức
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ URL::to('/bac') }}">
+                          Bậc
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ URL::to('/tongiao') }}">
+                          Tôn giáo
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ URL::to('/thuongbinh') }}">
+                          Thương binh
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ URL::to('/loaibangcap') }}">
+                          Loại bằng cấp
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ URL::to('/hedaotao') }}">
+                          Hệ đào tạo
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ URL::to('/danhmucnghi') }}">
+                          Danh mục nghĩ
+                        </a>
+                      </li>
+                    </ul>
                   </li>
                   <li>
                     <a href="javascript: void(0);" aria-expanded="false">Quản lý thông tin viên chức
@@ -326,23 +338,30 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
                   <li>
-                    <a href="{{ URL::to('/loaikhenthuong') }}">
-                      Loại khen thưởng
+                    <a href="javascript: void(0);" aria-expanded="false">Quản lý thành <br> phần
+                      <span class="menu-arrow"></span>
                     </a>
-                  </li>
-                  <li>
-                    <a href="{{ URL::to('/hinhthuckhenthuong') }}">
-                      Hình thức khen thưởng
-                    </a>
+                    <ul class="nav-third-level nav" aria-expanded="false">
+                      <li>
+                        <a href="{{ URL::to('/loaikhenthuong') }}">
+                          Loại khen thưởng
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ URL::to('/hinhthuckhenthuong') }}">
+                          Hình thức khen thưởng
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ URL::to('/loaikyluat') }}">
+                          Loại kỷ luật
+                        </a>
+                      </li>
+                    </ul>
                   </li>
                   <li>
                     <a href="{{ URL::to('/khenthuong') }}">
                       Khen thưởng
-                    </a>
-                  </li>
-                  <li>
-                    <a href="{{ URL::to('/loaikyluat') }}">
-                      Loại kỷ luật
                     </a>
                   </li>
                   <li>
@@ -372,10 +391,22 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
                   <li>
-                    <a href="{{ URL::to('/danhmuclop') }}">Danh mục đào tạo</a>
-                  </li>
-                  <li>
-                    <a href="{{ URL::to('/chauluc') }}">Châu lục</a>
+                    <a href="javascript: void(0);" aria-expanded="false">Quản lý thành <br> phần
+                      <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-third-level nav" aria-expanded="false">
+                      <li>
+                        <a href="{{ URL::to('/danhmuclop') }}">Danh mục đào tạo</a>
+                      </li>
+                      <li>
+                        <a href="{{ URL::to('/chauluc') }}">Châu lục</a>
+                      </li>
+                      <li>
+                        <a href="{{ URL::to('/loaikyluat') }}">
+                          Loại kỷ luật
+                        </a>
+                      </li>
+                    </ul>
                   </li>
                   <li>
                     <a href="{{ URL::to('/lop') }}">Quản lý lớp học</a>

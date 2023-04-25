@@ -81,7 +81,7 @@
             </button>
             </a>
           @endif
-          <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+          {{-- <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
             <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
             Thống kê
           </button>
@@ -119,7 +119,7 @@
                 </tbody>
               </table>
             </div>
-          </div>
+          </div> --}}
           <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body mt-3">
               <form action="{{ URL::to('/add_ketqua') }}" method="POST"
@@ -378,7 +378,7 @@
                       }
                     ?>
                   </div>
-                  <div class="col-12 mt-1">
+                  {{-- <div class="col-12 mt-1">
                     <a href="{{ URL::to('/ketqua_pdf/'.$ketqua->ma_kq) }}">
                       <button type="button" class="btn btn-warning button_xanhla" style="width: 100%">
                         <i class="fa-solid fa-file-pdf text-light"></i>
@@ -386,7 +386,7 @@
                         Xuất file
                       </button>
                     </a>
-                  </div>
+                  </div> --}}
                 </div>
               </td>
             </tr>
