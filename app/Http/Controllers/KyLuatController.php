@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
 use App\Models\QuaTrinhChucVu;
+use App\Models\QuaTrinhNghi;
 use App\Models\QuyetDinh;
 use App\Models\ThoiHoc;
 use App\Models\ThuongBinh;
@@ -216,7 +217,9 @@ class KyLuatController extends Controller
           ->first();
         $thoihoc = ThoiHoc::where('soquyetdinh_th', $soquyetdinh_kl)
           ->first();
-        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat) || isset($giahan) || isset($chuyen) || isset($dunghoc) || isset($thoihoc)){
+        $quatrinhnghi = QuaTrinhNghi::where('soquyetdinh_qtn', $soquyetdinh_kl)
+          ->first();
+        if(isset($quatrinhchucvu) || isset($quyetdinh) || isset($khenthuong) || isset($kyluat) || isset($giahan) || isset($chuyen) || isset($dunghoc) || isset($thoihoc) || isset($quatrinhnghi)){
           return 1;
         }else{
           return 0;
@@ -247,7 +250,9 @@ class KyLuatController extends Controller
           ->first();
         $thoihoc = ThoiHoc::where('soquyetdinh_th', $soquyetdinh_kl)
           ->first();
-        if(isset($khenthuong) || isset($quatrinhchucvu) || isset($quyetdinh) || isset($kyluat) || isset($giahan) || isset($chuyen) || isset($dunghoc) || isset($thoihoc) ){
+        $quatrinhnghi = QuaTrinhNghi::where('soquyetdinh_qtn', $soquyetdinh_kl)
+          ->first();
+        if(isset($khenthuong) || isset($quatrinhchucvu) || isset($quyetdinh) || isset($kyluat) || isset($giahan) || isset($chuyen) || isset($dunghoc) || isset($thoihoc) || isset($quatrinhnghi)){
           return 1;
         }else{
           return 0;
@@ -284,6 +289,9 @@ class KyLuatController extends Controller
         $kyluat->filequyetdinh_kl = $new_file;
       }
       $kyluat->save();
+      if($data['ma_lkl'] == 6){
+        $vienchuc->status_vc = VienChuc::find($ma_vc)->update(['status_vc' => 3]);
+      }
       $request->session()->put('message','Thêm thành công');
       return Redirect::to('/kyluat_add/'.$ma_vc);
     }else{

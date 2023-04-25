@@ -147,11 +147,7 @@
                   </div>
                 </div>
               </td>
-                @foreach ($list_vienchuc as $vienchuc  )
-                  @if ($vienchuc->ma_vc == $vc->ma_vc)
-                    <td>{{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})</td>
-                  @endif
-                @endforeach
+              <td>{{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})</td>
               <td>
                 <div class="row ">
                   <div class="col-md-12">

@@ -134,7 +134,7 @@
                         <tr>
                           <th scope="row">Loại kỷ luật: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="ma_lkl" required>
+                            <select class="custom-select input_table" id="ma_lkl" name="ma_lkl" required>
                               <option value="" >Chọn loại kỷ luật</option>
                               @foreach ($list_loaikyluat as $loaikyluat )
                                 <option value="{{ $loaikyluat->ma_lkl }}" >{{ $loaikyluat->ten_lkl }}</option>

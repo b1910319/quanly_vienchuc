@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ThongKeQLTT_nghi_allExport;
 use App\Exports\ThongKeQLK_KyLuat_Loc_AllExport;
 use App\Exports\ThongKeQLK_KyLuat_Loc_2Export;
 use App\Exports\ThongKeQLK_KyLuat_Loc_3Export;
@@ -135,6 +136,7 @@ use App\Models\HinhThucKhenThuong;
 use App\Models\KetQua;
 use App\Models\KhenThuong;
 use App\Models\Khoa;
+use App\Models\DanhMucNghi;
 use App\Models\KyLuat;
 use App\Models\LoaiBangCap;
 use App\Models\LoaiKhenThuong;
@@ -211,6 +213,8 @@ class ThongKeController extends Controller
         ->get();
       $list_thuongbinh = ThuongBinh::orderBy('ten_tb', 'asc')
         ->get();
+      $list_danhmucnghi = DanhMucNghi::orderBy('ten_dmn', 'asc')
+        ->get();
       $count = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
         ->where('status_vc', '<>', '3')
@@ -242,6 +246,7 @@ class ThongKeController extends Controller
         ->with('list_tinh', $list_tinh)
         ->with('list_dantoc', $list_dantoc)
         ->with('list_tongiao', $list_tongiao)
+        ->with('list_danhmucnghi', $list_danhmucnghi)
 
         ->with('list_thuongbinh', $list_thuongbinh)
         ->with('phanquyen_admin', $phanquyen_admin)
@@ -1555,8 +1560,7 @@ class ThongKeController extends Controller
     }
   }
 
-  public function thongke_qltt_nghihuu_loc(Request $request)
-  {
+  public function thongke_qltt_nghihuu_loc(Request $request){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
@@ -1715,8 +1719,7 @@ class ThongKeController extends Controller
     }
   }
 
-  public function thongke_qltt_loc_nghihuu_all_pdf($ma_k, $batdau, $ketthuc)
-  {
+  public function thongke_qltt_loc_nghihuu_all_pdf($ma_k, $batdau, $ketthuc){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
     $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
@@ -1837,6 +1840,143 @@ class ThongKeController extends Controller
       ->first();
     if ($phanquyen_admin || $phanquyen_qltt) {
       return (new ThongKeQLTT_nghihuu_timeExport($batdau, $ketthuc))->download('Danh-sach-vien-chuc.xlsx');
+    } else {
+      return Redirect::to('/home');
+    }
+  }
+
+  public function thongke_qltt_nghi_loc(Request $request){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '9')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $title = "Thống kê";
+    if ($phanquyen_admin || $phanquyen_qltt) {
+      $list_loaibangcap = LoaiBangCap::orderBy('ten_lbc', 'asc')
+        ->get();
+      $list_hedaotao = HeDaoTao::orderBy('ten_hdt', 'asc')
+        ->get();
+      $list_ngach = Ngach::orderBy('ten_n', 'asc')
+        ->get();
+      $list_chucvu = ChucVu::orderBy('ten_cv', 'asc')
+        ->get();
+      $list_khoa = Khoa::orderBy('ten_k', 'asc')
+        ->get();
+      $list_tinh = Tinh::orderBy('ten_t', 'asc')
+        ->get();
+      $list_dantoc = DanToc::orderBy('ten_dt', 'asc')
+        ->get();
+      $list_tongiao = TonGiao::orderBy('ten_tg', 'asc')
+        ->get();
+      $list_thuongbinh = ThuongBinh::orderBy('ten_tb', 'asc')
+        ->get();
+      $list_danhmucnghi = DanhMucNghi::orderBy('ten_dmn', 'asc')
+        ->get();
+      $data = $request->all();
+      if (isset($data['ma_dmn']) && isset($data['ma_k']) &&  isset($data['batdau'])  && isset($data['ketthuc'])) {
+        $count_nghi_all = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->join('quatrinhnghi', 'quatrinhnghi.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('danhmucnghi', 'danhmucnghi.ma_dmn', '=', 'quatrinhnghi.ma_dmn')
+          ->select(DB::raw('count(quatrinhnghi.ma_vc) as sum, danhmucnghi.ma_dmn'))
+          ->groupBy('danhmucnghi.ma_dmn')
+          ->get();
+        $list_nghi_all = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->join('quatrinhnghi', 'quatrinhnghi.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('danhmucnghi', 'danhmucnghi.ma_dmn', '=', 'quatrinhnghi.ma_dmn')
+          ->where('danhmucnghi.ma_dmn', $data['ma_dmn'])
+          ->where('vienchuc.ma_k', $data['ma_k'])
+          ->whereBetween('quatrinhnghi.batdau_qtn', [$data['batdau'], $data['ketthuc']])
+          ->get();
+        return view('thongke.thongke_qltt')
+          ->with('title', $title)
+
+          ->with('count_nghi_all', $count_nghi_all)
+
+          ->with('list_khoa', $list_khoa)
+          ->with('list_loaibangcap', $list_loaibangcap)
+          ->with('list_ngach', $list_ngach)
+          ->with('list_hedaotao', $list_hedaotao)
+          ->with('list_chucvu', $list_chucvu)
+          ->with('list_tinh', $list_tinh)
+          ->with('list_dantoc', $list_dantoc)
+          ->with('list_tongiao', $list_tongiao)
+          ->with('list_nghi_all', $list_nghi_all)
+          ->with('list_danhmucnghi', $list_danhmucnghi)
+
+          ->with('ma_k', $data['ma_k'])
+          ->with('ma_dmn', $data['ma_dmn'])
+          ->with('batdau', $data['batdau'])
+          ->with('ketthuc', $data['ketthuc'])
+
+          ->with('list_thuongbinh', $list_thuongbinh)
+          ->with('phanquyen_admin', $phanquyen_admin)
+          ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+          ->with('phanquyen_qltt', $phanquyen_qltt)
+          ->with('phanquyen_qlk', $phanquyen_qlk)
+          ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+          ->with('phanquyen_qlktkl', $phanquyen_qlktkl);
+      }
+    } else {
+      return Redirect::to('/home');
+    }
+
+  }
+
+  public function thongke_qltt_loc_nghi_all_pdf($ma_dmn, $ma_k, $batdau, $ketthuc){
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if ($phanquyen_admin || $phanquyen_qltt) {
+      $title = '';
+      $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        ->join('quatrinhnghi', 'quatrinhnghi.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('danhmucnghi', 'danhmucnghi.ma_dmn', '=', 'quatrinhnghi.ma_dmn')
+        ->where('danhmucnghi.ma_dmn', $ma_dmn)
+        ->where('vienchuc.ma_k', $ma_k)
+        ->whereBetween('quatrinhnghi.batdau_qtn', [$batdau, $ketthuc])
+        ->get();
+      $pdf = PDF::loadView('pdf.thongke_qltt_nghi_pdf', [
+        'vienchuc' => $vienchuc,
+        'title' => $title,
+      ]);
+      return $pdf->stream();
+    } else {
+      return Redirect::to('/home');
+    }
+  }
+  public function thongke_qltt_loc_nghi_all_excel($ma_dmn, $ma_k, $batdau, $ketthuc)
+  {
+    $this->check_login();
+    $ma_vc = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+      ->where('ma_q', '=', '8')
+      ->first();
+    if ($phanquyen_admin || $phanquyen_qltt) {
+      return (new ThongKeQLTT_nghi_allExport($ma_dmn, $ma_k, $batdau, $ketthuc))->download('Danh-sach-vien-chuc.xlsx');
     } else {
       return Redirect::to('/home');
     }

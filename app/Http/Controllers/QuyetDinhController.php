@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
 use App\Models\QuaTrinhChucVu;
+use App\Models\QuaTrinhNghi;
 use App\Models\QuyetDinh;
 use App\Models\ThoiHoc;
 use App\Models\VienChuc;
@@ -116,7 +117,9 @@ class QuyetDinhController extends Controller
           ->first();
         $thoihoc = ThoiHoc::where('soquyetdinh_th', $so_qd)
           ->first();
-        if(isset($quyetdinh) || isset($quantrinhchucvu) || isset($khenthuong) || isset($kyluat) || isset($giahan) || isset($chuyen) || isset($dunghoc) || isset($thoihoc)){
+        $quatrinhnghi = QuaTrinhNghi::where('soquyetdinh_qtn', $so_qd)
+          ->first();
+        if(isset($quyetdinh) || isset($quantrinhchucvu) || isset($khenthuong) || isset($kyluat) || isset($giahan) || isset($chuyen) || isset($dunghoc) || isset($thoihoc) || isset($quatrinhnghi)){
           return 1;
         }else{
           return 0;
@@ -147,7 +150,9 @@ class QuyetDinhController extends Controller
           ->first();
         $thoihoc = ThoiHoc::where('soquyetdinh_th', $so_qd)
           ->first();
-        if(isset($quyetdinh) || isset($quantrinhchucvu) || isset($khenthuong) || isset($kyluat) || isset($giahan) || isset($chuyen) || isset($dunghoc) || isset($thoihoc)){
+        $quatrinhnghi = QuaTrinhNghi::where('soquyetdinh_qtn', $so_qd)
+          ->first();
+        if(isset($quyetdinh) || isset($quantrinhchucvu) || isset($khenthuong) || isset($kyluat) || isset($giahan) || isset($chuyen) || isset($dunghoc) || isset($thoihoc) || isset($quatrinhnghi)){
           return 1;
         }else{
           return 0;

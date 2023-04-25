@@ -480,6 +480,41 @@
             @endforeach
           @endif
         @endforeach
+        32. Qúa trình nghỉ
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Thông tin quá trình nghỉ</th>
+              <th scope="col">Thông tin quyết định</th>
+            </tr>
+          </thead>
+          <tbody>
+            @php
+              $i = 0;
+            @endphp
+            @foreach ($list_quatrinhnghi as $key => $quatrinhnghi )
+              @if ($quatrinhnghi->ma_vc == $vc->ma_vc)
+                @php
+                  $i++;
+                @endphp
+                <tr>
+                  <th scope="row"><?php echo $i ?></th>
+                  <td>
+                    <b>- Danh mục nghỉ: </b>{{ $quatrinhnghi->ten_dmn }} <br>
+                    <b>- Bắt đầu nghỉ: </b>{{ $quatrinhnghi->batdau_qtn }} <br>
+                    <b>- Kết thúc nghỉ: </b>{{ $quatrinhnghi->ketthuc_qtn }} <br>
+                    <b>- Ghi chú: </b>{{ $quatrinhnghi->ghichu_qtn }} <br>
+                  </td>
+                  <td>
+                    <b>- Số quyết định: </b>{{ $quatrinhnghi->soquyetdinh_qtn }} <br>
+                    <b>- Ngày ký quyết định: </b>{{ $quatrinhnghi->ngaykyquyetdinh_qtn }} <br>
+                  </td>
+                </tr>
+              @endif
+            @endforeach
+          </tbody>
+        </table>
         <span style="margin-left: 450px">
           ..............Ngày......tháng......năm.........
         </span> <br>

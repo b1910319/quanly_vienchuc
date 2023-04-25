@@ -61,13 +61,13 @@
               </td>
               <td style="width: 12%">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary button_cam" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn btn-primary button_cam" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $vienchuc->ma_vc }}">
                   <i class="fa-solid fa-pen-to-square text-light"></i>
                     &ensp; Cập nhật
                 </button>
 
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="exampleModal{{ $vienchuc->ma_vc }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                       <div class="modal-header">

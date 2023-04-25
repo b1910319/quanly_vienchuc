@@ -678,6 +678,61 @@
         </table>
       </div>
     </div>
+    <div class="row">
+      <div class="card-box">
+        <p class="text-center fw-bold" style=" color: #000d6b; font-size: 22px">QUÁ TRÌNH NGHỈ CỦA VIÊN CHỨC</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Thông tin quá trình nghỉ</th>
+              <th scope="col">Thông tin quyết định</th>
+            </tr>
+          </thead>
+          <tbody>
+            @php
+              $i = 0;
+            @endphp
+            @foreach ($list_quatrinhnghi as $key => $quatrinhnghi )
+              @if ($quatrinhnghi->ma_vc == $vc->ma_vc)
+                @php
+                  $i++;
+                @endphp
+                <tr>
+                  <th scope="row"><?php echo $i ?></th>
+                  <td>
+                    <b>- Danh mục nghỉ: </b>{{ $quatrinhnghi->ten_dmn }} <br>
+                    <b>- Bắt đầu nghỉ: </b>{{ $quatrinhnghi->batdau_qtn }} <br>
+                    <b>- Kết thúc nghỉ: </b>{{ $quatrinhnghi->ketthuc_qtn }} <br>
+                    <b>- Ghi chú: </b>{{ $quatrinhnghi->ghichu_qtn }} <br>
+                    @if ($quatrinhnghi->file_qtn)
+                      <a href="{{ asset('public/uploads/quatrinhnghi/'.$quatrinhnghi->file_qtn) }}" style="color: #000D6B; font-weight: bold">
+                        <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                        File gia hạn
+                      </a>
+                    @else
+                      <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                    @endif
+                  </td>
+                  <td>
+                    <b>- Số quyết định: </b>{{ $quatrinhnghi->soquyetdinh_qtn }} <br>
+                    <b>- Ngày ký quyết định: </b>{{ $quatrinhnghi->ngaykyquyetdinh_qtn }} <br>
+                    @if ($quatrinhnghi->filequyetdinh_qtn)
+                      <a href="{{ asset('public/uploads/quatrinhnghi/'.$quatrinhnghi->filequyetdinh_qtn) }}" style="color: #000D6B; font-weight: bold">
+                        <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                        File gia hạn
+                      </a>
+                    @else
+                      <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                    @endif
+                  </td>
+                </tr>
+              @endif
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 @endsection

@@ -26,6 +26,7 @@ use App\Models\Ngach;
 use App\Models\NoiSinh;
 use App\Models\PhanQuyen;
 use App\Models\QuaTrinhChucVu;
+use App\Models\QuaTrinhNghi;
 use App\Models\QueQuan;
 use App\Models\ThoiHoc;
 use App\Models\ThuongBinh;
@@ -2690,6 +2691,9 @@ class VienChucController extends Controller
         ->get();
       $list_quatrinhhoc_thoihoc = ThoiHoc::where('ma_vc', $ma_vc)
         ->get();
+      $list_quatrinhnghi = QuaTrinhNghi::where('ma_vc', $ma_vc)
+        ->where('status_qtn', '0')
+        ->get();
       return view('vienchuc.lylich_chitiet')
         ->with('vienchuc', $vienchuc)
         ->with('vienchuc_ma', $vienchuc_ma)
@@ -2713,6 +2717,7 @@ class VienChucController extends Controller
         ->with('list_quatrinhhoc_dunghoc', $list_quatrinhhoc_dunghoc)
         ->with('list_quatrinhhoc_chuyen', $list_quatrinhhoc_chuyen)
         ->with('list_quatrinhhoc_thoihoc', $list_quatrinhhoc_thoihoc)
+        ->with('list_quatrinhnghi', $list_quatrinhnghi)
 
         ->with('title', $title)
 
@@ -2793,6 +2798,9 @@ class VienChucController extends Controller
         ->get();
       $list_quatrinhhoc_thoihoc = ThoiHoc::whereIn('ma_vc', $ma_vc)
         ->get();
+      $list_quatrinhnghi = QuaTrinhNghi::join('danhmucnghi', 'danhmucnghi.ma_dmn', '=', 'quatrinhnghi.ma_dmn')
+        ->whereIn('ma_vc', $ma_vc)
+        ->get();
       $pdf = PDF::loadView('pdf.lylich_pdf', [
         'vienchuc' => $vienchuc,
         'list_noisinh' => $list_noisinh,
@@ -2814,6 +2822,7 @@ class VienChucController extends Controller
         'list_quatrinhhoc_dunghoc' => $list_quatrinhhoc_dunghoc,
         'list_quatrinhhoc_chuyen' => $list_quatrinhhoc_chuyen,
         'list_quatrinhhoc_thoihoc' => $list_quatrinhhoc_thoihoc,
+        'list_quatrinhnghi' => $list_quatrinhnghi
       ]);
       return $pdf->stream();
     }else{
@@ -2875,6 +2884,9 @@ class VienChucController extends Controller
         ->join('danhmuclop', 'danhmuclop.ma_dml', '=', 'lop.ma_dml')
         ->join('quocgia', 'quocgia.ma_qg', '=', 'lop.ma_qg')
         ->where('danhsach.ma_vc', $ma_vc)
+        ->get();
+      $list_quatrinhnghi = QuaTrinhNghi::join('danhmucnghi', 'danhmucnghi.ma_dmn', '=', 'quatrinhnghi.ma_dmn')
+        ->where('ma_vc', $ma_vc)
         ->get();
       $temp = new TemplateProcessor('public/word/lylich.docx');
       $temp->setValue('hoten_vc',$vienchuc->hoten_vc);
@@ -3036,6 +3048,20 @@ class VienChucController extends Controller
         ];
       };
       $temp->cloneRowAndSetValues('stt_gd', $giadinh_arr);
+
+      $quatrinhnghi_arr = array();
+      foreach($list_quatrinhnghi as $key => $quatrinhnghi){
+        $quatrinhnghi_arr[] = [
+          'stt_qtn' => $key+1, 
+          'ten_dmn' => $quatrinhnghi->ten_dmn, 
+          'batdau_qtn' => $quatrinhnghi->batdau_qtn, 
+          'ketthuc_qtn' => $quatrinhnghi->ketthuc_qtn, 
+          'ghichu_qtn' => $quatrinhnghi->ghichu_qtn, 
+          'soquyetdinh_qtn' => $quatrinhnghi->soquyetdinh_qtn, 
+          'ngaykyquyetdinh_qtn' => $quatrinhnghi->ngaykyquyetdinh_qtn
+        ];
+      };
+      $temp->cloneRowAndSetValues('stt_qtn', $quatrinhnghi_arr);
       $name_file = $vienchuc->hoten_vc;
       $temp->saveAs($name_file.'.docx');
       return response()->download($name_file.'.docx');
