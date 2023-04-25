@@ -601,10 +601,56 @@
                     @if ($edit->status_vc == 1)
                       <option selected value="1" >Ẩn</option>
                       <option value="0" >Hiển thị</option>
+                      <option value="2" >Nghỉ hưu</option>
+                      <option value="3" >Nghỉ việc</option>
+                      <option value="4" >Chuyển công tác</option>
+                      <option value="5" >Nghỉ hưu trước hạn</option>
                     @else
                       @if ($edit->status_vc == 0)
-                        <option value="0" selected >Hiển thị</option>
-                        <option value="1" >Ẩn</option>
+                      <option value="1" >Ẩn</option>
+                      <option value="0" selected >Hiển thị</option>
+                      <option value="2" >Nghỉ hưu</option>
+                      <option value="3" >Nghỉ việc</option>
+                      <option value="4" >Chuyển công tác</option>
+                      <option value="5" >Nghỉ hưu trước hạn</option>
+                      @else
+                        @if ($edit->status_vc == 2)
+                        <option  value="1" >Ẩn</option>
+                        <option value="0" >Hiển thị</option>
+                        <option value="2" selected >Nghỉ hưu</option>
+                        <option value="3" >Nghỉ việc</option>
+                        <option value="4" >Chuyển công tác</option>
+                        <option value="5" >Nghỉ hưu trước hạn</option>
+                        @else
+                          @if ($edit->status_vc == 3)
+                          <option  value="1" >Ẩn</option>
+                          <option value="0" >Hiển thị</option>
+                          <option value="2" >Nghỉ hưu</option>
+                          <option value="3" selected >Nghỉ việc</option>
+                          <option value="4" >Chuyển công tác</option>
+                          <option value="5" >Nghỉ hưu trước hạn</option>
+                          @else
+                            @if ($edit->status_vc == 4)
+                              <option  value="1" >Ẩn</option>
+                              <option value="0" >Hiển thị</option>
+                              <option value="2" >Nghỉ hưu</option>
+                              <option value="3"  >Nghỉ việc</option>
+                              <option value="4" selected >Chuyển công tác</option>
+                              <option value="5" >Nghỉ hưu trước hạn</option>
+                            @else
+                              @if ($edit->status_vc == 5)
+                                <option  value="1" >Ẩn</option>
+                                <option value="0" >Hiển thị</option>
+                                <option value="2" >Nghỉ hưu</option>
+                                <option value="3"  >Nghỉ việc</option>
+                                <option value="4"  >Chuyển công tác</option>
+                                <option value="5" selected >Nghỉ hưu trước hạn</option>
+                              @else
+                              
+                              @endif
+                            @endif
+                          @endif
+                        @endif
                       @endif
                     @endif
                   </select>

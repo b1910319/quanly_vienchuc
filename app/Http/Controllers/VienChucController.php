@@ -62,6 +62,9 @@ class VienChucController extends Controller
       ->where('pass_vc', $pass_vc)
       ->where('status_vc', '<>', '1')
       ->where('status_vc', '<>', '2')
+      ->where('status_vc', '<>', '3')
+      ->where('status_vc', '<>', '4')
+      ->where('status_vc', '<>', '5')
       ->first();
     if($result){
       $request->session()->put('hoten_vc',$result->hoten_vc);

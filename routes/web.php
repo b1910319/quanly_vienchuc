@@ -38,7 +38,9 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\KhuVucController;
 use App\Http\Controllers\NhiemKyController;
 use App\Http\Controllers\QuaTrinhChucVuController;
+use App\Http\Controllers\QuaTrinhNghiController;
 use App\Http\Controllers\QuocGiaController;
+use App\Models\QuaTrinhNghi;
 
 Route::get('/login',[HomeController::class, 'index']);
 Route::get('/home',[HomeController::class, 'home']);
@@ -1174,7 +1176,18 @@ Route::post('/delete_danhmucnghi_check',[DanhMucNghiController::class, 'delete_d
 
 
 
-
+Route::get('/quatrinhnghi/{ma_vc}',[QuaTrinhNghiController::class, 'quatrinhnghi']);
+Route::get('/check_soquyetdinh_qtn',[QuaTrinhNghiController::class, 'check_soquyetdinh_qtn']);
+Route::get('/check_soquyetdinh_qtn_edit',[QuaTrinhNghiController::class, 'check_soquyetdinh_qtn_edit']);
+Route::post('/add_quatrinhnghi/{ma_vc}',[QuaTrinhNghiController::class, 'add_quatrinhnghi']);
+Route::get('/quatrinhnghi_xuatfile/{ma_vc}',[QuaTrinhNghiController::class, 'quatrinhnghi_xuatfile']);
+Route::get('/select_quatrinhnghi/{ma_qtn}',[QuaTrinhNghiController::class, 'select_quatrinhnghi']);
+Route::get('/edit_quatrinhnghi/{ma_qtn}/{ma_vc}',[QuaTrinhNghiController::class, 'edit_quatrinhnghi']);
+Route::post('/update_quatrinhnghi/{ma_vc}',[QuaTrinhNghiController::class, 'update_quatrinhnghi']);
+Route::get('/delete_quatrinhnghi',[QuaTrinhNghiController::class, 'delete_quatrinhnghi']);
+Route::post('/delete_quatrinhnghi_check',[QuaTrinhNghiController::class, 'delete_quatrinhnghi_check']);
+Route::get('/delete_all_quatrinhnghi/{ma_vc}',[QuaTrinhNghiController::class, 'delete_all_quatrinhnghi']);
+Route::get('/quatrinhnghi_xuatfile_word/{ma_vc}',[QuaTrinhNghiController::class, 'quatrinhnghi_xuatfile_word']);
 
 
 

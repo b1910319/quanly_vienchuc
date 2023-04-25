@@ -213,6 +213,9 @@ class ThongKeController extends Controller
         ->get();
       $count = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->select(DB::raw('count(vienchuc.ma_vc) as sum, khoa.ma_k'))
         ->groupBy('khoa.ma_k')
         ->get();
@@ -220,6 +223,9 @@ class ThongKeController extends Controller
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->orderBy('ten_n', 'asc')
         ->get();
       return view('thongke.thongke_qltt')
@@ -266,6 +272,9 @@ class ThongKeController extends Controller
         ->join('dantoc', 'dantoc.ma_dt', '=', 'vienchuc.ma_dt')
         ->join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->orderBy('khoa.ten_k', 'asc')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qltt_pdf', [
@@ -340,6 +349,9 @@ class ThongKeController extends Controller
       if (isset($data['ma_k'])  && isset($data['ma_cv'])  && isset($data['ma_hdt'])  && isset($data['ma_lbc'])  && isset($data['ma_n'])  && isset($data['ma_t']) && isset($data['ma_dt'])  && isset($data['ma_tg'])  && isset($data['ma_tb'])) {
         $count = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, khoa.ma_k'))
           ->groupBy('khoa.ma_k')
           ->get();
@@ -355,6 +367,9 @@ class ThongKeController extends Controller
           ->join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
           ->join('thuongbinh', 'thuongbinh.ma_tb', '=', 'vienchuc.ma_tb')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_k', $data['ma_k'])
           ->where('vienchuc.ma_cv', $data['ma_cv'])
           ->where('bangcap.ma_hdt', $data['ma_hdt'])
@@ -400,12 +415,18 @@ class ThongKeController extends Controller
       } else if (isset($data['ma_k']) && isset($data['ma_cv'])) {
         $count = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, khoa.ma_k'))
           ->groupBy('khoa.ma_k')
           ->get();
         $list_2 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_k', $data['ma_k'])
           ->where('vienchuc.ma_cv', $data['ma_cv'])
           ->get();
@@ -437,6 +458,9 @@ class ThongKeController extends Controller
       } else if (isset($data['ma_k'])  && isset($data['ma_hdt'])) {
         $count_3 = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, khoa.ma_k'))
           ->groupBy('khoa.ma_k')
           ->get();
@@ -446,6 +470,9 @@ class ThongKeController extends Controller
           ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
           ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_k', $data['ma_k'])
           ->where('bangcap.ma_hdt', $data['ma_hdt'])
           ->get();
@@ -478,6 +505,9 @@ class ThongKeController extends Controller
         $count_4 = VienChuc::join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, loaibangcap.ma_lbc'))
           ->groupBy('loaibangcap.ma_lbc')
           ->get();
@@ -487,6 +517,9 @@ class ThongKeController extends Controller
           ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
           ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_k', $data['ma_k'])
           ->where('bangcap.ma_lbc', $data['ma_lbc'])
           ->get();
@@ -518,12 +551,18 @@ class ThongKeController extends Controller
       } else if (isset($data['ma_k'])) {
         $count_khoa = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, khoa.ma_k'))
           ->groupBy('khoa.ma_k')
           ->get();
         $list_pdf_khoa = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_k', $data['ma_k'])
           ->get();
         return view('thongke.thongke_qltt')
@@ -553,12 +592,18 @@ class ThongKeController extends Controller
       } else if (isset($data['ma_cv'])) {
         $count_chucvu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, vienchuc.ma_cv'))
           ->groupBy('vienchuc.ma_cv')
           ->get();
         $list_pdf_chucvu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_cv', $data['ma_cv'])
           ->get();
         return view('thongke.thongke_qltt')
@@ -589,6 +634,9 @@ class ThongKeController extends Controller
         $count_hedaotao = VienChuc::join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, hedaotao.ma_hdt'))
           ->groupBy('hedaotao.ma_hdt')
           ->get();
@@ -596,6 +644,9 @@ class ThongKeController extends Controller
           ->join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('bangcap.ma_hdt', $data['ma_hdt'])
           ->get();
         return view('thongke.thongke_qltt')
@@ -626,6 +677,9 @@ class ThongKeController extends Controller
         $count_loaibangcap = VienChuc::join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, loaibangcap.ma_lbc'))
           ->groupBy('loaibangcap.ma_lbc')
           ->get();
@@ -633,6 +687,9 @@ class ThongKeController extends Controller
           ->join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('bangcap.ma_lbc', $data['ma_lbc'])
           ->get();
         return view('thongke.thongke_qltt')
@@ -662,12 +719,18 @@ class ThongKeController extends Controller
       } else if (isset($data['ma_n'])) {
         $count_ngach = VienChuc::join('ngach', 'ngach.ma_n', '=', 'vienchuc.ma_n')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, vienchuc.ma_n'))
           ->groupBy('vienchuc.ma_n')
           ->get();
         $list_pdf_ngach = VienChuc::join('ngach', 'ngach.ma_n', '=', 'vienchuc.ma_n')
           ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_n', $data['ma_n'])
           ->get();
         return view('thongke.thongke_qltt')
@@ -698,6 +761,9 @@ class ThongKeController extends Controller
         $count_tinh = VienChuc::join('quequan', 'quequan.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('tinh', 'tinh.ma_t', '=', 'quequan.ma_t')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, tinh.ma_t'))
           ->groupBy('tinh.ma_t')
           ->get();
@@ -705,6 +771,9 @@ class ThongKeController extends Controller
           ->join('quequan', 'quequan.ma_vc', '=', 'vienchuc.ma_vc')
           ->join('tinh', 'tinh.ma_t', '=', 'quequan.ma_t')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('quequan.ma_t', $data['ma_t'])
           ->get();
         return view('thongke.thongke_qltt')
@@ -734,12 +803,18 @@ class ThongKeController extends Controller
       } else if (isset($data['ma_dt'])) {
         $count_dantoc = VienChuc::join('dantoc', 'dantoc.ma_dt', '=', 'vienchuc.ma_dt')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, vienchuc.ma_dt'))
           ->groupBy('vienchuc.ma_dt')
           ->get();
         $list_pdf_dantoc = VienChuc::join('dantoc', 'dantoc.ma_dt', '=', 'vienchuc.ma_dt')
           ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_dt', $data['ma_dt'])
           ->get();
         return view('thongke.thongke_qltt')
@@ -769,12 +844,18 @@ class ThongKeController extends Controller
       } else if (isset($data['ma_tg'])) {
         $count_tongiao = VienChuc::join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, vienchuc.ma_tg'))
           ->groupBy('vienchuc.ma_tg')
           ->get();
         $list_pdf_tongiao = VienChuc::join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
           ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_tg', $data['ma_tg'])
           ->get();
         return view('thongke.thongke_qltt')
@@ -804,12 +885,18 @@ class ThongKeController extends Controller
       } else if (isset($data['ma_tb'])) {
         $count_thuongbinh = VienChuc::join('thuongbinh', 'thuongbinh.ma_tb', '=', 'vienchuc.ma_tb')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, vienchuc.ma_tb'))
           ->groupBy('vienchuc.ma_tb')
           ->get();
         $list_pdf_thuongbinh = VienChuc::join('thuongbinh', 'thuongbinh.ma_tb', '=', 'vienchuc.ma_tb')
           ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_tb', $data['ma_tb'])
           ->get();
         return view('thongke.thongke_qltt')
@@ -866,6 +953,9 @@ class ThongKeController extends Controller
         ->join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
         ->join('thuongbinh', 'thuongbinh.ma_tb', '=', 'vienchuc.ma_tb')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('vienchuc.ma_cv', $ma_cv)
         ->where('bangcap.ma_hdt', $ma_hdt)
@@ -919,6 +1009,9 @@ class ThongKeController extends Controller
         ->where('vienchuc.ma_k', $ma_k)
         ->where('vienchuc.ma_cv', $ma_cv)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qltt_pdf', [
         'vienchuc' => $vienchuc,
@@ -964,6 +1057,9 @@ class ThongKeController extends Controller
         ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
         ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('bangcap.ma_hdt', $ma_hdt)
         ->get();
@@ -1010,6 +1106,9 @@ class ThongKeController extends Controller
         ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
         ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('bangcap.ma_lbc', $ma_lbc)
         ->get();
@@ -1055,6 +1154,9 @@ class ThongKeController extends Controller
         ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qltt_pdf', [
         'vienchuc' => $vienchuc,
@@ -1098,6 +1200,9 @@ class ThongKeController extends Controller
         ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
         ->where('vienchuc.ma_cv', $ma_cv)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qltt_pdf', [
         'vienchuc' => $vienchuc,
@@ -1141,6 +1246,9 @@ class ThongKeController extends Controller
         ->join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('hedaotao', 'hedaotao.ma_hdt', 'bangcap.ma_hdt')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('bangcap.ma_hdt', $ma_hdt)
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qltt_pdf', [
@@ -1185,6 +1293,9 @@ class ThongKeController extends Controller
         ->join('bangcap', 'bangcap.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('loaibangcap', 'loaibangcap.ma_lbc', 'bangcap.ma_lbc')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('bangcap.ma_lbc', $ma_lbc)
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qltt_pdf', [
@@ -1229,6 +1340,9 @@ class ThongKeController extends Controller
         ->join('ngach', 'ngach.ma_n', '=', 'vienchuc.ma_n')
         ->where('vienchuc.ma_n', $ma_n)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qltt_pdf', [
         'vienchuc' => $vienchuc,
@@ -1272,6 +1386,9 @@ class ThongKeController extends Controller
         ->join('quequan', 'quequan.ma_vc', '=', 'vienchuc.ma_vc')
         ->join('tinh', 'tinh.ma_t', 'quequan.ma_t')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('quequan.ma_t', $ma_t)
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qltt_pdf', [
@@ -1316,6 +1433,9 @@ class ThongKeController extends Controller
         ->join('dantoc', 'dantoc.ma_dt', '=', 'vienchuc.ma_dt')
         ->where('vienchuc.ma_dt', $ma_dt)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qltt_pdf', [
         'vienchuc' => $vienchuc,
@@ -1359,6 +1479,9 @@ class ThongKeController extends Controller
         ->join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
         ->where('vienchuc.ma_tg', $ma_tg)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qltt_pdf', [
         'vienchuc' => $vienchuc,
@@ -1402,6 +1525,9 @@ class ThongKeController extends Controller
         ->join('thuongbinh', 'thuongbinh.ma_tb', '=', 'vienchuc.ma_tb')
         ->where('vienchuc.ma_tb', $ma_tb)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qltt_pdf', [
         'vienchuc' => $vienchuc,
@@ -1764,6 +1890,9 @@ class ThongKeController extends Controller
         ->get();
       $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       return view('thongke.thongke_qlktkl')
         ->with('title', $title)
@@ -1804,6 +1933,9 @@ class ThongKeController extends Controller
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -1878,6 +2010,9 @@ class ThongKeController extends Controller
           ->where('khenthuong.ma_htkt', $data['ma_htkt'])
           ->whereBetween('khenthuong.ngay_kt', [$data['batdau_kt'], $data['ketthuc_kt']])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -1917,6 +2052,9 @@ class ThongKeController extends Controller
           ->where('vienchuc.ma_k', $data['ma_k'])
           ->whereBetween('khenthuong.ngay_kt', [$data['batdau_kt'], $data['ketthuc_kt']])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -1955,6 +2093,9 @@ class ThongKeController extends Controller
           ->where('khenthuong.ma_htkt', $data['ma_htkt'])
           ->whereBetween('khenthuong.ngay_kt', [$data['batdau_kt'], $data['ketthuc_kt']])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -1993,6 +2134,9 @@ class ThongKeController extends Controller
           ->where('vienchuc.ma_k', $data['ma_k'])
           ->whereBetween('khenthuong.ngay_kt', [$data['batdau_kt'], $data['ketthuc_kt']])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -2031,6 +2175,9 @@ class ThongKeController extends Controller
           ->where('vienchuc.ma_k', $data['ma_k'])
           ->where('khenthuong.ma_htkt', $data['ma_htkt'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -2067,6 +2214,9 @@ class ThongKeController extends Controller
           ->where('hinhthuckhenthuong.ma_htkt', $data['ma_htkt'])
           ->whereBetween('khenthuong.ngay_kt', [$data['batdau_kt'], $data['ketthuc_kt']])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -2104,6 +2254,9 @@ class ThongKeController extends Controller
           ->where('khoa.ma_k', $data['ma_k'])
           ->whereBetween('khenthuong.ngay_kt', [$data['batdau_kt'], $data['ketthuc_kt']])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -2133,6 +2286,9 @@ class ThongKeController extends Controller
           ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
           ->where('status_kt', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(khenthuong.ma_kt) as sum, khoa.ma_k'))
           ->groupBy('khoa.ma_k')
           ->get();
@@ -2143,6 +2299,9 @@ class ThongKeController extends Controller
           ->where('khenthuong.ma_htkt', $data['ma_htkt'])
           ->where('vienchuc.ma_k', $data['ma_k'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -2180,6 +2339,9 @@ class ThongKeController extends Controller
           ->where('khenthuong.ma_lkt', $data['ma_lkt'])
           ->whereBetween('khenthuong.ngay_kt', [$data['batdau_kt'], $data['ketthuc_kt']])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -2209,6 +2371,9 @@ class ThongKeController extends Controller
           ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
           ->where('status_kt', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(khenthuong.ma_kt) as sum, khenthuong.ma_lkt'))
           ->groupBy('khenthuong.ma_lkt')
           ->get();
@@ -2219,6 +2384,9 @@ class ThongKeController extends Controller
           ->where('khenthuong.ma_htkt', $data['ma_htkt'])
           ->where('khenthuong.ma_lkt', $data['ma_lkt'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -2247,6 +2415,9 @@ class ThongKeController extends Controller
           ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
           ->where('status_kt', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(khenthuong.ma_kt) as sum, khenthuong.ma_lkt'))
           ->groupBy('khenthuong.ma_lkt')
           ->get();
@@ -2257,6 +2428,9 @@ class ThongKeController extends Controller
           ->where('vienchuc.ma_k', $data['ma_k'])
           ->where('khenthuong.ma_lkt', $data['ma_lkt'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -2285,6 +2459,9 @@ class ThongKeController extends Controller
           ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
           ->where('status_kt', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(khenthuong.ma_kt) as sum, khenthuong.ma_lkt'))
           ->groupBy('khenthuong.ma_lkt')
           ->get();
@@ -2294,6 +2471,9 @@ class ThongKeController extends Controller
           ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
           ->where('khenthuong.ma_lkt', $data['ma_lkt'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -2321,6 +2501,9 @@ class ThongKeController extends Controller
           ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
           ->where('status_kt', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(khenthuong.ma_kt) as sum, vienchuc.ma_k'))
           ->groupBy('vienchuc.ma_k')
           ->get();
@@ -2330,6 +2513,9 @@ class ThongKeController extends Controller
           ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
           ->where('vienchuc.ma_k', $data['ma_k'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -2357,6 +2543,9 @@ class ThongKeController extends Controller
           ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
           ->where('status_kt', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(khenthuong.ma_kt) as sum, khenthuong.ma_htkt'))
           ->groupBy('khenthuong.ma_htkt')
           ->get();
@@ -2366,6 +2555,9 @@ class ThongKeController extends Controller
           ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
           ->where('khenthuong.ma_htkt', $data['ma_htkt'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -2401,6 +2593,9 @@ class ThongKeController extends Controller
           ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
           ->whereBetween('khenthuong.ngay_kt', [$data['batdau_kt'], $data['ketthuc_kt']])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -2448,10 +2643,16 @@ class ThongKeController extends Controller
         ->where('khenthuong.ma_htkt', $ma_htkt)
         ->whereBetween('khenthuong.ngay_kt', [$batdau_kt, $ketthuc_kt])
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -2498,10 +2699,16 @@ class ThongKeController extends Controller
         ->where('khenthuong.ma_htkt', $ma_htkt)
         ->whereBetween('khenthuong.ngay_kt', [$batdau_kt, $ketthuc_kt])
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -2548,10 +2755,16 @@ class ThongKeController extends Controller
         ->where('vienchuc.ma_k', $ma_k)
         ->whereBetween('khenthuong.ngay_kt', [$batdau_kt, $ketthuc_kt])
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -2598,10 +2811,16 @@ class ThongKeController extends Controller
         ->where('vienchuc.ma_k', $ma_k)
         ->where('hinhthuckhenthuong.ma_htkt', $ma_htkt)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -2647,10 +2866,16 @@ class ThongKeController extends Controller
         ->where('khenthuong.ma_htkt', $ma_htkt)
         ->whereBetween('khenthuong.ngay_kt', [$batdau_kt, $ketthuc_kt])
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -2696,10 +2921,16 @@ class ThongKeController extends Controller
         ->where('vienchuc.ma_k', $ma_k)
         ->whereBetween('khenthuong.ngay_kt', [$batdau_kt, $ketthuc_kt])
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -2745,10 +2976,16 @@ class ThongKeController extends Controller
         ->where('vienchuc.ma_k', $ma_k)
         ->where('hinhthuckhenthuong.ma_htkt', $ma_htkt)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -2794,10 +3031,16 @@ class ThongKeController extends Controller
         ->where('khenthuong.ma_lkt', $ma_lkt)
         ->whereBetween('khenthuong.ngay_kt', [$batdau_kt, $ketthuc_kt])
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -2843,10 +3086,16 @@ class ThongKeController extends Controller
         ->where('khenthuong.ma_lkt', $ma_lkt)
         ->where('hinhthuckhenthuong.ma_htkt', $ma_htkt)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -2892,10 +3141,16 @@ class ThongKeController extends Controller
         ->where('khenthuong.ma_lkt', $ma_lkt)
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -2940,10 +3195,16 @@ class ThongKeController extends Controller
         ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
         ->where('khenthuong.ma_lkt', $ma_lkt)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -2988,10 +3249,16 @@ class ThongKeController extends Controller
         ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -3036,10 +3303,16 @@ class ThongKeController extends Controller
         ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
         ->where('khenthuong.ma_htkt', $ma_htkt)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -3084,10 +3357,16 @@ class ThongKeController extends Controller
         ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
         ->whereBetween('khenthuong.ngay_kt', [$batdau_kt, $ketthuc_kt])
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -3134,10 +3413,16 @@ class ThongKeController extends Controller
         ->where('vienchuc.ma_k', $ma_k)
         ->whereBetween('khenthuong.ngay_kt', [$batdau_kt, $ketthuc_kt])
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -3210,6 +3495,9 @@ class ThongKeController extends Controller
           ->where('vienchuc.ma_k', $data['ma_k'])
           ->whereBetween('kyluat.ngay_kl', [$data['batdau_kl'], $data['ketthuc_kl']])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kl', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -3239,6 +3527,9 @@ class ThongKeController extends Controller
           ->join('kyluat', 'kyluat.ma_vc', '=', 'vienchuc.ma_vc')
           ->where('status_kl', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(kyluat.ma_kl) as sum, khoa.ma_k, ngay_kl'))
           ->groupBy('khoa.ma_k', 'ngay_kl')
           ->get();
@@ -3248,6 +3539,9 @@ class ThongKeController extends Controller
           ->where('vienchuc.ma_k', $data['ma_k'])
           ->whereBetween('kyluat.ngay_kl', [$data['batdau_kl'], $data['ketthuc_kl']])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kl', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -3277,6 +3571,9 @@ class ThongKeController extends Controller
           ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
           ->where('status_kl', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(kyluat.ma_kl) as sum, loaikyluat.ma_lkl, ngay_kl'))
           ->groupBy('loaikyluat.ma_lkl', 'ngay_kl')
           ->get();
@@ -3286,6 +3583,9 @@ class ThongKeController extends Controller
           ->where('kyluat.ma_lkl', $data['ma_lkl'])
           ->whereBetween('kyluat.ngay_kl', [$data['batdau_kl'], $data['ketthuc_kl']])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kl', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -3315,6 +3615,9 @@ class ThongKeController extends Controller
           ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
           ->where('status_kl', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(kyluat.ma_kl) as sum, loaikyluat.ma_lkl'))
           ->groupBy('loaikyluat.ma_lkl')
           ->get();
@@ -3324,6 +3627,9 @@ class ThongKeController extends Controller
           ->where('kyluat.ma_lkl', $data['ma_lkl'])
           ->where('vienchuc.ma_k', $data['ma_k'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kl', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -3352,6 +3658,9 @@ class ThongKeController extends Controller
           ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
           ->where('status_kl', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(kyluat.ma_kl) as sum, khoa.ma_k'))
           ->groupBy('khoa.ma_k')
           ->get();
@@ -3360,6 +3669,9 @@ class ThongKeController extends Controller
           ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
           ->where('vienchuc.ma_k', $data['ma_k'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kl', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -3387,6 +3699,9 @@ class ThongKeController extends Controller
           ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
           ->where('status_kl', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(kyluat.ma_kl) as sum, loaikyluat.ma_lkl'))
           ->groupBy('loaikyluat.ma_lkl')
           ->get();
@@ -3395,6 +3710,9 @@ class ThongKeController extends Controller
           ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
           ->where('kyluat.ma_lkl', $data['ma_lkl'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kl', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -3422,6 +3740,9 @@ class ThongKeController extends Controller
           ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
           ->where('status_kl', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(kyluat.ma_kl) as sum, ngay_kl'))
           ->groupBy('ngay_kl')
           ->get();
@@ -3430,6 +3751,9 @@ class ThongKeController extends Controller
           ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
           ->whereBetween('kyluat.ngay_kl', [$data['batdau_kl'], $data['ketthuc_kl']])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kl', '<>', '2')
           ->get();
         return view('thongke.thongke_qlktkl')
@@ -3476,10 +3800,16 @@ class ThongKeController extends Controller
         ->where('vienchuc.ma_k', $ma_k)
         ->whereBetween('kyluat.ngay_kl', [$batdau_kl, $ketthuc_kl])
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kl', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kl_pdf', [
         'vienchuc' => $vienchuc,
@@ -3524,10 +3854,16 @@ class ThongKeController extends Controller
         ->where('vienchuc.ma_k', $ma_k)
         ->whereBetween('kyluat.ngay_kl', [$batdau_kl, $ketthuc_kl])
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kl', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kl_pdf', [
         'vienchuc' => $vienchuc,
@@ -3572,10 +3908,16 @@ class ThongKeController extends Controller
         ->where('kyluat.ma_lkl', $ma_lkl)
         ->whereBetween('kyluat.ngay_kl', [$batdau_kl, $ketthuc_kl])
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kl', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kl_pdf', [
         'vienchuc' => $vienchuc,
@@ -3620,10 +3962,16 @@ class ThongKeController extends Controller
         ->where('kyluat.ma_lkl', $ma_lkl)
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kl', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kl_pdf', [
         'vienchuc' => $vienchuc,
@@ -3667,10 +4015,16 @@ class ThongKeController extends Controller
         ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kl', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kl_pdf', [
         'vienchuc' => $vienchuc,
@@ -3714,10 +4068,16 @@ class ThongKeController extends Controller
         ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
         ->where('kyluat.ma_lkl', $ma_lkl)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kl', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kl_pdf', [
         'vienchuc' => $vienchuc,
@@ -3761,10 +4121,16 @@ class ThongKeController extends Controller
         ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
         ->whereBetween('kyluat.ngay_kl', [$batdau_kl, $ketthuc_kl])
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kl', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlklkt_kl_pdf', [
         'vienchuc' => $vienchuc,
@@ -3836,6 +4202,9 @@ class ThongKeController extends Controller
         ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kq', '<>', '2')
         ->get();
       return view('thongke.thongke_qlcttc')
@@ -3875,6 +4244,9 @@ class ThongKeController extends Controller
         ->join('vienchuc', 'vienchuc.ma_vc', '=', 'ketqua.ma_vc')
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kq', '<>', '2')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
@@ -3953,6 +4325,9 @@ class ThongKeController extends Controller
           ->where('status_c', '<>', '2')
           ->where('status_th', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -3981,6 +4356,9 @@ class ThongKeController extends Controller
           ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
           ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kq', '<>', '2')
           ->get();
         return view('thongke.thongke_qlcttc')
@@ -4011,6 +4389,9 @@ class ThongKeController extends Controller
           ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_gh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4040,6 +4421,9 @@ class ThongKeController extends Controller
           ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_dh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4069,6 +4453,9 @@ class ThongKeController extends Controller
           ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_c', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4098,6 +4485,9 @@ class ThongKeController extends Controller
           ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_th', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4145,6 +4535,9 @@ class ThongKeController extends Controller
         ->where('status_c', '<>', '2')
         ->where('status_th', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc', [
         'vienchuc' => $vienchuc,
@@ -4189,6 +4582,9 @@ class ThongKeController extends Controller
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_kq', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
         'vienchuc' => $vienchuc,
@@ -4233,6 +4629,9 @@ class ThongKeController extends Controller
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_gh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_giahan', [
         'vienchuc' => $vienchuc,
@@ -4277,6 +4676,9 @@ class ThongKeController extends Controller
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_dh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_dunghoc', [
         'vienchuc' => $vienchuc,
@@ -4321,6 +4723,9 @@ class ThongKeController extends Controller
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_c', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_chuyen', [
         'vienchuc' => $vienchuc,
@@ -4365,6 +4770,9 @@ class ThongKeController extends Controller
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_th', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_thoihoc', [
         'vienchuc' => $vienchuc,
@@ -4440,6 +4848,9 @@ class ThongKeController extends Controller
           ->whereBetween('ketqua.ngayvenuoc_kq', [$data['batdau_venuoc'], $data['ketthuc_venuoc']])
           ->where('status_kq', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4478,6 +4889,9 @@ class ThongKeController extends Controller
           ->where('status_kq', '<>', '2')
           ->where('status_kq', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4512,6 +4926,9 @@ class ThongKeController extends Controller
           ->whereBetween('ketqua.ngayvenuoc_kq', [$data['batdau_venuoc'], $data['ketthuc_venuoc']])
           ->where('status_kq', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4548,6 +4965,9 @@ class ThongKeController extends Controller
           ->whereBetween('ketqua.ngayvenuoc_kq', [$data['batdau_venuoc'], $data['ketthuc_venuoc']])
           ->where('status_kq', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4583,6 +5003,9 @@ class ThongKeController extends Controller
           ->whereBetween('ketqua.ngaycapbang_kq', [$data['batdau_capbang'], $data['ketthuc_capbang']])
           ->where('status_kq', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4621,6 +5044,9 @@ class ThongKeController extends Controller
           ->whereBetween('ketqua.ngaycapbang_kq', [$data['batdau_capbang'], $data['ketthuc_capbang']])
           ->where('status_kq', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4661,6 +5087,9 @@ class ThongKeController extends Controller
           ->whereBetween('ketqua.ngaycapbang_kq', [$data['batdau_capbang'], $data['ketthuc_capbang']])
           ->where('status_kq', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4699,6 +5128,9 @@ class ThongKeController extends Controller
           ->whereBetween('ketqua.ngayvenuoc_kq', [$data['batdau_venuoc'], $data['ketthuc_venuoc']])
           ->where('status_kq', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4739,6 +5171,9 @@ class ThongKeController extends Controller
           ->whereBetween('ketqua.ngayvenuoc_kq', [$data['batdau_venuoc'], $data['ketthuc_venuoc']])
           ->where('status_kq', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4777,6 +5212,9 @@ class ThongKeController extends Controller
           ->where('status_kq', '<>', '2')
           ->where('status_kq', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4810,6 +5248,9 @@ class ThongKeController extends Controller
           ->where('lop.ma_l', $data['ma_l'])
           ->where('status_kq', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4842,6 +5283,9 @@ class ThongKeController extends Controller
           ->whereBetween('ketqua.ngaycapbang_kq', [$data['batdau_capbang'], $data['ketthuc_capbang']])
           ->where('status_kq', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4875,6 +5319,9 @@ class ThongKeController extends Controller
           ->whereBetween('ketqua.ngayvenuoc_kq', [$data['batdau_venuoc'], $data['ketthuc_venuoc']])
           ->where('status_kq', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4911,6 +5358,9 @@ class ThongKeController extends Controller
           ->where('khoa.ma_k', $data['ma_k'])
           ->where('status_kq', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4945,6 +5395,9 @@ class ThongKeController extends Controller
           ->where('lop.ma_qg', $data['ma_qg'])
           ->where('status_kq', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -4990,6 +5443,9 @@ class ThongKeController extends Controller
         ->whereBetween('ketqua.ngayvenuoc_kq', [$batdau_venuoc, $ketthuc_venuoc])
         ->where('status_kq', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
         'vienchuc' => $vienchuc,
@@ -5036,6 +5492,9 @@ class ThongKeController extends Controller
         ->whereBetween('ketqua.ngayvenuoc_kq', [$batdau_venuoc, $ketthuc_venuoc])
         ->where('status_kq', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
         'vienchuc' => $vienchuc,
@@ -5082,6 +5541,9 @@ class ThongKeController extends Controller
         ->whereBetween('ketqua.ngayvenuoc_kq', [$batdau_venuoc, $ketthuc_venuoc])
         ->where('status_kq', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
         'vienchuc' => $vienchuc,
@@ -5128,6 +5590,9 @@ class ThongKeController extends Controller
         ->whereBetween('ketqua.ngaycapbang_kq', [$batdau_capbang, $ketthuc_capbang])
         ->where('status_kq', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
         'vienchuc' => $vienchuc,
@@ -5173,6 +5638,9 @@ class ThongKeController extends Controller
         ->where('lop.ma_l', $ma_l)
         ->where('status_kq', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
         'vienchuc' => $vienchuc,
@@ -5218,6 +5686,9 @@ class ThongKeController extends Controller
         ->whereBetween('ketqua.ngaycapbang_kq', [$batdau_capbang, $ketthuc_capbang])
         ->where('status_kq', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
         'vienchuc' => $vienchuc,
@@ -5263,6 +5734,9 @@ class ThongKeController extends Controller
         ->whereBetween('ketqua.ngayvenuoc_kq', [$batdau_venuoc, $ketthuc_venuoc])
         ->where('status_kq', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
         'vienchuc' => $vienchuc,
@@ -5310,6 +5784,9 @@ class ThongKeController extends Controller
         ->where('khoa.ma_k', $ma_k)
         ->where('status_kq', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
         'vienchuc' => $vienchuc,
@@ -5356,6 +5833,9 @@ class ThongKeController extends Controller
         ->where('lop.ma_qg', $ma_qg)
         ->where('status_kq', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
         'vienchuc' => $vienchuc,
@@ -5403,6 +5883,9 @@ class ThongKeController extends Controller
         ->where('status_kq', '<>', '2')
         ->where('status_kq', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
         'vienchuc' => $vienchuc,
@@ -5450,6 +5933,9 @@ class ThongKeController extends Controller
         ->whereBetween('ketqua.ngaycapbang_kq', [$batdau_capbang, $ketthuc_capbang])
         ->where('status_kq', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
         'vienchuc' => $vienchuc,
@@ -5498,6 +5984,9 @@ class ThongKeController extends Controller
         ->whereBetween('ketqua.ngaycapbang_kq', [$batdau_capbang, $ketthuc_capbang])
         ->where('status_kq', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
         'vienchuc' => $vienchuc,
@@ -5545,6 +6034,9 @@ class ThongKeController extends Controller
         ->whereBetween('ketqua.ngayvenuoc_kq', [$batdau_venuoc, $ketthuc_venuoc])
         ->where('status_kq', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
         'vienchuc' => $vienchuc,
@@ -5593,6 +6085,9 @@ class ThongKeController extends Controller
         ->whereBetween('ketqua.ngayvenuoc_kq', [$batdau_venuoc, $ketthuc_venuoc])
         ->where('status_kq', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
         'vienchuc' => $vienchuc,
@@ -5641,6 +6136,9 @@ class ThongKeController extends Controller
         ->where('status_kq', '<>', '2')
         ->where('status_kq', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_ketqua', [
         'vienchuc' => $vienchuc,
@@ -5717,6 +6215,9 @@ class ThongKeController extends Controller
           ->whereBetween('giahan.thoigian_gh', [$data['batdau_giahan'], $data['ketthuc_giahan']])
           ->where('status_gh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -5754,6 +6255,9 @@ class ThongKeController extends Controller
           ->whereBetween('giahan.thoigian_gh', [$data['batdau_giahan'], $data['ketthuc_giahan']])
           ->where('status_gh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -5782,6 +6286,9 @@ class ThongKeController extends Controller
           ->join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
           ->where('status_gh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(giahan.ma_gh) as sum, khoa.ma_k, giahan.thoigian_gh'))
           ->groupBy('khoa.ma_k', 'giahan.thoigian_gh')
           ->get();
@@ -5793,6 +6300,9 @@ class ThongKeController extends Controller
           ->whereBetween('giahan.thoigian_gh', [$data['batdau_giahan'], $data['ketthuc_giahan']])
           ->where('status_gh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -5831,6 +6341,9 @@ class ThongKeController extends Controller
           ->where('lop.ma_l', $data['ma_l'])
           ->where('status_gh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -5870,6 +6383,9 @@ class ThongKeController extends Controller
           ->where('quocgia.ma_qg', $data['ma_qg'])
           ->where('status_gh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -5898,6 +6414,9 @@ class ThongKeController extends Controller
           ->join('quocgia', 'quocgia.ma_qg', '=', 'lop.ma_qg')
           ->where('status_gh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(giahan.ma_gh) as sum, khoa.ma_k, giahan.thoigian_gh'))
           ->groupBy('khoa.ma_k', 'giahan.thoigian_gh')
           ->get();
@@ -5910,6 +6429,9 @@ class ThongKeController extends Controller
           ->whereBetween('giahan.thoigian_gh', [$data['batdau_giahan'], $data['ketthuc_giahan']])
           ->where('status_gh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -5947,6 +6469,9 @@ class ThongKeController extends Controller
           ->where('khoa.ma_k', $data['ma_k'])
           ->where('status_gh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -5982,6 +6507,9 @@ class ThongKeController extends Controller
           ->where('lop.ma_l', $data['ma_l'])
           ->where('status_gh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -6008,6 +6536,9 @@ class ThongKeController extends Controller
           ->join('lop', 'lop.ma_l', '=', 'giahan.ma_l')
           ->where('status_gh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(giahan.ma_gh) as sum, giahan.thoigian_gh'))
           ->groupBy('giahan.thoigian_gh')
           ->get();
@@ -6018,6 +6549,9 @@ class ThongKeController extends Controller
           ->whereBetween('giahan.thoigian_gh', [$data['batdau_giahan'], $data['ketthuc_giahan']])
           ->where('status_gh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -6056,6 +6590,9 @@ class ThongKeController extends Controller
           ->where('quocgia.ma_qg', $data['ma_qg'])
           ->where('status_gh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -6102,6 +6639,9 @@ class ThongKeController extends Controller
         ->whereBetween('giahan.thoigian_gh', [$batdau_giahan, $ketthuc_giahan])
         ->where('status_gh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_giahan', [
         'vienchuc' => $vienchuc,
@@ -6149,6 +6689,9 @@ class ThongKeController extends Controller
         ->whereBetween('giahan.thoigian_gh', [$batdau_giahan, $ketthuc_giahan])
         ->where('status_gh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_giahan', [
         'vienchuc' => $vienchuc,
@@ -6196,6 +6739,9 @@ class ThongKeController extends Controller
         ->whereBetween('giahan.thoigian_gh', [$batdau_giahan, $ketthuc_giahan])
         ->where('status_gh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_giahan', [
         'vienchuc' => $vienchuc,
@@ -6243,6 +6789,9 @@ class ThongKeController extends Controller
         ->where('lop.ma_l', $ma_l)
         ->where('status_gh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_giahan', [
         'vienchuc' => $vienchuc,
@@ -6289,6 +6838,9 @@ class ThongKeController extends Controller
         ->where('khoa.ma_k', $ma_k)
         ->where('status_gh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_giahan', [
         'vienchuc' => $vienchuc,
@@ -6335,6 +6887,9 @@ class ThongKeController extends Controller
         ->where('lop.ma_l', $ma_l)
         ->where('status_gh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_giahan', [
         'vienchuc' => $vienchuc,
@@ -6381,6 +6936,9 @@ class ThongKeController extends Controller
         ->whereBetween('giahan.thoigian_gh', [$batdau_giahan, $ketthuc_giahan])
         ->where('status_gh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_giahan', [
         'vienchuc' => $vienchuc,
@@ -6428,6 +6986,9 @@ class ThongKeController extends Controller
         ->where('quocgia.ma_qg', $ma_qg)
         ->where('status_gh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_giahan', [
         'vienchuc' => $vienchuc,
@@ -6476,6 +7037,9 @@ class ThongKeController extends Controller
         ->where('quocgia.ma_qg', $ma_qg)
         ->where('status_gh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_giahan', [
         'vienchuc' => $vienchuc,
@@ -6524,6 +7088,9 @@ class ThongKeController extends Controller
         ->whereBetween('giahan.thoigian_gh', [$batdau_giahan, $ketthuc_giahan])
         ->where('status_gh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_giahan', [
         'vienchuc' => $vienchuc,
@@ -6600,6 +7167,9 @@ class ThongKeController extends Controller
           ->whereBetween('dunghoc.batdau_dh', [$data['batdau_dunghoc'], $data['ketthuc_dunghoc']])
           ->where('status_dh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -6637,6 +7207,9 @@ class ThongKeController extends Controller
           ->whereBetween('dunghoc.batdau_dh', [$data['batdau_dunghoc'], $data['ketthuc_dunghoc']])
           ->where('status_dh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -6675,6 +7248,9 @@ class ThongKeController extends Controller
           ->whereBetween('dunghoc.batdau_dh', [$data['batdau_dunghoc'], $data['ketthuc_dunghoc']])
           ->where('status_dh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -6703,6 +7279,9 @@ class ThongKeController extends Controller
           ->join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
           ->where('status_dh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(dunghoc.ma_dh) as sum, khoa.ma_k, dunghoc.batdau_dh'))
           ->groupBy('khoa.ma_k', 'dunghoc.batdau_dh')
           ->get();
@@ -6714,6 +7293,9 @@ class ThongKeController extends Controller
           ->whereBetween('dunghoc.batdau_dh', [$data['batdau_dunghoc'], $data['ketthuc_dunghoc']])
           ->where('status_dh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -6752,6 +7334,9 @@ class ThongKeController extends Controller
           ->where('lop.ma_l', $data['ma_l'])
           ->where('status_dh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -6791,6 +7376,9 @@ class ThongKeController extends Controller
           ->where('quocgia.ma_qg', $data['ma_qg'])
           ->where('status_dh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -6827,6 +7415,9 @@ class ThongKeController extends Controller
           ->where('khoa.ma_k', $data['ma_k'])
           ->where('status_dh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -6862,6 +7453,9 @@ class ThongKeController extends Controller
           ->where('lop.ma_l', $data['ma_l'])
           ->where('status_dh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -6888,6 +7482,9 @@ class ThongKeController extends Controller
           ->join('lop', 'lop.ma_l', '=', 'dunghoc.ma_l')
           ->where('status_dh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(dunghoc.ma_dh) as sum, dunghoc.batdau_dh'))
           ->groupBy('dunghoc.batdau_dh')
           ->get();
@@ -6898,6 +7495,9 @@ class ThongKeController extends Controller
           ->whereBetween('dunghoc.batdau_dh', [$data['batdau_dunghoc'], $data['ketthuc_dunghoc']])
           ->where('status_dh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -6936,6 +7536,9 @@ class ThongKeController extends Controller
           ->where('quocgia.ma_qg', $data['ma_qg'])
           ->where('status_dh', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -6982,6 +7585,9 @@ class ThongKeController extends Controller
         ->whereBetween('dunghoc.batdau_dh', [$batdau_dunghoc, $ketthuc_dunghoc])
         ->where('status_dh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_dunghoc', [
         'vienchuc' => $vienchuc,
@@ -7029,6 +7635,9 @@ class ThongKeController extends Controller
         ->whereBetween('dunghoc.batdau_dh', [$batdau_dunghoc, $ketthuc_dunghoc])
         ->where('status_dh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_dunghoc', [
         'vienchuc' => $vienchuc,
@@ -7076,6 +7685,9 @@ class ThongKeController extends Controller
         ->whereBetween('dunghoc.batdau_dh', [$batdau_dunghoc, $ketthuc_dunghoc])
         ->where('status_dh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_dunghoc', [
         'vienchuc' => $vienchuc,
@@ -7123,6 +7735,9 @@ class ThongKeController extends Controller
         ->where('lop.ma_l', $ma_l)
         ->where('status_dh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_dunghoc', [
         'vienchuc' => $vienchuc,
@@ -7169,6 +7784,9 @@ class ThongKeController extends Controller
         ->where('khoa.ma_k', $ma_k)
         ->where('status_dh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_dunghoc', [
         'vienchuc' => $vienchuc,
@@ -7215,6 +7833,9 @@ class ThongKeController extends Controller
         ->where('lop.ma_l', $ma_l)
         ->where('status_dh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_dunghoc', [
         'vienchuc' => $vienchuc,
@@ -7261,6 +7882,9 @@ class ThongKeController extends Controller
         ->whereBetween('dunghoc.batdau_dh', [$batdau_dunghoc, $ketthuc_dunghoc])
         ->where('status_dh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_dunghoc', [
         'vienchuc' => $vienchuc,
@@ -7308,6 +7932,9 @@ class ThongKeController extends Controller
         ->where('quocgia.ma_qg', $ma_qg)
         ->where('status_dh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_dunghoc', [
         'vienchuc' => $vienchuc,
@@ -7356,6 +7983,9 @@ class ThongKeController extends Controller
         ->where('quocgia.ma_qg', $ma_qg)
         ->where('status_dh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_dunghoc', [
         'vienchuc' => $vienchuc,
@@ -7404,6 +8034,9 @@ class ThongKeController extends Controller
         ->whereBetween('dunghoc.batdau_dh', [$batdau_dunghoc, $ketthuc_dunghoc])
         ->where('status_dh', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_dunghoc', [
         'vienchuc' => $vienchuc,
@@ -7481,6 +8114,9 @@ class ThongKeController extends Controller
           ->where('lop.ma_l', $data['ma_l'])
           ->where('status_c', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -7520,6 +8156,9 @@ class ThongKeController extends Controller
           ->where('quocgia.ma_qg', $data['ma_qg'])
           ->where('status_c', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -7556,6 +8195,9 @@ class ThongKeController extends Controller
           ->where('khoa.ma_k', $data['ma_k'])
           ->where('status_c', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -7591,6 +8233,9 @@ class ThongKeController extends Controller
           ->where('lop.ma_l', $data['ma_l'])
           ->where('status_c', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -7628,6 +8273,9 @@ class ThongKeController extends Controller
           ->where('quocgia.ma_qg', $data['ma_qg'])
           ->where('status_c', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -7674,6 +8322,9 @@ class ThongKeController extends Controller
         ->where('lop.ma_l', $ma_l)
         ->where('status_c', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_chuyen', [
         'vienchuc' => $vienchuc,
@@ -7720,6 +8371,9 @@ class ThongKeController extends Controller
         ->where('khoa.ma_k', $ma_k)
         ->where('status_c', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_chuyen', [
         'vienchuc' => $vienchuc,
@@ -7766,6 +8420,9 @@ class ThongKeController extends Controller
         ->where('lop.ma_l', $ma_l)
         ->where('status_c', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_chuyen', [
         'vienchuc' => $vienchuc,
@@ -7813,6 +8470,9 @@ class ThongKeController extends Controller
         ->where('quocgia.ma_qg', $ma_qg)
         ->where('status_c', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_chuyen', [
         'vienchuc' => $vienchuc,
@@ -7860,6 +8520,9 @@ class ThongKeController extends Controller
         ->where('quocgia.ma_qg', $ma_qg)
         ->where('status_c', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_chuyen', [
         'vienchuc' => $vienchuc,
@@ -7936,6 +8599,9 @@ class ThongKeController extends Controller
           ->whereBetween('thoihoc.ngay_th', [$data['batdau_thoihoc'], $data['ketthuc_thoihoc']])
           ->where('status_th', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -7973,6 +8639,9 @@ class ThongKeController extends Controller
           ->whereBetween('thoihoc.ngay_th', [$data['batdau_thoihoc'], $data['ketthuc_thoihoc']])
           ->where('status_th', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -8001,6 +8670,9 @@ class ThongKeController extends Controller
           ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
           ->where('status_th', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(thoihoc.ma_th) as sum, khoa.ma_k, thoihoc.ngay_th'))
           ->groupBy('khoa.ma_k', 'thoihoc.ngay_th')
           ->get();
@@ -8012,6 +8684,9 @@ class ThongKeController extends Controller
           ->whereBetween('thoihoc.ngay_th', [$data['batdau_thoihoc'], $data['ketthuc_thoihoc']])
           ->where('status_th', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -8050,6 +8725,9 @@ class ThongKeController extends Controller
           ->where('lop.ma_l', $data['ma_l'])
           ->where('status_th', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -8086,6 +8764,9 @@ class ThongKeController extends Controller
           ->where('khoa.ma_k', $data['ma_k'])
           ->where('status_th', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -8121,6 +8802,9 @@ class ThongKeController extends Controller
           ->where('lop.ma_l', $data['ma_l'])
           ->where('status_th', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -8147,6 +8831,9 @@ class ThongKeController extends Controller
           ->join('lop', 'lop.ma_l', '=', 'thoihoc.ma_l')
           ->where('status_th', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(thoihoc.ma_th) as sum, thoihoc.ngay_th'))
           ->groupBy('thoihoc.ngay_th')
           ->get();
@@ -8157,6 +8844,9 @@ class ThongKeController extends Controller
           ->whereBetween('thoihoc.ngay_th', [$data['batdau_thoihoc'], $data['ketthuc_thoihoc']])
           ->where('status_th', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->get();
         return view('thongke.thongke_qlcttc')
           ->with('title', $title)
@@ -8204,6 +8894,9 @@ class ThongKeController extends Controller
         ->whereBetween('thoihoc.ngay_th', [$batdau_thoihoc, $ketthuc_thoihoc])
         ->where('status_th', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_thoihoc', [
         'vienchuc' => $vienchuc,
@@ -8251,6 +8944,9 @@ class ThongKeController extends Controller
         ->whereBetween('thoihoc.ngay_th', [$batdau_thoihoc, $ketthuc_thoihoc])
         ->where('status_th', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_thoihoc', [
         'vienchuc' => $vienchuc,
@@ -8298,6 +8994,9 @@ class ThongKeController extends Controller
         ->whereBetween('thoihoc.ngay_th', [$batdau_thoihoc, $ketthuc_thoihoc])
         ->where('status_th', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_thoihoc', [
         'vienchuc' => $vienchuc,
@@ -8345,6 +9044,9 @@ class ThongKeController extends Controller
         ->where('lop.ma_l', $ma_l)
         ->where('status_th', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_thoihoc', [
         'vienchuc' => $vienchuc,
@@ -8391,6 +9093,9 @@ class ThongKeController extends Controller
         ->where('khoa.ma_k', $ma_k)
         ->where('status_th', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_thoihoc', [
         'vienchuc' => $vienchuc,
@@ -8437,6 +9142,9 @@ class ThongKeController extends Controller
         ->where('lop.ma_l', $ma_l)
         ->where('status_th', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_thoihoc', [
         'vienchuc' => $vienchuc,
@@ -8483,6 +9191,9 @@ class ThongKeController extends Controller
         ->whereBetween('thoihoc.ngay_th', [$batdau_thoihoc, $ketthuc_thoihoc])
         ->where('status_th', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlcttc_thoihoc', [
         'vienchuc' => $vienchuc,
@@ -8565,6 +9276,9 @@ class ThongKeController extends Controller
       $count = VienChuc::join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('vienchuc.ma_k', $ma_k)
         ->select(DB::raw('count(vienchuc.ma_vc) as sum, chucvu.ma_cv'))
         ->groupBy('chucvu.ma_cv')
@@ -8576,6 +9290,9 @@ class ThongKeController extends Controller
         ->join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       return view('thongke.thongke_qlk')
         ->with('title', $title)
@@ -8626,6 +9343,9 @@ class ThongKeController extends Controller
         ->join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qltt_pdf', [
         'vienchuc' => $vienchuc,
@@ -8706,6 +9426,9 @@ class ThongKeController extends Controller
           ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, chucvu.ma_cv'))
           ->groupBy('chucvu.ma_cv')
           ->get();
@@ -8721,6 +9444,9 @@ class ThongKeController extends Controller
           ->join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
           ->join('thuongbinh', 'thuongbinh.ma_tb', '=', 'vienchuc.ma_tb')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('vienchuc.ma_cv', $data['ma_cv'])
           ->where('bangcap.ma_hdt', $data['ma_hdt'])
@@ -8770,6 +9496,9 @@ class ThongKeController extends Controller
         $count_chucvu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, vienchuc.ma_cv'))
           ->groupBy('vienchuc.ma_cv')
           ->get();
@@ -8777,6 +9506,9 @@ class ThongKeController extends Controller
           ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_cv', $data['ma_cv'])
           ->get();
         return view('thongke.thongke_qlk')
@@ -8811,6 +9543,9 @@ class ThongKeController extends Controller
           ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, hedaotao.ma_hdt'))
           ->groupBy('hedaotao.ma_hdt')
           ->get();
@@ -8819,6 +9554,9 @@ class ThongKeController extends Controller
           ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('bangcap.ma_hdt', $data['ma_hdt'])
           ->get();
         return view('thongke.thongke_qlk')
@@ -8853,6 +9591,9 @@ class ThongKeController extends Controller
           ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, loaibangcap.ma_lbc'))
           ->groupBy('loaibangcap.ma_lbc')
           ->get();
@@ -8861,6 +9602,9 @@ class ThongKeController extends Controller
           ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('bangcap.ma_lbc', $data['ma_lbc'])
           ->get();
         return view('thongke.thongke_qlk')
@@ -8894,6 +9638,9 @@ class ThongKeController extends Controller
         $count_ngach = VienChuc::join('ngach', 'ngach.ma_n', '=', 'vienchuc.ma_n')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, vienchuc.ma_n'))
           ->groupBy('vienchuc.ma_n')
           ->get();
@@ -8901,6 +9648,9 @@ class ThongKeController extends Controller
           ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_n', $data['ma_n'])
           ->get();
         return view('thongke.thongke_qlk')
@@ -8935,6 +9685,9 @@ class ThongKeController extends Controller
           ->join('tinh', 'tinh.ma_t', '=', 'quequan.ma_t')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, tinh.ma_t'))
           ->groupBy('tinh.ma_t')
           ->get();
@@ -8943,6 +9696,9 @@ class ThongKeController extends Controller
           ->join('tinh', 'tinh.ma_t', '=', 'quequan.ma_t')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('quequan.ma_t', $data['ma_t'])
           ->get();
         return view('thongke.thongke_qlk')
@@ -8975,6 +9731,9 @@ class ThongKeController extends Controller
       } else if (isset($data['ma_dt'])) {
         $count_dantoc = VienChuc::join('dantoc', 'dantoc.ma_dt', '=', 'vienchuc.ma_dt')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_k', $ma_k)
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, vienchuc.ma_dt'))
           ->groupBy('vienchuc.ma_dt')
@@ -8983,6 +9742,9 @@ class ThongKeController extends Controller
           ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_dt', $data['ma_dt'])
           ->get();
         return view('thongke.thongke_qlk')
@@ -9015,6 +9777,9 @@ class ThongKeController extends Controller
       } else if (isset($data['ma_tg'])) {
         $count_tongiao = VienChuc::join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_k', $ma_k)
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, vienchuc.ma_tg'))
           ->groupBy('vienchuc.ma_tg')
@@ -9022,6 +9787,9 @@ class ThongKeController extends Controller
         $list_pdf_tongiao = VienChuc::join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
           ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('vienchuc.ma_tg', $data['ma_tg'])
           ->get();
@@ -9055,6 +9823,9 @@ class ThongKeController extends Controller
       } else if (isset($data['ma_tb'])) {
         $count_thuongbinh = VienChuc::join('thuongbinh', 'thuongbinh.ma_tb', '=', 'vienchuc.ma_tb')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_k', $ma_k)
           ->select(DB::raw('count(vienchuc.ma_vc) as sum, vienchuc.ma_tb'))
           ->groupBy('vienchuc.ma_tb')
@@ -9063,6 +9834,9 @@ class ThongKeController extends Controller
           ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_tb', $data['ma_tb'])
           ->get();
         return view('thongke.thongke_qlk')
@@ -9120,6 +9894,9 @@ class ThongKeController extends Controller
         ->join('tongiao', 'tongiao.ma_tg', '=', 'vienchuc.ma_tg')
         ->join('thuongbinh', 'thuongbinh.ma_tb', '=', 'vienchuc.ma_tb')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('vienchuc.ma_cv', $ma_cv)
         ->where('bangcap.ma_hdt', $ma_hdt)
@@ -9168,6 +9945,9 @@ class ThongKeController extends Controller
         ->join('chucvu', 'chucvu.ma_cv', '=', 'vienchuc.ma_cv')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('vienchuc.ma_cv', $ma_cv)
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlk', [
@@ -9209,6 +9989,9 @@ class ThongKeController extends Controller
         ->join('hedaotao', 'hedaotao.ma_hdt', '=', 'bangcap.ma_hdt')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('bangcap.ma_hdt', $ma_hdt)
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlk', [
@@ -9250,6 +10033,9 @@ class ThongKeController extends Controller
         ->join('loaibangcap', 'loaibangcap.ma_lbc', '=', 'bangcap.ma_lbc')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('bangcap.ma_lbc', $ma_lbc)
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlk', [
@@ -9290,6 +10076,9 @@ class ThongKeController extends Controller
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('vienchuc.ma_n', $ma_n)
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlk', [
@@ -9331,6 +10120,9 @@ class ThongKeController extends Controller
         ->join('tinh', 'tinh.ma_t', '=', 'quequan.ma_t')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('quequan.ma_t', $ma_t)
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlk', [
@@ -9371,6 +10163,9 @@ class ThongKeController extends Controller
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('vienchuc.ma_dt', $ma_dt)
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlk', [
@@ -9412,6 +10207,9 @@ class ThongKeController extends Controller
         ->where('vienchuc.ma_k', $ma_k)
         ->where('vienchuc.ma_tg', $ma_tg)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlk', [
         'vienchuc' => $vienchuc,
@@ -9452,6 +10250,9 @@ class ThongKeController extends Controller
         ->where('vienchuc.ma_k', $ma_k)
         ->where('vienchuc.ma_tb', $ma_tb)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlk', [
         'vienchuc' => $vienchuc,
@@ -9679,6 +10480,9 @@ class ThongKeController extends Controller
           ->where('khenthuong.ma_htkt', $data['ma_htkt'])
           ->whereBetween('khenthuong.ngay_kt', [$data['batdau_kt'], $data['ketthuc_kt']])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlk')
@@ -9727,6 +10531,9 @@ class ThongKeController extends Controller
           ->where('hinhthuckhenthuong.ma_htkt', $data['ma_htkt'])
           ->whereBetween('khenthuong.ngay_kt', [$data['batdau_kt'], $data['ketthuc_kt']])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_kt', '<>', '2')
           ->get();
@@ -9777,6 +10584,9 @@ class ThongKeController extends Controller
           ->where('khenthuong.ma_lkt', $data['ma_lkt'])
           ->whereBetween('khenthuong.ngay_kt', [$data['batdau_kt'], $data['ketthuc_kt']])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlk')
@@ -9815,6 +10625,9 @@ class ThongKeController extends Controller
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_kt', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(khenthuong.ma_kt) as sum, khenthuong.ma_lkt'))
           ->groupBy('khenthuong.ma_lkt')
           ->get();
@@ -9826,6 +10639,9 @@ class ThongKeController extends Controller
           ->where('khenthuong.ma_htkt', $data['ma_htkt'])
           ->where('khenthuong.ma_lkt', $data['ma_lkt'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlk')
@@ -9863,6 +10679,9 @@ class ThongKeController extends Controller
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_kt', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(khenthuong.ma_kt) as sum, khenthuong.ma_lkt'))
           ->groupBy('khenthuong.ma_lkt')
           ->get();
@@ -9873,6 +10692,9 @@ class ThongKeController extends Controller
           ->where('vienchuc.ma_k', $ma_k)
           ->where('khenthuong.ma_lkt', $data['ma_lkt'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlk')
@@ -9908,6 +10730,9 @@ class ThongKeController extends Controller
           ->join('loaikhenthuong', 'loaikhenthuong.ma_lkt', '=', 'khenthuong.ma_lkt')
           ->where('status_kt', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_k', $ma_k)
           ->select(DB::raw('count(khenthuong.ma_kt) as sum, khenthuong.ma_htkt'))
           ->groupBy('khenthuong.ma_htkt')
@@ -9918,6 +10743,9 @@ class ThongKeController extends Controller
           ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
           ->where('khenthuong.ma_htkt', $data['ma_htkt'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_kt', '<>', '2')
           ->get();
@@ -9964,6 +10792,9 @@ class ThongKeController extends Controller
           ->whereBetween('khenthuong.ngay_kt', [$data['batdau_kt'], $data['ketthuc_kt']])
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kt', '<>', '2')
           ->get();
         return view('thongke.thongke_qlk')
@@ -10018,10 +10849,16 @@ class ThongKeController extends Controller
         ->where('khenthuong.ma_htkt', $ma_htkt)
         ->whereBetween('khenthuong.ngay_kt', [$batdau_kt, $ketthuc_kt])
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlk_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -10063,11 +10900,17 @@ class ThongKeController extends Controller
         ->where('hinhthuckhenthuong.ma_htkt', $ma_htkt)
         ->whereBetween('khenthuong.ngay_kt', [$batdau_kt, $ketthuc_kt])
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlk_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -10110,10 +10953,16 @@ class ThongKeController extends Controller
         ->where('khenthuong.ma_lkt', $ma_lkt)
         ->whereBetween('khenthuong.ngay_kt', [$batdau_kt, $ketthuc_kt])
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlk_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -10156,10 +11005,16 @@ class ThongKeController extends Controller
         ->where('khenthuong.ma_htkt', $ma_htkt)
         ->where('khenthuong.ma_lkt', $ma_lkt)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlk_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -10200,11 +11055,17 @@ class ThongKeController extends Controller
         ->join('hinhthuckhenthuong', 'hinhthuckhenthuong.ma_htkt', '=', 'khenthuong.ma_htkt')
         ->where('khenthuong.ma_lkt', $ma_lkt)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlk_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -10246,10 +11107,16 @@ class ThongKeController extends Controller
         ->where('khenthuong.ma_htkt', $ma_htkt)
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlk_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -10291,10 +11158,16 @@ class ThongKeController extends Controller
         ->whereBetween('khenthuong.ngay_kt', [$batdau_kt, $ketthuc_kt])
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kt', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlk_kt_pdf', [
         'vienchuc' => $vienchuc,
@@ -10380,6 +11253,9 @@ class ThongKeController extends Controller
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_kl', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(kyluat.ma_kl) as sum, loaikyluat.ma_lkl, ngay_kl'))
           ->groupBy('loaikyluat.ma_lkl', 'ngay_kl')
           ->get();
@@ -10390,6 +11266,9 @@ class ThongKeController extends Controller
           ->where('kyluat.ma_lkl', $data['ma_lkl'])
           ->whereBetween('kyluat.ngay_kl', [$data['batdau_kl'], $data['ketthuc_kl']])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kl', '<>', '2')
           ->get();
         return view('thongke.thongke_qlk')
@@ -10428,6 +11307,9 @@ class ThongKeController extends Controller
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_kl', '<>', '2')
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(kyluat.ma_kl) as sum, loaikyluat.ma_lkl'))
           ->groupBy('loaikyluat.ma_lkl')
           ->get();
@@ -10437,6 +11319,9 @@ class ThongKeController extends Controller
           ->where('vienchuc.ma_k', $ma_k)
           ->where('kyluat.ma_lkl', $data['ma_lkl'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kl', '<>', '2')
           ->get();
         return view('thongke.thongke_qlk')
@@ -10473,6 +11358,9 @@ class ThongKeController extends Controller
           ->where('status_kl', '<>', '2')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->select(DB::raw('count(kyluat.ma_kl) as sum, ngay_kl'))
           ->groupBy('ngay_kl')
           ->get();
@@ -10482,6 +11370,9 @@ class ThongKeController extends Controller
           ->whereBetween('kyluat.ngay_kl', [$data['batdau_kl'], $data['ketthuc_kl']])
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_kl', '<>', '2')
           ->get();
         return view('thongke.thongke_qlk')
@@ -10534,10 +11425,16 @@ class ThongKeController extends Controller
         ->where('vienchuc.ma_k', $ma_k)
         ->whereBetween('kyluat.ngay_kl', [$batdau_kl, $ketthuc_kl])
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kl', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlk_kl_pdf', [
         'vienchuc' => $vienchuc,
@@ -10578,10 +11475,16 @@ class ThongKeController extends Controller
         ->where('kyluat.ma_lkl', $ma_lkl)
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_kl', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlk_kl_pdf', [
         'vienchuc' => $vienchuc,
@@ -10621,11 +11524,17 @@ class ThongKeController extends Controller
         ->join('loaikyluat', 'loaikyluat.ma_lkl', '=', 'kyluat.ma_lkl')
         ->whereBetween('kyluat.ngay_kl', [$batdau_kl, $ketthuc_kl])
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('vienchuc.ma_k', $ma_k)
         ->where('status_kl', '<>', '2')
         ->get();
       $vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlk_kl_pdf', [
         'vienchuc' => $vienchuc,
@@ -10700,6 +11609,9 @@ class ThongKeController extends Controller
         ->get();
       $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       return view('thongke.thongke_qlqtcv')
         ->with('title', $title)
@@ -10740,6 +11652,9 @@ class ThongKeController extends Controller
         ->get();
       $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlqtcv_pdf', [
         'quatrinhchucvu' => $quatrinhchucvu,
@@ -10782,6 +11697,9 @@ class ThongKeController extends Controller
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_qtcv', '<>', '2')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $temp = new TemplateProcessor('public/word/quanly_qtcv.docx');
       $qtcv_arr = array();
@@ -10842,6 +11760,9 @@ class ThongKeController extends Controller
         ->get();
       $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $data = $request->all();
       if (isset($data['ma_k'])  && isset($data['ma_cv'])  && isset($data['ma_nk'])) {
@@ -10859,6 +11780,9 @@ class ThongKeController extends Controller
           ->where('chucvu.ma_cv', $data['ma_cv'])
           ->where('nhiemky.ma_nk', $data['ma_nk'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_qtcv', '<>', '2')
           ->get();
         return view('thongke.thongke_qlqtcv')
@@ -10898,6 +11822,9 @@ class ThongKeController extends Controller
           ->where('khoa.ma_k', $data['ma_k'])
           ->where('chucvu.ma_cv', $data['ma_cv'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_qtcv', '<>', '2')
           ->get();
         return view('thongke.thongke_qlqtcv')
@@ -10936,6 +11863,9 @@ class ThongKeController extends Controller
           ->where('khoa.ma_k', $data['ma_k'])
           ->where('nhiemky.ma_nk', $data['ma_nk'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_qtcv', '<>', '2')
           ->get();
         return view('thongke.thongke_qlqtcv')
@@ -10974,6 +11904,9 @@ class ThongKeController extends Controller
           ->where('chucvu.ma_cv', $data['ma_cv'])
           ->where('nhiemky.ma_nk', $data['ma_nk'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_qtcv', '<>', '2')
           ->get();
         return view('thongke.thongke_qlqtcv')
@@ -11011,6 +11944,9 @@ class ThongKeController extends Controller
           ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('khoa.ma_k', $data['ma_k'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_qtcv', '<>', '2')
           ->get();
         return view('thongke.thongke_qlqtcv')
@@ -11047,6 +11983,9 @@ class ThongKeController extends Controller
           ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('chucvu.ma_cv', $data['ma_cv'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_qtcv', '<>', '2')
           ->get();
         return view('thongke.thongke_qlqtcv')
@@ -11083,6 +12022,9 @@ class ThongKeController extends Controller
           ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
           ->where('nhiemky.ma_nk', $data['ma_nk'])
           ->where('status_vc', '<>', '2')
+          ->where('status_vc', '<>', '3')
+          ->where('status_vc', '<>', '4')
+          ->where('status_vc', '<>', '5')
           ->where('status_qtcv', '<>', '2')
           ->get();
         return view('thongke.thongke_qlqtcv')
@@ -11129,10 +12071,16 @@ class ThongKeController extends Controller
         ->where('chucvu.ma_cv', $ma_cv)
         ->where('nhiemky.ma_nk', $ma_nk)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_qtcv', '<>', '2')
         ->get();
       $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlqtcv_pdf', [
         'quatrinhchucvu' => $quatrinhchucvu,
@@ -11178,6 +12126,9 @@ class ThongKeController extends Controller
         ->where('chucvu.ma_cv', $ma_cv)
         ->where('nhiemky.ma_nk', $ma_nk)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_qtcv', '<>', '2')
         ->get();
       $temp = new TemplateProcessor('public/word/quanly_qtcv.docx');
@@ -11224,10 +12175,16 @@ class ThongKeController extends Controller
         ->where('khoa.ma_k', $ma_k)
         ->where('chucvu.ma_cv', $ma_cv)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_qtcv', '<>', '2')
         ->get();
       $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlqtcv_pdf', [
         'quatrinhchucvu' => $quatrinhchucvu,
@@ -11272,6 +12229,9 @@ class ThongKeController extends Controller
         ->where('khoa.ma_k', $ma_k)
         ->where('chucvu.ma_cv', $ma_cv)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_qtcv', '<>', '2')
         ->get();
       $temp = new TemplateProcessor('public/word/quanly_qtcv.docx');
@@ -11318,10 +12278,16 @@ class ThongKeController extends Controller
         ->where('khoa.ma_k', $ma_k)
         ->where('nhiemky.ma_nk', $ma_nk)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_qtcv', '<>', '2')
         ->get();
       $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlqtcv_pdf', [
         'quatrinhchucvu' => $quatrinhchucvu,
@@ -11366,6 +12332,9 @@ class ThongKeController extends Controller
         ->where('khoa.ma_k', $ma_k)
         ->where('nhiemky.ma_nk', $ma_nk)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_qtcv', '<>', '2')
         ->get();
       $temp = new TemplateProcessor('public/word/quanly_qtcv.docx');
@@ -11412,10 +12381,16 @@ class ThongKeController extends Controller
         ->where('chucvu.ma_cv', $ma_cv)
         ->where('nhiemky.ma_nk', $ma_nk)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_qtcv', '<>', '2')
         ->get();
       $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlqtcv_pdf', [
         'quatrinhchucvu' => $quatrinhchucvu,
@@ -11460,6 +12435,9 @@ class ThongKeController extends Controller
         ->where('chucvu.ma_cv', $ma_cv)
         ->where('nhiemky.ma_nk', $ma_nk)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_qtcv', '<>', '2')
         ->get();
       $temp = new TemplateProcessor('public/word/quanly_qtcv.docx');
@@ -11505,10 +12483,16 @@ class ThongKeController extends Controller
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('khoa.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_qtcv', '<>', '2')
         ->get();
       $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlqtcv_pdf', [
         'quatrinhchucvu' => $quatrinhchucvu,
@@ -11553,6 +12537,9 @@ class ThongKeController extends Controller
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('khoa.ma_k', $ma_k)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_qtcv', '<>', '2')
         ->orderBy('vienchuc.ma_vc', 'asc')
         ->get();
@@ -11599,10 +12586,16 @@ class ThongKeController extends Controller
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('chucvu.ma_cv', $ma_cv)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_qtcv', '<>', '2')
         ->get();
       $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlqtcv_pdf', [
         'quatrinhchucvu' => $quatrinhchucvu,
@@ -11646,6 +12639,9 @@ class ThongKeController extends Controller
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('chucvu.ma_cv', $ma_cv)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_qtcv', '<>', '2')
         ->get();
       $temp = new TemplateProcessor('public/word/quanly_qtcv.docx');
@@ -11691,10 +12687,16 @@ class ThongKeController extends Controller
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('nhiemky.ma_nk', $ma_nk)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_qtcv', '<>', '2')
         ->get();
       $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->get();
       $pdf = PDF::loadView('pdf.thongke_qlqtcv_pdf', [
         'quatrinhchucvu' => $quatrinhchucvu,
@@ -11738,6 +12740,9 @@ class ThongKeController extends Controller
         ->join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('nhiemky.ma_nk', $ma_nk)
         ->where('status_vc', '<>', '2')
+        ->where('status_vc', '<>', '3')
+        ->where('status_vc', '<>', '4')
+        ->where('status_vc', '<>', '5')
         ->where('status_qtcv', '<>', '2')
         ->get();
       $temp = new TemplateProcessor('public/word/quanly_qtcv.docx');
