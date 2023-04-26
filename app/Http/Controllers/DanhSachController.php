@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\DanhSach_VienChuc_LopExport;
+use App\Jobs\QuaHanEmail;
 use App\Models\Bac;
 use App\Models\ChucVu;
 use App\Models\Chuyen;
@@ -569,6 +570,151 @@ class DanhSachController extends Controller
         'list_quatrinhhoc_thoihoc' => $list_quatrinhhoc_thoihoc,
       ]);
       return $pdf->stream();
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+
+  public function quahan(){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $title = "Viên chức quá hạn";
+    // echo Carbon::parse(Carbon::now())->format('Y-m-d');
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list_lop_quahan = Lop::join('ketqua', 'lop.ma_l', '=', 'ketqua.ma_l')
+        ->join('danhsach', 'danhsach.ma_l', '=', 'lop.ma_l')
+        ->select('lop.ma_l', 'lop.ten_l')
+        ->groupBy('lop.ma_l', 'lop.ten_l')
+        ->where('status_ds', '<>', '4')
+        ->get();
+      $list_vienchuc_quahan = KetQua::join('vienchuc', 'ketqua.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
+        ->join('khoa', 'vienchuc.ma_k', '=', 'khoa.ma_k')
+        ->join('danhsach', 'danhsach.ma_l', '=', 'lop.ma_l')
+        ->where('ngayvenuoc_kq' , '<', Carbon::parse(Carbon::now())->format('Y-m-d'))
+        ->whereColumn('lop.ma_l','=', 'danhsach.ma_l')
+        ->whereColumn('vienchuc.ma_vc','=', 'danhsach.ma_vc')
+        ->where('status_ds', '<>', '4')
+        ->orderBy('ngayvenuoc_kq', 'asc')
+        ->get();
+      return view('danhsach.quahan')
+        ->with('title', $title)
+        ->with('list_lop_quahan', $list_lop_quahan)
+        ->with('list_vienchuc_quahan', $list_vienchuc_quahan)
+
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qltt', $phanquyen_qltt);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function check_venuoc(){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_qlqtcv = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '51')
+      ->first();
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '8')
+      ->first();
+    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc_login)
+    ->where('ma_q', '=', '9')
+    ->first();
+    $phanquyen_qlktkl = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '7')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
+    $title = "Quản lý viên chức về nước";
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list_lop_quahan = Lop::join('ketqua', 'lop.ma_l', '=', 'ketqua.ma_l')
+        ->join('danhsach', 'danhsach.ma_l', '=', 'lop.ma_l')
+        ->select('lop.ma_l', 'lop.ten_l')
+        ->groupBy('lop.ma_l', 'lop.ten_l')
+        ->get();
+      $list_vienchuc_quahan = KetQua::join('vienchuc', 'ketqua.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
+        ->join('khoa', 'vienchuc.ma_k', '=', 'khoa.ma_k')
+        ->join('danhsach', 'danhsach.ma_l', '=', 'lop.ma_l')
+        ->whereColumn('lop.ma_l','=', 'danhsach.ma_l')
+        ->whereColumn('vienchuc.ma_vc','=', 'danhsach.ma_vc')
+        ->orderBy('ngayvenuoc_kq', 'asc')
+        ->get();
+      return view('danhsach.check_venuoc')
+        ->with('title', $title)
+        ->with('list_lop_quahan', $list_lop_quahan)
+        ->with('list_vienchuc_quahan', $list_vienchuc_quahan)
+
+        ->with('phanquyen_qlcttc', $phanquyen_qlcttc)
+        ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)
+        ->with('phanquyen_qlk', $phanquyen_qlk)
+        ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
+        ->with('phanquyen_admin', $phanquyen_admin)
+        ->with('phanquyen_qltt', $phanquyen_qltt);
+    }else{
+      return Redirect::to('/home');
+    }
+  }
+  public function guimail_quahan($ma_vc, $ma_l){
+    $this->check_login();
+    $ma_vc_login = session()->get('ma_vc');
+    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '5')
+      ->first();
+    $phanquyen_qlcttc = PhanQuyen::where('ma_vc', $ma_vc_login)
+      ->where('ma_q', '=', '6')
+      ->first();
+    if($phanquyen_admin || $phanquyen_qlcttc){
+      $list_vienchuc_quahan = KetQua::join('vienchuc', 'ketqua.ma_vc', '=', 'vienchuc.ma_vc')
+        ->join('lop', 'lop.ma_l', '=', 'ketqua.ma_l')
+        ->join('khoa', 'vienchuc.ma_k', '=', 'khoa.ma_k')
+        ->join('danhsach', 'danhsach.ma_l', '=', 'lop.ma_l')
+        ->whereColumn('lop.ma_l','=', 'danhsach.ma_l')
+        ->whereColumn('vienchuc.ma_vc','=', 'danhsach.ma_vc')
+        ->where([
+          ['danhsach.ma_l','=', $ma_l],
+          ['danhsach.ma_vc', '=', $ma_vc],
+          ['status_ds', '<>', '4'],
+          ['ngayvenuoc_kq' , '<', Carbon::parse(Carbon::now())->format('Y-m-d')]
+        ])
+        ->first();
+        $vienchuc = VienChuc::find($ma_vc);
+        $lop = Lop::find($ma_l);
+        $message = [
+          'type' => 'VIÊN CHỨC QUÁ HẠN CHƯA VỀ NƯỚC',
+          'ten_l' => $lop->ten_l,
+          'ngayvenuoc_kq' => $list_vienchuc_quahan->ngayvenuoc_kq,
+          'hoten_vc' => $vienchuc->hoten_vc,
+          'email' => $vienchuc->user_vc,
+        ];
+        QuaHanEmail::dispatch($message, $vienchuc)->delay(now()->addMinute(1));
+      return Redirect::to('/quahan');
     }else{
       return Redirect::to('/home');
     }

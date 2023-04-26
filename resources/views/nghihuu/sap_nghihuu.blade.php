@@ -98,13 +98,19 @@
                 }
               ?>
             </td>
-            <td>
+            <td style="width: 25%">
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary fw-bold btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+100 }}">
                 <i class="fa-solid fa-circle-info text-light"></i>
                 &ensp;
                 Chi tiết
               </button>
+              <a href="{{ URL::to('quatrinhnghi/'.$vienchuc->ma_vc) }}">
+                <button type="submit" class="btn btn-warning button_cam">
+                  <i class="fa-solid fa-pen-to-square text-light"></i>
+                  &ensp; Cập nhật nghỉ hưu
+                </button>
+              </a>
 
               <!-- Modal -->
               <div class="modal fade " id="exampleModal{{ $key+100 }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -428,21 +434,6 @@
                   </div>
                 </div>
               </div>
-              <form action="{{ URL::to('updated_nghihuu') }}" method="post">
-                {{ csrf_field() }}
-                <div class="row mt-2">
-                  <div class="col-7">
-                    <input type="hidden" name="ma_vc" value="{{ $vienchuc->ma_vc }}">
-                    <input type='date' class='form-control input_table' autofocus required name="thoigiannghi_vc" required>
-                  </div>
-                  <div class="col-5">
-                    <button type="submit" class="btn btn-warning button_cam" style="width: 100%;">
-                      <i class="fa-solid fa-pen-to-square text-light"></i>
-                      &ensp; Cập nhật
-                    </button>
-                  </div>
-                </div>
-              </form>
             </td>
           </tr>
         @endforeach
@@ -483,13 +474,19 @@
                 }
               ?>
             </td>
-            <td>
+            <td style="width: 25%">
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary fw-bold btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+200 }}">
                 <i class="fa-solid fa-circle-info text-light"></i>
                 &ensp;
                 Chi tiết
               </button>
+              <a href="{{ URL::to('quatrinhnghi/'.$vienchuc->ma_vc) }}">
+                <button type="submit" class="btn btn-warning button_cam">
+                  <i class="fa-solid fa-pen-to-square text-light"></i>
+                  &ensp; Cập nhật nghỉ hưu
+                </button>
+              </a>
 
               <!-- Modal -->
               <div class="modal fade " id="exampleModal{{ $key+200 }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -814,21 +811,6 @@
                   </div>
                 </div>
               </div>
-              <form action="{{ URL::to('updated_nghihuu') }}" method="post">
-                {{ csrf_field() }}
-                <div class="row mt-2">
-                  <div class="col-7">
-                    <input type="hidden" name="ma_vc" value="{{ $vienchuc->ma_vc }}">
-                    <input type='date' class='form-control input_table' autofocus required name="thoigiannghi_vc" required>
-                  </div>
-                  <div class="col-5">
-                    <button type="submit" class="btn btn-warning button_cam" style="width: 100%;">
-                      <i class="fa-solid fa-pen-to-square text-light"></i>
-                      &ensp; Cập nhật
-                    </button>
-                  </div>
-                </div>
-              </form>
             </td>
           </tr>
         @endforeach

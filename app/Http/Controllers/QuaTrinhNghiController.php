@@ -184,6 +184,8 @@ class QuaTrinhNghiController extends Controller
         $vienchuc->status_vc = VienChuc::find($ma_vc)->update(['status_vc' => 5]);
       }else if($data['ma_dmn'] == 12){
         $vienchuc->status_vc = VienChuc::find($ma_vc)->update(['status_vc' => 4]);
+      }else if($data['ma_dmn'] == 13){
+        $vienchuc->status_vc = VienChuc::find($ma_vc)->update(['status_vc' => 2, 'thoigiannghi_vc' => $data['batdau_qtn']]);
       }
       $request->session()->put('message','Thêm thành công');
       return Redirect::to('/quatrinhnghi/'.$ma_vc);

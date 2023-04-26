@@ -21,14 +21,10 @@
     <table class="table" id="mytable1">
       <thead class="color_table">
         <tr>
-          <th class="text-light" scope="col">STT</th>
-          <th class="text-light" scope="col">Tên </th>
-          <th class="text-light" scope="col">Email</th>
-          <th class="text-light" scope="col">Ngày sinh</th>
-          <th class="text-light" scope="col">Khoa</th>
-          <th class="text-light" scope="col">Ngày nghĩ hưu</th>
-          <th class="text-light" scope="col">Trạng thái</th>
-          <th class="text-light" scope="col"></th>
+          <th class="text-light" scope="col">#</th>
+          <th class="text-light" scope="col">Thông tin viên chức</th>
+          <th class="text-light" scope="col">Thông tin nghỉ hưu</th>
+          <th class="text-light" scope="col">Thông tin quyết định</th>
         </tr>
       </thead>
       <tbody  >
@@ -36,44 +32,10 @@
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }})
-            </td>
-            <td>{{ $vienchuc->user_vc }}</td>
-            <td>{{ $vienchuc->ngaysinh_vc }}</td>
-            <td>{{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})</td>
-            <td>
-              @if ($vienchuc->gioitinh == 0)
-                <?php 
-                  $ngay_nghihuu = strtotime ( '+744 month' , strtotime ( $vienchuc->ngaysinh_vc ) ) ;
-                  $ngay_nghihuu = date ( 'Y-m-j' , $ngay_nghihuu );
-                  echo $ngay_nghihuu;
-                ?>
-              @else
-                <?php 
-                  $ngay_nghihuu = strtotime ( '+720 month' , strtotime ( $vienchuc->ngaysinh_vc ) ) ;
-                  $ngay_nghihuu = date ( 'Y-m-j' , $ngay_nghihuu );
-                  echo $ngay_nghihuu;
-                ?>
-              @endif
-            </td>
-            <td>
-              @if ($vienchuc->status_vc == 0)
-                <span class="badge rounded-pill text-bg-success">Kích hoạt</span>
-              @else
-                @if ($vienchuc->status_vc == 1)
-                  <span class="badge rounded-pill text-bg-danger">Vô hiệu hoá</span>
-                @else
-                  @if ($vienchuc->status_vc == 2)
-                  <span class="badge badge-light-warning">
-                    <i class="fa-solid fa-toggle-off"></i>
-                    &ensp; Nghĩ hưu</span>
-                  @else
-                    
-                  @endif
-                @endif
-              @endif
-            </td>
-            <td>
+              <b>- Họ tên viên chức: </b>{{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }}) <br>
+              <b>- Email: </b> {{ $vienchuc->user_vc }} <br>
+              <b>- Ngày sinh: </b>{{ $vienchuc->ngaysinh_vc }} <br>
+              <b>- Khoa: </b>{{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }}) <br>
               <button type="button" class="btn btn-primary fw-bold btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}" >
                 <i class="fa-solid fa-circle-info text-light"></i>
                 &ensp;
@@ -403,6 +365,43 @@
                 </div>
               </div>
             </td>
+            <td>
+              <b>- Ngày nghỉ hưu: </b>
+              @if ($vienchuc->gioitinh == 0)
+                <?php 
+                  $ngay_nghihuu = strtotime ( '+744 month' , strtotime ( $vienchuc->ngaysinh_vc ) ) ;
+                  $ngay_nghihuu = date ( 'j-m-Y' , $ngay_nghihuu );
+                  echo $ngay_nghihuu;
+                ?>
+              @else
+                <?php 
+                  $ngay_nghihuu = strtotime ( '+720 month' , strtotime ( $vienchuc->ngaysinh_vc ) ) ;
+                  $ngay_nghihuu = date ( 'Y-m-j' , $ngay_nghihuu );
+                  echo $ngay_nghihuu;
+                ?>
+              @endif
+              <br>
+              @if ($vienchuc->file_qtn)
+                <a href="{{ asset('public/uploads/quatrinhnghi/'.$vienchuc->file_qtn) }}" style="color: #000D6B; font-weight: bold">
+                  <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                  File 
+                </a>
+              @else
+                <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+              @endif
+            </td>
+            <td>
+              <b>- Số quyết định: </b>{{ $vienchuc->soquyetdinh_qtn }} <br>
+              <b>- Ngày ký quyết định: </b>{{ $vienchuc->ngaykyquyetdinh_qtn }} <br>
+              @if ($vienchuc->filequyetdinh_qtn)
+                <a href="{{ asset('public/uploads/quatrinhnghi/'.$vienchuc->filequyetdinh_qtn) }}" style="color: #000D6B; font-weight: bold">
+                  <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                  File 
+                </a>
+              @else
+                <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+              @endif
+            </td>
           </tr>
         @endforeach
       </tbody>
@@ -483,7 +482,13 @@
                 }
               ?>
             </td>
-            <td>
+            <td style="width: 25%">
+              <a href="{{ URL::to('quatrinhnghi/'.$vienchuc->ma_vc) }}">
+                <button type="submit" class="btn btn-warning button_cam">
+                  <i class="fa-solid fa-pen-to-square text-light"></i>
+                  &ensp; Cập nhật nghỉ hưu
+                </button>
+              </a>
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary fw-bold btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+500 }}">
                 <i class="fa-solid fa-circle-info text-light"></i>
@@ -814,21 +819,6 @@
                   </div>
                 </div>
               </div>
-              <form action="{{ URL::to('updated_nghihuu') }}" method="post">
-                {{ csrf_field() }}
-                <div class="row mt-2">
-                  <div class="col-7">
-                    <input type="hidden" name="ma_vc" value="{{ $vienchuc->ma_vc }}">
-                    <input type='date' class='form-control input_table' autofocus required name="thoigiannghi_vc" required>
-                  </div>
-                  <div class="col-5">
-                    <button type="submit" class="btn btn-warning button_cam" style="width: 100%;">
-                      <i class="fa-solid fa-pen-to-square text-light"></i>
-                      &ensp; Cập nhật
-                    </button>
-                  </div>
-                </div>
-              </form>
             </td>
           </tr>
         @endforeach
@@ -874,13 +864,19 @@
                 }
               ?>
             </td>
-            <td>
+            <td style="width: 25%">
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary fw-bold btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+100 }}" >
                 <i class="fa-solid fa-circle-info text-light"></i>
                 &ensp;
                 Chi tiết
               </button>
+              <a href="{{ URL::to('quatrinhnghi/'.$vienchuc->ma_vc) }}">
+                <button type="submit" class="btn btn-warning button_cam">
+                  <i class="fa-solid fa-pen-to-square text-light"></i>
+                  &ensp; Cập nhật nghỉ hưu
+                </button>
+              </a>
               <!-- Modal -->
               <div class="modal fade " id="exampleModal{{ $key+100 }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable">
@@ -1204,21 +1200,6 @@
                   </div>
                 </div>
               </div>
-              <form action="{{ URL::to('updated_nghihuu') }}" method="post">
-                {{ csrf_field() }}
-                <div class="row mt-2">
-                  <div class="col-8">
-                    <input type="hidden" name="ma_vc" value="{{ $vienchuc->ma_vc }}">
-                    <input type='date' class='form-control input_table' autofocus required name="thoigiannghi_vc" required>
-                  </div>
-                  <div class="col-4">
-                    <button type="submit" class="btn btn-warning button_cam" style="width: 100%;">
-                      <i class="fa-solid fa-pen-to-square text-light"></i>
-                      &ensp; Cập nhật
-                    </button>
-                  </div>
-                </div>
-              </form>
             </td>
           </tr>
         @endforeach

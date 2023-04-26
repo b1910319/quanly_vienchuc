@@ -89,12 +89,15 @@ class NghiHuuController extends Controller
       $list_tongiao = TonGiao::get();
       $list_thuongbinh = ThuongBinh::get();
       if ($phanquyen_qlk) {
-        $list_vienchuc_nghihuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-          ->where('status_vc', '2')
-          ->where('vienchuc.ma_k', $ma_k)
-          ->orderBy('hoten_vc','asc')
-          ->get();
+        // $list_vienchuc_nghihuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        //   ->where('status_vc', '2')
+        //   ->where('vienchuc.ma_k', $ma_k)
+        //   ->orderBy('hoten_vc','asc')
+        //   ->get();
         $list_nghihuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->join('quatrinhnghi', 'quatrinhnghi.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('danhmucnghi', 'danhmucnghi.ma_dmn', '=', 'quatrinhnghi.ma_dmn')
+          ->where('quatrinhnghi.ma_dmn', '13')
           ->where('status_vc', '2')
           ->where('vienchuc.ma_k', $ma_k)
           ->get();
@@ -109,11 +112,14 @@ class NghiHuuController extends Controller
           ->where('status_vc','<>','2')
           ->get();
       } else {
-        $list_vienchuc_nghihuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
-        ->where('status_vc', '2')
-        ->orderBy('hoten_vc','asc')
-        ->get();
+        // $list_vienchuc_nghihuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+        // ->where('status_vc', '2')
+        // ->orderBy('hoten_vc','asc')
+        // ->get();
         $list_nghihuu = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->join('quatrinhnghi', 'quatrinhnghi.ma_vc', '=', 'vienchuc.ma_vc')
+          ->join('danhmucnghi', 'danhmucnghi.ma_dmn', '=', 'quatrinhnghi.ma_dmn')
+          ->where('quatrinhnghi.ma_dmn', '13')
           ->where('status_vc', '2')
           ->get();
         $list_nu_nghihuu_homnay = VienChuc::where('ngaysinh_vc','LIKE', $batdau_nu)
@@ -132,7 +138,7 @@ class NghiHuuController extends Controller
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        ->with('list_vienchuc_nghihuu', $list_vienchuc_nghihuu)
+        // ->with('list_vienchuc_nghihuu', $list_vienchuc_nghihuu)
         ->with('list_nghihuu', $list_nghihuu)
         ->with('list_khoa', $list_khoa)
         ->with('list_chucvu', $list_chucvu)
@@ -335,107 +341,107 @@ class NghiHuuController extends Controller
       return Redirect::to('/home');
     }
   }
-  public function updated_nghihuu(Request $request){
-    $this->check_login();
-    $ma_vc = session()->get('ma_vc');
-    $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '5')
-      ->first();
-    $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '8')
-      ->first();
-    $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
-      ->where('ma_q', '=', '9')
-      ->first();
-    if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
-      $data = $request->all();
-      $vienchuc = VienChuc::find($data['ma_vc']);
-      $vienchuc->status_vc = '2';
-      $vienchuc->thoigiannghi_vc = $data['thoigiannghi_vc'];
-      $vienchuc->save();
-      $khenthuong = KhenThuong::where('ma_vc', $data['ma_vc'])
-        ->get();
-      foreach ($khenthuong as $key => $kt) {
-        $kt->status_kt = '2';
-        $kt->save();
-      }
-      $kyluat = KyLuat::where('ma_vc', $data['ma_vc'])
-        ->get();
-      foreach ($kyluat as $key => $kl) {
-        $kl->status_kl = '2';
-        $kl->save();
-      }
-      $bangcap =  BangCap::where('ma_vc', $data['ma_vc'])
-        ->get();
-      foreach ($bangcap as $key => $bc) {
-        $bc->status_bc = '2';
-        $bc->save();
-      }
-      $noisinh =  NoiSinh::where('ma_vc', $data['ma_vc'])
-        ->get();
-      foreach ($noisinh as $key => $ns) {
-        $ns->status_ns = '2';
-        $ns->save();
-      }
-      $giadinh =  GiaDinh::where('ma_vc', $data['ma_vc'])
-        ->get();
-      foreach ($giadinh as $key => $gd) {
-        $gd->status_gd = '2';
-        $gd->save();
-      }
-      $ketqua =  KetQua::where('ma_vc', $data['ma_vc'])
-        ->get();
-      foreach ($ketqua as $key => $kq) {
-        $kq->status_kq = '2';
-        $kq->save();
-      }
-      $quyetdinh =  QuyetDinh::where('ma_vc', $data['ma_vc'])
-        ->get();
-      foreach ($quyetdinh as $key => $qd) {
-        $qd->status_qd = '2';
-        $qd->save();
-      }
-      $giahan =  GiaHan::where('ma_vc', $data['ma_vc'])
-        ->get();
-      foreach ($giahan as $key => $gh) {
-        $gh->status_gh = '2';
-        $gh->save();
-      }
-      $dunghoc =  DungHoc::where('ma_vc', $data['ma_vc'])
-        ->get();
-      foreach ($dunghoc as $key => $dh) {
-        $dh->status_dh = '2';
-        $dh->save();
-      }
-      $thoihoc =  ThoiHoc::where('ma_vc', $data['ma_vc'])
-        ->get();
-      foreach ($thoihoc as $key => $th) {
-        $th->status_th = '2';
-        $th->save();
-      }
-      $chuyen =  Chuyen::where('ma_vc', $data['ma_vc'])
-        ->get();
-      foreach ($chuyen as $key => $c) {
-        $c->status_c = '2';
-        $c->save();
-      }
-      $quequan =  QueQuan::where('ma_vc', $data['ma_vc'])
-        ->get();
-      foreach ($quequan as $key => $qq) {
-        $qq->status_qq = '2';
-        $qq->save();
-      }
-      $quatrinhchucvu =  QuaTrinhChucVu::where('ma_vc', $data['ma_vc'])
-        ->get();
-      foreach ($quatrinhchucvu as $key => $qtcv) {
-        $qtcv->status_qtcv = '2';
-        $qtcv->save();
-      }
-      return Redirect::to('/nghihuu');
-    }else{
-      return Redirect::to('/home');
-    }
-  }
+  // public function updated_nghihuu(Request $request){
+  //   $this->check_login();
+  //   $ma_vc = session()->get('ma_vc');
+  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '5')
+  //     ->first();
+  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '8')
+  //     ->first();
+  //   $phanquyen_qlk = PhanQuyen::where('ma_vc', $ma_vc)
+  //     ->where('ma_q', '=', '9')
+  //     ->first();
+  //   if($phanquyen_admin || $phanquyen_qltt || $phanquyen_qlk){
+  //     $data = $request->all();
+  //     $vienchuc = VienChuc::find($data['ma_vc']);
+  //     $vienchuc->status_vc = '2';
+  //     $vienchuc->thoigiannghi_vc = $data['thoigiannghi_vc'];
+  //     $vienchuc->save();
+  //     $khenthuong = KhenThuong::where('ma_vc', $data['ma_vc'])
+  //       ->get();
+  //     foreach ($khenthuong as $key => $kt) {
+  //       $kt->status_kt = '2';
+  //       $kt->save();
+  //     }
+  //     $kyluat = KyLuat::where('ma_vc', $data['ma_vc'])
+  //       ->get();
+  //     foreach ($kyluat as $key => $kl) {
+  //       $kl->status_kl = '2';
+  //       $kl->save();
+  //     }
+  //     $bangcap =  BangCap::where('ma_vc', $data['ma_vc'])
+  //       ->get();
+  //     foreach ($bangcap as $key => $bc) {
+  //       $bc->status_bc = '2';
+  //       $bc->save();
+  //     }
+  //     $noisinh =  NoiSinh::where('ma_vc', $data['ma_vc'])
+  //       ->get();
+  //     foreach ($noisinh as $key => $ns) {
+  //       $ns->status_ns = '2';
+  //       $ns->save();
+  //     }
+  //     $giadinh =  GiaDinh::where('ma_vc', $data['ma_vc'])
+  //       ->get();
+  //     foreach ($giadinh as $key => $gd) {
+  //       $gd->status_gd = '2';
+  //       $gd->save();
+  //     }
+  //     $ketqua =  KetQua::where('ma_vc', $data['ma_vc'])
+  //       ->get();
+  //     foreach ($ketqua as $key => $kq) {
+  //       $kq->status_kq = '2';
+  //       $kq->save();
+  //     }
+  //     $quyetdinh =  QuyetDinh::where('ma_vc', $data['ma_vc'])
+  //       ->get();
+  //     foreach ($quyetdinh as $key => $qd) {
+  //       $qd->status_qd = '2';
+  //       $qd->save();
+  //     }
+  //     $giahan =  GiaHan::where('ma_vc', $data['ma_vc'])
+  //       ->get();
+  //     foreach ($giahan as $key => $gh) {
+  //       $gh->status_gh = '2';
+  //       $gh->save();
+  //     }
+  //     $dunghoc =  DungHoc::where('ma_vc', $data['ma_vc'])
+  //       ->get();
+  //     foreach ($dunghoc as $key => $dh) {
+  //       $dh->status_dh = '2';
+  //       $dh->save();
+  //     }
+  //     $thoihoc =  ThoiHoc::where('ma_vc', $data['ma_vc'])
+  //       ->get();
+  //     foreach ($thoihoc as $key => $th) {
+  //       $th->status_th = '2';
+  //       $th->save();
+  //     }
+  //     $chuyen =  Chuyen::where('ma_vc', $data['ma_vc'])
+  //       ->get();
+  //     foreach ($chuyen as $key => $c) {
+  //       $c->status_c = '2';
+  //       $c->save();
+  //     }
+  //     $quequan =  QueQuan::where('ma_vc', $data['ma_vc'])
+  //       ->get();
+  //     foreach ($quequan as $key => $qq) {
+  //       $qq->status_qq = '2';
+  //       $qq->save();
+  //     }
+  //     $quatrinhchucvu =  QuaTrinhChucVu::where('ma_vc', $data['ma_vc'])
+  //       ->get();
+  //     foreach ($quatrinhchucvu as $key => $qtcv) {
+  //       $qtcv->status_qtcv = '2';
+  //       $qtcv->save();
+  //     }
+  //     return Redirect::to('/nghihuu');
+  //   }else{
+  //     return Redirect::to('/home');
+  //   }
+  // }
   public function nghihuu_pdf(){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');

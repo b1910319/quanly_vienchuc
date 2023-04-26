@@ -458,6 +458,19 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                     </a>
                   </li>
                   <li>
+                    <a href="javascript: void(0);" aria-expanded="false">Quản lý viên chức <br> về nước
+                      <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-third-level nav" aria-expanded="false">
+                      <li>
+                        <a href="{{ URL::to('/check_venuoc') }}">Viên chức về nước</a>
+                      </li>
+                      <li>
+                        <a href="{{ URL::to('/quahan') }}">Viên chức quá hạn chưa về nước</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
                     <a href="{{ URL::to('/thongke_qlcttc') }}">Thống kê</a>
                   </li>
                 </ul>

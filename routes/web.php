@@ -335,7 +335,7 @@ Route::get('/bangcap_xuatfile_word/{ma_vc}',[BangCapController::class, 'bangcap_
 
 
 Route::get('/nghihuu',[NghiHuuController::class, 'nghihuu']);
-Route::post('/updated_nghihuu',[NghiHuuController::class, 'updated_nghihuu']);
+// Route::post('/updated_nghihuu',[NghiHuuController::class, 'updated_nghihuu']);
 Route::get('/nghihuu_pdf',[NghiHuuController::class, 'nghihuu_pdf']);
 Route::get('/nghihuu_excel',[NghiHuuController::class, 'nghihuu_excel']);
 Route::post('/search_nghihuu',[NghiHuuController::class, 'search_nghihuu']);
@@ -957,6 +957,10 @@ Route::get('/danhsach_vienchuc_lop_excel/{ma_l}',[DanhSachController::class, 'da
 Route::get('/quatrinhhoc',[DanhSachController::class, 'quatrinhhoc']);
 Route::get('/quatrinhhoc_chitiet/{ma_vc}',[DanhSachController::class, 'quatrinhhoc_chitiet']);
 Route::post('/quatrinhhoc_xuatfile',[DanhSachController::class, 'quatrinhhoc_xuatfile']);
+
+Route::get('/quahan',[DanhSachController::class, 'quahan']);
+Route::get('/check_venuoc',[DanhSachController::class, 'check_venuoc']);
+Route::get('/guimail_quahan/{ma_vc}/{ma_l}',[DanhSachController::class, 'guimail_quahan']);
 
 
 
