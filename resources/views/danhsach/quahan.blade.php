@@ -49,7 +49,7 @@
                           Gửi mail
                         </button>
                       </a>
-                      <a href="">
+                      <a href="{{ URL::to('davenuoc/'.$vienchuc->ma_vc.'/'.$vienchuc->ma_l) }}">
                         <button type="button" class="btn btn-primary button_xanhla">
                           <i class="fa-solid fa-circle-check text-light"></i>
                           &ensp;

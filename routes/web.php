@@ -961,6 +961,7 @@ Route::post('/quatrinhhoc_xuatfile',[DanhSachController::class, 'quatrinhhoc_xua
 Route::get('/quahan',[DanhSachController::class, 'quahan']);
 Route::get('/check_venuoc',[DanhSachController::class, 'check_venuoc']);
 Route::get('/guimail_quahan/{ma_vc}/{ma_l}',[DanhSachController::class, 'guimail_quahan']);
+Route::get('/davenuoc/{ma_vc}/{ma_l}',[DanhSachController::class, 'davenuoc']);
 
 
 
