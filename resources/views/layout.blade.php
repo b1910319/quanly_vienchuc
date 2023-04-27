@@ -266,6 +266,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
                           Danh mục nghĩ
                         </a>
                       </li>
+                      <li>
+                        <a href="{{ URL::to('/thoigiannghihuu') }}">
+                          Thời gian nghỉ hưu
+                        </a>
+                      </li>
                     </ul>
                   </li>
                   <li>

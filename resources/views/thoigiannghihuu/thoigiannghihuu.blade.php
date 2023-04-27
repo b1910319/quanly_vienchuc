@@ -3,7 +3,7 @@
 <div class="row">
   <div class="card-box">
     <div class="alert alert-light color_alert" role="alert" >
-      ________THÔNG TIN VỀ DÂN TỘC________
+      ________THÔNG TIN VỀ THỜI GIAN NGHỈ HƯU CỦA VIÊN CHỨC________
     </div>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
@@ -12,7 +12,7 @@
             <i class="fas fa-plus-square text-light"></i>
             &ensp; Thêm
           </button>
-          <button type="button" class="btn btn-primary button_xanhla" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          {{-- <button type="button" class="btn btn-primary button_xanhla" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <i class="fa-solid fa-upload text-light"></i> &ensp;
             Nhập file
           </button>
@@ -26,7 +26,7 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <form class="form-container" action="{{ URL::to('add_dantoc_excel') }}" method="POST" enctype='multipart/form-data'>
+                  <form class="form-container" action="{{ URL::to('add_thoigiannghihuu_excel') }}" method="POST" enctype='multipart/form-data'>
                     @csrf
                     <div class="row">
                       <div class="col-9">
@@ -52,57 +52,17 @@
                 </div>
               </div>
             </div>
-          </div>
-          <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_dantoc') }}">
+          </div> --}}
+          <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_thoigiannghihuu') }}">
             <button type="button" class="btn btn-danger button_do">
               <i class="fa-solid fa-trash text-light"></i>
               &ensp;
               Xoá tất cả
             </button>
           </a>
-          {{-- <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-            <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
-            Thống kê
-          </button>
-  
-          <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
-                <i class="fa-solid fa-chart-simple"></i>
-                &ensp;
-                Thống kê
-              </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <table class="table">
-                <thead >
-                  <tr>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Số lượng</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($count_status as $key => $count_stt)
-                    @if ($count_stt->status_dt == 0)
-                      <tr>
-                        <td>Danh mục hiển thị</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @else
-                      <tr>
-                        <td>Danh mục ẩn</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @endif
-                  @endforeach
-                </tbody>
-              </table>
-            </div>
-          </div> --}}
           <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body mt-3">
-              <form action="{{ URL::to('/add_dantoc') }}" method="POST"
+              <form action="{{ URL::to('/add_thoigiannghihuu') }}" method="POST"
                 autocomplete="off" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="row">
@@ -110,10 +70,32 @@
                     <table class="table">
                       <tbody>
                         <tr>
-                          <th scope="row">Tên dân tộc: </th>
+                          <th scope="row" style="width: 30%">Năm nghỉ hưu: </th>
                           <td class="was-validated">
-                            <input type='text' id="ten_dt" class='form-control input_table' autofocus required name="ten_dt">
+                            <input type='number' id="thoigian_tgnh" class='form-control input_table' autofocus required name="thoigian_tgnh">
                             <span id="baoloi" style="color: #FF1E1E; font-size: 14px; font-weight: bold"></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Nam nghỉ hưu: </th>
+                          <td class="was-validated">
+                            <div class="row">
+                              <div class="col-6">
+                                <div class="input-group mb-3">
+                                  <input type="number" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" required min="50" name="tuoinam">
+
+                                  <span class="input-group-text" id="basic-addon2">tuổi</span>
+                                </div>
+                              </div>
+                              <div class="col-6">
+                                <div class="input-group mb-3">
+                                  <input type="number" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" value="0" min="0" name="thangnam">
+
+                                  <span class="input-group-text" id="basic-addon2">tháng</span>
+                                </div>
+                              </div>
+                            </div>
+                            
                           </td>
                         </tr>
                       </tbody>
@@ -123,9 +105,31 @@
                     <table class="table">
                       <tbody>
                         <tr>
+                          <th scope="row" style="width: 30%">Nữ nghỉ hưu: </th>
+                          <td class="was-validated">
+                            <div class="row">
+                              <div class="col-6">
+                                <div class="input-group mb-3">
+                                  <input type="number" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" required min="50" name="tuoinu">
+
+                                  <span class="input-group-text" id="basic-addon2">tuổi</span>
+                                </div>
+                              </div>
+                              <div class="col-6">
+                                <div class="input-group mb-3">
+                                  <input type="number" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" value="0" min="0" name="thangnu">
+
+                                  <span class="input-group-text" id="basic-addon2">tháng</span>
+                                </div>
+                              </div>
+                            </div>
+                            
+                          </td>
+                        </tr>
+                        <tr>
                           <th scope="row">Trạng thái: </th>
                           <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="status_dt" required>
+                            <select class="custom-select input_table" id="gender2" name="status_tgnh" required>
                               <option value="" >Chọn trạng thái</option>
                               <option value="1" >Ẩn</option>
                               <option selected value="0" >Hiển thị</option>
@@ -154,39 +158,49 @@
       </div>
     </div>
     <div class="mt-3"></div>
-    <form action="{{ URL::to('/delete_dantoc_check') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ URL::to('/delete_thoigiannghihuu_check') }}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
       <table class="table" id="mytable">
         <thead class="color_table">
           <tr>
             <th class="text-light" scope="col"></th>
-            <th class="text-light" scope="col">STT</th>
-            <th class="text-light" scope="col">Dân tộc </th>
+            <th class="text-light" scope="col">#</th>
+            <th class="text-light" scope="col">Năm </th>
+            <th class="text-light" scope="col">Nghỉ hưu ở nam </th>
+            <th class="text-light" scope="col">Nghỉ hưu ở nữ</th>
             <th class="text-light" scope="col">Trạng thái</th>
             <th class="text-light" scope="col"></th>
           </tr>
         </thead>
         <tbody  >
-          @foreach ($list as $key => $dantoc)
+          @foreach ($list as $key => $thoigiannghihuu)
             <tr >
               <td style="width: 5%">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox"  name="ma_dt[{{ $dantoc->ma_dt }}]" value="{{ $dantoc->ma_dt }}">
+                  <input class="form-check-input" type="checkbox"  name="ma_tgnh[{{ $thoigiannghihuu->ma_tgnh }}]" value="{{ $thoigiannghihuu->ma_tgnh }}">
                 </div>
               </td>
               <th scope="row">{{ $key+1 }}</th>
               <td>
-                {{ $dantoc->ten_dt }} ({{ $dantoc->ma_dt }})
+                {{ $thoigiannghihuu->thoigian_tgnh }} ({{ $thoigiannghihuu->ma_tgnh }})
+              </td>
+              <td>
+                {{ floor($thoigiannghihuu->nam_tgnh/12) }} tuổi
+                {{ $thoigiannghihuu->nam_tgnh%12 }} tháng
+              </td>
+              <td>
+                {{ floor($thoigiannghihuu->nu_tgnh/12) }} tuổi
+                {{ $thoigiannghihuu->nu_tgnh%12 }} tháng
               </td>
               <td>
                 <?php
-                  if($dantoc->status_dt == 0){
+                  if($thoigiannghihuu->status_tgnh == 0){
                     ?>
                       <span class="badge badge-light-success">
                         <i class="fas fa-solid fa-eye"></i>&ensp;  Hiển thị
                       </span>
                     <?php
-                  }else if($dantoc->status_dt == 1) {
+                  }else if($thoigiannghihuu->status_tgnh == 1) {
                     ?>
                       <span class="badge badge-light-danger"><i class="fas fa-solid fa-eye-slash"></i>&ensp; Ẩn</span>
                     <?php
@@ -194,27 +208,27 @@
                 ?>
               </td>
               <td style="width: 27%;">
-                <a href="{{ URL::to('/edit_dantoc/'.$dantoc->ma_dt)}}">
+                <a href="{{ URL::to('/edit_thoigiannghihuu/'.$thoigiannghihuu->ma_tgnh)}}">
                   <button type="button" class=" btn btn-warning button_cam">
                     <i class="fa-solid fa-pen-to-square text-light"></i>
                     &ensp; Cập nhật
                   </button>
                 </a>
-                <input class="ma_dt{{ $dantoc->ma_dt }}" type="hidden" value="{{ $dantoc->ma_dt }}">
-                <button type="button" class=" xoa{{ $dantoc->ma_dt }} btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
+                <input class="ma_tgnh{{ $thoigiannghihuu->ma_tgnh }}" type="hidden" value="{{ $thoigiannghihuu->ma_tgnh }}">
+                <button type="button" class=" xoa{{ $thoigiannghihuu->ma_tgnh }} btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
                 <?php
-                  if($dantoc->status_dt == 0){
+                  if($thoigiannghihuu->status_tgnh == 0){
                     ?>
-                      <a href="{{ URL::to('/select_dantoc/'.$dantoc->ma_dt) }}">
+                      <a href="{{ URL::to('/select_thoigiannghihuu/'.$thoigiannghihuu->ma_tgnh) }}">
                         <button type="button" class="btn btn-secondary fw-bold">
                           <i class="fa-solid fa-eye-slash text-light"></i> 
                           &ensp; Ẩn
                         </button>
                       </a>
                     <?php
-                  }else if($dantoc->status_dt == 1) {
+                  }else if($thoigiannghihuu->status_tgnh == 1) {
                     ?>
-                      <a href="{{ URL::to('/select_dantoc/'.$dantoc->ma_dt) }}">
+                      <a href="{{ URL::to('/select_thoigiannghihuu/'.$thoigiannghihuu->ma_tgnh) }}">
                         <button type="button" class="btn btn-success fw-bold">
                           <i class="fa-solid fa-eye text-light"></i>
                           &ensp; Hiển thị
@@ -260,8 +274,8 @@
     })
     
   }); 
-  @foreach ($list as $dantoc )
-    document.querySelector('.xoa{{ $dantoc->ma_dt }}').addEventListener('click', (event)=>{
+  @foreach ($list as $thoigiannghihuu )
+    document.querySelector('.xoa{{ $thoigiannghihuu->ma_tgnh }}').addEventListener('click', (event)=>{
       const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
           confirmButton: 'btn btn-success',
@@ -275,14 +289,14 @@
         text: "Bạn không thể khôi phục dữ liệu đã xoá",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
-        cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
+        confirmButtonText: '<i class="fa-solid fa-trash text-light"></i> &ensp;  Xoá',
+        cancelButtonText: '<i class="fa-solid fa-xmark text-light"></i> &ensp;  Huỷ',
         reverseButtons: true
       }).then((result) => {
         if (result.isConfirmed) {
-          var id= $('.ma_dt{{ $dantoc->ma_dt }}').val();
+          var id= $('.ma_tgnh{{ $thoigiannghihuu->ma_tgnh }}').val();
           $.ajax({
-            url:"{{ url("/delete_dantoc") }}", 
+            url:"{{ url("/delete_thoigiannghihuu") }}", 
             type: "GET", 
             data: {id:id},
           });
@@ -309,18 +323,18 @@
 </script>
 <script>
   $(document).ready(function(){
-    $('#ten_dt').mouseout(function(){
-      var ten_dt = $(this).val();
+    $('#thoigian_tgnh').mouseout(function(){
+      var thoigian_tgnh = $(this).val();
       var ten = '';
-      // alert(ten_dt);
+      // alert(thoigian_tgnh);
       $.ajax({
-        url:"{{ url("/check_ten_dt") }}",
+        url:"{{ url("/check_thoigian_tgnh") }}",
         type:"GET",
-        data:{ten_dt:ten_dt},
+        data:{thoigian_tgnh:thoigian_tgnh},
         success:function(data){
           if(data == 1){  
-            $('#baoloi').html('Dân tộc đã tồn tại');
-            $('#ten_dt').val('');
+            $('#baoloi').html('Năm đã tồn tại');
+            $('#thoigian_tgnh').val('');
           }else{
             $('#baoloi').html(''); 
           }

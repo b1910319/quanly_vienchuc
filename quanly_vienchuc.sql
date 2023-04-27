@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 25, 2023 lúc 08:59 AM
+-- Thời gian đã tạo: Th4 27, 2023 lúc 05:08 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -814,7 +814,8 @@ INSERT INTO `danhmucnghi` (`ma_dmn`, `ten_dmn`, `status_dmn`, `created_dmn`, `up
 (9, 'Nghỉ việc', 0, '2023-04-25 02:55:00', NULL),
 (10, 'Nghỉ hưu trước hạn', 0, '2023-04-25 02:55:10', NULL),
 (11, 'Nghỉ việc không hưởng lương', 0, '2023-04-25 02:55:23', '2023-04-25 03:40:22'),
-(12, 'Chuyển công tác', 0, '2023-04-25 02:55:31', NULL);
+(12, 'Chuyển công tác', 0, '2023-04-25 02:55:31', NULL),
+(13, 'Nghỉ hưu', 0, '2023-04-26 03:34:23', NULL);
 
 -- --------------------------------------------------------
 
@@ -903,7 +904,7 @@ INSERT INTO `danhsach` (`ma_vc`, `ma_l`, `status_ds`, `created_ds`, `updated_ds`
 (118, 71, 0, '2023-04-15 08:35:45', ' '),
 (187, 72, 0, '2023-04-16 03:20:42', ' '),
 (177, 72, 0, '2023-04-16 03:20:46', ' '),
-(166, 72, 0, '2023-04-16 03:20:50', ' '),
+(166, 72, 4, '2023-04-16 03:20:50', ' '),
 (157, 72, 3, '2023-04-16 03:20:53', ' ');
 
 -- --------------------------------------------------------
@@ -1889,7 +1890,7 @@ CREATE TABLE `ketqua` (
 INSERT INTO `ketqua` (`ma_kq`, `ma_l`, `ma_vc`, `tennguoihuongdan_kq`, `emailnguoihuongdan_kq`, `noidungaotao_kq`, `bangduoccap_kq`, `ngaycapbang_kq`, `xeploai_kq`, `detaitotnghiep_kq`, `ngayvenuoc_kq`, `danhgiacuacoso_kq`, `kiennghi_kq`, `file_kq`, `status_kq`, `created_kq`, `updated_kq`) VALUES
 (91, 71, 187, 'Alia Sabur', 'AliaSabur@mail.com', 'Advanced Diploma in Information Technology', 'Bằng thạc sĩ', '2023-04-12', 'Xuất sắc', 'Nghiên Cứu Phương Pháp Quản Trị Rủi Ro Hướng Mục Tiêu Và Thử Nghiệm Ứng Dụng Trong Xây Dựng', '2023-05-20', 'Congratulations! Best wishes for your future!', 'Không', NULL, 0, '2023-04-15 08:57:04', '2023-04-15 08:58:18'),
 (92, 71, 170, 'Erik Demaine', 'ErikDemaine@gmail.com', 'Advanced Diploma in Information Technology', 'Thạc sĩ', '2023-04-10', 'Xuất sắc', 'Nhận Dạng Ký Tự Viết Tay Online Với Máy Học Vector Hỗ Trợ (SVM) Và Nhận Dạng Chữ Viết Tay Liền Nét', '2023-05-20', 'Don’t cry because it’s over, smile because it happened.', 'Không', NULL, 0, '2023-04-15 09:11:36', ' '),
-(93, 71, 167, 'Erik Demaine', 'ErikDemaine@gmail.com', 'Advanced Diploma in Information Technology', 'Đại học', '2023-03-15', 'Đại học', 'Khai Thác Top-Rank K Cho Tập Đánh Trọng Trên Cơ Sở Dữ Liệu Có Trọng Số', '2023-05-26', 'Don’t cry because it’s over, smile because it happened.', 'Không', NULL, 0, '2023-04-15 09:16:41', ' '),
+(93, 71, 167, 'Erik Demaine', 'ErikDemaine@gmail.com', 'Advanced Diploma in Information Technology', 'Đại học', '2023-03-15', 'Đại học', 'Khai Thác Top-Rank K Cho Tập Đánh Trọng Trên Cơ Sở Dữ Liệu Có Trọng Số', '2023-03-26', 'Don’t cry because it’s over, smile because it happened.', 'Không', 'Lâm Hoài Bảo728.pdf', 0, '2023-04-15 09:16:41', '2023-04-26 06:02:00'),
 (94, 71, 158, 'Erik Demaine', 'ErikDemaine@gmail.com', 'Advanced Diploma in Information Technology', 'Đại học', '2023-04-20', 'Xuất sắc', 'Khai Thác Phân Lớp Kết Hợp Trên Cơ Sở Dữ Liệu Được Cập Nhật', '2023-05-20', 'Don’t cry because it’s over, smile because it happened.', 'Không', NULL, 0, '2023-04-15 09:18:15', ' '),
 (95, 71, 161, 'Erik Demaine', 'ErikDemaine@gmail.com', 'Advanced Diploma in Information Technology', 'Đại học', '2023-04-15', 'Xuất sắc', 'Xây Dựng Web Ngữ Nghĩa Cho Việc Tra Cứu Thông Tin Web Du Lịch Đồng Bằng Sông Cửu Long', '2023-05-20', 'Don’t cry because it’s over, smile because it happened.', 'Không', NULL, 2, '2023-04-15 09:19:29', ' '),
 (97, 71, 151, 'Erik Demaine', 'ErikDemaine@gmail.com', 'Advanced Diploma in Information Technology', 'Đại học', '2023-04-15', 'Xuất sắc', 'Xây Dựng Hệ Thống Truy Vấn Video Nông Nghiệp Hướng Ngữ Nghĩa Có Sử Dụng Ontology', '2023-05-20', 'Don’t cry because it’s over, smile because it happened.', 'Không', NULL, 0, '2023-04-15 09:22:08', ' '),
@@ -2981,7 +2982,10 @@ CREATE TABLE `quatrinhnghi` (
 --
 
 INSERT INTO `quatrinhnghi` (`ma_qtn`, `ma_vc`, `ma_dmn`, `batdau_qtn`, `ketthuc_qtn`, `ghichu_qtn`, `soquyetdinh_qtn`, `ngaykyquyetdinh_qtn`, `file_qtn`, `filequyetdinh_qtn`, `status_qtn`, `created_qtn`, `updated_qtn`) VALUES
-(4, 191, 9, '2023-04-23', NULL, 'Nghỉ việc', '9548/QĐ-ĐHCT', '2023-04-25', ' Lê Huỳnh Quốc Bảo38.pdf', ' Lê Huỳnh Quốc Bảo785.pdf', 0, '2023-04-25 06:13:30', NULL);
+(4, 191, 9, '2023-04-23', NULL, 'Nghỉ việc', '9548/QĐ-ĐHCT', '2023-04-25', ' Lê Huỳnh Quốc Bảo38.pdf', ' Lê Huỳnh Quốc Bảo785.pdf', 0, '2023-04-25 06:13:30', NULL),
+(5, 186, 11, '2023-03-14', '2023-08-15', 'không lương', 'hggf', '2023-04-11', ' Lê Văn Lâm431.pdf', ' Lê Văn Lâm143.pdf', 0, '2023-04-25 07:10:15', NULL),
+(6, 186, 9, '2023-02-21', NULL, NULL, 'kjh', '2023-04-14', ' Lê Văn Lâm96.pdf', ' Lê Văn Lâm803.pdf', 0, '2023-04-25 07:11:12', NULL),
+(7, 159, 13, '2023-04-26', NULL, 'nghir huuw', 'jhgjnfgth', '2023-04-03', 'Trương Minh Thái976.pdf', 'Trương Minh Thái546.pdf', 0, '2023-04-26 03:40:04', NULL);
 
 -- --------------------------------------------------------
 
@@ -3268,6 +3272,27 @@ INSERT INTO `quyetdinh` (`ma_qd`, `ma_vc`, `ma_l`, `so_qd`, `ngayky_qd`, `file_q
 (57, 157, 72, '144/QĐ-ĐHCT', '2017-01-20', '1681615437606.pdf', 0, '2023-04-16 03:23:57', ' '),
 (58, 1, 70, '145/QĐ-ĐHCT', '2023-04-04', '1682002667403.pdf', 0, '2023-04-20 14:57:47', ' '),
 (59, 177, 67, '201/QĐ-ĐHCT', '2023-04-11', '1682057993466.pdf', 0, '2023-04-21 06:19:53', ' ');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `thoigiannghihuu`
+--
+
+CREATE TABLE `thoigiannghihuu` (
+  `ma_tgnh` int(11) NOT NULL,
+  `thoigian_tgnh` int(4) NOT NULL,
+  `nam_tgnh` int(10) NOT NULL,
+  `nu_tgnh` int(10) NOT NULL,
+  `status_tgnh` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `thoigiannghihuu`
+--
+
+INSERT INTO `thoigiannghihuu` (`ma_tgnh`, `thoigian_tgnh`, `nam_tgnh`, `nu_tgnh`, `status_tgnh`) VALUES
+(6, 2023, 729, 672, 0);
 
 -- --------------------------------------------------------
 
@@ -3572,9 +3597,9 @@ INSERT INTO `vienchuc` (`ma_vc`, `ma_k`, `ma_cv`, `ma_n`, `ma_b`, `ma_dt`, `ma_t
 (156, 7, 8, 0, 0, 0, 0, 0, 'skanh', 'e10adc3949ba59abbe56e057f20f883e', 'Sử Kim Anh', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-04-15 03:05:35', ' '),
 (157, 7, 8, 0, 0, 0, 0, 0, 'ntthien', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Thanh Hiền', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-04-15 03:05:35', ' '),
 (158, 7, 8, 0, 0, 0, 0, 0, 'ldthang', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Đức Thắng', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-04-15 03:05:35', ' '),
-(159, 6, 6, 9, 112, 4, 30, 19, 'tmthai', 'e10adc3949ba59abbe56e057f20f883e', 'Trương Minh Thái', '0154875426', '1681810634581.jpg', 'Trương Minh Thái', '1963-04-24', 0, 'Chánh An, Mag Thít, Vĩnh Long', 'Chánh An, Mag Thít, Vĩnh Long', 'giảng viên', '2000-12-21', 'giảng viên', 'không', '12/12', 'giảng viên', 'giảng viên', 'C', 'C', '2005-01-12', '2005-02-12', NULL, NULL, 'giảng viên', 'giảng viên', '- Quản lý dự án phần mềm, Nguyên lý xây dựng phần mềm\r\n- Nền tảng phần mềm nhúng và IoT', '186', '50', 'AB', 'không', '- Cấu trúc dữ liệu,\r\n- Quản lý dự án phần mềm, Nguyên lý xây dựng phần mềm\r\n- Nền tảng phần mềm nhúng và IoT', '0124515476', '2012-12-24', '0124514626', 'không', 'không', 'không', '2001-12-24', ' ', '2020-06-15', '2023-04-24', 0, '2023-04-15 03:05:35', ' '),
+(159, 6, 6, 9, 112, 4, 30, 19, 'tmthai', 'e10adc3949ba59abbe56e057f20f883e', 'Trương Minh Thái', '0154875426', '1681810634581.jpg', 'Trương Minh Thái', '1963-04-26', 0, 'Chánh An, Mag Thít, Vĩnh Long', 'Chánh An, Mag Thít, Vĩnh Long', 'giảng viên', '2000-12-21', 'giảng viên', 'không', '12/12', 'giảng viên', 'giảng viên', 'C', 'C', '2005-01-12', '2005-02-12', NULL, NULL, 'giảng viên', 'giảng viên', '- Quản lý dự án phần mềm, Nguyên lý xây dựng phần mềm\r\n- Nền tảng phần mềm nhúng và IoT', '186', '50', 'AB', 'không', '- Cấu trúc dữ liệu,\r\n- Quản lý dự án phần mềm, Nguyên lý xây dựng phần mềm\r\n- Nền tảng phần mềm nhúng và IoT', '0124515476', '2012-12-24', '0124514626', 'không', 'không', 'không', '2001-12-24', '2023-04-26', '2020-06-15', '2023-04-24', 2, '2023-04-15 03:05:35', ' '),
 (160, 6, 7, 9, 112, 4, 30, 19, 'vhtram', 'e10adc3949ba59abbe56e057f20f883e', 'Võ Huỳnh Trâm', '0451245845', '168181093832.jpg', 'Võ Huỳnh Trâm', '1967-06-15', 1, 'Khánh Hoà, U Minh, Cà Mau', 'Khánh Hoà, U Minh, Cà Mau', 'giảng viên', '2001-02-15', 'giảng viên', 'không', '12/12', 'giảng viên', 'giảng viên', 'B', 'B', '2001-12-02', '2002-01-02', NULL, NULL, 'giảng viên', 'giảng viên', '- Lập trình căn bản, Cấu trúc dữ liệu\r\n- Phân tích và thiết kế thuật toán\r\n- Phân tích yêu cầu phần mềm, Quản lý dự án phần mềm', '160', '45', 'O', 'không', '- Lập trình căn bản, Cấu trúc dữ liệu\r\n- Phân tích và thiết kế thuật toán\r\n- Phân tích yêu cầu phần mềm, Quản lý dự án phần mềm', '014215487512', '2004-01-25', '0124123145', 'không', 'không', 'không', '2003-02-15', ' ', '2020-09-15', '2023-04-24', 0, '2023-04-15 03:05:35', ' '),
-(161, 6, 60, 5, 87, 4, 30, 19, 'hxhiep', 'e10adc3949ba59abbe56e057f20f883e', 'Huỳnh Xuân Hiệp', '0124152451', '16818111739.jpg', 'Huỳnh Xuân Hiệp', '1963-04-24', 0, 'Vĩnh Hưng, Vĩnh Lợi, Bạc Liêu', 'Vĩnh Hưng, Vĩnh Lợi, Bạc Liêu', 'giảng viên', '2004-01-05', 'giảng viên', 'không', '12/12', 'giảng viên', 'giảng viên', 'C', 'C', '2001-02-15', '2001-03-15', NULL, NULL, 'giảng viên', 'giảng viên', '- Nhập môn công nghệ phần mềm, Quản lý dự án phần mềm.\r\n\r\n- Phân tích yêu cầu phần mềm, Kiến trúc và thiết kế phần mềm.\r\n\r\n- Phát triển phần mềm nhúng.', '180', '56', 'A', 'không', '- Nhập môn công nghệ phần mềm, Quản lý dự án phần mềm.\r\n\r\n- Phân tích yêu cầu phần mềm, Kiến trúc và thiết kế phần mềm.\r\n\r\n- Phát triển phần mềm nhúng.', '04124512548', '2006-02-15', '102145784', 'không', 'không', 'không', '2001-02-15', '2023-04-24', '2020-07-12', '2026-04-18', 2, '2023-04-15 03:05:35', ' '),
+(161, 6, 60, 5, 87, 4, 30, 19, 'hxhiep', 'e10adc3949ba59abbe56e057f20f883e', 'Huỳnh Xuân Hiệp', '0124152451', '16818111739.jpg', 'Huỳnh Xuân Hiệp', '1963-04-27', 0, 'Vĩnh Hưng, Vĩnh Lợi, Bạc Liêu', 'Vĩnh Hưng, Vĩnh Lợi, Bạc Liêu', 'giảng viên', '2004-01-05', 'giảng viên', 'không', '12/12', 'giảng viên', 'giảng viên', 'C', 'C', '2001-02-15', '2001-03-15', NULL, NULL, 'giảng viên', 'giảng viên', '- Nhập môn công nghệ phần mềm, Quản lý dự án phần mềm.\r\n\r\n- Phân tích yêu cầu phần mềm, Kiến trúc và thiết kế phần mềm.\r\n\r\n- Phát triển phần mềm nhúng.', '180', '56', 'A', 'không', '- Nhập môn công nghệ phần mềm, Quản lý dự án phần mềm.\r\n\r\n- Phân tích yêu cầu phần mềm, Kiến trúc và thiết kế phần mềm.\r\n\r\n- Phát triển phần mềm nhúng.', '04124512548', '2006-02-15', '102145784', 'không', 'không', 'không', '2001-02-15', ' ', '2020-07-12', '2026-04-18', 0, '2023-04-15 03:05:35', ' '),
 (162, 6, 61, 9, 112, 4, 30, 19, 'ttttuyen', 'e10adc3949ba59abbe56e057f20f883e', 'Trương Thị Thanh Tuyền', '0154875145', '1681811406104.jpg', 'Trương Thị Thanh Tuyền', '1967-05-28', 1, 'Mỹ Tú, Mỹ Tú, Sóc Trăng', 'Mỹ Tú, Mỹ Tú, Sóc Trăng', 'giảng viên', '2000-01-04', '- Lập trình căn bản, Cấu trúc dữ liệu.  - Hệ thống Multi-Agent, Nguyên lý lập trình mô phỏng', 'không', '12/12', 'giảng viên', 'giảng viên', 'B', 'B', '1999-08-15', '1999-09-15', NULL, NULL, 'giảng viên', 'giảng viên', '- Lập trình căn bản, Cấu trúc dữ liệu.\r\n\r\n- Hệ thống Multi-Agent, Nguyên lý lập trình mô phỏng', '170', '49', 'B', 'không', '- Lập trình căn bản, Cấu trúc dữ liệu.\r\n\r\n- Hệ thống Multi-Agent, Nguyên lý lập trình mô phỏng', '0485124565', '2000-06-15', '0124578451', 'không', 'không', 'không', '1998-02-15', ' ', '2020-09-23', '2023-04-28', 0, '2023-04-15 03:05:35', ' '),
 (163, 6, 63, 0, 0, 0, 0, 0, 'pplan', 'e10adc3949ba59abbe56e057f20f883e', 'Phan Phương Lan', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-04-15 03:05:35', ' '),
 (164, 6, 64, 0, 0, 0, 0, 0, 'ncdanh', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Công Danh', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-04-15 03:05:35', ' '),
@@ -3599,7 +3624,7 @@ INSERT INTO `vienchuc` (`ma_vc`, `ma_k`, `ma_cv`, `ma_n`, `ma_b`, `ma_dt`, `ma_t
 (183, 5, 8, 0, 0, 0, 0, 0, 'ptxdiem', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Thị Xuân Diễm', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-04-15 03:05:35', ' '),
 (184, 5, 8, 0, 0, 0, 0, 0, 'nnmy', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Ngọc Mỹ', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-04-15 03:05:35', ' '),
 (185, 5, 8, 0, 0, 0, 0, 0, 'tcde', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Cao Đệ', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-04-15 03:05:35', ' '),
-(186, 5, 8, 0, 0, 0, 0, 0, 'lvlam', 'e10adc3949ba59abbe56e057f20f883e', ' Lê Văn Lâm', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-04-15 03:05:35', ' '),
+(186, 5, 8, 0, 0, 0, 0, 0, 'lvlam', 'e10adc3949ba59abbe56e057f20f883e', ' Lê Văn Lâm', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 3, '2023-04-15 03:05:35', ' '),
 (187, 5, 8, 20, 211, 4, 30, 19, 'ldtrinh2001@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Minh Tân', '0912345678', '1681620610705.jpg', 'Trần Minh Tân', '1976-01-01', 0, 'Hưng Lợi, Ninh Kiều, Cần Thơ', 'Hưng Lợi, Ninh Kiều, Cần Thơ', 'Giảng viên', '2000-10-20', 'Giảng viên', 'Không', '12/12', 'Cao cấp', 'Giảng viên', 'C', 'C', '1998-01-20', '1999-02-20', '1996-01-20', '1998-01-20', 'Không', 'Giảng viên', 'Máy học, Xử lý ảnh, Công nghệ/Ứng dụng Web, Nền tảng CNTT', '180', '50', 'A', 'Không', 'Máy học, Xử lý ảnh, Công nghệ/Ứng dụng Web, Nền tảng CNTT', '124512455555', '1999-02-01', '1542145245', NULL, NULL, NULL, '1999-01-01', ' ', '2021-04-17', '2026-04-21', 0, '2023-04-15 03:05:35', '2023-04-16 11:09:11'),
 (188, 5, 8, 0, 0, 0, 0, 0, 'lhthao', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Hoàng Thảo', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-04-15 03:05:35', ' '),
 (189, 5, 8, 0, 0, 0, 0, 0, 'trungnguyen', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Minh Trung', ' ', ' ', ' ', ' ', 0, ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, ' ', ' ', ' ', ' ', '', ' ', ' ', NULL, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0, '2023-04-15 03:05:35', ' '),
@@ -14429,6 +14454,12 @@ ALTER TABLE `quyetdinh`
   ADD PRIMARY KEY (`ma_qd`);
 
 --
+-- Chỉ mục cho bảng `thoigiannghihuu`
+--
+ALTER TABLE `thoigiannghihuu`
+  ADD PRIMARY KEY (`ma_tgnh`);
+
+--
 -- Chỉ mục cho bảng `thoihoc`
 --
 ALTER TABLE `thoihoc`
@@ -14508,7 +14539,7 @@ ALTER TABLE `danhmuclop`
 -- AUTO_INCREMENT cho bảng `danhmucnghi`
 --
 ALTER TABLE `danhmucnghi`
-  MODIFY `ma_dmn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ma_dmn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `dantoc`
@@ -14586,7 +14617,7 @@ ALTER TABLE `khuvuc`
 -- AUTO_INCREMENT cho bảng `kyluat`
 --
 ALTER TABLE `kyluat`
-  MODIFY `ma_kl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=384;
+  MODIFY `ma_kl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=385;
 
 --
 -- AUTO_INCREMENT cho bảng `loaibangcap`
@@ -14640,7 +14671,7 @@ ALTER TABLE `quatrinhchucvu`
 -- AUTO_INCREMENT cho bảng `quatrinhnghi`
 --
 ALTER TABLE `quatrinhnghi`
-  MODIFY `ma_qtn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ma_qtn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `quequan`
@@ -14665,6 +14696,12 @@ ALTER TABLE `quyen`
 --
 ALTER TABLE `quyetdinh`
   MODIFY `ma_qd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+
+--
+-- AUTO_INCREMENT cho bảng `thoigiannghihuu`
+--
+ALTER TABLE `thoigiannghihuu`
+  MODIFY `ma_tgnh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `thoihoc`

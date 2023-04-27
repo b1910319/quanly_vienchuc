@@ -40,6 +40,7 @@ use App\Http\Controllers\NhiemKyController;
 use App\Http\Controllers\QuaTrinhChucVuController;
 use App\Http\Controllers\QuaTrinhNghiController;
 use App\Http\Controllers\QuocGiaController;
+use App\Http\Controllers\ThoiGianNghiHuuController;
 use App\Models\QuaTrinhNghi;
 
 Route::get('/login',[HomeController::class, 'index']);
@@ -1221,7 +1222,17 @@ Route::get('/quatrinhnghi_xuatfile_word/{ma_vc}',[QuaTrinhNghiController::class,
 
 
 
-
+Route::get('/thoigiannghihuu',[ThoiGianNghiHuuController::class, 'thoigiannghihuu']);
+Route::get('/check_thoigian_tgnh',[ThoiGianNghiHuuController::class, 'check_thoigian_tgnh']);
+Route::get('/check_thoigian_tgnh_edit',[ThoiGianNghiHuuController::class, 'check_thoigian_tgnh_edit']);
+Route::post('/add_thoigiannghihuu',[ThoiGianNghiHuuController::class, 'add_thoigiannghihuu']);
+// Route::post('/add_thoigiannghihuu_excel',[ThoiGianNghiHuuController::class, 'add_thoigiannghihuu_excel']);
+Route::get('/select_thoigiannghihuu/{ma_tgnh}',[ThoiGianNghiHuuController::class, 'select_thoigiannghihuu']);
+Route::get('/edit_thoigiannghihuu/{ma_tgnh}',[ThoiGianNghiHuuController::class, 'edit_thoigiannghihuu']);
+Route::post('/update_thoigiannghihuu/{ma_tgnh}',[ThoiGianNghiHuuController::class, 'update_thoigiannghihuu']);
+Route::get('/delete_thoigiannghihuu',[ThoiGianNghiHuuController::class, 'delete_thoigiannghihuu']);
+Route::get('/delete_all_thoigiannghihuu',[ThoiGianNghiHuuController::class, 'delete_all_thoigiannghihuu']);
+Route::post('/delete_thoigiannghihuu_check',[ThoiGianNghiHuuController::class, 'delete_thoigiannghihuu_check']);
 
 
 
