@@ -131,6 +131,7 @@ class QuocGiaController extends Controller
       $quocgia->ten_qg = $data['ten_qg'];
       $quocgia->status_qg = $data['status_qg'];
       $quocgia->save();
+      $request->session()->put('message_add_quocgia','Thêm thành công');
       return Redirect::to('/quocgia/'.$data['ma_kv']);
     }else{
       return Redirect::to('/home');
@@ -243,6 +244,7 @@ class QuocGiaController extends Controller
       $quocgia->status_qg = $data['status_qg'];
       $quocgia->updated_qg = Carbon::now();
       $quocgia->save();
+      $request->session()->put('message_update_quocgia','Cập nhật thành công');
       return Redirect::to('/quocgia/'.$data['ma_kv']);
     }else{
       return Redirect::to('/home');

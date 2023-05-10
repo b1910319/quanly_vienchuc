@@ -14,6 +14,30 @@
         ________THÔNG TIN CÁC QUỐC GIA THUỘC KHU VỰC " <span style="color: #FFFF00;">{{ $khuvuc->ten_kv }}</span> "________
       </h4>
     </div>
+    <?php 
+      $mess = session()->get('message_add_quocgia');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-success alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_add_quocgia', null);
+      }
+    ?>
+    <?php 
+      $mess = session()->get('message_update_quocgia');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-warning alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_update_quocgia', null);
+      }
+    ?>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
@@ -186,7 +210,7 @@
               </td>
               <th scope="row">{{ $key+1 }}</th>
               <td>
-                {{ $quocgia->ten_qg }} ({{ $quocgia->ma_qg }})
+                {{ $quocgia->ten_qg }}
               </td>
               <td>
                 <?php
@@ -249,25 +273,6 @@
 </div>
 
 <script>
-  document.querySelector('.them').addEventListener('click', (event)=>{
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 1500,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
-
-    Toast.fire({
-      icon: 'success',
-      title: 'Thêm thành công'
-    })
-    
-  });
   @foreach ($list as $quocgia )
     document.querySelector('.xoa{{ $quocgia->ma_qg }}').addEventListener('click', (event)=>{
       const swalWithBootstrapButtons = Swal.mixin({
@@ -283,8 +288,8 @@
         text: "Bạn không thể khôi phục dữ liệu đã xoá",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
-        cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
+        confirmButtonText: '<i class="fa-solid fa-trash text-light"></i> &ensp;  Xoá',
+        cancelButtonText: '<i class="fa-solid fa-xmark text-light"></i> &ensp;  Huỷ',
         reverseButtons: true
       }).then((result) => {
         if (result.isConfirmed) {

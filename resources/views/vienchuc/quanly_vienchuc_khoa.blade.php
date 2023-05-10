@@ -7,57 +7,6 @@
       ________THÔNG TIN VIÊN CHỨC________
     </div>
     <div class="row mb-2">
-      {{-- <div class="col-2 mb-3">
-        <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="width: 100%">
-          <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
-          Thống kê
-        </button>
-        <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
-              <i class="fa-solid fa-chart-simple"></i>
-              &ensp;
-              Thống kê
-            </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <table class="table">
-              <thead >
-                <tr>
-                  <th scope="col">Tên</th>
-                  <th scope="col">Số lượng</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($count_status as $key => $count_stt)
-                  @if ($count_stt->status_vc == 0)
-                    <tr>
-                      <td>Tài khoản được kích hoạt</td>
-                      <td>{{ $count_stt->sum }}</td>
-                    </tr>
-                  @else
-                    @if ($count_stt->status_vc == 1)
-                      <tr>
-                        <td>Tài khoản bị vô hiệu hoá</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @else
-                      @if ($count_stt->status_vc == 2)
-                        <tr>
-                          <td>Nghĩ hưu</td>
-                          <td>{{ $count_stt->sum }}</td>
-                        </tr>
-                      @else
-                      @endif
-                    @endif
-                  @endif
-                @endforeach
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div> --}}
       <div class="col-2">
         <div class="dropdown" style="width: 100%;">
           <button class="dropbtn button_loc" >
@@ -99,12 +48,12 @@
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }})
+              {{ $vienchuc->hoten_vc }}  
               <br>
               {{ $vienchuc->user_vc }}
             </td>
             <td style="width: 20%">
-              {{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})
+              {{ $vienchuc->ten_k }}  
             </td>
             <td style="width: 9%">
               <?php
@@ -124,7 +73,25 @@
                   ?>
                     <span class="badge badge-light-warning">
                       <i class="fa-solid fa-toggle-off"></i>
-                      &ensp; Nghĩ hưu</span>
+                      &ensp; Nghỉ hưu</span>
+                  <?php
+                }elseif ($vienchuc->status_vc == 3) {
+                  ?>
+                    <span class="badge badge-light-warning">
+                      <i class="fa-solid fa-toggle-off"></i>
+                      &ensp; Nghỉ việc</span>
+                  <?php
+                }elseif ($vienchuc->status_vc == 4) {
+                  ?>
+                    <span class="badge badge-light-warning">
+                      <i class="fa-solid fa-toggle-off"></i>
+                      &ensp; Chuyển công tác</span>
+                  <?php
+                }elseif ($vienchuc->status_vc == 5) {
+                  ?>
+                    <span class="badge badge-light-warning">
+                      <i class="fa-solid fa-toggle-off"></i>
+                      &ensp; Nghỉ hưu trước hạn</span>
                   <?php
                 }
               ?>

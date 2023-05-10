@@ -288,7 +288,7 @@ class KhenThuongController extends Controller
         $khenthuong->filequyetdinh_kt = $new_file;
       }
       $khenthuong->save();
-      $request->session()->put('message','Thêm thành công');
+      $request->session()->put('message_add_khenthuong','Thêm thành công');
       return Redirect::to('/khenthuong_add/'.$ma_vc);
     }else{
       return Redirect::to('/home');
@@ -424,6 +424,7 @@ class KhenThuongController extends Controller
       }
       $khenthuong->updated_kt = Carbon::now();
       $khenthuong->save();
+      $request->session()->put('message_update_khenthuong','Cập nhật thành công');
       return Redirect::to('/khenthuong_add/'.$ma_vc);
     }else{
       return Redirect::to('/home');

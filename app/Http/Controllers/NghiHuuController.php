@@ -4,27 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Exports\NghiHuuExport;
 use App\Models\Bac;
-use App\Models\BangCap;
 use App\Models\ChucVu;
-use App\Models\Chuyen;
 use App\Models\DanToc;
-use App\Models\DungHoc;
-use App\Models\GiaDinh;
-use App\Models\GiaHan;
-use App\Models\KetQua;
-use App\Models\KhenThuong;
 use App\Models\Khoa;
-use App\Models\KyLuat;
 use App\Models\Ngach;
-use App\Models\NoiSinh;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
-use App\Models\QuaTrinhChucVu;
-use App\Models\QueQuan;
-use App\Models\QuyetDinh;
-use App\Models\ThoiHoc;
+use App\Models\ThoiGianNghiHuu;
 use App\Models\ThuongBinh;
 use App\Models\TonGiao;
 use App\Models\VienChuc;
@@ -68,10 +55,13 @@ class NghiHuuController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qltt ||$phanquyen_qlk){
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      $batdau_nam = Carbon::parse(Carbon::now()->subMonths(720))->format('Y-m-d');
-      $ketthuc_nam = Carbon::parse(Carbon::now()->subMonths(719))->format('Y-m-d');
-      $batdau_nu = Carbon::parse(Carbon::now()->subMonths(672))->format('Y-m-d');
-      $ketthuc_nu = Carbon::parse(Carbon::now()->subMonths(671))->format('Y-m-d');
+      $thoigiannghihuu = ThoiGianNghiHuu::where('status_tgnh', '<>', '1')
+        ->orderBy('thoigian_tgnh', 'desc')
+        ->first();
+      $batdau_nam = Carbon::parse(Carbon::now()->subMonths($thoigiannghihuu->nam_tgnh))->format('Y-m-d');
+      $ketthuc_nam = Carbon::parse(Carbon::now()->subMonths($thoigiannghihuu->nam_tgnh-1))->format('Y-m-d');
+      $batdau_nu = Carbon::parse(Carbon::now()->subMonths($thoigiannghihuu->nu_tgnh))->format('Y-m-d');
+      $ketthuc_nu = Carbon::parse(Carbon::now()->subMonths($thoigiannghihuu->nu_tgnh - 1))->format('Y-m-d');
 
       // echo $batdau_nam.'bat dau nam';
       // echo '<br>';
@@ -101,12 +91,14 @@ class NghiHuuController extends Controller
           ->where('status_vc', '2')
           ->where('vienchuc.ma_k', $ma_k)
           ->get();
-        $list_nu_nghihuu_homnay = VienChuc::where('ngaysinh_vc','LIKE', $ketthuc_nu)
+        $list_nu_nghihuu_homnay = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('ngaysinh_vc','LIKE', $batdau_nu)
           ->where('gioitinh_vc', '1')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc','<>','2')
           ->get();
-        $list_nam_nghihuu_homnay = VienChuc::where('ngaysinh_vc','LIKE', $ketthuc_nam)
+        $list_nam_nghihuu_homnay = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('ngaysinh_vc','LIKE', $batdau_nam)
           ->where('gioitinh_vc', '0')
           ->where('vienchuc.ma_k', $ma_k)
           ->where('status_vc','<>','2')
@@ -122,11 +114,13 @@ class NghiHuuController extends Controller
           ->where('quatrinhnghi.ma_dmn', '13')
           ->where('status_vc', '2')
           ->get();
-        $list_nu_nghihuu_homnay = VienChuc::where('ngaysinh_vc','LIKE', $batdau_nu)
+        $list_nu_nghihuu_homnay = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('ngaysinh_vc','LIKE', $batdau_nu)
           ->where('gioitinh_vc', '1')
           ->where('status_vc','<>','2')
           ->get();
-        $list_nam_nghihuu_homnay = VienChuc::where('ngaysinh_vc','LIKE', $batdau_nam)
+        $list_nam_nghihuu_homnay = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
+          ->where('ngaysinh_vc','LIKE', $batdau_nam)
           ->where('gioitinh_vc', '0')
           ->where('status_vc','<>','2')
           ->get();
@@ -138,7 +132,7 @@ class NghiHuuController extends Controller
         ->with('phanquyen_qlk', $phanquyen_qlk)
         ->with('phanquyen_qltt', $phanquyen_qltt)
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
-        // ->with('list_vienchuc_nghihuu', $list_vienchuc_nghihuu)
+        ->with('thoigiannghihuu', $thoigiannghihuu)
         ->with('list_nghihuu', $list_nghihuu)
         ->with('list_khoa', $list_khoa)
         ->with('list_chucvu', $list_chucvu)
@@ -179,10 +173,13 @@ class NghiHuuController extends Controller
       ->first();
     if($phanquyen_admin || $phanquyen_qltt ||$phanquyen_qlk){
       Carbon::now('Asia/Ho_Chi_Minh'); 
-      $batdau_nam = Carbon::parse(Carbon::now()->subMonths(720))->format('Y-m-d');
-      $ketthuc_nam = Carbon::parse(Carbon::now()->subMonths(719))->format('Y-m-d');
-      $batdau_nu = Carbon::parse(Carbon::now()->subMonths(672))->format('Y-m-d');
-      $ketthuc_nu = Carbon::parse(Carbon::now()->subMonths(671))->format('Y-m-d');
+      $thoigiannghihuu = ThoiGianNghiHuu::where('status_tgnh', '<>', '1')
+        ->orderBy('thoigian_tgnh', 'desc')
+        ->first();
+      $batdau_nam = Carbon::parse(Carbon::now()->subMonths($thoigiannghihuu->nam_tgnh))->format('Y-m-d');
+      $ketthuc_nam = Carbon::parse(Carbon::now()->subMonths($thoigiannghihuu->nam_tgnh-1))->format('Y-m-d');
+      $batdau_nu = Carbon::parse(Carbon::now()->subMonths($thoigiannghihuu->nu_tgnh))->format('Y-m-d');
+      $ketthuc_nu = Carbon::parse(Carbon::now()->subMonths($thoigiannghihuu->nu_tgnh - 1))->format('Y-m-d');
 
       // echo $batdau_nam.'bat dau nam';
       // echo '<br>';
@@ -233,6 +230,7 @@ class NghiHuuController extends Controller
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('list_vienchuc_nam_ganhuu', $list_vienchuc_nam_ganhuu)
         ->with('list_vienchuc_nu_ganhuu', $list_vienchuc_nu_ganhuu)
+        ->with('thoigiannghihuu', $thoigiannghihuu)
         ->with('list_khoa', $list_khoa)
         ->with('list_chucvu', $list_chucvu)
         ->with('list_ngach', $list_ngach)
@@ -271,13 +269,15 @@ class NghiHuuController extends Controller
     if($phanquyen_admin || $phanquyen_qltt ||$phanquyen_qlk){
       Carbon::now('Asia/Ho_Chi_Minh'); 
       $data = $request->all();
-      Carbon::now('Asia/Ho_Chi_Minh'); 
-      $batdau_nam = Carbon::parse(Carbon::create($data['batdau_nghihuu'])->subMonths(720))->format('Y-m-d');
-      $ketthuc_nam = Carbon::parse(Carbon::create($data['ketthuc_nghihuu'])->subMonths(720))->format('Y-m-d');
-      $batdau_nu = Carbon::parse(Carbon::create($data['batdau_nghihuu'])->subMonths(672))->format('Y-m-d');
-      $ketthuc_nu = Carbon::parse(Carbon::create($data['ketthuc_nghihuu'])->subMonths(672))->format('Y-m-d');
-
-
+      Carbon::now('Asia/Ho_Chi_Minh');
+      $thoigiannghihuu = ThoiGianNghiHuu::where('status_tgnh', '<>', '1')
+      ->orderBy('thoigian_tgnh', 'desc')
+      ->first();
+      $batdau_nam = Carbon::parse(Carbon::create($data['batdau_nghihuu'])->subMonths($thoigiannghihuu->nam_tgnh))->format('Y-m-d');
+      $ketthuc_nam = Carbon::parse(Carbon::create($data['ketthuc_nghihuu'])->subMonths($thoigiannghihuu->nam_tgnh))->format('Y-m-d');
+      $batdau_nu = Carbon::parse(Carbon::create($data['batdau_nghihuu'])->subMonths($thoigiannghihuu->nu_tgnh))->format('Y-m-d');
+      $ketthuc_nu = Carbon::parse(Carbon::create($data['ketthuc_nghihuu'])->subMonths($thoigiannghihuu->nu_tgnh))->format('Y-m-d'); 
+      
       // echo $batdau_nam.'bat dau nam';
       // echo '<br>';
       // echo $ketthuc_nam.'ketthuc nam';
@@ -327,6 +327,7 @@ class NghiHuuController extends Controller
         ->with('phanquyen_qlktkl', $phanquyen_qlktkl)
         ->with('list_vienchuc_nam_ganhuu', $list_vienchuc_nam_ganhuu)
         ->with('list_vienchuc_nu_ganhuu', $list_vienchuc_nu_ganhuu)
+        ->with('thoigiannghihuu', $thoigiannghihuu)
         ->with('list_khoa', $list_khoa)
         ->with('list_chucvu', $list_chucvu)
         ->with('list_ngach', $list_ngach)

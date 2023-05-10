@@ -29,12 +29,12 @@
                 </div>
               </td>
               <th scope="row">{{ $key+1 }}</th>
-              <td>
-                {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }})
+              <td style="width: 20%">
+                {{ $vienchuc->hoten_vc }}  
               </td>
               <td>{{ $vienchuc->user_vc }}</td>
-              <td>
-                {{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})
+              <td style="width: 30%">
+                {{ $vienchuc->ten_k }}  
               </td>
               <td>
                 <?php
@@ -54,7 +54,25 @@
                     ?>
                       <span class="badge badge-light-warning">
                         <i class="fa-solid fa-toggle-off"></i>
-                        &ensp; Nghĩ hưu</span>
+                        &ensp; Nghỉ hưu</span>
+                    <?php
+                  }elseif ($vienchuc->status_vc == 3) {
+                    ?>
+                      <span class="badge badge-light-warning">
+                        <i class="fa-solid fa-toggle-off"></i>
+                        &ensp; Nghỉ việc</span>
+                    <?php
+                  }elseif ($vienchuc->status_vc == 4) {
+                    ?>
+                      <span class="badge badge-light-warning">
+                        <i class="fa-solid fa-toggle-off"></i>
+                        &ensp; Chuyển công tác</span>
+                    <?php
+                  }elseif ($vienchuc->status_vc == 5) {
+                    ?>
+                      <span class="badge badge-light-warning">
+                        <i class="fa-solid fa-toggle-off"></i>
+                        &ensp; Nghỉ hưu trước hạn</span>
                     <?php
                   }
                 ?>
@@ -146,7 +164,7 @@
                             <a href="{{ URL::to('/quatrinhnghi/'.$vienchuc->ma_vc) }}">
                               <button type="button" class="btn btn-primary position-relative button_xanhla" style="width: 100%">
                                 <i class="fa-solid fa-toggle-off text-light"></i> &ensp;
-                                Quá trình nghĩ
+                                Quá trình nghỉ
                               </button>
                             </a>
                           </div>

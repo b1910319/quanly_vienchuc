@@ -142,7 +142,7 @@
         <button type="button" class="btn btn-primary button_loc" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="width: 100%;">
           <i class="fa-solid fa-filter text-light"></i>
           &ensp;
-          Viên chức nghĩ
+          Viên chức nghỉ
         </button>
         <div class="modal fade " id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" style="height: 100%;">
           <div class="modal-dialog modal-dialog-scrollabl modal-xl">
@@ -191,7 +191,7 @@
                     <i class="fa-solid fa-square-xmark text-light"></i>
                     &ensp; Đóng
                   </button>
-                  <button type="submit" class="btn btn-primary button_loc;">
+                  <button type="submit" class="btn btn-primary button_loc">
                     <i class="fa-solid fa-filter text-light"></i>
                     &ensp;
                     Lọc
@@ -206,7 +206,7 @@
         <button type="button" class="btn btn-primary button_loc" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="width: 100%;">
           <i class="fa-solid fa-filter text-light"></i>
           &ensp;
-          Viên chức nghĩ hưu
+          Viên chức nghỉ hưu
         </button>
         <div class="modal fade " id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" style="height: 100%;">
           <div class="modal-dialog modal-dialog-scrollabl modal-xl">
@@ -226,8 +226,8 @@
                     <span style="font-weight: bold; font-size: 20px;">Khoa</span>
                     @foreach ($list_khoa as $key => $khoa)
                       <div class="col-3">
-                        <input type="radio" class="radio" name="ma_k" id="size_{{ $khoa->created_k }}" value="{{ $khoa->ma_k }}"/>
-                        <label class="label" for="size_{{ $khoa->created_k }}">{{ $khoa->ten_k }}</label>
+                        <input type="radio" class="radio" name="ma_k" id="size_{{ $khoa->created_k.$key }}" value="{{ $khoa->ma_k }}"/>
+                        <label class="label" for="size_{{ $khoa->created_k.$key }}">{{ $khoa->ten_k }}</label>
                       </div>
                     @endforeach
                   </div>
@@ -246,7 +246,7 @@
                     <i class="fa-solid fa-square-xmark text-light"></i>
                     &ensp; Đóng
                   </button>
-                  <button type="submit" class="btn btn-primary button_loc;">
+                  <button type="submit" class="btn btn-primary button_loc">
                     <i class="fa-solid fa-filter text-light"></i>
                     &ensp;
                     Lọc
@@ -326,8 +326,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
-              <td>{{ $vc->ten_n }}({{ $vc->ma_n }})</td>
+              <td>{{ $vc->ten_k }}  </td>
+              <td>{{ $vc->ten_n }} </td>
             </tr>
           @endforeach
         </tbody>
@@ -460,8 +460,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
-              <td>{{ $vc->ten_n }}({{ $vc->ma_n }})</td>
+              <td>{{ $vc->ten_k }}  </td>
+              <td>{{ $vc->ten_n }} </td>
             </tr>
           @endforeach
         </tbody>
@@ -547,8 +547,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
-              <td>{{ $vc->ten_cv }}({{ $vc->ma_cv }})</td>
+              <td>{{ $vc->ten_k }}  </td>
+              <td>{{ $vc->ten_cv }} </td>
             </tr>
           @endforeach
         </tbody>
@@ -635,7 +635,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }}  </td>
               <td>{{ $vc->ten_hdt }}({{ $vc->ma_hdt }})</td>
             </tr>
           @endforeach
@@ -723,7 +723,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }}  </td>
               <td>{{ $vc->ten_lbc }}({{ $vc->ma_lbc }})</td>
             </tr>
           @endforeach
@@ -808,11 +808,11 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }}  </td>
               <td>
                 @foreach ($list_ngach as $ngach )
                   @if ($ngach->ma_n == $vc->ma_n)
-                    {{ $ngach->ten_n }}({{ $vc->ma_n }})
+                    {{ $ngach->ten_n }} 
                   @endif
                 @endforeach
               </td>
@@ -896,7 +896,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }}  </td>
               <td>{{ $vc->ten_cv}}({{ $vc->ma_cv}})</td>
             </tr>
           @endforeach
@@ -978,7 +978,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }}  </td>
               <td>{{ $vc->ten_hdt }}({{ $vc->ma_hdt }})</td>
             </tr>
           @endforeach
@@ -1060,7 +1060,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }}  </td>
               <td>{{ $vc->ten_lbc }} ({{ $vc->ma_lbc }})</td>
             </tr>
           @endforeach
@@ -1142,8 +1142,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
-              <td>{{ $vc->ten_n }}({{ $vc->ma_n }})</td>
+              <td>{{ $vc->ten_k }}  </td>
+              <td>{{ $vc->ten_n }} </td>
             </tr>
           @endforeach
         </tbody>
@@ -1224,7 +1224,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }}  </td>
               <td>{{ $vc->ten_t }}({{ $vc->ma_t }})</td>
             </tr>
           @endforeach
@@ -1306,7 +1306,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }}  </td>
               <td>{{ $vc->ten_dt }}({{ $vc->ma_dt }})</td>
             </tr>
           @endforeach
@@ -1388,7 +1388,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }}  </td>
               <td>{{ $vc->ten_tg }}({{ $vc->ma_tg }})</td>
             </tr>
           @endforeach
@@ -1470,7 +1470,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }}  </td>
               <td>{{ $vc->ten_tb }}({{ $vc->ma_tb }})</td>
             </tr>
           @endforeach
@@ -1557,7 +1557,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }}  </td>
               <td>{{ $vc->thoigiannghi_vc }}</td>
             </tr>
           @endforeach
@@ -1647,7 +1647,7 @@
                     </div>
                   </div>
                 </td>
-                <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+                <td>{{ $vc->ten_k }}  </td>
                 <td>{{ $vc->thoigiannghi_vc }}</td>
               </tr>
             @endforeach
@@ -1685,7 +1685,7 @@
                     </div>
                   </div>
                 </td>
-                <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+                <td>{{ $vc->ten_k }}  </td>
                 <td>{{ $vc->thoigiannghi_vc }}</td>
               </tr>
             @endforeach
@@ -1801,7 +1801,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }}  </td>
               <td>
                 - Danh mục nghỉ: {{ $vc->ten_dmn }} ({{ $vc->ma_dmn }}) <br>
                 - Ngày bắt đầu nghỉ: {{ $vc->batdau_qtn }}<br>
@@ -1914,7 +1914,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }}  </td>
               <td>
                 - Danh mục nghỉ: {{ $vc->ten_dmn }} ({{ $vc->ma_dmn }}) <br>
                 - Ngày bắt đầu nghỉ: {{ $vc->batdau_qtn }}<br>
@@ -2026,7 +2026,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }}  </td>
               <td>
                 - Danh mục nghỉ: {{ $vc->ten_dmn }} ({{ $vc->ma_dmn }}) <br>
                 - Ngày bắt đầu nghỉ: {{ $vc->batdau_qtn }}<br>
@@ -2137,7 +2137,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }}  </td>
               <td>
                 - Danh mục nghỉ: {{ $vc->ten_dmn }} ({{ $vc->ma_dmn }}) <br>
                 - Ngày bắt đầu nghỉ: {{ $vc->batdau_qtn }}<br>
@@ -2244,7 +2244,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }}  </td>
               <td>
                 - Danh mục nghỉ: {{ $vc->ten_dmn }} ({{ $vc->ma_dmn }}) <br>
                 - Ngày bắt đầu nghỉ: {{ $vc->batdau_qtn }}<br>
@@ -2351,7 +2351,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }}  </td>
               <td>
                 - Danh mục nghỉ: {{ $vc->ten_dmn }} ({{ $vc->ma_dmn }}) <br>
                 - Ngày bắt đầu nghỉ: {{ $vc->batdau_qtn }}<br>
@@ -2457,7 +2457,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }}  </td>
               <td>
                 - Danh mục nghỉ: {{ $vc->ten_dmn }} ({{ $vc->ma_dmn }}) <br>
                 - Ngày bắt đầu nghỉ: {{ $vc->batdau_qtn }}<br>

@@ -6,6 +6,7 @@
     font-size: 11px;
   }
 </style>
+<?php use Illuminate\Support\Carbon; ?>
 <head>
   <title>PDF</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -61,7 +62,7 @@
               <th  scope="col">#</th>
               <th  scope="col">Nhiệm kỳ</th>
               <th  scope="col">Chức vụ</th>
-              <th  scope="col">Ghi chú</th>
+              <th  scope="col">Thông tin quyết định</th>
             </tr>
           </thead>
           <tbody>
@@ -75,9 +76,18 @@
                 @endphp
                 <tr>
                   <td><?php echo $i ?></td>
-                  <td>{{ $qtcv->ten_nk }}</td>
+                  <td>{{ $qtcv->batdau_nk }} - {{ $qtcv->ketthuc_nk }}</td>
                   <td>{{ $qtcv->ten_cv }}</td>
-                  <td style="width: 50%">{{ $qtcv->ghichu_qtcv }}</td>
+                  <td >
+                    - Số quyết định: {{ $qtcv->soquyetdinh_qtcv }}
+                    <br>
+                    - Ngày ký quyết định:
+                    <?php 
+                      Carbon::now('Asia/Ho_Chi_Minh');
+                      $ngayky_qtcv = Carbon::parse(Carbon::create($qtcv->ngayky_qtcv))->format('d-m-Y');
+                      echo $ngayky_qtcv;
+                    ?>
+                  </td>
                 </tr>
               @endif
             @endforeach

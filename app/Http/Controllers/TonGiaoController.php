@@ -119,7 +119,7 @@ class TonGiaoController extends Controller
       $tongiao->ten_tg = $data['ten_tg'];
       $tongiao->status_tg = $data['status_tg'];
       $tongiao->save();
-      $request->session()->put('message','Thêm thành công');
+      $request->session()->put('message_add_tongiao','Thêm thành công');
       return Redirect::to('/tongiao');
     }else{
       return Redirect::to('/home');
@@ -222,6 +222,7 @@ class TonGiaoController extends Controller
       $tongiao->status_tg = $data['status_tg'];
       $tongiao->updated_tg = Carbon::now();
       $tongiao->save();
+      $request->session()->put('message_update_tongiao','Cập nhật thành công');
       return Redirect::to('tongiao');
     }else{
       return Redirect::to('/home');

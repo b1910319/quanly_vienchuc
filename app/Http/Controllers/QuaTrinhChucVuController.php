@@ -27,7 +27,6 @@ use App\Models\Tinh;
 use App\Models\TonGiao;
 use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
-use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 use PhpOffice\PhpWord\TemplateProcessor;
 
@@ -274,6 +273,7 @@ class QuaTrinhChucVuController extends Controller
       $quatrinhchucvu->save();
       $vienchuc = VienChuc::find($ma_vc);
       $vienchuc->ma_cv = VienChuc::find($ma_vc)->update(['ma_cv' => $data['ma_cv']]);
+      $request->session()->put('message_add_quatrinhchucvu','Thêm thành công');
       return redirect()->back();
     }else{
       return Redirect::to('/home');
@@ -387,6 +387,7 @@ class QuaTrinhChucVuController extends Controller
       }
       $quatrinhchucvu->updated_qtcv = Carbon::now();
       $quatrinhchucvu->save();
+      $request->session()->put('message_update_quatrinhchucvu','Cập nhật thành công');
       return Redirect::to('/quatrinhchucvu_add/'.$ma_vc);
     }else{
       return Redirect::to('/home');

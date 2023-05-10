@@ -37,19 +37,29 @@
       <p class="fw-bold">
         Viên chức nghĩ hưu trong khoảng từ: 
         <span class="badge rounded-pill text-bg-warning">
-          {{ $batdau_nghihuu }}
+          <?php 
+                  
+            Carbon::now('Asia/Ho_Chi_Minh');
+            $batdau_nghihuu = Carbon::parse(Carbon::create($batdau_nghihuu))->format('d-m-Y');
+            echo $batdau_nghihuu;
+          ?>
         </span>
         đến
         <span class="badge rounded-pill text-bg-info">
-          {{ $ketthuc_nghihuu }}
+          <?php 
+                  
+            Carbon::now('Asia/Ho_Chi_Minh');
+            $ketthuc_nghihuu = Carbon::parse(Carbon::create($ketthuc_nghihuu))->format('d-m-Y');
+            echo $ketthuc_nghihuu;
+          ?>
         </span>
       </p>
     @endif
     <table class="table" id="mytable">
       <thead class="color_table">
         <tr>
-          <th class="text-light" scope="col">Tên </th>
-          <th class="text-light" scope="col">Email</th>
+          <th class="text-light" scope="col">Thông tin viên chức</th>
+          <th class="text-light" scope="col">Khoa</th>
           <th class="text-light" scope="col">Ngày sinh</th>
           <th class="text-light" scope="col">Ngày nghĩ hưu</th>
           <th class="text-light" scope="col">Trạng thái</th>
@@ -60,19 +70,22 @@
         @foreach ($list_vienchuc_nu_ganhuu as $key => $vienchuc)
           <tr >
             <td>
-              {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }})
+              <b>- Họ tên viên chức: </b>{{ $vienchuc->hoten_vc }}   <br>
+              <b>- Email: </b>{{ $vienchuc->user_vc }}
             </td>
             <td>
-              {{ $vienchuc->user_vc }}
-            </td>
-            <td>
-              {{ $vienchuc->ngaysinh_vc }}
+              {{ $vienchuc->ten_k }}  
             </td>
             <td>
               <?php 
-                $ngay_nghihuu = strtotime ( '+720 month' , strtotime ( $vienchuc->ngaysinh_vc ) ) ;
-                $ngay_nghihuu = date ( 'Y-m-j' , $ngay_nghihuu );
-                echo $ngay_nghihuu;
+                Carbon::now('Asia/Ho_Chi_Minh');
+                $ngaysinh_vc = Carbon::parse(Carbon::create($vienchuc->ngaysinh_vc))->format('d-m-Y');
+                echo $ngaysinh_vc;
+              ?>
+            </td>
+            <td>
+              <?php 
+                echo Carbon::parse(Carbon::create($vienchuc->ngaysinh_vc)->addMonths($thoigiannghihuu->nu_tgnh))->format('d-m-Y');
               ?>
             </td>
             <td>
@@ -225,7 +238,11 @@
                           <tr>
                             <th scope="row">Ngày sinh</th>
                             <td>
-                              {{ $vienchuc->ngaysinh_vc }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $ngaysinh_vc = Carbon::parse(Carbon::create($vienchuc->ngaysinh_vc))->format('d-m-Y');
+                                echo $ngaysinh_vc;
+                              ?>
                             </td>
                           </tr>
                           <tr>
@@ -259,7 +276,11 @@
                           <tr>
                             <th scope="row">Ngày tuyển dụng</th>
                             <td>
-                              {{ date('d-m-Y') , strtotime($vienchuc->ngaytuyendung_vc) }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $ngaytuyendung_vc = Carbon::parse(Carbon::create($vienchuc->ngaytuyendung_vc))->format('d-m-Y');
+                                echo $ngaytuyendung_vc;
+                              ?>
                             </td>
                           </tr>
                           <tr>
@@ -307,25 +328,41 @@
                           <tr>
                             <th scope="row">Ngày vào Đảng Cộng sản Việt Nam</th>
                             <td>
-                              {{ date('d-m-Y') , strtotime($vienchuc->ngayvaodang_vc) }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $ngayvaodang_vc = Carbon::parse(Carbon::create($vienchuc->ngayvaodang_vc))->format('d-m-Y');
+                                echo $ngayvaodang_vc;
+                              ?>
                             </td>
                           </tr>
                           <tr>
                             <th scope="row">Ngày chính thức</th>
                             <td>
-                              {{ date('d-m-Y') , strtotime($vienchuc->ngaychinhthuc_vc) }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $ngaychinhthuc_vc = Carbon::parse(Carbon::create($vienchuc->ngaychinhthuc_vc))->format('d-m-Y');
+                                echo $ngaychinhthuc_vc;
+                              ?>
                             </td>
                           </tr>
                           <tr>
                             <th scope="row">Ngày nhập ngũ</th>
                             <td>
-                              {{ date('d-m-Y') , strtotime($vienchuc->ngaynhapngu_vc) }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $ngaynhapngu_vc = Carbon::parse(Carbon::create($vienchuc->ngaynhapngu_vc))->format('d-m-Y');
+                                echo $ngaynhapngu_vc;
+                              ?>
                             </td>
                           </tr>
                           <tr>
                             <th scope="row">Ngày xuất ngũ</th>
                             <td>
-                              {{ date('d-m-Y') , strtotime($vienchuc->ngayxuatngu_vc) }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $ngayxuatngu_vc = Carbon::parse(Carbon::create($vienchuc->ngayxuatngu_vc))->format('d-m-Y');
+                                echo $ngayxuatngu_vc;
+                              ?>
                             </td>
                           </tr>
                           <tr>
@@ -337,7 +374,11 @@
                           <tr>
                             <th scope="row">Ngày hưởng bật</th>
                             <td>
-                              {{ date('d-m-Y') , strtotime($vienchuc->ngayhuongbac_vc) }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $ngayhuongbac_vc = Carbon::parse(Carbon::create($vienchuc->ngayhuongbac_vc))->format('d-m-Y');
+                                echo $ngayhuongbac_vc;
+                              ?>
                             </td>
                           </tr>
                           <tr>
@@ -385,7 +426,11 @@
                           <tr>
                             <th scope="row">Ngày cấp CCCD</th>
                             <td>
-                              {{ date('d-m-Y') , strtotime($vienchuc->ngaycapcccd_vc) }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $ngaycapcccd_vc = Carbon::parse(Carbon::create($vienchuc->ngaycapcccd_vc))->format('d-m-Y');
+                                echo $ngaycapcccd_vc;
+                              ?>
                             </td>
                           </tr>
                           <tr>
@@ -407,13 +452,21 @@
                           <tr>
                             <th scope="row">Ngày bắt đầu làm việc</th>
                             <td>
-                              {{ date('d-m-Y') , strtotime($vienchuc->ngaybatdaulamviec_vc) }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $ngaybatdaulamviec_vc = Carbon::parse(Carbon::create($vienchuc->ngaybatdaulamviec_vc))->format('d-m-Y');
+                                echo $ngaybatdaulamviec_vc;
+                              ?>
                             </td>
                           </tr>
                           <tr>
-                            <th scope="row">Thời gian nghĩ</th>
+                            <th scope="row">Thời gian nghỉ</th>
                             <td>
-                              {{ date('d-m-Y') , strtotime($vienchuc->thoigiannghi_vc) }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $thoigiannghi_vc = Carbon::parse(Carbon::create($vienchuc->thoigiannghi_vc))->format('d-m-Y');
+                                echo $thoigiannghi_vc;
+                              ?>
                             </td>
                           </tr>
                         </tbody>
@@ -440,15 +493,22 @@
         @foreach ($list_vienchuc_nam_ganhuu as $key => $vienchuc)
           <tr >
             <td>
-              {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }})
+              <b>- Họ tên viên chức: </b>{{ $vienchuc->hoten_vc }}   <br>
+              <b>- Email: </b>{{ $vienchuc->user_vc }}
             </td>
-            <td>{{ $vienchuc->user_vc }}</td>
-            <td>{{ $vienchuc->ngaysinh_vc }}</td>
+            <td>
+              {{ $vienchuc->ten_k }}  
+            </td>
             <td>
               <?php 
-                $ngay_nghihuu = strtotime ( '+744 month' , strtotime ( $vienchuc->ngaysinh_vc ) ) ;
-                $ngay_nghihuu = date ( 'Y-m-j' , $ngay_nghihuu );
-                echo $ngay_nghihuu;
+                Carbon::now('Asia/Ho_Chi_Minh');
+                $ngaysinh_vc = Carbon::parse(Carbon::create($vienchuc->ngaysinh_vc))->format('d-m-Y');
+                echo $ngaysinh_vc;
+              ?>
+            </td>
+            <td>
+              <?php 
+                echo Carbon::parse(Carbon::create($vienchuc->ngaysinh_vc)->addMonths($thoigiannghihuu->nam_tgnh))->format('d-m-Y');
               ?>
             </td>
             <td>
@@ -601,7 +661,11 @@
                           <tr>
                             <th scope="row">Ngày sinh</th>
                             <td>
-                              {{ $vienchuc->ngaysinh_vc }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $ngaysinh_vc = Carbon::parse(Carbon::create($vienchuc->ngaysinh_vc))->format('d-m-Y');
+                                echo $ngaysinh_vc;
+                              ?>
                             </td>
                           </tr>
                           <tr>
@@ -635,7 +699,11 @@
                           <tr>
                             <th scope="row">Ngày tuyển dụng</th>
                             <td>
-                              {{ date('d-m-Y') , strtotime($vienchuc->ngaytuyendung_vc) }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $ngaytuyendung_vc = Carbon::parse(Carbon::create($vienchuc->ngaytuyendung_vc))->format('d-m-Y');
+                                echo $ngaytuyendung_vc;
+                              ?>
                             </td>
                           </tr>
                           <tr>
@@ -683,25 +751,41 @@
                           <tr>
                             <th scope="row">Ngày vào Đảng Cộng sản Việt Nam</th>
                             <td>
-                              {{ date('d-m-Y') , strtotime($vienchuc->ngayvaodang_vc) }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $ngayvaodang_vc = Carbon::parse(Carbon::create($vienchuc->ngayvaodang_vc))->format('d-m-Y');
+                                echo $ngayvaodang_vc;
+                              ?>
                             </td>
                           </tr>
                           <tr>
                             <th scope="row">Ngày chính thức</th>
                             <td>
-                              {{ date('d-m-Y') , strtotime($vienchuc->ngaychinhthuc_vc) }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $ngaychinhthuc_vc = Carbon::parse(Carbon::create($vienchuc->ngaychinhthuc_vc))->format('d-m-Y');
+                                echo $ngaychinhthuc_vc;
+                              ?>
                             </td>
                           </tr>
                           <tr>
                             <th scope="row">Ngày nhập ngũ</th>
                             <td>
-                              {{ date('d-m-Y') , strtotime($vienchuc->ngaynhapngu_vc) }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $ngaynhapngu_vc = Carbon::parse(Carbon::create($vienchuc->ngaynhapngu_vc))->format('d-m-Y');
+                                echo $ngaynhapngu_vc;
+                              ?>
                             </td>
                           </tr>
                           <tr>
                             <th scope="row">Ngày xuất ngũ</th>
                             <td>
-                              {{ date('d-m-Y') , strtotime($vienchuc->ngayxuatngu_vc) }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $ngayxuatngu_vc = Carbon::parse(Carbon::create($vienchuc->ngayxuatngu_vc))->format('d-m-Y');
+                                echo $ngayxuatngu_vc;
+                              ?>
                             </td>
                           </tr>
                           <tr>
@@ -713,7 +797,11 @@
                           <tr>
                             <th scope="row">Ngày hưởng bật</th>
                             <td>
-                              {{ date('d-m-Y') , strtotime($vienchuc->ngayhuongbac_vc) }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $ngayhuongbac_vc = Carbon::parse(Carbon::create($vienchuc->ngayhuongbac_vc))->format('d-m-Y');
+                                echo $ngayhuongbac_vc;
+                              ?>
                             </td>
                           </tr>
                           <tr>
@@ -761,7 +849,11 @@
                           <tr>
                             <th scope="row">Ngày cấp CCCD</th>
                             <td>
-                              {{ date('d-m-Y') , strtotime($vienchuc->ngaycapcccd_vc) }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $ngaycapcccd_vc = Carbon::parse(Carbon::create($vienchuc->ngaycapcccd_vc))->format('d-m-Y');
+                                echo $ngaycapcccd_vc;
+                              ?>
                             </td>
                           </tr>
                           <tr>
@@ -783,13 +875,21 @@
                           <tr>
                             <th scope="row">Ngày bắt đầu làm việc</th>
                             <td>
-                              {{ date('d-m-Y') , strtotime($vienchuc->ngaybatdaulamviec_vc) }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $ngaybatdaulamviec_vc = Carbon::parse(Carbon::create($vienchuc->ngaybatdaulamviec_vc))->format('d-m-Y');
+                                echo $ngaybatdaulamviec_vc;
+                              ?>
                             </td>
                           </tr>
                           <tr>
-                            <th scope="row">Thời gian nghĩ</th>
+                            <th scope="row">Thời gian nghỉ</th>
                             <td>
-                              {{ date('d-m-Y') , strtotime($vienchuc->thoigiannghi_vc) }}
+                              <?php 
+                                Carbon::now('Asia/Ho_Chi_Minh');
+                                $thoigiannghi_vc = Carbon::parse(Carbon::create($vienchuc->thoigiannghi_vc))->format('d-m-Y');
+                                echo $thoigiannghi_vc;
+                              ?>
                             </td>
                           </tr>
                         </tbody>

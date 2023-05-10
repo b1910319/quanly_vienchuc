@@ -5,6 +5,30 @@
     <div class="alert alert-light color_alert" role="alert">
       ________THÔNG TIN CÁC CHÂU LỤC VIÊN CHỨC THAM GIA ĐI HỌC________
     </div>
+    <?php 
+      $mess = session()->get('message_add_chauluc');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-success alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_add_chauluc', null);
+      }
+    ?>
+    <?php 
+      $mess = session()->get('message_update_chauluc');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-warning alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_update_chauluc', null);
+      }
+    ?>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
@@ -187,7 +211,7 @@
               </td>
               <th scope="row">{{ $key+1 }}</th>
               <td style="width: 10%">
-                {{ $chauluc->ten_cl }} ({{ $chauluc->ma_cl }})
+                {{ $chauluc->ten_cl }}
               </td>
               <td style="width: 35%">
                 {{ $chauluc->mota_cl }}

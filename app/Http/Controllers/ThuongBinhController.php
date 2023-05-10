@@ -120,7 +120,7 @@ class ThuongBinhController extends Controller
       $thuongbinh->mota_tb = $data['mota_tb'];
       $thuongbinh->status_tb = $data['status_tb'];
       $thuongbinh->save();
-      $request->session()->put('message','Thêm thành công');
+      $request->session()->put('message_add_thuongbinh','Thêm thành công');
       return Redirect::to('/thuongbinh');
     }else{
       return Redirect::to('/home');
@@ -224,6 +224,7 @@ class ThuongBinhController extends Controller
       $thuongbinh->status_tb = $data['status_tb'];
       $thuongbinh->updated_tb = Carbon::now();
       $thuongbinh->save();
+      $request->session()->put('message_update_thuongbinh','Cập nhật thành công');
       return Redirect::to('thuongbinh');
     }else{
       return Redirect::to('/home');

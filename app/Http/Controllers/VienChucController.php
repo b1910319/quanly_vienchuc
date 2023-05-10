@@ -563,7 +563,7 @@ class VienChucController extends Controller
     if($phanquyen_admin || $phanquyen_qltt){
       $list_vienchuc = VienChuc::join('khoa', 'khoa.ma_k', '=', 'vienchuc.ma_k')
         ->where('status_vc', '<>', '1')
-        ->orderBy('vienchuc.hoten_vc', 'asc')
+        ->orderBy('vienchuc.ma_vc', 'desc')
         ->get();
       $count_quanhe_giadinh = VienChuc::leftJoin('giadinh', 'giadinh.ma_vc', '=', 'vienchuc.ma_vc')
         ->select(DB::raw('count(ma_gd) as sum, vienchuc.ma_vc'))

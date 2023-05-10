@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
-use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -121,6 +120,7 @@ class ChauLucController extends Controller
       $chauluc->mota_cl = $data['mota_cl'];
       $chauluc->status_cl = $data['status_cl'];
       $chauluc->save();
+      $request->session()->put('message_add_chauluc','Thêm thành công');
       return Redirect::to('/chauluc');
     }else{
       return Redirect::to('/home');
@@ -221,6 +221,7 @@ class ChauLucController extends Controller
       $chauluc->status_cl = $data['status_cl'];
       $chauluc->updated_cl = Carbon::now();
       $chauluc->save();
+      $request->session()->put('message_update_chauluc','Cập nhật thành công');
       return Redirect::to('chauluc');
     }else{
       return Redirect::to('/home');

@@ -107,28 +107,13 @@ class ThoiGianNghiHuuController extends Controller
       $thoigiannghihuu->nu_tgnh = $data['tuoinu']*12+$data['thangnu'];
       $thoigiannghihuu->status_tgnh = $data['status_tgnh'];
       $thoigiannghihuu->save();
-      $request->session()->put('message','Thêm thành công');
+      $request->session()->put('message_add_thoigiannghi','Thêm thành công');
       return Redirect::to('/thoigiannghihuu');
     }else{
       return Redirect::to('/home');
     }
   }
-  // public function add_thoigiannghihuu_excel(Request $request){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     Excel::import(new thoigiannghihuuImport, $request->file('import_excel'));
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+
   public function select_thoigiannghihuu($ma_tgnh){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -206,6 +191,7 @@ class ThoiGianNghiHuuController extends Controller
       $thoigiannghihuu->nu_tgnh = $data['tuoinu']*12+$data['thangnu'];
       $thoigiannghihuu->status_tgnh = $data['status_tgnh'];
       $thoigiannghihuu->save();
+      $request->session()->put('message_update_thoigiannghi','Cập nhật thành công');
       return Redirect::to('thoigiannghihuu');
     }else{
       return Redirect::to('/home');

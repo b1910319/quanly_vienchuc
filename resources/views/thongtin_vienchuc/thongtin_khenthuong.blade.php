@@ -50,8 +50,8 @@
                     <b> Ngày khen thưởng:</b> {{ $khenthuong->ngay_kt }} <br>
                     <b> Nội dung khen thưởng: </b> {{ $khenthuong->noidung_kt }} <br>
                     <b> Số quyết định khen thưởng: </b> {{ $khenthuong->soquyetdinh_kt }} <br>
-                    @if ($khenthuong->file_kt)
-                      <a href="{{ asset('public/uploads/khenthuong/'.$khenthuong->file_kt) }}" style="color: #000D6B; font-weight: bold">
+                    @if ($khenthuong->filequyetdinh_kt)
+                      <a href="{{ asset('public/uploads/khenthuong/'.$khenthuong->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
                         <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
                         File kết quả
                       </a>

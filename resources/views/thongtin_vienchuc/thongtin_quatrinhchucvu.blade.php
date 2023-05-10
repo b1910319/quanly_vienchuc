@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+<?php use Illuminate\Support\Carbon; ?>
   <div class="row">
     <div class="col-2 card-box">
       <div class="row">
@@ -39,7 +40,12 @@
               <br>
               <b>Số quyết định: </b>{{ $qtcv->soquyetdinh_qtcv }}
               <br>
-              <b>Ngày ký: </b>  </b>{{ $qtcv->ngayky_qtcv }}
+              <b>Ngày ký: </b>
+              <?php 
+                Carbon::now('Asia/Ho_Chi_Minh');
+                $ngayky_qtcv = Carbon::parse(Carbon::create($qtcv->ngayky_qtcv))->format('d-m-Y');
+                echo $ngayky_qtcv;
+              ?>
               <br>
               @if ($qtcv->file_qtcv)
                 <a href="{{ asset('public/uploads/quatrinhchucvu/'.$qtcv->file_qtcv) }}" style="color: #000D6B; font-weight: bold">

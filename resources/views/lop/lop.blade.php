@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+<?php use Illuminate\Support\Carbon; ?>
 <div class="row">
   <div class="card-box">
     <div class="alert alert-light color_alert" role="alert">
@@ -60,45 +61,6 @@
               Xoá tất cả
             </button>
           </a>
-          {{-- <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-            <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
-            Thống kê
-          </button>
-          <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
-                <i class="fa-solid fa-chart-simple"></i>
-                &ensp;
-                Thống kê
-              </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <table class="table">
-                <thead >
-                  <tr>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Số lượng</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($count_status as $key => $count_stt)
-                    @if ($count_stt->status_l == 0)
-                      <tr>
-                        <td>Danh mục hiển thị</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @else
-                      <tr>
-                        <td>Danh mục ẩn</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @endif
-                  @endforeach
-                </tbody>
-              </table>
-            </div>
-          </div> --}}
           <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body mt-3">
               <form action="{{ URL::to('/add_lop') }}" method="POST"
@@ -276,11 +238,23 @@
                 <div class="row ">
                   <div class="col-md-12">
                     <div class="scrollspy-example" data-bs-spy="scroll" data-bs-target="#lex" id="work" data-offset="20"
-                      style="height: 100px; overflow: auto;">
+                      style="height: 150px; overflow: auto;">
                       <p>
                         <b> Tên lớp:</b> {{ $lop->ten_l }} <br>
-                        <b> Ngày bắt đầu:</b> {{ $lop->ngaybatdau_l }} <br>
-                        <b> Ngày kết thúc: </b> {{ $lop->ngayketthuc_l }} <br>
+                        <b> Ngày bắt đầu:</b> 
+                        <?php 
+                          Carbon::now('Asia/Ho_Chi_Minh');
+                          $ngaybatdau_l = Carbon::parse(Carbon::create($lop->ngaybatdau_l))->format('d-m-Y');
+                          echo $ngaybatdau_l;
+                        ?>
+                        <br>
+                        <b> Ngày kết thúc: </b> 
+                        <?php 
+                          Carbon::now('Asia/Ho_Chi_Minh');
+                          $ngayketthuc_l = Carbon::parse(Carbon::create($lop->ngayketthuc_l))->format('d-m-Y');
+                          echo $ngayketthuc_l;
+                        ?>
+                        <br>
                         <b> Tên cơ sở đào tạo: </b> {{ $lop->tencosodaotao_l }} <br>
                         <b> Ngành học: </b> {{ $lop->nganhhoc_l }} <br>
                         <b> Trình độ đào tạo: </b> {{ $lop->trinhdodaotao_l }} <br>

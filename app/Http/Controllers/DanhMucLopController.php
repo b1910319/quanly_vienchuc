@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
-use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -118,7 +117,7 @@ class DanhMucLopController extends Controller
       $danhmuclop->ten_dml = $data['ten_dml'];
       $danhmuclop->status_dml = $data['status_dml'];
       $danhmuclop->save();
-      $request->session()->put('message','Thêm thành công');
+      $request->session()->put('message_add_danhmuclop','Thêm thành công');
       return Redirect::to('/danhmuclop');
     }else{
       return Redirect::to('/home');
@@ -215,6 +214,7 @@ class DanhMucLopController extends Controller
       $danhmuclop->status_dml = $data['status_dml'];
       $danhmuclop->updated_dml = Carbon::now();
       $danhmuclop->save();
+      $request->session()->put('message_update_danhmuclop','Cập nhật thành công');
       return Redirect::to('danhmuclop');
     }else{
       return Redirect::to('/home');

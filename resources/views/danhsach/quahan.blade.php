@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+<?php use Illuminate\Support\Carbon; ?>
 <div class="row">
   <div class="card-box">
     <div class="row ">
@@ -33,13 +34,17 @@
                 @if ($vienchuc->ma_l == $lop_quahan->ma_l)
                   <tr >
                     <td>
-                      <b>- Họ tên viên chức: </b>{{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }}) <br>
+                      <b>- Họ tên viên chức: </b>{{ $vienchuc->hoten_vc }}<br>
                       <b>- Email: </b>{{ $vienchuc->user_vc }} <br>
                       <b>- Số điện thoại: </b>{{ $vienchuc->sdt_vc }} <br>
                       <b>- Khoa: </b> {{ $vienchuc->ten_k }}
                     </td>
                     <td>
-                      {{ $vienchuc->ngayvenuoc_kq }}
+                      <?php 
+                        Carbon::now('Asia/Ho_Chi_Minh');
+                        $ngayvenuoc_kq = Carbon::parse(Carbon::create($vienchuc->ngayvenuoc_kq))->format('d-m-Y');
+                        echo $ngayvenuoc_kq;
+                      ?>
                     </td>
                     <td style="width: 22%">
                       <a href="{{ URL::to('guimail_quahan/'.$vienchuc->ma_vc.'/'.$vienchuc->ma_l) }}">
@@ -63,52 +68,6 @@
             </tbody>
           </table>
         </div>
-        {{-- <div class="alert alert-primary fw-bold text-center mt-3" role="alert">
-          {{ $lop_quahan->ten_l }}
-        </div>
-        <table class="table" id="mytable{{ $key+1 }}">
-          <thead class="color_table">
-            <tr>
-              <th class="text-light" scope="col">Thông tin viên chức</th>
-              <th class="text-light" scope="col">Ngày về nước</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody  >
-            @foreach ($list_vienchuc_quahan as $key => $vienchuc)
-              @if ($vienchuc->ma_l == $lop_quahan->ma_l)
-                <tr >
-                  <td>
-                    <b>- Họ tên viên chức: </b>{{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }}) <br>
-                    <b>- Email: </b>{{ $vienchuc->user_vc }} <br>
-                    <b>- Số điện thoại: </b>{{ $vienchuc->sdt_vc }} <br>
-                    <b>- Khoa: </b> {{ $vienchuc->ten_k }}
-                  </td>
-                  <td>
-                    {{ $vienchuc->ngayvenuoc_kq }}
-                  </td>
-                  <td style="width: 22%">
-                    <a href="">
-                      <button type="button" class="btn btn-primary fw-bold">
-                        <i class="fa-solid fa-paper-plane text-light"></i>
-                        &ensp;
-                        Gửi mail
-                      </button>
-                    </a>
-                    <a href="">
-                      <button type="button" class="btn btn-primary button_xanhla">
-                        <i class="fa-solid fa-circle-check text-light"></i>
-                        &ensp;
-                        Đã về nước
-                      </button>
-                    </a>
-                  </td>
-                </tr>
-              @endif
-              
-            @endforeach
-          </tbody>
-        </table> --}}
       @endforeach
       
     </div>

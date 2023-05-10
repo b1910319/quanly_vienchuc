@@ -274,7 +274,7 @@
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }})
+              {{ $vienchuc->hoten_vc }}  
               <br>
               {{ $vienchuc->user_vc }}
             </td>

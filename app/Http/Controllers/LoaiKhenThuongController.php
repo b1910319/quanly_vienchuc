@@ -119,7 +119,7 @@ class LoaiKhenThuongController extends Controller
       $loaikhenthuong->ten_lkt = $data['ten_lkt'];
       $loaikhenthuong->status_lkt = $data['status_lkt'];
       $loaikhenthuong->save();
-      $request->session()->put('message','Thêm thành công');
+      $request->session()->put('message_add_loaikhenthuong','Thêm thành công');
       return Redirect::to('/loaikhenthuong');
     }else{
       return Redirect::to('/home');
@@ -222,6 +222,7 @@ class LoaiKhenThuongController extends Controller
       $loaikhenthuong->status_lkt = $data['status_lkt'];
       $loaikhenthuong->updated_lkt = Carbon::now();
       $loaikhenthuong->save();
+      $request->session()->put('message_update_loaikhenthuong','Cập nhật thành công');
       return Redirect::to('loaikhenthuong');
     }else{
       return Redirect::to('/home');

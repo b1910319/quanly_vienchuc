@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+<?php use Illuminate\Support\Carbon; ?>
 <div class="row">
   <div class="col-6">
     <div class="card-box">
@@ -311,7 +312,7 @@
                 <td>
                   <?php 
                   $han_dangky = strtotime ( '-2 month' , strtotime ( $lop->ngaybatdau_l ) ) ;
-                  $han_dangky = date ( 'Y-m-j' , $han_dangky );
+                  $han_dangky = date ( 'j-m-Y' , $han_dangky );
                   ?>
                     <span class="badge badge-light-danger" style="font-size: 16px">
                       <?php 
@@ -361,7 +362,11 @@
                                 </td>
                   
                                 <td>
-                                  {{ $lop->ngaybatdau_l }}
+                                  <?php 
+                                    Carbon::now('Asia/Ho_Chi_Minh');
+                                    $ngaybatdau_l = Carbon::parse(Carbon::create($lop->ngaybatdau_l))->format('d-m-Y');
+                                    echo $ngaybatdau_l;
+                                  ?>
                                 </td>
                               </tr>
                               <tr>
@@ -370,7 +375,12 @@
                                 </td>
                   
                                 <td>
-                                  {{ $lop->ngayketthuc_l }}
+
+                                  <?php 
+                                    Carbon::now('Asia/Ho_Chi_Minh');
+                                    $ngayketthuc_l = Carbon::parse(Carbon::create($lop->ngayketthuc_l))->format('d-m-Y');
+                                    echo $ngayketthuc_l;
+                                  ?>
                                 </td>
                               </tr>
                               <tr>
@@ -397,7 +407,7 @@
                                 </td>
                   
                                 <td>
-                                  {{ $lop->quocgiaodaotao_l }}
+                                  {{ $lop->ten_qg }}
                                 </td>
                               </tr>
                               <tr>
@@ -467,7 +477,7 @@
                           </table>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                          <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
                             <i class="fa-solid fa-square-xmark text-light"></i>
                             &ensp; Đóng
                           </button>

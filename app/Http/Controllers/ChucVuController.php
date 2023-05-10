@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\ChucVu;
 use App\Models\PhanQuyen;
-use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -113,7 +112,7 @@ class ChucVuController extends Controller
       $chucvu->ten_cv = $data['ten_cv'];
       $chucvu->status_cv = $data['status_cv'];
       $chucvu->save();
-      $request->session()->put('message','Thêm thành công');
+      $request->session()->put('message_add_chucvu','Thêm thành công');
       return Redirect::to('/chucvu');
     }else{
       return Redirect::to('/home');
@@ -210,6 +209,7 @@ class ChucVuController extends Controller
       $chucvu->status_cv = $data['status_cv'];
       $chucvu->updated_cv = Carbon::now();
       $chucvu->save();
+      $request->session()->put('message_update_chucvu','Cập nhật thành công');
       return Redirect::to('chucvu');
     }else{
       return Redirect::to('/home');

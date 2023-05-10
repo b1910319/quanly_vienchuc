@@ -158,7 +158,7 @@ class NgachController extends Controller
       $ngach->sonamnangbac_n = $data['sonamnangbac_n'];
       $ngach->status_n = $data['status_n'];
       $ngach->save();
-      $request->session()->put('message','Thêm thành công');
+      $request->session()->put('message_add_ngach','Thêm thành công');
       return Redirect::to('/ngach');
     }else{
       return Redirect::to('/home');
@@ -263,6 +263,7 @@ class NgachController extends Controller
       $ngach->status_n = $data['status_n'];
       $ngach->updated_n = Carbon::now();
       $ngach->save();
+      $request->session()->put('message_update_ngach','Cập nhật thành công');
       return Redirect::to('ngach');
     }else{
       return Redirect::to('/home');

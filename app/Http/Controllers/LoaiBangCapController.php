@@ -119,7 +119,7 @@ class LoaiBangCapController extends Controller
       $loaibangcap->ten_lbc = $data['ten_lbc'];
       $loaibangcap->status_lbc = $data['status_lbc'];
       $loaibangcap->save();
-      $request->session()->put('message','Thêm thành công');
+      $request->session()->put('message_add_loaibangcap','Thêm thành công');
       return Redirect::to('/loaibangcap');
     }else{
       return Redirect::to('/home');
@@ -222,6 +222,7 @@ class LoaiBangCapController extends Controller
       $loaibangcap->status_lbc = $data['status_lbc'];
       $loaibangcap->updated_lbc = Carbon::now();
       $loaibangcap->save();
+      $request->session()->put('message_update_loaibangcap','Cập nhật thành công');
       return Redirect::to('loaibangcap');
     }else{
       return Redirect::to('/home');

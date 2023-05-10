@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
 use App\Models\Quyen;
-use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -111,6 +110,7 @@ class QuyenController extends Controller
       $quyen->mota_q = $data['mota_q'];
       $quyen->status_q = $data['status_q'];
       $quyen->save();
+      $request->session()->put('message_add_quyen','Thêm thành công');
       return Redirect::to('/quanly_quyen');
     }else{
       return Redirect::to('/home');
@@ -202,6 +202,7 @@ class QuyenController extends Controller
       $quyen->status_q = $data['status_q'];
       $quyen->updated_q = Carbon::now();
       $quyen->save();
+      $request->session()->put('message_update_quyen','Cập nhật thành công');
       return Redirect::to('quanly_quyen');
     }else{
       return Redirect::to('/home');

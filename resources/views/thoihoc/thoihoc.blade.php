@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+<?php use Illuminate\Support\Carbon; ?>
 <div class="row">
   <div class="card-box">
     <div class="alert alert-success row color_alert" role="alert">
@@ -19,10 +20,6 @@
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
-          {{-- <button role="button" class="item-question collapsed btn btn-primary button_xanhla" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a">
-            <i class="fas fa-plus-square text-light"></i>
-            &ensp; Thêm
-          </button> --}}
           @if ($vienchuc != '' && $lop != '')
             <a onclick="return confirm('Bạn có muốn xóa tất cả không?')" href="{{ URL::to('/delete_all_thoihoc/'.$lop->ma_l.'/'.$vienchuc->ma_vc) }}">
               <button type="button" class="btn btn-danger button_do">
@@ -40,133 +37,6 @@
               </button>
             </a>
           @endif
-          {{-- <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-            <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
-            Thống kê
-          </button>
-          <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
-                <i class="fa-solid fa-chart-simple"></i>
-                &ensp;
-                Thống kê
-              </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <table class="table">
-                <thead >
-                  <tr>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Số lượng</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($count_status as $key => $count_stt)
-                    @if ($count_stt->status_th == 0)
-                      <tr>
-                        <td>Danh mục hiển thị</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @else
-                      <tr>
-                        <td>Danh mục ẩn</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @endif
-                  @endforeach
-                </tbody>
-              </table>
-            </div>
-          </div> --}}
-          {{-- <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
-            <div class="panel-body mt-3">
-              <form action="{{ URL::to('/add_thoihoc') }}" method="POST"
-                autocomplete="off" enctype="multipart/form-data">
-                {{ csrf_field() }}
-                <div class="row">
-                  <div class="col-6">
-                    <table class="table">
-                      <tbody>
-                        @if ($vienchuc != '' && $lop != '')
-                          <input type="hidden" name="ma_vc" value="{{ $vienchuc->ma_vc }}">
-                          <input type="hidden" name="ma_l" value="{{ $lop->ma_l }}">
-                        @else
-                          <tr>
-                            <th scope="row">Viên chức: </th>
-                            <td class="was-validated">
-                              <select class="custom-select input_table" id="gender2" name="ma_vc" required>
-                                <option value="" >Chọn viên chức</option>
-                                @foreach ($list_vienchuc as $vienchuc )
-                                <option value="{{ $vienchuc->ma_vc }}" >{{ $vienchuc->hoten_vc }}</option>
-                                @endforeach
-                              </select>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th style="width: 30%" scope="row">Lớp: </th>
-                            <td class="was-validated">
-                              <select class="custom-select input_table" id="gender2" name="ma_l" required>
-                                <option value="" >Chọn lớp</option>
-                                @foreach ($list_lop as $lop )
-                                  <option value="{{ $lop->ma_l }}" >{{ $lop->ten_l }}</option>
-                                @endforeach
-                              </select>
-                            </td>
-                          </tr>
-                        @endif
-                        <tr>
-                          <th scope="row">Ngày thôi học: </th>
-                          <td class="was-validated">
-                            <input type='date' class='form-control input_table' autofocus required name="ngay_th">
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Lý do thôi học: </th>
-                          <td class="was-validated">
-                            <input type='text' class='form-control input_table' autofocus required name="lydo_th">
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="col-6">
-                    <table class="table">
-                      <tbody>
-                        <tr>
-                          <th style="width: 30%" scope="row">File thôi học: </th>
-                          <td class="was-validated">
-                            <input type='file' class='form-control input_table' name="file_th" required>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Trạng thái: </th>
-                          <td class="was-validated">
-                            <select class="custom-select input_table" id="gender2" name="status_th" required>
-                              <option value="" >Chọn trạng thái</option>
-                              <option value="1" >Ẩn</option>
-                              <option selected value="0" >Hiển thị</option>
-                            </select>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="row mb-2">
-                    <div class="col-5"></div>
-                    <div class="col-2">
-                      <button type="submit"  class="btn btn-primary button_xanhla them" style=" width: 100%;">
-                        <i class="fas fa-plus-square text-light"></i>
-                        &ensp;
-                        Thêm
-                      </button>
-                    </div>
-                    <div class="col-5"></div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div> --}}
         </div>
       </div>
     </div>
@@ -202,18 +72,42 @@
               </td>
               <td>
                 <b>Tên lớp học: </b> {{ $thoihoc->ten_l }} <br>
-                <b>Ngày bắt đầu: </b> {{ $thoihoc->ngaybatdau_l }} <br>
-                <b>Ngày kết thúc: </b> {{ $thoihoc->ngayketthuc_l }} <br>
+                <b>Ngày bắt đầu: </b> 
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngaybatdau_l = Carbon::parse(Carbon::create($thoihoc->ngaybatdau_l))->format('d-m-Y');
+                  echo $ngaybatdau_l;
+                ?>
+                <br>
+                <b>Ngày kết thúc: </b> 
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngayketthuc_l = Carbon::parse(Carbon::create($thoihoc->ngayketthuc_l))->format('d-m-Y');
+                  echo $ngayketthuc_l;
+                ?>
+                <br>
                 <b>Tên cơ sở đào tạo: </b> {{ $thoihoc->tencosodaotao_l }} <br>
                 <b>Quốc gia đào tạo: </b> {{ $thoihoc->quocgiaodaotao_l }} <br>
                 <b>Email cơ sở đào tạo: </b> {{ $thoihoc->emailcoso_l }} <br>
                 <b>Số điện thoại cơ sở đào tạo: </b> {{ $thoihoc->sdtcoso_l }} <br>
               </td>
               <td>
-                <b>Thời gian chính thức thôi học: </b> {{ $thoihoc->ngay_th }} <br>
+                <b>Thời gian chính thức thôi học: </b> 
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngay_th = Carbon::parse(Carbon::create($thoihoc->ngay_th))->format('d-m-Y');
+                  echo $ngay_th;
+                ?>
+                <br>
                 <b>Lý do thôi học: </b> {{ $thoihoc->lydo_th }} <br>
                 <b>Số quyết định: </b>{{ $thoihoc->soquyetdinh_th }} <br>
-                <b>Ngày ký quyết định: </b>{{ $thoihoc->ngaykyquyetdinh_th }} <br>
+                <b>Ngày ký quyết định: </b>
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngaykyquyetdinh_th = Carbon::parse(Carbon::create($thoihoc->ngaykyquyetdinh_th))->format('d-m-Y');
+                  echo $ngaykyquyetdinh_th;
+                ?>
+                <br>
                 @if ($thoihoc->file_th)
                   <a href="{{ asset('public/uploads/thoihoc/'.$thoihoc->file_th) }}" style="color: #000D6B; font-weight: bold">
                     <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>

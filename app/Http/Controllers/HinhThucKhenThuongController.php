@@ -114,7 +114,7 @@ class HinhThucKhenThuongController extends Controller
       $hinhthuckhenthuong->ten_htkt = $data['ten_htkt'];
       $hinhthuckhenthuong->status_htkt = $data['status_htkt'];
       $hinhthuckhenthuong->save();
-      $request->session()->put('message','Thêm thành công');
+      $request->session()->put('message_add_hinhthuckhenthuong','Thêm thành công');
       return Redirect::to('/hinhthuckhenthuong');
     }else{
       return Redirect::to('/home');
@@ -212,6 +212,7 @@ class HinhThucKhenThuongController extends Controller
       $hinhthuckhenthuong->status_htkt = $data['status_htkt'];
       $hinhthuckhenthuong->updated_htkt = Carbon::now();
       $hinhthuckhenthuong->save();
+      $request->session()->put('message_update_hinhthuckhenthuong','Cập nhật thành công');
       return Redirect::to('hinhthuckhenthuong');
     }else{
       return Redirect::to('/home');

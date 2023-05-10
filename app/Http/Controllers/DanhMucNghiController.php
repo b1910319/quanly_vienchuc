@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\danhmucnghiImport;
 use App\Models\DanhMucNghi;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
-use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
-use Maatwebsite\Excel\Facades\Excel;
 
 class DanhMucNghiController extends Controller
 {
@@ -107,28 +103,13 @@ class DanhMucNghiController extends Controller
       $danhmucnghi->ten_dmn = $data['ten_dmn'];
       $danhmucnghi->status_dmn = $data['status_dmn'];
       $danhmucnghi->save();
-      $request->session()->put('message','Thêm thành công');
+      $request->session()->put('message_add_danhmucnghi','Thêm thành công');
       return Redirect::to('/danhmucnghi');
     }else{
       return Redirect::to('/home');
     }
   }
-  // public function add_danhmucnghi_excel(Request $request){
-  //   $this->check_login();
-  //   $ma_vc = session()->get('ma_vc');
-  //   $phanquyen_admin = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '5')
-  //     ->first();
-  //   $phanquyen_qltt = PhanQuyen::where('ma_vc', $ma_vc)
-  //     ->where('ma_q', '=', '8')
-  //     ->first();
-  //   if($phanquyen_admin || $phanquyen_qltt){
-  //     Excel::import(new danhmucnghiImport, $request->file('import_excel'));
-  //     return redirect()->back();
-  //   }else{
-  //     return Redirect::to('/home');
-  //   }
-  // }
+
   public function select_danhmucnghi($ma_dmn){
     $this->check_login();
     $ma_vc = session()->get('ma_vc');
@@ -205,6 +186,7 @@ class DanhMucNghiController extends Controller
       $danhmucnghi->status_dmn = $data['status_dmn'];
       $danhmucnghi->updated_dmn = Carbon::now();
       $danhmucnghi->save();
+      $request->session()->put('message_update_danhmucnghi','Cập nhật thành công');
       return Redirect::to('danhmucnghi');
     }else{
       return Redirect::to('/home');

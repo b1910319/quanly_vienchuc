@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+<?php use Illuminate\Support\Carbon; ?>
 <div class="row">
   <div class="card-box">
     <div class="alert alert-success row color_alert" role="alert">
@@ -14,6 +15,30 @@
         ________THÔNG TIN QUÁ TRÌNH CHỨC VỤ CỦA VIÊN CHỨC " <span style="color: #FFFF00"> {{ $vienchuc->hoten_vc }}</span> "________
       </h4>
     </div>
+    <?php 
+      $mess = session()->get('message_add_quatrinhchucvu');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-success alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_add_quatrinhchucvu', null);
+      }
+    ?>
+    <?php 
+      $mess = session()->get('message_update_quatrinhchucvu');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-warning alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_update_quatrinhchucvu', null);
+      }
+    ?>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
@@ -42,52 +67,6 @@
               Xuất file Word
             </button>
           </a>
-          {{-- <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" >
-            <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
-            Thống kê
-          </button> --}}
-          {{-- <a href="{{ URL::to('/quatrinhchucvu_pdf/'.$ma_vc) }}">
-            <button type="button" class="btn btn-warning button_xanhla">
-              <i class="fa-solid fa-file text-light"></i>
-              &ensp;
-              Xuất file
-            </button>
-          </a> --}}
-          {{-- <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
-                <i class="fa-solid fa-chart-simple"></i>
-                &ensp;
-                Thống kê
-              </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Số lượng</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($count_status as $key => $count_stt)
-                    @if ($count_stt->status_qtcv == 0)
-                      <tr>
-                        <td>Danh mục hiển thị</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @else
-                      <tr>
-                        <td>Danh mục ẩn</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @endif
-                  @endforeach
-                </tbody>
-              </table>
-            </div>
-          </div> --}}
           <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body mt-3">
               <form action="{{ URL::to('/add_quatrinhchucvu/'.$ma_vc) }}" method="POST"
@@ -136,7 +115,6 @@
                           <th scope="row">Ngày ký quyết định: </th>
                           <td class="was-validated">
                             <?php 
-                              use Illuminate\Support\Carbon;
                               Carbon::now('Asia/Ho_Chi_Minh'); 
                               $now = Carbon::parse(Carbon::now())->format('Y-m-d');
                               ?>
@@ -207,15 +185,20 @@
               </td>
               <th scope="row">{{ $key+1 }}</th>
               <td>
-                {{ $quatrinhchucvu->ten_cv }} ({{ $quatrinhchucvu->ma_cv }})
+                {{ $quatrinhchucvu->ten_cv }}
               </td>
               <td>
-                Nhiệm kỳ: {{ $quatrinhchucvu->batdau_nk }} - {{ $quatrinhchucvu->ketthuc_nk }} ({{ $quatrinhchucvu->ma_nk }})
+                Nhiệm kỳ: {{ $quatrinhchucvu->batdau_nk }} - {{ $quatrinhchucvu->ketthuc_nk }}
               </td>
               <td>
                 <b>Số quyết định: </b>{{ $quatrinhchucvu->soquyetdinh_qtcv }}
                 <br>
-                <b>Ngày ký quyết định: </b> {{ $quatrinhchucvu->ngayky_qtcv }}
+                <b>Ngày ký quyết định: </b>
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngayky_qtcv = Carbon::parse(Carbon::create($quatrinhchucvu->ngayky_qtcv))->format('d-m-Y');
+                  echo $ngayky_qtcv;
+                ?>
                 <br>
                 @if ($quatrinhchucvu->file_qtcv !=' ')
                   <a href="{{ asset('public/uploads/quatrinhchucvu/'.$quatrinhchucvu->file_qtcv) }}" style="color: #000D6B; font-weight: bold">

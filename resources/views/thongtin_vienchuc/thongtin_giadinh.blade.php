@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+<?php use Illuminate\Support\Carbon;?>
   <div class="row">
     <div class="col-2 card-box">
       <div class="row">
@@ -82,7 +83,6 @@
                               <th scope="row">Ngày sinh: </th>
                               <td class="was-validated">
                                 <?php 
-                                  use Illuminate\Support\Carbon;
                                   Carbon::now('Asia/Ho_Chi_Minh'); 
                                   $now = Carbon::parse(Carbon::now())->format('Y-m-d');
                                   ?>
@@ -155,7 +155,11 @@
                     {{ $giadinh->sdt_gd }}
                   </td>
                   <td>
-                    {{ $giadinh->ngaysinh_gd }}
+                    <?php 
+                      Carbon::now('Asia/Ho_Chi_Minh');
+                      $ngaysinh_gd = Carbon::parse(Carbon::create($giadinh->ngaysinh_gd))->format('d-m-Y');
+                      echo $ngaysinh_gd;
+                    ?>
                   </td>
                   <td>
                     {{ $giadinh->nghenghiep_gd }}

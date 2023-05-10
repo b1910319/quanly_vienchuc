@@ -1,6 +1,8 @@
 @extends('layout')
 @section('content')
-<link rel="stylesheet" href="{{ asset('public\assets\css\form_login.css') }}">
+<head>
+  <link rel="stylesheet" href="{{ asset('public\assets\css\form_login.css') }}">
+</head>
 <div class="row">
   <div class="col-3"></div>
   <div class="col-6">
@@ -11,7 +13,7 @@
           <h1 style="text-align: center; font-weight: bold; text-transform: uppercase; color: white">
             ĐỔI MẬT KHẨU
           </h1>
-          <div class="music-waves-2" style="margin-left: 260px">
+          <div class="music-waves-2" style="margin-left: 290px">
             <span></span>
             <span></span>
             <span></span>
@@ -32,7 +34,7 @@
             <div class="col-8">
               <div class="mb-3">
                 <input type="hidden" name="user_vc" class="form-control text-dark fw-bold" placeholder="name@example.com" required="" id="user_vc" value="{{ $vienchuc->user_vc }}">
-                <label for="username" class="form-label" style="color: white; font-weight: bold; font-size: 18px;">Mật khẩu củ</label>
+                <label for="username" class="form-label" style="color: white; font-weight: bold; font-size: 18px;">Mật khẩu cũ</label>
                 <input type="password" name="pass_cu" class="form-control text-dark fw-bold" placeholder="Password" required="" id="pass_cu" >
               </div>
             </div>
@@ -69,11 +71,6 @@
   </div>
   <div class="col-3"></div>
 </div>
-<!-- end row -->
-
-<!-- end row -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script>
   $(document).ready(function(){
     $('#pass_cu').mouseout(function(){

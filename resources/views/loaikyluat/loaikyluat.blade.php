@@ -5,6 +5,30 @@
     <div class="alert alert-light color_alert" role="alert">
       ________THÔNG TIN VỀ LOẠI KỶ LUẬT________
     </div>
+    <?php 
+      $mess = session()->get('message_add_loaikyluat');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-success alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_add_loaikyluat', null);
+      }
+    ?>
+    <?php 
+      $mess = session()->get('message_update_loaikyluat');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-warning alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_update_loaikyluat', null);
+      }
+    ?>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
@@ -175,7 +199,7 @@
               </td>
               <th scope="row">{{ $key+1 }}</th>
               <td>
-                {{ $loaikyluat->ten_lkl }} ({{ $loaikyluat->ma_lkl }})
+                {{ $loaikyluat->ten_lkl }}
               </td>
               <td>
                 <?php

@@ -20,11 +20,13 @@ class BangCapImport implements ToModel
       'ma_lbc'     => $row[2],
       'trinhdochuyenmon_bc'     => $row[3],
       'truonghoc_bc'     => $row[4],
-      'nienkhoa_bc'     => $row[5],
-      'sobang_bc'     => $row[6],
-      'ngaycap_bc'     => $row[7],
-      'noicap_bc'     => $row[8],
-      'xephang_bc'     => $row[9],
+      'tunam_bc'     => $row[5],
+      'dennam_bc'     => $row[6],
+      'sobang_bc'     => $row[7],
+      'ngaycap_bc'     => $row[8],
+      'noicap_bc'     => $row[9],
+      'xephang_bc'     => $row[10],
+      'file_bc' => $row[11],
     ]);
   }
 }

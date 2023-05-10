@@ -53,7 +53,7 @@ class PhanQuyenController extends Controller
         ->join('vienchuc', 'vienchuc.ma_vc', '=', 'phanquyen.ma_vc')
         ->get();
       $list_quyen = Quyen::where('status_q', '<>', '1')
-        ->orderBy('ma_q', 'desc')
+        ->orderBy('ten_q', 'asc')
         ->get();
       return view('quyen.phanquyen')
         ->with('list_quyen', $list_quyen)

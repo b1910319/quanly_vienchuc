@@ -6,6 +6,7 @@
     font-size: 13px;
   }
 </style>
+<?php use Illuminate\Support\Carbon; ?>
 <head>
   <title>PDF</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -44,7 +45,7 @@
           <th scope="col">#</th>
           <th scope="col">Chức vụ</th>
           <th scope="col">Nhiệm kỳ</th>
-          <th scope="col">Thông tin</th>
+          <th scope="col">Thông tin quyết định</th>
         </tr>
       </thead>
       <tbody>
@@ -55,7 +56,12 @@
             <td>Nhiệm kỳ: {{ $qtcv->batdau_nk }} - {{ $qtcv->ketthuc_nk }}</td>
             <td>
               <b>Số quyết định: </b>{{ $qtcv->soquyetdinh_qtcv }} <br>
-              <b>Ngày ký: </b> {{ $qtcv->ngayky_qtcv }}
+              <b>Ngày ký: </b> 
+              <?php 
+                Carbon::now('Asia/Ho_Chi_Minh');
+                $ngayky_qtcv = Carbon::parse(Carbon::create($qtcv->ngayky_qtcv))->format('d-m-Y');
+                echo $ngayky_qtcv;
+              ?>
             </td>
           </tr>
         @endforeach

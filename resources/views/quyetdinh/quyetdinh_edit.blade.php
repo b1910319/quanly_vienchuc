@@ -62,10 +62,10 @@
                 <td class="was-validated">
                   <div class="row">
                     <div class="col-6">
-                      <input type='file' class='form-control input_table' name="file_qd" required>
+                      <input type='file' class='form-control input_table' name="file_qd">
                     </div>
                     <div class="col-6">
-                      @if ($edit->file_qd != ' ')
+                      @if ($edit->file_qd)
                         <a href="{{ asset('public/uploads/quyetdinh/'.$edit->file_qd) }}">
                           <button type="button" class="btn btn-warning button_xanhla">
                             <i class="fa-solid fa-file text-light"></i>

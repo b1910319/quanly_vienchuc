@@ -14,6 +14,30 @@
         ________THÔNG TIN KỶ LUẬT VIÊN CHỨC " <span style="color: #FFFF00"> {{ $vienchuc->hoten_vc }}</span> "________
       </h4>
     </div>
+    <?php 
+      $mess = session()->get('message_add_kyluat');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-success alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_add_kyluat', null);
+      }
+    ?>
+    <?php 
+      $mess = session()->get('message_update_kyluat');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-warning alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_update_kyluat', null);
+      }
+    ?>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
@@ -250,7 +274,7 @@
               </td>
               <th scope="row">{{ $key+1 }}</th>
               <td>
-                {{ $kyluat->ten_lkl }} ({{ $kyluat->ma_lkl }})
+                {{ $kyluat->ten_lkl }}
               </td>
               <td style="width: 35%">
                 <b>Lý do kỷ luật: </b> {{ $kyluat->lydo_kl }} <br>
@@ -318,13 +342,6 @@
                     ?>
                   </div>
                 </div>
-                {{-- <a href="{{ URL::to('/kyluat_pdf/'.$kyluat->ma_kl) }}">
-                  <button type="button" class="btn btn-warning button_xanhla">
-                    <i class="fa-solid fa-file text-light"></i>
-                    &ensp;
-                    Xuất file
-                  </button>
-                </a> --}}
               </td>
             </tr>
           @endforeach
@@ -338,30 +355,7 @@
     </form>
   </div>
 </div>
-{{-- ajax --}}
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> --}}
-{{--  --}}
 <script>
-  document.querySelector('.them').addEventListener('click', (event)=>{
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 1500,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
-
-    Toast.fire({
-      icon: 'success',
-      title: 'Thêm thành công'
-    })
-    
-  });
   @foreach ($list as $kyluat )
     document.querySelector('.xoa{{ $kyluat->ma_kl }}').addEventListener('click', (event)=>{
       const swalWithBootstrapButtons = Swal.mixin({
@@ -377,8 +371,8 @@
         text: "Bạn không thể khôi phục dữ liệu đã xoá",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
-        cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
+        confirmButtonText: '<i class="fa-solid fa-trash text-light"></i> &ensp;  Xoá',
+        cancelButtonText: '<i class="fa-solid fa-xmark text-light"></i> &ensp;  Huỷ',
         reverseButtons: true
       }).then((result) => {
         if (result.isConfirmed) {

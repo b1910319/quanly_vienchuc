@@ -217,13 +217,13 @@
               </td>
               <th scope="row">{{ $key+1 }}</th>
               <td>
-                {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }})
+                {{ $vienchuc->hoten_vc }}  
               </td>
               <td>
                 {{ $vienchuc->user_vc }}
               </td>
               <td>
-                {{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})
+                {{ $vienchuc->ten_k }}  
               </td>
               <td>
                 <?php

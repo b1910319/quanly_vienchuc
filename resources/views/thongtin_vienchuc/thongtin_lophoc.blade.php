@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+<?php use Illuminate\Support\Carbon; ?>
   <div class="row">
     <div class="col-2 card-box">
       <div class="row">
@@ -61,14 +62,26 @@
                   <tr>
                     <td style="width: 33%">
                       @php
+                        $b = 0;
                         $i = 0;
+                        $a = 0;
                       @endphp
-                      @foreach ($ketqua as $kq )
-                        @if ($ma_vc == $kq->ma_vc && $lop->ma_l == $kq->ma_l )
+                      @foreach ($thoihoc as $th )
+                        @if ($th->ma_l == $lop->ma_l && $th->ma_vc == $lop->ma_vc)
                           <?php $i++ ?>
                         @endif
                       @endforeach
-                      @if ($i == 0)
+                      @foreach ($chuyen as $c )
+                        @if ($c->ma_l == $lop->ma_l && $c->ma_vc == $lop->ma_vc)
+                          <?php $a++ ?>
+                        @endif
+                      @endforeach
+                      @foreach ($ketqua as $kq )
+                        @if ($ma_vc == $kq->ma_vc && $lop->ma_l == $kq->ma_l )
+                          <?php $b++ ?>
+                        @endif
+                      @endforeach
+                      @if ($b == 0 && $i == 0 && $a == 0)
                         <a href="{{ URL::to('vienchuc_ketqua_add/'.$lop->ma_l) }}">
                           <button type="submit"  class="btn btn-primary button_xanhla ">
                             <i class="fas fa-plus-square text-light"></i>
@@ -112,7 +125,13 @@
                                         </tr>
                                         <tr>
                                           <th scope="row">Ngày cấp bằng</th>
-                                          <td>{{ $kq->ngaycapbang_kq }}</td>
+                                          <td>
+                                            <?php 
+                                              Carbon::now('Asia/Ho_Chi_Minh');
+                                              $ngaycapbang_kq = Carbon::parse(Carbon::create($kq->ngaycapbang_kq))->format('d-m-Y');
+                                              echo $ngaycapbang_kq;
+                                            ?>
+                                          </td>
                                         </tr>
                                         <tr>
                                           <th scope="row">Xếp loại</th>
@@ -124,7 +143,13 @@
                                         </tr>
                                         <tr>
                                           <th scope="row">Ngày về nước</th>
-                                          <td>{{ $kq->ngayvenuoc_kq }}</td>
+                                          <td>
+                                            <?php 
+                                              Carbon::now('Asia/Ho_Chi_Minh');
+                                              $ngayvenuoc_kq = Carbon::parse(Carbon::create($kq->ngayvenuoc_kq))->format('d-m-Y');
+                                              echo $ngayvenuoc_kq;
+                                            ?>
+                                          </td>
                                         </tr>
                                         <tr>
                                           <th scope="row">Đánh giá của cơ sở</th>
@@ -154,6 +179,7 @@
                       @php
                         $i = 0;
                         $a = 0;
+                        $b = 0;
                       @endphp
                       @foreach ($thoihoc as $th )
                         @if ($th->ma_l == $lop->ma_l && $th->ma_vc == $lop->ma_vc)
@@ -165,7 +191,12 @@
                           <?php $a++ ?>
                         @endif
                       @endforeach
-                      @if ($i == 0 && $a == 0)
+                      @foreach ($ketqua as $kq )
+                        @if ($kq->ma_l == $lop->ma_l && $kq->ma_vc == $lop->ma_vc)
+                          <?php $b++ ?>
+                        @endif
+                      @endforeach
+                      @if ($i == 0 && $a == 0 && $b == 0)
                         <a href="{{ URL::to('vienchuc_giahan_add/'.$lop->ma_l) }}">
                           <button type="button"  class="btn btn-primary button_xanhla">
                             <i class="fas fa-plus-square text-light"></i>
@@ -205,6 +236,7 @@
                       @php
                         $i = 0;
                         $a = 0;
+                        $b = 0;
                       @endphp
                       @foreach ($thoihoc as $th )
                         @if ($th->ma_l == $lop->ma_l && $th->ma_vc == $lop->ma_vc)
@@ -216,7 +248,12 @@
                           <?php $a++ ?>
                         @endif
                       @endforeach
-                      @if ($i == 0 && $a == 0)
+                      @foreach ($ketqua as $kq )
+                        @if ($kq->ma_l == $lop->ma_l && $kq->ma_vc == $lop->ma_vc)
+                          <?php $b++ ?>
+                        @endif
+                      @endforeach
+                      @if ($i == 0 && $a == 0 && $b == 0)
                         <a href="{{ URL::to('vienchuc_dunghoc_add/'.$lop->ma_l) }}">
                           <button type="submit"  class="btn btn-primary button_xanhla">
                             <i class="fas fa-plus-square text-light"></i>
@@ -269,6 +306,7 @@
                       @php
                         $i = 0;
                         $a = 0;
+                        $b = 0;
                       @endphp
                       @foreach ($thoihoc as $th )
                         @if ($th->ma_l == $lop->ma_l && $th->ma_vc == $lop->ma_vc)
@@ -280,7 +318,12 @@
                           <?php $a++ ?>
                         @endif
                       @endforeach
-                      @if ($i == 0 && $a == 0)
+                      @foreach ($ketqua as $kq )
+                        @if ($kq->ma_l == $lop->ma_l && $kq->ma_vc == $lop->ma_vc)
+                          <?php $b++ ?>
+                        @endif
+                      @endforeach
+                      @if ($i == 0 && $a == 0 && $b == 0)
                         <a href="{{ URL::to('vienchuc_chuyen_add/'.$lop->ma_l) }}">
                           <button type="submit"  class="btn btn-primary button_xanhla">
                             <i class="fas fa-plus-square text-light"></i>
@@ -291,7 +334,7 @@
                       @endif
                       @foreach ($chuyen as $c )
                         @if ($c->ma_l == $lop->ma_l && $c->ma_vc == $lop->ma_vc)
-                          <div style="height: 120px" class="mt-1">
+                          <div  class="mt-1">
                             <b>Nội dung xin chyển: </b> {{ $c->noidung_c }} <br>
                             <b>Lý do xin chuyển: </b> {{ $c->lydo_c }} <br>
                             @if ($c->file_c !=' ')
@@ -319,6 +362,7 @@
                       @php
                         $i = 0;
                         $a = 0;
+                        $b = 0;
                       @endphp
                       @foreach ($thoihoc as $th )
                         @if ($th->ma_l == $lop->ma_l && $th->ma_vc == $lop->ma_vc)
@@ -330,7 +374,12 @@
                           <?php $a++ ?>
                         @endif
                       @endforeach
-                      @if ($i == 0 && $a == 0)
+                      @foreach ($ketqua as $kq )
+                        @if ($kq->ma_l == $lop->ma_l && $kq->ma_vc == $lop->ma_vc)
+                          <?php $b++ ?>
+                        @endif
+                      @endforeach
+                      @if ($i == 0 && $a == 0 && $b == 0)
                         <a href="{{ URL::to('vienchuc_thoihoc_add/'.$lop->ma_l) }}">
                           <button type="submit"  class="btn btn-primary button_xanhla">
                             <i class="fas fa-plus-square text-light"></i>
@@ -341,10 +390,10 @@
                       @endif
                       @foreach ($thoihoc as $th )
                         @if ($th->ma_l == $lop->ma_l && $th->ma_vc == $lop->ma_vc)
-                          <div style="height: 120px" class="mt-1">
+                          <div  class="mt-1">
                             <b>Ngày xin thôi học: </b> {{ $th->ngay_th }} <br>
                             <b>Lý do xin thôi học: </b> {{ $th->lydo_th }} <br>
-                            @if ($th->file_th !=' ')
+                            @if ($th->file_th)
                               <a href="{{ asset('public/uploads/chuyen/'.$th->file_th) }}" style="color: #000D6B; font-weight: bold">
                                 <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
                                 File xin dừng học
@@ -353,7 +402,7 @@
                               Không có file
                             @endif
                             <br>
-                            @if ($th->filequyetdinh_th !=' ')
+                            @if ($th->filequyetdinh_th)
                               <a href="{{ asset('public/uploads/chuyen/'.$th->filequyetdinh_th) }}" style="color: #000D6B; font-weight: bold">
                                 <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
                                 File quyết định

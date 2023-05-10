@@ -151,7 +151,7 @@ class LopController extends Controller
       $lop->sdtcoso_l = $data['sdtcoso_l'];
       $lop->status_l = $data['status_l'];
       $lop->save();
-      $vienchuc = VienChuc::whereIn('ma_vc', [1,177,187])
+      $vienchuc = VienChuc::whereIn('ma_vc', [1,201,206])
         ->get();
       $message = [
           'type' => 'Lớp học mới',
@@ -165,7 +165,7 @@ class LopController extends Controller
           'url' => 'http://localhost/quanly_vienchuc/home',
       ];
       LopEmail::dispatch($message, $vienchuc)->delay(now()->addMinute(1));
-      $request->session()->put('message','Thêm thành công');
+      $request->session()->put('message_add_lop','Thêm thành công');
       return Redirect::to('/lop');
     }else{
       return Redirect::to('/home');
@@ -292,6 +292,7 @@ class LopController extends Controller
       $lop->status_l = $data['status_l'];
       $lop->updated_l = Carbon::now();
       $lop->save();
+      $request->session()->put('message_update_lop','Cập nhật thành công');
       return Redirect::to('lop');
     }else{
       return Redirect::to('/home');

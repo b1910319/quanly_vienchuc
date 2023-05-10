@@ -136,7 +136,7 @@ class BangCapController extends Controller
         $bangcap->file_bc = $new_file;
       }
       $bangcap->save();
-      $request->session()->put('message','Thêm thành công');
+      $request->session()->put('message_add_bangcap','Thêm thành công');
       return Redirect::to('/bangcap/'.$ma_vc);
     }else{
       return Redirect::to('/home');
@@ -271,6 +271,7 @@ class BangCapController extends Controller
       }
       $bangcap->updated_bc = Carbon::now();
       $bangcap->save();
+      $request->session()->put('message_update_bangcap','Cập nhật thành công');
       return Redirect::to('/bangcap/'.$ma_vc);
     }else{
       return Redirect::to('/home');

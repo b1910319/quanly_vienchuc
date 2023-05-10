@@ -5,6 +5,30 @@
     <div class="alert alert-light color_alert" role="alert" >
       ________THÔNG TIN VỀ DANH MỤC NGHỈ________
     </div>
+    <?php 
+      $mess = session()->get('message_add_danhmucnghi');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-success alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_add_danhmucnghi', null);
+      }
+    ?>
+    <?php 
+      $mess = session()->get('message_update_danhmucnghi');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-warning alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_update_danhmucnghi', null);
+      }
+    ?>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
@@ -12,47 +36,6 @@
             <i class="fas fa-plus-square text-light"></i>
             &ensp; Thêm
           </button>
-          {{-- <button type="button" class="btn btn-primary button_xanhla" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <i class="fa-solid fa-upload text-light"></i> &ensp;
-            Nhập file
-          </button>
-
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Nhập file</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form class="form-container" action="{{ URL::to('add_danhmucnghi_excel') }}" method="POST" enctype='multipart/form-data'>
-                    @csrf
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="mb-3">
-                          <label for="formFile" class="form-label">Chọn file cần nhập</label>
-                          <input class="form-control" type="file" id="formFile" name="import_excel" accept=".xlsx" required>
-                        </div>
-                      </div>
-                      <div class="col-3" style="margin-top: 37px">
-                        <button type="submit" class="btn btn-primary button_xanhla">
-                          <i class="fa-solid fa-upload text-light"></i> &ensp;
-                          Upload
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">
-                    <i class="fa-solid fa-square-xmark text-light"></i>
-                    &ensp; Đóng
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div> --}}
           <a onclick="return confirm('Bạn có muốn xóa tất cả danh mục không?')" href="{{ URL::to('/delete_all_danhmucnghi') }}">
             <button type="button" class="btn btn-danger button_do">
               <i class="fa-solid fa-trash text-light"></i>
@@ -198,25 +181,6 @@
 </div>
 
 <script>
-  document.querySelector('.them').addEventListener('click', (event)=>{
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 1500,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
-
-    Toast.fire({
-      icon: 'success',
-      title: 'Thêm thành công'
-    })
-    
-  }); 
   @foreach ($list as $danhmucnghi )
     document.querySelector('.xoa{{ $danhmucnghi->ma_dmn }}').addEventListener('click', (event)=>{
       const swalWithBootstrapButtons = Swal.mixin({

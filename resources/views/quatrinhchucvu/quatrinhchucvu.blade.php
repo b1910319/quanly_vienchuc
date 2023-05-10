@@ -28,9 +28,7 @@
               </td>
               <th scope="row">{{ $key+1 }}</th>
               <td>
-                {{ $vienchuc->hoten_vc.' ( '.$vienchuc->ma_vc.' )' }}
-                <br>
-                {{ $vienchuc->user_vc }}
+                {{ $vienchuc->hoten_vc}}
               </td>
               <td>
                 <button type="button" class="btn btn-primary fw-bold btn_chitiet" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}">
@@ -387,7 +385,25 @@
                     ?>
                       <span class="badge badge-light-warning">
                         <i class="fa-solid fa-toggle-off"></i>
-                        &ensp; Nghĩ hưu</span>
+                        &ensp; Nghỉ hưu</span>
+                    <?php
+                  }elseif ($vienchuc->status_vc == 3) {
+                    ?>
+                      <span class="badge badge-light-warning">
+                        <i class="fa-solid fa-toggle-off"></i>
+                        &ensp; Nghỉ việc</span>
+                    <?php
+                  }elseif ($vienchuc->status_vc == 4) {
+                    ?>
+                      <span class="badge badge-light-warning">
+                        <i class="fa-solid fa-toggle-off"></i>
+                        &ensp; Chuyển công tác</span>
+                    <?php
+                  }elseif ($vienchuc->status_vc == 5) {
+                    ?>
+                      <span class="badge badge-light-warning">
+                        <i class="fa-solid fa-toggle-off"></i>
+                        &ensp; Nghỉ hưu trước hạn</span>
                     <?php
                   }
                 ?>

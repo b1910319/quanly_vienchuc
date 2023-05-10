@@ -21,14 +21,14 @@
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              <b>Họ tên:</b> {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }})
+              <b>Họ tên:</b> {{ $vienchuc->hoten_vc }}  
               <br>
               <b>Email:</b> {{ $vienchuc->user_vc }}
               <br>
               <b>Chức vụ:</b> {{ $vienchuc->ten_cv }}
             </td>
             <td>
-              {{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})
+              {{ $vienchuc->ten_k }}  
             </td>
             <td>
               <div class="row">

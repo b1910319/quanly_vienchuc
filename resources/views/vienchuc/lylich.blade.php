@@ -32,9 +32,9 @@
               <th scope="row">{{ $key+1 }}</th>
               <td>
                 <a href="{{ URL::to('lylich_chitiet/'.$vienchuc->ma_vc) }}" style="color: black">
-                  <b>Tên: </b> {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }}) <br>
+                  <b>Tên: </b> {{ $vienchuc->hoten_vc }}   <br>
                   <b>Khoa: </b>
-                  {{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})
+                  {{ $vienchuc->ten_k }}  
                   <br>
                   <b>Email: </b> {{ $vienchuc->user_vc }}
                   <br>

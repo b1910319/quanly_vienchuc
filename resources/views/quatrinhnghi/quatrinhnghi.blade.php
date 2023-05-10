@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+<?php use Illuminate\Support\Carbon; ?>
 <div class="row">
   <div class="card-box">
     <div class="alert alert-success row color_alert" role="alert">
@@ -77,10 +78,6 @@
               Xoá tất cả
             </button>
           </a>
-          {{-- <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-            <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
-            Thống kê
-          </button> --}}
           <a href="{{ URL::to('/quatrinhnghi_xuatfile/'.$ma_vc) }}">
             <button type="button" class="btn btn-warning fw-bold button_do">
               <i class="fa-solid fa-file-pdf text-light"></i>
@@ -95,41 +92,6 @@
               Xuất file Word
             </button>
           </a>
-          {{-- <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
-                <i class="fa-solid fa-chart-simple"></i>
-                &ensp;
-                Thống kê
-              </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Số lượng</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($count_status as $key => $count_stt)
-                    @if ($count_stt->status_qtn == 0)
-                      <tr>
-                        <td>Danh mục hiển thị</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @else
-                      <tr>
-                        <td>Danh mục ẩn</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @endif
-                  @endforeach
-                </tbody>
-              </table>
-            </div>
-          </div> --}}
           <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body mt-3">
               <form  action="{{ URL::to('/add_quatrinhnghi/'.$ma_vc) }}" method="POST"
@@ -156,7 +118,7 @@
                             <div class="row">
                               <div class="col-5">
                                 <?php 
-                                  use Illuminate\Support\Carbon;
+
                                   Carbon::now('Asia/Ho_Chi_Minh'); 
                                   $now = Carbon::parse(Carbon::now())->format('Y-m-d');
                                   ?>
@@ -208,8 +170,6 @@
                           <th scope="row">Ngày ký quyết định: </th>
                           <td class="was-validated">
                             <?php 
-                              // use Illuminate\Support\Carbon;
-                              // Carbon::now('Asia/Ho_Chi_Minh'); 
                               $now = Carbon::parse(Carbon::now())->format('Y-m-d');
                               ?>
                               <input type='date' class='form-control input_table' autofocus required name="ngaykyquyetdinh_qtn" max="<?php echo $now ?>">
@@ -273,8 +233,20 @@
               <th scope="row">{{ $key+1 }}</th>
               <td>
                 <b>- Danh mục nghỉ: </b>{{ $quatrinhnghi->ten_dmn }} <br>
-                <b>- Bắt đầu nghỉ: </b>{{ $quatrinhnghi->batdau_qtn }} <br>
-                <b>- Kết thúc nghỉ: </b>{{ $quatrinhnghi->ketthuc_qtn }} <br>
+                <b>- Bắt đầu nghỉ: </b>
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $batdau_qtn = Carbon::parse(Carbon::create($quatrinhnghi->batdau_qtn))->format('d-m-Y');
+                  echo $batdau_qtn;
+                ?>
+                <br>
+                <b>- Kết thúc nghỉ: </b>
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ketthuc_qtn = Carbon::parse(Carbon::create($quatrinhnghi->ketthuc_qtn))->format('d-m-Y');
+                  echo $ketthuc_qtn;
+                ?>
+                <br>
                 <b>- Ghi chú: </b>{{ $quatrinhnghi->ghichu_qtn }} <br>
                 @if ($quatrinhnghi->file_qtn)
                   <a href="{{ asset('public/uploads/quatrinhnghi/'.$quatrinhnghi->file_qtn) }}" style="color: #000D6B; font-weight: bold">
@@ -287,7 +259,13 @@
               </td>
               <td>
                 <b>- Số quyết định: </b>{{ $quatrinhnghi->soquyetdinh_qtn }} <br>
-                <b>- Ngày ký quyết định: </b>{{ $quatrinhnghi->ngaykyquyetdinh_qtn }} <br>
+                <b>- Ngày ký quyết định: </b>
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngaykyquyetdinh_qtn = Carbon::parse(Carbon::create($quatrinhnghi->ngaykyquyetdinh_qtn))->format('d-m-Y');
+                  echo $ngaykyquyetdinh_qtn;
+                ?>
+                <br>
                 @if ($quatrinhnghi->filequyetdinh_qtn)
                   <a href="{{ asset('public/uploads/quatrinhnghi/'.$quatrinhnghi->filequyetdinh_qtn) }}" style="color: #000D6B; font-weight: bold">
                     <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
@@ -361,6 +339,7 @@
         &ensp;
         Xoá
       </button>
+      
     </form>
   </div>
 </div>

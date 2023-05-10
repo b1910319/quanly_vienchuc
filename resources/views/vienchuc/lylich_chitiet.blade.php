@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+<?php use Illuminate\Support\Carbon; ?>
 <div class="card-box">
   <div class="row ">
     <div class="alert alert-success color_alert" role="alert" >
@@ -37,7 +38,13 @@
             </tr>
             <tr>
               <th scope="row">Ngày sinh</th>
-              <td>{{ $vc->ngaysinh_vc }}</td> 
+              <td>
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngaysinh_vc = Carbon::parse(Carbon::create($vc->ngaysinh_vc))->format('d-m-Y');
+                  echo $ngaysinh_vc;
+                ?>
+              </td> 
             </tr>
             <tr>
               <th scope="row">Giới tính</th>
@@ -103,7 +110,13 @@
             </tr>
             <tr>
               <th scope="row">Ngày tuyển dụng</th>
-              <td>{{ $vc->ngaytuyendung_vc }}</td> 
+              <td>
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngaytuyendung_vc = Carbon::parse(Carbon::create($vc->ngaytuyendung_vc))->format('d-m-Y');
+                  echo $ngaytuyendung_vc;
+                ?>
+              </td> 
             </tr>
             <tr>
               <th scope="row">Chức vụ</th>
@@ -173,11 +186,23 @@
             </tr>
             <tr>
               <th scope="row">Ngày nhập ngũ</th>
-              <td>{{ $vc->ngaynhapngu_vc }}</td> 
+              <td>
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngaynhapngu_vc = Carbon::parse(Carbon::create($vc->ngaynhapngu_vc))->format('d-m-Y');
+                  echo $ngaynhapngu_vc;
+                ?>
+              </td> 
             </tr>
             <tr>
               <th scope="row">Ngày xuất ngũ</th>
-              <td>{{ $vc->ngayxuatngu_vc }}</td> 
+              <td>
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngayxuatngu_vc = Carbon::parse(Carbon::create($vc->ngayxuatngu_vc))->format('d-m-Y');
+                  echo $ngayxuatngu_vc;
+                ?>
+              </td> 
             </tr>
             <tr>
               <th scope="row">Quân hàm cao nhất</th>
@@ -219,7 +244,13 @@
             </tr>
             <tr>
               <th scope="row">Ngày cấp</th>
-              <td>{{ $vc->ngaycapcccd_vc }}</td> 
+              <td>
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngaycapcccd_vc = Carbon::parse(Carbon::create($vc->ngaycapcccd_vc))->format('d-m-Y');
+                  echo $ngaycapcccd_vc;
+                ?>
+              </td> 
             </tr>
             <tr>
               <th scope="row">Số sổ BHXH</th>
@@ -238,7 +269,13 @@
           <ol>
             @foreach ($list_khenthuong as $khenthuong )
               <li>
-                <span class="date">{{ date('d-m-Y') , strtotime($khenthuong->ngay_kt) }}</span>
+                <span class="date">
+                  <?php 
+                    Carbon::now('Asia/Ho_Chi_Minh');
+                    $ngay_kt = Carbon::parse(Carbon::create($khenthuong->ngay_kt))->format('d-m-Y');
+                    echo $ngay_kt;
+                  ?>
+                </span>
                 <b style="font-weight: bold; font-size: 22px">{{ $khenthuong->ten_lkt }}</b>
                 <br>
                 <b>- Hình thức khen thưởng: </b> {{ $khenthuong->ten_htkt }} <br>
@@ -269,7 +306,13 @@
                 <b style="font-weight: bold; font-size: 22px">{{ $qtcv->ten_cv }}</b>
                 <br>
                 <b>- Số quyết định: </b>{{ $qtcv->soquyetdinh_qtcv }} <br>
-                <b>- Ngày ký quyết định: </b>{{ date('d-m-Y') , strtotime($qtcv->ngayky_qtcv) }} <br>
+                <b>- Ngày ký quyết định: </b>
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngayky_qtcv = Carbon::parse(Carbon::create($qtcv->ngayky_qtcv))->format('d-m-Y');
+                  echo $ngayky_qtcv;
+                ?>
+                <br>
                 @if ($qtcv->file_qtcv)
                   <a href="{{ asset('public/uploads/quatrinhchucvu/'.$qtcv->file_qtcv) }}" style="color: #000D6B; font-weight: bold">
                     <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
@@ -291,7 +334,13 @@
           <ol>
             @foreach ($list_kyluat as $kyluat )
               <li>
-                <span class="date">{{ date('d-m-Y') , strtotime($kyluat->ngay_kl) }}</span>
+                <span class="date">
+                  <?php 
+                    Carbon::now('Asia/Ho_Chi_Minh');
+                    $ngay_kl = Carbon::parse(Carbon::create($kyluat->ngay_kl))->format('d-m-Y');
+                    echo $ngay_kl;
+                  ?>
+                </span>
                 <b style="font-weight: bold; font-size: 22px">{{ $kyluat->ten_lkl }}</b>
                 <br>
                 <b>- Lý do kỷ luật:</b> {{ $kyluat->lydo_kl }} <br>
@@ -331,12 +380,20 @@
                 <span class="fw-bold">
                   Ngày bắt đầu: 
                 </span>
-                {{ $lop_vc->ngaybatdau_l }}
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngaybatdau_l = Carbon::parse(Carbon::create($lop_vc->ngaybatdau_l))->format('d-m-Y');
+                  echo $ngaybatdau_l;
+                ?>
                 <br>
                 <span class="fw-bold">
                   Ngày kết thúc: 
                 </span>
-                {{ $lop_vc->ngayketthuc_l }}
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngayketthuc_l = Carbon::parse(Carbon::create($lop_vc->ngayketthuc_l))->format('d-m-Y');
+                  echo $ngayketthuc_l;
+                ?>
                 <br>
                 <span class="fw-bold">
                   Tên cơ sở đào tạo: 
@@ -394,13 +451,31 @@
                       <div class="col-6">
                         <b>Tên người hướng dẫn: </b>{{ $ketqua->tennguoihuongdan_kq }} <br>
                         <b>Email người hướng dẫn: </b>{{ $ketqua->emailnguoihuongdan_kq }} <br>
-                        <b>Bằng được cấp: </b>{{ $ketqua->bangduoccap_kq }} <br>
-                        <b>Ngày cấp bằng: </b>{{ $ketqua->ngaycapbang_kq }} <br>
+                        <b>Bằng được cấp: </b>
+                        <?php 
+                          Carbon::now('Asia/Ho_Chi_Minh');
+                          $bangduoccap_kq = Carbon::parse(Carbon::create($ketqua->bangduoccap_kq))->format('d-m-Y');
+                          echo $bangduoccap_kq;
+                        ?>
+                        <br>
+                        <b>Ngày cấp bằng: </b>
+                        <?php 
+                          Carbon::now('Asia/Ho_Chi_Minh');
+                          $ngaycapbang_kq = Carbon::parse(Carbon::create($ketqua->ngaycapbang_kq))->format('d-m-Y');
+                          echo $ngaycapbang_kq;
+                        ?>
+                        <br>
                       </div>
                       <div class="col-6">
                         <b>Xếp loại: </b>{{ $ketqua->xeploai_kq }} <br>
                         <b>Đề tài tốt nghiệp: </b>{{ $ketqua->detaitotnghiep_kq }} <br>
-                        <b>Ngày về nước: </b>{{ $ketqua->ngayvenuoc_kq }} <br>
+                        <b>Ngày về nước: </b>
+                        <?php 
+                          Carbon::now('Asia/Ho_Chi_Minh');
+                          $ngayvenuoc_kq = Carbon::parse(Carbon::create($ketqua->ngayvenuoc_kq))->format('d-m-Y');
+                          echo $ngayvenuoc_kq;
+                        ?>
+                        <br>
                         <b>Đánh giá của cơ sở: </b>{{ $ketqua->danhgiacuacoso_kq }} <br>
                         <b>Kiến nghị: </b>{{ $ketqua->kiennghi_kq }}
                       </div>
@@ -426,7 +501,13 @@
                       @if ($giahan->ma_l == $lop_vc->ma_l)
                         <tr>
                           <td>
-                            - Thời gian gia hạn: {{ $giahan->thoigian_gh }} <br>
+                            - Thời gian gia hạn: 
+                            <?php 
+                              Carbon::now('Asia/Ho_Chi_Minh');
+                              $thoigian_gh = Carbon::parse(Carbon::create($giahan->thoigian_gh))->format('d-m-Y');
+                              echo $thoigian_gh;
+                            ?>
+                            <br>
                             - Lý do xin gia hạn: {{ $giahan->lydo_gh }} <br>
                             @if ($giahan->file_gh)
                               <a href="{{ asset('public/uploads/giahan/'.$giahan->file_gh) }}" style="color: #000D6B; font-weight: bold">
@@ -439,7 +520,13 @@
                           </td>
                           <td>
                             - Số quyết định: {{ $giahan->soquyetdinh_gh }} <br>
-                            - Ngày ký quyết định: {{ $giahan->ngayky_quyetdinh_gh }} <br>
+                            - Ngày ký quyết định: 
+                            <?php 
+                              Carbon::now('Asia/Ho_Chi_Minh');
+                              $ngayky_quyetdinh_gh = Carbon::parse(Carbon::create($giahan->ngayky_quyetdinh_gh))->format('d-m-Y');
+                              echo $ngayky_quyetdinh_gh;
+                            ?>
+                            <br>
                             @if ($giahan->filequyetdinh_gh)
                               <a href="{{ asset('public/uploads/giahan/'.$giahan->filequyetdinh_gh) }}" style="color: #000D6B; font-weight: bold">
                                 <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
@@ -473,8 +560,20 @@
                       @if ($dunghoc->ma_l == $lop_vc->ma_l)
                         <tr>
                           <td>
-                            - Ngày bắt đầu: {{ $dunghoc->batdau_dh }} <br>
-                            - Ngày kết thúc: {{ $dunghoc->ketthuc_dh }} <br>
+                            - Ngày bắt đầu: 
+                            <?php 
+                              Carbon::now('Asia/Ho_Chi_Minh');
+                              $batdau_dh = Carbon::parse(Carbon::create($dunghoc->batdau_dh))->format('d-m-Y');
+                              echo $batdau_dh;
+                            ?>
+                            <br>
+                            - Ngày kết thúc: 
+                            <?php 
+                              Carbon::now('Asia/Ho_Chi_Minh');
+                              $ketthuc_dh = Carbon::parse(Carbon::create($dunghoc->ketthuc_dh))->format('d-m-Y');
+                              echo $ketthuc_dh;
+                            ?> 
+                            <br>
                             @if ($dunghoc->file_dh)
                               <a href="{{ asset('public/uploads/dunghoc/'.$dunghoc->file_dh) }}" style="color: #000D6B; font-weight: bold">
                                 <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
@@ -486,7 +585,13 @@
                           </td>
                           <td>
                             - Số quyết định: {{ $dunghoc->soquyetdinh_dh }} <br>
-                            - Ngày ký quyết định: {{ $dunghoc->ngaykyquyetdinh_dh }} <br>
+                            - Ngày ký quyết định: 
+                            <?php 
+                              Carbon::now('Asia/Ho_Chi_Minh');
+                              $ngaykyquyetdinh_dh = Carbon::parse(Carbon::create($dunghoc->ngaykyquyetdinh_dh))->format('d-m-Y');
+                              echo $ngaykyquyetdinh_dh;
+                            ?>
+                            <br>
                             @if ($dunghoc->filequyetdinh_dh)
                               <a href="{{ asset('public/uploads/dunghoc/'.$dunghoc->filequyetdinh_dh) }}" style="color: #000D6B; font-weight: bold">
                                 <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
@@ -533,7 +638,13 @@
                           </td>
                           <td>
                             - Số quyết định: {{ $chuyen->soquyetdinh_c }} <br>
-                            - Ngày ký quyết định: {{ date('d-m-Y') , strtotime($chuyen->ngaykyquyetdinh_c) }} <br>
+                            - Ngày ký quyết định: 
+                            <?php 
+                              Carbon::now('Asia/Ho_Chi_Minh');
+                              $ngaykyquyetdinh_c = Carbon::parse(Carbon::create($chuyen->ngaykyquyetdinh_c))->format('d-m-Y');
+                              echo $ngaykyquyetdinh_c;
+                            ?>
+                            <br>
                             @if ($chuyen->filequyetdinh_c)
                               <a href="{{ asset('public/uploads/chuyen/'.$chuyen->filequyetdinh_c) }}" style="color: #000D6B; font-weight: bold">
                                 <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
@@ -567,7 +678,13 @@
                       @if ($thoihoc->ma_l == $lop_vc->ma_l)
                         <tr>
                           <td>
-                            - Ngày thôi học: {{ date('d-m-Y') , strtotime($thoihoc->ngay_th) }} <br>
+                            - Ngày thôi học: 
+                            <?php 
+                              Carbon::now('Asia/Ho_Chi_Minh');
+                              $ngay_th = Carbon::parse(Carbon::create($thoihoc->ngay_th))->format('d-m-Y');
+                              echo $ngay_th;
+                            ?>
+                            <br>
                             - Lý do xin thôi học: {{ $thoihoc->lydo_th }} <br>
                             @if ($thoihoc->file_th)
                               <a href="{{ asset('public/uploads/thoihoc/'.$thoihoc->file_th) }}" style="color: #000D6B; font-weight: bold">
@@ -580,7 +697,13 @@
                           </td>
                           <td>
                             - Số quyết định: {{ $thoihoc->soquyetdinh_th }} <br>
-                            - Ngày ký quyết định: {{ date('d-m-Y') , strtotime($thoihoc->ngaykyquyetdinh_th) }} <br>
+                            - Ngày ký quyết định: 
+                            <?php 
+                              Carbon::now('Asia/Ho_Chi_Minh');
+                              $ngaykyquyetdinh_th = Carbon::parse(Carbon::create($thoihoc->ngaykyquyetdinh_th))->format('d-m-Y');
+                              echo $ngaykyquyetdinh_th;
+                            ?>
+                            <br>
                             @if ($thoihoc->filequyetdinh_th)
                               <a href="{{ asset('public/uploads/thoihoc/'.$thoihoc->filequyetdinh_th) }}" style="color: #000D6B; font-weight: bold">
                                 <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
@@ -608,8 +731,23 @@
           <ol>
             @foreach ($list_bangcap as $key => $bangcap )
               <li>
-                <span class="date">{{ date('d-m-Y') , strtotime($bangcap->ngaycap_bc) }}</span>
+                <span class="date">
+                  <?php 
+                    Carbon::now('Asia/Ho_Chi_Minh');
+                    $ngaycap_bc = Carbon::parse(Carbon::create($bangcap->ngaycap_bc))->format('d-m-Y');
+                    echo $ngaycap_bc;
+                  ?>
+                </span>
                 <b style="font-weight: bold; font-size: 22px">{{ $bangcap->truonghoc_bc }}</b>
+                &ensp;
+                @if ($bangcap->file_bc)
+                  <a href="{{ asset('public/uploads/bangcap/'.$bangcap->file_bc) }}" style="color: #000D6B; font-weight: bold">
+                    <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
+                    File bằng cấp
+                  </a>
+                @else
+                  <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
+                @endif
                 <br>
                 <div class="row">
                   <div class="col-6">
@@ -622,18 +760,8 @@
                     <b>- Số bằng: </b> {{ $bangcap->sobang_bc }} <br>
                     <b>- Nơi cấp: </b> {{ $bangcap->noicap_bc }} <br>
                     <b>- Xếp hạng: </b> {{ $bangcap->xephang_bc }} <br>
-                    @if ($bangcap->file_bc)
-                      <a href="{{ asset('public/uploads/bangcap/'.$bangcap->file_bc) }}" style="color: #000D6B; font-weight: bold">
-                        <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
-                        File gia hạn
-                      </a>
-                    @else
-                      <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
-                    @endif
                   </div>
                 </div>
-                
-                
               </li>
             @endforeach
           </ol>
@@ -666,7 +794,13 @@
                   <th scope="row"><?php echo $i ?></th>
                   <td>{{ $giadinh->moiquanhe_gd }}</td>
                   <td>{{ $giadinh->hoten_gd }}</td>
-                  <td>{{ $giadinh->ngaysinh_gd }}</td>
+                  <td>
+                    <?php 
+                      Carbon::now('Asia/Ho_Chi_Minh');
+                      $ngaysinh_gd = Carbon::parse(Carbon::create($giadinh->ngaysinh_gd))->format('d-m-Y');
+                      echo $ngaysinh_gd;
+                    ?>
+                  </td>
                   <td style="width: 40%">
                     <b>Số điện thoại:</b> {{ $giadinh->sdt_gd }} <br>
                     <b>Nghề nghiệp:</b> {{ $giadinh->nghenghiep_gd }}
@@ -702,13 +836,25 @@
                   <th scope="row"><?php echo $i ?></th>
                   <td>
                     <b>- Danh mục nghỉ: </b>{{ $quatrinhnghi->ten_dmn }} <br>
-                    <b>- Bắt đầu nghỉ: </b>{{ $quatrinhnghi->batdau_qtn }} <br>
-                    <b>- Kết thúc nghỉ: </b>{{ $quatrinhnghi->ketthuc_qtn }} <br>
+                    <b>- Bắt đầu nghỉ: </b>
+                    <?php 
+                      Carbon::now('Asia/Ho_Chi_Minh');
+                      $batdau_qtn = Carbon::parse(Carbon::create($quatrinhnghi->batdau_qtn))->format('d-m-Y');
+                      echo $batdau_qtn;
+                    ?>
+                    <br>
+                    <b>- Kết thúc nghỉ: </b>
+                    <?php 
+                      Carbon::now('Asia/Ho_Chi_Minh');
+                      $ketthuc_qtn = Carbon::parse(Carbon::create($quatrinhnghi->ketthuc_qtn))->format('d-m-Y');
+                      echo $ketthuc_qtn;
+                    ?>
+                    <br>
                     <b>- Ghi chú: </b>{{ $quatrinhnghi->ghichu_qtn }} <br>
                     @if ($quatrinhnghi->file_qtn)
                       <a href="{{ asset('public/uploads/quatrinhnghi/'.$quatrinhnghi->file_qtn) }}" style="color: #000D6B; font-weight: bold">
                         <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
-                        File gia hạn
+                        File
                       </a>
                     @else
                       <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>
@@ -716,11 +862,17 @@
                   </td>
                   <td>
                     <b>- Số quyết định: </b>{{ $quatrinhnghi->soquyetdinh_qtn }} <br>
-                    <b>- Ngày ký quyết định: </b>{{ $quatrinhnghi->ngaykyquyetdinh_qtn }} <br>
+                    <b>- Ngày ký quyết định: </b>
+                    <?php 
+                      Carbon::now('Asia/Ho_Chi_Minh');
+                      $ngaykyquyetdinh_qtn = Carbon::parse(Carbon::create($quatrinhnghi->ngaykyquyetdinh_qtn))->format('d-m-Y');
+                      echo $ngaykyquyetdinh_qtn;
+                    ?>
+                    <br>
                     @if ($quatrinhnghi->filequyetdinh_qtn)
                       <a href="{{ asset('public/uploads/quatrinhnghi/'.$quatrinhnghi->filequyetdinh_qtn) }}" style="color: #000D6B; font-weight: bold">
                         <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
-                        File gia hạn
+                        File
                       </a>
                     @else
                       <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>

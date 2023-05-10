@@ -14,6 +14,30 @@
         ________THÔNG TIN LỚP HỌC THUỘC DANH MỤC ĐÀO TẠO " <span style="color: #FFFF00">{{ $danhmuclop->ten_dml }}</span> "________
       </h4>
     </div>
+    <?php 
+      $mess = session()->get('message_add_lop');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-success alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_add_lop', null);
+      }
+    ?>
+    <?php 
+      $mess = session()->get('message_update_lop');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-warning alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_update_lop', null);
+      }
+    ?>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
@@ -290,7 +314,7 @@
                 </div>
               </td>
               <td>
-                {{ $danhmuclop->ten_dml }} ({{ $danhmuclop->ma_dml }})
+                {{ $danhmuclop->ten_dml }}
               </td>
               <td>
                 @foreach ($list_quocgia as $key => $quocgia)

@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Khoa;
 use App\Models\PhanQuyen;
-use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -115,7 +114,7 @@ class KhoaController extends Controller
       $khoa->mota_k = $data['mota_k'];
       $khoa->status_k = $data['status_k'];
       $khoa->save();
-      $request->session()->put('message','Thêm thành công');
+      $request->session()->put('message_add_khoa','Thêm thành công');
       return Redirect::to('/quanly_khoa');
     }else{
       return Redirect::to('/home');
@@ -205,6 +204,7 @@ class KhoaController extends Controller
       $khoa->status_k = $data['status_k'];
       $khoa->updated_k = Carbon::now();
       $khoa->save();
+      $request->session()->put('message_update_khoa','Cập nhật thành công');
       return Redirect::to('quanly_khoa');
     }else{
       return Redirect::to('/home');

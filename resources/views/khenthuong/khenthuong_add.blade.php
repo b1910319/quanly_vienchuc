@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+<?php use Illuminate\Support\Carbon; ?>
 <div class="row">
   <div class="card-box">
     <div class="alert alert-success row color_alert" role="alert">
@@ -14,6 +15,30 @@
         ________THÔNG TIN KHEN THƯỞNG VIÊN CHỨC " <span style="color: #FFFF00"> {{ $vienchuc->hoten_vc }}</span> "________
       </h4>
     </div>
+    <?php 
+      $mess = session()->get('message_add_khenthuong');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-success alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_add_khenthuong', null);
+      }
+    ?>
+    <?php 
+      $mess = session()->get('message_update_khenthuong');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-warning alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_update_khenthuong', null);
+      }
+    ?>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
@@ -83,45 +108,6 @@
               Xuất file Word
             </button>
           </a>
-          {{-- <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" >
-            <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
-            Thống kê
-          </button> --}}
-          {{-- <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
-                <i class="fa-solid fa-chart-simple"></i>
-                &ensp;
-                Thống kê
-              </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Số lượng</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($count_status as $key => $count_stt)
-                    @if ($count_stt->status_kt == 0)
-                      <tr>
-                        <td>Danh mục hiển thị</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @else
-                      <tr>
-                        <td>Danh mục ẩn</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @endif
-                  @endforeach
-                </tbody>
-              </table>
-            </div>
-          </div> --}}
           <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body mt-3">
               <form action="{{ URL::to('/add_khenthuong/'.$ma_vc) }}" method="POST"
@@ -157,7 +143,7 @@
                           <th scope="row">Ngày ký quyết định khen thưởng: </th>
                           <td class="was-validated">
                             <?php 
-                              use Illuminate\Support\Carbon;
+                              // use Illuminate\Support\Carbon;
                               Carbon::now('Asia/Ho_Chi_Minh'); 
                               $now = Carbon::parse(Carbon::now())->format('Y-m-d');
                               ?>
@@ -249,15 +235,22 @@
               </td>
               <th scope="row">{{ $key+1 }}</th>
               <td>
-                {{ $khenthuong->ten_lkt }} ({{ $khenthuong->ma_lkt }})
+                {{ $khenthuong->ten_lkt }} 
               </td>
               <td>
-                {{ $khenthuong->ten_htkt }} ({{ $khenthuong->ma_htkt }})
+                {{ $khenthuong->ten_htkt }} 
               </td>
               <td>
                 <b>Nội dung khen thưởng: </b>{{ $khenthuong->noidung_kt }} <br>
                 <b>Số quyết định khen thưởng: </b>{{ $khenthuong->soquyetdinh_kt }} <br>
-                <b>Ngày ký quyết định: </b>{{ date('d-m-Y') , strtotime($khenthuong->ngay_kt) }} <br>
+                <b>Ngày ký quyết định: </b>
+                <?php 
+                  
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngay_kt = Carbon::parse(Carbon::create($khenthuong->ngay_kt))->format('d-m-Y');
+                  echo $ngay_kt;
+                ?>
+                <br>
                 @if ($khenthuong->filequyetdinh_kt)
                   <a href="{{ asset('public/uploads/khenthuong/'.$khenthuong->filequyetdinh_kt) }}" style="color: #000D6B; font-weight: bold">
                     <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>

@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\NhiemKy;
 use App\Models\PhanQuyen;
-use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -82,6 +81,7 @@ class NhiemKyController extends Controller
       $nhiemky->ketthuc_nk = $data['ketthuc_nk'];
       $nhiemky->status_nk = $data['status_nk'];
       $nhiemky->save();
+      $request->session()->put('message_add_nhiemky','Thêm thành công');
       return Redirect::to('/nhiemky');
     }else{
       return Redirect::to('/home');
@@ -180,6 +180,7 @@ class NhiemKyController extends Controller
       $nhiemky->status_nk = $data['status_nk'];
       $nhiemky->updated_nk = Carbon::now();
       $nhiemky->save();
+      $request->session()->put('message_update_nhiemky','Cập nhật thành công');
       return Redirect::to('nhiemky');
     }else{
       return Redirect::to('/home');

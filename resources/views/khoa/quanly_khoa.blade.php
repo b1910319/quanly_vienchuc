@@ -5,6 +5,30 @@
     <div class="alert alert-light color_alert" role="alert">
       ________THÔNG TIN ĐƠN VỊ TRỰC THUỘC TRƯỜNG CÔNG NGHỆ THÔNG TIN VÀ TRUYỀN THÔNG________
     </div>
+    <?php 
+      $mess = session()->get('message_add_khoa');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-success alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_add_khoa', null);
+      }
+    ?>
+    <?php 
+      $mess = session()->get('message_update_khoa');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-warning alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_update_khoa', null);
+      }
+    ?>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
@@ -282,25 +306,6 @@
 </div>
 <!--  -->
 <script>
-  document.querySelector('.them').addEventListener('click', (event)=>{
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 1500,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
-
-    Toast.fire({
-      icon: 'success',
-      title: 'Thêm thành công'
-    })
-    
-  });
   @foreach ($list as $khoa )
     document.querySelector('.xoa{{ $khoa->ma_k }}').addEventListener('click', (event)=>{
       const swalWithBootstrapButtons = Swal.mixin({
@@ -316,8 +321,8 @@
         text: "Bạn không thể khôi phục dữ liệu đã xoá",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
-        cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
+        confirmButtonText: '<i class="fa-solid fa-trash text-light"></i> &ensp;  Xoá',
+        cancelButtonText: '<i class="fa-solid fa-xmark text-light"></i> &ensp;  Huỷ',
         reverseButtons: true
       }).then((result) => {
         if (result.isConfirmed) {

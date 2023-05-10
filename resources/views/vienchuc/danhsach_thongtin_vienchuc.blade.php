@@ -3,63 +3,6 @@
 <div class="row">
   <div class="card-box col-2">
     <div class="row">
-      {{-- <div class="mb-2">
-        <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="width: 100%">
-          <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
-          Thống kê
-        </button>
-        <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
-              <i class="fa-solid fa-chart-simple"></i>
-              &ensp;
-              Thống kê
-            </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <div class="alert alert-warning fw-bold" role="alert">
-              @foreach ($count as $key => $count)
-                Có: {{ $count->sum }} viên chức thuộc trường
-              @endforeach
-            </div>
-            <table class="table">
-              <thead >
-                <tr>
-                  <th scope="col">Tên</th>
-                  <th scope="col">Số lượng</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($count_status as $key => $count_stt)
-                  @if ($count_stt->status_vc == 0)
-                    <tr>
-                      <td>Danh mục hiển thị</td>
-                      <td>{{ $count_stt->sum }}</td>
-                    </tr>
-                  @else
-                    @if ($count_stt->status_vc == 1)
-                      <tr>
-                        <td>Danh mục ẩn</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @else
-                      @if ($count_stt->status_vc == 2)
-                      <tr>
-                        <td>Nghĩ hưu</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                      @else
-                        
-                      @endif
-                    @endif
-                  @endif
-                @endforeach
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div> --}}
       <a href="{{ URL::to('danhsach_thongtin_vienchuc') }}">
         <button type="button" class="btn btn-light fw-bold" style="width: 100%; ">
           <i class="fa-solid fa-rotate"></i>
@@ -273,7 +216,7 @@
           <tr >
             <th scope="row">{{ $key+1 }}</th>
             <td>
-              {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }})
+              {{ $vienchuc->hoten_vc }}  
               <br>
               {{ $vienchuc->user_vc }}
             </td>
@@ -635,7 +578,7 @@
                 }
               ?>
             </td>
-            <td style="width: 32%;">
+            <td style="width: 20%;">
               <a href="{{ URL::to('/thongtin_vienchuc_edit/'.$vienchuc->ma_vc)}}">
                 <button type="submit" class="btn btn-warning button_cam">
                   <i class="fa-solid fa-pen-to-square text-light"></i>
@@ -645,33 +588,6 @@
               <a  onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ URL::to('/admin_delete_vienchuc/'.$vienchuc->ma_vc)}}">
                 <button type="button" class="btn btn-danger button_do"><i class="fa-solid fa-trash text-light"></i> &ensp;Xoá</button>
               </a>
-              <?php
-                if($vienchuc->status_vc == 0){
-                  ?>
-                    <a href="{{ URL::to('/admin_select_vienchuc/'.$vienchuc->ma_vc) }}">
-                      <button type="button" class="btn btn-secondary fw-bold">
-                        <i class="fa-solid fa-eye-slash text-light"></i> 
-                        &ensp; Ẩn
-                      </button>
-                    </a>
-                  <?php
-                }else if($vienchuc->status_vc == 1) {
-                  ?>
-                    <a href="{{ URL::to('/admin_select_vienchuc/'.$vienchuc->ma_vc) }}">
-                      <button type="button" class="btn btn-success fw-bold">
-                        <i class="fa-solid fa-eye text-light"></i>
-                        &ensp; Hiển thị
-                      </button>
-                    </a>
-                  <?php
-                }elseif ($vienchuc->status_vc == 2) {
-                  ?>
-                    <button type="button" class="btn btn-success fw-bold" style="background-color: #850000; border: none;">
-                      Nghĩ hưu
-                    </button>
-                  <?php
-                }
-              ?>
             </td>
           </tr>
         @endforeach

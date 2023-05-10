@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content') 
+<?php use Illuminate\Support\Carbon; ?>
 <div class="row">
   <div class="card-box">
     <div class="alert alert-success row color_alert" role="alert">
@@ -24,6 +25,30 @@
         ________THÔNG TIN GIA ĐINH VIÊN CHỨC " <span style="color: #FFFF00"> {{ $vienchuc->hoten_vc }}</span> "________
       </h4>
     </div>
+    <?php 
+      $mess = session()->get('message_add_giadinh');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-success alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_add_giadinh', null);
+      }
+    ?>
+    <?php 
+      $mess = session()->get('message_update_giadinh');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-warning alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_update_giadinh', null);
+      }
+    ?>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
@@ -79,10 +104,6 @@
               Xoá tất cả
             </button>
           </a>
-          {{-- <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-            <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
-            Thống kê
-          </button> --}}
           <a href="{{ URL::to('quanlythongtin_giadinh_xuatfile/'.$ma_vc) }}">
             <button type="button" class="btn btn-warning fw-bold button_do">
               <i class="fa-solid fa-file-pdf text-light"></i>
@@ -97,42 +118,7 @@
               Xuất file Word
             </button>
           </a>
-  
-          {{-- <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
-                <i class="fa-solid fa-chart-simple"></i>
-                &ensp;
-                Thống kê
-              </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <table class="table">
-                <thead >
-                  <tr>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Số lượng</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($count_status as $key => $count_stt)
-                    @if ($count_stt->status_gd == 0)
-                      <tr>
-                        <td>Danh mục hiển thị</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @else
-                      <tr>
-                        <td>Danh mục ẩn</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @endif
-                  @endforeach
-                </tbody>
-              </table>
-            </div>
-          </div> --}}
+
           <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body mt-3">
               <form action="{{ URL::to('/add_giadinh/'.$ma_vc) }}" method="POST"
@@ -170,7 +156,6 @@
                           <th scope="row">Ngày sinh: </th>
                           <td class="was-validated">
                             <?php 
-                              use Illuminate\Support\Carbon;
                               Carbon::now('Asia/Ho_Chi_Minh'); 
                               $now = Carbon::parse(Carbon::now())->format('Y-m-d');
                               ?>
@@ -243,7 +228,7 @@
               </td>
               <th scope="row">{{ $key+1 }}</th>
               <td>
-                {{ $giadinh->hoten_gd }} ({{ $giadinh->ma_gd }})
+                {{ $giadinh->hoten_gd }}  
               </td>
               <td>
                 {{ $giadinh->moiquanhe_gd }}
@@ -252,7 +237,11 @@
                 {{ $giadinh->sdt_gd }}
               </td>
               <td>
-                {{ $giadinh->ngaysinh_gd }}
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngaysinh_gd = Carbon::parse(Carbon::create($giadinh->ngaysinh_gd))->format('d-m-Y');
+                  echo $ngaysinh_gd;
+                ?>
               </td>
               <td>
                 {{ $giadinh->nghenghiep_gd }}
@@ -321,25 +310,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 {{--  --}}
 <script>
-  document.querySelector('.them').addEventListener('click', (event)=>{
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 1500,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
-
-    Toast.fire({
-      icon: 'success',
-      title: 'Thêm thành công'
-    })
-    
-  });
   @foreach ($list as $giadinh )
     document.querySelector('.xoa{{ $giadinh->ma_gd }}').addEventListener('click', (event)=>{
       const swalWithBootstrapButtons = Swal.mixin({
@@ -355,8 +325,8 @@
         text: "Bạn không thể khôi phục dữ liệu đã xoá",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: '<i class="fa-solid fa-trash"></i> &ensp;  Xoá',
-        cancelButtonText: '<i class="fa-solid fa-xmark"></i> &ensp;  Huỷ',
+        confirmButtonText: '<i class="fa-solid fa-trash text-light"></i> &ensp;  Xoá',
+        cancelButtonText: '<i class="fa-solid fa-xmark text-light"></i> &ensp;  Huỷ',
         reverseButtons: true
       }).then((result) => {
         if (result.isConfirmed) {

@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+<?php use Illuminate\Support\Carbon; ?>
 <div class="row">
   <div class="card-box">
     <div class="alert alert-success row color_alert" role="alert">
@@ -22,6 +23,30 @@
         ________THÔNG TIN BẰNG CẤP VIÊN CHỨC " <span style="color: #FFFF00"> {{ $vienchuc->hoten_vc }}</span> "________
       </h4>
     </div>
+    <?php 
+      $mess = session()->get('message_add_bangcap');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-success alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_add_bangcap', null);
+      }
+    ?>
+    <?php 
+      $mess = session()->get('message_update_bangcap');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-warning alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_update_bangcap', null);
+      }
+    ?>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
@@ -77,10 +102,6 @@
               Xoá tất cả
             </button>
           </a>
-          {{-- <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-            <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
-            Thống kê
-          </button> --}}
           <a href="{{ URL::to('/quanlythongtin_bangcap_xuatfile/'.$ma_vc) }}">
             <button type="button" class="btn btn-warning fw-bold button_do">
               <i class="fa-solid fa-file-pdf text-light"></i>
@@ -95,41 +116,6 @@
               Xuất file Word
             </button>
           </a>
-          {{-- <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
-                <i class="fa-solid fa-chart-simple"></i>
-                &ensp;
-                Thống kê
-              </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Số lượng</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($count_status as $key => $count_stt)
-                    @if ($count_stt->status_bc == 0)
-                      <tr>
-                        <td>Danh mục hiển thị</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @else
-                      <tr>
-                        <td>Danh mục ẩn</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @endif
-                  @endforeach
-                </tbody>
-              </table>
-            </div>
-          </div> --}}
           <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body mt-3">
               <form onsubmit="return check_submit()" action="{{ URL::to('/add_bangcap/'.$ma_vc) }}" method="POST"
@@ -207,7 +193,6 @@
                           <th scope="row">Ngày cấp bằng: </th>
                           <td class="was-validated">
                             <?php 
-                              use Illuminate\Support\Carbon;
                               Carbon::now('Asia/Ho_Chi_Minh'); 
                               $now = Carbon::parse(Carbon::now())->format('Y-m-d');
                               ?>
@@ -303,7 +288,13 @@
                 <b>Trường học: </b>{{ $bangcap->truonghoc_bc }} <br>
                 <b>Niên khoá: </b>{{ $bangcap->tunam_bc }} - {{ $bangcap->dennam_bc }} <br>
                 <b>Số bằng: </b>{{ $bangcap->sobang_bc }} <br>
-                <b>Ngày cấp bằng: </b> {{ $bangcap->ngaycap_bc }} <br>
+                <b>Ngày cấp bằng: </b> 
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngaycap_bc = Carbon::parse(Carbon::create($bangcap->ngaycap_bc))->format('d-m-Y');
+                  echo $ngaycap_bc;
+                ?>
+                <br>
                 <b>Nơi cấp: </b> {{ $bangcap->noicap_bc }} <br>
                 <b>Xếp loại tốt nghiệp: </b>{{ $bangcap->xephang_bc }} <br>
                 @if ($bangcap->file_bc)
@@ -382,30 +373,7 @@
     </form>
   </div>
 </div>
-{{-- ajax --}}
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> --}}
-{{--  --}}
 <script>
-  document.querySelector('.them').addEventListener('click', (event)=>{
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 1500,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
-
-    Toast.fire({
-      icon: 'success',
-      title: 'Thêm thành công'
-    })
-    
-  });
   @foreach ($list as $key => $bangcap)
     document.querySelector('.xoa{{ $bangcap->ma_bc }}').addEventListener('click', (event)=>{
       const swalWithBootstrapButtons = Swal.mixin({

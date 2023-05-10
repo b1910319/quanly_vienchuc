@@ -5,6 +5,30 @@
     <div class="alert alert-light color_alert" role="alert">
       ________THÔNG TIN VỀ HÌNH THỨC KHEN THƯỞNG________
     </div>
+    <?php 
+      $mess = session()->get('message_add_hinhthuckhenthuong');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-success alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_add_hinhthuckhenthuong', null);
+      }
+    ?>
+    <?php 
+      $mess = session()->get('message_update_hinhthuckhenthuong');
+      if ($mess != null) {
+        ?>
+          <div class="alert alert-warning alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+            <?php echo $mess ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        $mess = session()->put('message_update_hinhthuckhenthuong', null);
+      }
+    ?>
     <div class="faqs-page block ">
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
@@ -175,7 +199,7 @@
               </td>
               <th scope="row">{{ $key+1 }}</th>
               <td>
-                {{ $hinhthuckhenthuong->ten_htkt }} ({{ $hinhthuckhenthuong->ma_htkt }})
+                {{ $hinhthuckhenthuong->ten_htkt }}
               </td>
               <td>
                 <?php

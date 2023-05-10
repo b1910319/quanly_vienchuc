@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\PhanQuyen;
-use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 
 class FileController extends Controller
@@ -117,6 +116,7 @@ class FileController extends Controller
         $file->file_f = $new_file;
       }
       $file->save();
+      $request->session()->put('message_add_file','Thêm thành công');
       return Redirect::to('/file');
     }else{
       return Redirect::to('/home');
@@ -204,6 +204,7 @@ class FileController extends Controller
       }
       $file->updated_f = Carbon::now();
       $file->save();
+      $request->session()->put('message_update_file','Cập nhật thành công');
       return Redirect::to('file');
     }else{
       return Redirect::to('/home');

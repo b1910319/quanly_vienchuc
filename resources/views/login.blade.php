@@ -38,6 +38,7 @@
   <link rel="stylesheet" href="{{ asset('public\assets\css\form_login.css') }}">
   <title>Đăng nhập</title>
 </head>
+<?php use Illuminate\Support\Carbon; ?>
 <body>
   <!-- Begin page -->
   <div id="wrapper">
@@ -61,7 +62,7 @@
                 <h1 style="text-align: center; font-weight: bold; text-transform: uppercase; color: white">
                   Đăng nhập
                 </h1>
-                <div class="music-waves-2" style="margin-left: 325px">
+                <div class="music-waves-2" style="margin-left: 365px">
                   <span></span>
                   <span></span>
                   <span></span>
@@ -86,7 +87,7 @@
                   <div class="col-8">
                     <div class="mb-3">
                       <label for="username" class="form-label" style="color: white; font-weight: bold; font-size: 18px;">Email</label>
-                      <input type="email" name="user_vc" class="form-control text-dark fw-bold" placeholder="name@example.com" required="" id="username" value="trinhb1910319@student.ctu.edu.vn">
+                      <input type="text" name="user_vc" class="form-control text-dark fw-bold" placeholder="name@example.com" required="" id="username" value="trinhb1910319@student.ctu.edu.vn">
                     </div>
                   </div>
                   <div class="col-2"></div>
@@ -148,7 +149,7 @@
                       <td style="width: 18%">
                         <?php 
                         $han_dangky = strtotime ( '-2 month' , strtotime ( $lop->ngaybatdau_l ) ) ;
-                        $han_dangky = date ( 'Y-m-j' , $han_dangky );
+                        $han_dangky = date ( 'j-m-Y' , $han_dangky );
                         ?>
                           <span class="badge badge-light-danger" style="font-size: 16px">
                             <?php 
@@ -191,9 +192,12 @@
                                       <td>
                                         <h5 class="m-0 fw-bold">Ngày bắt đầu</h5>
                                       </td>
-                        
                                       <td>
-                                        {{ $lop->ngaybatdau_l }}
+                                        <?php 
+                                          Carbon::now('Asia/Ho_Chi_Minh');
+                                          $ngaybatdau_l = Carbon::parse(Carbon::create($lop->ngaybatdau_l))->format('d-m-Y');
+                                          echo $ngaybatdau_l;
+                                        ?>
                                       </td>
                                     </tr>
                                     <tr>
@@ -202,7 +206,11 @@
                                       </td>
                         
                                       <td>
-                                        {{ $lop->ngayketthuc_l }}
+                                        <?php 
+                                          Carbon::now('Asia/Ho_Chi_Minh');
+                                          $ngayketthuc_l = Carbon::parse(Carbon::create($lop->ngayketthuc_l))->format('d-m-Y');
+                                          echo $ngayketthuc_l;
+                                        ?>
                                       </td>
                                     </tr>
                                     <tr>

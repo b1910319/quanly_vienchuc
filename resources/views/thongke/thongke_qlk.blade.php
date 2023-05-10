@@ -363,8 +363,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
-              <td>{{ $vc->ten_n }} ({{ $vc->ma_n }})</td>
+              <td>{{ $vc->ten_k }}  </td>
+              <td>{{ $vc->ten_n }}  </td>
             </tr>
           @endforeach
         </tbody>
@@ -573,8 +573,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }} ({{ $vc->ma_k }})</td>
-              <td>{{ $vc->ten_cv }} ({{ $vc->ma_cv }})</td>
+              <td>{{ $vc->ten_k }}  </td>
+              <td>{{ $vc->ten_cv }}  </td>
             </tr>
           @endforeach
         </tbody>
@@ -819,8 +819,8 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}({{ $vc->ma_k }})</td>
-              <td>{{ $vc->ten_n }}({{ $vc->ma_n }})</td>
+              <td>{{ $vc->ten_k }} </td>
+              <td>{{ $vc->ten_n }} </td>
             </tr>
           @endforeach
         </tbody>
@@ -901,7 +901,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }} </td>
               <td>{{ $vc->ten_t }}({{ $vc->ma_t }})</td>
             </tr>
           @endforeach
@@ -983,7 +983,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ $vc->ten_k }}({{ $vc->ma_k }})</td>
+              <td>{{ $vc->ten_k }} </td>
               <td>{{ $vc->ten_dt }}({{ $vc->ma_dt }})</td>
             </tr>
           @endforeach

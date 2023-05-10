@@ -95,7 +95,7 @@ class HeDaoTaoController extends Controller
       $hedaotao->ten_hdt = $data['ten_hdt'];
       $hedaotao->status_hdt = $data['status_hdt'];
       $hedaotao->save();
-      $request->session()->put('message','Thêm thành công');
+      $request->session()->put('message_add_hedaotao','Thêm thành công');
       return Redirect::to('/hedaotao');
     }else{
       return Redirect::to('/home');
@@ -192,6 +192,7 @@ class HeDaoTaoController extends Controller
       $hedaotao->status_hdt = $data['status_hdt'];
       $hedaotao->updated_hdt = Carbon::now();
       $hedaotao->save();
+      $request->session()->put('message_update_hedaotao','Cập nhật thành công');
       return Redirect::to('hedaotao');
     }else{
       return Redirect::to('/home');

@@ -218,7 +218,7 @@
                 </div>
               </td>
               <td>
-                {{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})
+                {{ $vienchuc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -346,7 +346,7 @@
                 </div>
               </td>
               <td>
-                {{ $vienchuc->ten_k }} ({{ $vienchuc->ma_k }})
+                {{ $vienchuc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -467,7 +467,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -588,7 +588,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -709,7 +709,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -832,7 +832,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -947,7 +947,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -1062,7 +1062,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -1179,7 +1179,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -1294,7 +1294,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -1411,7 +1411,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -1528,7 +1528,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -1639,7 +1639,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -1750,7 +1750,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -1861,7 +1861,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -1970,7 +1970,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -2092,7 +2092,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -2207,7 +2207,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -2321,7 +2321,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -2437,7 +2437,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -2547,7 +2547,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -2657,7 +2657,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">
@@ -2765,7 +2765,7 @@
                 </div>
               </td>
               <td>
-                {{ $vc->ten_k }} ({{ $vc->ma_k }})
+                {{ $vc->ten_k }}
               </td>
               <td>
                 <div class="row ">

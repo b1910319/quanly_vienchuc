@@ -49,10 +49,10 @@
                     <b> Ngày kỷ luật:</b> {{ $kyluat->ngay_kl }} <br>
                     <b> Lý do kỷ luật: </b> {{ $kyluat->lydo_kl }} <br>
                     <b> Số quyết định kỹ luật: </b> {{ $kyluat->soquyetdinh_kl }} <br>
-                    @if ($kyluat->file_kl)
-                      <a href="{{ asset('public/uploads/kyluat/'.$kyluat->file_kl) }}" style="color: #000D6B; font-weight: bold">
+                    @if ($kyluat->filequyetdinh_kl)
+                      <a href="{{ asset('public/uploads/kyluat/'.$kyluat->filequyetdinh_kl) }}" style="color: #000D6B; font-weight: bold">
                         <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
-                        File kết quả
+                        File 
                       </a>
                     @else
                       <span style="color: #FF1E1E; font-weight: bold">Chưa cập nhật file</span>

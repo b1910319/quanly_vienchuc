@@ -292,7 +292,7 @@ class KyLuatController extends Controller
       if($data['ma_lkl'] == 6){
         $vienchuc->status_vc = VienChuc::find($ma_vc)->update(['status_vc' => 3]);
       }
-      $request->session()->put('message','Thêm thành công');
+      $request->session()->put('message_add_kyluat','Thêm thành công');
       return Redirect::to('/kyluat_add/'.$ma_vc);
     }else{
       return Redirect::to('/home');
@@ -423,6 +423,7 @@ class KyLuatController extends Controller
       }
       $kyluat->updated_kl = Carbon::now();
       $kyluat->save();
+      $request->session()->put('message_update_kyluat','Cập nhật thành công');
       return Redirect::to('/kyluat_add/'.$ma_vc);
     }else{
       return Redirect::to('/home');

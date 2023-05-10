@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+<?php use Illuminate\Support\Carbon; ?>
 <div class="row">
   <div class="card-box">
     <div class="alert alert-success row color_alert" role="alert" >
@@ -40,45 +41,6 @@
             </button>
             </a>
           @endif
-          {{-- <button class="btn btn-primary button_thongke" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-            <i class="fa-solid fa-chart-simple text-light"></i> &ensp;
-            Thống kê
-          </button> --}}
-          {{-- <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel" style="color: #00AF91 ">
-                <i class="fa-solid fa-chart-simple"></i>
-                &ensp;
-                Thống kê
-              </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <table class="table">
-                <thead  class="table-dark text-light">
-                  <tr>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Số lượng</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($count_status as $key => $count_stt)
-                    @if ($count_stt->status_qd == 0)
-                      <tr>
-                        <td>Danh mục hiển thị</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @else
-                      <tr>
-                        <td>Danh mục ẩn</td>
-                        <td>{{ $count_stt->sum }}</td>
-                      </tr>
-                    @endif
-                  @endforeach
-                </tbody>
-              </table>
-            </div>
-          </div> --}}
           <div id="collapse1a" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body mt-3">
               <form action="{{ URL::to('/add_quyetdinh') }}" method="POST"
@@ -119,7 +81,6 @@
                           <th scope="row">Ngày ký quyết định: </th>
                           <td class="was-validated">
                             <?php 
-                              use Illuminate\Support\Carbon;
                               Carbon::now('Asia/Ho_Chi_Minh'); 
                               $now = Carbon::parse(Carbon::now())->format('Y-m-d');
                               ?>
@@ -209,8 +170,20 @@
               </td>
               <td style="width: 25%">
                 <b>Tên lớp học: </b> {{ $quyetdinh->ten_l }} <br>
-                <b>Ngày bắt đầu: </b> {{ $quyetdinh->ngaybatdau_l }} <br>
-                <b>Ngày kết thúc: </b> {{ $quyetdinh->ngayketthuc_l }} <br>
+                <b>Ngày bắt đầu: </b> 
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngaybatdau_l = Carbon::parse(Carbon::create($quyetdinh->ngaybatdau_l))->format('d-m-Y');
+                  echo $ngaybatdau_l;
+                ?>
+                <br>
+                <b>Ngày kết thúc: </b> 
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngayketthuc_l = Carbon::parse(Carbon::create($quyetdinh->ngayketthuc_l))->format('d-m-Y');
+                  echo $ngayketthuc_l;
+                ?>
+                <br>
                 <b>Tên cơ sở đào tạo: </b> {{ $quyetdinh->tencosodaotao_l }} <br>
                 <b>Quốc gia đào tạo: </b> {{ $quyetdinh->ten_qg }} <br>
                 <b>Email cơ sở đào tạo: </b> {{ $quyetdinh->emailcoso_l }} <br>
@@ -218,8 +191,14 @@
               </td>
               <td>
                 <b>Số quyết định: </b>{{ $quyetdinh->so_qd }} <br>
-                <b>Ngày ký quyết định: </b> <br> {{ date('d-m-Y') , strtotime($quyetdinh->ngayky_qg) }} <br>
-                @if ($quyetdinh->file_qg)
+                <b>Ngày ký quyết định: </b>
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $ngayky_qd = Carbon::parse(Carbon::create($quyetdinh->ngayky_qd))->format('d-m-Y');
+                  echo $ngayky_qd;
+                ?>
+                <br>
+                @if ($quyetdinh->file_qd)
                   <a href="{{ asset('public/uploads/quyetdinh/'.$quyetdinh->file_qd) }}" style="color: #000D6B; font-weight: bold">
                     <i class="fa-solid fa-file" style="color: #000D6B; font-weight: bold"></i>
                     File quyết định

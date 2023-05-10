@@ -91,6 +91,7 @@ class GiaDinhController extends Controller
       $giadinh->status_gd = $data['status_gd'];
       $giadinh->ma_vc = $ma_vc;
       $giadinh->save();
+      $request->session()->put('message_add_giadinh','Thêm thành công');
       return Redirect::to('/giadinh/'.$ma_vc);
     }else{
       return Redirect::to('/home');
@@ -195,6 +196,7 @@ class GiaDinhController extends Controller
       $giadinh->ma_vc = $data['ma_vc'];
       $giadinh->updated_gd = Carbon::now();
       $giadinh->save();
+      $request->session()->put('message_update_giadinh','Cập nhật thành công');
       return Redirect::to('/giadinh/'.$ma_vc);
     }else{
       return Redirect::to('/home');

@@ -33,11 +33,11 @@
               </td>
               <th scope="row">{{ $key+1 }}</th>
               <td>
-                <b>Tên: </b> {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }}) <br>
+                <b>Tên: </b> {{ $vienchuc->hoten_vc }} <br>
                 <b>Khoa: </b>
                 @foreach ($list_khoa as $khoa)
                   @if ($khoa->ma_k == $vienchuc->ma_k)
-                    {{ $khoa->ten_k }} ({{ $vienchuc->ma_k }})
+                    {{ $khoa->ten_k }}
                   @endif
                 @endforeach
                 <br>

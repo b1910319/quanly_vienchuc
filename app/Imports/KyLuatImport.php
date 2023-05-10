@@ -20,6 +20,7 @@ class KyLuatImport implements ToModel
       'lydo_kl'     => $row[2],
       'ngay_kl'     => $row[3],
       'soquyetdinh_kl'     => $row[4],
+      'filequyetdinh_kl' => $row[5],
     ]);
   }
 }

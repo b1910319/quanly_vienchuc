@@ -6,6 +6,30 @@
       <div class="alert alert-light color_alert" role="alert">
         ________THÔNG TIN DANH MỤC ĐÀO TẠO________
       </div>
+      <?php 
+        $mess = session()->get('message_add_danhmuclop');
+        if ($mess != null) {
+          ?>
+            <div class="alert alert-success alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+              <?php echo $mess ?>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          <?php
+          $mess = session()->put('message_add_danhmuclop', null);
+        }
+      ?>
+      <?php 
+        $mess = session()->get('message_update_danhmuclop');
+        if ($mess != null) {
+          ?>
+            <div class="alert alert-warning alert-dismissible fade show fw-bold" role="alert" style="width: 20%">
+              <?php echo $mess ?>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          <?php
+          $mess = session()->put('message_update_danhmuclop', null);
+        }
+      ?>
       <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
           <button role="button" class="item-question collapsed btn btn-primary button_xanhla" data-toggle="collapse" href="#collapse1a" aria-expanded="false" aria-controls="collapse1a">
@@ -176,7 +200,7 @@
               </td>
               <th scope="row">{{ $key+1 }}</th>
               <td>
-                {{ $danhmuclop->ten_dml }} ({{ $danhmuclop->ma_dml }})
+                {{ $danhmuclop->ten_dml }}
               </td>
               <td style="width: 15%">
                 <?php

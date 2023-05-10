@@ -130,6 +130,7 @@ class KhuVucController extends Controller
       $khuvuc->ten_kv = $data['ten_kv'];
       $khuvuc->status_kv = $data['status_kv'];
       $khuvuc->save();
+      $request->session()->put('message_add_khuvuc','Thêm thành công');
       return Redirect::to('/khuvuc/'.$data['ma_cl']);
     }else{
       return Redirect::to('/home');
@@ -242,6 +243,7 @@ class KhuVucController extends Controller
       $khuvuc->status_kv = $data['status_kv'];
       $khuvuc->updated_kv = Carbon::now();
       $khuvuc->save();
+      $request->session()->put('message_update_khuvuc','Cập nhật thành công');
       return Redirect::to('khuvuc/'.$data['ma_cl']);
     }else{
       return Redirect::to('/home');

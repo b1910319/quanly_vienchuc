@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\DanToc;
 use App\Models\PhanQuyen;
-use App\Models\VienChuc;
 use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -114,7 +113,7 @@ class DanTocController extends Controller
       $dantoc->ten_dt = $data['ten_dt'];
       $dantoc->status_dt = $data['status_dt'];
       $dantoc->save();
-      $request->session()->put('message','Thêm thành công');
+      $request->session()->put('message_add_dantoc','Thêm thành công');
       return Redirect::to('/dantoc');
     }else{
       return Redirect::to('/home');
@@ -212,6 +211,7 @@ class DanTocController extends Controller
       $dantoc->status_dt = $data['status_dt'];
       $dantoc->updated_dt = Carbon::now();
       $dantoc->save();
+      $request->session()->put('message_update_dantoc','Cập nhật thành công');
       return Redirect::to('dantoc');
     }else{
       return Redirect::to('/home');

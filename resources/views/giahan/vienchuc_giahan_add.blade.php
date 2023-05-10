@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+<?php use Illuminate\Support\Carbon; ?>
   <div class="row">
     <div class="col-2 card-box">
       <div class="row">
@@ -105,7 +106,13 @@
             <tr >
               <th scope="row">{{ $key+1 }}</th>
               <td>
-                <b>Thời gian gia hạn: </b> {{ $giahan->thoigian_gh }} <br>
+                <b>Thời gian gia hạn: </b>
+                <?php 
+                  Carbon::now('Asia/Ho_Chi_Minh');
+                  $thoigian_gh = Carbon::parse(Carbon::create($giahan->thoigian_gh))->format('d-m-Y');
+                  echo $thoigian_gh;
+                ?>
+                <br>
                 <b>Lý do gia hạn </b> {{ $giahan->lydo_gh }} <br>
                 @if ($giahan->file_gh)
                   <a href="{{ asset('public/uploads/giahan/'.$giahan->file_gh) }}" style="color: #000D6B; font-weight: bold">

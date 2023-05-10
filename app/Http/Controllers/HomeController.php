@@ -859,27 +859,10 @@ class HomeController extends Controller
       ->first();
     $list_quatrinhchucvu = QuaTrinhChucVu::join('chucvu', 'chucvu.ma_cv', '=', 'quatrinhchucvu.ma_cv')
       ->join('nhiemky', 'nhiemky.ma_nk', '=', 'quatrinhchucvu.ma_nk')
-      ->where('ma_vc', $ma_vc)
+      ->where('quatrinhchucvu.ma_vc', $ma_vc)
       ->get();
-    // $vienchuc = VienChuc::find($ma_vc);
-    // $list_khoa = Khoa::get();
-    // $list_chucvu = ChucVu::get();
-    // $list_bac =  Bac::get();
-    // $list_ngach = Ngach::get();
-    // $list_dantoc = DanToc::get();
-    // $list_tongiao = TonGiao::get();
-    // $list_thuongbinh = ThuongBinh::get();
     return view('thongtin_vienchuc.thongtin_quatrinhchucvu')
       ->with('title', $title)
-
-      // ->with('vienchuc', $vienchuc)
-
-      // ->with('list_khoa', $list_khoa)
-      // ->with('list_chucvu', $list_chucvu)
-      // ->with('list_bac', $list_bac)
-      // ->with('list_ngach', $list_ngach)
-      // ->with('list_dantoc', $list_dantoc)
-      // ->with('list_tongiao', $list_tongiao)
       ->with('list_quatrinhchucvu', $list_quatrinhchucvu)
 
       ->with('phanquyen_qlqtcv', $phanquyen_qlqtcv)

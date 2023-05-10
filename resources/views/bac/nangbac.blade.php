@@ -26,7 +26,7 @@
               {{ $key+1 }}
             </th>
             <td>
-              {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }})
+              {{ $vienchuc->hoten_vc }}
             </td>
             <td>
               @foreach ($list_ngach as $ngach)
@@ -462,7 +462,7 @@
               {{ $key+1 }}
             </th>
             <td>
-              {{ $vienchuc->hoten_vc }} ({{ $vienchuc->ma_vc }})
+              {{ $vienchuc->hoten_vc }}
             </td>
             <td>
               @foreach ($list_ngach as $ngach)

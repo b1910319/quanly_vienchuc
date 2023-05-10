@@ -736,7 +736,7 @@ class DanhSachController extends Controller
       ->first();
       $danhsach->status_ds = '4';
       $danhsach->save();
-      return Redirect::to('/quahan');
+      return redirect()->back();
     }else{
       return Redirect::to('/home');
     }

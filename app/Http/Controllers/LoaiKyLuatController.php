@@ -119,7 +119,7 @@ class LoaiKyLuatController extends Controller
       $loaikyluat->ten_lkl = $data['ten_lkl'];
       $loaikyluat->status_lkl = $data['status_lkl'];
       $loaikyluat->save();
-      $request->session()->put('message','Thêm thành công');
+      $request->session()->put('message_add_loaikyluat','Thêm thành công');
       return Redirect::to('/loaikyluat');
     }else{
       return Redirect::to('/home');
@@ -222,6 +222,7 @@ class LoaiKyLuatController extends Controller
       $loaikyluat->status_lkl = $data['status_lkl'];
       $loaikyluat->updated_lkl = Carbon::now();
       $loaikyluat->save();
+      $request->session()->put('message_update_loaikyluat','Cập nhật thành công');
       return Redirect::to('loaikyluat');
     }else{
       return Redirect::to('/home');
